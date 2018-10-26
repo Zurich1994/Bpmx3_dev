@@ -1,0 +1,301 @@
+
+.l-layout {
+    position: relative;
+}
+
+.l-layout-left, .l-layout-right, .l-layout-center, .l-layout-top, .l-layout-bottom {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 white;
+    border-color:#D2D2D2;
+    border-image: none;
+    border-right: 1px solid #D2D2D2;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+}
+.l-layout-left {
+	border-left:1px solid #d2d2d2;
+}
+.l-layout-center {
+
+    margin-left: -3px;
+}
+.l-layout-top {
+    width: 100%;
+}
+.l-layout-bottom {
+    width: 100%;
+}
+.l-layout-left .l-layout-header-toggle {
+    background: url("../../../images/other/1.png") repeat scroll -20px 4px transparent;
+    cursor: pointer;
+    height: 20px;
+    overflow: hidden;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 20px;
+}
+.l-layout-left .l-layout-header-toggle-over {
+   /* background-position: -20px -20px;*/
+}
+.l-layout-right .l-layout-header-toggle {
+    background: url("../images/layout/togglebar.gif") repeat scroll -20px -40px transparent;
+    cursor: pointer;
+    height: 20px;
+    left: 3px;
+    overflow: hidden;
+    position: absolute;
+    top: 3px;
+    width: 20px;
+}
+.l-layout-right .l-layout-header-toggle-over {
+    background-position: -20px -60px;
+}
+.l-layout-center .l-layout-header {
+    cursor: default;
+}
+.l-layout-header {
+    background: url("../../../images/other/bg.png") repeat scroll 0 -135px transparent;
+    cursor: pointer;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    padding-left: 10px;
+    position: relative;
+}
+
+.l-layout-left .l-layout-header,.l-layout-right .l-layout-header{
+	color:white;
+    background: none repeat scroll 0 0 #a2a2a2;
+}/*z0902 background: none repeat scroll 0 0 #585858;*/
+
+.l-layout-left .l-layout-header a,.l-layout-right .l-layout-header a{
+	color:white;
+}
+#layoutMain .l-layout-left .l-layout-header{background: url("../../../images/other/bg.png") repeat scroll 0 -135px transparent;  color:#000;}
+#layoutMain .l-layout-left .l-layout-header .l-layout-header-toggle{
+	background-position:0px 4px;
+}
+.l-layout-header-inner {
+    padding-right: 22px;
+}
+.l-layout-right .l-layout-header-inner {
+    padding-left: 22px;
+}
+.l-layout-header-over {
+}
+.l-layout-collapse-left, .l-layout-collapse-right {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #d2d2d2;
+    display: none;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 24px;
+    z-index: 10;
+}
+.l-layout-collapse-left-over, .l-layout-collapse-right-over {
+
+    background: none repeat scroll 0 0 #F5F9FA;
+    
+}
+.l-layout-collapse-left-toggle, .l-layout-collapse-right-toggle {
+    background: url("../images/layout/togglebar.gif") repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 20px;
+    overflow: hidden;
+    position: absolute;
+    width: 20px;
+}
+.l-layout-collapse-left {
+    left: 2px;
+}
+.l-layout-collapse-left-toggle {
+    background-position: -20px -40px;
+    right: 2px;
+    top: 0;
+}
+.l-layout-collapse-left-toggle-over {
+    background-position: -20px -60px;
+}
+.l-layout-collapse-right {
+    right: 2px;
+}
+.l-layout-collapse-right-toggle {
+    background-position: -20px 0;
+    left: 2px;
+    top: 0;
+}
+.l-layout-collapse-right-toggle-over {
+    background-position: -20px -20px;
+}
+.l-layout-drophandle-left {
+    cursor: col-resize;
+    display: none;
+    position: absolute;
+    width: 5px;
+    z-index: 10;
+}
+.l-layout-drophandle-right {
+    cursor: col-resize;
+    display: none;
+    position: absolute;
+    width: 5px;
+    z-index: 10;
+}
+.l-layout-drophandle-top {
+    cursor: row-resize;
+    display: none;
+    height: 5px;
+    line-height: 1px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+}
+.l-layout-drophandle-bottom {
+    cursor: row-resize;
+    display: none;
+    height: 5px;
+    line-height: 1px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+}
+.l-layout-dragging-xline {
+    background: none repeat scroll 0 0 #E0E4E2;
+    display: none;
+    height: 4px;
+    line-height: 1px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    z-index: 9999;
+}
+.l-layout-dragging-yline {
+    background: none repeat scroll 0 0 #E0E4E2;
+    display: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 4px;
+    z-index: 9999;
+}
+.l-layout-lock {
+    display: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 9990;
+}
+.l-layout-content {
+    background: none repeat scroll 0 0 white;
+    overflow: hidden;
+    position: relative;
+}
+.l-layout-drophandle {
+    cursor: col-resize;
+    display: none;
+    height: 100%;
+    left: -5px;
+    position: absolute;
+    top: 0;
+    width: 5px;
+    z-index: 10;
+}
+.l-layout-collapse {
+    background: none repeat scroll 0 0 #EAF2FE;
+    border: 1px solid #B8D0D6;
+    display: none;
+    height: 100%;
+    left: 4px;
+    position: absolute;
+    top: 0;
+    width: 24px;
+    z-index: 10;
+}
+.l-layout-collapse-over {
+    background: none repeat scroll 0 0 #F5F9FA;
+}
+.l-layout-collapse-toggle {
+    background: url("../images/layout/togglebar.gif") repeat scroll -20px -40px transparent;
+    cursor: pointer;
+    height: 20px;
+    overflow: hidden;
+    position: absolute;
+    right: 2px;
+    top: 0;
+    width: 20px;
+}
+.l-layout-collapse-toggle-over {
+    background-position: -20px -60px;
+}
+.l-layout-dragging-line {
+    background: none repeat scroll 0 0 #E0E4E2;
+    display: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 4px;
+    z-index: 9999;
+}
+.l-accordion-panel {
+    border-bottom: 1px solid #BED5F3;
+    border-left: 1px solid #BED5F3;
+    border-right: 1px solid #BED5F3;
+}
+.l-accordion-toggle {
+    background: url("../images/layout/togglebar.gif") repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 20px;
+    overflow: hidden;
+    position: absolute;
+    right: 4px;
+    top: 2px;
+    width: 20px;
+}
+.l-accordion-toggle-close {
+    background-position: 0 0;
+}
+.l-accordion-toggle-close-over {
+    background-position: 0 -20px;
+}
+.l-accordion-toggle-open {
+    background-position: 0 -40px;
+}
+.l-accordion-toggle-open-over {
+    background-position: 0 -60px;
+}
+.l-accordion-header {
+	 background: url("../../../images/other/bg.png") repeat scroll 0 -135px transparent;
+    color: #183152;
+    cursor: pointer;
+    font-weight: bold;
+    height: 25px;
+    line-height: 24px;
+    overflow: hidden;
+    padding-left: 10px;
+    position: relative;
+}
+.l-accordion-header-over {
+   
+}
+.l-accordion-content {
+    background: url("../images/layout/accordion-content.gif") repeat-x scroll 0 0 white;
+    overflow: auto;
+    position: relative;
+}
+.l-layout-left .l-accordion-panel {
+    border-left: medium none;
+    border-right: medium none;
+}

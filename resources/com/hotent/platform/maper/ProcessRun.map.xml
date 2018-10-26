@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.ProcessRun">
+	<resultMap id="ProcessRun" type="com.hotent.platform.model.bpm.ProcessRun">
+		<id property="runId" column="runId" jdbcType="NUMERIC"/>
+		<result property="defId" column="defId" jdbcType="NUMERIC"/>
+		<result property="subject" column="subject" jdbcType="VARCHAR"/>
+		<result property="creatorId" column="creatorId" jdbcType="NUMERIC"/>
+		<result property="creator" column="creator" jdbcType="VARCHAR"/>
+		<result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+		<result property="busDescp" column="busDescp" jdbcType="VARCHAR"/>
+		<result property="status" column="status" jdbcType="NUMERIC"/>
+		<result property="actInstId" column="actInstId" jdbcType="VARCHAR"/>
+		<result property="actDefId" column="actDefId" jdbcType="VARCHAR"/>
+		<result property="businessKey" column="businessKey" jdbcType="VARCHAR"/>
+		<result property="businessKeyNum" column="BUSINESSKEY_NUM" jdbcType="NUMERIC"/>
+		<result property="businessUrl" column="businessUrl" jdbcType="VARCHAR"/>
+		<result property="processName" column="processName" jdbcType="VARCHAR"/>
+		<result property="endTime" column="endTime" jdbcType="TIMESTAMP"/>
+		<result property="duration" column="duration" jdbcType="NUMERIC"/>
+		<result property="lastSubmitDuration" column="lastSubmitDuration" jdbcType="NUMERIC"/>
+		<result property="pkName" column="pkName" jdbcType="VARCHAR"/>
+		<result property="tableName" column="tableName" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parentId" jdbcType="NUMERIC"/>
+		<result property="startOrgId" column="startOrgId" jdbcType="NUMERIC"/>
+		<result property="startOrgName"  column="startOrgName"  jdbcType="VARCHAR"/>
+		<result property="typeId" column="typeId" jdbcType="NUMERIC"/>
+		<result property="formKeyUrl" column="formKeyUrl" jdbcType="VARCHAR"/>
+		<result property="formType" column="formType" jdbcType="NUMERIC"/>
+		<result property="formDefId" column="formDefId" jdbcType="NUMERIC"/>
+		<result property="flowKey" column="flowKey" jdbcType="VARCHAR"/>
+		<result property="dsAlias" column="dsAlias" jdbcType="VARCHAR"/>
+		<result property="isFormal" column="isFormal" jdbcType="NUMERIC"/>
+		<result property="startNode" column="startNode" jdbcType="VARCHAR"/>
+		<result property="relRunId" column="RELRUNID" jdbcType="NUMERIC"/>
+		<result property="globalFlowNo" column="globalFlowNo" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		runId,defId,subject,creatorId,creator,
+		createtime,busDescp,status,actInstId,actDefId,
+		businessKey,BUSINESSKEY_NUM,businessUrl,processName,endTime,duration,
+		lastSubmitDuration,pkName,tableName,parentId,startOrgId,
+		startOrgName,typeId,formKeyUrl,formType,formDefId,
+		flowKey,dsAlias,isFormal,startNode,relRunId,globalFlowNo
+	</sql>
+	
+	<sql id="runColumns">
+		run.runId,run.defId,run.subject,run.creatorId,run.creator,run.createtime,run.busDescp,run.status,
+		run.actInstId,run.actDefId,run.businessKey,run.BUSINESSKEY_NUM,
+		run.businessUrl,run.processName,
+		run.endTime,run.duration,run.lastSubmitDuration,run.pkName,run.tableName,run.parentId,
+		run.startOrgId,run.startOrgName,
+		run.typeId,run.formKeyUrl,run.formType,run.formDefId,run.flowKey,run.dsAlias,run.isFormal,run.startNode,run.relRunId,
+		run.globalFlowNo
+	</sql>
+	
+	<sql id="dynamicWhere2">
+		<where>
+			AND 1=1
+			<if test="@Ognl@isNotEmpty(runId)"> AND run.runId  =#{runId} </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND run.defId  =#{defId} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND run.subject  LIKE #{subject} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(creatorId)"> AND run.creatorId  =#{creatorId} </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND run.creator  LIKE #{creator} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND run.endTime  =#{endTime} </if>
+			<if test="@Ognl@isNotEmpty(busDescp)"> AND run.busDescp  LIKE #{busDescp} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(exceptDefStatus)"> AND def.status !=#{exceptDefStatus} </if>
+			<if test="@Ognl@isNotEmpty(exceptStatus)"> AND run.status !=#{exceptStatus} </if>
+			<if test="@Ognl@isNotEmpty(actInstId)"> AND run.actInstId  LIKE #{actInstId} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(actDefId)"> AND run.actDefId  LIKE #{actDefId} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(businessKey)"> AND run.businessKey  LIKE #{businessKey} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(businessUrl)"> AND run.businessUrl  LIKE #{businessUrl} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(processName)"> AND run.processName  LIKE #{processName} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(parentId)">AND run.parentId LIKE #{parentId} </if>
+			<if test="@Ognl@isNotEmpty(startOrgId)">AND run.startOrgId LIKE #{startOrgId} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(startOrgName)"> AND run.startOrgName  LIKE #{startOrgName} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(globalFlowNo)"> AND run.globalFlowNo  LIKE #{globalFlowNo} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.ProcessRun">
+		INSERT INTO bpm_pro_run
+		(<include refid="columns"/>)
+		VALUES
+		(
+			#{runId,jdbcType=NUMERIC}, 
+			#{defId,jdbcType=NUMERIC}, 
+			#{subject,jdbcType=VARCHAR},
+			#{creatorId,jdbcType=NUMERIC},
+			#{creator,jdbcType=VARCHAR},
+			#{createtime,jdbcType=TIMESTAMP}, 
+			#{busDescp,jdbcType=VARCHAR},
+			#{status,jdbcType=NUMERIC}, 
+			#{actInstId,jdbcType=VARCHAR},
+			#{actDefId,jdbcType=VARCHAR},
+			#{businessKey,jdbcType=VARCHAR},
+			#{businessKeyNum,jdbcType=NUMERIC},
+			#{businessUrl,jdbcType=VARCHAR},
+			#{processName,jdbcType=VARCHAR},
+			#{endTime,jdbcType=TIMESTAMP}, 
+			#{duration,jdbcType=NUMERIC},
+			#{lastSubmitDuration,jdbcType=NUMERIC},  
+			#{pkName,jdbcType=VARCHAR}, 
+			#{tableName,jdbcType=VARCHAR},
+			#{parentId,jdbcType=NUMERIC},
+			#{startOrgId,jdbcType=NUMERIC},
+			#{startOrgName,jdbcType=VARCHAR},
+			#{typeId,jdbcType=NUMERIC},
+			#{formKeyUrl,jdbcType=VARCHAR},
+			#{formType,jdbcType=NUMERIC},
+			#{formDefId,jdbcType=NUMERIC},
+			#{flowKey,jdbcType=VARCHAR},
+			#{dsAlias,jdbcType=VARCHAR},
+			#{isFormal,jdbcType=NUMERIC},
+			#{startNode,jdbcType=VARCHAR},
+			#{relRunId,jdbcType=NUMERIC},
+			#{globalFlowNo,jdbcType=VARCHAR}
+		)</insert>
+	
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRO_RUN 
+		WHERE
+		runId=#{runId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.ProcessRun">
+		UPDATE bpm_pro_run SET
+		defId=#{defId,jdbcType=NUMERIC} , 
+		subject=#{subject,jdbcType=VARCHAR} , 
+		creatorId=#{creatorId,jdbcType=NUMERIC} , 
+		creator=#{creator,jdbcType=VARCHAR} , 
+		createtime=#{createtime,jdbcType=TIMESTAMP} , 
+		busDescp=#{busDescp,jdbcType=VARCHAR} , 
+		status=#{status,jdbcType=NUMERIC} , 
+		actInstId=#{actInstId,jdbcType=VARCHAR} , 
+		actDefId=#{actDefId,jdbcType=VARCHAR} , 
+		businessKey=#{businessKey,jdbcType=VARCHAR} , 
+		BUSINESSKEY_NUM=#{businessKeyNum,jdbcType=VARCHAR} , 
+		businessUrl=#{businessUrl,jdbcType=VARCHAR} , 
+		processName=#{processName,jdbcType=VARCHAR} , 
+		endTime=#{endTime,jdbcType=TIMESTAMP} , 
+		duration=#{duration,jdbcType=NUMERIC} , 
+		pkName=#{pkName,jdbcType=VARCHAR} , 
+		tableName=#{tableName,jdbcType=VARCHAR},
+		parentId=#{parentId,jdbcType=NUMERIC} ,
+		startOrgId=#{startOrgId,jdbcType=NUMERIC} ,
+		startOrgName=#{startOrgName,jdbcType=VARCHAR},
+		formDefId=#{formDefId,jdbcType=NUMERIC},
+		isFormal=#{isFormal,jdbcType=NUMERIC},
+		startNode=#{startNode,jdbcType=VARCHAR},
+		relRunId=#{relRunId,jdbcType=NUMERIC},
+		globalFlowNo=#{globalFlowNo,jdbcType=VARCHAR}
+		WHERE
+		runId=#{runId}
+	</update>
+	
+	<update id="updateProcessNameByDefId">
+		update BPM_PRO_RUN set processName=#{processName} where defId=#{defId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="ProcessRun">
+		SELECT run.* ,hi.END_TIME_ endTime,hi.DURATION_ duration
+		FROM BPM_PRO_RUN run LEFT JOIN ACT_HI_PROCINST hi
+		ON run.actInstId=hi.PROC_INST_ID_
+		WHERE run.runId=#{runId}
+	</select>
+
+	
+	<select id="getByActInstanceId" parameterType="java.lang.String" resultMap="ProcessRun">
+		SELECT * FROM BPM_PRO_RUN
+		WHERE
+		actInstId=#{actInstId}
+	</select>
+
+	
+	<!-- 
+	|
+	|	History
+	|	 
+	-->
+
+	<insert id="addHistory" parameterType="com.hotent.platform.model.bpm.ProcessRun">
+		INSERT INTO BPM_PRO_RUN_HIS
+		(<include refid="columns"/>)
+		VALUES
+		(
+			#{runId,jdbcType=NUMERIC}, 
+			#{defId,jdbcType=NUMERIC}, 
+			#{subject,jdbcType=VARCHAR},
+			#{creatorId,jdbcType=NUMERIC},
+			#{creator,jdbcType=VARCHAR},
+			#{createtime,jdbcType=TIMESTAMP}, 
+			#{busDescp,jdbcType=VARCHAR},
+			#{status,jdbcType=NUMERIC}, 
+			#{actInstId,jdbcType=VARCHAR},
+			#{actDefId,jdbcType=VARCHAR},
+			#{businessKey,jdbcType=VARCHAR},
+			#{businessKeyNum,jdbcType=NUMERIC},
+			#{businessUrl,jdbcType=VARCHAR},
+			#{processName,jdbcType=VARCHAR},
+			#{endTime,jdbcType=TIMESTAMP}, 
+			#{duration,jdbcType=NUMERIC},
+			#{lastSubmitDuration,jdbcType=NUMERIC},  
+			#{pkName,jdbcType=VARCHAR}, 
+			#{tableName,jdbcType=VARCHAR},
+			#{parentId,jdbcType=NUMERIC},
+			#{startOrgId,jdbcType=NUMERIC},
+			#{startOrgName,jdbcType=VARCHAR},
+			#{typeId,jdbcType=NUMERIC},
+			#{formKeyUrl,jdbcType=VARCHAR},
+			#{formType,jdbcType=NUMERIC},
+			#{formDefId,jdbcType=NUMERIC},
+			#{flowKey,jdbcType=VARCHAR},
+			#{dsAlias,jdbcType=VARCHAR},
+			#{isFormal,jdbcType=NUMERIC},
+			#{startNode,jdbcType=VARCHAR},
+			#{relRunId,jdbcType=NUMERIC},
+			#{globalFlowNo,jdbcType=VARCHAR}
+			
+		)
+		</insert>
+	
+	<delete id="delByIdHistory" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRO_RUN_HIS 
+		WHERE
+		runId=#{runId}
+	</delete>
+	
+	<update id="updateHistory" parameterType="com.hotent.platform.model.bpm.ProcessRun">
+		UPDATE BPM_PRO_RUN_HIS SET
+		defId=#{defId,jdbcType=NUMERIC} , 
+		subject=#{subject,jdbcType=VARCHAR} , 
+		creatorId=#{creatorId,jdbcType=NUMERIC} , 
+		creator=#{creator,jdbcType=VARCHAR} , 
+		createtime=#{createtime,jdbcType=TIMESTAMP} , 
+		busDescp=#{busDescp,jdbcType=VARCHAR} , 
+		status=#{status,jdbcType=NUMERIC} , 
+		actInstId=#{actInstId,jdbcType=VARCHAR} , 
+		actDefId=#{actDefId,jdbcType=VARCHAR} , 
+		businessKey=#{businessKey,jdbcType=VARCHAR} , 
+		BUSINESSKEY_NUM=#{businessKeyNum,jdbcType=VARCHAR} , 
+		businessUrl=#{businessUrl,jdbcType=VARCHAR} , 
+		processName=#{processName,jdbcType=VARCHAR} , 
+		endTime=#{endTime,jdbcType=TIMESTAMP} , 
+		duration=#{duration,jdbcType=NUMERIC} ,
+		lastSubmitDuration=#{lastSubmitDuration,jdbcType=NUMERIC} ,  
+		pkName=#{pkName,jdbcType=VARCHAR} , 
+		tableName=#{tableName,jdbcType=VARCHAR},
+		parentId=#{parentId,jdbcType=NUMERIC} ,
+		startOrgId=#{startOrgId,jdbcType=NUMERIC} ,
+		startOrgName=#{startOrgName,jdbcType=VARCHAR},
+		typeId=#{typeId,jdbcType=NUMERIC},
+		formKeyUrl=#{formKeyUrl,jdbcType=VARCHAR},
+		formType=#{formType,jdbcType=NUMERIC},
+		startNode=#{startNode,jdbcType=VARCHAR},
+		relRunId=#{relRunId,jdbcType=NUMERIC},
+		globalFlowNo=#{globalFlowNo,jdbcType=VARCHAR}
+		WHERE
+		runId=#{runId}
+	</update>
+	
+	<select id="getByActInstanceIdHistory" parameterType="java.lang.String" resultMap="ProcessRun">
+		SELECT <include refid="columns"/> FROM BPM_PRO_RUN_HIS
+		WHERE
+		actInstId=#{actInstId}
+	</select>
+	
+	<select id="getAll" resultMap="ProcessRun">
+		SELECT run.* 
+		FROM BPM_PRO_RUN_HIS run
+		LEFT JOIN BPM_DEFINITION def
+		ON run.actDefId=def.actDefId
+		<include refid="dynamicWhere2" />
+		
+		<!-- 按用户授权过滤用户的流程 ：isNeedRight为空时不需要按权限查询，否则按流程的分管授权情况查询-->
+		<if test="@Ognl@isNotEmpty(isNeedRight)">
+		 	<if test="@Ognl@isNotEmpty(actRights)">
+		 		AND def.defKey in(${actRights})  
+			</if>
+			<if test="@Ognl@isEmpty(actRights)">
+		 		AND def.defKey = ''  
+			</if>			
+		</if>
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by run.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.createtime  desc
+		</if>
+	</select>
+	
+	<select id="getByIdHistory" parameterType="java.lang.Long" resultMap="ProcessRun">
+		SELECT run.* ,hi.END_TIME_ endTime,hi.DURATION_ duration
+		FROM BPM_PRO_RUN_HIS run LEFT JOIN ACT_HI_PROCINST hi
+		ON run.actInstId=hi.PROC_INST_ID_
+		WHERE run.runId=#{runId}
+	</select>
+	
+	<select id="getTestRunsByActDefId" parameterType="java.lang.String"  resultMap="ProcessRun">
+		SELECT run.* From BPM_PRO_RUN_HIS run 
+		WHERE run.actDefId=#{actDefId}
+		AND	run.isFormal=0
+	</select>
+	
+	<select id="getByBusinessKey" parameterType="java.lang.String" resultMap="ProcessRun">
+		SELECT * FROM BPM_PRO_RUN_HIS
+		WHERE
+		parentId=0
+		AND
+		businessKey=#{businessKey}
+	</select>
+	
+	<select id="getByBusinessKeyNum" parameterType="java.lang.Long" resultMap="ProcessRun">
+		SELECT * FROM BPM_PRO_RUN
+		WHERE
+		parentId=0
+		AND
+		BUSINESSKEY_NUM=#{businessKeyNum}
+	</select>
+		
+	<select id="getMonitor" resultMap="ProcessRun">      
+      SELECT runid,
+             defid,
+             processname,
+             subject,
+             creatorid,
+             creator,
+             createtime,
+             busdescp,
+             status,
+             actdefid,
+             endtime,
+             DURATION,
+             parentid,
+             startorgid,
+             startorgname,
+             typeid,
+             actinstid,
+             lastsubmitduration,
+             per.flowkey,
+             per.grade
+        FROM bpm_pro_run_his his,
+             (SELECT org.orgid, max(tmp.grade) grade, tmp.flowkey
+                 FROM sys_org org,
+                      (SELECT rights.*, t.PATH
+                         FROM (SELECT MAX(a.grade) grade, b.flowkey, d.orgid
+                                  FROM bpm_mon_group     a,
+                                       bpm_mon_groupitem b,
+                                       bpm_mon_orgrole   d,
+                                       sys_user_role     e
+                                 WHERE a.enabled = 1
+                                   AND a.ID = b.groupid
+                                   AND a.ID = d.groupid
+                                   AND e.roleid = d.roleid
+                                   AND e.userid =  #{curUser}
+                                 GROUP BY b.flowkey, d.orgid) rights,
+                              sys_org t
+                        WHERE rights.orgid = t.orgid) tmp
+                WHERE org.PATH LIKE tmp.PATH || '%'
+                GROUP BY ORG.ORGID, TMP.FLOWKEY)per
+       WHERE his.startorgid = per.orgid
+         AND per.flowkey = his.flowkey
+	
+			 <if test="@Ognl@isNotEmpty(creatorid)"> and his.creatorid= #{creatorid} </if>
+			 <if test="@Ognl@isNotEmpty(status)"> and his.status= #{status} </if>
+			 <if test="@Ognl@isNotEmpty(begincreatetime)"> AND his.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+			 <if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ his.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+			 <if test="@Ognl@isNotEmpty(processname)"> AND upper(his.processname) like #{processname,jdbcType=VARCHAR}  ESCAPE '|'  </if>
+			 <if test="@Ognl@isNotEmpty(subject)"> AND upper(his.subject) like #{subject,jdbcType=VARCHAR}  ESCAPE '|'  </if>
+			 <if test="@Ognl@isNotEmpty(orderField)">
+				order by his.${orderField} ${orderSeq}
+			 </if>
+			 <if test="@Ognl@isEmpty(orderField)">
+				order by his.createtime  desc
+			 </if>
+			
+      </select>
+	
+	<select id="getMyAttend" resultMap="ProcessRun">
+		select count(distinct run.actInstId) countNum,run.runId,run.defId,run.subject,run.creatorId,run.creator,run.createtime,run.busDescp,run.status,run.actInstId,run.actDefId,run.businessKey,run.businessUrl,run.processName,run.endTime,run.duration,run.pkName,run.tableName,run.parentId,run.startOrgId,run.startOrgName
+		from BPM_PRO_RUN_HIS run left join ACT_HI_TASKINST tk on run.actInstId=tk.PROC_INST_ID_ 
+		where tk.ASSIGNEE_=#{assignee}
+		<if test="@Ognl@isNotEmpty(subject)"> AND run.subject  LIKE #{subject} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(creator)"> AND run.creator  LIKE #{creator} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(beginendTime)"> AND run.endTime  >=#{beginendTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endendTime)"> AND <![CDATA[ run.endTime <= #{endendTime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(endTime)"> AND run.endTime  =#{endTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(busDescp)"> AND run.busDescp  LIKE #{busDescp} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND run.processName  LIKE #{processName} ESCAPE '|' </if>
+		group by run.runId,run.defId,run.subject,run.creatorId,run.creator,run.createtime,run.busDescp,run.status,run.actInstId,run.actDefId,run.businessKey,run.businessUrl,run.processName,run.endTime,run.duration,run.pkName,run.tableName,run.parentId,run.startOrgId,run.startOrgName
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by createtime  desc
+		</if>
+	</select>
+	
+	<select id="getAllFinish" resultMap="ProcessRun">
+		SELECT run.* 
+		FROM BPM_PRO_RUN_HIS run 
+		LEFT JOIN BPM_DEFINITION def
+		ON  run.actDefId=def.actDefId
+		where run.status>=2 and run.status!=4 and def.status!=3
+		<if test="@Ognl@isNotEmpty(subject)"> AND run.subject  LIKE #{subject} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(creator)"> AND run.creator  LIKE #{creator} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(beginendTime)"> AND run.endTime  >=#{beginendTime} </if>
+		<if test="@Ognl@isNotEmpty(endendTime)"> AND <![CDATA[ run.endTime <= #{endendTime}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(endTime)"> AND run.endTime  =#{endTime} </if>
+		<if test="@Ognl@isNotEmpty(busDescp)"> AND run.busDescp  LIKE #{busDescp} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND run.processName  LIKE #{processName} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by run.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.createtime  desc
+		</if>
+	</select>
+		<select id="getMyProcessRun" resultMap="ProcessRun">
+		SELECT * FROM BPM_PRO_RUN_HIS run where 1=1
+		<if test="@Ognl@isNotEmpty(subject)"> AND run.subject  LIKE #{subject} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(creatorId)"> AND run.creatorId=#{creatorId}  </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+	</select>
+	
+	<select id="getbyActDefId" parameterType="java.lang.String" resultMap="ProcessRun">
+		SELECT * FROM BPM_PRO_RUN_HIS
+		WHERE
+		actDefId=#{actDefId}
+	</select>
+	
+	<delete id="delByActDefId" parameterType="java.lang.String">
+		DELETE FROM BPM_PRO_RUN
+		WHERE
+		actDefId=#{actDefId}
+	</delete>
+	
+	<delete id="delHistroryByActDefId" parameterType="java.lang.String">
+		DELETE FROM BPM_PRO_RUN_HIS
+		WHERE
+		actDefId=#{actDefId}
+	</delete>
+	
+	<select id="getMyDraft" resultMap="ProcessRun">
+		SELECT run.* FROM BPM_PRO_RUN run
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		WHERE
+		run.creatorId=#{userId} AND run.status=4 and def.status!=3
+		<if test="@Ognl@isNotEmpty(subject)"> AND run.subject  LIKE #{subject} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND run.processName  LIKE #{processName} ESCAPE '|' </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by run.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.createtime  desc
+		</if>
+	</select>
+	
+	
+	<!-- 我的请求 -->
+	<select id="getMyRequestList" resultMap="ProcessRun">
+		select distinct <include refid="runColumns"/>,type.typeName
+		from BPM_PRO_RUN_HIS run 
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		 where run.creatorId =#{creatorId} and run.status in (1,5,6,7) and def.status!=3
+		<if test="@Ognl@isNotEmpty(subject)"> AND upper(run.subject)  LIKE #{subject} </if>
+		<if test="@Ognl@isNotEmpty(creator)"> AND run.creator  LIKE #{creator}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND upper(run.processName)  LIKE #{processName}  </if>
+		<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+		<if test="@Ognl@isNotEmpty(nodeKey)"> and type.nodeKey in (${nodeKey}) </if>
+		<if test="@Ognl@isNotEmpty(notNodeKey)"> and (type.nodeKey not in (${notNodeKey}) or type.nodeKey is NULL) </if>
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by run.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.createtime  desc
+		</if>
+	</select>
+	
+	<!-- 我的办结 -->
+	<select id="getMyCompletedList" resultMap="ProcessRun">
+		select distinct <include refid="runColumns"/>,type.typeName,
+		def.isPrintForm isPrintForm,def.allowFinishedDivert allowFinishedDivert
+		from BPM_PRO_RUN_HIS run 
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		 where creatorId =#{creatorId} AND ( run.status = 2 or  run.status = 3 ) and def.status!=3
+		<if test="@Ognl@isNotEmpty(defId)"> AND run.defId  = #{defId} </if>
+		<if test="@Ognl@isNotEmpty(subject)"> AND upper(run.subject)  LIKE #{subject} </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND upper(run.processName)  LIKE #{processName}  </if>
+		<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+		<if test="@Ognl@isNotEmpty(nodeKey)"> and type.nodeKey in (${nodeKey}) </if>
+		<if test="@Ognl@isNotEmpty(notNodeKey)"> and (type.nodeKey not in (${notNodeKey}) or type.nodeKey is NULL) </if>
+		<if test="@Ognl@isNotEmpty(tagIds)"> AND def.tagIds LIKE #{tagIds} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by run.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.createtime  desc
+		</if>
+	</select>
+	
+		<!-- 通过defKey查找我的办结 -->
+	<select id="getByUserIdAndDefKey" resultMap="ProcessRun">
+		select distinct <include refid="runColumns"/>,type.typeName,
+		def.isPrintForm isPrintForm,def.allowFinishedDivert allowFinishedDivert
+		from BPM_PRO_RUN_HIS run 
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		 where creatorId =#{creatorId} AND def.defKey=#{defKey} AND ( run.status = 2 or  run.status = 3 ) and def.status!=3
+	
+		order by run.createtime  desc
+		
+	</select>
+	
+	<!-- 已办事宜  并且结束时间不为空-->
+	<select id="getAlreadyMattersList" resultMap="ProcessRun">
+		select distinct <include refid="runColumns"/>
+		from BPM_PRO_RUN_HIS run  join ACT_HI_ACTINST tk on run.actInstId=tk.PROC_INST_ID_  and tk.isstart=0
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+ 		where tk.ASSIGNEE_=#{assignee}  and tk.end_time_ is not null and def.status!=3
+		<if test="@Ognl@isNotEmpty(subject)"> AND upper(run.subject)  LIKE #{subject}</if>
+		<if test="@Ognl@isNotEmpty(creatorId)"> AND run.creatorId = #{creatorId}</if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(beginendTime)"> AND run.endTime  >=#{beginendTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endendTime)"> AND <![CDATA[ run.endTime <= #{endendTime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND upper(run.processName)  LIKE #{processName} </if>
+		<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+		<if test="@Ognl@isNotEmpty(tagIds)"> AND def.tagIds LIKE #{tagIds} </if>
+		<if test="@Ognl@isNotEmpty(nodeKey)"> and type.nodeKey in (${nodeKey}) </if>
+		<if test="@Ognl@isNotEmpty(notNodeKey)"> and (type.nodeKey not in (${notNodeKey}) or type.nodeKey is NULL) </if>
+
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by run.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.createtime  desc
+		</if>
+	</select>
+		
+	<!--办结事宜	-->
+	<select id="getCompletedMattersList" resultMap="ProcessRun">
+		select distinct <include refid="runColumns"/> 
+		from BPM_PRO_RUN_HIS run  join ACT_HI_ACTINST tk on run.actInstId=tk.PROC_INST_ID_ 
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		where tk.ASSIGNEE_=#{assignee} AND ( run.status = 2 or  run.status = 3 ) and def.status!=3
+		<if test="@Ognl@isNotEmpty(subject)"> AND upper(run.subject)  LIKE #{subject} </if>
+		<if test="@Ognl@isNotEmpty(creator)"> AND run.creator  LIKE #{creator} </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(beginendTime)"> AND run.endTime  >=#{beginendTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endendTime)"> AND <![CDATA[ run.endTime <= #{endendTime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(endTime)"> AND run.endTime  =#{endTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(busDescp)"> AND run.busDescp  LIKE #{busDescp} </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND upper(run.processName)  LIKE #{processName} </if>
+		<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+		<if test="@Ognl@isNotEmpty(tagIds)"> AND def.tagIds LIKE #{tagIds} </if>
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.endTime  desc
+		</if>
+	</select>
+	
+	
+	<!-- 流程查询 -->
+	<select id="selectPro" resultMap="ProcessRun">
+		<choose>
+			<when test="proflag==0">
+				select his.* from (	 select h.runId runId, h.subject subject,h.processname processname,h.createtime,
+		  		h.creatorid creatorid,h.creator creator, -1 assignee,h.status status,h.defid defId,h.typeid typeid,
+		  		h.actinstid actinstid, 0 proflag,lower(h.subject) lSubject  from bpm_pro_run_his h where h.creatorid= #{currentUserId} )
+          		his
+		  		left join SYS_GL_TYPE type on his.typeId = type.typeId
+				left join BPM_DEFINITION def on his.defId = def.defId  
+				<where>
+					<if test="@Ognl@isNotEmpty(subject)"> AND his.lSubject LIKE #{subject}  ESCAPE '|'</if>
+					<if test="@Ognl@isNotEmpty(creatorId)"> AND his.creatorId = #{creatorId}</if>
+					<if test="@Ognl@isNotEmpty(begincreatetime)"> AND his.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+					<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ his.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+					<if test="@Ognl@isNotEmpty(status)"> AND his.status  =#{status} </if>
+					<if test="@Ognl@isNotEmpty(processName)"> AND his.processName  LIKE #{processName} </if>
+					<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+					<if test="@Ognl@isNotEmpty(assignee)"> AND his.assignee = #{assignee}</if>
+				</where>
+				
+			</when>
+			<when test="proflag==1">
+				
+				select distinct his.runId runId,  his.subject subject,his.processname processname,
+		  		his.createtime,his.creatorid creatorid,his.creator creator, ha.assignee_ assignee, his.status status,
+		  		his.defid defId,his.typeid typeid,his.actinstid actinstid, 1 proflag,lower(his.subject) lSubject from bpm_pro_run_his his  
+		  		join  act_hi_actinst  ha  on his.actinstid =ha.proc_inst_id_ and ha.ISSTART=0 and  ha.assignee_ = #{currentUserId}
+		  		left join SYS_GL_TYPE type on his.typeId = type.typeId
+				left join BPM_DEFINITION def on his.defId = def.defId
+				
+				<where>
+					<if test="@Ognl@isNotEmpty(subject)"> AND his.subject LIKE #{subject}  ESCAPE '|'</if>
+					<if test="@Ognl@isNotEmpty(creatorId)"> AND his.creatorId = #{creatorId}</if>
+					<if test="@Ognl@isNotEmpty(begincreatetime)"> AND his.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+					<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ his.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+					<if test="@Ognl@isNotEmpty(status)"> AND his.status  =#{status} </if>
+					<if test="@Ognl@isNotEmpty(processName)"> AND his.processName  LIKE #{processName} </if>
+					<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+				
+					<if test="@Ognl@isNotEmpty(tagIds)"> AND def.tagIds LIKE #{tagIds} </if>
+					<if test="@Ognl@isNotEmpty(assignee)"> AND his.assignee = #{assignee}</if>
+				</where>
+				
+			</when>
+			<otherwise>
+				select distinct his.runId,his.subject,his.processname,his.createtime,his.creatorid,his.creator,his.status,his.defId,his.typeid,his.actInstId ,lSubject from (
+		  		select t.runId runId, t.subject subject,t.processname processname,t.createtime,t.creatorid creatorid,t.creator creator, null assignee,t.status status,t.defid defId,t.typeid typeid,t.actinstid actinstid, 0 proflag,lower(t.subject) lSubject from bpm_pro_run_his t where t.creatorid= #{currentUserId}      
+		  		union all (
+		  		select t.runId runId, t.subject subject,t.processname processname,t.createtime,t.creatorid creatorid,t.creator creator, ha.assignee_ assignee, t.status status,t.defid defId,t.typeid typeid,t.actinstid actinstid, 1 proflag,lower(t.subject) lSubject from bpm_pro_run_his t  
+		  		join  act_hi_actinst  ha  on t.actinstid =ha.proc_inst_id_ and ha.ISSTART=0 where  ha.assignee_ = #{currentUserId}  )
+				) his
+				left join SYS_GL_TYPE type on his.typeId = type.typeId
+				left join BPM_DEFINITION def on his.defId = def.defId
+				
+				<where>
+					<if test="@Ognl@isNotEmpty(subject)"> AND his.lSubject LIKE #{subject}  ESCAPE '|'</if>
+					<if test="@Ognl@isNotEmpty(creatorId)"> AND his.creatorId = #{creatorId}</if>
+					<if test="@Ognl@isNotEmpty(begincreatetime)"> AND his.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+					<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ his.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+					<if test="@Ognl@isNotEmpty(status)"> AND his.status  =#{status} </if>
+					<if test="@Ognl@isNotEmpty(processName)"> AND his.processName  LIKE #{processName} </if>
+					<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+					
+					<if test="@Ognl@isNotEmpty(assignee)"> AND his.assignee = #{assignee}</if>
+				</where>
+			</otherwise>
+		</choose>
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by his.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by his.createtime  desc
+		</if>
+		
+	</select>
+	
+<!-- 根据runid找到copyid -->
+	<select id="getCopyIdByRunid" parameterType="java.util.Map" resultMap="ProcessRun">
+	    SELECT  CPT.COPY_ID copyId
+	    FROM BPM_PRO_CPTO CPT 
+            where cpt.run_id = #{runId}
+	</select>
+	
+
+	
+	 <select id="getRefList_oracle" resultMap="ProcessRun">
+   		select *  from bpm_pro_run_his t where t.defid=#{defId} and t.creatorid=#{creatorId} and t.status=2 and rownum &lt;=#{instanceAmount}
+   		order by CREATETIME desc
+     </select>
+     <select id="getRefList_mysql" resultMap="ProcessRun">
+   		select *  from bpm_pro_run_his t where t.defid=#{defId} and t.creatorid=#{creatorId} and t.status=2 order by CREATETIME desc 
+   		limit #{instanceAmount} 
+     </select>
+     <select id="getRefList_mssql" resultMap="ProcessRun">
+   		select top #{instanceAmount} *  from bpm_pro_run_his t where t.defid=#{defId} and t.creatorid=#{creatorId} and t.status=2 
+   		order by CREATETIME desc
+     </select>
+     <select id="getRefList_db2" resultMap="ProcessRun">
+   		select * from (select row_number() over() as rownum, hi.* form bpm_pro_run_his hi) as t where t.defid=#{defId} and t.creatorid=#{creatorId} and t.status=2 and rownum &lt;=#{instanceAmount}
+   		order by CREATETIME desc
+     </select>
+       
+     <select id="getRefListCopyTo_oracle" resultMap="ProcessRun">
+     	select * from (select t.*,c.CREATE_ID "copyto.createId",c.CREATOR as "copyto.creator",c.CP_TYPE as "copyto.cpType"
+		from bpm_pro_run_his t,BPM_PRO_CPTO c where  t.defid=#{defId} and c.cc_Uid=#{curUser} 
+		and t.runId=c.run_Id  and t.status=2 
+     	order by CREATETIME desc)temp where rownum &lt;=#{instanceAmount}
+     </select>
+     <select id="getRefListCopyTo_mysql" resultMap="ProcessRun">
+     	select t.*,c.CREATE_ID "copyto.createId",c.CREATOR as "copyto.creator",c.CP_TYPE as "copyto.cpType"
+		from bpm_pro_run_his t,BPM_PRO_CPTO c where  t.defid=#{defId} and c.cc_Uid=#{curUser} 
+		and t.runId=c.run_Id  and t.status=2 order by CREATETIME desc limit #{instanceAmount} 
+     </select>
+     <select id="getRefListCopyTo_mssql" resultMap="ProcessRun">
+     	select top #{instanceAmount} t.*,c.CREATE_ID "copyto.createId",c.CREATOR as "copyto.creator",c.CP_TYPE as "copyto.cpType"
+		from bpm_pro_run_his t,BPM_PRO_CPTO c where  t.defid=#{defId} and c.cc_Uid=#{curUser} 
+		and t.runId=c.run_Id  and t.status=2 order by CREATETIME desc
+     </select>
+     <select id="getRefListCopyTo_db2" resultMap="ProcessRun">
+     	select * from (select * (select row_number() over() as rownum,t.*,c.CREATE_ID "copyto.createId",c.CREATOR as "copyto.creator",c.CP_TYPE as "copyto.cpType" 
+     	from bpm_pro_run_his t,BPM_PRO_CPTO c where t.runId=c.run_Id and c.cc_Uid=#{curUser}) as temp 
+		where temp.defid=#{defId} and temp.status=2  
+     	order by CREATETIME desc)temp where rownum &lt;=#{instanceAmount}
+     </select>
+      
+      
+	<delete id="delSubHistoryByProcInstId" parameterType="java.lang.String">
+		DELETE FROM bpm_pro_run_his
+		WHERE ACTINSTID in (select a.ID_ from ACT_RU_EXECUTION a where  a.PROC_INST_ID_=#{procInstId} and a.ID_!=#{procInstId})
+	</delete>
+	
+	<delete id="delHistoryByActinstid" parameterType="java.lang.String">
+		DELETE FROM bpm_pro_run_his
+		WHERE ACTINSTID =#{actInstId}
+	</delete>
+	
+	<delete id="delSubProByProcInstId" parameterType="java.lang.String">
+		DELETE FROM BPM_PRO_RUN 
+		WHERE ACTINSTID in (select a.ID_ from ACT_RU_EXECUTION a where  a.PROC_INST_ID_=#{procInstId} and a.ID_!=#{procInstId})
+	</delete>
+	
+	<delete id="delProByActinstid" parameterType="java.lang.String">
+		DELETE FROM BPM_PRO_RUN
+		WHERE ACTINSTID =#{actInstId}
+	</delete>
+	
+	<select id="getByBusinessKeyAndActDefId" parameterType="java.util.Map" resultMap="ProcessRun">
+		SELECT * FROM BPM_PRO_RUN_HIS run where businessKey=#{businessKey} and actDefId=#{actDefId} 
+	</select>
+	
+	<select id="getByBusinessKeyWithActInstId" parameterType="java.lang.String" resultType="int">
+		SELECT count(*) FROM ACT_HI_PROCINST
+		WHERE
+		BUSINESS_KEY_=#{businessKey} 
+	</select>
+	
+	<select id="delActHiProcessInstanceByRunId" parameterType="java.lang.Long">
+		DELETE FROM ACT_HI_PROCINST WHERE PROC_INST_ID_ IN
+			(SELECT run.ACTINSTID FROM BPM_PRO_RUN_HIS run WHERE run.RUNID=#{runId}) 
+	</select>
+	
+	<select id="delActHiProcessInstanceByActinstid" parameterType="java.lang.Long">
+		DELETE FROM ACT_HI_PROCINST WHERE PROC_INST_ID_ =#{actinstid}
+	</select>
+	
+	<select id="delSubActHiProcessInstanceByActinstid" parameterType="java.lang.String">
+		DELETE FROM ACT_HI_PROCINST
+		WHERE PROC_INST_ID_ IN (select a.ID_ from ACT_RU_EXECUTION a where  a.PROC_INST_ID_=#{procInstId} and a.ID_!=#{procInstId})
+	</select>
+	
+	<select id="delActHiProcessInstanceByActDefId" parameterType="java.lang.String">
+		DELETE FROM ACT_HI_PROCINST WHERE PROC_DEF_ID_ =#{actDefId}
+	</select>
+	
+	<select id="getByHistoryId" parameterType="java.lang.Long" resultMap="ProcessRun">
+		select *  from bpm_pro_run_his t where t.runId=#{relRunId}
+	</select>
+	
+	<delete id="delByBusinessKey">
+		delete  bpm_pro_run  where businessKey=#{businessKey}
+	</delete>
+	<delete id="delByBusinessKeyHis">
+		delete  bpm_pro_run_his  where businessKey=#{businessKey}
+	</delete>
+	<delete id="delByBusinessKeyNum">
+		delete  bpm_pro_run  where BUSINESSKEY_NUM=#{businessKeyNum}
+	</delete>
+	<delete id="delByBusinessKeyNumHis">
+		delete  bpm_pro_run  where BUSINESSKEY_NUM=#{businessKeyNum}
+	</delete>
+	
+		<!-- add by lzc -->
+		<!-- 扩展到任务节点的已办事宜  并且结束时间不为空-->
+    <select id="getAlreadyMattersListWithBus" resultMap="ProcessRun">
+		select   <include refid="runColumns"/>
+		from BPM_PRO_RUN run  join ACT_HI_ACTINST tk on run.actInstId=tk.PROC_INST_ID_  and tk.isstart=0
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+ 		where tk.ASSIGNEE_=#{assignee}  and tk.end_time_ is not null and def.status!=3
+		<if test="@Ognl@isNotEmpty(subject)"> AND upper(run.subject)  LIKE #{subject}</if>
+		<if test="@Ognl@isNotEmpty(creatorId)"> AND run.creatorId = #{creatorId}</if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(beginendTime)"> AND run.endTime  >=#{beginendTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endendTime)"> AND <![CDATA[ run.endTime <= #{endendTime,jdbcType=DATE}  ]]> </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND run.status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND upper(run.processName)  LIKE #{processName} </if>
+		<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>	
+		<if test="@Ognl@isNotEmpty(tagIds)"> AND def.tagIds LIKE #{tagIds} </if>
+		<!-- author:宋益多 加入了3个动态where：typekey、processkey、ptaskkey-->
+		<if test="@Ognl@isNotEmpty(typekey)"> AND run.typeid =#{typekey} </if>
+		<if test="@Ognl@isNotEmpty(processkey)"> AND run.actDefId = #{processkey} </if>
+		<if test="@Ognl@isNotEmpty(ptaskkey)"> AND tk.act_id_ = #{ptaskkey} </if>
+
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by run.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by run.createtime  desc
+		</if>
+	</select>
+	
+</mapper>

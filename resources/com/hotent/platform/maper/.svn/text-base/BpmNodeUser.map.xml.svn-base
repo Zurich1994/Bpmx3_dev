@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmNodeUser">
+	<resultMap id="BpmNodeUser" type="com.hotent.platform.model.bpm.BpmNodeUser">
+		<id property="nodeUserId" column="nodeUserId" jdbcType="NUMERIC"/>
+		<result property="assignType" column="assignType" jdbcType="NUMERIC"/>
+		<result property="cmpIds" column="cmpIds" jdbcType="CLOB"/>
+		<result property="cmpNames" column="cmpNames" jdbcType="CLOB"/>
+		<result property="compType" column="compType" jdbcType="NUMERIC"/>
+		<result property="sn" column="sn" jdbcType="NUMERIC"/>
+		<result property="conditionId"   column="conditionId"  jdbcType="NUMERIC"/>
+		<result property="extractUser" column="extractUser" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		nodeUserId,assignType,cmpIds,cmpNames,compType,sn,conditionId,extractUser
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(nodeUserId)"> AND nodeUserId  =#{nodeUserId} </if>
+			<if test="@Ognl@isNotEmpty(assignType)"> AND assignType  =#{assignType} </if>
+			<if test="@Ognl@isNotEmpty(actDefId)"> AND actDefId  =#{actDefId} </if>
+			<if test="@Ognl@isNotEmpty(conditionId)"> AND conditionId  =#{conditionId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmNodeUser">
+		INSERT INTO bpm_node_user
+		(<include refid="columns"/>)
+		VALUES
+		(#{nodeUserId,jdbcType=NUMERIC}, #{assignType,jdbcType=NUMERIC}, #{cmpIds,jdbcType=CLOB}, 
+		#{cmpNames,jdbcType=CLOB}, #{compType,jdbcType=NUMERIC}, #{sn,jdbcType=NUMERIC},
+		#{conditionId,jdbcType=NUMERIC},#{extractUser,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_NODE_USER 
+		WHERE
+		nodeUserId=#{nodeUserId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmNodeUser">
+		UPDATE bpm_node_user SET
+		assignType=#{assignType,jdbcType=NUMERIC} , 
+		cmpIds=#{cmpIds,jdbcType=CLOB} , 
+		cmpNames=#{cmpNames,jdbcType=CLOB} , 
+		compType=#{compType,jdbcType=NUMERIC} , 
+		sn=#{sn,jdbcType=NUMERIC},
+		conditionId=#{conditionId,jdbcType=NUMERIC},
+		extractUser=#{extractUser,jdbcType=NUMERIC}
+		WHERE
+		nodeUserId=#{nodeUserId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmNodeUser">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_USER
+		WHERE
+		nodeUserId=#{nodeUserId}
+	</select>
+	
+	<select id="getAll" resultMap="BpmNodeUser">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_USER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by nodeUserId  desc
+		</if>
+	</select>
+	
+	<select id="getByActDefId" parameterType="java.lang.String" resultMap="BpmNodeUser">
+		select a.* from BPM_NODE_USER a,bpm_user_condition b where a.conditionid=b.id and b.actdefid=#{actDefId} 
+		and (b.parentActDefId is null or b.parentActDefId='')
+	</select>
+	
+	<delete id="delByActDefId" parameterType="String">
+		delete from BPM_NODE_USER 
+ 		where BPM_NODE_USER.conditionid in
+       		(select id from bpm_user_condition b where b.actdefid = #{actDefId})
+	</delete>
+	
+	<delete id="delByConditionId" parameterType="java.lang.Long">
+		DELETE FROM BPM_NODE_USER 
+		WHERE
+		conditionId=#{conditionId}
+		
+	</delete>
+	<select id="getByConditionId" resultMap="BpmNodeUser">
+		SELECT * FROM  BPM_NODE_USER WHERE conditionId=#{conditionId}
+		ORDER BY sn asc
+	</select>
+	
+	
+	<select id="selectNull"   resultMap="BpmNodeUser">
+		SELECT 
+			<include refid="columns"/>
+		FROM 
+			BPM_NODE_USER
+		WHERE
+			CONDITIONID IS NULL 
+			OR CONDITIONID=0
+	</select>
+	
+	<select id="getByActDefIdWithParent" parameterType="java.lang.String" resultMap="BpmNodeUser">
+		select a.* from BPM_NODE_USER a,bpm_user_condition b where a.conditionid=b.id and b.actdefid=#{actDefId} 
+		and b.parentActDefId=#{parentActdefId} and CONDITIONTYPE=0
+	</select>
+</mapper>

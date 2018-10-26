@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.worktime.OverTime">
+	<resultMap id="OverTime" type="com.hotent.platform.model.worktime.OverTime">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="startTime" column="startTime" jdbcType="TIMESTAMP" />
+		<result property="endTime" column="endTime" jdbcType="TIMESTAMP"/>
+		<result property="workType" column="workType" jdbcType="NUMERIC"/>
+		<result property="subject" column="subject" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,userId,startTime,endTime,workType,subject,memo
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(startTime)"> AND startTime  =#{startTime} </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND endTime  =#{endTime} </if>
+			<if test="@Ognl@isNotEmpty(workType)"> AND workType  =#{workType} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND subject  =#{subject} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND memo  =#{memo} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.worktime.OverTime">
+		INSERT INTO sys_overtime
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP},#{workType,jdbcType=NUMERIC},#{subject,jdbcType=VARCHAR},#{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_OVERTIME 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.worktime.OverTime">
+		UPDATE sys_overtime SET
+		userId=#{userId,jdbcType=NUMERIC} , 
+		startTime=#{startTime,jdbcType=TIMESTAMP} , 
+		endTime=#{endTime,jdbcType=TIMESTAMP} , 
+		workType=#{workType,jdbcType=NUMERIC} , 
+		subject=#{subject,jdbcType=VARCHAR},
+		memo=#{memo,jdbcType=VARCHAR}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="OverTime">
+		SELECT <include refid="columns"/>
+		FROM SYS_OVERTIME
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="OverTime">
+		SELECT a.id,b.fullname userName,a.startTime,a.endTime,a.workType,a.subject,a.memo
+		FROM SYS_OVERTIME a, SYS_USER b
+		WHERE a.userId = b.userId
+		<if test="@Ognl@isNotEmpty(subject)"> AND a.subject like #{subject} </if> 
+		<if test="@Ognl@isNotEmpty(userName)"> AND b.fullname like #{userName} </if>
+		<if test="@Ognl@isNotEmpty(startTime)"> AND a.startTime >= #{startTime,jdbcType=TIMESTAMP} </if>
+		<if test="@Ognl@isNotEmpty(endTime)"> AND a.endTime &lt;= #{endTime,jdbcType=TIMESTAMP} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by a.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.id desc
+		</if>
+	</select>
+	
+	<select id="getListByUserId" resultMap="OverTime">
+		SELECT <include refid="columns"/>
+		FROM SYS_OVERTIME
+		WHERE
+		userId=#{userId}
+		AND
+		workType=#{workType}
+		AND
+		(((startTime >=#{startTime}) AND (startTime &lt;=#{endTime}))
+		OR
+		((startTime &lt;= #{startTime})AND(endTime>=#{startTime})))
+	</select>
+	
+	<select id="getListByStart" resultMap="OverTime">
+		SELECT <include refid="columns"/>
+		FROM SYS_OVERTIME
+		WHERE userId=#{userId} AND 	workType=#{workType} AND
+		(
+			(startTime >=#{startTime}) 
+			OR 
+			(
+				(startTime &lt;=#{startTime}) AND (endTime >=#{startTime})
+			)
+		)
+	</select>
+	
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.RegularOccurrence.model.lc.Regularoccurrence">
+	<resultMap id="Regularoccurrence" type="com.hotent.RegularOccurrence.model.lc.Regularoccurrence">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="processId" column="F_PROCESSID" jdbcType="VARCHAR"/>
+		<result property="time" column="F_TIME" jdbcType="VARCHAR"/>
+		<result property="regularValue" column="F_REGULARVALUE" jdbcType="VARCHAR"/>
+		<result property="timeType" column="F_TIMETYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PROCESSID,F_TIME,F_REGULARVALUE,F_TIMETYPE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(processId)"> AND F_PROCESSID  LIKE '%${processId}%'  </if>
+			<if test="@Ognl@isNotEmpty(time)"> AND F_TIME  LIKE '%${time}%'  </if>
+			<if test="@Ognl@isNotEmpty(regularValue)"> AND F_REGULARVALUE  LIKE '%${regularValue}%'  </if>
+			<if test="@Ognl@isNotEmpty(timeType)"> AND F_TIMETYPE  LIKE '%${timeType}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.RegularOccurrence.model.lc.Regularoccurrence">
+		INSERT INTO W_REGULAROCCURRENCE
+		(ID,
+		F_PROCESSID,F_TIME,F_REGULARVALUE,F_TIMETYPE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{processId,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{regularValue,jdbcType=VARCHAR},#{timeType,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_REGULAROCCURRENCE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.RegularOccurrence.model.lc.Regularoccurrence">
+		UPDATE W_REGULAROCCURRENCE SET
+		F_PROCESSID=#{processId,jdbcType=VARCHAR},
+		F_TIME=#{time,jdbcType=VARCHAR},
+		F_REGULARVALUE=#{regularValue,jdbcType=VARCHAR}
+		F_TIMETYPE=#{timeType,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Regularoccurrence">
+		SELECT <include refid="columns"/>
+		FROM W_REGULAROCCURRENCE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Regularoccurrence">
+		SELECT <include refid="columns"/>
+		FROM W_REGULAROCCURRENCE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<!-- yuda自定义查询 -->
+	<parameterMap type="java.util.HashMap" id="manyParameters">   
+    <parameter property="processId" javaType="String" jdbcType="VARCHAR" />   
+    <parameter property="timeType" javaType="String" jdbcType="VARCHAR" />   
+	</parameterMap>  
+	<select id="getRegular" parameterMap="manyParameters" resultMap="Regularoccurrence">
+		SELECT <include refid="columns"/>
+		FROM W_REGULAROCCURRENCE
+		WHERE
+		F_PROCESSID=#{processId} AND F_TIMETYPE= #{timeType}
+	</select>
+	
+	<select id="getProcessId" parameterType="String" resultMap="Regularoccurrence">
+		SELECT DISTINCT F_PROCESSID
+		FROM W_REGULAROCCURRENCE 
+		WHERE
+		F_TIMETYPE=#{timeType}
+	</select>
+</mapper>

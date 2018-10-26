@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsAttenceCalculateSet">
+	<resultMap id="AtsAttenceCalculateSet" type="com.hotent.platform.model.ats.AtsAttenceCalculateSet">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="summary" column="SUMMARY" jdbcType="VARCHAR"/>
+		<result property="detail" column="DETAIL" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,SUMMARY,DETAIL
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(summary)"> AND SUMMARY  LIKE #{summary}  </if>
+			<if test="@Ognl@isNotEmpty(detail)"> AND DETAIL  LIKE #{detail}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsAttenceCalculateSet">
+		INSERT INTO ATS_ATTENCE_CALCULATE_SET
+		(ID,SUMMARY,DETAIL)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{summary,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_CALCULATE_SET 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsAttenceCalculateSet">
+		UPDATE ATS_ATTENCE_CALCULATE_SET SET
+		SUMMARY=#{summary,jdbcType=VARCHAR},
+		DETAIL=#{detail,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsAttenceCalculateSet">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CALCULATE_SET
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsAttenceCalculateSet">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CALCULATE_SET   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

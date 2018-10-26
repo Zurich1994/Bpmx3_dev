@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.definedAtomForm.model.definedAtomForm.DefinedAtomForm">
+	<resultMap id="DefinedAtomForm" type="com.hotent.definedAtomForm.model.definedAtomForm.DefinedAtomForm">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="setId" column="F_SETID" jdbcType="NUMERIC"/>
+		<result property="defId" column="F_DEFID" jdbcType="NUMERIC"/>
+		<result property="nodeId" column="F_NODEID" jdbcType="NUMERIC"/>
+		<result property="formKey" column="F_FORMKEY" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_SETID,F_DEFID,F_NODEID,F_FORMKEY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(setId)"> AND F_SETID  =#{setId} </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND F_DEFID  =#{defId} </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND F_NODEID  =#{nodeId} </if>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND F_FORMKEY  =#{formKey} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.definedAtomForm.model.definedAtomForm.DefinedAtomForm">
+		INSERT INTO W_DEFINED_ATOM_FORM
+		(ID,
+		F_SETID,F_DEFID,F_NODEID,F_FORMKEY)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{setId,jdbcType=NUMERIC}, #{defId,jdbcType=NUMERIC}, #{nodeId,jdbcType=NUMERIC}, #{formKey,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEFINED_ATOM_FORM 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.definedAtomForm.model.definedAtomForm.DefinedAtomForm">
+		UPDATE W_DEFINED_ATOM_FORM SET
+		F_SETID=#{setId,jdbcType=NUMERIC},
+		F_DEFID=#{defId,jdbcType=NUMERIC},
+		F_NODEID=#{nodeId,jdbcType=NUMERIC},
+		F_FORMKEY=#{formKey,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DefinedAtomForm">
+		SELECT <include refid="columns"/>
+		FROM W_DEFINED_ATOM_FORM
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DefinedAtomForm">
+		SELECT <include refid="columns"/>
+		FROM W_DEFINED_ATOM_FORM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getFormKeyById" parameterType="Long" resultType="String">
+		SELECT F_FORMKEY
+		FROM W_DEFINED_ATOM_FORM
+		WHERE
+		ID=#{id}
+	</select>
+	
+</mapper>

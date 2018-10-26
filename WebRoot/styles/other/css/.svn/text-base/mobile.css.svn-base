@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+
+.myTask{
+	background:url(../images/mobile/myTask.jpg) no-repeat;
+}
+
+.myAttend{
+	background:url(../images/mobile/myAttend.jpg) no-repeat;
+}
+
+.myAssignee{
+	background:url(../images/mobile/myAssignee.jpg) no-repeat;
+}
+
+.taskAssignee{
+	background:url(../images/mobile/taskAssignee.jpg) no-repeat;
+}
+
+.userImage{
+	background:url(../images/mobile/userImage.jpg) no-repeat;
+	float: right;
+	width: 23px;
+	height: 20px;
+}
+
+.x-tab .x-button-icon.complete,
+.x-button .x-button-icon.x-icon-mask.complete {
+	background:url(../images/button/run.png) no-repeat;
+}
+
+.x-tab .x-button-icon.end,
+.x-button .x-button-icon.x-icon-mask.end {
+	background:url(../images/button/run.png) no-repeat;
+}
+
+.x-tab .x-button-icon.refuse,
+.x-button .x-button-icon.x-icon-mask.refuse {
+	background:url(../images/button/refuse.gif) no-repeat;
+}
+
+.x-tab .x-button-icon.giveup,
+.x-button .x-button-icon.x-icon-mask.giveup {
+	background:url(../images/button/giveup.gif) no-repeat;
+}
+
+.touchgridpanel{
+	padding: 0;
+	width:100%;
+}
+
+.touchgridpanel .x-grid-hd-row {
+    background-image : -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #9aa7b2), color-stop(2%, #647482), color-stop(100%, #434d57));
+}
+
+.touchgridpanel .x-grid-cell {
+	text-align   : center !important;
+    overflow       : hidden;
+    text-overflow  : ellipsis;
+	white-space    : nowrap;
+	vertical-align : middle;
+    min-height     : 2.6em;
+	line-height    : 2em;
+	font-size      : 1em;
+	font-weight    : bold;
+    border-left    : 1px solid #ccc;
+    border-bottom    : 1px solid #ccc;
+}
+
+.touchgridpanel .x-grid-cell-hd {
+    text-align   : center !important;
+    padding      : 0 !important;
+	color        : #fff;
+	text-shadow  : rgba(0, 0, 0, 0.5) 0 -0.08em 0;
+    border       : 0;
+    min-height     : 2.6em;
+	line-height    : 2em;
+}

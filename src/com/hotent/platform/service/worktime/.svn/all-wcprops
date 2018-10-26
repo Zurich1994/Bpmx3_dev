@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime
+END
+CalendarAssignService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime/CalendarAssignService.java
+END
+WorkTimeSettingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime/WorkTimeSettingService.java
+END
+WorkTimeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime/WorkTimeService.java
+END
+VacationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime/VacationService.java
+END
+CalendarSettingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime/CalendarSettingService.java
+END
+SysCalendarService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime/SysCalendarService.java
+END
+OverTimeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/worktime/OverTimeService.java
+END

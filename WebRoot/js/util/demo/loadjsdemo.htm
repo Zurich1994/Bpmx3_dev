@@ -1,0 +1,26 @@
+<html>
+	<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	 <script type="text/javascript" src="../loadjscss.js"></script>
+	
+
+    <script>
+    function window.onload(){
+    	JsLoader.LoadCount=2;
+    	JsLoader.Load("demo/js1.js","javascript1");
+    	JsLoader.Load("demo/js2.js","javascript2");
+    	JsLoader.OnLoad=loadComplete;
+    }
+    
+    function loadComplete(){
+    	msgbox("js1");
+    	js2("loadComplete");
+    }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

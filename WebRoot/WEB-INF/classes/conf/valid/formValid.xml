@@ -1,0 +1,2526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<form-validation>
+	<formset>
+		<!--start_SYS_DEMENSION-->
+		     <form name="demension">
+				<field property="demName" depends="required,maxlength">
+					<arg position="0" key="demension.demName" />
+					<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+					<var>
+						<var-name>maxlength</var-name>
+						<var-value>128</var-value>
+					</var>
+				</field>
+				<field property="demDesc" depends="maxlength">
+					<arg position="0" key="demension.demDesc" />
+					<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+					<var>
+						<var-name>maxlength</var-name>
+						<var-value>1024</var-value>
+					</var>
+				</field>
+		     </form>
+		<!--end_SYS_DEMENSION-->
+		
+				
+		<!--start_SYS_ORG-->
+		<form name="sysOrg">
+				<field property="demId" depends="digits">
+					<arg position="0" key="SysOrg.demId" />
+				</field>
+				<field property="orgName" depends="required,maxlength">
+					<arg position="0" key="sysOrg.orgName" />
+					<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+					<var>
+						<var-name>maxlength</var-name>
+						<var-value>128</var-value>
+					</var>
+				</field>
+				<field property="code" depends="required,maxlength">
+					<arg position="0" key="sysOrg.code" />
+					<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+					<var>
+						<var-name>maxlength</var-name>
+						<var-value>128</var-value>
+					</var>
+				</field>
+				<field property="orgDesc" depends="maxlength">
+					<arg position="0" key="sysOrg.orgDesc" />
+					<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+					<var>
+						<var-name>maxlength</var-name>
+						<var-value>500</var-value>
+					</var>
+				</field>
+				<field property="orgSupId" depends="digits">
+					<arg position="0" key="sysOrg.orgSupId" />
+				</field>			
+				<field property="orgType" depends="digits">
+					<arg position="0" key="sysOrg.orgType" />
+				</field>
+
+		</form>
+		<!--end_SYS_ORG-->
+		
+		<!--start_SYS_USER -->
+		<form name="sysUser">
+			<field property="fullname" depends="required,maxlength">
+				<arg position="0" key="sysUser.fullname" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>127</var-value>
+				</var>
+			</field>
+			<field property="account" depends="required,maxlength">
+				<arg position="0" key="sysUser.account" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="password" depends="required,maxlength">
+				<arg position="0" key="sysUser.password" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="isExpired" depends="digits">
+				<arg position="0" key="sysUser.isExpired" />
+			</field>
+			<field property="isLock" depends="digits">
+				<arg position="0" key="sysUser.isLock" />
+			</field>
+			<field property="status" depends="number">
+				<arg position="0" key="sysUser.status" />
+			</field>
+			<field property="email" depends="email,maxlength">
+				<arg position="0" key="sysUser.email" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="mobile" depends="mobile,maxlength">
+				<arg position="0" key="sysUser.mobile" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="phone" depends="phone,maxlength">
+				<arg position="0" key="sysUser.phone" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+		</form>
+		<!--end_SYS_USER -->
+						
+		
+		<!--start_sys_datasource -->
+		<form name="sysDataSource">
+			<field property="name" depends="required">
+				<arg position="0" key="sysDataSource.name" />
+			</field>
+			<field property="alias" depends="required">
+				<arg position="0" key="sysDataSource.alias" />
+			</field>
+			<field property="driverName" depends="required">
+				<arg position="0" key="sysDataSource.driverName" />
+			</field>
+			<field property="url" depends="required">
+				<arg position="0" key="sysDataSource.url" />
+			</field>
+		</form>
+		<!--end_sys_datasource -->
+		<!--start_SYS_ROLE -->
+		<form name="sysRole">
+			<field property="systemId" depends="digits">
+				<arg position="0" key="sysRole.systemId" />
+			</field>
+			<field property="alias" depends="required,maxlength">
+				<arg position="0" key="sysRole.alias" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="roleName" depends="required,maxlength">
+				<arg position="0" key="sysRole.roleName" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="memo" depends="maxlength">
+				<arg position="0" key="sysRole.memo" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>256</var-value>
+				</var>
+			</field>
+		</form>
+		<!--start_SYS_SUBSYSTEM -->
+		<form name="subSystem">
+			<field property="sysName" depends="required,maxlength">
+				<arg position="0" key="subSystem.sysName" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			
+			<field property="defaultUrl" depends="required,maxlength">
+				<arg position="0" key="subSystem.defaultUrl" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="alias" depends="required,maxlength">
+				<arg position="0" key="subSystem.alias" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+		
+			
+			<field property="memo" depends="maxlength">
+				<arg position="0" key="subSystem.memo" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>200</var-value>
+				</var>
+			</field>
+			
+		</form>
+		<!--end_SYS_SUBSYSTEM -->
+		<!--start_BPM_DEFINITION -->
+		<form name="bpmDefinition">
+			<field property="subject" depends="required,maxlength">
+				<arg position="0" key="bpmDefinition.subject" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="defKey" depends="required,maxlength">
+				<arg position="0" key="bpmDefinition.defKey" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="taskNameRule" depends="maxlength">
+				<arg position="0" key="bpmDefinition.taskNameRule" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>512</var-value>
+				</var>
+			</field>
+			<field property="descp" depends="maxlength">
+				<arg position="0" key="bpmDefinition.descp" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>512</var-value>
+				</var>
+			</field>
+			<field property="status" depends="digits">
+				<arg position="0" key="bpmDefinition.status" />
+			</field>
+			<field property="defXml" depends="maxlength">
+				<arg position="0" key="bpmDefinition.defXml" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>65,535</var-value>
+				</var>
+			</field>
+			<field property="actDefKey" depends="maxlength">
+				<arg position="0" key="bpmDefinition.actDefKey" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>255</var-value>
+				</var>
+			</field>
+		</form>
+		<!--end_BPM_DEFINITION -->
+		<!--start_SYS_AUDIT -->
+		<form name="sysAudit">
+			<field property="opName" depends="maxlength">
+				<arg position="0" key="sysAudit.opName" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="executor" depends="maxlength">
+				<arg position="0" key="sysAudit.executor" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>64</var-value>
+				</var>
+			</field>
+			<field property="fromIp" depends="maxlength">
+				<arg position="0" key="sysAudit.fromIp" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>64</var-value>
+				</var>
+			</field>
+			<field property="exeMethod" depends="maxlength">
+				<arg position="0" key="sysAudit.exeMethod" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="requestURI" depends="maxlength">
+				<arg position="0" key="sysAudit.requestURI" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>256</var-value>
+				</var>
+			</field>
+			<field property="reqParams" depends="maxlength">
+				<arg position="0" key="sysAudit.reqParams" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>65,535</var-value>
+				</var>
+			</field>
+		</form>
+		<!--end_SYS_AUDIT -->
+		<!--start_SYS_GL_TYPE -->
+		<form name="globalType">
+			<field property="typeName" depends="required,maxlength">
+				<arg position="0" key="globalType.typeName" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="nodeKey" depends="required,maxlength">
+				<arg position="0" key="globalType.nodeKey" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>64</var-value>
+				</var>
+			</field>
+	
+		</form>
+		<!--end_sys_gl_type -->
+
+		<!--start_sys_dic -->
+		<form name="dictionary">
+			<field property="itemKey" depends="maxlength">
+				<arg position="0" key="dictionary.itemKey" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>64</var-value>
+				</var>
+			</field>
+			<field property="itemName" depends="required,maxlength">
+				<arg position="0" key="dictionary.itemName" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>64</var-value>
+				</var>
+			</field>
+			<field property="itemValue" depends="required,maxlength">
+				<arg position="0" key="dictionary.itemValue" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="descp" depends="maxlength">
+				<arg position="0" key="dictionary.descp" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>256</var-value>
+				</var>
+			</field>
+			<field property="nodePath" depends="maxlength">
+				<arg position="0" key="dictionary.nodePath" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>256</var-value>
+				</var>
+			</field>
+		</form>
+		<!--end_sys_dic -->
+
+
+
+
+		<!--start_SYS_FILE -->
+		<form name="sysFile">
+			<field property="typeId" depends="digits">
+				<arg position="0" key="sysFile.typeId" />
+			</field>
+			<field property="fileName" depends="required,maxlength">
+				<arg position="0" key="sysFile.fileName" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="filePath" depends="required,maxlength">
+				<arg position="0" key="sysFile.filePath" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="ext" depends="maxlength">
+				<arg position="0" key="sysFile.ext" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="fileType" depends="required,maxlength">
+				<arg position="0" key="sysFile.fileType" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="note" depends="maxlength">
+				<arg position="0" key="sysFile.note" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>1024</var-value>
+				</var>
+			</field>
+			<field property="creatorId" depends="digits">
+				<arg position="0" key="sysFile.creatorId" />
+			</field>
+			<field property="creator" depends="required,maxlength">
+				<arg position="0" key="sysFile.creator" />
+				<arg position="1" name="maxlength" key="${var:maxlength}"
+					resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>32</var-value>
+				</var>
+			</field>
+			<field property="totalBytes" depends="digits">
+				<arg position="0" key="sysFile.totalBytes" />
+			</field>
+			<field property="delFlag" depends="digits">
+				<arg position="0" key="sysFile.delFlag" />
+			</field>
+		</form>
+		<!--end_SYS_FILE -->
+
+	<!--start_SYS_POSITION-->
+	<form name="position">
+			<field property="posName" depends="required,maxlength">
+				<arg position="0" key="position.posName" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>128</var-value>
+				</var>
+			</field>
+			<field property="posDesc" depends="maxlength">
+				<arg position="0" key="position.posDesc" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>1024</var-value>
+				</var>
+			</field>
+			<field property="parentId" depends="digits">
+				<arg position="0" key="position.parentId" />
+			</field>
+			<field property="nodePath" depends="maxlength">
+				<arg position="0" key="position.nodePath" />
+				<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>256</var-value>
+				</var>
+			</field>
+			<field property="depth" depends="digits">
+				<arg position="0" key="position.depth" />
+			</field>
+			<field property="sn" depends="digits">
+				<arg position="0" key="position.sn" />
+			</field>
+	</form>
+<!--end_SYS_POSITION-->
+<!--start_SYS_USER_POS-->
+<form name="userPosition">
+		<field property="posId" depends="digits">
+			<arg position="0" key="userPosition.posId" />
+		</field>
+		<field property="userId" depends="digits">
+			<arg position="0" key="userPosition.userId" />
+		</field>
+		<field property="isPrimary" depends="digits">
+			<arg position="0" key="userPosition.isPrimary" />
+		</field>
+</form>
+<!--end_SYS_USER_POS-->
+<!--start_SYS_RES-->
+<form name="resources">
+		<field property="resName" depends="required,maxlength">
+			<arg position="0" key="resources.resName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="alias" depends="required,maxlength">
+			<arg position="0" key="resources.alias" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="sn" depends="digits">
+			<arg position="0" key="resources.sn" />
+		</field>
+		<field property="icon" depends="maxlength">
+			<arg position="0" key="resources.icon" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+		<field property="parentId" depends="digits">
+			<arg position="0" key="resources.parentId" />
+		</field>
+		<field property="defaultUrl" depends="maxlength">
+			<arg position="0" key="resources.defaultUrl" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="isFolder" depends="digits">
+			<arg position="0" key="resources.isFolder" />
+		</field>
+		<field property="isDisplayInMenu" depends="digits">
+			<arg position="0" key="resources.isDisplayInMenu" />
+		</field>
+		<field property="isOpen" depends="digits">
+			<arg position="0" key="resources.isOpen" />
+		</field>
+		<field property="systemId" depends="digits">
+			<arg position="0" key="resources.systemId" />
+		</field>
+</form>
+<!--end_SYS_RES-->
+<!--start_SYS_RESURL-->
+<form name="resourcesUrl">
+		
+		
+		
+</form>
+<!--end_SYS_RESURL-->
+
+<!--start_BPM_DEF_VARS-->
+<form name="bpmDefVar">
+		<field property="varName" depends="required,maxlength">
+			<arg position="0" key="bpmDefVar.varName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="varKey" depends="maxlength">
+			<arg position="0" key="bpmDefVar.varKey" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="varDataType" depends="maxlength">
+			<arg position="0" key="bpmDefVar.varDataType" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="defValue" depends="maxlength">
+			<arg position="0" key="bpmDefVar.defValue" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>256</var-value>
+			</var>
+		</field>
+		<field property="nodeName" depends="maxlength">
+			<arg position="0" key="bpmDefVar.nodeName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>256</var-value>
+			</var>
+		</field>
+		<field property="varScope" depends="maxlength">
+			<arg position="0" key="bpmDefVar.varScope" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_DEF_VARS-->
+<!--start_BPM_FORM_TABLE-->
+<form name="bpmFormTable">
+		<field property="tableName" depends="required,maxlength">
+			<arg position="0" key="bpmFormTable.tableName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="tableDesc" depends="maxlength">
+			<arg position="0" key="bpmFormTable.tableDesc" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="isMain" depends="digits">
+			<arg position="0" key="bpmFormTable.isMain" />
+		</field>
+		<field property="mainTableId" depends="digits">
+			<arg position="0" key="bpmFormTable.mainTableId" />
+		</field>
+		<field property="versionNo" depends="digits">
+			<arg position="0" key="bpmFormTable.versionNo" />
+		</field>
+		<field property="isDefault" depends="digits">
+			<arg position="0" key="bpmFormTable.isDefault" />
+		</field>
+		<field property="isPublished" depends="digits">
+			<arg position="0" key="bpmFormTable.isPublished" />
+		</field>
+		<field property="publishedBy" depends="maxlength">
+			<arg position="0" key="bpmFormTable.publishedBy" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_FORM_TABLE-->
+<!--start_BPM_FORM_FIELD-->
+<form name="bpmFormField">
+		<field property="tableId" depends="required,">
+			<arg position="0" key="bpmFormField.tableId" />
+		</field>
+		<field property="fieldName" depends="required,maxlength">
+			<arg position="0" key="bpmFormField.fieldName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="fieldDesc" depends="maxlength">
+			<arg position="0" key="bpmFormField.fieldDesc" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>1,024</var-value>
+			</var>
+		</field>
+		<field property="fieldType" depends="required,maxlength">
+			<arg position="0" key="bpmFormField.fieldType" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="dictType" depends="maxlength">
+			<arg position="0" key="bpmFormField.dictType" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="isRequired" depends="digits">
+			<arg position="0" key="bpmFormField.isRequired" />
+		</field>
+		<field property="isList" depends="digits">
+			<arg position="0" key="bpmFormField.isList" />
+		</field>
+		<field property="isQuery" depends="digits">
+			<arg position="0" key="bpmFormField.isQuery" />
+		</field>
+		<field property="isDeleted" depends="digits">
+			<arg position="0" key="bpmFormField.isDeleted" />
+		</field>
+		<field property="validRule" depends="maxlength">
+			<arg position="0" key="bpmFormField.validRule" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="originalName" depends="maxlength">
+			<arg position="0" key="bpmFormField.originalName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_FORM_FIELD-->
+<!--start_SYS_ROLE_RES-->
+<form name="roleResources">
+		<field property="roleId" depends="digits">
+			<arg position="0" key="roleResources.roleId" />
+		</field>
+		<field property="resId" depends="digits">
+			<arg position="0" key="roleResources.resId" />
+		</field>
+</form>
+<!--end_SYS_ROLE_RES-->
+	<!--start_SYS_UO_PARAM_VAL-->
+<form name="sysUoParamVal">		
+		<field property="paramName" depends="maxlength">
+			<arg position="0" key="sysUoParamVal.paramName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="paramVallue" depends="maxlength">
+			<arg position="0" key="sysUoParamVal.paramVallue" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>256</var-value>
+			</var>
+		</field>
+		
+</form>
+<!--end_SYS_UO_PARAM_VAL-->
+<!--start_SYS_UO_PARAM-->
+<form name="sysUoParam">
+		
+		<field property="paramName" depends="maxlength">
+			<arg position="0" key="sysUoParam.paramName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="paramKey" depends="maxlength">
+			<arg position="0" key="sysUoParam.paramKey" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>32</var-value>
+			</var>
+		</field>
+		<field property="dataType" depends="maxlength">
+			<arg position="0" key="sysUoParam.dataType" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>32</var-value>
+			</var>
+		</field>
+		<field property="paramType" depends="digits">
+			<arg position="0" key="sysUoParam.paramType" />
+		</field>
+</form>
+<!--end_SYS_UO_PARAM-->
+<!--start_SYS_USER_ORG-->
+<form name="sysUserOrg">
+		<field property="orgId" depends="digits">
+			<arg position="0" key="sysUserOrg.orgId" />
+		</field>
+		<field property="userId" depends="digits">
+			<arg position="0" key="sysUserOrg.userId" />
+		</field>
+		<field property="isPrimary" depends="required,digits">
+			<arg position="0" key="sysUserOrg.isPrimary" />
+		</field>
+		<field property="isCharge" depends="digits">
+			<arg position="0" key="sysUserOrg.isCharge" />
+		</field>
+</form>
+<!--end_SYS_USER_ORG-->
+<!--start_BPM_NODE_SIGN-->
+<form name="bpmNodeSign">
+		
+		<field property="voteAmount" depends="required,digits,range">
+			<arg position="0" key="bpmNodeSign.voteAmount" />
+			<arg position="1" name="range" key="${var:min}"  />
+		    <arg position="2" name="range" key="${var:max}"  />
+		  	<var>
+				<var-name>min</var-name>
+				<var-value>1</var-value>
+			</var>
+			<var>
+				<var-name>max</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+	
+	
+</form>
+<!--end_BPM_NODE_SIGN-->
+<!--start_BPM_NODE_RULE-->
+<form name="bpmNodeRule">
+	
+		<field property="ruleName" depends="required,maxlength">
+			<arg position="0" key="bpmNodeRule.ruleName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="conditionCode" depends="required,maxlength">
+			<arg position="0" key="bpmNodeRule.conditionCode" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+	
+	
+		<field property="targetNode" depends="required,maxlength">
+			<arg position="0" key="bpmNodeRule.targetNode" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>40</var-value>
+			</var>
+		</field>
+		
+		
+</form>
+<!--end_BPM_NODE_RULE-->
+<!--start_SYS_USER_ROLE-->
+<form name="userRole">
+		<field property="systemId" depends="digits">
+			<arg position="0" key="userRole.systemId" />
+		</field>
+		<field property="roleId" depends="digits">
+			<arg position="0" key="userRole.roleId" />
+		</field>
+		<field property="userId" depends="digits">
+			<arg position="0" key="userRole.userId" />
+		</field>
+</form>
+<!--end_SYS_USER_ROLE-->
+<!--start_SYS_TEMPLATE-->
+<form name="sysTemplate">
+		<field property="templateType" depends="digits">
+			<arg position="0" key="sysTemplate.templateType" />
+		</field>
+		<field property="name" depends="maxlength">
+			<arg position="0" key="sysTemplate.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="content" depends="maxlength">
+			<arg position="0" key="sysTemplate.content" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_TEMPLATE-->
+<!--start_SYS_USER_AGENT-->
+<form name="sysUserAgent">
+		<field property="touserid" depends="required,digits">
+			<arg position="0" key="sysUserAgent.touserid" />
+		</field>
+		<field property="tofullname" depends="maxlength">
+			<arg position="0" key="sysUserAgent.tofullname" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="isall" depends="digits">
+			<arg position="0" key="sysUserAgent.isall" />
+		</field>
+		<field property="isvalid" depends="digits">
+			<arg position="0" key="sysUserAgent.isvalid" />
+		</field>
+</form>
+<!--end_SYS_USER_AGENT-->
+<!--start_BPM_AGENT-->
+<form name="bpmAgent">
+		<field property="agentid" depends="digits">
+			<arg position="0" key="bpmAgent.agentid" />
+		</field>
+		<field property="defid" depends="digits">
+			<arg position="0" key="bpmAgent.defid" />
+		</field>
+		<field property="agentuserid" depends="digits">
+			<arg position="0" key="bpmAgent.agentuserid" />
+		</field>
+		<field property="touserid" depends="digits">
+			<arg position="0" key="bpmAgent.touserid" />
+		</field>
+		<field property="actdefid" depends="maxlength">
+			<arg position="0" key="bpmAgent.actdefid" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_AGENT-->
+<!--start_BPM_NODE_SCRIPT-->
+<form name="bpmNodeScript">
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="bpmNodeScript.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+		<field property="script" depends="maxlength">
+			<arg position="0" key="bpmNodeScript.script" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>2000</var-value>
+			</var>
+		</field>
+		
+</form>
+<!--end_BPM_NODE_SCRIPT-->
+<!--start_SYS_SCRIPT-->
+<form name="script">
+		<field property="name" depends="required,maxlength">
+			<arg position="0" key="script.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="script" depends="required,maxlength">
+			<arg position="0" key="script.script" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>2000</var-value>
+			</var>
+		</field>
+		<field property="category" depends="required,maxlength">
+			<arg position="0" key="script.category" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="script.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_SCRIPT-->
+<!--start_BPM_FORM_DEF-->
+<form name="bpmFormDef">
+		<field property="subject" depends="required,maxlength">
+			<arg position="0" key="bpmFormDef.subject" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="formKey" depends="required,maxlength">
+			<arg position="0" key="bpmFormDef.formKey" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		
+		<field property="formDesc" depends="maxlength">
+			<arg position="0" key="bpmFormDef.formDesc" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+		
+</form>
+<!--end_bpm_form_def-->
+<!--start_BPM_FORM_RULE-->
+<form name="bpmFormRule">
+		<field property="name" depends="required,maxlength">
+			<arg position="0" key="bpmFormRule.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+			   <var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="rule" depends="maxlength">
+			<arg position="0" key="bpmFormRule.rule" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="bpmFormRule.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+		<field property="tipInfo" depends="maxlength">
+			<arg position="0" key="bpmFormRule.tipInfo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_FORM_RULE-->
+<!--start_BPM_FORM_TEMPLATE-->
+<form name="bpmFormTemplate">
+		<field property="templateName" depends="required,maxlength">
+			<arg position="0" key="bpmFormTemplate.templateName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+		<field property="templateType" depends="required">
+			<arg position="0" key="bpmFormTemplate.templateType" />
+		</field>
+		<field property="alias" depends="required">
+			<arg position="0" key="bpmFormTemplate.alias" />
+		</field>
+	
+		<field property="html" depends="maxlength">
+			<arg position="0" key="bpmFormTemplate.html" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="templateDesc" depends="maxlength">
+			<arg position="0" key="bpmFormTemplate.templateDesc" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_FORM_TEMPLATE-->
+
+<!--start_SYS_MSG_SEND-->
+<form name="messageSend">
+	   <field property="subject" depends="required,maxlength">
+			<arg position="0" key="messageSend.subject" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+		<field property="messageType" depends="maxlength">
+			<arg position="0" key="messageSend.messageType" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="content" depends="required,maxlength">
+			<arg position="0" key="messageSend.content" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+
+</form>
+<!--end_SYS_MSG_SEND-->
+<!--start_SYS_MSG_RECEIVER-->
+<form name="messageReceiver">
+		<field property="messageId" depends="digits">
+			<arg position="0" key="messageReceiver.messageId" />
+		</field>
+		<field property="receiveType" depends="digits">
+			<arg position="0" key="messageReceiver.receiveType" />
+		</field>
+		<field property="receiverId" depends="digits">
+			<arg position="0" key="messageReceiver.receiverId" />
+		</field>
+		<field property="receiver" depends="maxlength">
+			<arg position="0" key="messageReceiver.receiver" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_MSG_RECEIVER-->
+<!--start_SYS_MSG_READ-->
+<form name="messageRead">
+		<field property="messageId" depends="digits">
+			<arg position="0" key="messageRead.messageId" />
+		</field>
+		<field property="receiverId" depends="digits">
+			<arg position="0" key="messageRead.receiverId" />
+		</field>
+		<field property="receiver" depends="maxlength">
+			<arg position="0" key="messageRead.receiver" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="receiveTime" depends="date">
+			<arg position="0" key="messageRead.receiveTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_MSG_READ-->
+<!--start_SYS_MSG_REPLY-->
+<form name="messageReply">
+		
+		<field property="content" depends="required,maxlength">
+			<arg position="0" key="messageReply.content" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		
+		<field property="isPrivate" depends="digits">
+			<arg position="0" key="messageReply.isPrivate" />
+		</field>
+</form>
+<!--end_SYS_MSG_REPLY-->
+<!--start_SYS_IDENTITY-->
+<form name="identity">
+		<field property="name" depends="required,maxlength">
+			<arg position="0" key="identity.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="alias" depends="required,maxlength">
+			<arg position="0" key="identity.alias" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+	
+		<field property="step" depends="required,digits">
+			<arg position="0" key="identity.noLength" />
+		</field>
+		<field property="initValue" depends="required,digits">
+			<arg position="0" key="identity.initValue" />
+		</field>
+		
+		
+</form>
+<!--end_DUTY_HOLIDAY_RECORD-->
+
+<!--start_bpm_form_table_rights-->
+<form name="bpmFormTableRights">
+		<field property="formDefId" depends="required,digits">
+			<arg position="0" key="bpmFormTableRights.formDefId" />
+		</field>
+		<field property="tableName" depends="required,maxlength">
+			<arg position="0" key="bpmFormTableRights.tableName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="permission" depends="maxlength">
+			<arg position="0" key="bpmFormTableRights.permission" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>500</var-value>
+			</var>
+		</field>
+</form>
+<!--end_bpm_form_table_rights-->
+<!--start_bpm_form_opinion_rights-->
+<form name="bpmFormOpinionRights">
+		<field property="formDefId" depends="required,digits">
+			<arg position="0" key="bpmFormOpinionRights.formDefId" />
+		</field>
+		<field property="opinionName" depends="maxlength">
+			<arg position="0" key="bpmFormOpinionRights.opinionName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="permission" depends="maxlength">
+			<arg position="0" key="bpmFormOpinionRights.permission" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>500</var-value>
+			</var>
+		</field>
+</form>
+<!--end_bpm_form_opinion_rights-->
+
+<!--start_bpm_form_field_rights-->
+<form name="bpmFormFieldRights">
+		<field property="formDefId" depends="required,digits">
+			<arg position="0" key="bpmFormFieldRights.formDefId" />
+		</field>
+		<field property="fieldName" depends="required,maxlength">
+			<arg position="0" key="bpmFormFieldRights.fieldName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="permission" depends="maxlength">
+			<arg position="0" key="bpmFormFieldRights.permission" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>500</var-value>
+			</var>
+		</field>
+</form>
+<!--end_bpm_form_field_rights-->
+<!--start_BPM_TASK_DUE-->
+<form name="taskReminder">
+		
+		
+		<field property="times" depends="digits">
+			<arg position="0" key="taskReminder.times" />
+		</field>
+
+		
+</form>
+<!--end_BPM_TASK_DUE-->
+<!--start_BPM_TASK_REMINDERSTATE-->
+<form name="reminderState">
+		<field property="actDefId" depends="maxlength">
+			<arg position="0" key="reminderState.actDefId" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>127</var-value>
+			</var>
+		</field>
+		<field property="taskId" depends="maxlength">
+			<arg position="0" key="reminderState.taskId" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="reminderTime" depends="date">
+			<arg position="0" key="reminderState.reminderTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_TASK_REMINDERSTATE-->
+<!--start_sys_vacation-->
+<form name="vacation">
+		<field property="name" depends="maxlength">
+			<arg position="0" key="vacation.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="years" depends="digits">
+			<arg position="0" key="vacation.years" />
+		</field>
+		<field property="statTime" depends="required,date,compStartEndTime">
+			<arg position="0" key="vacation.statTime" />
+			<arg position="1" key="vacation.endTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+			<var>
+				<var-name>compStartEndTime</var-name>
+				<var-value>endTime</var-value>
+			</var>
+		</field>
+		<field property="endTime" depends="required,date,compStartEndTime">
+			<arg position="0" key="vacation.endTime" />
+			<arg position="1" key="vacation.statTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+			<var>
+				<var-name>compStartEndTime</var-name>
+				<var-value>statTime</var-value>
+			</var>
+		</field>
+</form>
+<!--end_sys_vacation-->
+<!--start_sys_worktime_setting-->
+<form name="workTimeSetting">
+		<field property="name" depends="required,maxlength">
+			<arg position="0" key="workTimeSetting.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="workTimeSetting.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+</form>
+<!--end_sys_worktime_setting-->
+<!--start_SYS_WORKTIME-->
+<form name="workTime">
+		<field property="settingId" depends="digits">
+			<arg position="0" key="workTime.settingId" />
+		</field>
+		<field property="startTime" depends="maxlength">
+			<arg position="0" key="workTime.startTime" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>8</var-value>
+			</var>
+		</field>
+		<field property="endTime" depends="maxlength">
+			<arg position="0" key="workTime.endTime" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>8</var-value>
+			</var>
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="workTime.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_WORKTIME-->
+<!--start_SYS_CALENDAR-->
+<form name="sysCalendar">
+		<field property="name" depends="required,maxlength">
+			<arg position="0" key="sysCalendar.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="sysCalendar.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>400</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_CALENDAR-->
+<!--start_SYS_CALENDAR_SETTING-->
+<form name="calendarSetting">
+		<field property="calendarId" depends="digits">
+			<arg position="0" key="calendarSetting.calendarId" />
+		</field>
+		<field property="years" depends="digits">
+			<arg position="0" key="calendarSetting.years" />
+		</field>
+		<field property="months" depends="digits">
+			<arg position="0" key="calendarSetting.months" />
+		</field>
+		<field property="days" depends="digits">
+			<arg position="0" key="calendarSetting.days" />
+		</field>
+		<field property="type" depends="digits">
+			<arg position="0" key="calendarSetting.type" />
+		</field>
+		<field property="workTimeId" depends="digits">
+			<arg position="0" key="calendarSetting.workTimeId" />
+		</field>
+</form>
+<!--end_SYS_CALENDAR_SETTING-->
+<!--start_SYS_CALENDAR_ASSIGN-->
+<form name="calendarAssign">
+		<field property="assignUserName" depends="required">
+			<arg position="0" key="calendarAssign.assignUserName" />
+		</field>
+</form>
+<!--end_SYS_CALENDAR_ASSIGN-->
+<!--start_SYS_OVERTIME-->
+<form name="overTime">
+		<field property="userName" depends="required">
+			<arg position="0" key="overTime.userName" />
+		</field>
+		<field property="startTime" depends="required,date,compStartEndTime">
+			<arg position="0" key="overTime.startTime" />
+			<arg position="1" key="overTime.endTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+			<var>
+				<var-name>compStartEndTime</var-name>
+				<var-value>endTime</var-value>
+			</var>
+		</field>
+		<field property="endTime" depends="required,date,compStartEndTime">
+			<arg position="0" key="overTime.endTime" />
+			<arg position="1" key="overTime.startTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+			<var>
+				<var-name>compStartEndTime</var-name>
+				<var-value>startTime</var-value>
+			</var>
+		</field>
+		<field property="subject" depends="required,maxlength">
+			<arg position="0" key="overTime.subject" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="overTime.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>512</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_OVERTIME-->
+<!--start_SYS_ACCEPT_IP-->
+<form name="sysAcceptIp">
+		<field property="title" depends="required,maxlength">
+			<arg position="0" key="sysAcceptIp.title" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="startIp" depends="maxlength">
+			<arg position="0" key="sysAcceptIp.startIp" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="endIp" depends="maxlength">
+			<arg position="0" key="sysAcceptIp.endIp" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		
+</form>
+<!--end_SYS_ACCEPT_IP-->
+<!--start_SYS_PARAM-->
+<form name="sysParam">
+		<field property="paramKey" depends="required,maxlength">
+			<arg position="0" key="sysParam.paramKey" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>32</var-value>
+			</var>
+		</field>
+		<field property="paramName" depends="required,maxlength">
+			<arg position="0" key="sysParam.paramName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="dataType" depends="maxlength">
+			<arg position="0" key="sysParam.dataType" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>32</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_PARAM-->
+<!--start_SYS_ORG_PARAM-->
+<form name="sysOrgParam">
+		<field property="orgId" depends="required,digits">
+			<arg position="0" key="sysOrgParam.orgId" />
+		</field>
+</form>
+<!--end_SYS_ORG_PARAM-->
+<!--start_SYS_USER_PARAM-->
+<form name="sysUserParam">
+		<field property="userId" depends="digits">
+			<arg position="0" key="sysUserParam.userId" />
+		</field>
+</form>
+<!--end_SYS_USER_PARAM-->
+<!--start_sys_type_key-->
+<form name="sysTypeKey">
+		<field property="typeKey" depends="required,maxlength">
+			<arg position="0" key="sysTypeKey.typeKey" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="typeName" depends="required,maxlength">
+			<arg position="0" key="sysTypeKey.typeName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="sn" depends="digits">
+			<arg position="0" key="sysTypeKey.sn" />
+		</field>
+</form>
+<!--end_sys_type_key-->
+<!--start_BPM_DEF_RIGHTS-->
+<form name="bpmDefRights">
+		<field property="defId" depends="digits">
+			<arg position="0" key="bpmDefRights.defId" />
+		</field>
+		<field property="flowTypeId" depends="digits">
+			<arg position="0" key="bpmDefRights.flowTypeId" />
+		</field>
+		<field property="rightType" depends="digits">
+			<arg position="0" key="bpmDefRights.rightType" />
+		</field>
+		<field property="ownerId" depends="digits">
+			<arg position="0" key="bpmDefRights.ownerId" />
+		</field>
+		<field property="ownerName" depends="maxlength">
+			<arg position="0" key="bpmDefRights.ownerName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+		<field property="searchType" depends="digits">
+			<arg position="0" key="bpmDefRights.searchType" />
+		</field>
+</form>
+<!--end_BPM_DEF_RIGHTS-->
+<!--start_BPM_APPROVAL_ITEM-->
+<form name="taskApprovalItems">
+		<field property="defId" depends="digits">
+			<arg position="0" key="taskApprovalItems.actDefId" />
+		</field>
+		<field property="nodeId" depends="maxlength">
+			<arg position="0" key="taskApprovalItems.nodeId" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="approvalItem" depends="required,maxlength">
+			<arg position="0" key="taskApprovalItems.approvalItem" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_APPROVAL_ITEM-->
+
+<!--start_OUT_MAIL-->
+<form name="outMail">
+		<field property="title" depends="required,maxlength">
+			<arg position="0" key="outMail.title" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>512</var-value>
+			</var>
+		</field>
+		<field property="content" depends="required,maxlength">
+			<arg position="0" key="outMail.content" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="senderAddresses" depends="required,maxlength,email">
+			<arg position="0" key="outMail.senderAddresses" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="senderName" depends="maxlength">
+			<arg position="0" key="outMail.senderName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="receiverAddresses" depends="required,maxlength">
+			<arg position="0" key="outMail.receiverAddresses" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="receiverNames" depends="maxlength">
+			<arg position="0" key="outMail.receiverNames" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="ccAddresses" depends="maxlength">
+			<arg position="0" key="outMail.ccAddresses" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="ccNames" depends="maxlength">
+			<arg position="0" key="outMail.ccNames" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="bcCAddresses" depends="maxlength">
+			<arg position="0" key="outMail.bcCAddresses" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="bcCAnames" depends="maxlength">
+			<arg position="0" key="outMail.bcCAnames" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>65535</var-value>
+			</var>
+		</field>
+		<field property="mailDate" depends="date">
+			<arg position="0" key="outMail.mailDate" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+		</field>
+		<field property="fileIds" depends="maxlength">
+			<arg position="0" key="outMail.fileIds" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>512</var-value>
+			</var>
+		</field>
+		<field property="isRead" depends="digits">
+			<arg position="0" key="outMail.isRead" />
+		</field>
+		<field property="emailId" depends="maxlength">
+			<arg position="0" key="outMail.emailId" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>100</var-value>
+			</var>
+		</field>
+		<field property="types" depends="digits">
+			<arg position="0" key="outMail.types" />
+		</field>
+</form>
+<!--end_OUT_MAIL-->
+<!--start_OUT_MAIL_USER_SETING-->
+<form name="outMailUserSeting">
+		<field property="userId" depends="digits">
+			<arg position="0" key="outMailUserSeting.userId" />
+		</field>
+		<field property="userName" depends="maxlength,required">
+			<arg position="0" key="outMailUserSeting.userName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="mailAddress" depends="required,maxlength,email">
+			<arg position="0" key="outMailUserSeting.mailAddress" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="mailPass" depends="required,maxlength">
+			<arg position="0" key="outMailUserSeting.mailPass" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="smtpHost" depends="required,maxlength">
+			<arg position="0" key="outMailUserSeting.smtpHost" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="smtpPort" depends="required,maxlength,digits">
+			<arg position="0" key="outMailUserSeting.smtpPort" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="popHost" depends="maxlength">
+			<arg position="0" key="outMailUserSeting.popHost" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="popPort" depends="maxlength,digits">
+			<arg position="0" key="outMailUserSeting.popPort" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="imapHost" depends="maxlength">
+			<arg position="0" key="outMailUserSeting.imapHost" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="imapPort" depends="maxlength,digits">
+			<arg position="0" key="outMailUserSeting.imapPort" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="isDefault" depends="digits">
+			<arg position="0" key="outMailUserSeting.isDefault" />
+		</field>
+</form>
+<!--end_OUT_MAIL_USER_SETING-->
+
+<!--start_OUT_MAIL_LINKMAN-->
+<form name="outMailLinkman">
+		<field property="mailId" depends="digits">
+			<arg position="0" key="outMailLinkman.mailId" />
+		</field>
+		<field property="sendTime" depends="date">
+			<arg position="0" key="outMailLinkman.sendTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+		</field>
+		<field property="linkName" depends="maxlength">
+			<arg position="0" key="outMailLinkman.linkName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="linkAddress" depends="maxlength">
+			<arg position="0" key="outMailLinkman.linkAddress" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>1000</var-value>
+			</var>
+		</field>
+</form>
+<!--end_OUT_MAIL_LINKMAN-->
+<!--start_BPM_TASK_COMMENT-->
+<form name="taskComment">
+		<field property="content" depends="required,maxlength">
+			<arg position="0" key="taskComment.content" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>500</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_TASK_COMMENT-->
+<!--start_SYS_REPORT_TEMPLATE-->
+<form name="reportTemplate">
+		<field property="title" depends="required,maxlength">
+			<arg position="0" key="reportTemplate.title" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="descp" depends="required,maxlength">
+			<arg position="0" key="reportTemplate.descp" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>500</var-value>
+			</var>
+		</field>
+		<field property="reportLocation" depends="required,maxlength">
+			<arg position="0" key="reportTemplate.reportLocation" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="reportKey" depends="maxlength">
+			<arg position="0" key="reportTemplate.reportKey" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_REPORT_TEMPLATE-->
+<!--start_SYS_REPORT_PARAM-->
+<form name="reportParam">
+		<field property="REPORTID" depends="required,digits">
+			<arg position="0" key="reportParam.REPORTID" />
+		</field>
+		<field property="PARAMNAME" depends="required,maxlength">
+			<arg position="0" key="reportParam.PARAMNAME" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="PARAMKEY" depends="required,maxlength">
+			<arg position="0" key="reportParam.PARAMKEY" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>64</var-value>
+			</var>
+		</field>
+		<field property="DEFAULTVAL" depends="maxlength">
+			<arg position="0" key="reportParam.DEFAULTVAL" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="PARAMTYPE" depends="required,maxlength">
+			<arg position="0" key="reportParam.PARAMTYPE" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>32</var-value>
+			</var>
+		</field>
+		<field property="SN" depends="required,digits">
+			<arg position="0" key="reportParam.SN" />
+		</field>
+		<field property="PARAMTYPESTR" depends="maxlength">
+			<arg position="0" key="reportParam.PARAMTYPESTR" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>1024</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_REPORT_PARAM-->
+<!--start_CG_RSS-->
+<form name="rss">
+		<field property="subject" depends="maxlength">
+			<arg position="0" key="rss.subject" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+		<field property="rssaddr" depends="maxlength">
+			<arg position="0" key="rss.rssaddr" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>256</var-value>
+			</var>
+		</field>
+		<field property="orderdate" depends="date">
+			<arg position="0" key="rss.orderdate" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+		</field>
+		<field property="username" depends="maxlength">
+			<arg position="0" key="rss.username" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="userid" depends="digits">
+			<arg position="0" key="rss.userid" />
+		</field>
+</form>
+<!--end_CG_RSS-->
+<!--start_CG_KNOWLEDGE_MANAGE-->
+<form name="knowledge_manage">
+		<field property="knowledgetitle" depends="maxlength">
+			<arg position="0" key="knowledge_manage.knowledgetitle" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="content" depends="maxlength">
+			<arg position="0" key="knowledge_manage.content" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>4000</var-value>
+			</var>
+		</field>
+		<field property="createDate" depends="date">
+			<arg position="0" key="knowledge_manage.createDate" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+		</field>
+		<field property="publisher" depends="maxlength">
+			<arg position="0" key="knowledge_manage.publisher" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="attachPath" depends="maxlength">
+			<arg position="0" key="knowledge_manage.attachPath" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+		<field property="labelid" depends="maxlength">
+			<arg position="0" key="knowledge_manage.labelid" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="typeid" depends="maxlength">
+			<arg position="0" key="knowledge_manage.typeid" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>20</var-value>
+			</var>
+		</field>
+		<field property="ownType" depends="digits">
+			<arg position="0" key="knowledge_manage.ownType" />
+		</field>
+		<field property="isapprove" depends="digits">
+			<arg position="0" key="knowledge_manage.isapprove" />
+		</field>
+</form>
+<!--end_CG_KNOWLEDGE_MANAGE-->
+<!--start_CG_LABEL-->
+<form name="label">
+		<field property="labelName" depends="maxlength">
+			<arg position="0" key="label.labelName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>40</var-value>
+			</var>
+		</field>
+</form>
+<!--end_CG_LABEL-->
+<!--start_CG_KOWN_LABEL-->
+<form name="kown_label">
+		<field property="knowledgeid" depends="required,digits">
+			<arg position="0" key="kown_label.knowledgeid" />
+		</field>
+</form>
+<!--end_CG_KOWN_LABEL-->
+<!--start_CG_KNOWLEDGE-->
+<form name="knowledge">
+		<field property="subject" depends="maxlength">
+			<arg position="0" key="knowledge.subject" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>256</var-value>
+			</var>
+		</field>
+		<field property="content" depends="maxlength">
+			<arg position="0" key="knowledge.content" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>4000</var-value>
+			</var>
+		</field>
+		<field property="publisherId" depends="digits">
+			<arg position="0" key="knowledge.publisherId" />
+		</field>
+		<field property="publisher" depends="maxlength">
+			<arg position="0" key="knowledge.publisher" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>32</var-value>
+			</var>
+		</field>
+		<field property="typeid" depends="digits">
+			<arg position="0" key="knowledge.typeid" />
+		</field>
+		<field property="isShared" depends="digits">
+			<arg position="0" key="knowledge.isShared" />
+		</field>
+		<field property="status" depends="digits">
+			<arg position="0" key="knowledge.status" />
+		</field>
+		<field property="versionno" depends="digits">
+			<arg position="0" key="knowledge.versionno" />
+		</field>
+		<field property="isMain" depends="digits">
+			<arg position="0" key="knowledge.isMain" />
+		</field>
+		<field property="modifyReason" depends="maxlength">
+			<arg position="0" key="knowledge.modifyReason" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>1024</var-value>
+			</var>
+		</field>
+		<field property="mainKownId" depends="digits">
+			<arg position="0" key="knowledge.mainKownId" />
+		</field>
+		<field property="updateTime" depends="date">
+			<arg position="0" key="knowledge.updateTime" />
+			<var>
+				<var-name>datePattern</var-name>
+				<var-value>yyyy-MM-dd</var-value>
+			</var>
+			<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>yyyy-MM-dd HH:mm:ss</var-value>
+			</var>
+		</field>
+		<field property="updator" depends="maxlength">
+			<arg position="0" key="knowledge.updator" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>32</var-value>
+			</var>
+		</field>
+		<field property="updateId" depends="digits">
+			<arg position="0" key="knowledge.updateId" />
+		</field>
+</form>
+<!--end_CG_KNOWLEDGE-->
+<!--start_CG_KOWN_FILE-->
+<form name="Kown_file">
+		<field property="fileid" depends="required,digits">
+			<arg position="0" key="Kown_file.fileid" />
+		</field>
+</form>
+<!--end_CG_KOWN_FILE-->
+<!--start_CG_KOWN_FAV-->
+<form name="kown_fav">
+		<field property="knowledgeid" depends="digits">
+			<arg position="0" key="kown_fav.knowledgeid" />
+		</field>
+		<field property="userid" depends="digits">
+			<arg position="0" key="kown_fav.userid" />
+		</field>
+</form>
+<!--end_CG_KOWN_FAV-->
+<!--start_BPM_TABLE_TEMPLATE-->
+<form name="bpmTableTemplate">
+		<field property="templateName" depends="required,maxlength">
+			<arg position="0" key="bpmTableTemplate.templateName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_TABLE_TEMPLATE-->
+<!--start_SYS_OFFICE_TEMPLATE-->
+<form name="sysOfficeTemplate">
+		<field property="subject" depends="maxlength">
+			<arg position="0" key="sysOfficeTemplate.subject" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>40</var-value>
+			</var>
+		</field>
+		<field property="templatetype" depends="digits">
+			<arg position="0" key="sysOfficeTemplate.templatetype" />
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="sysOfficeTemplate.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>200</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_OFFICE_TEMPLATE-->
+<!--start_BPM_TABLE_TEMPRIGHTS-->
+<form name="bpmTableTemprights">
+		<field property="templateId" depends="digits">
+			<arg position="0" key="bpmTableTemprights.templateId" />
+		</field>
+		<field property="rightType" depends="digits">
+			<arg position="0" key="bpmTableTemprights.rightType" />
+		</field>
+		<field property="ownerId" depends="digits">
+			<arg position="0" key="bpmTableTemprights.ownerId" />
+		</field>
+		<field property="ownerName" depends="maxlength">
+			<arg position="0" key="bpmTableTemprights.ownerName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="searchType" depends="digits">
+			<arg position="0" key="bpmTableTemprights.searchType" />
+		</field>
+</form>
+<!--end_BPM_TABLE_TEMPRIGHTS-->
+<!--start_BPM_FORM_DIALOG-->
+<form name="bpmFormDialog">
+		<field property="name" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.name" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="alias" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.alias" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="style" depends="digits">
+			<arg position="0" key="bpmFormDialog.style" />
+		</field>
+		<field property="width" depends="digits">
+			<arg position="0" key="bpmFormDialog.width" />
+		</field>
+		<field property="height" depends="digits">
+			<arg position="0" key="bpmFormDialog.height" />
+		</field>
+		<field property="issingle" depends="digits">
+			<arg position="0" key="bpmFormDialog.issingle" />
+		</field>
+		<field property="needpage" depends="digits">
+			<arg position="0" key="bpmFormDialog.needpage" />
+		</field>
+		<field property="istable" depends="digits">
+			<arg position="0" key="bpmFormDialog.istable" />
+		</field>
+		<field property="objname" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.objname" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="displayfield" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.displayfield" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>2000</var-value>
+			</var>
+		</field>
+		<field property="conditionfield" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.conditionfield" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>2000</var-value>
+			</var>
+		</field>
+		<field property="resultfield" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.resultfield" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>1000</var-value>
+			</var>
+		</field>
+		<field property="dsname" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.dsname" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="dsalias" depends="maxlength">
+			<arg position="0" key="bpmFormDialog.dsalias" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_FORM_DIALOG-->
+<!--start_SYS_USER_UNDER-->
+<form name="userUnder">
+		<field property="userid" depends="digits">
+			<arg position="0" key="userUnder.userid" />
+		</field>
+		<field property="underuserid" depends="digits">
+			<arg position="0" key="userUnder.underuserid" />
+		</field>
+		<field property="underusername" depends="maxlength">
+			<arg position="0" key="userUnder.underusername" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+</form>
+<!--end_SYS_USER_UNDER-->
+<!--start_BPM_NODE_BTN-->
+<form name="bpmNodeButton">
+		<field property="btnname" depends="required,maxlength">
+			<arg position="0" key="bpmNodeButton.btnname" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		
+</form>
+<!--end_BPM_NODE_BTN-->
+<!--start_BPM_RUN_LOG-->
+<form name="bpmRunLog">
+		<field property="userid" depends="digits">
+			<arg position="0" key="bpmRunLog.userid" />
+		</field>
+		<field property="username" depends="maxlength">
+			<arg position="0" key="bpmRunLog.username" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>50</var-value>
+			</var>
+		</field>
+		<field property="operatortype" depends="digits">
+			<arg position="0" key="bpmRunLog.operatortype" />
+		</field>
+		<field property="memo" depends="maxlength">
+			<arg position="0" key="bpmRunLog.memo" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>300</var-value>
+			</var>
+		</field>
+</form>
+<!--end_BPM_RUN_LOG-->
+
+<!--start_SYS_SEAL-->
+<form name="seal">
+		<field property="sealName" depends="required,maxlength">
+			<arg position="0" key="seal.sealName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="sealPath" depends="required,maxlength">
+			<arg position="0" key="seal.sealPath" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="belongId" depends="required,digits">
+			<arg position="0" key="seal.belongId" />
+		</field>
+		<field property="belongName" depends="required,maxlength">
+			<arg position="0" key="seal.belongName" />
+			<arg position="1" name="maxlength" key="${var:maxlength}" resource="false" />
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>128</var-value>
+			</var>
+		</field>
+		<field property="attachmentId" depends="digits">
+			<arg position="0" key="seal.attachmentId" />
+		</field>
+</form>
+<!--end_SYS_SEAL-->
+</formset>
+</form-validation>
+ 
+
+ 

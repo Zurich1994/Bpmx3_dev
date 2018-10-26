@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Stukq.model.Stukq.Xskqb">
+	<resultMap id="Xskqb" type="com.hotent.Stukq.model.Stukq.Xskqb">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="rq" column="F_RQ" jdbcType="DATE"/>
+		<result property="kqby" column="F_KQBY" jdbcType="VARCHAR"/>
+		<result property="kqbe" column="F_KQBE" jdbcType="VARCHAR"/>
+		<result property="bz" column="F_BZ" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_RQ,F_KQBY,F_KQBE,F_BZ
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(rq)"> AND F_RQ  =#{rq} </if>
+			<if test="@Ognl@isNotEmpty(beginrq)"> AND F_RQ  >=#{beginrq,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endrq)"> AND F_RQ <![CDATA[ <=#{endrq,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(kqby)"> AND F_KQBY  LIKE '%${kqby}%'  </if>
+			<if test="@Ognl@isNotEmpty(kqbe)"> AND F_KQBE  LIKE '%${kqbe}%'  </if>
+			<if test="@Ognl@isNotEmpty(bz)"> AND F_BZ  LIKE '%${bz}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Stukq.model.Stukq.Xskqb">
+		INSERT INTO W_XSKQB
+		(ID,
+		F_RQ,F_KQBY,F_KQBE,F_BZ)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{rq,jdbcType=DATE}, #{kqby,jdbcType=VARCHAR}, #{kqbe,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_XSKQB 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Stukq.model.Stukq.Xskqb">
+		UPDATE W_XSKQB SET
+		F_RQ=#{rq,jdbcType=DATE},
+		F_KQBY=#{kqby,jdbcType=VARCHAR},
+		F_KQBE=#{kqbe,jdbcType=VARCHAR},
+		F_BZ=#{bz,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Xskqb">
+		SELECT <include refid="columns"/>
+		FROM W_XSKQB
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Xskqb">
+		SELECT <include refid="columns"/>
+		FROM W_XSKQB   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

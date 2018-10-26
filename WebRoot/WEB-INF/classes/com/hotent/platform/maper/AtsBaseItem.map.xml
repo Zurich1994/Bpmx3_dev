@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsBaseItem">
+	<resultMap id="AtsBaseItem" type="com.hotent.platform.model.ats.AtsBaseItem">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="url" column="URL" jdbcType="VARCHAR"/>
+		<result property="isSys" column="IS_SYS" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,CODE,NAME,URL,IS_SYS,MEMO
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(url)"> AND URL  LIKE #{url}  </if>
+			<if test="@Ognl@isNotEmpty(isSys)"> AND IS_SYS  =#{isSys} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsBaseItem">
+		INSERT INTO ATS_BASE_ITEM
+		(ID,CODE,NAME,URL,IS_SYS,MEMO)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{isSys,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_BASE_ITEM 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsBaseItem">
+		UPDATE ATS_BASE_ITEM SET
+		CODE=#{code,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		URL=#{url,jdbcType=VARCHAR},
+		IS_SYS=#{isSys,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsBaseItem">
+		SELECT <include refid="columns"/>
+		FROM ATS_BASE_ITEM
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsBaseItem">
+		SELECT <include refid="columns"/>
+		FROM ATS_BASE_ITEM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CODE ASC
+		</if>
+	</select>
+	
+	
+</mapper>

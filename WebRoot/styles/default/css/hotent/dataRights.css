@@ -1,0 +1,416 @@
+.tab-top {
+	margin: 0 0 0 0;
+}
+
+#bpmDataTemplate td {
+	padding: 2px 3px;
+}
+
+#bpmDataTemplate th {
+	padding: 2px 6px;
+}
+
+.even {
+	height: 28px;
+}
+
+.odd {
+	height: 28px;
+}
+
+.over {
+	background: #FCF1CA;
+}
+
+.hide {
+	display: none;
+}
+
+.moveSelect {
+	margin: 4px auto;
+}
+
+.leftHeader th {
+	font-weight: bold;
+	text-align: center;
+}
+
+.condition-cols {
+	overflow: auto;
+	float: left;
+	width: 29%;
+}
+
+.condition-conds {
+	float: left;
+	width: 70%;
+}
+
+.condition-cols-div {
+	padding: 2px;
+}
+
+.condition-conds-div {
+	padding: 2px;
+	height: 400px;
+}
+
+.condition-conds-div-left {
+	float: left;
+	width: 7%;
+}
+
+.condition-conds-div-left-div {
+	text-align: center;
+	vertical-align: middle;
+	height: 394px;
+}
+
+.condition-conds-div-right {
+	overflow: auto;
+	float: left;
+	width: 93%;
+}
+
+.condition-conds-div-right-div {
+	padding: 2px;
+	margin: 1px;
+}
+
+.condition-script-div {
+	padding: 2px;
+}
+
+.condition-script-div-script-editor {
+	width: 100%;
+}
+
+.condition-script-div-parameters {
+	height: 40px;
+}
+
+.condition-script-div-parameters-list {
+	height: 36px;
+	overflow: auto;
+}
+
+.condition-script-div-script {
+}
+
+.condition-script-div-script-operate { /* 			position: absolute; */
+	margin-top: 5px;
+}
+
+/**排序*/
+.sort-cols {
+	overflow: auto;
+	float: left;
+	width: 29%;
+}
+
+.sort-conds {
+	float: left;
+	width: 70%;
+}
+
+.sort-cols-div {
+	padding: 2px;
+}
+
+.sort-conds-div {
+	padding: 2px;
+}
+
+.sort-conds-div-left {
+	float: left;
+	width: 15%;
+}
+
+.sort-conds-div-left-div {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.sort-conds-div-right {
+	overflow: auto;
+	float: left;
+	width: 85%;
+}
+
+.sort-conds-div-right-div {
+	padding: 2px;
+	margin: 1px;
+}
+
+.sort-script-div {
+	padding: 2px;
+}
+
+.sort-script-div-script-editor {
+	width: 100%;
+}
+
+.sort-script-div-parameters {
+	height: 40px;
+}
+
+.sort-script-div-parameters-list {
+	height: 36px;
+	overflow: auto;
+}
+
+.sort-script-div-script {
+}
+
+.sort-script-div-script-operate { /* 			position: absolute; */
+	margin-top: 5px;
+}
+
+.info {
+	padding-right: 5px;
+}
+
+.info ul li {
+	list-style: disc;
+	margin-left: 30px;
+}
+
+.info font {
+	color: red;
+}
+.fieldSetting td,.fieldSetting th{
+	text-align:center;
+}
+.fieldSetting tr{
+	height: 48px;
+}
+.even{
+	background:rgb(249, 248, 248);
+}
+.w100{
+	width:100% !important;
+}
+.h100{
+	height:100% !important;
+}
+.border-none{
+	border-radius: 0px;
+	border:none !important;
+}
+.margin-none{
+	margin:0px  !important;
+}
+.padding-none{
+	padding: 0px  !important;
+	padding-left: 0px  !important;
+}
+.fieldSetting .ht-input{
+  width: 190px;
+  text-align:left;
+}
+.table-detail td {
+  padding: 0 6px 0 6px;
+}
+.virtual_field{
+	background-color: rgb(137, 218, 139);
+}
+
+.plus_button_default{
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 2px;
+  width: 20px;
+  text-align: center;
+    cursor: pointer;
+}
+.plus_button_success{
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 2px;
+  width: 20px;
+  text-align: center;
+    cursor: pointer;
+}
+.plus_button_warning{
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 2px;
+  width: 20px;
+  text-align: center;
+    cursor: pointer;
+}
+.plus_button_info{
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 2px;
+  width: 20px;
+  text-align: center;
+    cursor: pointer;
+}
+.plus_button_gray{
+  color: #fff;
+  background-color: #DEDCD9;
+  border-color: #269abc;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 2px;
+  width: 20px;
+  text-align: center;
+    cursor: pointer;
+}
+.plus_button_danger{
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 2px;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.and_button{
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  border-radius: 5px;
+  padding: 2px;
+  width: 30px;
+  margin: 1px 4px 0 4px;
+  text-align: center;
+  height: 20px;
+}
+.legend{
+  background-color: #d9edf7;
+  padding: 5px 10px;
+  margin: 0 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkbox_button_div input[type='checkbox']{
+		width: 0px;
+		height: 0px;
+		display:none;
+	}
+.checkbox_button_div  input[type='checkbox']:checked~label{
+	color: #fff;
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+	cursor: pointer;
+}
+.checkbox_button_div input[type='checkbox']:not(:checked)~label{
+	background-color: #D3D3D3;
+	color: white;
+	cursor: pointer;
+}
+.checkbox_button_div .label-sm{
+	padding: 10px;
+    font-size: 16px;
+    min-width: 30px;
+    border-radius: 8px;
+    margin-left: 5px;
+ }
+.checkbox_button_div .pull-left {
+   float: left;
+   padding-top: 30px;
+ 	   height: 40px;
+ }
+ .pull-left{
+ 	float: left;
+ }
+.con-item {
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	margin: 8px 55px 8px 8px;
+	border: 1px solid #ccc;
+	cursor: default;
+	font-size:13px;
+	overflow:hidden;
+}
+
+.con-item-selected {
+	border: 1px solid #f00;
+}
+
+.con-branch {
+	
+}
+
+.con-leaf {
+	height: 40px;
+}
+
+.line-span {
+	position: absolute;
+	font-size: 1px;
+}
+
+.computing-select {
+	position: absolute;
+	width: 40px;
+	height: 20px;
+}
+
+.label-span {
+	cursor: pointer;
+	background: #ededed;
+	height: 40px;
+	display: inline-block;
+	line-height: 40px;
+}
+
+#jquerytree {
+	width: 850px;
+	border: 3px solid #ff0;
+}
+
+.flowVars {
+	width: 180px;
+}
+.left{
+	float:left;	
+}
+.margin-set{
+	margin:5px 0 0 8px;
+}
+.short-select{
+	width:80px;
+}
+.judgeExp2{
+	margin-left:10px;
+}
+a.link.format_setting {
+    background: url("../../images/icons/icons_09-22.png") no-repeat scroll 0 -2px transparent;
+      margin: 0 2px;
+}
+a.link.alarm_setting {
+    background: url("../../images/icons/alarm-clock.png") no-repeat scroll 0 -2px transparent;
+      margin: 0 2px;
+}
+a.link.virtual_setting {
+    background: url("../../images/icons/icons_03.png") no-repeat scroll 0 -2px transparent;
+      margin: 0 2px;
+}
+.tr-select{
+	background-color: rgb(167, 180, 0);
+}

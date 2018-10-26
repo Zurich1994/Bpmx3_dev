@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.UserPosition">
+	<resultMap id="UserPosition" type="com.hotent.platform.model.system.UserPosition">
+		<id property="userPosId" column="USERPOSID" jdbcType="NUMERIC"/>
+		<result property="orgId" column="ORGID" jdbcType="NUMERIC"/>
+		<result property="posId" column="POSID" jdbcType="NUMERIC"/>
+		<result property="jobId" column="JOBID" jdbcType="NUMERIC"/>
+		<result property="userId" column="USERID" jdbcType="NUMERIC"/>
+		<result property="isPrimary" column="ISPRIMARY" jdbcType="NUMERIC"/>
+		<result property="isCharge" column="ISCHARGE" jdbcType="NUMERIC"/>
+		<result property="isDelete" column="ISDELETE" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		a.USERPOSID,a.ORGID,a.POSID,a.USERID,a.ISPRIMARY,a.ISCHARGE,a.ISDELETE,a.JOBID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(userPosId)"> AND a.USERPOSID  =#{userPosId} </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND a.ORGID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(posId)"> AND a.POSID  =#{posId} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND a.USERID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(isPrimary)"> AND a.ISPRIMARY  =#{isPrimary} </if>
+			<if test="@Ognl@isNotEmpty(isCharge)"> AND a.ISCHARGE  =#{isCharge} </if>
+				<if test="@Ognl@isNotEmpty(isCharge)"> AND a.JOBID  =#{jobId} </if>
+			<!--  
+			<if test="@Ognl@isNotEmpty(isDelete)"> AND a.ISDELETE  =#{isDelete} </if>
+			-->
+			 AND a.ISDELETE  =0 
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.UserPosition">
+		INSERT INTO SYS_USER_POS
+		(USERPOSID,ORGID,POSID,JOBID,USERID,ISPRIMARY,ISCHARGE,ISDELETE)
+		VALUES
+		(#{userPosId,jdbcType=NUMERIC}, #{orgId,jdbcType=NUMERIC}, #{posId,jdbcType=NUMERIC},#{jobId,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{isPrimary,jdbcType=NUMERIC}, #{isCharge,jdbcType=NUMERIC}, #{isDelete,jdbcType=NUMERIC})
+	</insert>
+    <!--不能删除组织类数据,应修改删除标志  
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_POS 
+		WHERE
+		USERPOSID=#{userPosId}
+	</delete>
+	-->	
+	<update id="delById" parameterType="java.lang.Long">
+		update  SYS_USER_POS 
+		set isDelete=1
+		WHERE
+		USERPOSID=#{userPosId}
+	</update>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.UserPosition">
+		UPDATE SYS_USER_POS SET
+		ORGID=#{orgId,jdbcType=NUMERIC},
+		POSID=#{posId,jdbcType=NUMERIC},
+		JOBID=#{jobId,jdbcType=NUMERIC},
+		USERID=#{userId,jdbcType=NUMERIC},
+		ISPRIMARY=#{isPrimary,jdbcType=NUMERIC},
+		ISCHARGE=#{isCharge,jdbcType=NUMERIC},
+		ISDELETE=#{isDelete,jdbcType=NUMERIC}
+		WHERE
+		USERPOSID=#{userPosId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="UserPosition">
+		SELECT <include refid="columns"/>
+		FROM SYS_USER_POS a
+		WHERE
+		a.USERPOSID=#{userPosId}
+	</select>
+	
+	<select id="getAll" resultMap="UserPosition">
+		SELECT <include refid="columns"/>, o.orgName,p.posName,u.fullname as username,u.account,j.jobName
+		FROM SYS_USER_POS   a
+		 inner join sys_user u on a.userid=u.userid
+	    inner join sys_org o   on a.orgid=o.orgid 
+	    inner join sys_pos p   on p.posid=a.posid
+	    inner join sys_job j on j.jobid=p.jobid
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(fullname)"> AND u.fullname  like #{fullname} </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND u.account  like #{account} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by a.${orderField}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.USERPOSID  desc
+		</if>
+	</select>
+	
+	<select id="getUserIdsByPosId" resultType="java.lang.Long">
+		select distinct userId from SYS_USER_POS where posId=#{posId}
+	</select>
+	<!-- 删除某用户的岗位关系 -->
+	<update id="delByUserId" parameterType="java.lang.Long">
+		update  SYS_USER_POS set isdelete =1 WHERE userId=#{userId} 
+	</update>
+	
+	<select id="getByUserId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.UserPosition">
+	select distinct a.*,o.orgName,p.posName from sys_user_pos a  
+	inner join sys_org o on o.orgid=a.orgid 
+	inner join sys_pos p on p.posid=a.posid
+		where a.userId=#{userId} and a.isdelete=0
+	</select>
+	
+	<select id="getByPosId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.UserPosition">
+	select distinct a.*,o.orgName,p.posName,u.fullname as userName from sys_user_pos a  
+	inner join sys_org o on o.orgid=a.orgid 
+	inner join sys_pos p on p.posid=a.posid
+	inner join sys_user u on u.userid=a.userid
+		where a.posId=#{userId} and a.isdelete=0
+	</select>
+	
+	
+	<select id="getOrgListByUserId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.UserPosition">
+    select p.orgid,
+           p.userid,
+           o.orgname,
+           u.fullname as username,
+           max(p.isprimary) as isprimary,
+           max(p.ischarge) as ischarge
+      from sys_user_pos p
+      left join sys_org o on o.orgid = p.orgid
+      left join sys_user u on p.userid = u.userid
+     where p.userid = #{userId}
+       and p.isdelete = 0
+     group by p.orgid, p.userid, o.orgname, u.fullname
+	</select>
+	
+	<select id="getPrimaryUserPositionByUserId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.UserPosition">
+	select * from sys_user_pos a  
+		where  a.userId=#{userId} and ISPRIMARY=1 and ISDELETE=0
+	</select>
+	
+	<select id="getUserByOrgIds" parameterType="String" resultType="com.hotent.platform.model.system.UserPosition">
+	    select a.*,   u.account,u.fullname as username,o.orgname from sys_user_pos a 
+	     inner join sys_user u on a.userid=u.userid
+	    inner join sys_org o on a.orgid=o.orgid
+	    where   a.orgId in (${orgIds})
+	</select>
+	<!-- 根据组织id获取组织负责人 -->
+	<select id="getChargeByOrgId" parameterType="Long" resultType="com.hotent.platform.model.system.UserPosition">
+	    select  distinct a.orgid,a.userid,a.isprimary,a.ischarge,u.fullname as userName
+	    from SYS_USER_POS a 
+	    inner join sys_user u on u.userid=a.userid
+	    where  a.orgid=#{orgId} and a.ischarge=1
+	    and a.isdelete=0
+	</select>
+	
+	<!-- 根据负责人获取组织 -->
+	<select id="getChargeOrgByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.UserPosition">
+	    select a.*
+	    from SYS_USER_POS a
+	    where  a.userid=#{userId}
+	    and a.ischarge=1
+	    and isdelete=0
+	</select>
+	
+		
+	<select id="getByOrgId" parameterType="Long" resultType="com.hotent.platform.model.system.UserPosition">
+	    select a.userPosId,a.orgId,a.posId,a.USERID,a.ISPRIMARY,a.ISCHARGE,a.ISDELETE,
+	    u.account,u.fullname as username,o.orgname
+	    from SYS_USER_POS a
+	    inner join sys_user u on a.userid=u.userid
+	    inner join sys_org o on a.orgid=o.orgid
+	    where  a.orgid=#{orgId}
+	    and a.isdelete=0
+	</select>
+	
+	<update id="delByOrgId" parameterType="Long">
+		UPDATE sys_user_pos SET isdelete=1 WHERE orgId=#{userId}
+	</update>
+	
+	<!-- 需要级联删除该组织下的所有子组织与岗位的关系 -->
+	<update id="delByOrgPath" parameterType="String">
+		UPDATE sys_user_pos SET isdelete=1 WHERE orgId in(
+		select o.orgId from sys_org o where o.path like #{path})
+	</update>
+	
+	<update id="delByPosId">
+		UPDATE sys_user_pos SET isdelete=1 WHERE posId=#{posId}
+	</update>
+    <!-- 根据组织ID删除组织负责人 -->
+    <update id="delChargeByOrgId" parameterType="Long">
+		UPDATE SYS_USER_POS SET isdelete=1 WHERE orgId=#{userId} and ischarge=1
+	</update>
+
+     <select id="getUserPosModel" parameterType="java.util.Map" resultMap="UserPosition">
+	    select <include refid="columns"/>
+	    from SYS_USER_POS a
+	    where  userId=#{userId}  and posId=#{posId}
+	    and isdelete=0
+	</select>
+	
+	<!--在设置用户主岗位时，先将其他所有岗位设置成非主岗位， 一个人只有一个主岗位 -->
+		<update id="updNotPrimaryByUserId" parameterType="Long">
+		UPDATE SYS_USER_POS SET isPrimary=0 WHERE userId=#{userId}
+	</update>
+	
+	<select id="getPosByUserId" parameterType="java.lang.Long" resultMap="UserPosition">
+		select * from sys_user_pos a  
+		where  a.userId=#{userId} and ISDELETE=0
+	</select>
+	
+	<update id="delByUserIdAndPosId" parameterType="java.lang.Long">
+		update  SYS_USER_POS set isdelete =1 WHERE userId=#{userId} AND posId=#{posId} AND isdelete=0
+	</update>
+	
+	
+
+</mapper>

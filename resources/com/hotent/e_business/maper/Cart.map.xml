@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.e_business.model.e_business.Cart">
+	<resultMap id="Cart" type="com.hotent.e_business.model.e_business.Cart">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="EMAIL" column="F_EMAIL" jdbcType="VARCHAR"/>
+		<result property="PRODUCTID" column="F_PRODUCTID" jdbcType="VARCHAR"/>
+		<result property="ITEMName" column="F_ITEMNAME" jdbcType="VARCHAR"/>
+		<result property="COMPONENTTYPE" column="F_COMPONENTTYPE" jdbcType="VARCHAR"/>
+		<result property="COMPONENTID" column="F_COMPONENTID" jdbcType="VARCHAR"/>
+		<result property="QUANTITY" column="F_QUANTITY" jdbcType="NUMERIC"/>
+		<result property="UNITPRICE" column="F_UNITPRICE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_EMAIL,F_PRODUCTID,F_ITEMNAME,F_COMPONENTTYPE,F_COMPONENTID,F_QUANTITY,F_UNITPRICE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(EMAIL)"> AND F_EMAIL  LIKE '%${EMAIL}%'  </if>
+			<if test="@Ognl@isNotEmpty(PRODUCTID)"> AND F_PRODUCTID  LIKE '%${PRODUCTID}%'  </if>
+			<if test="@Ognl@isNotEmpty(ITEMName)"> AND F_ITEMNAME  LIKE '%${ITEMName}%'  </if>
+			<if test="@Ognl@isNotEmpty(COMPONENTTYPE)"> AND F_COMPONENTTYPE  LIKE '%${COMPONENTTYPE}%'  </if>
+			<if test="@Ognl@isNotEmpty(COMPONENTID)"> AND F_COMPONENTID  LIKE '%${COMPONENTID}%'  </if>
+			<if test="@Ognl@isNotEmpty(QUANTITY)"> AND F_QUANTITY  =#{QUANTITY} </if>
+			<if test="@Ognl@isNotEmpty(UNITPRICE)"> AND F_UNITPRICE  LIKE '%${UNITPRICE}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.e_business.model.e_business.Cart">
+		INSERT INTO W_CART
+		(ID,
+		F_EMAIL,F_PRODUCTID,F_ITEMNAME,F_COMPONENTTYPE,F_COMPONENTID,F_QUANTITY,F_UNITPRICE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{EMAIL,jdbcType=VARCHAR}, #{PRODUCTID,jdbcType=VARCHAR}, #{ITEMName,jdbcType=VARCHAR}, #{COMPONENTTYPE,jdbcType=VARCHAR}, #{COMPONENTID,jdbcType=VARCHAR}, #{QUANTITY,jdbcType=NUMERIC}, #{UNITPRICE,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_CART 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.e_business.model.e_business.Cart">
+		UPDATE W_CART SET
+		F_EMAIL=#{EMAIL,jdbcType=VARCHAR},
+		F_PRODUCTID=#{PRODUCTID,jdbcType=VARCHAR},
+		F_ITEMNAME=#{ITEMName,jdbcType=VARCHAR},
+		F_COMPONENTTYPE=#{COMPONENTTYPE,jdbcType=VARCHAR},
+		F_COMPONENTID=#{COMPONENTID,jdbcType=VARCHAR},
+		F_QUANTITY=#{QUANTITY,jdbcType=NUMERIC},
+		F_UNITPRICE=#{UNITPRICE,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Cart">
+		SELECT <include refid="columns"/>
+		FROM W_CART
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Cart">
+		SELECT <include refid="columns"/>
+		FROM W_CART  
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

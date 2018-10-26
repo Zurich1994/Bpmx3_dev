@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysBusEvent">
+	<resultMap id="SysBusEvent" type="com.hotent.platform.model.system.SysBusEvent">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="formkey" column="FORMKEY" jdbcType="VARCHAR"/>
+		<result property="jsPreScript" column="JS_PRE_SCRIPT" jdbcType="VARCHAR"/>
+		<result property="jsAfterScript" column="JS_AFTER_SCRIPT" jdbcType="VARCHAR"/>
+		<result property="preScript" column="PRE_SCRIPT" jdbcType="VARCHAR"/>
+		<result property="afterScript" column="AFTER_SCRIPT" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,FORMKEY,JS_PRE_SCRIPT,JS_AFTER_SCRIPT,PRE_SCRIPT,AFTER_SCRIPT
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(formkey)"> AND FORMKEY  LIKE #{formkey}  </if>
+			<if test="@Ognl@isNotEmpty(jsPreScript)"> AND JS_PRE_SCRIPT  LIKE #{jsPreScript}  </if>
+			<if test="@Ognl@isNotEmpty(jsAfterScript)"> AND JS_AFTER_SCRIPT  LIKE #{jsAfterScript}  </if>
+			<if test="@Ognl@isNotEmpty(preScript)"> AND PRE_SCRIPT  LIKE #{preScript}  </if>
+			<if test="@Ognl@isNotEmpty(afterScript)"> AND AFTER_SCRIPT  LIKE #{afterScript}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysBusEvent">
+		INSERT INTO sys_bus_event
+		(ID,FORMKEY,JS_PRE_SCRIPT,JS_AFTER_SCRIPT,PRE_SCRIPT,AFTER_SCRIPT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{formkey,jdbcType=VARCHAR}, #{jsPreScript,jdbcType=VARCHAR}, #{jsAfterScript,jdbcType=VARCHAR}, #{preScript,jdbcType=VARCHAR}, #{afterScript,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_bus_event 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysBusEvent">
+		UPDATE sys_bus_event SET
+		FORMKEY=#{formkey,jdbcType=VARCHAR},
+		JS_PRE_SCRIPT=#{jsPreScript,jdbcType=VARCHAR},
+		JS_AFTER_SCRIPT=#{jsAfterScript,jdbcType=VARCHAR},
+		PRE_SCRIPT=#{preScript,jdbcType=VARCHAR},
+		AFTER_SCRIPT=#{afterScript,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysBusEvent">
+		SELECT <include refid="columns"/>
+		FROM sys_bus_event
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysBusEvent">
+		SELECT <include refid="columns"/>
+		FROM sys_bus_event   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByFormKey"  resultMap="SysBusEvent">
+		SELECT <include refid="columns"/>
+		FROM sys_bus_event
+		WHERE
+		FORMKEY=#{formKey}
+	</select>
+	
+	
+</mapper>

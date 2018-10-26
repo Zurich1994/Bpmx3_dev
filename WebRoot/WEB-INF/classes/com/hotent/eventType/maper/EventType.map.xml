@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.eventType.model.eventType.EventType">
+	<resultMap id="EventType" type="com.hotent.eventType.model.eventType.EventType">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="eventName" column="F_EVENTNAME" jdbcType="VARCHAR"/>
+		<result property="spare1" column="F_SPARE1" jdbcType="VARCHAR"/>
+		<result property="spare2" column="F_SPARE2" jdbcType="VARCHAR"/>
+		<result property="spare3" column="F_SPARE3" jdbcType="VARCHAR"/>
+		<result property="spare4" column="F_SPARE4" jdbcType="VARCHAR"/>
+		<result property="spare5" column="F_SPARE5" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_EVENTNAME,F_SPARE1,F_SPARE2,F_SPARE3,F_SPARE4,F_SPARE5
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(eventName)"> AND F_EVENTNAME  LIKE '%${eventName}%'  </if>
+			<if test="@Ognl@isNotEmpty(spare1)"> AND F_SPARE1  LIKE '%${spare1}%'  </if>
+			<if test="@Ognl@isNotEmpty(spare2)"> AND F_SPARE2  LIKE '%${spare2}%'  </if>
+			<if test="@Ognl@isNotEmpty(spare3)"> AND F_SPARE3  LIKE '%${spare3}%'  </if>
+			<if test="@Ognl@isNotEmpty(spare4)"> AND F_SPARE4  LIKE '%${spare4}%'  </if>
+			<if test="@Ognl@isNotEmpty(spare5)"> AND F_SPARE5  LIKE '%${spare5}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.eventType.model.eventType.EventType">
+		INSERT INTO W_EVENT_TYPE
+		(ID,
+		F_EVENTNAME,F_SPARE1,F_SPARE2,F_SPARE3,F_SPARE4,F_SPARE5)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{eventName,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR}, #{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_EVENT_TYPE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.eventType.model.eventType.EventType">
+		UPDATE W_EVENT_TYPE SET
+		F_EVENTNAME=#{eventName,jdbcType=VARCHAR},
+		F_SPARE1=#{spare1,jdbcType=VARCHAR},
+		F_SPARE2=#{spare2,jdbcType=VARCHAR},
+		F_SPARE3=#{spare3,jdbcType=VARCHAR},
+		F_SPARE4=#{spare4,jdbcType=VARCHAR},
+		F_SPARE5=#{spare5,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="EventType">
+		SELECT <include refid="columns"/>
+		FROM W_EVENT_TYPE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="EventType">
+		SELECT <include refid="columns"/>
+		FROM W_EVENT_TYPE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

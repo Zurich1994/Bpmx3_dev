@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmTaskExe">
+	<resultMap id="BpmTaskExe" type="com.hotent.platform.model.bpm.BpmTaskExe">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="taskId" column="TASKID" jdbcType="NUMERIC"/>
+		<result property="assigneeId" column="ASSIGNEE_ID" jdbcType="NUMERIC"/>
+		<result property="assigneeName" column="ASSIGNEE_NAME" jdbcType="VARCHAR"/>
+		<result property="ownerId" column="OWNER_ID" jdbcType="NUMERIC"/>
+		<result property="ownerName" column="OWNER_NAME" jdbcType="VARCHAR"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="status" column="STATUS" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="cratetime" column="CRATETIME" jdbcType="TIMESTAMP"/>
+		<result property="actInstId" column="ACT_INST_ID" jdbcType="NUMERIC"/>
+		<result property="taskName" column="TASK_NAME" jdbcType="VARCHAR"/>
+		<result property="taskDefKey" column="TASK_DEF_KEY" jdbcType="VARCHAR"/>
+		<result property="exeTime" column="EXE_TIME" jdbcType="TIMESTAMP"/>
+		<result property="exeUserId" column="EXE_USER_ID" jdbcType="NUMERIC"/>
+		<result property="exeUserName" column="EXE_USER_NAME" jdbcType="VARCHAR"/>
+		<result property="assignType" column="ASSIGN_TYPE" jdbcType="NUMERIC"/>
+		<result property="runId" column="RUNID" jdbcType="NUMERIC"/>
+		<result property="typeId" column="TYPE_ID" jdbcType="NUMERIC"/>
+		<result property="creatorId" column="creatorId" jdbcType="NUMERIC"/>
+		<result property="creator" column="creator" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TASKID,ASSIGNEE_ID,ASSIGNEE_NAME,OWNER_ID,OWNER_NAME,SUBJECT,STATUS,MEMO,CRATETIME,ACT_INST_ID,TASK_NAME,TASK_DEF_KEY,EXE_TIME,EXE_USER_ID,EXE_USER_NAME,ASSIGN_TYPE,RUNID,TYPE_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(taskId)"> AND TASKID  =#{taskId} </if>
+			<if test="@Ognl@isNotEmpty(assigneeId)"> AND ASSIGNEE_ID  =#{assigneeId} </if>
+			<if test="@Ognl@isNotEmpty(assigneeName)"> AND ASSIGNEE_NAME  LIKE #{assigneeName}  </if>
+			<if test="@Ognl@isNotEmpty(ownerId)"> AND OWNER_ID  =#{ownerId} </if>
+			<if test="@Ognl@isNotEmpty(ownerName)"> AND OWNER_NAME  LIKE #{ownerName}  </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND STATUS  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(cratetime)"> AND CRATETIME  =#{cratetime} </if>
+			<if test="@Ognl@isNotEmpty(begincratetime)"> AND CRATETIME  >=#{begincratetime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endcratetime)"> AND CRATETIME <![CDATA[ <=#{endcratetime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(actInstId)"> AND ACT_INST_ID  =#{actInstId} </if>
+			<if test="@Ognl@isNotEmpty(taskName)"> AND TASK_NAME  LIKE #{taskName}  </if>
+			<if test="@Ognl@isNotEmpty(taskDefKey)"> AND TASK_DEF_KEY  LIKE #{taskDefKey}  </if>
+			<if test="@Ognl@isNotEmpty(exeTime)"> AND EXE_TIME  =#{exeTime} </if>
+			<if test="@Ognl@isNotEmpty(beginexeTime)"> AND EXE_TIME  >=#{beginexeTime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endexeTime)"> AND EXE_TIME <![CDATA[ <=#{endexeTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(exeUserId)"> AND EXE_USER_ID  =#{exeUserId} </if>
+			<if test="@Ognl@isNotEmpty(exeUserName)"> AND EXE_USER_NAME  LIKE #{exeUserName}  </if>
+			<if test="@Ognl@isNotEmpty(assignType)"> AND ASSIGN_TYPE  =#{assignType} </if>
+			<if test="@Ognl@isNotEmpty(runId)"> AND RUNID  =#{runId} </if>	
+			<if test="@Ognl@isNotEmpty(typeId)"> AND TYPE_ID  =#{typeId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmTaskExe">
+		INSERT INTO BPM_TASK_EXE
+		(ID,TASKID,ASSIGNEE_ID,ASSIGNEE_NAME,OWNER_ID,OWNER_NAME,SUBJECT,STATUS,MEMO,CRATETIME,ACT_INST_ID,TASK_NAME,TASK_DEF_KEY,EXE_TIME,EXE_USER_ID,EXE_USER_NAME,ASSIGN_TYPE,RUNID,TYPE_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{taskId,jdbcType=NUMERIC}, #{assigneeId,jdbcType=NUMERIC}, #{assigneeName,jdbcType=VARCHAR}, #{ownerId,jdbcType=NUMERIC}, #{ownerName,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{status,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR}, #{cratetime,jdbcType=TIMESTAMP}, #{actInstId,jdbcType=NUMERIC}, #{taskName,jdbcType=VARCHAR}, #{taskDefKey,jdbcType=VARCHAR}, #{exeTime,jdbcType=TIMESTAMP}, #{exeUserId,jdbcType=NUMERIC}, #{exeUserName,jdbcType=VARCHAR}, #{assignType,jdbcType=NUMERIC},#{runId,jdbcType=NUMERIC},#{typeId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_TASK_EXE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByRunId" parameterType="java.lang.Long">
+		DELETE FROM BPM_TASK_EXE 
+		WHERE
+		RUNID=#{runId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmTaskExe">
+		UPDATE BPM_TASK_EXE SET
+		TASKID=#{taskId,jdbcType=NUMERIC},
+		ASSIGNEE_ID=#{assigneeId,jdbcType=NUMERIC},
+		ASSIGNEE_NAME=#{assigneeName,jdbcType=VARCHAR},
+		OWNER_ID=#{ownerId,jdbcType=NUMERIC},
+		OWNER_NAME=#{ownerName,jdbcType=VARCHAR},
+		SUBJECT=#{subject,jdbcType=VARCHAR},
+		STATUS=#{status,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		CRATETIME=#{cratetime,jdbcType=TIMESTAMP},
+		ACT_INST_ID=#{actInstId,jdbcType=NUMERIC},
+		TASK_NAME=#{taskName,jdbcType=VARCHAR},
+		TASK_DEF_KEY=#{taskDefKey,jdbcType=VARCHAR},
+		EXE_TIME=#{exeTime,jdbcType=TIMESTAMP},
+		EXE_USER_ID=#{exeUserId,jdbcType=NUMERIC},
+		EXE_USER_NAME=#{exeUserName,jdbcType=VARCHAR},
+		ASSIGN_TYPE=#{assignType,jdbcType=NUMERIC},
+		RUNID=#{runId,jdbcType=NUMERIC},
+		TYPE_ID=#{typeId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmTaskExe">
+		SELECT <include refid="columns"/>
+		FROM BPM_TASK_EXE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByIsAssign" parameterType="java.lang.Long" resultType="int">
+		SELECT count(*) amount FROM BPM_TASK_EXE WHERE TASKID=#{taskId} and STATUS=0
+	</select>
+
+	<select id="getAll" resultMap="BpmTaskExe">
+		SELECT <include refid="columns"/>
+		FROM BPM_TASK_EXE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<!-- 转办事宜 -->
+	<select id="accordingMattersList" resultMap="BpmTaskExe">
+		SELECT 	te.ID,te.TASKID,te.ASSIGNEE_ID,te.ASSIGNEE_NAME,te.OWNER_ID,te.OWNER_NAME,te.SUBJECT,te.STATUS,te.MEMO,te.CRATETIME,te.ACT_INST_ID,te.TASK_NAME,te.TASK_DEF_KEY,te.EXE_TIME,te.EXE_USER_ID,te.EXE_USER_NAME,te.ASSIGN_TYPE,te.RUNID,te.TYPE_ID,
+			run.processName processName,run.creatorId creatorId,run.creator creator
+		FROM BPM_TASK_EXE te join BPM_PRO_RUN_HIS run  on te.runId = run.runId 
+		left join SYS_GL_TYPE type on te.type_id = type.typeId	
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		<where>
+			<if test="@Ognl@isNotEmpty(assigneeId)"> AND te.ASSIGNEE_ID  =#{assigneeId} </if>
+			<if test="@Ognl@isNotEmpty(assigneeName)"> AND te.ASSIGNEE_NAME  LIKE #{assigneeName} escape '|'  </if>
+			<if test="@Ognl@isNotEmpty(ownerId)"> AND te.OWNER_ID  =#{ownerId} </if>
+			<if test="@Ognl@isNotEmpty(ownerName)"> AND te.OWNER_NAME  LIKE #{ownerName} escape '|' </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND upper(te.SUBJECT) LIKE upper(#{subject}) escape '|'  </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND te.STATUS  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND te.MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(cratetime)"> AND te.CRATETIME  =#{cratetime} </if>
+			<if test="@Ognl@isNotEmpty(begincratetime)"> AND te.CRATETIME  >=#{begincratetime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endcratetime)"> AND te.CRATETIME <![CDATA[ <=#{endcratetime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(actInstId)"> AND te.ACT_INST_ID  =#{actInstId} </if>
+			<if test="@Ognl@isNotEmpty(taskName)"> AND te.TASK_NAME  LIKE #{taskName} escape '|' </if>
+			<if test="@Ognl@isNotEmpty(taskDefKey)"> AND te.TASK_DEF_KEY  LIKE #{taskDefKey} escape '|' </if>
+			<if test="@Ognl@isNotEmpty(exeTime)"> AND te.EXE_TIME  =#{exeTime} </if>
+			<if test="@Ognl@isNotEmpty(beginexeTime)"> AND te.EXE_TIME  >=#{beginexeTime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endexeTime)"> AND te.EXE_TIME <![CDATA[ <=#{endexeTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(exeUserId)"> AND te.EXE_USER_ID  =#{exeUserId} </if>
+			<if test="@Ognl@isNotEmpty(exeUserName)"> AND te.EXE_USER_NAME  LIKE #{exeUserName} escape '|'  </if>
+			<if test="@Ognl@isNotEmpty(assignType)"> AND te.ASSIGN_TYPE  =#{assignType} </if>
+			<if test="@Ognl@isNotEmpty(runId)"> AND te.RUNID  =#{runId} </if>	
+			<if test="@Ognl@isNotEmpty(typeId)"> AND te.TYPE_ID  =#{typeId} </if>
+			<if test="@Ognl@isNotEmpty(tagIds)"> AND def.tagIds LIKE #{tagIds} escape '|'</if>
+			<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+			<if test="@Ognl@isNotEmpty(processName)">AND upper(run.processName) LIKE upper(#{processName}) escape '|' </if>
+			<if test="@Ognl@isNotEmpty(creatorId)">AND run.creatorId = #{creatorId} </if>
+			<if test="@Ognl@isNotEmpty(exceptDefStatus)">AND def.status!=#{exceptDefStatus}</if>
+			<if test="@Ognl@isNotEmpty(nodeKey)"> and type.nodeKey in (${nodeKey}) </if>
+			<if test="@Ognl@isNotEmpty(notNodeKey)"> and (type.nodeKey not in (${notNodeKey}) or type.nodeKey is NULL) </if>
+			
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+		
+	<select id="getByTaskId" parameterType="java.lang.Long" resultMap="BpmTaskExe">
+		SELECT <include refid="columns"/>
+		FROM BPM_TASK_EXE
+		WHERE
+		TASKID=#{taskId}
+	</select>
+	
+	<select id="getByActInstId" parameterType="java.lang.Long" resultMap="BpmTaskExe">
+		SELECT <include refid="columns"/>
+		FROM BPM_TASK_EXE
+		WHERE
+		ACT_INST_ID=#{actInstId}
+	</select>
+	
+	<select id="getByRunId" parameterType="java.lang.Long" resultMap="BpmTaskExe">
+		SELECT <include refid="columns"/>
+		FROM BPM_TASK_EXE
+		WHERE
+		TASKID=#{taskId}
+	</select>
+		
+		
+	<select id="getByTaskIdStatus" parameterType="java.util.Map" resultMap="BpmTaskExe">
+		SELECT <include refid="columns"/>
+		FROM BPM_TASK_EXE
+		WHERE
+		TASKID=#{taskId} and STATUS =#{status}
+	</select>
+	
+	
+</mapper>

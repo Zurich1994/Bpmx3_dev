@@ -1,0 +1,230 @@
+<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+	<f:link href="jquery/plugins/jquery.chosen.css"></f:link>
+<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.chosen.js""></script>
+<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.htselect.js""></script>
+<script type="text/javascript">
+	var isStop = false,pWidth,sWidth;
+	$(function(){
+		jQuery("#setSubSystem").chosen();
+		$(".moreinfo").htselect();
+		$("a.normalOrg").click(function(){
+			var posid=$(this).attr("posid"),
+    			form=new com.hotent.form.Form();
+    		form.creatForm("orgform", "${ctx}/platform/console/switchCurrentOrg.ht");
+    		form.addFormEl("posId", posid);
+    		form.submit();
+		});
+	});
+	function selectSystem() {
+		if ($(".show_sys").css("display") == "none") {
+			$(".show_sys").css("display", "block");
+		} else {
+			$(".show_sys").css("display", "none");
+		}
+	};
+	function rollLeft() {
+		var lef = pWidth - sWidth;
+		var cLeft = parseInt($("div.menuPanel").css("left").replace("px", ""));
+		if (cLeft <= lef)
+			return;
+		$("div.menuPanel").animate({
+			left : "-=3px"
+		}, 20, function() {
+			if (!isStop) {
+				rollLeft();
+			}
+		});
+	};
+	function startRoll(e) {
+		isStop = false;
+		if (e == 0) {
+			pWidth = $("div.menuParent").width();
+			sWidth = parseInt($("div.menuPanel").css("padding-left")
+					+ $("div.menuPanel").css("padding-left"));
+			var count = 0, temp = 0;
+			$("a.menuItem").each(
+					function() {
+						count++;
+						temp = parseInt($(this).css("margin-left"))
+								+ parseInt($(this).css("margin-right"))
+								+ parseInt($(this).css("padding-left"))
+								+ parseInt($(this).css("padding-right"));
+						sWidth += $(this).width();
+					});
+			sWidth += (count + 1) * temp;
+			rollLeft();
+		} else {
+			rollRight();
+		}
+	};
+	function breakRoll() {
+		isStop = true;
+	};
+	function rollRight() {
+		var cLeft = parseInt($("div.menuPanel").css("left").replace("px", ""));
+		if (cLeft >= 0)
+			return;
+		$("div.menuPanel").animate({
+			left : "+=3px"
+		}, 20, function() {
+			if (!isStop) {
+				rollRight();
+			}
+		});
+	};
+
+	// 刷新未读信息
+	function refresh() {
+
+		$.post(__ctx + "/platform/system/messageSend/notReadMsg.ht", function(data) {
+
+			$('#labMsgSize').text(data);
+			if (data == 0) {
+				$('#inMsg').attr('src',
+						__ctx + '/styles/default/images/msg_none.png');
+			}
+		});
+		$("iframe[name='home']").attr('src',__ctx+'/platform/console/home.ht');
+		if(this.win)
+			this.win.close();
+	}
+
+	function showReadMsgDlg(id) {
+		var msgLength = $('#labMsgSize').text();
+		if (msgLength > 0) {
+
+			var url = __ctx + '/platform/system/messageSend/readMsgDialog.ht';
+			if(typeof id!='undefined'){
+				url += '?id='+id
+			}
+			win = $.ligerDialog.open({
+				allowClose: false,
+				url : url,
+				height : 450,
+				width : 600,
+				isResize : false,
+				title : '站内消息'
+			});
+		}
+	}
+	function changeSkin(styleName){
+		$.post(__ctx + "/platform/system/sysPaur/changeSkin.ht",{'styleName':styleName}, function(response) {
+			var json=$.parseJSON(response);
+			if(json.result){
+				window.location.reload(true);	
+			}
+			else{
+				alert(json.message);
+			}
+		});
+	}
+	
+	//更改指定皮肤分风格
+	function setLink(linktitle,styleName,obj){
+		var updatelogo=true;
+		
+		$('link[rel=stylesheet]:[title='+linktitle+']',obj).each(
+			function(){
+				var curhref=this.href;
+				var startIndex=curhref.indexOf("/styles/");
+				var endIndex=curhref.indexOf("/css/");
+				var substr=curhref.substring((startIndex+8),endIndex);
+				this.href=curhref.replace(substr,styleName) ;
+				if(updatelogo){
+					var newlogo=$('#logoImg').attr("src").replace(substr,styleName);
+					$('#logoImg').attr("src",function(){ return newlogo});
+					updatelogo=false;
+				}
+			}		
+		);
+	}
+</script>
+<c:set var="ctx" value="${pageContext.request.contextPath }" />
+
+
+<div class="top">
+	<h1 class="logo"><a href="index.html"><img id="logoImg" src="${ctx}${currentSystem.logo}" /></a></h1>
+	
+	<div class="info">
+		<div class="welcome_panel_green">
+			<table border="0" style="display: inline-table;">
+				<tr>
+					<td nowrap="nowrap">
+						<div style="padding: 5px;">
+							<div id="welcomeContainer" onclick="setLink('default')">
+								欢迎您，
+								<security:authentication property="principal.fullname" />
+							</div>
+							<div id="loginContainer">
+								<a id="loginButton" href="javascript:;" title="更多操作"></a>
+								<div style="clear: both"></div>
+								<div id="loginBox" class="itemDiv">
+									<ul>
+										<li><a class="more edit2" prehref="${ctx}/platform/system/sysUser/modifyPwdView.ht?userId=${userId}" resid="-001" href="javascript:;">修改密码</a></li>
+										<li><a class="more detail2" href="javascript:;" resid="-002" prehref="${ctx}/platform/system/sysUser/get.ht?userId=${userId}&canReturn=0">个人资料</a></li>
+										<li class="moreinfo"><a class="more switch2" resid="-003" href="javascript:;">切换岗位</a>
+											<c:if test="${curPosition!=null}">										
+												<ul>
+													<c:forEach var="position" items="${positions}">
+														<c:choose>
+									            			<c:when test="${position.posId==curPosition.posId}">
+									            				<li><a class="curOrg" orgid="${position.posId}">${position.posName}</a></li>
+									            			</c:when>
+									            			<c:otherwise>
+									            				<li><a class="normalOrg" orgid="${position.posId}" href="javascript:;">${position.posName}</a></li>
+									            			</c:otherwise>
+									            		</c:choose>
+													</c:forEach>
+												</ul>
+											</c:if>
+										</li>
+										<c:if test="${cookie.origSwitch!=null}">
+											<li>
+												<a class="more exituser" href="${ctx}/j_spring_security_exit_user?j_username=${cookie.origSwitch.value}">退出切换用户</a>
+											</li>
+										</c:if>
+										<li><a class="more exit2" href="${ctx}/logout">退出系统</a></li>
+									</ul>
+								</div>
+								<em id="shadeEm"></em>
+							</div>
+					</td>
+					<td>
+						<div class="msg_div" alt="站内消息">
+							<c:if test="${readMsg>0}">
+								<img id="inMsg"  title="站内消息" src="${ctx}/styles/default/images/msg_own.png">
+							</c:if> 
+							<c:if test="${readMsg==0}">
+								<img id="inMsg"  title="站内消息" src="${ctx}/styles/default/images/msg_none.png">
+							</c:if> (<a href="javascript:showReadMsgDlg()" id="labMsgSize">${readMsg}</a>)
+						</div>
+					</td>
+				</tr>
+				<tr>
+				<td colspan="2" style="text-align:right">
+					<select id="setSubSystem" onchange="saveCurrentSys();" hasSearch="0">
+							<c:forEach var="subSystemItem" items="${subSystemList}">
+								<option value="${subSystemItem.systemId}"
+									<c:if test="${subSystemItem.systemId==currentSystem.systemId }">selected="selected"</c:if>>
+									${subSystemItem.sysName}</option>
+							</c:forEach>
+					</select>
+				</td>
+				</tr>
+				<tr>
+					<td  colspan="2">
+						<a href="javascript:void(0)"  onclick="changeSkin('default')" >	<img src="${ctx}/styles/default/images/icons/icons_38.png" /> </a>
+						<a href="javascript:void(0)"  onclick="changeSkin('green')" ><img src="${ctx}/styles/default/images/icons/icons_40-69.png" /> </a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+	</div>
+</div>
+<div class="menu">
+			<ul id="menuPanel">	
+			</ul>
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<p>
+poi excel操作类
+</p>
+<p>提供了更直观易用的常用方法。主要支持以下的功能：
+ <ul>
+ <li>实现类似jQuery的链式调用方式</li>
+ <li>只支持xls格式，可以加载已存在的xls文件作为模板</li>
+ <li>提供了行编辑器、列编辑器和区域编辑器，可以一次操作一行、一列或一个区域的值或样式</li>
+ <li>可设置的样式包括：边框大小、颜色；背景色；字体大小、颜色、粗体、斜体、删除线、斜体等；数据格式；单元格宽高；对齐方式……等</li>
+ <li>设置打印样式、设置密码、按行或按列分组</li>
+ <li>插入图片、批注、公式</li>
+ </ul>
+ 详情请参考API文档和例子 
+ <p>例子看Excel.java的main方法</p>
+</p>
+</body>
+</html>

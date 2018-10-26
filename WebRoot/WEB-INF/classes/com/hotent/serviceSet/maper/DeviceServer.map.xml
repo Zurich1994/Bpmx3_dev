@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.serviceSet.model.serviceSet.DeviceServer">
+	<resultMap id="DeviceServer" type="com.hotent.serviceSet.model.serviceSet.DeviceServer">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="dev_ID" column="F_DEV_ID" jdbcType="VARCHAR"/>
+		<result property="server_type" column="F_SERVER_TYPE" jdbcType="VARCHAR"/>
+		<result property="os_name" column="F_OS_NAME" jdbcType="VARCHAR"/>
+		<result property="manage_IP" column="F_MANAGE_IP" jdbcType="VARCHAR"/>
+		<result property="manage_NIC_subnetMas" column="F_MANAGE_NIC_SUBNETMAS" jdbcType="VARCHAR"/>
+		<result property="manage_NIC_Default_g" column="F_MANAGE_NIC_DEFAULT_G" jdbcType="VARCHAR"/>
+		<result property="manage_NIC_MAC_addre" column="F_MANAGE_NIC_MAC_ADDRE" jdbcType="VARCHAR"/>
+		<result property="bussiness_IP" column="F_BUSSINESS_IP" jdbcType="VARCHAR"/>
+		<result property="bussiness_NIC_subnet" column="F_BUSSINESS_NIC_SUBNET" jdbcType="VARCHAR"/>
+		<result property="bussiness_NIC_Defaul" column="F_BUSSINESS_NIC_DEFAUL" jdbcType="VARCHAR"/>
+		<result property="bussiness_NIC_MAC_ad" column="F_BUSSINESS_NIC_MAC_AD" jdbcType="VARCHAR"/>
+		<result property="type" column="F_TYPE" jdbcType="VARCHAR"/>
+		<result property="city_id" column="F_CITY_ID" jdbcType="VARCHAR"/>
+		<result property="function_name" column="F_FUNCTION_NAME" jdbcType="VARCHAR"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+		<result property="actdefid" column="F_ACTDEFID" jdbcType="VARCHAR"/>
+		<result property="nodeid" column="F_NODEID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_DEV_ID,F_SERVER_TYPE,F_OS_NAME,F_MANAGE_IP,F_MANAGE_NIC_SUBNETMAS,F_MANAGE_NIC_DEFAULT_G,F_MANAGE_NIC_MAC_ADDRE,F_BUSSINESS_IP,F_BUSSINESS_NIC_SUBNET,F_BUSSINESS_NIC_DEFAUL,F_BUSSINESS_NIC_MAC_AD,F_TYPE,F_CITY_ID,F_FUNCTION_NAME,F_REMARK,F_ACTDEFID,F_NODEID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(dev_ID)"> AND F_DEV_ID  LIKE '%${dev_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_type)"> AND F_SERVER_TYPE  LIKE '%${server_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(os_name)"> AND F_OS_NAME  LIKE '%${os_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(manage_IP)"> AND F_MANAGE_IP  LIKE '%${manage_IP}%'  </if>
+			<if test="@Ognl@isNotEmpty(manage_NIC_subnetMas)"> AND F_MANAGE_NIC_SUBNETMAS  LIKE '%${manage_NIC_subnetMas}%'  </if>
+			<if test="@Ognl@isNotEmpty(manage_NIC_Default_g)"> AND F_MANAGE_NIC_DEFAULT_G  LIKE '%${manage_NIC_Default_g}%'  </if>
+			<if test="@Ognl@isNotEmpty(manage_NIC_MAC_addre)"> AND F_MANAGE_NIC_MAC_ADDRE  LIKE '%${manage_NIC_MAC_addre}%'  </if>
+			<if test="@Ognl@isNotEmpty(bussiness_IP)"> AND F_BUSSINESS_IP  LIKE '%${bussiness_IP}%'  </if>
+			<if test="@Ognl@isNotEmpty(bussiness_NIC_subnet)"> AND F_BUSSINESS_NIC_SUBNET  LIKE '%${bussiness_NIC_subnet}%'  </if>
+			<if test="@Ognl@isNotEmpty(bussiness_NIC_Defaul)"> AND F_BUSSINESS_NIC_DEFAUL  LIKE '%${bussiness_NIC_Defaul}%'  </if>
+			<if test="@Ognl@isNotEmpty(bussiness_NIC_MAC_ad)"> AND F_BUSSINESS_NIC_MAC_AD  LIKE '%${bussiness_NIC_MAC_ad}%'  </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND F_TYPE  LIKE '%${type}%'  </if>
+			<if test="@Ognl@isNotEmpty(city_id)"> AND F_CITY_ID  LIKE '%${city_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(function_name)"> AND F_FUNCTION_NAME  LIKE '%${function_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+			<if test="@Ognl@isNotEmpty(actdefid)"> AND F_ACTDEFID  LIKE '%${actdefid}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND F_NODEID  LIKE '%${nodeid}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.serviceSet.model.serviceSet.DeviceServer">
+		INSERT INTO W_DEVICE_SERVER
+		(ID,
+		F_DEV_ID,F_SERVER_TYPE,F_OS_NAME,F_MANAGE_IP,F_MANAGE_NIC_SUBNETMAS,F_MANAGE_NIC_DEFAULT_G,F_MANAGE_NIC_MAC_ADDRE,F_BUSSINESS_IP,F_BUSSINESS_NIC_SUBNET,F_BUSSINESS_NIC_DEFAUL,F_BUSSINESS_NIC_MAC_AD,F_TYPE,F_CITY_ID,F_FUNCTION_NAME,F_REMARK,F_ACTDEFID,F_NODEID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{dev_ID,jdbcType=VARCHAR}, #{server_type,jdbcType=VARCHAR}, #{os_name,jdbcType=VARCHAR}, #{manage_IP,jdbcType=VARCHAR}, #{manage_NIC_subnetMas,jdbcType=VARCHAR}, #{manage_NIC_Default_g,jdbcType=VARCHAR}, #{manage_NIC_MAC_addre,jdbcType=VARCHAR}, #{bussiness_IP,jdbcType=VARCHAR}, #{bussiness_NIC_subnet,jdbcType=VARCHAR}, #{bussiness_NIC_Defaul,jdbcType=VARCHAR}, #{bussiness_NIC_MAC_ad,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{city_id,jdbcType=VARCHAR}, #{function_name,jdbcType=VARCHAR}, #{remark,jdbcType=CLOB}, #{actdefid,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_SERVER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.serviceSet.model.serviceSet.DeviceServer">
+		UPDATE W_DEVICE_SERVER SET
+		F_DEV_ID=#{dev_ID,jdbcType=VARCHAR},
+		F_SERVER_TYPE=#{server_type,jdbcType=VARCHAR},
+		F_OS_NAME=#{os_name,jdbcType=VARCHAR},
+		F_MANAGE_IP=#{manage_IP,jdbcType=VARCHAR},
+		F_MANAGE_NIC_SUBNETMAS=#{manage_NIC_subnetMas,jdbcType=VARCHAR},
+		F_MANAGE_NIC_DEFAULT_G=#{manage_NIC_Default_g,jdbcType=VARCHAR},
+		F_MANAGE_NIC_MAC_ADDRE=#{manage_NIC_MAC_addre,jdbcType=VARCHAR},
+		F_BUSSINESS_IP=#{bussiness_IP,jdbcType=VARCHAR},
+		F_BUSSINESS_NIC_SUBNET=#{bussiness_NIC_subnet,jdbcType=VARCHAR},
+		F_BUSSINESS_NIC_DEFAUL=#{bussiness_NIC_Defaul,jdbcType=VARCHAR},
+		F_BUSSINESS_NIC_MAC_AD=#{bussiness_NIC_MAC_ad,jdbcType=VARCHAR},
+		F_TYPE=#{type,jdbcType=VARCHAR},
+		F_CITY_ID=#{city_id,jdbcType=VARCHAR},
+		F_FUNCTION_NAME=#{function_name,jdbcType=VARCHAR},
+		F_REMARK=#{remark,jdbcType=CLOB},
+		F_ACTDEFID=#{actdefid,jdbcType=VARCHAR},
+		F_NODEID=#{nodeid,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	<!-- 多条件查询-->
+	<parameterMap type="java.util.HashMap" id="manyParameters">   
+    <parameter property="actdefid" javaType="String" jdbcType="VARCHAR" />   
+    <parameter property="nodeid" javaType="String" jdbcType="VARCHAR" />   
+	</parameterMap>   
+	<select id="getByNodeIdANDActdefId" parameterMap="manyParameters" resultMap="DeviceServer">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_SERVER
+		WHERE
+		F_ACTDEFID=#{actdefid} and F_NODEID=#{nodeid}
+	</select>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceServer">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_SERVER
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DeviceServer">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_SERVER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

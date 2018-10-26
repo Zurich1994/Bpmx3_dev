@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking
+END
+update.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/update.java
+END
+Payee.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/Payee.java
+END
+Checkyan.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/Checkyan.java
+END
+UserTab.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/UserTab.java
+END
+quickpay.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/quickpay.java
+END
+OrderCheck.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/OrderCheck.java
+END
+checkaccount.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/checkaccount.java
+END
+add_payee.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/add_payee.java
+END
+Account.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/Account.java
+END
+BillPay.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/BillPay.java
+END
+Account1.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/model/banking/Account1.java
+END

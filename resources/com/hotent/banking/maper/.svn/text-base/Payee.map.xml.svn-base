@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.banking.model.banking.Payee">
+	<resultMap id="Payee" type="com.hotent.banking.model.banking.Payee">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="USERID" column="F_USERID" jdbcType="VARCHAR"/>
+		<result property="PAYEEID" column="F_PAYEEID" jdbcType="VARCHAR"/>
+		<result property="NAME" column="F_NAME" jdbcType="VARCHAR"/>
+		<result property="STREET" column="F_STREET" jdbcType="VARCHAR"/>
+		<result property="CITY" column="F_CITY" jdbcType="VARCHAR"/>
+		<result property="STATE" column="F_STATE" jdbcType="VARCHAR"/>
+		<result property="ZIP" column="F_ZIP" jdbcType="VARCHAR"/>
+		<result property="PHONE" column="F_PHONE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_USERID,F_PAYEEID,F_NAME,F_STREET,F_CITY,F_STATE,F_ZIP,F_PHONE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(USERID)"> AND F_USERID  LIKE '%${USERID}%'  </if>
+			<if test="@Ognl@isNotEmpty(PAYEEID)"> AND F_PAYEEID  LIKE '%${PAYEEID}%'  </if>
+			<if test="@Ognl@isNotEmpty(NAME)"> AND F_NAME  LIKE '%${NAME}%'  </if>
+			<if test="@Ognl@isNotEmpty(STREET)"> AND F_STREET  LIKE '%${STREET}%'  </if>
+			<if test="@Ognl@isNotEmpty(CITY)"> AND F_CITY  LIKE '%${CITY}%'  </if>
+			<if test="@Ognl@isNotEmpty(STATE)"> AND F_STATE  LIKE '%${STATE}%'  </if>
+			<if test="@Ognl@isNotEmpty(ZIP)"> AND F_ZIP  LIKE '%${ZIP}%'  </if>
+			<if test="@Ognl@isNotEmpty(PHONE)"> AND F_PHONE  LIKE '%${PHONE}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.banking.model.banking.Payee">
+		INSERT INTO W_PAYEE
+		(ID,
+		F_USERID,F_PAYEEID,F_NAME,F_STREET,F_CITY,F_STATE,F_ZIP,F_PHONE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{USERID,jdbcType=VARCHAR}, #{PAYEEID,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{STREET,jdbcType=VARCHAR}, #{CITY,jdbcType=VARCHAR}, #{STATE,jdbcType=VARCHAR}, #{ZIP,jdbcType=VARCHAR}, #{PHONE,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_PAYEE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.banking.model.banking.Payee">
+		UPDATE W_PAYEE SET
+		F_USERID=#{USERID,jdbcType=VARCHAR},
+		F_PAYEEID=#{PAYEEID,jdbcType=VARCHAR},
+		F_NAME=#{NAME,jdbcType=VARCHAR},
+		F_STREET=#{STREET,jdbcType=VARCHAR},
+		F_CITY=#{CITY,jdbcType=VARCHAR},
+		F_STATE=#{STATE,jdbcType=VARCHAR},
+		F_ZIP=#{ZIP,jdbcType=VARCHAR},
+		F_PHONE=#{PHONE,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Payee">
+		SELECT <include refid="columns"/>
+		FROM W_PAYEE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" parameterType="java.lang.Long" resultMap="Payee">
+		SELECT <include refid="columns"/>
+		FROM W_PAYEE
+		WHERE
+		ID=#{vbvb}
+	</select>
+	<select id="getUSERID" resultMap="Payee" parameterType="java.lang.String">
+		SELECT <include refid="columns"/>
+		FROM W_PAYEE 
+		WHERE
+		F_USERID=#{USERID}
+	</select>
+</mapper>

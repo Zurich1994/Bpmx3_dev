@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.DeviceActionShowPath.model.DeviceActionShowCode.DeviceActionShow">
+	<resultMap id="DeviceActionShow" type="com.hotent.DeviceActionShowPath.model.DeviceActionShowCode.DeviceActionShow">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="node_dev_id" column="F_NODE_DEV_ID" jdbcType="VARCHAR"/>
+		<result property="start_time" column="F_START_TIME" jdbcType="VARCHAR"/>
+		<result property="actionname" column="F_ACTIONNAME" jdbcType="VARCHAR"/>
+		<result property="actiontime" column="F_ACTIONTIME" jdbcType="VARCHAR"/>
+		<result property="actioncount" column="F_ACTIONCOUNT" jdbcType="VARCHAR"/>
+		<result property="lode_type" column="F_LODE_TYPE" jdbcType="VARCHAR"/>
+		<result property="load_use_rate" column="F_LOAD_USE_RATE" jdbcType="NUMERIC"/>
+		<result property="dev_type_code" column="F_DEV_TYPE_CODE" jdbcType="VARCHAR"/>
+		<result property="sameaction_sign" column="F_SAMEACTION_SIGN" jdbcType="VARCHAR"/>
+		<result property="sameaction_sign1" column="F_SAMEACTION_SIGN1" jdbcType="VARCHAR"/>
+		<result property="node_color" column="F_NODE_COLOR" jdbcType="VARCHAR"/>
+		<result property="node_flash" column="F_NODE_FLASH" jdbcType="VARCHAR"/>
+		<result property="a" column="F_A" jdbcType="VARCHAR"/>
+		<result property="b" column="F_B" jdbcType="VARCHAR"/>
+		<result property="c" column="F_C" jdbcType="VARCHAR"/>
+		<result property="d" column="F_D" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_NODE_DEV_ID,F_START_TIME,F_ACTIONNAME,F_ACTIONTIME,F_ACTIONCOUNT,F_LODE_TYPE,F_LOAD_USE_RATE,F_DEV_TYPE_CODE,F_SAMEACTION_SIGN,F_SAMEACTION_SIGN1,F_NODE_COLOR,F_NODE_FLASH,F_A,F_B,F_C,F_D
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(node_dev_id)"> AND F_NODE_DEV_ID  LIKE '%${node_dev_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(start_time)"> AND F_START_TIME  LIKE '%${start_time}%'  </if>
+			<if test="@Ognl@isNotEmpty(actionname)"> AND F_ACTIONNAME  LIKE '%${actionname}%'  </if>
+			<if test="@Ognl@isNotEmpty(actiontime)"> AND F_ACTIONTIME  LIKE '%${actiontime}%'  </if>
+			<if test="@Ognl@isNotEmpty(actioncount)"> AND F_ACTIONCOUNT  LIKE '%${actioncount}%'  </if>
+			<if test="@Ognl@isNotEmpty(lode_type)"> AND F_LODE_TYPE  LIKE '%${lode_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(load_use_rate)"> AND F_LOAD_USE_RATE  =#{load_use_rate} </if>
+			<if test="@Ognl@isNotEmpty(dev_type_code)"> AND F_DEV_TYPE_CODE  LIKE '%${dev_type_code}%'  </if>
+			<if test="@Ognl@isNotEmpty(sameaction_sign)"> AND F_SAMEACTION_SIGN  LIKE '%${sameaction_sign}%'  </if>
+			<if test="@Ognl@isNotEmpty(sameaction_sign1)"> AND F_SAMEACTION_SIGN1  LIKE '%${sameaction_sign1}%'  </if>
+			<if test="@Ognl@isNotEmpty(node_color)"> AND F_NODE_COLOR  LIKE '%${node_color}%'  </if>
+			<if test="@Ognl@isNotEmpty(node_flash)"> AND F_NODE_FLASH  LIKE '%${node_flash}%'  </if>
+			<if test="@Ognl@isNotEmpty(a)"> AND F_A  LIKE '%${a}%'  </if>
+			<if test="@Ognl@isNotEmpty(b)"> AND F_B  LIKE '%${b}%'  </if>
+			<if test="@Ognl@isNotEmpty(c)"> AND F_C  LIKE '%${c}%'  </if>
+			<if test="@Ognl@isNotEmpty(d)"> AND F_D  LIKE '%${d}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.DeviceActionShowPath.model.DeviceActionShowCode.DeviceActionShow">
+		INSERT INTO W_DEVICE_ACTION_SHOW
+		(ID,
+		F_NODE_DEV_ID,F_START_TIME,F_ACTIONNAME,F_ACTIONTIME,F_ACTIONCOUNT,F_LODE_TYPE,F_LOAD_USE_RATE,F_DEV_TYPE_CODE,F_SAMEACTION_SIGN,F_SAMEACTION_SIGN1,F_NODE_COLOR,F_NODE_FLASH,F_A,F_B,F_C,F_D)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{node_dev_id,jdbcType=VARCHAR}, #{start_time,jdbcType=VARCHAR}, #{actionname,jdbcType=VARCHAR}, #{actiontime,jdbcType=VARCHAR}, #{actioncount,jdbcType=VARCHAR}, #{lode_type,jdbcType=VARCHAR}, #{load_use_rate,jdbcType=NUMERIC}, #{dev_type_code,jdbcType=VARCHAR}, #{sameaction_sign,jdbcType=VARCHAR}, #{sameaction_sign1,jdbcType=VARCHAR}, #{node_color,jdbcType=VARCHAR}, #{node_flash,jdbcType=VARCHAR}, #{a,jdbcType=VARCHAR}, #{b,jdbcType=VARCHAR}, #{c,jdbcType=VARCHAR}, #{d,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_ACTION_SHOW 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.DeviceActionShowPath.model.DeviceActionShowCode.DeviceActionShow">
+		UPDATE W_DEVICE_ACTION_SHOW SET
+		F_NODE_DEV_ID=#{node_dev_id,jdbcType=VARCHAR},
+		F_START_TIME=#{start_time,jdbcType=VARCHAR},
+		F_ACTIONNAME=#{actionname,jdbcType=VARCHAR},
+		F_ACTIONTIME=#{actiontime,jdbcType=VARCHAR},
+		F_ACTIONCOUNT=#{actioncount,jdbcType=VARCHAR},
+		F_LODE_TYPE=#{lode_type,jdbcType=VARCHAR},
+		F_LOAD_USE_RATE=#{load_use_rate,jdbcType=NUMERIC},
+		F_DEV_TYPE_CODE=#{dev_type_code,jdbcType=VARCHAR},
+		F_SAMEACTION_SIGN=#{sameaction_sign,jdbcType=VARCHAR},
+		F_SAMEACTION_SIGN1=#{sameaction_sign1,jdbcType=VARCHAR},
+		F_NODE_COLOR=#{node_color,jdbcType=VARCHAR},
+		F_NODE_FLASH=#{node_flash,jdbcType=VARCHAR},
+		F_A=#{a,jdbcType=VARCHAR},
+		F_B=#{b,jdbcType=VARCHAR},
+		F_C=#{c,jdbcType=VARCHAR},
+		F_D=#{d,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceActionShow">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_ACTION_SHOW
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DeviceActionShow">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_ACTION_SHOW   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

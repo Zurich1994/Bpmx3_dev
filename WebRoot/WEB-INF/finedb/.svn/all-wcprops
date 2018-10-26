@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/finedb
+END
+db.properties
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/finedb/db.properties
+END
+db.log
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/finedb/db.log
+END
+db.script
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/finedb/db.script
+END
+db.backup
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/finedb/db.backup
+END
+db.data
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/finedb/db.data
+END
+db.lck
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/finedb/db.lck
+END

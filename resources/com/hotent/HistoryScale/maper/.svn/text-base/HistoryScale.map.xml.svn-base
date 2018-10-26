@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.HistoryScale.model.lc.HistoryScale">
+	<resultMap id="HistoryScale" type="com.hotent.HistoryScale.model.lc.HistoryScale">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="historyProportionId" column="F_HISTORYPROPORTIONID" jdbcType="VARCHAR"/>
+		<result property="processtId" column="F_PROCESSTID" jdbcType="VARCHAR"/>
+		<result property="proportionTimeType" column="F_PROPORTIONTIMETYPE" jdbcType="VARCHAR"/>
+		<result property="proportion" column="F_PROPORTION" jdbcType="VARCHAR"/>
+		<result property="proportionOccurTime" column="F_PROPORTIONOCCURTIME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_HISTORYPROPORTIONID,F_PROCESSTID,F_PROPORTIONTIMETYPE,F_PROPORTION,F_PROPORTIONOCCURTIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(historyProportionId)"> AND F_HISTORYPROPORTIONID  LIKE '%${historyProportionId}%'  </if>
+			<if test="@Ognl@isNotEmpty(processtId)"> AND F_PROCESSTID  LIKE '%${processtId}%'  </if>
+			<if test="@Ognl@isNotEmpty(proportionTimeType)"> AND F_PROPORTIONTIMETYPE  LIKE '%${proportionTimeType}%'  </if>
+			<if test="@Ognl@isNotEmpty(proportion)"> AND F_PROPORTION  LIKE '%${proportion}%'  </if>
+			<if test="@Ognl@isNotEmpty(proportionOccurTime)"> AND F_PROPORTIONOCCURTIME  LIKE '%${proportionOccurTime}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.HistoryScale.model.lc.HistoryScale">
+		INSERT INTO W_HISTORY_SCALE_LC
+		(ID,
+		F_HISTORYPROPORTIONID,F_PROCESSTID,F_PROPORTIONTIMETYPE,F_PROPORTION,F_PROPORTIONOCCURTIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{historyProportionId,jdbcType=VARCHAR}, #{processtId,jdbcType=VARCHAR}, #{proportionTimeType,jdbcType=VARCHAR}, #{proportion,jdbcType=VARCHAR}, #{proportionOccurTime,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_HISTORY_SCALE_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.HistoryScale.model.lc.HistoryScale">
+		UPDATE W_HISTORY_SCALE_LC SET
+		F_HISTORYPROPORTIONID=#{historyProportionId,jdbcType=VARCHAR},
+		F_PROCESSTID=#{processtId,jdbcType=VARCHAR},
+		F_PROPORTIONTIMETYPE=#{proportionTimeType,jdbcType=VARCHAR},
+		F_PROPORTION=#{proportion,jdbcType=VARCHAR},
+		F_PROPORTIONOCCURTIME=#{proportionOccurTime,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="HistoryScale">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY_SCALE_LC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="HistoryScale">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY_SCALE_LC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

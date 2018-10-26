@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.e_business.model.e_business.registration">
+	<resultMap id="registration" type="com.hotent.e_business.model.e_business.registration">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="EMAIL" column="F_EMAIL" jdbcType="VARCHAR"/>
+		<result property="PASSWORD" column="F_PASSWORD" jdbcType="VARCHAR"/>
+		<result property="FIRSTNAME" column="F_FIRSTNAME" jdbcType="VARCHAR"/>
+		<result property="LASTNAME" column="F_LASTNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_EMAIL,F_PASSWORD,F_FIRSTNAME,F_LASTNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(EMAIL)"> AND F_EMAIL  LIKE '%${EMAIL}%'  </if>
+			<if test="@Ognl@isNotEmpty(PASSWORD)"> AND F_PASSWORD  LIKE '%${PASSWORD}%'  </if>
+			<if test="@Ognl@isNotEmpty(FIRSTNAME)"> AND F_FIRSTNAME  LIKE '%${FIRSTNAME}%'  </if>
+			<if test="@Ognl@isNotEmpty(LASTNAME)"> AND F_LASTNAME  LIKE '%${LASTNAME}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.e_business.model.e_business.registration">
+		INSERT INTO W_USER_INFO
+		(ID,
+		F_EMAIL,F_PASSWORD,F_FIRSTNAME,F_LASTNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{EMAIL,jdbcType=VARCHAR}, #{PASSWORD,jdbcType=VARCHAR}, #{FIRSTNAME,jdbcType=VARCHAR}, #{LASTNAME,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_USER_INFO 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.e_business.model.e_business.registration">
+		UPDATE W_USER_INFO SET
+		F_EMAIL=#{EMAIL,jdbcType=VARCHAR},
+		F_PASSWORD=#{PASSWORD,jdbcType=VARCHAR},
+		F_FIRSTNAME=#{FIRSTNAME,jdbcType=VARCHAR},
+		F_LASTNAME=#{LASTNAME,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	<select id="getByEMAIL" parameterType="java.lang.String" resultMap="registration">
+		    SELECT <include refid="columns"/>
+		FROM W_USER_INFO
+		WHERE
+		F_EMAIL=#{EMAIL} 
+	</select>
+	<select id="getById" parameterType="java.lang.Long" resultMap="registration">
+		SELECT <include refid="columns"/>
+		FROM W_USER_INFO
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="registration">
+		SELECT <include refid="columns"/>
+		FROM W_USER_INFO   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotent.platform.model.system.SysQueryField">
+	<resultMap id="SysQueryField"
+		type="com.hotent.platform.model.system.SysQueryField">
+		<id property="id" column="ID" jdbcType="NUMERIC" />
+		<result property="sqlId" column="SQL_ID" jdbcType="NUMERIC" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE" jdbcType="VARCHAR" />
+		<result property="fieldDesc" column="FIELD_DESC" jdbcType="VARCHAR" />
+		<result property="isShow" column="IS_SHOW" jdbcType="NUMERIC" />
+		<result property="isSearch" column="IS_SEARCH" jdbcType="NUMERIC" />
+		<result property="controlType" column="CONTROL_TYPE" jdbcType="NUMERIC" />
+		<result property="controlContent" column="CONTROL_CONTENT" jdbcType="VARCHAR"/>
+		<result property="format" column="FORMAT" jdbcType="VARCHAR" />
+		
+	</resultMap>
+
+	<sql id="columns">
+		ID,SQL_ID,NAME,TYPE,FIELD_DESC,IS_SHOW,IS_SEARCH,CONTROL_TYPE,CONTROL_CONTENT,FORMAT
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysQueryField">
+		INSERT INTO SYS_QUERY_FIELD
+		(ID,SQL_ID,NAME,TYPE,FIELD_DESC,IS_SHOW,IS_SEARCH,CONTROL_TYPE,CONTROL_CONTENT,FORMAT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{sqlId,jdbcType=NUMERIC},
+		#{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{fieldDesc,jdbcType=VARCHAR}, #{isShow,jdbcType=NUMERIC},
+		#{isSearch,jdbcType=NUMERIC},#{controlType,jdbcType=NUMERIC},
+		#{controlContent,jdbcType=CLOB},#{format,jdbcType=VARCHAR})
+	</insert> 
+
+	<update id="update" parameterType="com.hotent.platform.model.system.SysQueryField">
+		UPDATE SYS_QUERY_FIELD SET
+		SQL_ID=#{sqlId,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		TYPE=#{type,jdbcType=VARCHAR},
+		FIELD_DESC=#{fieldDesc,jdbcType=VARCHAR},
+		IS_SHOW=#{isShow,jdbcType=NUMERIC},
+		IS_SEARCH=#{isSearch,jdbcType=NUMERIC},
+		CONTROL_TYPE=#{controlType,jdbcType=NUMERIC},
+		CONTROL_CONTENT=#{controlContent,jdbcType=CLOB},
+		FORMAT=#{format,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<!-- 更新除了空间类型和格式化的其他内容 -->
+	<update id="updateWithoutControlAndFormat" parameterType="com.hotent.platform.model.system.SysQueryField">
+		UPDATE SYS_QUERY_FIELD SET
+		SQL_ID=#{sqlId,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		TYPE=#{type,jdbcType=VARCHAR},
+		FIELD_DESC=#{fieldDesc,jdbcType=VARCHAR},
+		IS_SHOW=#{isShow,jdbcType=NUMERIC},
+		IS_SEARCH=#{isSearch,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>  
+
+	<select id="getDisplayFieldListBySqlId" resultMap="SysQueryField">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_QUERY_FIELD
+		WHERE
+		SQL_ID=#{sqlId} AND IS_SHOW = 1
+		ORDER BY ID
+	</select> 
+	<select id="getConditionFieldListBySqlId" resultMap="SysQueryField">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_QUERY_FIELD
+		WHERE
+		SQL_ID=#{sqlId} AND IS_SEARCH = 1
+		ORDER BY ID
+	</select> 
+
+	<select id="getListBySqlId" parameterType="java.lang.Long"
+		resultMap="SysQueryField">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_QUERY_FIELD
+		WHERE
+		SQL_ID=#{sqlId}
+		ORDER BY ID
+	</select>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysQueryField">
+		SELECT <include refid="columns"/>
+		FROM SYS_QUERY_FIELD
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<delete id="delBySqlId" parameterType="java.lang.Long" >
+		DELETE FROM SYS_QUERY_FIELD
+		WHERE
+		SQL_ID=#{sqlId}
+	</delete>
+	
+</mapper>

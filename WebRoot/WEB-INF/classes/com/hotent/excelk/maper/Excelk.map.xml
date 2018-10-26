@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.excelk.model.excelk.Excelk">
+	<resultMap id="Excelk" type="com.hotent.excelk.model.excelk.Excelk">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="time" column="F_TIME" jdbcType="VARCHAR"/>
+		<result property="reguval" column="F_REGUVAL" jdbcType="VARCHAR"/>
+		<result property="processId" column="F_PROCESSID" jdbcType="NUMERIC"/>
+		<result property="count" column="F_COUNT" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_TIME,F_REGUVAL,F_PROCESSID,F_COUNT
+	</sql>
+	<sql id="wfColumns">
+		ID,F_TIME,F_REGUVAL,F_PROCESSID,F_COUNT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(time)"> AND F_TIME  LIKE '%${time}%'  </if>
+			<if test="@Ognl@isNotEmpty(reguval)"> AND F_REGUVAL  LIKE '%${reguval}%'  </if>
+			<if test="@Ognl@isNotEmpty(process)"> AND F_PROCESS  LIKE '%${processId}%'  </if>
+			<if test="@Ognl@isNotEmpty(count)"> AND F_COUNT  LIKE '%${count}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.excelk.model.excelk.Excelk">
+		INSERT INTO W_EXCELK
+		(ID,
+		F_TIME,F_REGUVAL,F_PROCESSID,F_COUNT)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{time,jdbcType=VARCHAR}, #{reguval,jdbcType=VARCHAR}, #{processId,jdbcType=NUMERIC}, #{count,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_EXCELK 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.excelk.model.excelk.Excelk">
+		UPDATE W_EXCELK SET
+		F_TIME=#{time,jdbcType=VARCHAR},
+		F_REGUVAL=#{reguval,jdbcType=VARCHAR},
+		F_PROCESS=#{processId,jdbcType=NUMERIC},
+		F_COUNT=#{count,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Excelk">
+		SELECT <include refid="columns"/>
+		FROM W_EXCELK
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Excelk">
+		SELECT <include refid="columns"/>
+		FROM W_EXCELK   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByTime" parameterType="java.lang.String" resultMap="Excelk">
+		SELECT <include refid="columns"/>
+		FROM W_EXCELK
+		WHERE
+		F_TIME=#{time}
+	</select>
+	<select id="getPictureData" parameterType="java.lang.Long" resultMap="Excelk">
+		SELECT  <include refid="columns"/>
+		FROM W_EXCELK
+		WHERE
+		F_PROCESSID=#{processId}
+	</select>
+	<select id="getTimeByIdAndTime" parameterType="Map" resultMap="Excelk">
+		SELECT <include refid="columns"/>
+		FROM W_EXCELK
+		WHERE
+		F_TIME=#{time} and F_PROCESSID=#{processId}
+	</select>
+	<select id="getByIdAndTime" parameterType="Map" resultMap="Excelk">
+		SELECT <include refid="columns"/>
+		FROM W_EXCELK
+		WHERE
+		F_TIME=#{time} and F_PROCESSID=#{processId}
+	</select>
+</mapper>

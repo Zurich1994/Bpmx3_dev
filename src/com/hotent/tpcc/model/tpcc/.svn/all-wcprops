@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc
+END
+Customer.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/Customer.java
+END
+History2.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/History2.java
+END
+OrderLine.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/OrderLine.java
+END
+Orderyan.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/Orderyan.java
+END
+Stock.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/Stock.java
+END
+District.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/District.java
+END
+NewOrders.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/NewOrders.java
+END
+Item.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/Item.java
+END
+Orders.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/model/tpcc/Orders.java
+END

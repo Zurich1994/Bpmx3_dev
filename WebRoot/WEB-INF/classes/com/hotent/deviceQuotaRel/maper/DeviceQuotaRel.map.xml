@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.deviceQuotaRel.model.deviceQuotaRelPac.DeviceQuotaRel">
+	<resultMap id="DeviceQuotaRel" type="com.hotent.deviceQuotaRel.model.deviceQuotaRelPac.DeviceQuotaRel">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="device_id" column="F_DEVICE_ID" jdbcType="VARCHAR"/>
+		<result property="quota_id" column="F_QUOTA_ID" jdbcType="VARCHAR"/>
+		<result property="monitor_freq" column="F_MONITOR_FREQ" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<resultMap id="DeviceQuotaRelAll" type="com.hotent.deviceQuotaRel.model.deviceQuotaRelPac.DeviceQuotaRelAll">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="monitor_freq" column="F_MONITOR_FREQ" jdbcType="NUMERIC"/>
+		<association property="device" column="F_DEVICE_ID" javaType="com.hotent.monitorDevice.model.monitorDevice.MonitorDevice">
+			<id property="id" column="device_id" jdbcType="NUMERIC"/>
+			<result property="typeid" column="device_typeid" jdbcType="VARCHAR"/>
+			<result property="name" column="device_name" jdbcType="VARCHAR"/>
+			<result property="os_type" column="device_ostype" jdbcType="VARCHAR"/>
+			<result property="ip" column="device_ip" jdbcType="VARCHAR"/>
+			<result property="brand" column="device_brand" jdbcType="VARCHAR"/>
+			<result property="uesrname" column="device_username" jdbcType="VARCHAR"/>
+			<result property="password" column="device_password" jdbcType="VARCHAR"/>
+			<result property="port" column="device_port" jdbcType="NUMERIC"/>
+			<result property="community" column="device_community" jdbcType="VARCHAR"/>	
+		</association>
+		<association property="quota" column="F_QUOTA_ID" javaType="com.hotent.monitorQuota.model.monitorQuotaPac.MonitorQuota">
+			<id property="id" column="quota_id" jdbcType="NUMERIC"/>
+			<result property="name" column="quota_name" jdbcType="VARCHAR"/>
+			<result property="deviceType" column="quota_deviceType" jdbcType="VARCHAR"/>
+			<result property="unit" column="quota_unit" jdbcType="VARCHAR"/>
+			<result property="propertyName" column="quota_propertyName" jdbcType="VARCHAR"/>
+			<result property="propertyValue" column="quota_propertyValue" jdbcType="VARCHAR"/>
+			<result property="monitorType" column="quota_monitorType" jdbcType="VARCHAR"/>
+			<result property="OID" column="quota_OID" jdbcType="VARCHAR"/>
+			<result property="className" column="quota_className" jdbcType="VARCHAR"/>
+		</association>		
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_DEVICE_ID,F_QUOTA_ID,F_MONITOR_FREQ
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(device_id)"> AND F_DEVICE_ID  LIKE '%${device_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(quota_id)"> AND F_QUOTA_ID  LIKE '%${quota_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(monitor_freq)"> AND F_MONITOR_FREQ  =#{monitor_freq} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.deviceQuotaRel.model.deviceQuotaRelPac.DeviceQuotaRel">
+		INSERT INTO W_DEVICE_QUOTA_REL
+		(ID,
+		F_DEVICE_ID,F_QUOTA_ID,F_MONITOR_FREQ)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{device_id,jdbcType=VARCHAR}, #{quota_id,jdbcType=VARCHAR}, #{monitor_freq,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_QUOTA_REL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delBydevId" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_QUOTA_REL 
+		WHERE
+		F_DEVICE_ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.deviceQuotaRel.model.deviceQuotaRelPac.DeviceQuotaRel">
+		UPDATE W_DEVICE_QUOTA_REL SET
+		F_DEVICE_ID=#{device_id,jdbcType=VARCHAR},
+		F_QUOTA_ID=#{quota_id,jdbcType=VARCHAR},
+		F_MONITOR_FREQ=#{monitor_freq,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<update id="updateFreq" parameterType="com.hotent.deviceQuotaRel.model.deviceQuotaRelPac.DeviceQuotaRel">
+		UPDATE W_DEVICE_QUOTA_REL SET
+		F_MONITOR_FREQ=#{monitor_freq,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceQuotaRel">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_QUOTA_REL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DeviceQuotaRel">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_QUOTA_REL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getAllAll" resultMap="DeviceQuotaRelAll">
+		SELECT C.ID as ID, C.F_MONITOR_FREQ as F_MONITOR_FREQ,A.ID as quota_id,A.F_NAME as quota_name,A.F_DEVICETYPE as quota_deviceType,A.F_UNIT as quota_unit,A.F_PROPERTYNAME as quota_propertyName,A.F_PROPERTYVALUE as quota_propertyValue,A.F_MONITORTYPE as quota_monitorType,A.F_OID as quota_OID,A.F_className as quota_className,
+		B.ID as device_id,B.F_TYPEID as device_typeid,B.F_NAME as device_name,B.F_OS_TYPE as device_ostype,B.F_IP as device_ip,B.F_BRAND as device_brand,B.F_UESRNAME as device_username,B.F_PASSWORD as device_password,B.F_PORT as device_port,B.F_COMMUNITY as device_community
+		FROM W_DEVICE_QUOTA_REL C,W_MONITOR_QUOTA A,W_MONITOR_DEVICE B  
+		WHERE
+		C.F_DEVICE_ID = B.ID
+		AND
+		C.F_QUOTA_ID = A.ID
+	</select>
+	
+	<select id="getDevQuaRelByDevId" resultMap="DeviceQuotaRelAll">
+		SELECT C.ID as ID, C.F_MONITOR_FREQ as F_MONITOR_FREQ,A.ID as quota_id,A.F_NAME as quota_name,A.F_DEVICETYPE as quota_deviceType,A.F_UNIT as quota_unit,A.F_PROPERTYNAME as quota_propertyName,A.F_PROPERTYVALUE as quota_propertyValue,A.F_MONITORTYPE as quota_monitorType,A.F_OID as quota_OID,
+		B.ID as device_id,B.F_TYPEID as device_typeid,B.F_NAME as device_name,B.F_OS_TYPE as device_ostype,B.F_IP as device_ip,B.F_BRAND as device_brand,B.F_UESRNAME as device_username,B.F_PASSWORD as device_password,B.F_PORT as device_port,B.F_COMMUNITY as device_community
+		FROM W_DEVICE_QUOTA_REL C,W_MONITOR_QUOTA A,W_MONITOR_DEVICE B  
+		WHERE
+		C.F_DEVICE_ID = B.ID
+		AND
+		C.F_QUOTA_ID = A.ID
+		AND
+		C.F_DEVICE_ID = #{deviceid}
+	</select>
+	
+
+	<select id="getMonQuaID" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		SELECT F_QUOTA_ID
+		FROM W_DEVICE_QUOTA_REL
+		WHERE
+		F_DEVICE_ID=#{deviceid}
+	</select>
+
+	<select id="getDevQuoRelID" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		SELECT ID
+		FROM W_DEVICE_QUOTA_REL
+		WHERE
+		F_DEVICE_ID=#{deviceid} AND F_QUOTA_ID=#{mqid}
+	</select>
+	
+	<select id="exist" parameterType="Map"
+		resultMap="DeviceQuotaRel">
+		SELECT ID
+		FROM W_DEVICE_QUOTA_REL
+		WHERE
+		F_DEVICE_ID=#{deviceid} AND F_QUOTA_ID=#{quotaid}
+	</select>
+	
+</mapper>

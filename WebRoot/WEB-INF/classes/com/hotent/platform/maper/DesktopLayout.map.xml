@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.DesktopLayout">
+	<resultMap id="DesktopLayout" type="com.hotent.platform.model.system.DesktopLayout">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="cols" column="cols" jdbcType="NUMERIC"/>
+		<result property="width" column="width" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+		<result property="isDefault" column="isDefault" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,name,cols,width,memo,isDefault
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(cols)"> AND cols  =#{cols} </if>
+			<if test="@Ognl@isNotEmpty(width)"> AND width  LIKE #{width}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND memo  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND isDefault  =#{isDefault} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.DesktopLayout">
+		INSERT INTO SYS_DESKTOP_LAYOUT
+		(id,name,cols,width,memo,isDefault)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{cols,jdbcType=NUMERIC}, #{width,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{isDefault,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_DESKTOP_LAYOUT 
+		WHERE
+		id=#{id}
+	</delete>
+
+	<update id="update" parameterType="com.hotent.platform.model.system.DesktopLayout">
+		UPDATE SYS_DESKTOP_LAYOUT SET
+		name=#{name,jdbcType=VARCHAR} , 
+		cols=#{cols,jdbcType=NUMERIC} , 
+		width=#{width,jdbcType=VARCHAR} , 
+		memo=#{memo,jdbcType=VARCHAR} , 
+		isDefault=#{isDefault,jdbcType=NUMERIC} 
+		WHERE
+		id=#{id}
+	</update>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="DesktopLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_LAYOUT
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getDefaultLayout"  resultMap="DesktopLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_LAYOUT
+		WHERE
+		isDefault=1
+	</select>
+	
+	<select id="getLayoutByUserId" parameterType="java.lang.Long" resultMap="DesktopLayout">
+		select <include refid="columns"/> from sys_desktop_layout b where b.id in
+		(select distinct a.layoutid from SYS_DESKTOP_MYCOLUMN a where a.userid=#{userId})
+	</select>
+
+	<select id="getDefaultId"  resultType="java.lang.Long">
+		SELECT id
+		FROM SYS_DESKTOP_LAYOUT
+		WHERE
+		isDefault=1
+	</select>
+		
+	<select id="getByCols" parameterType="java.lang.Short" resultMap="DesktopLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_LAYOUT
+		WHERE
+		cols=#{cols}
+	</select>	
+	
+	<select id="getAll" resultMap="DesktopLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_LAYOUT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<update id="updNotDefault">
+		UPDATE SYS_DESKTOP_LAYOUT SET isDefault=0
+	</update>
+	
+	<update id="updateDefault" parameterType="java.lang.Long">
+		UPDATE SYS_DESKTOP_LAYOUT SET
+		isDefault=1 WHERE id=#{id}
+	</update>
+	
+	<select id="getNameById" parameterType="java.lang.Long" resultType="String">
+	 SELECT name FROM SYS_DESKTOP_LAYOUT where id=#{id}
+    </select>	
+</mapper>

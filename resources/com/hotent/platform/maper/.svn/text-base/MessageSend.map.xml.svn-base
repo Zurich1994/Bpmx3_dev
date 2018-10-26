@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.MessageSend">
+	<resultMap id="MessageSend" type="com.hotent.platform.model.system.MessageSend">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="subject" column="subject" jdbcType="VARCHAR"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="userName" column="userName" jdbcType="VARCHAR"/>
+		<result property="messageType" column="messageType" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="CLOB"/>
+		<result property="sendTime" column="sendTime" jdbcType="TIMESTAMP"/>
+		<result property="canReply" column="canReply" jdbcType="NUMERIC"/>
+		<result property="receiverName" column="receiverName" jdbcType="CLOB"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,subject,userId,userName,messageType,content,sendTime,canReply,receiverName
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND subject  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(userName)"> AND userName  LIKE #{userName}  </if>
+			<if test="@Ognl@isNotEmpty(messageType)"> AND messageType  LIKE #{messageType}  </if>
+			<if test="@Ognl@isNotEmpty(content)"> AND content  LIKE #{content}  </if>
+			<if test="@Ognl@isNotEmpty(beginsendTime)"> and sendTime>=#{beginsendTime,jdbcType=TIMESTAMP}</if>
+		    <if test="@Ognl@isNotEmpty(endsendTime)"> and sendTime &lt;=#{endsendTime,jdbcType=TIMESTAMP}</if>
+			<if test="@Ognl@isNotEmpty(canReply)"> AND canReply  =#{canReply} </if>
+			<if test="@Ognl@isNotEmpty(receiverName)"> AND receiverName  LIKE #{receiverName} </if>
+		</where>
+	</sql>
+
+	<sql id="sendDynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(subject)"> AND subject  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(messageType)"> AND messageType != #{messageType}  </if>
+			<if test="@Ognl@isNotEmpty(beginsendTime)"> and sendTime>=#{beginsendTime,jdbcType=TIMESTAMP}</if>
+		    <if test="@Ognl@isNotEmpty(endsendTime)"> and sendTime &lt;=#{endsendTime,jdbcType=TIMESTAMP}</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.MessageSend">
+		INSERT INTO sys_msg_send
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{subject,jdbcType=VARCHAR}, #{userId,jdbcType=NUMERIC}, #{userName,jdbcType=VARCHAR}, #{messageType,jdbcType=VARCHAR}, #{content,jdbcType=CLOB}, #{sendTime,jdbcType=TIMESTAMP}, #{canReply,jdbcType=NUMERIC}, #{receiverName,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_MSG_SEND 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.MessageSend">
+		UPDATE sys_msg_send SET
+		subject=#{subject,jdbcType=VARCHAR} , 
+		userId=#{userId,jdbcType=NUMERIC} , 
+		userName=#{userName,jdbcType=VARCHAR} , 
+		messageType=#{messageType,jdbcType=VARCHAR} , 
+		content=#{content,jdbcType=CLOB} , 
+		sendTime=#{sendTime,jdbcType=TIMESTAMP} , 
+		canReply=#{canReply,jdbcType=NUMERIC} , 
+		receiverName=#{receiverName,jdbcType=CLOB} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="MessageSend">
+		SELECT <include refid="columns"/>
+		FROM SYS_MSG_SEND
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MessageSend">
+		SELECT <include refid="columns"/>
+		FROM SYS_MSG_SEND   
+		<include refid="sendDynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by sendtime  desc
+		</if>
+	</select>
+	
+    <select id="getReceiverByUser"  resultType="com.hotent.platform.model.system.MessageSend">			
+		select 
+		   send.id id,send.subject subject, send.userName userName,
+		   send.messageType messageType, send.sendTime sendTime, 
+		   send.canReply canReply, send.receiverName receiverName, rece.id rid,
+		   red.receivetime
+		from 
+		sys_msg_send send 
+		left join sys_msg_read red on send.id=red.messageid and red.RECEIVERID=#{receiverId} , 
+		sys_msg_receiver rece
+		where 
+		   send.id=rece.messageid
+		   and (rece.receiverId in (select orgId from SYS_USER_POS where userId = #{receiverId}) 
+		          or  rece.receiverid=#{receiverId}
+		      )
+		<if test="@Ognl@isNotEmpty(subject)"> AND send.subject LIKE #{subject} </if>
+        <if test="@Ognl@isNotEmpty(messageType)"> AND send.messageType LIKE #{messageType} </if>
+        <if test="@Ognl@isNotEmpty(beginreceiveTime)"> AND send.sendTime>=#{beginreceiveTime,jdbcType=TIMESTAMP}</if>
+		<if test="@Ognl@isNotEmpty(endreceiveTime)"> AND send.sendTime &lt;=#{endreceiveTime,jdbcType=TIMESTAMP}</if>
+        <if test="receiveTime == 1"> AND red.receiveTime is null  </if>
+        <if test="receiveTime == 2"> AND red.receiveTime is not null </if>
+        <if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by send.sendtime desc
+		</if>
+    </select>
+
+    <select id="getCountReceiverByUser"  resultType="int">			
+		select 
+		   count(1) num
+		from 
+		sys_msg_send send 
+		left join sys_msg_read red on send.id=red.messageid and red.RECEIVERID=#{receiverId} , 
+		sys_msg_receiver rece
+		where 
+		   send.id=rece.messageid
+		   and (rece.receiverId in (select orgId from SYS_USER_POS where userId = #{receiverId}) 
+		          or  rece.receiverid=#{receiverId}
+		      )
+    </select>
+
+    <select id="getNotReadMsgByUserId" resultType="com.hotent.platform.model.system.MessageSend">
+    	select a.id, a.subject, a.userName, a.messageType, a.sendTime, a.canReply, a.receiverName ,a.content
+    	from sys_msg_send a,sys_msg_receiver b where a.id=b.messageid 
+		and (b.receiverid=#{receiverId} or b.receiverid in (select c.orgid from SYS_USER_POS c where c.userid=#{receiverId}))
+		and not exists (select 1 from sys_msg_read d where a.id=d.messageid and d.receiverid=#{receiverId}) order by a.sendTime desc
+	</select>
+
+    <select id="getCountNotReadMsg" resultType="int">
+    	select count(1) num
+    	from sys_msg_send a,sys_msg_receiver b where a.id=b.messageid 
+		and (b.receiverid=#{receiverId} or b.receiverid in (select c.orgid from SYS_USER_POS c where c.userid=#{receiverId}))
+		and not exists (select 1 from sys_msg_read d where a.id=d.messageid and d.receiverid=#{receiverId}) 
+    	
+	</select>
+	
+	
+	
+</mapper>

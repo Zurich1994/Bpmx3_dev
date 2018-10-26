@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bus.BusQueryShare">
+	<resultMap id="BusQueryShare" type="com.hotent.platform.model.bus.BusQueryShare">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="filterId" column="FILTERID" jdbcType="NUMERIC"/>
+		<result property="shareRight" column="SHARERIGHT" jdbcType="CLOB"/>
+		<result property="sharerId" column="SHARERID" jdbcType="NUMERIC"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,FILTERID,SHARERIGHT,SHARERID,CREATETIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(filterId)"> AND FILTERID  =#{filterId} </if>
+			<if test="@Ognl@isNotEmpty(shareRight)"> AND SHARERIGHT  LIKE #{shareRight}  </if>
+			<if test="@Ognl@isNotEmpty(sharerId)"> AND SHARERID  =#{sharerId} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bus.BusQueryShare">
+		INSERT INTO BUS_QUERY_SHARE
+		(ID,FILTERID,SHARERIGHT,SHARERID,CREATETIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{filterId,jdbcType=NUMERIC}, #{shareRight,jdbcType=CLOB}, #{sharerId,jdbcType=NUMERIC}, #{createtime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BUS_QUERY_SHARE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bus.BusQueryShare">
+		UPDATE BUS_QUERY_SHARE SET
+		FILTERID=#{filterId,jdbcType=NUMERIC},
+		SHARERIGHT=#{shareRight,jdbcType=CLOB},
+		SHARERID=#{sharerId,jdbcType=NUMERIC},
+		CREATETIME=#{createtime,jdbcType=TIMESTAMP}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BusQueryShare">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_SHARE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BusQueryShare">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_SHARE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByFilterId" parameterType="java.lang.Long" resultMap="BusQueryShare">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_SHARE
+		WHERE
+		FILTERID=#{filterId}
+	</select>
+	
+</mapper>

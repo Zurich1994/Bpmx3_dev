@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.ywsjmk.model.ywsjmk.Ywsjmb">
+	<resultMap id="Ywsjmb" type="com.hotent.ywsjmk.model.ywsjmk.Ywsjmb">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<!--  <result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>-->
+	 <result property="formkey" column="FORMKEY" jdbcType="VARCHAR"/>
+		<!--  <result property="tablename" column="TABLENAME" jdbcType="VARCHAR"/>-->
+		<!--<result property="categoryid" column="CATEGORYID" jdbcType="VARCHAR"/>-->
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,FORMKEY
+	</sql>
+	<sql id="wfColumns">
+		ID,FORMKEY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(subject)"> AND  SUBJECT LIKE '%${subject}%'  </if>
+			<if test="@Ognl@isNotEmpty(formkey)"> AND b.FORMKEY  LIKE '%${formkey}%'  </if>
+			<if test="@Ognl@isNotEmpty(tablename)"> AND TABLENAME  LIKE '%${tablename}%'  </if>
+			<if test="@Ognl@isNotEmpty(categoryid)"> AND a.CATEGORYID  LIKE '%${categoryid}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.ywsjmk.model.ywsjmk.Ywsjmb">
+		INSERT INTO W_YWSJMB
+		(ID,
+		F_SUBJECT,F_FORMKEY,F_TABLENAME,F_CATEGORYID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{subject,jdbcType=VARCHAR}, #{formkey,jdbcType=VARCHAR}, #{tablename,jdbcType=VARCHAR}, #{categoryid,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delByFormkey" parameterType="java.lang.String">
+		DELETE FROM BPM_DATA_TEMPLATE 
+		WHERE
+		formkey=#{formkey}
+	</delete>
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_DATA_TEMPLATE 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	
+	
+
+	<update id="update" parameterType="com.hotent.ywsjmk.model.ywsjmk.Ywsjmb">
+		UPDATE BPM_DATA_TEMPLATE 
+		SUBJECT=#{subject,jdbcType=VARCHAR},
+		FORMKEY=#{formkey,jdbcType=VARCHAR},
+		TABLENAME=#{tablename,jdbcType=VARCHAR},
+		CATEGORYID=#{categoryid,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Ywsjmb">
+		SELECT <include refid="columns"/>
+		FROM W_YWSJMB
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Ywsjmb">
+		<!--  SELECT <include refid="columns"/>
+		FROM W_YWSJMB  -->
+	<!--  SELECT
+	a.`SUBJECT`,b.FORMKEY,c.TABLENAME,a.CATEGORYID from bpm_form_def a
+	LEFT JOIN bpm_data_template b ON a.formkey=b.formkey
+	left join bpm_form_table c on b.TABLEID=c.TABLEID-->
+	SELECT distinct b.TABLEID TABLEID,
+	a.`SUBJECT`,b.FORMKEY,b.ID,b.TEMPLATEALIAS,b.NAME,c.TABLENAME,a.CATEGORYID,d.TYPENAME from bpm_form_def a
+	inner JOIN bpm_data_template b ON a.formkey=b.formkey
+	left join sys_gl_type d on a.categoryid=d.typeid
+	inner join bpm_form_table c on b.TABLEID=c.TABLEID
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		  order by ID  desc
+		
+		</if>
+	</select>
+	
+	
+	
+</mapper>

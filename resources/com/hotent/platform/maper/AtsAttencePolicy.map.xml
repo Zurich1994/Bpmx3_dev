@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsAttencePolicy">
+	<resultMap id="AtsAttencePolicy" type="com.hotent.platform.model.ats.AtsAttencePolicy">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="workCalendar" column="WORK_CALENDAR" jdbcType="NUMERIC"/>
+		<result property="attenceCycle" column="ATTENCE_CYCLE" jdbcType="NUMERIC"/>
+		<result property="orgId" column="ORG_ID" jdbcType="NUMERIC"/>
+		<result property="isDefault" column="IS_DEFAULT" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="weekHour" column="WEEK_HOUR" jdbcType="NUMERIC"/>
+		<result property="daysHour" column="DAYS_HOUR" jdbcType="NUMERIC"/>
+		<result property="monthDay" column="MONTH_DAY" jdbcType="NUMERIC"/>
+		<result property="leaveAllow" column="LEAVE_ALLOW" jdbcType="NUMERIC"/>
+		<result property="lateAllow" column="LATE_ALLOW" jdbcType="NUMERIC"/>
+		<result property="absentAllow" column="ABSENT_ALLOW" jdbcType="NUMERIC"/>
+		<result property="otStart" column="OT_START" jdbcType="NUMERIC"/>
+		<result property="leaveStart" column="LEAVE_START" jdbcType="NUMERIC"/>
+		<result property="preNotBill" column="PRE_NOT_BILL" jdbcType="NUMERIC"/>
+		<result property="afterNotBill" column="AFTER_NOT_BILL" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,CODE,NAME,WORK_CALENDAR,ATTENCE_CYCLE,ORG_ID,IS_DEFAULT,MEMO,WEEK_HOUR,DAYS_HOUR,MONTH_DAY,LEAVE_ALLOW,LATE_ALLOW,ABSENT_ALLOW,OT_START,LEAVE_START,PRE_NOT_BILL,AFTER_NOT_BILL
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(workCalendar)"> AND WORK_CALENDAR  =#{workCalendar} </if>
+			<if test="@Ognl@isNotEmpty(attenceCycle)"> AND ATTENCE_CYCLE  =#{attenceCycle} </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND ORG_ID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND IS_DEFAULT  =#{isDefault} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(weekHour)"> AND WEEK_HOUR  =#{weekHour} </if>
+			<if test="@Ognl@isNotEmpty(daysHour)"> AND DAYS_HOUR  =#{daysHour} </if>
+			<if test="@Ognl@isNotEmpty(monthDay)"> AND MONTH_DAY  =#{monthDay} </if>
+			<if test="@Ognl@isNotEmpty(leaveAllow)"> AND LEAVE_ALLOW  =#{leaveAllow} </if>
+			<if test="@Ognl@isNotEmpty(lateAllow)"> AND LATE_ALLOW  =#{lateAllow} </if>
+			<if test="@Ognl@isNotEmpty(absentAllow)"> AND ABSENT_ALLOW  =#{absentAllow} </if>
+			<if test="@Ognl@isNotEmpty(otStart)"> AND OT_START  =#{otStart} </if>
+			<if test="@Ognl@isNotEmpty(preNotBill)"> AND PRE_NOT_BILL  =#{preNotBill} </if>
+			<if test="@Ognl@isNotEmpty(afterNotBill)"> AND AFTER_NOT_BILL  =#{afterNotBill} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsAttencePolicy">
+		INSERT INTO ATS_ATTENCE_POLICY
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{workCalendar,jdbcType=NUMERIC}, #{attenceCycle,jdbcType=NUMERIC}, #{orgId,jdbcType=NUMERIC}, #{isDefault,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR}, #{weekHour,jdbcType=NUMERIC}, #{daysHour,jdbcType=NUMERIC}, #{monthDay,jdbcType=NUMERIC}, #{leaveAllow,jdbcType=NUMERIC}, #{lateAllow,jdbcType=NUMERIC}, #{absentAllow,jdbcType=NUMERIC}, #{otStart,jdbcType=NUMERIC},#{leaveStart,jdbcType=NUMERIC}, #{preNotBill,jdbcType=NUMERIC}, #{afterNotBill,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_POLICY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsAttencePolicy">
+		UPDATE ATS_ATTENCE_POLICY SET
+		CODE=#{code,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		WORK_CALENDAR=#{workCalendar,jdbcType=NUMERIC},
+		ATTENCE_CYCLE=#{attenceCycle,jdbcType=NUMERIC},
+		ORG_ID=#{orgId,jdbcType=NUMERIC},
+		IS_DEFAULT=#{isDefault,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		WEEK_HOUR=#{weekHour,jdbcType=NUMERIC},
+		DAYS_HOUR=#{daysHour,jdbcType=NUMERIC},
+		MONTH_DAY=#{monthDay,jdbcType=NUMERIC},
+		LEAVE_ALLOW=#{leaveAllow,jdbcType=NUMERIC},
+		LATE_ALLOW=#{lateAllow,jdbcType=NUMERIC},
+		ABSENT_ALLOW=#{absentAllow,jdbcType=NUMERIC},
+		OT_START=#{otStart,jdbcType=NUMERIC},
+		LEAVE_START=#{leaveStart,jdbcType=NUMERIC},
+		PRE_NOT_BILL=#{preNotBill,jdbcType=NUMERIC},
+		AFTER_NOT_BILL=#{afterNotBill,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsAttencePolicy">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_POLICY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsAttencePolicy">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_POLICY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByDefault"  resultMap="AtsAttencePolicy">
+		SELECT  <include refid="columns"/>
+		FROM ATS_ATTENCE_POLICY
+		WHERE
+		IS_DEFAULT=1
+	</select>
+	<select id="getByName" parameterType="java.lang.String" resultMap="AtsAttencePolicy">
+		SELECT  <include refid="columns"/>
+		FROM ATS_ATTENCE_POLICY
+		WHERE
+		NAME=#{name}
+	</select>
+	
+</mapper>

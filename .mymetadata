@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="bpmx3_dev"
+  id="myeclipse.1421979869078"
+  context-root="/mas"
+  j2ee-spec="5.0"
+  archive="bpmx3_dev.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

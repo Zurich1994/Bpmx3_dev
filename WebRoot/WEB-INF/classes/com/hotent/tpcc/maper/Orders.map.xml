@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.Orders">
+	<resultMap id="Orders" type="com.hotent.tpcc.model.tpcc.Orders">
+		<id property="o_id" column="O_ID" jdbcType="NUMERIC"/>
+		<result property="o_d_id" column="O_D_ID" jdbcType="NUMERIC"/>
+		<result property="o_w_id" column="O_W_ID" jdbcType="NUMERIC"/>
+		<result property="o_c_id" column="O_C_ID" jdbcType="NUMERIC"/>
+		<result property="o_entry_d" column="O_ENTRY_D" jdbcType="DATE"/>
+		<result property="o_carrier_id" column="O_CARRIER_ID" jdbcType="NUMERIC"/>
+		<result property="o_ol_cnt" column="O_OL_CNT" jdbcType="NUMERIC"/>
+		<result property="o_all_local" column="O_ALL_LOCAL" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		O_ID,O_D_ID,O_W_ID,O_C_ID,O_ENTRY_D,O_CARRIER_ID,O_OL_CNT,O_ALL_LOCAL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(o_id)"> AND O_ID  =#{o_id} </if>
+			<if test="@Ognl@isNotEmpty(o_entry_d)"> AND O_ENTRY_D  =#{o_entry_d} </if>
+			<if test="@Ognl@isNotEmpty(begino_entry_d)"> AND O_ENTRY_D  >=#{begino_entry_d,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endo_entry_d)"> AND O_ENTRY_D <![CDATA[ <=#{endo_entry_d,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.Orders">
+		INSERT INTO orders
+		(O_ID,O_D_ID,O_W_ID,O_C_ID,O_ENTRY_D,O_CARRIER_ID,O_OL_CNT,O_ALL_LOCAL)
+		VALUES
+		(#{o_id,jdbcType=NUMERIC}, #{o_d_id,jdbcType=NUMERIC}, #{o_w_id,jdbcType=NUMERIC}, #{o_c_id,jdbcType=NUMERIC}, #{o_entry_d,jdbcType=DATE}, #{o_carrier_id,jdbcType=NUMERIC}, #{o_ol_cnt,jdbcType=NUMERIC}, #{o_all_local,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM orders 
+		WHERE
+		O_ID=#{o_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.Orders">
+		UPDATE orders SET
+		O_D_ID=#{o_d_id,jdbcType=NUMERIC},
+		O_W_ID=#{o_w_id,jdbcType=NUMERIC},
+		O_C_ID=#{o_c_id,jdbcType=NUMERIC},
+		O_ENTRY_D=#{o_entry_d,jdbcType=DATE},
+		O_CARRIER_ID=#{o_carrier_id,jdbcType=NUMERIC},
+		O_OL_CNT=#{o_ol_cnt,jdbcType=NUMERIC},
+		O_ALL_LOCAL=#{o_all_local,jdbcType=NUMERIC}
+		WHERE
+		O_ID=#{o_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Orders">
+		SELECT <include refid="columns"/>
+		FROM orders
+		WHERE
+		O_ID=#{o_id}
+	</select>
+	
+	<select id="getAll" resultMap="Orders">
+		SELECT <include refid="columns"/>
+		FROM orders   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by O_ID desc
+		</if>
+	</select>
+	<select id="makeorders" parameterType="java.lang.Long" resultMap="Orders">
+		INSERT INTO orders (O_ID,O_D_ID,O_W_ID,O_C_ID,O_ENTRY_D,O_OL_CNT, O_ALL_LOCAL) VALUES(#{D_NEXT_O_ID},#{C_D_ID}, #{C_W_ID},#{C_ID},null,5,1)
+	</select>
+	<select id="searchorder" parameterType="java.util.Map" resultMap="Orders">
+		SELECT o_id, o_entry_d, o_carrier_id FROM orders WHERE o_w_id =#{W_ID} AND o_d_id = #{D_ID} AND o_c_id = #{C_ID} AND o_id = (SELECT MAX(o_id) FROM orders WHERE o_w_id = #{W_ID} AND o_d_id =#{D_ID} AND o_c_id = #{C_ID})
+	</select>
+	<select id="cxddmx"  parameterType="java.util.Map" resultMap="Orders">
+		SELECT ol_i_id, ol_supply_w_id, ol_quantity, ol_amount, ol_delivery_d FROM order_line WHERE ol_w_id =#{W_ID} AND ol_d_id =#{D_ID} AND ol_o_id =#{O_ID}
+	</select>
+	<select id="chaxunmin"  parameterType="java.util.Map" resultMap="Orders">
+		SELECT  COALESCE(MIN(no_o_id),0) as no_o_id  FROM new_orders WHERE no_d_id = #{D_ID} AND no_w_id =#{W_ID}
+	</select>
+	<select id="cxkhh" parameterType="java.lang.Long" resultMap="Orders">
+		SELECT <include refid="columns"/>
+		FROM orders
+		WHERE
+		O_ID=#{o_id}
+	</select>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.act_hi_html.model.ActHiHtml.ActHiHtml">
+	<resultMap id="ActHiHtml" type="com.hotent.act_hi_html.model.ActHiHtml.ActHiHtml">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="actInstId" column="F_ACTINSTID" jdbcType="VARCHAR"/>
+		<result property="html" column="F_HTML" jdbcType="CLOB"/>
+		<result property="type" column="F_TYPE" jdbcType="VARCHAR"/>
+		<result property="createtime" column="F_CREATETIME" jdbcType="DATE"/>
+		<result property="createId" column="F_CREATEID" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_ACTINSTID,F_HTML,F_TYPE,F_CREATETIME,F_CREATEID
+	</sql>
+	<sql id="wfColumns">
+		ID,F_ACTINSTID,F_HTML,F_TYPE,F_CREATETIME,F_CREATEID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(actInstId)"> AND F_ACTINSTID  LIKE '%${actInstId}%'  </if>
+			<if test="@Ognl@isNotEmpty(html)"> AND F_HTML  =#{html} </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND F_TYPE  LIKE '%${type}%'  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND F_CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND F_CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND F_CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createId)"> AND F_CREATEID  LIKE '%${createId}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.act_hi_html.model.ActHiHtml.ActHiHtml">
+		INSERT INTO W_ACT_HI_HTML
+		(ID,
+		F_ACTINSTID,F_HTML,F_TYPE,F_CREATETIME,F_CREATEID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{actInstId,jdbcType=VARCHAR}, #{html,jdbcType=CLOB}, #{type,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{createId,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ACT_HI_HTML 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.act_hi_html.model.ActHiHtml.ActHiHtml">
+		UPDATE W_ACT_HI_HTML SET
+		F_ACTINSTID=#{actInstId,jdbcType=VARCHAR},
+		F_HTML=#{html,jdbcType=CLOB},
+		F_TYPE=#{type,jdbcType=VARCHAR},
+		F_CREATETIME=#{createtime,jdbcType=DATE},
+		F_CREATEID=#{createId,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ActHiHtml">
+		SELECT <include refid="columns"/>
+		FROM W_ACT_HI_HTML
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ActHiHtml">
+		SELECT <include refid="columns"/>
+		FROM W_ACT_HI_HTML   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	
+  
+	
+</mapper>

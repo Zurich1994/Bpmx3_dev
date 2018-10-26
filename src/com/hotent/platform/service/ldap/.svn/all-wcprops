@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/ldap
+END
+LdapUserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/ldap/LdapUserService.java
+END
+LdapDbSync.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/ldap/LdapDbSync.java
+END
+SysOrgSyncService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/ldap/SysOrgSyncService.java
+END
+SysOrgSyncServiceMBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/ldap/SysOrgSyncServiceMBean.java
+END
+SysUserSyncService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/ldap/SysUserSyncService.java
+END
+SysUserSyncServiceMBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/ldap/SysUserSyncServiceMBean.java
+END

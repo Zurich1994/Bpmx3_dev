@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysParam">
+	<resultMap id="SysParam" type="com.hotent.platform.model.system.SysParam">
+		<id property="paramId" column="paramId" jdbcType="NUMERIC"/>
+		<result property="paramKey" column="paramKey" jdbcType="VARCHAR"/>
+		<result property="paramName" column="paramName" jdbcType="VARCHAR"/>
+		<result property="dataType" column="dataType" jdbcType="VARCHAR"/>
+		<result property="effect" column="effect" jdbcType="NUMERIC"/>
+		<result property="belongDem" column="belongDem" jdbcType="NUMERIC"/>
+		<result property="sourceType" column="sourceType" jdbcType="VARCHAR"/>
+		<result property="sourceKey" column="sourceKey" jdbcType="VARCHAR"/>
+		<result property="description" column="description" jdbcType="VARCHAR"/>
+		<result property="category" column="category" jdbcType="VARCHAR"/>
+		<result property="status_" column="status_" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		paramId,paramKey,paramName,dataType,effect,belongDem,sourceType,sourceKey,description,category,status_
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(paramId)"> AND paramId  =#{paramId} </if>
+			<if test="@Ognl@isNotEmpty(paramKey)"> AND paramKey  LIKE #{paramKey}  </if>
+			<if test="@Ognl@isNotEmpty(paramName)"> AND paramName  LIKE #{paramName}  </if>
+			<if test="@Ognl@isNotEmpty(dataType)"> AND dataType  LIKE #{dataType}  </if>
+			<if test="@Ognl@isNotEmpty(effect)"> AND effect  = #{effect}  </if>
+			<if test="@Ognl@isNotEmpty(belongDem)"> AND belongDem  = #{belongDem}  </if>
+			<if test="@Ognl@isNotEmpty(sourceType)"> AND sourceType  = #{sourceType}  </if>
+			<if test="@Ognl@isNotEmpty(sourceKey)"> AND sourceKey  = #{sourceKey}  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND description  = #{description}  </if>
+			<if test="@Ognl@isNotEmpty(status_)"> AND status_  = #{status_}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysParam">
+		INSERT INTO sys_param
+		(<include refid="columns"/>)
+		VALUES
+		(#{paramId,jdbcType=NUMERIC}, #{paramKey,jdbcType=VARCHAR}, #{paramName,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, #{effect,jdbcType=NUMERIC},
+		 #{belongDem,jdbcType=NUMERIC},#{sourceType,jdbcType=VARCHAR},#{sourceKey,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{category,jdbcType=VARCHAR},#{status_,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_PARAM 
+		WHERE
+		paramId=#{paramId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysParam">
+		UPDATE sys_param SET
+		paramKey=#{paramKey,jdbcType=VARCHAR} , 
+		paramName=#{paramName,jdbcType=VARCHAR} , 
+		dataType=#{dataType,jdbcType=VARCHAR} , 
+		effect=#{effect,jdbcType=NUMERIC} ,
+		belongDem=#{belongDem,jdbcType=NUMERIC},
+		sourceType=#{sourceType,jdbcType=VARCHAR},
+		sourceKey=#{sourceKey,jdbcType=VARCHAR},
+		description=#{description,jdbcType=VARCHAR},
+		category=#{category,jdbcType=VARCHAR},
+		status_=#{status_,jdbcType=NUMERIC}
+		WHERE
+		paramId=#{paramId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysParam">
+		SELECT <include refid="columns"/>
+		FROM SYS_PARAM
+		WHERE
+		paramId=#{paramId}
+	</select>
+	
+	<select id="getByParamKey" resultMap="SysParam">
+		SELECT <include refid="columns"/>
+		FROM SYS_PARAM
+		WHERE
+		PARAMKEY=#{paramKey}
+	</select>
+	
+	<select id="getAll" resultMap="SysParam">
+		SELECT <include refid="columns"/>
+		FROM SYS_PARAM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by paramId  desc
+		</if>
+	</select>
+	<select id="getUserStatus"  resultMap="SysParam">
+	    SELECT <include refid="columns"/>
+		FROM SYS_PARAM  
+		WHERE effect=1
+		AND status_=1
+		order by paramId  desc
+	</select>
+	
+	<select id="getDemStatus" parameterType="java.lang.String" resultMap="SysParam">
+	    SELECT <include refid="columns"/>
+		FROM SYS_PARAM  
+		WHERE effect=2
+		AND status_=1
+		AND belongDem = #{demId}
+		order by paramId  desc
+	</select>
+	
+	<select id="getDistinctCategory" resultType="java.lang.String">
+		SELECT DISTINCT CATEGORY FROM SYS_PARAM where CATEGORY  is not null
+		<if test="@Ognl@isNotEmpty(belongDem)">
+		AND belongDem = #{demId}
+		</if>
+		<if test="@Ognl@isNotEmpty(effect)">
+		AND effect = #{effect}
+		</if>
+	</select>
+	
+</mapper>

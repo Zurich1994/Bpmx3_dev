@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tabs>
+	<tab name="flow">
+		<item key="detail"  title="明细"   url="/platform/bpm/bpmDefinition/detail.ht" />
+		<item key="nodeSummary" title="节点概要"  url="/platform/bpm/bpmDefinition/nodeSummary.ht"/>
+		<item key="nodeSet" title="节点设置" url="/platform/bpm/bpmDefinition/nodeSet.ht" />
+		<item key="userSet"  title="人员" url="/platform/bpm/bpmDefinition/userSet.ht" />
+		<item key="form"  title="表单" url="/platform/bpm/bpmNodeSet/list.ht" />
+		<item key="button" title="操作按钮" url="/platform/bpm/bpmNodeButton/list.ht" />
+		<item key="flowVar" title="变量管理" url="/platform/bpm/bpmDefVar/list.ht" />
+		<item key="gangedSet" title="联动" url="/platform/bpm/bpmGangedSet/list.ht" />
+		<item key="instance"  title="流程实例" url="/platform/bpm/bpmDefinition/instance.ht" />
+		<item key="history" title="历史" url="/platform/bpm/bpmDefinition/versions.ht" />
+		<item key="otherParam" title="其他参数" url="/platform/bpm/bpmDefinition/otherParam.ht" />
+		<item key="nodeSql" title="节点sql" url="/platform/bpm/bpmNodeSql/list.ht" />
+		<item key="nodeMsgTemp" title="节点消息模板" url="/platform/bpm/nodeMsgTemplate/list.ht" />
+		<item key="htmlNodeSet" title="HTML5节点设置" url="/platform/bpm/bpmDefinition/htmlNodeSet.ht" />
+	 </tab>
+	  <tab name="sysOrg">
+	    <!-- 
+	  	<item key="user"   title="组织人员" url="/platform/system/userPosition/list.ht" />
+	  	 -->
+	  	<item key="user"   title="组织人员" url="/platform/system/sysUserOrg/userList.ht" />
+		<item key="info"   title="组织简介" url="/platform/system/sysOrg/get.ht" />
+	    <item key="pos"   title="岗位" url="/platform/system/position/list.ht" />
+		<item key="type"   title="组织分类" url="/platform/system/sysOrg/listById.ht" />
+		
+		<item key="param"  title="组织参数" url="/platform/system/sysOrg/paramList.ht" />
+		<item key="authorize"  title="角色授权" url="/platform/system/sysOrgRole/roleList.ht" />
+		<item key="assignRole"   title="可分配角色" url="/platform/system/grade/assignRoleList.ht" />
+	 </tab>
+	 <!--grade分级授权  -->
+	 <tab name="sysOrgGrade">
+		<item  key="user"  title="组织人员" url="/platform/system/sysUserOrg/userGradeList.ht" />
+		<item  key="info"  title="组织简介" url="/platform/system/sysOrg/getGrade.ht" />
+		 <item key="pos"   title="岗位" url="/platform/system/position/gradeList.ht" />
+		<item  key="param" title="组织参数" url="/platform/system/sysOrg/paramGradeList.ht" />
+		<item  key="authorize"  title="角色授权" url="/platform/system/sysOrgRole/roleGradeList.ht" />
+		<item  key="assignRole"   title="可分配角色" url="/platform/system/grade/assignRoleGradeList.ht" />
+	 </tab>
+	 
+	 <tab name="task">
+	 	<item key="detail"  title="任务明细" url="/platform/bpm/task/detail.ht"/>
+	 	<item key="userImage"  title="流程图" url="/platform/bpm/processRun/userImage.ht?action=task"/>
+	 	<item key="taskOpinion" title="审批历史" url="/platform/bpm/taskOpinion/list.ht?action=task"/>
+	 	<item key="taskVars" title="任务变量" url="/platform/bpm/taskVars/list.ht"/>
+	 	<item key="taskForm" title="业务表单" url="/platform/bpm/task/getForm.ht?action=task"/>
+	 </tab>
+	 
+	 <tab name="process">
+	 	<item key="detail"  title="运行明细" url="/platform/bpm/processRun/get.ht"/>
+	 	<item key="processImage" title="流程图" url="/platform/bpm/processRun/processImage.ht"/>
+	 	<item key="taskOpinion"  title="审批历史" url="/platform/bpm/taskOpinion/list.ht"/>
+	 	<item key="taskForm"  title="业务表单" url="/platform/bpm/processRun/getForm.ht"/>
+	 	<item key="flexShow"  title="动画展现" url="/platform/bpm/processRun/flexShow.ht"/>
+	 	<item key="copyUser" title="抄送人" url="/platform/bpm/bpmProCopyto/getCopyUserByInstId.ht"/>
+	 </tab>
+	 
+	
+	 <tab name="msgSend">
+		<item key="readDetail"  title="已读取信息人员列表" url="/platform/system/messageSend/readDetail.ht" />
+		<item key="replyDetai"  title="已回复信息人员列表" url="/platform/system/messageSend/replyDetail.ht" />
+	 </tab>
+	 
+	 <tab name="gradeTab">
+		<item key="orgManage" title="管理的组织" url="/platform/system/grade/orgManage.ht" />
+		<item key="roleManage" title="可分配的角色" url="/platform/system/grade/roleManage.ht" />
+	 </tab>
+	 
+	  <tab name="referenceTab">
+		<item  key="mySubmitProcess"  title="我提交的流程" url="/platform/bpm/processRun/getRefList.ht?type=0" />
+		<item  key="myApprovalProcess"  title="我审批的流程" url="/platform/bpm/processRun/getRefList.ht?type=1" />
+	 </tab>
+</tabs>

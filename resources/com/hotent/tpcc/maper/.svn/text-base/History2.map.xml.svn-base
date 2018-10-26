@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.History2">
+	<resultMap id="History2" type="com.hotent.tpcc.model.tpcc.History2">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="h_c_id" column="F_H_C_ID" jdbcType="NUMERIC"/>
+		<result property="h_c_d_id" column="F_H_C_D_ID" jdbcType="NUMERIC"/>
+		<result property="h_d_id" column="F_H_D_ID" jdbcType="NUMERIC"/>
+		<result property="h_w_id" column="F_H_W_ID" jdbcType="NUMERIC"/>
+		<result property="h_date" column="F_H_DATE" jdbcType="DATE"/>
+		<result property="h_amount" column="F_H_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="h_data" column="F_H_DATA" jdbcType="VARCHAR"/>
+		<result property="h_c_w_id" column="F_H_C_W_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_H_C_ID,F_H_C_D_ID,F_H_D_ID,F_H_W_ID,F_H_DATE,F_H_AMOUNT,F_H_DATA,F_H_C_W_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(h_c_id)"> AND F_H_C_ID  =#{h_c_id} </if>
+			<if test="@Ognl@isNotEmpty(h_c_d_id)"> AND F_H_C_D_ID  =#{h_c_d_id} </if>
+			<if test="@Ognl@isNotEmpty(h_d_id)"> AND F_H_D_ID  =#{h_d_id} </if>
+			<if test="@Ognl@isNotEmpty(h_w_id)"> AND F_H_W_ID  =#{h_w_id} </if>
+			<if test="@Ognl@isNotEmpty(h_date)"> AND F_H_DATE  =#{h_date} </if>
+			<if test="@Ognl@isNotEmpty(beginh_date)"> AND F_H_DATE  >=#{beginh_date,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endh_date)"> AND F_H_DATE <![CDATA[ <=#{endh_date,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(h_amount)"> AND F_H_AMOUNT  =#{h_amount} </if>
+			<if test="@Ognl@isNotEmpty(h_data)"> AND F_H_DATA  LIKE '%${h_data}%'  </if>
+			<if test="@Ognl@isNotEmpty(h_c_w_id)"> AND F_H_C_W_ID  =#{h_c_w_id} </if>
+		</where>
+	</sql>
+
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_HISTORY2HISTORY2 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.History2">
+		UPDATE W_HISTORY2HISTORY2 SET
+		F_H_C_ID=#{h_c_id,jdbcType=NUMERIC},
+		F_H_C_D_ID=#{h_c_d_id,jdbcType=NUMERIC},
+		F_H_D_ID=#{h_d_id,jdbcType=NUMERIC},
+		F_H_W_ID=#{h_w_id,jdbcType=NUMERIC},
+		F_H_DATE=#{h_date,jdbcType=DATE},
+		F_H_AMOUNT=#{h_amount,jdbcType=NUMERIC},
+		F_H_DATA=#{h_data,jdbcType=VARCHAR},
+		F_H_C_W_ID=#{h_c_w_id,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.History2">
+		INSERT INTO W_HISTORY2HISTORY2
+		(F_H_C_ID,F_H_C_D_ID,F_H_D_ID,F_H_W_ID,F_H_DATE,F_H_AMOUNT,F_H_DATA,F_H_C_W_ID)
+		VALUES
+		(#{h_c_id,jdbcType=NUMERIC}, #{h_c_d_id,jdbcType=NUMERIC}, #{h_c_w_id,jdbcType=NUMERIC}, #{h_d_id,jdbcType=NUMERIC}, #{h_w_id,jdbcType=NUMERIC}, #{h_date,jdbcType=DATE}, #{h_amount,jdbcType=NUMERIC}, #{h_data,jdbcType=VARCHAR})
+	</insert>
+	<insert id="addHistory" parameterType="java.util.Map">
+		INSERT INTO W_HISTORY2HISTORY2
+		(F_H_C_ID,F_H_C_D_ID,F_H_C_W_ID,F_H_D_ID,
+		F_H_W_ID,F_H_AMOUNT,F_H_DATA,F_H_DATE)
+		VALUES
+		(#{h_c_id,jdbcType=NUMERIC}, #{h_c_d_id,jdbcType=NUMERIC}, #{h_c_w_id,jdbcType=NUMERIC},
+		 #{h_d_id,jdbcType=NUMERIC}, #{h_w_id,jdbcType=NUMERIC}, #{h_amount,jdbcType=NUMERIC}, #{h_data,jdbcType=VARCHAR}, #{h_date,jdbcType=DATE})
+	</insert>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="History2">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY2HISTORY2
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="History2">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY2HISTORY2   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

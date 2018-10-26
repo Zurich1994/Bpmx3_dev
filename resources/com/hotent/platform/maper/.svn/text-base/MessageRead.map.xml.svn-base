@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.MessageRead">
+	<resultMap id="MessageRead" type="com.hotent.platform.model.system.MessageRead">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="messageId" column="messageId" jdbcType="NUMERIC"/>
+		<result property="receiverId" column="receiverId" jdbcType="NUMERIC"/>
+		<result property="receiver" column="receiver" jdbcType="VARCHAR"/>
+		<result property="receiveTime" column="receiveTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	<resultMap id="MessageReadMap" type="java.util.HashMap">		
+		<result property="messageId" column="messageId" jdbcType="NUMERIC"/>		
+	</resultMap>
+	
+	<sql id="columns">
+		id,messageId,receiverId,receiver,receiveTime
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(messageId)"> AND messageId  =#{messageId} </if>
+			<if test="@Ognl@isNotEmpty(receiverId)"> AND receiverId  =#{receiverId} </if>
+			<if test="@Ognl@isNotEmpty(receiver)"> AND receiver  LIKE #{receiver}  </if>
+			<if test="@Ognl@isNotEmpty(receiveTime)"> AND receiveTime  =#{receiveTime} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.MessageRead">
+		INSERT INTO sys_msg_read
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{messageId,jdbcType=NUMERIC}, #{receiverId,jdbcType=NUMERIC}, #{receiver,jdbcType=VARCHAR}, #{receiveTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_MSG_READ 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<delete id="delByMessageId" parameterType="java.lang.Long">
+		DELETE FROM SYS_MSG_READ 
+		WHERE
+		MessageId=#{MessageId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.MessageRead">
+		UPDATE sys_msg_read SET
+		messageId=#{messageId,jdbcType=NUMERIC} , 
+		receiverId=#{receiverId,jdbcType=NUMERIC} , 
+		receiver=#{receiver,jdbcType=VARCHAR} , 
+		receiveTime=#{receiveTime,jdbcType=TIMESTAMP} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="MessageRead">
+		SELECT <include refid="columns"/>
+		FROM SYS_MSG_READ
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MessageRead">
+		SELECT <include refid="columns"/>
+		FROM SYS_MSG_READ   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getReadByUser" resultMap="MessageRead">
+		select <include refid="columns"/> from SYS_MSG_READ a 
+		where a.receiverId=#{receiverId}
+		and a.messageId=#{messageId}
+	</select>
+    
+    <select id="getReadByMsgId" resultMap="MessageRead">
+    	select <include refid="columns"/> from SYS_MSG_READ a 
+		where a.messageId=#{messageId}
+    </select>
+    
+</mapper>

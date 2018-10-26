@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib
+END
+codegen.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/codegen.jar
+END
+mysql.jar
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/mysql.jar
+END
+sqljdbc4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/sqljdbc4.jar
+END
+ojdbc6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/ojdbc6.jar
+END
+db2jcc-4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/db2jcc-4.jar
+END
+dom4j-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/dom4j-1.6.1.jar
+END
+h2-1.3.170.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/h2-1.3.170.jar
+END
+freemarker.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/refLib/freemarker.jar
+END

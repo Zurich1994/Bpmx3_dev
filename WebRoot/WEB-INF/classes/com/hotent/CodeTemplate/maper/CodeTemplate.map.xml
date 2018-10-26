@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.CodeTemplate.model.CodeTemplate.CodeTemplate">
+	<resultMap id="CodeTemplate" type="com.hotent.CodeTemplate.model.CodeTemplate.CodeTemplate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="templatename" column="F_TEMPLATENAME" jdbcType="VARCHAR"/>
+		<result property="bm" column="F_BM" jdbcType="VARCHAR"/>
+		<result property="templatetype" column="F_TEMPLATETYPE" jdbcType="VARCHAR"/>
+		<result property="subjecttype" column="F_SUBJECTTYPE" jdbcType="VARCHAR"/>
+		<result property="subjectname" column="F_SUBJECTNAME" jdbcType="VARCHAR"/>
+		<result property="subid" column="F_SUBID" jdbcType="NUMERIC"/>
+		<result property="bz" column="F_BZ" jdbcType="VARCHAR"/>
+		<result property="issign" column="F_ISSIGN" jdbcType="VARCHAR"/>
+		<result property="createtime" column="F_CREATETIME" jdbcType="DATE"/>
+		<result property="mbscdwjlj" column="F_MBSCDWJLJ" jdbcType="VARCHAR"/>
+		<result property="mbwjscdwjmc" column="F_MBWJSCDWJMC" jdbcType="VARCHAR"/>
+		<result property="templateXML" column="F_TEMPLATEXML" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_TEMPLATENAME,F_BM,F_TEMPLATETYPE,F_SUBJECTTYPE,F_SUBJECTNAME,F_SUBID,F_BZ,F_ISSIGN,F_CREATETIME,F_MBSCDWJLJ,F_MBWJSCDWJMC,F_TEMPLATEXML
+	</sql>
+	<sql id="wfColumns">
+		ID,F_TEMPLATENAME,F_BM,F_TEMPLATETYPE,F_SUBJECTTYPE,F_SUBJECTNAME,F_SUBID,F_BZ,F_ISSIGN,F_CREATETIME,F_MBSCDWJLJ,F_MBWJSCDWJMC,F_TEMPLATEXML
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(templatename)"> AND F_TEMPLATENAME  LIKE '%${templatename}%'  </if>
+			<if test="@Ognl@isNotEmpty(bm)"> AND F_BM  LIKE '%${bm}%'  </if>
+			<if test="@Ognl@isNotEmpty(templatetype)"> AND F_TEMPLATETYPE  LIKE '%${templatetype}%'  </if>
+			<if test="@Ognl@isNotEmpty(subjecttype)"> AND F_SUBJECTTYPE  LIKE '%${subjecttype}%'  </if>
+			<if test="@Ognl@isNotEmpty(subjectname)"> AND F_SUBJECTNAME  LIKE '%${subjectname}%'  </if>
+			<if test="@Ognl@isNotEmpty(subid)"> AND F_SUBID  LIKE '%${subid}%'  </if>
+			<if test="@Ognl@isNotEmpty(bz)"> AND F_BZ  LIKE '%${bz}%'  </if>
+			<if test="@Ognl@isNotEmpty(issign)"> AND F_ISSIGN  LIKE '%${issign}%'  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND F_CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND F_CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND F_CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(mbscdwjlj)"> AND F_MBSCDWJLJ  LIKE '%${mbscdwjlj}%'  </if>
+			<if test="@Ognl@isNotEmpty(mbwjscdwjmc)"> AND F_MBWJSCDWJMC  LIKE '%${mbwjscdwjmc}%'  </if>
+			<if test="@Ognl@isNotEmpty(templateXML)"> AND F_TEMPLATEXML  LIKE '%${templateXML}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.CodeTemplate.model.CodeTemplate.CodeTemplate">
+		INSERT INTO W_CODE_TEMPLATE
+		(ID,
+		F_TEMPLATENAME,F_BM,F_TEMPLATETYPE,F_SUBJECTTYPE,F_SUBJECTNAME,F_SUBID,F_BZ,F_ISSIGN,F_CREATETIME,F_MBSCDWJLJ,F_MBWJSCDWJMC,F_TEMPLATEXML)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{templatename,jdbcType=VARCHAR}, #{bm,jdbcType=VARCHAR}, #{templatetype,jdbcType=VARCHAR}, #{subjecttype,jdbcType=VARCHAR}, #{subjectname,jdbcType=VARCHAR},#{subid,jdbcType=NUMERIC}, #{bz,jdbcType=VARCHAR}, #{issign,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{mbscdwjlj,jdbcType=VARCHAR}, #{mbwjscdwjmc,jdbcType=VARCHAR}, #{templateXML,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_CODE_TEMPLATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.CodeTemplate.model.CodeTemplate.CodeTemplate">
+	UPDATE W_CODE_TEMPLATE SET
+	F_TEMPLATENAME=#{templatename,jdbcType=VARCHAR},
+	F_BM=#{bm,jdbcType=VARCHAR},
+	F_TEMPLATETYPE=#{templatetype,jdbcType=VARCHAR},
+	F_SUBJECTTYPE=#{subjecttype,jdbcType=VARCHAR},
+	F_SUBJECTNAME=#{subjectname,jdbcType=VARCHAR},
+	F_SUBID=#{subid,jdbcType=NUMERIC},
+	F_BZ=#{bz,jdbcType=VARCHAR},
+	F_ISSIGN=#{issign,jdbcType=VARCHAR},
+	F_CREATETIME=#{createtime,jdbcType=DATE},
+	F_MBSCDWJLJ=#{mbscdwjlj,jdbcType=VARCHAR},
+	F_MBWJSCDWJMC=#{mbwjscdwjmc,jdbcType=VARCHAR},
+	F_TEMPLATEXML=#{templateXML,jdbcType=VARCHAR}
+	WHERE
+	ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CodeTemplate">
+		SELECT <include refid="columns"/>
+		FROM W_CODE_TEMPLATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="CodeTemplate">
+		SELECT <include refid="columns"/>
+		FROM W_CODE_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByBm" parameterType="java.lang.String" resultMap="CodeTemplate">
+		SELECT <include refid="columns"/>
+		FROM W_CODE_TEMPLATE
+		WHERE F_BM=#{bm}
+	</select>
+	
+	
+	
+</mapper>

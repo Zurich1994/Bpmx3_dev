@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats
+END
+AtsAttenceCycleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttenceCycleDao.java
+END
+AtsAttencePolicyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttencePolicyDao.java
+END
+AtsShiftRuleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsShiftRuleDao.java
+END
+AtsAttendanceFileDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttendanceFileDao.java
+END
+AtsCardRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsCardRecordDao.java
+END
+AtsHolidayPolicyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsHolidayPolicyDao.java
+END
+AtsCalendarTemplDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsCalendarTemplDao.java
+END
+AtsWorkCalendarDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsWorkCalendarDao.java
+END
+AtsAttenceCalculateSetDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttenceCalculateSetDao.java
+END
+AtsShiftTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsShiftTypeDao.java
+END
+AtsLegalHolidayDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsLegalHolidayDetailDao.java
+END
+AtsAttenceGroupDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttenceGroupDetailDao.java
+END
+AtsImportPlanDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsImportPlanDao.java
+END
+AtsAttenceCycleDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttenceCycleDetailDao.java
+END
+AtsShiftRuleDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsShiftRuleDetailDao.java
+END
+AtsBaseItemDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsBaseItemDao.java
+END
+AtsShiftInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsShiftInfoDao.java
+END
+AtsScheduleShiftDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsScheduleShiftDao.java
+END
+AtsHolidayTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsHolidayTypeDao.java
+END
+AtsHolidayPolicyDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsHolidayPolicyDetailDao.java
+END
+AtsShiftTimeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsShiftTimeDao.java
+END
+AtsCalendarTemplDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsCalendarTemplDetailDao.java
+END
+AtsLegalHolidayDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsLegalHolidayDao.java
+END
+AtsAttenceGroupDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttenceGroupDao.java
+END
+AtsCardRuleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsCardRuleDao.java
+END
+AtsAttenceCalculateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/ats/AtsAttenceCalculateDao.java
+END

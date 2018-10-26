@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Operatercount.model.Operatercount.Operatercount">
+	<resultMap id="Operatercount" type="com.hotent.Operatercount.model.Operatercount.Operatercount">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="bpmid" column="F_BPMID" jdbcType="VARCHAR"/>
+		<result property="operaterid" column="F_OPERATERID" jdbcType="VARCHAR"/>
+		<result property="nodeid" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="transactionid" column="F_TRANSACTIONID" jdbcType="VARCHAR"/>
+		<result property="ym" column="F_YM" jdbcType="VARCHAR"/>
+		<result property="runs" column="F_RUNS" jdbcType="NUMERIC"/>
+		<result property="time" column="F_TIME" jdbcType="DATE"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_BPMID,F_OPERATERID,F_NODEID,F_TRANSACTIONID,F_YM,F_RUNS,F_TIME
+	</sql>
+	<sql id="wfColumns">
+		ID,F_BPMID,F_OPERATERID,F_NODEID,F_TRANSACTIONID,F_YM,F_RUNS,F_TIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(bpmid)"> AND F_BPMID  LIKE '%${bpmid}%'  </if>
+			<if test="@Ognl@isNotEmpty(operaterid)"> AND F_OPERATERID  LIKE '%${operaterid}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND F_NODEID  LIKE '%${nodeid}%'  </if>
+			<if test="@Ognl@isNotEmpty(transactionid)"> AND F_TRANSACTIONID  LIKE '%${transactionid}%'  </if>
+			<if test="@Ognl@isNotEmpty(ym)"> AND F_YM  LIKE '%${ym}%'  </if>
+			<if test="@Ognl@isNotEmpty(runs)"> AND F_RUNS  =#{runs} </if>
+			<if test="@Ognl@isNotEmpty(time)"> AND F_TIME  =#{time} </if>
+			<if test="@Ognl@isNotEmpty(begintime)"> AND F_TIME  >=#{begintime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endtime)"> AND F_TIME <![CDATA[ <=#{endtime,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Operatercount.model.Operatercount.Operatercount">
+		INSERT INTO W_OPERATERCOUNT
+		(ID,
+		F_BPMID,F_OPERATERID,F_NODEID,F_TRANSACTIONID,F_YM,F_RUNS,F_TIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{bpmid,jdbcType=VARCHAR}, #{operaterid,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, #{transactionid,jdbcType=VARCHAR}, #{ym,jdbcType=VARCHAR}, #{runs,jdbcType=NUMERIC}, #{time,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_OPERATERCOUNT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Operatercount.model.Operatercount.Operatercount">
+		UPDATE W_OPERATERCOUNT SET
+		F_BPMID=#{bpmid,jdbcType=VARCHAR},
+		F_OPERATERID=#{operaterid,jdbcType=VARCHAR},
+		F_NODEID=#{nodeid,jdbcType=VARCHAR},
+		F_TRANSACTIONID=#{transactionid,jdbcType=VARCHAR},
+		F_YM=#{ym,jdbcType=VARCHAR},
+		F_RUNS=#{runs,jdbcType=NUMERIC},
+		F_TIME=#{time,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Operatercount">
+		SELECT <include refid="columns"/>
+		FROM W_OPERATERCOUNT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Operatercount">
+		SELECT <include refid="columns"/>
+		FROM W_OPERATERCOUNT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+</mapper>

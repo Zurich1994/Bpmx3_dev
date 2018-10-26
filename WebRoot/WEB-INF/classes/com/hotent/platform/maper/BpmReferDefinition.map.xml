@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmReferDefinition">
+	<resultMap id="BpmReferDefinition" type="com.hotent.platform.model.bpm.BpmReferDefinition">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="defId" column="defid" jdbcType="NUMERIC"/>
+		<result property="referDefKey" column="REFER_DEFKEY" jdbcType="VARCHAR"/>
+		<result property="createtime" column="CREATETIME" jdbcType="DATE"/>
+		<result property="updateBy" column="UPDATEID" jdbcType="NUMERIC"/>
+		<result property="createBy" column="CREATEID" jdbcType="NUMERIC"/>
+		<result property="updatetime" column="UPDATETIME" jdbcType="DATE"/>
+		<result property="state" column="STATE" jdbcType="VARCHAR"/>
+		<result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,defId,REFER_DEFKEY,createtime,createid,updatetime,updateid,state,remark
+	</sql>
+	
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmReferDefinition">
+		INSERT INTO BPM_REFER_DEFINITION
+		(<include refid="columns"/>)
+		VALUES
+		(
+			#{id,jdbcType=NUMERIC}, 
+			#{defId,jdbcType=NUMERIC},
+			#{referDefKey,jdbcType=VARCHAR},
+			#{createtime,jdbcType=DATE}, 
+			#{createBy,jdbcType=NUMERIC},
+			#{updatetime,jdbcType=DATE},
+			#{updateBy,jdbcType=NUMERIC}, 
+			#{state,jdbcType=VARCHAR}, 
+			#{remark,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmReferDefinition">
+		UPDATE BPM_REFER_DEFINITION SET
+			defId=#{defId,jdbcType=NUMERIC} , 
+			refer_DEFKEY=#{referDefKey,jdbcType=NUMERIC} ,
+			updateid=#{updateBy,jdbcType=NUMERIC},
+			updatetime=#{updatetime,jdbcType=DATE}
+		WHERE
+			id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmReferDefinition">
+		SELECT 
+			a.*
+		FROM BPM_REFER_DEFINITION a WHERE a.id=#{id}
+	</select>
+
+	<select id="getByDefId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.bpm.BpmReferDefinition">
+		SELECT 
+			a.id,
+			a.defId,
+			a.refer_DefKey  referDefKey,
+			a.remark,
+			b.subject,
+			a.createtime,
+			a.UPDATEID as updateBy,
+			a.createid as createBy,
+			a.updatetime,
+			a.state
+		FROM BPM_REFER_DEFINITION a,BPM_DEFINITION b WHERE a.refer_DefKey = b.defKey and b.isMain=1 and a.defId=#{id}
+	</select>
+
+	
+    <delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_REFER_DEFINITION 
+		WHERE
+		id=#{id}
+	</delete>
+	
+    <delete id="delByDefId" parameterType="java.lang.Long">
+		DELETE FROM BPM_REFER_DEFINITION 
+		WHERE
+		defId=#{defId}
+	</delete>
+</mapper>

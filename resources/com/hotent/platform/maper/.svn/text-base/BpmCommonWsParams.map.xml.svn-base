@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmCommonWsParams">
+	<resultMap id="BpmCommonWsParams" type="com.hotent.platform.model.bpm.BpmCommonWsParams">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="setid" column="SETID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="paramType" column="PARAM_TYPE" jdbcType="NUMERIC"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,SETID,NAME,PARAM_TYPE,DESCRIPTION
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(setid)"> AND SETID  =#{setid} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(paramType)"> AND PARAM_TYPE  =#{paramType} </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND DESCRIPTION  LIKE #{description}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmCommonWsParams">
+		INSERT INTO BPM_COMMON_WS_PARAMS
+		(ID,SETID,NAME,PARAM_TYPE,DESCRIPTION)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{setid,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{paramType,jdbcType=NUMERIC}, #{description,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_COMMON_WS_PARAMS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmCommonWsParams">
+		UPDATE BPM_COMMON_WS_PARAMS SET
+		SETID=#{setid,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		PARAM_TYPE=#{paramType,jdbcType=NUMERIC},
+		DESCRIPTION=#{description,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	<delete id="delByMainId">
+	    DELETE FROM BPM_COMMON_WS_PARAMS
+	    WHERE
+	    setid=#{setid}
+	</delete>    
+	
+	<select id="getBpmCommonWsParamsList" resultMap="BpmCommonWsParams">
+	    SELECT <include refid="columns"/>
+	    FROM BPM_COMMON_WS_PARAMS 
+	    WHERE setid=#{setid}
+	</select>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmCommonWsParams">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMON_WS_PARAMS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmCommonWsParams">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMON_WS_PARAMS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

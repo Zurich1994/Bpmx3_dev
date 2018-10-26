@@ -1,0 +1,179 @@
+/*可以在这里添加你自己的css*/
+body{
+    padding:0;
+    margin:0;
+}
+#tabPanel{
+    float:none;
+    text-align:left;
+}
+#tabContent {
+    float:left;
+    background:#FFFFFF;<!--EAEAD1-->
+}
+#tabContent div{
+    display: none;
+    width:480px;
+    overflow:hidden;
+}
+#tabIconReview.show{
+    left:17px;
+    display:block;
+}
+.neweditor-tab{
+    position:relative;
+}
+.neweditor-tab .neweditor-tab-h{
+    float:left;
+    padding-left:5px;
+    margin-bottom:-1px;
+    position:relative;
+    z-index:1000;
+}
+.neweditor-tab .neweditor-tab-h div{
+    border-left:1px solid #c1c1c1;
+    border-top:1px solid #c1c1c1;
+    border-right:1px solid #c1c1c1;
+    margin:2px 0 0 3px;
+    float:left;
+    font-size:14px;
+    padding:5px 8px 3px;
+    line-height:16px;
+    background:url("images/neweditor-tab-bg.png") repeat-x 0 0;
+    cursor:pointer;
+}
+.neweditor-tab .neweditor-tab-h .on{
+    font-weight:bold;
+    padding:7px 8px 2px;
+    margin:0 0 0 3px;
+    border-bottom:1px solid #fff;
+    background:none;
+}
+.neweditor-tab .neweditor-tab-b{
+    position:relative;
+    float:left;
+    border-top:1px solid #c1c1c1;
+    clear:both;
+    margin:0;
+    padding:10px;
+}
+.neweditor-tab .neweditor-tab-b div{
+    border:4px solid #F2F2F2;
+    margin:0px 3px;
+}
+
+
+
+/**
+附件样式表。
+*/
+div.attachement{
+	word-break : break-all ;
+	overflow:auto;
+	padding: 2px 2px 2px 2px;
+}
+
+a.attachment{
+	text-decoration: none;
+	font-size: 12px;
+}
+
+a.attachment:hover{
+	text-decoration: underline;
+}
+
+table.formTable{
+	border:1px solid #8DC2E3;border-collapse :collapse;width:100%;text-align:center;
+	font-size: 12px;
+}
+
+td.formHead{
+	border:1px solid #8DC2E3;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+td.formTitle{
+	padding:2px;border:1px solid #8DC2E3;
+	background-color:#EDF6FC;
+	text-align: right;
+	
+}
+
+td.formInput{
+	padding:2px;border:1px solid #8DC2E3;
+	background-color:white;
+	text-align: left;
+}
+
+table.listTable{
+	border:1px solid #8DC2E3;border-collapse :collapse;width:100%;text-align:center;
+	font-size: 12px;
+}
+
+table.listTable tr.headRow{
+	height: 25px;
+	
+}
+
+table.listTable tr.toolBar{
+	height: 25px;
+	
+	background: url(images/content_bg_sort.jpg) repeat-x;
+}
+
+table.listTable tr.toolBar td{
+	border:1px solid #8DC2E3;
+	text-align: left;
+	padding-left: 4px;
+}
+
+table.listTable th{
+	border:1px solid #8DC2E3;
+	text-align: center;
+	height: 25px;
+	font-size:12px;
+	background-color:#F1F6FF;
+	font-weight:bold;
+	
+}
+
+table.listTable tr.listRow td{
+	border:1px solid #8DC2E3;
+	text-align: center;
+	height: 23px;
+}
+
+a.link{
+	padding-left:20px;cursor: pointer;  color: blue;font-size:12px;
+	text-decoration: none;
+}
+
+a.link.add{
+	background:url(images/icons/icons_add.png) 0px -1px no-repeat;
+}
+
+a.link.del{
+	background:url(images/icons/icons_del.png) 0px -1px no-repeat;
+}
+
+a.link.role{
+	background:url(images/icons/find.png) 0px -1px no-repeat;
+}
+
+a.link.position{
+	background:url(images/icons/find.png) 0px -1px no-repeat;
+}
+
+a.link.user{
+	background:url(images/icons/user.gif) 0px -1px no-repeat;
+}
+
+a.link.users{
+	background:url(images/icons/users.gif) 0px -1px no-repeat;
+}
+
+a.link.org{
+	background:url(images/icons/org.gif) 0px -1px no-repeat;
+}

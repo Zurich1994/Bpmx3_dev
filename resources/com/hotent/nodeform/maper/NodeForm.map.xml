@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.nodeform.model.nodeForm.NodeForm">
+	<resultMap id="NodeForm" type="com.hotent.nodeform.model.nodeForm.NodeForm">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="condition1" column="F_CONDITION1" jdbcType="VARCHAR"/>
+		<result property="condition2" column="F_CONDITION2" jdbcType="VARCHAR"/>
+		<result property="condition3" column="F_CONDITION3" jdbcType="VARCHAR"/>
+		<result property="formID" column="F_FORMID" jdbcType="NUMERIC"/>
+		<result property="formName" column="F_FORMNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_CONDITION1,F_CONDITION2,F_CONDITION3,F_FORMID,F_FORMNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(condition1)"> AND F_CONDITION1  LIKE '%${condition1}%'  </if>
+			<if test="@Ognl@isNotEmpty(condition2)"> AND F_CONDITION2  LIKE '%${condition2}%'  </if>
+			<if test="@Ognl@isNotEmpty(condition3)"> AND F_CONDITION3  LIKE '%${condition3}%'  </if>
+			<if test="@Ognl@isNotEmpty(formID)"> AND F_FORMID  =#{formID} </if>
+			<if test="@Ognl@isNotEmpty(formName)"> AND F_FORMNAME  LIKE '%${formName}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.nodeform.model.nodeForm.NodeForm">
+		INSERT INTO W_NODE_FORM
+		(ID,
+		F_CONDITION1,F_CONDITION2,F_CONDITION3,F_FORMID,F_FORMNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{condition1,jdbcType=VARCHAR}, #{condition2,jdbcType=VARCHAR}, #{condition3,jdbcType=VARCHAR}, #{formID,jdbcType=NUMERIC}, #{formName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_NODE_FORM 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.nodeform.model.nodeForm.NodeForm">
+		UPDATE W_NODE_FORM SET
+		F_CONDITION1=#{condition1,jdbcType=VARCHAR},
+		F_CONDITION2=#{condition2,jdbcType=VARCHAR},
+		F_CONDITION3=#{condition3,jdbcType=VARCHAR},
+		F_FORMID=#{formID,jdbcType=NUMERIC},
+		F_FORMNAME=#{formName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="NodeForm">
+		SELECT <include refid="columns"/>
+		FROM W_NODE_FORM
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="NodeForm">
+		SELECT <include refid="columns"/>
+		FROM W_NODE_FORM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	 <!-- 多条件查询-->
+	 
+	<parameterMap type="java.util.HashMap" id="manyParameters">   
+    <parameter property="condition1" javaType="String" jdbcType="VARCHAR" />   
+    <parameter property="condition2" javaType="String" jdbcType="VARCHAR" />
+    <parameter property="condition3" javaType="String" jdbcType="VARCHAR" />   
+	</parameterMap>   
+	<select id="getFormID" parameterMap="manyParameters" resultType="java.lang.Long">
+		SELECT F_FORMID
+		FROM W_NODE_FORM
+		WHERE
+		F_CONDITION1=#{condition1} and F_CONDITION2=#{condition2} and F_CONDITION3=#{condition3}
+	</select>
+	
+	<select id="getTableID" parameterType="java.lang.Long" resultType="java.lang.Long">
+	    SELECT TABLEID
+	    FROM BPM_FORM_DEF
+	    WHERE
+	    FORMDEFID=#{formID}
+	</select>
+	
+	<select id="getTableName" parameterType="java.lang.Long" resultType="java.lang.String">
+	    SELECT TABLENAME
+	    FROM BPM_FORM_TABLE
+	    WHERE
+	    TABLEID=#{tableID}
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.excelTempData_lc.model.excelTempData.ExcelsjlsbLc">
+	<resultMap id="ExcelsjlsbLc" type="com.hotent.excelTempData_lc.model.excelTempData.ExcelsjlsbLc">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="sj" column="F_SJ" jdbcType="VARCHAR"/>
+		<result property="fsl" column="F_FSL" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_SJ,F_FSL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(sj)"> AND F_SJ  LIKE '%${sj}%'  </if>
+			<if test="@Ognl@isNotEmpty(fsl)"> AND F_FSL  LIKE '%${fsl}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.excelTempData_lc.model.excelTempData.ExcelsjlsbLc">
+		INSERT INTO W_EXCELSJLSB_LC
+		(ID,
+		F_SJ,F_FSL)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{sj,jdbcType=VARCHAR}, #{fsl,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_EXCELSJLSB_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.excelTempData_lc.model.excelTempData.ExcelsjlsbLc">
+		UPDATE W_EXCELSJLSB_LC SET
+		F_SJ=#{sj,jdbcType=VARCHAR},
+		F_FSL=#{fsl,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ExcelsjlsbLc">
+		SELECT <include refid="columns"/>
+		FROM W_EXCELSJLSB_LC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ExcelsjlsbLc">
+		SELECT <include refid="columns"/>
+		FROM W_EXCELSJLSB_LC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

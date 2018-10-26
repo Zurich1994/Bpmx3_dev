@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysWordTemplate">
+	<resultMap id="SysWordTemplate" type="com.hotent.platform.model.system.SysWordTemplate">
+		<id property="id" column="ID_" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME_" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS_" jdbcType="VARCHAR"/>
+		<result property="fileId" column="FILE_ID_" jdbcType="NUMERIC"/>
+		<result property="createtime" column="CREATETIME_" jdbcType="DATE"/>
+		<result property="type" column="TYPE_" jdbcType="VARCHAR"/>
+		<result property="tableId" column="TABLE_ID_" jdbcType="NUMERIC"/>
+		<result property="dsAlias" column="DS_ALIAS_" jdbcType="VARCHAR"/>
+		<result property="sql" column="SQL_" jdbcType="CLOB"/>
+		<result property="tableName" column="TABLE_NAME_" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID_,NAME_,ALIAS_,FILE_ID_,CREATETIME_,TYPE_,TABLE_ID_,DS_ALIAS_,TABLE_NAME_
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID_  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME_  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND ALIAS_  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME_  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME_  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME_ <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND TYPE_  LIKE #{type}  </if>
+			<if test="@Ognl@isNotEmpty(tableId)"> AND TABLE_ID_  =#{tableId} </if>
+			<if test="@Ognl@isNotEmpty(dsAlias)"> AND DS_ALIAS_  LIKE #{dsAlias}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysWordTemplate">
+		INSERT INTO sys_word_template
+		(ID_,NAME_,ALIAS_,FILE_ID_,CREATETIME_,TYPE_,TABLE_ID_,DS_ALIAS_,SQL_,TABLE_NAME_)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{fileId,jdbcType=NUMERIC}, #{createtime,jdbcType=DATE}, #{type,jdbcType=VARCHAR}, #{tableId,jdbcType=NUMERIC}, #{dsAlias,jdbcType=VARCHAR}, #{sql,jdbcType=CLOB},#{tableName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_word_template 
+		WHERE
+		ID_=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysWordTemplate">
+		UPDATE sys_word_template SET
+		NAME_=#{name,jdbcType=VARCHAR},
+		ALIAS_=#{alias,jdbcType=VARCHAR},
+		FILE_ID_=#{fileId,jdbcType=NUMERIC},
+		TYPE_=#{type,jdbcType=VARCHAR},
+		TABLE_ID_=#{tableId,jdbcType=NUMERIC},
+		DS_ALIAS_=#{dsAlias,jdbcType=VARCHAR},
+		SQL_=#{sql,jdbcType=CLOB},
+		TABLE_NAME_=#{tableName,jdbcType=VARCHAR}
+		WHERE
+		ID_=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysWordTemplate">
+		SELECT ID_,NAME_,ALIAS_,FILE_ID_,CREATETIME_,TYPE_,TABLE_ID_,DS_ALIAS_,TABLE_NAME_,SQL_
+		FROM sys_word_template
+		WHERE
+		ID_=#{id}
+	</select>
+	
+	<select id="getByAlias" parameterType="java.lang.Long" resultMap="SysWordTemplate">
+		SELECT ID_,NAME_,ALIAS_,FILE_ID_,CREATETIME_,TYPE_,TABLE_ID_,DS_ALIAS_,TABLE_NAME_,SQL_
+		FROM sys_word_template
+		WHERE
+		ALIAS_=#{alias}
+	</select>
+	
+	<select id="getAll" resultMap="SysWordTemplate">
+		SELECT <include refid="columns"/>
+		FROM sys_word_template   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID_  desc
+		</if>
+	</select>
+	
+	<select id="getAllTemplate" resultMap="SysWordTemplate">
+		SELECT ID_,NAME_,ALIAS_,FILE_ID_,CREATETIME_,TYPE_,TABLE_ID_,DS_ALIAS_,TABLE_NAME_
+		FROM sys_word_template where FILE_ID_ is not null
+	</select>
+	
+	
+</mapper>

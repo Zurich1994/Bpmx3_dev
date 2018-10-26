@@ -1,0 +1,607 @@
+<diagram xmlns:bg="bpm.graphic" xmlns:ciied="com.ibm.ilog.elixir.diagram" xmlns:fg="flash.geom">
+  <bg:HPool id="hPool1" automaticGraphLayout="false" expandedHeight="142" expandedWidth="1475" gap="-2" height="142" inheritNodeLayout="true" left="20" top="160" width="1475" x="20" y="160">
+    <label>Doctor's Office</label>
+    <ports>
+      <ciied:Port id="port1"/>
+    </ports>
+    <bg:HLane id="hLane1" automaticGraphLayout="false" expandedHeight="72" expandedWidth="1450" height="72" inheritNodeLayout="true" left="0" top="0" width="1450">
+      <label>Receptionist</label>
+      <ports>
+        <ciied:Port id="port2"/>
+      </ports>
+      <bg:Task id="task1" height="50" left="81" top="10" width="90" x="81" y="10">
+        <label>Receive Doctor Request</label>
+        <ports>
+          <ciied:Port id="port3"/>
+          <ciied:Port id="port4" clipOnShape="true" y="0"/>
+          <ciied:Port id="port5" x="0"/>
+          <ciied:Port id="port6" clipOnShape="true" x="1"/>
+          <ciied:Port id="port7" movable="false"/>
+          <ciied:Port id="port8" movable="false"/>
+          <ciied:Port id="port9" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port10" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port11" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port12" clipOnShape="true" x="0"/>
+          <ciied:Port id="port13" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port14" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port15" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port16" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port17" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:StartEvent id="startEvent1" height="30" left="10" top="20" width="30" x="10" y="20">
+        <label></label>
+        <ports>
+          <ciied:Port id="port18"/>
+          <ciied:Port id="port19" x="1"/>
+          <ciied:Port id="port20" clipOnShape="true" x="1"/>
+          <ciied:Port id="port21" movable="false"/>
+          <ciied:Port id="port22" movable="false"/>
+          <ciied:Port id="port23" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port24" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port25" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port26" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port27" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port28" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port29" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port30" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:StartEvent>
+      <bg:Task id="task2" height="50" left="211" top="10" width="90" x="211" y="10">
+        <label>Send Availability Request</label>
+        <ports>
+          <ciied:Port id="port31"/>
+          <ciied:Port id="port32" clipOnShape="true" x="1"/>
+          <ciied:Port id="port33" movable="false"/>
+          <ciied:Port id="port34" movable="false"/>
+          <ciied:Port id="port35" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port36" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port37" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port38" clipOnShape="true" x="0"/>
+          <ciied:Port id="port39" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port40" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port41" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port42" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port43" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task3" height="50" left="601" top="10" width="90" x="601" y="10">
+        <label>Receive Availability</label>
+        <ports>
+          <ciied:Port id="port44"/>
+          <ciied:Port id="port45" movable="false"/>
+          <ciied:Port id="port46" x="1"/>
+          <ciied:Port id="port47" movable="false"/>
+          <ciied:Port id="port48" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port49" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port50" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port51" clipOnShape="true" x="1"/>
+          <ciied:Port id="port52" clipOnShape="true" x="0"/>
+          <ciied:Port id="port53" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port54" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port55" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port56" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port57" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task4" height="50" left="731" top="10" width="90" x="731" y="10">
+        <label>Send Booking</label>
+        <ports>
+          <ciied:Port id="port58"/>
+          <ciied:Port id="port59" x="0"/>
+          <ciied:Port id="port60" clipOnShape="true" x="0"/>
+          <ciied:Port id="port61" movable="false"/>
+          <ciied:Port id="port62" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port63" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port64" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port65" clipOnShape="true" x="1"/>
+          <ciied:Port id="port66" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port67" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port68" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port69" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port70" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task5" height="50" left="991" top="10" width="90" x="991" y="10">
+        <label>Send Appointment</label>
+        <ports>
+          <ciied:Port id="port71"/>
+          <ciied:Port id="port72" y="0"/>
+          <ciied:Port id="port73" clipOnShape="true" y="0"/>
+          <ciied:Port id="port74" clipOnShape="true" x="1"/>
+          <ciied:Port id="port75" movable="false"/>
+          <ciied:Port id="port76" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port77" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port78" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port79" clipOnShape="true" x="0"/>
+          <ciied:Port id="port80" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port81" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port82" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port83" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port84" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:SequenceFlow id="sequenceFlow1" endPort="port12" startPort="port20">
+        <fallbackEndPoint>
+          <fg:Point id="point1" x="89" y="52"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point2"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow2" endPort="port38" startPort="port6">
+        <fallbackEndPoint>
+          <fg:Point id="point3" x="216" y="50"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point4"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow3" endPort="port60" startPort="port51">
+        <fallbackEndPoint>
+          <fg:Point id="point5"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point6" x="666" y="54"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+    </bg:HLane>
+    <bg:HLane id="hLane2" automaticGraphLayout="false" expandedHeight="72" expandedWidth="1450" height="72" inheritNodeLayout="true" left="0" top="0" width="1450" y="70">
+      <label>Doctor</label>
+      <ports>
+        <ciied:Port id="port85"/>
+      </ports>
+      <bg:Task id="task6" height="50" left="341" top="10" width="90" x="341" y="10">
+        <label>Receive Availability Request</label>
+        <ports>
+          <ciied:Port id="port86"/>
+          <ciied:Port id="port87" movable="false"/>
+          <ciied:Port id="port88" movable="false"/>
+          <ciied:Port id="port89" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port90" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port91" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port92" clipOnShape="true" x="1"/>
+          <ciied:Port id="port93" clipOnShape="true" x="0"/>
+          <ciied:Port id="port94" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port95" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port96" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port97" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port98" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task7" height="50" left="471" top="10" width="90" x="471" y="10">
+        <label>Send Availability</label>
+        <ports>
+          <ciied:Port id="port99"/>
+          <ciied:Port id="port100" clipOnShape="true" x="0"/>
+          <ciied:Port id="port101" clipOnShape="true" x="1"/>
+          <ciied:Port id="port102" movable="false"/>
+          <ciied:Port id="port103" movable="false"/>
+          <ciied:Port id="port104" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port105" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port106" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port107" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port108" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port109" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port110" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port111" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task8" height="50" left="861" top="10" width="90" x="861" y="10">
+        <label>Receive Booking</label>
+        <ports>
+          <ciied:Port id="port112"/>
+          <ciied:Port id="port113" clipOnShape="true" x="0"/>
+          <ciied:Port id="port114" clipOnShape="true" x="1"/>
+          <ciied:Port id="port115" movable="false"/>
+          <ciied:Port id="port116" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port117" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port118" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port119" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port120" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port121" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port122" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port123" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task9" height="50" left="1121" top="10" width="90" x="1121" y="10">
+        <label>Receive Symptoms</label>
+        <ports>
+          <ciied:Port id="port124"/>
+          <ciied:Port id="port125" clipOnShape="true" x="1"/>
+          <ciied:Port id="port126" movable="false"/>
+          <ciied:Port id="port127" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port128" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port129" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port130" clipOnShape="true" x="0"/>
+          <ciied:Port id="port131" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port132" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port133" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port134" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port135" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task10" height="50" left="1251" top="10" width="90" x="1251" y="10">
+        <label>Send Prescription</label>
+        <ports>
+          <ciied:Port id="port136"/>
+          <ciied:Port id="port137" clipOnShape="true" y="0"/>
+          <ciied:Port id="port138" x="1"/>
+          <ciied:Port id="port139" clipOnShape="true" x="1"/>
+          <ciied:Port id="port140" movable="false"/>
+          <ciied:Port id="port141" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port142" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port143" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port144" clipOnShape="true" x="0"/>
+          <ciied:Port id="port145" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port146" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port147" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port148" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port149" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:EndEvent id="endEvent1" height="30" left="1383" top="18" width="30" x="1383" y="18">
+        <label>End</label>
+        <ports>
+          <ciied:Port id="port150"/>
+          <ciied:Port id="port151" x="1"/>
+          <ciied:Port id="port152" y="1"/>
+          <ciied:Port id="port153" movable="false"/>
+          <ciied:Port id="port154" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port155" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port156" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port157" clipOnShape="true" x="0"/>
+          <ciied:Port id="port158" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port159" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port160" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port161" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port162" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:EndEvent>
+      <bg:SequenceFlow id="sequenceFlow4" endPort="port100" startPort="port92">
+        <fallbackEndPoint>
+          <fg:Point id="point7"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point8" x="414" y="44"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow5" endPort="port144" startPort="port125">
+        <fallbackEndPoint>
+          <fg:Point id="point9" x="1265" y="47"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point10"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow6" endPort="port157" startPort="port139">
+        <fallbackEndPoint>
+          <fg:Point id="point11" x="1385" y="47"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point12"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+    </bg:HLane>
+    <bg:SequenceFlow id="sequenceFlow7" endPort="port93" startPort="port32">
+      <fallbackEndPoint>
+        <fg:Point id="point13" x="363" y="152"/>
+      </fallbackEndPoint>
+      <fallbackStartPoint>
+        <fg:Point id="point14"/>
+      </fallbackStartPoint>
+      <intermediatePoints>
+        <fg:Point id="point15" x="346" y="35"/>
+        <fg:Point id="point16" x="346" y="105"/>
+      </intermediatePoints>
+      <label>Are you available?</label>
+      <shapeType>free</shapeType>
+    </bg:SequenceFlow>
+    <bg:SequenceFlow id="sequenceFlow8" endPort="port52" startPort="port101">
+      <fallbackEndPoint>
+        <fg:Point id="point17" x="614" y="49"/>
+      </fallbackEndPoint>
+      <fallbackStartPoint>
+        <fg:Point id="point18"/>
+      </fallbackStartPoint>
+      <intermediatePoints>
+        <fg:Point id="point19" x="606" y="105"/>
+        <fg:Point id="point20" x="606" y="35"/>
+      </intermediatePoints>
+      <label>I am available</label>
+      <shapeType>free</shapeType>
+    </bg:SequenceFlow>
+    <bg:SequenceFlow id="sequenceFlow9" endPort="port113" startPort="port65">
+      <fallbackEndPoint>
+        <fg:Point id="point21"/>
+      </fallbackEndPoint>
+      <fallbackStartPoint>
+        <fg:Point id="point22" x="814" y="48"/>
+      </fallbackStartPoint>
+      <intermediatePoints>
+        <fg:Point id="point23" x="866" y="35"/>
+        <fg:Point id="point24" x="866" y="105"/>
+      </intermediatePoints>
+      <label>I'll book you</label>
+      <shapeType>free</shapeType>
+    </bg:SequenceFlow>
+    <bg:SequenceFlow id="sequenceFlow10" endPort="port79" startPort="port114">
+      <fallbackEndPoint>
+        <fg:Point id="point25" x="1012" y="57"/>
+      </fallbackEndPoint>
+      <fallbackStartPoint>
+        <fg:Point id="point26"/>
+      </fallbackStartPoint>
+      <intermediatePoints>
+        <fg:Point id="point27" x="996" y="105"/>
+        <fg:Point id="point28" x="996" y="35"/>
+      </intermediatePoints>
+      <label></label>
+      <shapeType>free</shapeType>
+    </bg:SequenceFlow>
+    <bg:SequenceFlow id="sequenceFlow11" endPort="port130" startPort="port74">
+      <fallbackEndPoint>
+        <fg:Point id="point29" x="1135" y="162"/>
+      </fallbackEndPoint>
+      <fallbackStartPoint>
+        <fg:Point id="point30"/>
+      </fallbackStartPoint>
+      <intermediatePoints>
+        <fg:Point id="point31" x="1126" y="35"/>
+        <fg:Point id="point32" x="1126" y="105"/>
+      </intermediatePoints>
+      <label></label>
+      <shapeType>free</shapeType>
+    </bg:SequenceFlow>
+  </bg:HPool>
+  <bg:HPool id="hPool2" automaticGraphLayout="false" expandedHeight="72" expandedWidth="1475" gap="-2" height="72" inheritNodeLayout="true" left="20" top="50" width="1475" x="20" y="50">
+    <label>Patient</label>
+    <ports>
+      <ciied:Port id="port163"/>
+    </ports>
+    <bg:HLane id="hLane3" automaticGraphLayout="false" expandedHeight="72" expandedWidth="1450" height="72" inheritNodeLayout="true" left="0" top="0" width="1450">
+      <label></label>
+      <ports>
+        <ciied:Port id="port164"/>
+      </ports>
+      <bg:StartEvent id="startEvent2" height="30" left="10" top="19" width="30" x="10" y="19">
+        <label>Illness</label>
+        <ports>
+          <ciied:Port id="port165"/>
+          <ciied:Port id="port166" movable="false"/>
+          <ciied:Port id="port167" movable="false"/>
+          <ciied:Port id="port168" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port169" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port170" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port171" clipOnShape="true" x="1"/>
+          <ciied:Port id="port172" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port173" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port174" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port175" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port176" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:StartEvent>
+      <bg:Task id="task11" height="50" left="81" top="10" width="90" x="81" y="10">
+        <label>Send Doctor Request</label>
+        <ports>
+          <ciied:Port id="port177"/>
+          <ciied:Port id="port178" clipOnShape="true" x="0"/>
+          <ciied:Port id="port179" clipOnShape="true" y="1"/>
+          <ciied:Port id="port180" movable="false"/>
+          <ciied:Port id="port181" movable="false"/>
+          <ciied:Port id="port182" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port183" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port184" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port185" clipOnShape="true" x="1"/>
+          <ciied:Port id="port186" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port187" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port188" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port189" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port190" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task12" height="50" left="991" top="10" width="90" x="991" y="10">
+        <label>Receive Appointment</label>
+        <ports>
+          <ciied:Port id="port191"/>
+          <ciied:Port id="port192" clipOnShape="true" x="0"/>
+          <ciied:Port id="port193" y="1"/>
+          <ciied:Port id="port194" clipOnShape="true" y="1"/>
+          <ciied:Port id="port195" x="1"/>
+          <ciied:Port id="port196" movable="false"/>
+          <ciied:Port id="port197" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port198" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port199" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port200" clipOnShape="true" x="1"/>
+          <ciied:Port id="port201" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port202" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port203" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port204" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port205" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task13" height="50" left="1121" top="10" width="90" x="1121" y="10">
+        <label>Send Symptoms</label>
+        <ports>
+          <ciied:Port id="port206"/>
+          <ciied:Port id="port207" x="1"/>
+          <ciied:Port id="port208" clipOnShape="true" x="0"/>
+          <ciied:Port id="port209" movable="false"/>
+          <ciied:Port id="port210" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port211" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port212" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port213" clipOnShape="true" x="1"/>
+          <ciied:Port id="port214" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port215" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port216" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port217" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port218" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:Task id="task14" height="50" left="1251" top="10" width="90" x="1251" y="10">
+        <label>Receive Prescription</label>
+        <ports>
+          <ciied:Port id="port219"/>
+          <ciied:Port id="port220" clipOnShape="true" x="0"/>
+          <ciied:Port id="port221" clipOnShape="true" y="1"/>
+          <ciied:Port id="port222" x="1"/>
+          <ciied:Port id="port223" clipOnShape="true" x="1"/>
+          <ciied:Port id="port224" movable="false"/>
+          <ciied:Port id="port225" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port226" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port227" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port228" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port229" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port230" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port231" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port232" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:Task>
+      <bg:EndEvent id="endEvent2" height="30" left="1383" top="18" width="30" x="1383" y="18">
+        <label>End</label>
+        <ports>
+          <ciied:Port id="port233"/>
+          <ciied:Port id="port234" x="0"/>
+          <ciied:Port id="port235" movable="false"/>
+          <ciied:Port id="port236" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port237" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port238" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port239" clipOnShape="true" x="0"/>
+          <ciied:Port id="port240" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port241" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port242" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port243" clipOnShape="true" movable="false"/>
+          <ciied:Port id="port244" clipOnShape="true" movable="false">
+            <id>CENTER</id>
+          </ciied:Port>
+        </ports>
+      </bg:EndEvent>
+      <bg:SequenceFlow id="sequenceFlow12" endPort="port178" startPort="port171">
+        <fallbackEndPoint>
+          <fg:Point id="point33"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point34" x="47" y="48"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow13" endPort="port192" startPort="port185">
+        <fallbackEndPoint>
+          <fg:Point id="point35"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point36" x="161" y="44"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow14" endPort="port208" startPort="port200">
+        <fallbackEndPoint>
+          <fg:Point id="point37"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point38" x="1057" y="47"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow15" endPort="port220" startPort="port213">
+        <fallbackEndPoint>
+          <fg:Point id="point39"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point40" x="1193" y="50"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+      <bg:SequenceFlow id="sequenceFlow16" endPort="port239" startPort="port223">
+        <fallbackEndPoint>
+          <fg:Point id="point41" x="1392" y="52"/>
+        </fallbackEndPoint>
+        <fallbackStartPoint>
+          <fg:Point id="point42"/>
+        </fallbackStartPoint>
+        <label></label>
+        <shapeType>straight</shapeType>
+      </bg:SequenceFlow>
+    </bg:HLane>
+  </bg:HPool>
+  <bg:MessageFlow id="messageFlow1" endPort="port4" startPort="port179">
+    <fallbackEndPoint>
+      <fg:Point id="point43"/>
+    </fallbackEndPoint>
+    <fallbackStartPoint>
+      <fg:Point id="point44"/>
+    </fallbackStartPoint>
+    <label>I want to see doctor</label>
+    <shapeType>straight</shapeType>
+  </bg:MessageFlow>
+  <bg:MessageFlow id="messageFlow2" endPort="port194" startPort="port73">
+    <fallbackEndPoint>
+      <fg:Point id="point45"/>
+    </fallbackEndPoint>
+    <fallbackStartPoint>
+      <fg:Point id="point46"/>
+    </fallbackStartPoint>
+    <label>Go see doctor</label>
+    <shapeType>straight</shapeType>
+  </bg:MessageFlow>
+  <bg:MessageFlow id="messageFlow3" endPort="port221" startPort="port137">
+    <fallbackEndPoint>
+      <fg:Point id="point47"/>
+    </fallbackEndPoint>
+    <fallbackStartPoint>
+      <fg:Point id="point48"/>
+    </fallbackStartPoint>
+    <label>Send Prescription</label>
+    <shapeType>straight</shapeType>
+  </bg:MessageFlow>
+</diagram>

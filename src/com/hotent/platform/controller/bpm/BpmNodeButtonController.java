@@ -1,0 +1,1003 @@
+package com.hotent.platform.controller.bpm;
+import com.hotent.platform.model.form.BpmDataTemplate;
+import com.hotent.platform.model.form.BpmFormTable;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.junit.Test;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.hotent.BpmFormBang.model.bpmFormBang.BpmFormBang;
+import com.hotent.BpmFormBang.service.bpmFormBang.BpmFormBangService;
+import com.hotent.Markovchain.model.Markovchain.NodeSet;
+import com.hotent.Markovchain.model.Markovchain.SequenceFlow;
+import com.hotent.core.annotion.Action;
+import com.hotent.core.annotion.ActionExecOrder;
+import com.hotent.core.bpm.model.FlowNode;
+import com.hotent.core.bpm.model.NodeCache;
+import com.hotent.core.util.AppUtil;
+import com.hotent.core.util.Dom4jUtil;
+import com.hotent.core.util.ExceptionUtil;
+import com.hotent.core.util.FileUtil;
+import com.hotent.core.util.StringUtil;
+import com.hotent.core.util.UniqueIdUtil;
+import com.hotent.core.util.XmlBeanUtil;
+import com.hotent.core.web.ResultMessage;
+import com.hotent.core.web.controller.BaseController;
+import com.hotent.core.web.util.RequestUtil;
+import com.hotent.eventgraphrelation.model.eventgraphrelation.Eventgraphrelation;
+import com.hotent.eventgraphrelation.service.eventgraphrelation.EventgraphrelationService;
+import com.hotent.platform.model.bpm.BpmButton;
+import com.hotent.platform.model.bpm.BpmDefinition;
+import com.hotent.platform.model.bpm.BpmNodeButton;
+import com.hotent.platform.model.bpm.BpmNodeButtonXml;
+import com.hotent.platform.model.bpm.BpmNodeSet;
+import com.hotent.platform.model.system.SysAuditModelType;
+import com.hotent.platform.service.bpm.BpmDefinitionService;
+import com.hotent.platform.service.bpm.BpmNodeButtonService;
+import com.hotent.platform.service.bpm.BpmNodeSetService;
+import com.hotent.platform.service.bpm.BpmService;
+import com.hotent.platform.service.bpm.thread.MessageUtil;
+import com.hotent.platform.service.form.BpmDataTemplateService;
+import com.hotent.platform.service.form.BpmFormTableService;
+import com.hotent.platform.service.form.BpmFormTemplateService;
+import com.hotent.platform.service.form.FormUtil;
+
+/**
+ * 对象功能:自定义工具条 控制器类
+ * 开发公司:广州宏天软件有限公司
+ * 开发人员:ray
+ * 创建时间:2012-07-25 18:26:13
+ */
+@Controller
+@RequestMapping("/platform/bpm/bpmNodeButton/")
+@Action(ownermodel=SysAuditModelType.PROCESS_MANAGEMENT)
+public class BpmNodeButtonController extends BaseController
+{
+	@Resource
+	private BpmNodeButtonService bpmNodeButtonService;
+	@Resource
+	private BpmFormTableService bpmFormTableService;
+	@Resource
+	private BpmFormBangService bpmformbangservice ; 
+
+	@Resource
+	private BpmDataTemplateService  bpmDataTemplateService ;
+	
+	@Resource
+	private BpmDefinitionService bpmDefinitionService;
+	
+	@Resource
+	private BpmNodeSetService bpmNodeSetService;
+	@Resource
+	private BpmService bpmService;
+	@Resource
+	private EventgraphrelationService eventgraphrelationService;
+	@Resource
+	private BpmDefinitionService definitionservice;
+	@Resource
+	private BpmService bpmservice;
+	
+	/**
+	 * 取得自定义工具条分页列表
+	 * @param request
+	 * @param response
+	 * @param page
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("list")
+//	@Action(description="查看自定义工具条分页列表")
+	public ModelAndView list(HttpServletRequest request,HttpServletResponse response) throws Exception
+	{	
+		Long defId=RequestUtil.getLong(request, "defId");
+		
+		BpmDefinition bpmDefinition=bpmDefinitionService.getById(defId);
+		
+		String actDefId=bpmDefinition.getActDefId();
+		
+		List<BpmNodeSet> list=bpmNodeSetService.getByDefId(defId);
+		
+		Map<String,FlowNode> taskMap=NodeCache.getByActDefId(actDefId);
+		
+		Map<String,List<BpmNodeButton>> btnMap= bpmNodeButtonService.getMapByDefId(defId);
+		
+		//读按钮配置文件button.xml
+				String buttonPath = FormUtil.getDesignButtonPath();
+				String xml = FileUtil.readFile(buttonPath + "button.xml");
+				Document document = Dom4jUtil.loadXml(xml);
+				Element root = document.getRootElement();
+				String xmlStr = root.asXML();
+				BpmNodeButtonXml bpmButtonList = (BpmNodeButtonXml) XmlBeanUtil
+						.unmarshall(xmlStr, BpmNodeButtonXml.class);
+				List<BpmButton> btnList = bpmButtonList.getButtons();
+				//对按钮进行分类
+				List<BpmButton> startBtnList = new ArrayList<BpmButton>();//起始节点按钮
+				List<BpmButton> firstNodeBtnList = new ArrayList<BpmButton>();//第一个节点按钮
+				List<BpmButton> signBtnList = new ArrayList<BpmButton>();//会签节点按钮
+				List<BpmButton> commonBtnList = new ArrayList<BpmButton>();//普通节点按钮
+				for(BpmButton button:btnList){
+					if(button.getInit()==0) continue;
+					if(button.getType()==0){
+						startBtnList.add(button);
+					}
+					else if(button.getType()==1){
+						firstNodeBtnList.add(button);
+					}
+					else if(button.getType()==2){
+						signBtnList.add(button);
+					}
+					else if(button.getType()==3){
+						commonBtnList.add(button);
+					}
+					else if(button.getType()==4){
+						signBtnList.add(button);
+						commonBtnList.add(button);
+					}
+				}
+		
+		return this.getAutoView()
+				.addObject("btnMap", btnMap)
+				.addObject("taskMap", taskMap)
+				.addObject("bpmNodeSetList", list)
+				.addObject("bpmDefinition", bpmDefinition)
+				.addObject("startBtnList", startBtnList)
+				.addObject("firstNodeBtnList", firstNodeBtnList)
+				.addObject("signBtnList", signBtnList)
+				.addObject("commonBtnList", commonBtnList);
+		
+	}
+	
+	/*@RequestMapping("getByNode")
+//	@Action(description="设置节点的操作按钮")     
+	public ModelAndView getByNode(HttpServletRequest request,HttpServletResponse response) throws Exception
+	{	
+		ModelAndView mv=this.getAutoView();
+		Boolean buttonFlag =  RequestUtil.getBoolean(request, "buttonFlag",true);
+		long defId=RequestUtil.getLong(request,"defId",0);
+		String nodeId=RequestUtil.getString(request, "nodeId");
+		String  tableIdsherstr = "";
+		Long tableIdsher;
+		BpmFormTable bpmFormTable;
+		String  formKeysher = "";
+		String  templateIdsher = "";
+		BpmDataTemplate bpmdatatemplate = null;
+		List<BpmNodeSet> bpmnodesetlistsher= bpmNodeSetService.getByDefId(defId);
+		for(int i = 0;i<bpmnodesetlistsher.size();i++){
+			if(nodeId.equals(bpmnodesetlistsher.get(i).getNodeId())){
+				tableIdsherstr = bpmnodesetlistsher.get(i).getTableId();
+				formKeysher = bpmnodesetlistsher.get(i).getFormKey();
+				templateIdsher = bpmnodesetlistsher.get(i).getTemplateId();
+			    if(!tableIdsherstr.equals("")&&tableIdsherstr!=null){
+					tableIdsher = Long.parseLong(tableIdsherstr);
+					bpmFormTable = bpmFormTableService.getByTableId(tableIdsher,0);
+					mv.addObject("tableIdsher", tableIdsher)
+					.addObject("bpmFormTableIdsher", bpmFormTable.getTableId())
+					.addObject("bpmFormTableJSON", JSONObject.fromObject(bpmFormTable));
+				}else{
+					mv.addObject("tableIdsher",0)
+					.addObject("bpmFormTableIdsher",0)
+					.addObject("bpmFormTableJSON",new JSONObject());
+				}
+			    if(!templateIdsher.equals("")&&templateIdsher!=null){
+					List<BpmNodeButton> buttondelist=new ArrayList<BpmNodeButton>();
+					List<BpmNodeButton> templist;
+					bpmdatatemplate = bpmDataTemplateService.getById(Long.parseLong(templateIdsher));
+					System.out.println("yeyiyeyi:"+JSONObject.fromObject(bpmdatatemplate));
+					mv.addObject("DataRightsJson",JSONObject.fromObject(bpmdatatemplate))						
+						.addObject("manageField", bpmdatatemplate.getManageField());
+					templist = bpmNodeButtonService.getByDefId(defId);
+					for(int j = 0;j<templist.size();j++){
+						if(templist.get(j).getNodeid().equals(nodeId)){
+							buttondelist.add(templist.get(j));
+						}
+					}
+					//bpmNodeButtonService.getAll()
+					
+					for(int j = 0;j<bpmNodeButtonService.getAll().size();j++){
+						if(bpmNodeButtonService.getAll().get(j).getOperatortype()==0){
+							bpmNodeButtonService.delById(bpmNodeButtonService.getAll().get(j).getId());
+						}
+					}
+					for(int j = 0;j<buttondelist.size();j++){
+						if(buttondelist.get(j).getOperatortype()>=19&&buttondelist.get(j).getOperatortype()<=32){
+							bpmNodeButtonService.delById(buttondelist.get(j).getId());
+						}
+					}
+					JSONArray button = JSONArray.fromObject(bpmdatatemplate.getManageField());
+					for(int j=0;j<button.size();j++){
+						JSONObject jo = button.getJSONObject(j);
+						String btnname = (String) jo.get("desc");
+						String btntype = (String) jo.get("name");
+						String btnId = (String)jo.get("btnId");
+						BpmNodeButton bpmNodeButton = new BpmNodeButton();
+							bpmNodeButton.setId(Long.parseLong(btnId));
+							bpmNodeButton.setBtnname(btnname);
+							bpmNodeButton.setDefId(defId);
+							bpmNodeButton.setNodeid(nodeId);
+							bpmNodeButton.setActdefid(bpmDefinitionService.getById(defId).getActDefId());
+							if(btntype.endsWith("edit")){
+								bpmNodeButton.setOperatortype(19);
+							}
+							else if(btntype.equals("edit")){
+								bpmNodeButton.setOperatortype(19);
+							}else if(btntype.equals("del")){
+								bpmNodeButton.setOperatortype(20);
+							}else if(btntype.equals("detail")){
+								bpmNodeButton.setOperatortype(21);
+							}else if(btntype.equals("start")){
+								bpmNodeButton.setOperatortype(22);
+							}else if(btntype.equals("restart")){
+								bpmNodeButton.setOperatortype(23);
+							}else if(btntype.equals("diyinside")){
+								bpmNodeButton.setOperatortype(24);
+							}else if(btntype.equals("add")){
+								bpmNodeButton.setOperatortype(25);
+							}else if(btntype.equals("delall")){
+								bpmNodeButton.setOperatortype(26);
+							}else if(btntype.equals("export")){
+								bpmNodeButton.setOperatortype(27);
+							}else if(btntype.equals("import")){
+								bpmNodeButton.setOperatortype(28);
+							}else if(btntype.equals("print")){
+								bpmNodeButton.setOperatortype(29);
+							}else if(btntype.equals("starts")){
+								bpmNodeButton.setOperatortype(30);
+							}else if(btntype.equals("restarts")){
+								bpmNodeButton.setOperatortype(31);
+							}else if(btntype.equals("diyoutside")){
+								bpmNodeButton.setOperatortype(32);
+							}else{
+								bpmNodeButton.setOperatortype(24);
+							}
+							if(bpmNodeButtonService.getById(Long.parseLong(btnId))!=null){
+								bpmNodeButtonService.update(bpmNodeButton);
+							}else{
+								bpmNodeButtonService.add(bpmNodeButton);
+							}
+				   }
+					mv.addObject("templateIdsher", templateIdsher)
+					  .addObject("formKeysher", formKeysher)
+					  .addObject("templateIdLong", Long.parseLong(templateIdsher))
+					  .addObject("templateName",bpmdatatemplate.getName());
+			    }else{
+			    	if(!formKeysher.equals("")&&formKeysher!=null){
+			    		mv.addObject("formKeysher", formKeysher);						  
+			    	}else{
+			    		mv.addObject("formKeysher", "none");			    		 
+			    	}
+			    	mv.addObject("DataRightsJson","none")						
+					  .addObject("manageField","none")
+					  .addObject("templateIdsher", "none")
+					  .addObject("templateIdLong", 0)
+					  .addObject("templateName","none");
+			    }
+			}else{
+				System.out.println("en???");
+			}
+		}
+		if(defId==0){
+			throw new Exception("没有输入流程定义ID");
+		}
+		BpmDefinition bpmDefinition=bpmDefinitionService.getById(defId);
+		if(StringUtil.isEmpty(nodeId)){
+			List<BpmNodeButton> list=bpmNodeButtonService.getByStartForm(defId);
+			mv.addObject("btnList", list);
+			mv.addObject("isStartForm", 1);
+		}
+		else{
+			List<BpmNodeButton> list=bpmNodeButtonService.getByDefNodeId(defId, nodeId);
+			List<BpmNodeButton> neibulist = bpmNodeButtonService.getByDefNodeId(defId, nodeId);
+			List<BpmNodeButton> waibulist = bpmNodeButtonService.getByDefNodeId(defId, nodeId);
+			for(int i = 0;i<list.size();i++){
+				if(list.get(i).getOperatortype()>18){
+					waibulist.remove(list.get(i));
+				}else{
+					neibulist.remove(list.get(i));
+				}
+			}
+			mv.addObject("btnList", list);
+			mv.addObject("neibuList", neibulist);
+			mv.addObject("waibuList", waibulist);
+			mv.addObject("isStartForm", 0);
+		}
+		mv.addObject("bpmDefinition", bpmDefinition)
+		.addObject("defId", defId)
+		.addObject("buttonFlagsher",buttonFlag)
+		.addObject("actdefIdsher", bpmDefinitionService.getById(defId).getActDefId())
+		.addObject("nodeId", nodeId)
+		.addObject("defIdsher", defId)
+		.addObject("nodeIdsher", nodeId)
+		.addObject("bpmDefinitionsher",bpmDefinitionService.getById(defId))
+		.addObject("buttonFlag",buttonFlag);
+		return mv;
+	} */
+	@RequestMapping("getByNode")
+//	@Action(description="设置节点的操作按钮")     
+	public ModelAndView getByNode(HttpServletRequest request,HttpServletResponse response) throws Exception
+	{	
+		ModelAndView mv=this.getAutoView();
+		Boolean buttonFlag =  RequestUtil.getBoolean(request, "buttonFlag",true);
+		long defId=RequestUtil.getLong(request,"defId",0);
+		String nodeId=RequestUtil.getString(request, "nodeId");
+		String  tableIdsherstr = "";
+		Long tableIdsher;
+		BpmFormTable bpmFormTable;
+		String  formKeysher = "";
+		String  templateIdsher = "";
+		BpmDataTemplate bpmdatatemplate = null;
+		List<BpmNodeSet> bpmnodesetlistsher= bpmNodeSetService.getByDefId(defId);
+		for(int i = 0;i<bpmnodesetlistsher.size();i++){
+			if(nodeId.equals(bpmnodesetlistsher.get(i).getNodeId())){
+				tableIdsherstr = bpmnodesetlistsher.get(i).getTableId();
+				formKeysher = bpmnodesetlistsher.get(i).getFormKey();
+				templateIdsher = bpmnodesetlistsher.get(i).getTemplateId();
+			    if(!tableIdsherstr.equals("")&&tableIdsherstr!=null){
+					tableIdsher = Long.parseLong(tableIdsherstr);
+					bpmFormTable = bpmFormTableService.getByTableId(tableIdsher,0);
+					mv.addObject("tableIdsher", tableIdsher)
+					.addObject("bpmFormTableIdsher", bpmFormTable.getTableId())
+					.addObject("bpmFormTableJSON", JSONObject.fromObject(bpmFormTable));
+				}else{
+					mv.addObject("tableIdsher",0)
+					.addObject("bpmFormTableIdsher",0)
+					.addObject("bpmFormTableJSON",new JSONObject());
+				}
+			    if(!templateIdsher.equals("")&&templateIdsher!=null){
+					List<BpmNodeButton> buttondelist=new ArrayList<BpmNodeButton>();
+					List<BpmNodeButton> templist;
+					bpmdatatemplate = bpmDataTemplateService.getById(Long.parseLong(templateIdsher));
+					System.out.println("yeyiyeyi:"+JSONObject.fromObject(bpmdatatemplate));
+					mv.addObject("DataRightsJson",JSONObject.fromObject(bpmdatatemplate))						
+						.addObject("manageField", bpmdatatemplate.getManageField());
+					templist = bpmNodeButtonService.getByDefId(defId);
+					for(int j = 0;j<templist.size();j++){
+						if(templist.get(j).getNodeid().equals(nodeId)){
+							buttondelist.add(templist.get(j));
+						}
+					}
+					//bpmNodeButtonService.getAll()
+					
+					/*for(int j = 0;j<bpmNodeButtonService.getAll().size();j++){
+						if(bpmNodeButtonService.getAll().get(j).getOperatortype()==0){
+							bpmNodeButtonService.delById(bpmNodeButtonService.getAll().get(j).getId());
+						}
+					}*/
+					/**
+					for(int j = 0;j<buttondelist.size();j++){
+						if(buttondelist.get(j).getOperatortype()>=19&&buttondelist.get(j).getOperatortype()<=32){
+							bpmNodeButtonService.delById(buttondelist.get(j).getId());
+						}
+					}
+					**/
+					JSONArray button = JSONArray.fromObject(bpmdatatemplate.getManageField());
+					for(int j=0;j<button.size();j++){
+						JSONObject jo = button.getJSONObject(j);
+						String btnname = (String) jo.get("desc");
+						String btntype = (String) jo.get("name");
+						String btnId = (String)jo.get("btnId");
+						BpmNodeButton bpmNodeButton = new BpmNodeButton();
+							bpmNodeButton.setId(Long.parseLong(btnId));
+							bpmNodeButton.setBtnname(btnname);
+							bpmNodeButton.setDefId(defId);
+							bpmNodeButton.setNodeid(nodeId);
+							bpmNodeButton.setActdefid(bpmDefinitionService.getById(defId).getActDefId());
+							if(btntype.endsWith("edit")){
+								bpmNodeButton.setOperatortype(19);
+							}
+							else if(btntype.equals("edit")){
+								bpmNodeButton.setOperatortype(19);
+							}else if(btntype.equals("del")){
+								bpmNodeButton.setOperatortype(20);
+							}else if(btntype.equals("detail")){
+								bpmNodeButton.setOperatortype(21);
+							}else if(btntype.equals("start")){
+								bpmNodeButton.setOperatortype(22);
+							}else if(btntype.equals("restart")){
+								bpmNodeButton.setOperatortype(23);
+							}else if(btntype.equals("diyinside")){
+								bpmNodeButton.setOperatortype(24);
+							}else if(btntype.equals("add")){
+								bpmNodeButton.setOperatortype(25);
+							}else if(btntype.equals("delall")){
+								bpmNodeButton.setOperatortype(26);
+							}else if(btntype.equals("export")){
+								bpmNodeButton.setOperatortype(27);
+							}else if(btntype.equals("import")){
+								bpmNodeButton.setOperatortype(28);
+							}else if(btntype.equals("print")){
+								bpmNodeButton.setOperatortype(29);
+							}else if(btntype.equals("starts")){
+								bpmNodeButton.setOperatortype(30);
+							}else if(btntype.equals("restarts")){
+								bpmNodeButton.setOperatortype(31);
+							}else if(btntype.equals("diyoutside")){
+								bpmNodeButton.setOperatortype(32);
+							}else{
+								bpmNodeButton.setOperatortype(24);
+							}
+							if(bpmNodeButtonService.getById(Long.parseLong(btnId))!=null){
+								System.out.println("update");
+								//bpmNodeButtonService.update(bpmNodeButton);
+							}else{
+								System.out.println("add");
+								bpmNodeButtonService.add(bpmNodeButton);
+							}
+				   }
+					mv.addObject("templateIdsher", templateIdsher)
+					  .addObject("formKeysher", formKeysher)
+					  .addObject("templateIdLong", Long.parseLong(templateIdsher))
+					  .addObject("templateName",bpmdatatemplate.getName());
+			    }else{
+			    	if(!formKeysher.equals("")&&formKeysher!=null){
+			    		mv.addObject("formKeysher", formKeysher);						  
+			    	}else{
+			    		mv.addObject("formKeysher", "none");			    		 
+			    	}
+			    	mv.addObject("DataRightsJson",new JSONObject())						
+					  .addObject("manageField",new JSONObject())
+					  .addObject("templateIdsher", "none")
+					  .addObject("templateIdLong", 0)
+					  .addObject("templateName","none");
+			    }
+			}else{
+				System.out.println("en???");
+			}
+		}
+		if(defId==0){
+			throw new Exception("没有输入流程定义ID");
+		}
+		BpmDefinition bpmDefinition=bpmDefinitionService.getById(defId);
+		if(StringUtil.isEmpty(nodeId)){
+			List<BpmNodeButton> list=bpmNodeButtonService.getByStartForm(defId);
+			mv.addObject("btnList", list);
+			mv.addObject("isStartForm", 1);
+		}
+		else{
+			List<BpmNodeButton> list=bpmNodeButtonService.getByDefNodeId(defId, nodeId);
+			List<BpmNodeButton> neibulist = bpmNodeButtonService.getByDefNodeId(defId, nodeId);
+			List<BpmNodeButton> waibulist = bpmNodeButtonService.getByDefNodeId(defId, nodeId);
+			for(int i = 0;i<list.size();i++){
+				if(list.get(i).getOperatortype()>18){
+					waibulist.remove(list.get(i));
+				}else{
+					neibulist.remove(list.get(i));
+				}
+			}
+			mv.addObject("btnList", list);
+			mv.addObject("neibuList", neibulist);
+			mv.addObject("waibuList", waibulist);
+			mv.addObject("isStartForm", 0);
+		}
+		mv.addObject("bpmDefinition", bpmDefinition)
+		.addObject("defId", defId)
+		.addObject("buttonFlagsher",buttonFlag)
+		.addObject("actdefIdsher", bpmDefinitionService.getById(defId).getActDefId())
+		.addObject("nodeId", nodeId)
+		.addObject("defIdsher", defId)
+		.addObject("nodeIdsher", nodeId)
+		.addObject("bpmDefinitionsher",bpmDefinitionService.getById(defId))
+		.addObject("buttonFlag",buttonFlag);
+		return mv;
+	}
+	@RequestMapping("delall")
+	@Action(description="删除自定义工具条",
+			execOrder=ActionExecOrder.BEFORE,
+			detail="<#assign __index=0 />"+
+					"<#list StringUtils.split(id,\",\") as item>" +
+						"<#assign entity = bpmNodeButtonService.getById(Long.valueOf(item))/>" +
+						"<#if item_index==0>" +
+							"删除流程定义【${SysAuditLinkService.getBpmDefinitionLink(entity.defId)}】的节点" +
+							"<#if entity.nodeid!=''>" +
+							     "【${SysAuditLinkService.getNodeName(entity.defId,entity.nodeid)}】" +
+							"</#if>" +
+							"自定义工具按钮：" +
+						"</#if>"+
+						"【 ${entity.btnname}】 " +
+					"</#list>"
+	)
+	public void delall(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		
+		String preUrl = RequestUtil.getPrePage(request);
+		ResultMessage resultMessage = null;
+		/*Long[] lAryId = RequestUtil.getLongAryByStr(request, "id");*/
+		
+		//System.out.println(lAryId);
+		try{
+			
+			
+			String AryId =(String) request.getParameter("id");
+			String [] stringArr= AryId.split(",");
+			   Long[] lAryId = new Long[stringArr.length];
+			   for (int idx = 1; idx < stringArr.length; idx++) {
+				   lAryId[idx] = Long.parseLong(stringArr[idx]);
+			   }
+			   
+			bpmNodeButtonService.delByIds(lAryId); 
+			resultMessage = new ResultMessage(ResultMessage.Success, "删除自定义工具条成功!");
+		}
+		catch(Exception ex){
+			resultMessage = new ResultMessage(ResultMessage.Fail, "自定义工具条删除失败:" + ex.getMessage());
+		}
+		addMessage(resultMessage, request);
+		response.sendRedirect(preUrl);
+	}
+	/**
+	 * 删除自定义工具条
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("del")
+	@Action(description="删除自定义工具条",
+			execOrder=ActionExecOrder.BEFORE,
+			detail="<#assign __index=0 />"+
+					"<#list StringUtils.split(id,\",\") as item>" +
+						"<#assign entity = bpmNodeButtonService.getById(Long.valueOf(item))/>" +
+						"<#if item_index==0>" +
+							"删除流程定义【${SysAuditLinkService.getBpmDefinitionLink(entity.defId)}】的节点" +
+							"<#if entity.nodeid!=''>" +
+							     "【${SysAuditLinkService.getNodeName(entity.defId,entity.nodeid)}】" +
+							"</#if>" +
+							"自定义工具按钮：" +
+						"</#if>"+
+						"【 ${entity.btnname}】 " +
+					"</#list>"
+	)
+	public void del(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		Long id=RequestUtil.getLong(request,"id");
+		String idstr = id.toString();
+		String templateIdsher=RequestUtil.getString(request,"templateIdsher");
+		if(!(templateIdsher.equals(""))&&(templateIdsher!=null)){
+			BpmDataTemplate  bpmdatatemplatesher = bpmDataTemplateService.getById(Long.parseLong(templateIdsher));
+		    JSONArray button = JSONArray.fromObject(bpmdatatemplatesher.getManageField());
+		    for(int i = 0;i<button.size();i++){
+		    	JSONObject jo = button.getJSONObject(i);
+		    	if(idstr.equals((String)jo.get("btnId"))){
+		    		button.remove(jo);
+		    	}
+		    }
+			bpmdatatemplatesher.setManageField(button.toString());
+			bpmDataTemplateService.update(bpmdatatemplatesher);
+		}
+		String preUrl = RequestUtil.getPrePage(request);
+		ResultMessage resultMessage = null;
+		try{
+			Long[] lAryId = RequestUtil.getLongAryByStr(request, "id");
+			bpmNodeButtonService.delByIds(lAryId);
+			resultMessage = new ResultMessage(ResultMessage.Success, "删除自定义工具条成功!");
+		}
+		catch(Exception ex){
+			resultMessage = new ResultMessage(ResultMessage.Fail, "自定义工具条删除失败:" + ex.getMessage());
+		}
+		addMessage(resultMessage, request);
+		response.sendRedirect(preUrl);
+	}
+
+	@RequestMapping("editnew")
+	@Action(description="编辑自定义工具条")
+	public ModelAndView editnew(HttpServletRequest request) throws Exception
+	{
+		Boolean buttonFlag =  RequestUtil.getBoolean(request, "buttonFlag",true);
+		Long id=RequestUtil.getLong(request,"id");
+		Long defId=RequestUtil.getLong(request, "defId",0);
+		Long defbbId=RequestUtil.getLong(request, "defbbId",0);
+		String formDefId = RequestUtil.getString(request, "formDefId");
+		String nodeId=RequestUtil.getString(request, "nodeId");
+		String btdes = RequestUtil.getString(request, "btdes");		
+		String nnid =RequestUtil.getString(request, "nnid");
+		if("".equals(nodeId)){
+			nodeId="StartEvent1";
+		}
+		
+		BpmDefinition bpmdefinition = definitionservice.getById(defId);
+		Long deployId = bpmdefinition.getActDeployId();
+		String actxml = bpmservice.getDefXmlByDeployId(deployId.toString());
+		List<NodeSet> nodes = new ArrayList<NodeSet>();
+		Document document1 = DocumentHelper.parseText(actxml);
+		Element root1 = document1.getRootElement();
+		List<Element> elementList = root1.elements();
+		System.out.println(elementList.size());
+		Map<String,String> nnidMap = new HashMap<String,String>();
+		System.out.println("nodeId:"+nodeId);
+
+		nnidMap = NodeCache.getNextNodes(nodeId,bpmdefinition.getActDefId());
+
+    	BpmNodeButton bpmNodeButton=null;
+		BpmDefinition bpmDefinition1;
+	    BpmFormBang bpmformbang = new BpmFormBang();
+		ModelAndView mv=this.getAutoView();
+		String probability = "1.0";
+		String defbId = null;
+		String buttonStr = null;
+			if(id!=0){
+				 bpmNodeButton= bpmNodeButtonService.getById(id);
+				 BpmDefinition bpmDefinition= bpmDefinitionService.getById(bpmNodeButton.getDefId());
+				 mv.addObject("bpmDefinition", bpmDefinition);			 
+			}else{
+				BpmDefinition bpmDefinition= bpmDefinitionService.getById(defId);
+				mv.addObject("bpmDefinition", bpmDefinition);
+				
+				String actDefId=bpmDefinition.getActDefId();
+				
+				bpmNodeButton=new BpmNodeButton();
+				bpmNodeButton.setDefId(defId);
+				if(StringUtil.isNotEmpty(nodeId)){
+					if(nodeId.equals("StartEvent1")){
+
+						bpmNodeButton.setIsstartform(1);
+					}else{
+					boolean rtn= bpmService.isSignTask(actDefId,nodeId);
+					bpmNodeButton.setNodetype(rtn?1:0);
+					bpmNodeButton.setIsstartform(0);
+					}
+				}
+				else{
+					bpmNodeButton.setIsstartform(1);
+				}
+				bpmNodeButton.setActdefid(actDefId);
+				bpmNodeButton.setNodeid(nodeId);
+			}
+			//读按钮配置文件button.xml
+			String buttonPath = FormUtil.getDesignButtonPath();
+			String xml = FileUtil.readFile(buttonPath + "button.xml");
+			Document document = Dom4jUtil.loadXml(xml);
+			Element root = document.getRootElement();
+			String xmlStr = root.asXML();
+			BpmNodeButtonXml bpmButtonList = (BpmNodeButtonXml) XmlBeanUtil
+					.unmarshall(xmlStr, BpmNodeButtonXml.class);
+			List<BpmButton> list = bpmButtonList.getButtons();
+			JSONArray array1 = JSONArray.fromObject(list);
+		    buttonStr = array1.toString();
+		    //zl查找所选按钮对应图的流程定义ID和发生概率
+		    boolean isAdd = false;
+
+		    Eventgraphrelation eventgraphrelation = null;
+
+		   if(id!=0) {	
+		   	eventgraphrelation = eventgraphrelationService.getByEventId(id.toString());
+		    	if(null==eventgraphrelation){
+		    		eventgraphrelation = new Eventgraphrelation();
+		    		eventgraphrelation.setId(UniqueIdUtil.genId());
+		    	}else{
+		    		
+		    		defbId = eventgraphrelation.getDefbID();
+			    	System.out.println(defbId+":defbId");
+			    	probability = eventgraphrelation.getProbability();
+		    	}
+		    	if(eventgraphrelation.getEventID() == null) {
+		    		isAdd = true;
+		    	}
+		    	
+		    	
+		    	eventgraphrelation.setDefID(defId.toString());   
+		    	eventgraphrelation.setEventID(id.toString());
+		    	eventgraphrelation.setNodeID(nodeId);
+		    	eventgraphrelation.setProbability(probability);
+		    	if(isAdd)
+		    	    eventgraphrelationService.add(eventgraphrelation);
+		    	else
+		    		eventgraphrelationService.update(eventgraphrelation);
+		    }
+		   if(defbId != null && defbId != ""&&defbId.length()>0&& defbId!="null"){ 
+			     Long ndefId=Long.parseLong(defbId);	   
+			     bpmDefinition1 = bpmDefinitionService.getById(ndefId);
+			     mv.addObject("bpmDefinition1",bpmDefinition1);
+		   }
+		return mv.addObject("bpmNodeButton",bpmNodeButton)
+		.addObject("defId",defId)
+		.addObject("buttonId",id)
+		.addObject("nodeId",nodeId)
+		.addObject("buttonFlag",buttonFlag)
+		.addObject("buttonStr",buttonStr)
+		.addObject("defbbId",defbbId)
+		.addObject("formDefId",formDefId)
+		.addObject("defbId",defbId)
+		.addObject("probability",probability)
+		.addObject("nnidMap",nnidMap)
+		.addObject("nnid",nnid)
+		.addObject("btdes",btdes);
+	}
+	@RequestMapping("edit")
+	@Action(description="编辑自定义工具条")
+	public ModelAndView edit(HttpServletRequest request) throws Exception
+	{
+		Boolean buttonFlag =  RequestUtil.getBoolean(request, "buttonFlag",true);
+		Long id=RequestUtil.getLong(request,"id");
+		Long defId=RequestUtil.getLong(request, "defId",0);
+		Long defbbId=RequestUtil.getLong(request, "defbbId",0);
+		String formDefId = RequestUtil.getString(request, "formDefId");
+		System.out.println("formDefId"+formDefId);
+		String nodeId=RequestUtil.getString(request, "nodeId");
+		BpmNodeButton bpmNodeButton=null;
+		BpmDefinition bpmDefinition1;
+	    BpmFormBang bpmformbang = new BpmFormBang();
+		ModelAndView mv=this.getAutoView();
+		String probability = "1.0";
+		String defbId = null;
+		String buttonStr = null;
+		if(formDefId == "" || formDefId == null){
+			System.out.println("SOS!!!!!!");
+			if(id!=0){
+				 bpmNodeButton= bpmNodeButtonService.getById(id);
+				 BpmDefinition bpmDefinition= bpmDefinitionService.getById(bpmNodeButton.getDefId());
+				 mv.addObject("bpmDefinition", bpmDefinition);			 
+			}else{
+				BpmDefinition bpmDefinition= bpmDefinitionService.getById(defId);
+				mv.addObject("bpmDefinition", bpmDefinition);
+				
+				String actDefId=bpmDefinition.getActDefId();
+				
+				bpmNodeButton=new BpmNodeButton();
+				bpmNodeButton.setDefId(defId);
+				if(StringUtil.isNotEmpty(nodeId)){
+					boolean rtn= bpmService.isSignTask(actDefId,nodeId);
+					bpmNodeButton.setNodetype(rtn?1:0);
+					bpmNodeButton.setIsstartform(0);
+				}
+				else{
+					bpmNodeButton.setIsstartform(1);
+				}
+				bpmNodeButton.setActdefid(actDefId);
+				bpmNodeButton.setNodeid(nodeId);
+			}
+			//读按钮配置文件button.xml
+			String buttonPath = FormUtil.getDesignButtonPath();
+			String xml = FileUtil.readFile(buttonPath + "button.xml");
+			Document document = Dom4jUtil.loadXml(xml);
+			Element root = document.getRootElement();
+			String xmlStr = root.asXML();
+			BpmNodeButtonXml bpmButtonList = (BpmNodeButtonXml) XmlBeanUtil
+					.unmarshall(xmlStr, BpmNodeButtonXml.class);
+			List<BpmButton> list = bpmButtonList.getButtons();
+			JSONArray array = JSONArray.fromObject(list);
+		    buttonStr = array.toString();
+		    //zl查找所选按钮对应图的流程定义ID和发生概
+		    boolean isAdd = false;
+		   // boolean isadd1 = false;
+		    Eventgraphrelation eventgraphrelation = null;
+		   // BpmFormBang bpmformbang = null;
+		   if(id!=0) {	
+		    //	bpmformbang = bpmformbangservice.getByDefbId(defId.toString());
+		   	eventgraphrelation = eventgraphrelationService.getByEventId(id.toString());
+		    //	if(null == bpmformbang){
+		   // 		bpmformbang = new BpmFormBang();
+		   // 		bpmformbang.setId(UniqueIdUtil.genId());
+		  //  	}
+		    	if(null==eventgraphrelation){
+		    		eventgraphrelation = new Eventgraphrelation();
+		    		eventgraphrelation.setId(UniqueIdUtil.genId());
+		    	}else{
+		    		
+		    		defbId = eventgraphrelation.getDefbID();
+			    	System.out.println(defbId+":defbId");
+			    	probability = eventgraphrelation.getProbability();
+		    	}
+		    	if(eventgraphrelation.getEventID() == null) {
+		    		isAdd = true;
+		    	}
+		    	
+
+		    //	bpmformbang.setBtn_probability(probability);
+		   // 	bpmformbang.setDefbId(defbId);	  
+		    //	bpmformbang.setNodeId(nodeId);
+		    //	if(bpmformbang.getDefbId() ==null){
+		    //		isadd1 = true;
+		   // 	}
+		   // 	if(isadd1)
+		   //     	bpmformbangservice.add(bpmformbang);
+		   // 	else
+		   // 		bpmformbangservice.update(bpmformbang);
+		    	
+		    	eventgraphrelation.setDefID(defId.toString());   
+		    	eventgraphrelation.setEventID(id.toString());
+		    	eventgraphrelation.setNodeID(nodeId);
+		    	eventgraphrelation.setProbability(probability);
+		    	if(isAdd)
+		    	    eventgraphrelationService.add(eventgraphrelation);
+		    	else
+		    		eventgraphrelationService.update(eventgraphrelation);
+		    }
+		   if(defbId != null && defbId != ""&&defbId.length()>0&& defbId!="null"){ 
+			     Long ndefId=Long.parseLong(defbId);	   
+			     bpmDefinition1 = bpmDefinitionService.getById(ndefId);
+			     mv.addObject("bpmDefinition1",bpmDefinition1);
+		   }
+		   
+		}else{System.out.println("SOS!");
+			List<BpmFormBang> bpmformbanglist =bpmformbangservice.getByFormDefId(formDefId);
+		       if(bpmformbanglist.size() != 0){
+		    	   if(bpmformbanglist.get(0).getDefbId() != null &&bpmformbanglist.get(0).getDefbId()!=""&&bpmformbanglist.get(0).getDefbId().length()>0){
+		         	   bpmDefinition1 = bpmDefinitionService.getById(Long.parseLong(bpmformbanglist.get(0).getDefbId()));
+		    		   mv.addObject("bpmDefinition1",bpmDefinition1);
+		    	   }
+		       }else{
+		    	   bpmformbang.setId(UniqueIdUtil.genId());	
+					bpmformbang.setFormDefId(formDefId);
+					bpmformbangservice.add(bpmformbang);	
+		       }
+		       
+		}
+		return mv.addObject("bpmNodeButton",bpmNodeButton)
+		.addObject("defId",defId)
+		.addObject("buttonId",id)
+		.addObject("nodeId",nodeId)
+		.addObject("buttonFlag",buttonFlag)
+		.addObject("buttonStr",buttonStr)
+		.addObject("defbbId",defbbId)
+		.addObject("formDefId",formDefId)
+		.addObject("defbId",defbId)
+		.addObject("probability",probability);
+	}
+
+	/**
+	 * 取得自定义工具条明细
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("get")
+	@Action(description="查看自定义工具条明细")
+	public ModelAndView get(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		long id=RequestUtil.getLong(request,"id");
+		BpmNodeButton bpmNodeButton = bpmNodeButtonService.getById(id);		
+		return getAutoView().addObject("bpmNodeButton", bpmNodeButton);
+	}
+	
+	
+	/**
+	 * 取得自定义工具条明细
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("sort")
+	@Action(description="查看自定义工具条明细")
+	public void sort(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		ResultMessage resultMessage = null;
+		String ids = RequestUtil.getString(request, "ids");
+		if(StringUtil.isEmpty(ids)){
+			resultMessage = new ResultMessage(ResultMessage.Fail,"没有设置操作类型!");
+			response.getWriter().print(resultMessage);
+			return;
+		}
+		try{
+			bpmNodeButtonService.sort(ids);
+			resultMessage = new ResultMessage(ResultMessage.Success,"没有设置操作类型!");
+			response.getWriter().print(resultMessage);
+		}
+		catch(Exception ex){
+			String str = MessageUtil.getMessage();
+			if(StringUtil.isNotEmpty(str)){
+			    resultMessage = new ResultMessage(ResultMessage.Fail, "设置操作类型失败:" + str);
+			    response.getWriter().print(resultMessage);
+			}
+			else{
+				String message = ExceptionUtil.getExceptionMessage(ex);
+				resultMessage = new ResultMessage(ResultMessage.Fail, message);
+				response.getWriter().print(resultMessage);
+			}
+		}
+	}
+	
+	
+	@RequestMapping("init")
+	@Action(description="初始化操作按钮",
+			detail="初始化流程定义 【${SysAuditLinkService.getBpmDefinitionLink(Long.valueOf(defId))}】节点" +
+					"<#if !StringUtil.isEmpty(nodeId)>" +
+						"【${SysAuditLinkService.getNodeName(Long.valueOf(defId),nodeId)}】" +
+					"</#if>" +
+					"的操作按钮"
+	)
+	public void init(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String returnUrl=RequestUtil.getPrePage(request);
+		Long defId=RequestUtil.getLong(request, "defId",0);
+		String nodeId=RequestUtil.getString(request, "nodeId");
+		ResultMessage resultMessage=null;
+		try{
+			bpmNodeButtonService.init(defId, nodeId);
+			 resultMessage=new ResultMessage(ResultMessage.Success,"初始化按钮成功!");
+		}
+		catch(Exception ex){
+		     resultMessage = new ResultMessage(ResultMessage.Fail, "初始化按钮失败:" + ex.getMessage());
+		}
+		addMessage(resultMessage, request);
+		response.sendRedirect(returnUrl);
+		
+	}
+	
+	@RequestMapping("initAll")
+	@Action(description = "初始化操作按钮",
+			detail="初始化流程定义 【${SysAuditLinkService.getBpmDefinitionLink(Long.valueOf(defId))}】的全部操作按钮"
+	)
+	public void initAll(HttpServletRequest request, HttpServletResponse response)throws Exception 
+	{
+		String returnUrl = RequestUtil.getPrePage(request);
+		Long defId = RequestUtil.getLong(request, "defId", 0);
+
+		ResultMessage resultMessage = null;
+		try {
+			bpmNodeButtonService.initAll(defId);
+			resultMessage = new ResultMessage(ResultMessage.Success, "初始化按钮成功!");
+		} catch (Exception ex) {
+			resultMessage = new ResultMessage(ResultMessage.Fail,"初始化按钮失败:" + ex.getMessage());
+		}
+		addMessage(resultMessage, request);
+		response.sendRedirect(returnUrl);
+
+	}
+	
+	
+	@RequestMapping("delByDefId")
+	@Action(description="清除按钮配置",
+	
+			detail="清除流程定义 【${SysAuditLinkService.getBpmDefinitionLink(Long.valueOf(defId))}】的表单按钮"
+	)
+	public void delByDefId(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String returnUrl=RequestUtil.getPrePage(request);
+		Long defId=RequestUtil.getLong(request, "defId",0);
+		
+		ResultMessage resultMessage=null;
+		try{
+			bpmNodeButtonService.delByDefId(defId);
+			 resultMessage=new ResultMessage(ResultMessage.Success,"清除流程表单按钮成功!");
+		}
+		catch(Exception ex){
+			resultMessage = new ResultMessage(ResultMessage.Fail,"清除流程表单按钮失败:" +ex.getMessage());
+		}
+		addMessage(resultMessage, request);
+		response.sendRedirect(returnUrl);
+		
+	}
+	
+	/**
+	 * 根据流程定义Id和节点ID删除按钮操作。
+	 * @param defId		流程定义id
+	 * @param nodeId	流程节点ID
+	 * @throws IOException 
+	 */
+	@RequestMapping("deByDefNodeId")
+	@Action(description="清除按钮配置",
+			detail="删除流程定义 【${SysAuditLinkService.getBpmDefinitionLink(Long.valueOf(defId))}】的节点的按钮操作"
+	)
+	public void deByDefNodeId(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String returnUrl=RequestUtil.getPrePage(request);
+		Long defId=RequestUtil.getLong(request, "defId",0);
+		String nodeId=RequestUtil.getString(request, "nodeId");
+	
+		ResultMessage resultMessage=null;
+		try{
+			bpmNodeButtonService.delByDefNodeId(defId,nodeId);
+			 resultMessage=new ResultMessage(ResultMessage.Success,"删除流程表单按钮成功!");
+		}
+		catch(Exception ex){
+			 resultMessage = new ResultMessage(ResultMessage.Fail,"删除流程表单按钮失败:" + ex.getMessage());
+		}
+		addMessage(resultMessage, request);
+		response.sendRedirect(returnUrl);
+	}
+}

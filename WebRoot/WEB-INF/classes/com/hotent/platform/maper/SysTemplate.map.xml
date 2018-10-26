@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysTemplate">
+	<resultMap id="SysTemplate" type="com.hotent.platform.model.system.SysTemplate">
+		<id property="templateId" column="templateId" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="htmlContent" column="htmlContent" jdbcType="VARCHAR"/>
+		<result property="plainContent" column="plainContent" jdbcType="VARCHAR"/>
+		<result property="isDefault" column="isDefault" jdbcType="NUMERIC"/>
+		<result property="useType" column="useType" jdbcType="NUMERIC"/>
+		<result property="title" column="title" jdbcType="VARCHAR"/>	
+	</resultMap>
+	
+	<sql id="columns">
+		templateId,name,htmlContent,plainContent,isDefault,useType,title
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(templateId)"> AND templateId  =#{templateId} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(useType)"> AND useType  =#{useType} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysTemplate">
+		INSERT INTO sys_template
+		(<include refid="columns"/>)
+		VALUES
+		(#{templateId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{htmlContent,jdbcType=VARCHAR},#{plainContent,jdbcType=VARCHAR},#{isDefault,jdbcType=NUMERIC},  #{useType,jdbcType=NUMERIC},#{title,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_TEMPLATE 
+		WHERE
+		templateId=#{templateId}
+	</delete>
+	
+	<delete id="delByUseType">
+		DELETE FROM SYS_TEMPLATE 
+		WHERE
+		USETYPE=#{useType,jdbcType=NUMERIC}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysTemplate">
+		UPDATE sys_template SET
+		name=#{name,jdbcType=VARCHAR} , 
+		htmlContent=#{htmlContent,jdbcType=VARCHAR},
+		plainContent=#{plainContent,jdbcType=VARCHAR},
+		isDefault=#{isDefault,jdbcType=NUMERIC} ,
+		useType=#{useType,jdbcType=NUMERIC},
+		title=#{title,jdbcType=VARCHAR}
+		WHERE
+		templateId=#{templateId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_TEMPLATE
+		WHERE
+		templateId=#{templateId}
+	</select>
+	
+	<update id="updateDefault" parameterType="java.lang.Long">
+		UPDATE SYS_TEMPLATE SET
+		isDefault=1 WHERE templateId=#{id}
+	</update>
+	
+	<update id="updateNotDefaultByUseType" parameterType="java.lang.Long">
+		UPDATE SYS_TEMPLATE SET
+		isDefault=0 WHERE useType=#{useType}
+	</update>
+	
+	<select id="getAll" resultMap="SysTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by templateId  desc
+		</if>
+	</select>
+	
+	<select id="getDefaultByUseType" parameterType="java.lang.Long" resultMap="SysTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_TEMPLATE
+		WHERE
+		isDefault=1
+		and usetype=#{useType}
+	</select>
+</mapper>

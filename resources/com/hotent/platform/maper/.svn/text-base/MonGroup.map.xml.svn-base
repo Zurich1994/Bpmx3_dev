@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.MonGroup">
+	<resultMap id="MonGroup" type="com.hotent.platform.model.bpm.MonGroup">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="grade" column="GRADE" jdbcType="NUMERIC"/>
+		<result property="enabled" column="ENABLED" jdbcType="NUMERIC"/>
+		<result property="creatorid" column="CREATORID" jdbcType="NUMERIC"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="createtime" column="CREATETIME" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,NAME,GRADE,ENABLED,CREATORID,CREATOR,CREATETIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name} ESCAPE '|'  </if>
+			<if test="@Ognl@isNotEmpty(grade)"> AND GRADE  =#{grade} </if>
+			<if test="enabled!=null"> AND ENABLED  =#{enabled} </if>
+			<if test="@Ognl@isNotEmpty(creatorid)"> AND CREATORID  =#{creatorid} </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.MonGroup">
+		INSERT INTO BPM_MON_GROUP
+		(ID,NAME,GRADE,ENABLED,CREATORID,CREATOR,CREATETIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=NUMERIC}, #{enabled,jdbcType=NUMERIC}, #{creatorid,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_MON_GROUP 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.MonGroup">
+		UPDATE BPM_MON_GROUP SET
+		NAME=#{name,jdbcType=VARCHAR},
+		GRADE=#{grade,jdbcType=NUMERIC},
+		ENABLED=#{enabled,jdbcType=NUMERIC},
+		CREATORID=#{creatorid,jdbcType=NUMERIC},
+		CREATOR=#{creator,jdbcType=VARCHAR},
+		CREATETIME=#{createtime,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MonGroup">
+		SELECT <include refid="columns"/>
+		FROM BPM_MON_GROUP
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MonGroup">
+		SELECT <include refid="columns"/>
+		FROM BPM_MON_GROUP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

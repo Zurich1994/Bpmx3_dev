@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect
+END
+H2Dialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/H2Dialect.java
+END
+SQLServer2005Dialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/SQLServer2005Dialect.java
+END
+DmDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/DmDialect.java
+END
+PostgreSQLDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/PostgreSQLDialect.java
+END
+DerbyDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/DerbyDialect.java
+END
+MySQLDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/MySQLDialect.java
+END
+OracleDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/OracleDialect.java
+END
+SQLServerDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/SQLServerDialect.java
+END
+SybaseDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/SybaseDialect.java
+END
+DB2Dialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/DB2Dialect.java
+END
+HSQLDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/dialect/HSQLDialect.java
+END

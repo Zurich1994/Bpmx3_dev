@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.Dictionary">
+	<resultMap id="Dictionary" type="com.hotent.platform.model.system.Dictionary">
+		<id property="dicId" column="dicId" jdbcType="NUMERIC"/>
+		<result property="typeId" column="typeId" jdbcType="NUMERIC"/>
+		<result property="itemKey" column="itemKey" jdbcType="VARCHAR"/>
+		<result property="itemName" column="itemName" jdbcType="VARCHAR"/>
+		<result property="itemValue" column="itemValue" jdbcType="VARCHAR"/>
+		<result property="descp" column="descp" jdbcType="VARCHAR"/>
+		<result property="sn" column="sn" jdbcType="NUMERIC"/>
+		<result property="nodePath" column="nodePath" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parentId" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		dicId,typeId,itemKey,itemName,itemValue,descp,sn,nodePath,parentId
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(itemName)"> AND itemName  LIKE #{itemName}  </if>
+			<if test="@Ognl@isNotEmpty(itemKey)"> AND itemKey  LIKE  #{itemKey}  </if>
+			<if test="@Ognl@isNotEmpty(nodePath)"> AND nodePath  LIKE #{nodePath}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.Dictionary">
+		INSERT INTO sys_dic
+		(<include refid="columns"/>)
+		VALUES
+		(#{dicId,jdbcType=NUMERIC}, #{typeId,jdbcType=NUMERIC}, #{itemKey,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{itemValue,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{sn,jdbcType=NUMERIC}, #{nodePath,jdbcType=VARCHAR}, #{parentId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_dic  WHERE dicId=#{dicId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.Dictionary">
+		UPDATE sys_dic SET
+		typeId=#{typeId,jdbcType=NUMERIC} , 
+		itemKey=#{itemKey,jdbcType=VARCHAR} , 
+		itemName=#{itemName,jdbcType=VARCHAR} , 
+		itemValue=#{itemValue,jdbcType=VARCHAR} , 
+		descp=#{descp,jdbcType=VARCHAR} , 
+		sn=#{sn,jdbcType=NUMERIC} , 
+		nodePath=#{nodePath,jdbcType=VARCHAR} , 
+		parentId=#{parentId,jdbcType=NUMERIC} 
+		WHERE
+		dicId=#{dicId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Dictionary">
+		SELECT <include refid="columns"/>
+		FROM sys_dic WHERE dicId=#{dicId}
+	</select>
+	
+	<select id="getByTypeId" parameterType="java.lang.Long" resultMap="Dictionary">
+		SELECT <include refid="columns"/>
+		FROM sys_dic WHERE typeId=#{typeId} order by sn ,dicId
+	</select>
+	
+	
+	<select id="getAll" resultMap="Dictionary" parameterType="java.util.Map">
+		SELECT <include refid="columns"/>
+		FROM sys_dic   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by sn
+		</if>
+	</select>
+	
+	<select id="getByNodePath" resultMap="Dictionary">
+		SELECT <include refid="columns"/>
+		FROM sys_dic
+		WHERE
+		nodePath like #{nodePath}
+	</select>
+	
+	<select id="isItemKeyExists" resultType="int">
+		select count(*) from sys_dic where  typeId=#{typeId,jdbcType=NUMERIC} and lower(itemKey)=#{itemKey,jdbcType=VARCHAR} 
+	</select>
+	
+	<select id="getByParentId" resultMap="Dictionary">
+		SELECT <include refid="columns"/>
+		FROM sys_dic
+		WHERE parentId=#{id}
+		order by sn
+	</select>
+	
+	<select id="isItemKeyExistsForUpdate" resultType="int">
+		select count(*) from sys_dic 
+		where dicId  &lt;&gt; #{dicId,jdbcType=NUMERIC} 
+		and typeId=#{typeId,jdbcType=NUMERIC} 
+		and lower(itemKey)=#{itemKey,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="updSn" parameterType="Map">
+		update sys_dic set sn=#{sn,jdbcType=NUMERIC} 
+		WHERE
+		dicId=#{dicId}
+	</select>
+
+</mapper>

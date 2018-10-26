@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.worktime.WorkTime">
+	<resultMap id="WorkTime" type="com.hotent.platform.model.worktime.WorkTime">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="settingId" column="settingId" jdbcType="NUMERIC"/>
+		<result property="startTime" column="startTime" jdbcType="VARCHAR"/>
+		<result property="endTime" column="endTime" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,settingId,startTime,endTime,memo
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(settingId)"> AND settingId  =#{settingId} </if>
+			<if test="@Ognl@isNotEmpty(startTime)"> AND startTime  LIKE #{startTime}  </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND endTime  LIKE #{endTime}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND memo  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.worktime.WorkTime">
+		INSERT INTO sys_worktime
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{settingId,jdbcType=NUMERIC}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_WORKTIME 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.worktime.WorkTime">
+		UPDATE sys_worktime SET
+		settingId=#{settingId,jdbcType=NUMERIC} , 
+		startTime=#{startTime,jdbcType=VARCHAR} , 
+		endTime=#{endTime,jdbcType=VARCHAR} , 
+		memo=#{memo,jdbcType=VARCHAR} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="WorkTime">
+		SELECT <include refid="columns"/>
+		FROM SYS_WORKTIME
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="WorkTime">
+		SELECT <include refid="columns"/>
+		FROM SYS_WORKTIME   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getBySettingId" resultMap="WorkTime">
+		SELECT <include refid="columns"/>
+		FROM SYS_WORKTIME
+		WHERE settingId = #{settingId}
+		order by startTime
+	</select>
+	
+	<delete id="delBySettingId" parameterType="java.lang.Long">
+		DELETE FROM SYS_WORKTIME 
+		WHERE
+		settingId=#{settingId}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="codegen" elementFormDefault="qualified" 
+attributeFormDefault="unqualified" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="category" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="view" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attributeGroup ref="viewAttr"></xs:attributeGroup>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" >
+							<xs:annotation>
+								<xs:documentation>分类ID</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+					
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		
+	</xs:element>
+	
+				
+	<!--变量属性 -->
+	<xs:attributeGroup name="viewAttr">
+		<xs:attribute name="name" use="required" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="value" type="xs:string" use="required"></xs:attribute>
+	</xs:attributeGroup>
+	
+</xs:schema>

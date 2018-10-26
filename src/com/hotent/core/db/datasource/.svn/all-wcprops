@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/db/datasource
+END
+DynamicDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/793/bpmx_w/src/com/hotent/core/db/datasource/DynamicDataSource.java
+END
+DataSourceInitListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/db/datasource/DataSourceInitListener.java
+END
+DataSourceUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/db/datasource/DataSourceUtil.java
+END
+DbContextHolder.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/db/datasource/DbContextHolder.java
+END
+DataSourceException.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/datasource/DataSourceException.java
+END
+JdbcTemplateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/db/datasource/JdbcTemplateUtil.java
+END

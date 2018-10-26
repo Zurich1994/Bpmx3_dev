@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysOrgTactic">
+	<resultMap id="SysOrgTactic" type="com.hotent.platform.model.system.SysOrgTactic">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="orgTactic" column="ORG_TACTIC" jdbcType="NUMERIC"/>
+		<result property="demId" column="DEM_ID" jdbcType="NUMERIC"/>
+		<result property="orgType" column="ORG_TYPE" jdbcType="NUMERIC"/>
+		<result property="orgSelectId" column="ORG_SELECT_ID" jdbcType="CLOB"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,ORG_TACTIC,DEM_ID,ORG_TYPE,ORG_SELECT_ID
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(orgTactic)"> AND ORG_TACTIC  =#{orgTactic} </if>
+			<if test="@Ognl@isNotEmpty(demId)"> AND DEM_ID  =#{demId} </if>
+			<if test="@Ognl@isNotEmpty(orgType)"> AND ORG_TYPE  =#{orgType} </if>
+			<if test="@Ognl@isNotEmpty(orgSelectId)"> AND ORG_SELECT_ID  LIKE #{orgSelectId}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysOrgTactic">
+		INSERT INTO SYS_ORG_TACTIC
+		(ID,ORG_TACTIC,DEM_ID,ORG_TYPE,ORG_SELECT_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{orgTactic,jdbcType=NUMERIC}, #{demId,jdbcType=NUMERIC}, #{orgType,jdbcType=NUMERIC}, #{orgSelectId,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ORG_TACTIC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysOrgTactic">
+		UPDATE SYS_ORG_TACTIC SET
+		ORG_TACTIC=#{orgTactic,jdbcType=NUMERIC},
+		DEM_ID=#{demId,jdbcType=NUMERIC},
+		ORG_TYPE=#{orgType,jdbcType=NUMERIC},
+		ORG_SELECT_ID=#{orgSelectId,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysOrgTactic">
+		SELECT <include refid="columns"/>
+		FROM SYS_ORG_TACTIC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysOrgTactic">
+		SELECT <include refid="columns"/>
+		FROM SYS_ORG_TACTIC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysUrlRules">
+	<resultMap id="SysUrlRules" type="com.hotent.platform.model.system.SysUrlRules">
+		<id property="id" column="ID_" jdbcType="NUMERIC"/>
+		<result property="script" column="SCRIPT_" jdbcType="CLOB"/>
+		<result property="enable" column="ENABLE_" jdbcType="NUMERIC"/>
+		<result property="sysUrlId" column="SYS_URL_ID_" jdbcType="NUMERIC"/>
+		<result property="descp" column="DESCP_" jdbcType="VARCHAR"/>
+		<result property="sort" column="SORT_" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID_,SCRIPT_,ENABLE_,SYS_URL_ID_,DESCP_,SORT_
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID_  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(script)"> AND SCRIPT_  LIKE #{script}  </if>
+			<if test="@Ognl@isNotEmpty(enable)"> AND ENABLE_  =#{enable} </if>
+			<if test="@Ognl@isNotEmpty(sysUrlId)"> AND SYS_URL_ID_  =#{sysUrlId} </if>
+			<if test="@Ognl@isNotEmpty(descp)"> AND DESCP_  LIKE #{descp}  </if>
+			<if test="@Ognl@isNotEmpty(sort)"> AND SORT_  =#{sort} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysUrlRules">
+		INSERT INTO sys_url_rules
+		(ID_,SCRIPT_,ENABLE_,SYS_URL_ID_,DESCP_,SORT_)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{script,jdbcType=CLOB}, #{enable,jdbcType=NUMERIC}, #{sysUrlId,jdbcType=NUMERIC}, #{descp,jdbcType=VARCHAR}, #{sort,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_url_rules 
+		WHERE
+		ID_=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysUrlRules">
+		UPDATE sys_url_rules SET
+		SCRIPT_=#{script,jdbcType=CLOB},
+		ENABLE_=#{enable,jdbcType=NUMERIC},
+		SYS_URL_ID_=#{sysUrlId,jdbcType=NUMERIC},
+		DESCP_=#{descp,jdbcType=VARCHAR},
+		SORT_=#{sort,jdbcType=NUMERIC}
+		WHERE
+		ID_=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysUrlRules">
+		SELECT <include refid="columns"/>
+		FROM sys_url_rules
+		WHERE
+		ID_=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysUrlRules">
+		SELECT <include refid="columns"/>
+		FROM sys_url_rules   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by SORT_  desc
+		</if>
+	</select>
+	
+	<select id="getSysUrlRulesList" resultMap="SysUrlRules">
+	    SELECT <include refid="columns"/>
+	    FROM sys_url_rules 
+	    WHERE SYS_URL_ID_=#{sysUrlId}
+	    order by SORT_ desc
+	</select>
+	
+	<delete id="delByUrlPerId">
+	    DELETE FROM sys_url_rules
+	    WHERE
+	    SYS_URL_ID_=#{sysUrlId}
+	</delete> 
+</mapper>

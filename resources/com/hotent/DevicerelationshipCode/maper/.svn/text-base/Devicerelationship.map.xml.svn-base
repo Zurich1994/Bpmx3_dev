@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.DevicerelationshipCode.model.DevicerelationshipCodePath.Devicerelationship">
+	<resultMap id="Devicerelationship" type="com.hotent.DevicerelationshipCode.model.DevicerelationshipCodePath.Devicerelationship">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="dev_ID" column="F_DEV_ID" jdbcType="VARCHAR"/>
+		<result property="dev_Port" column="F_DEV_PORT" jdbcType="VARCHAR"/>
+		<result property="opp_ID" column="F_OPP_ID" jdbcType="VARCHAR"/>
+		<result property="opp_PortType" column="F_OPP_PORTTYPE" jdbcType="VARCHAR"/>
+		<result property="opp_Port" column="F_OPP_PORT" jdbcType="VARCHAR"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+		<result property="actdefid" column="F_ACTDEFID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ID,F_DEV_ID,F_DEV_PORT,F_OPP_ID,F_OPP_PORTTYPE,F_OPP_PORT,F_REMARK,F_ACTDEFID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(dev_ID)"> AND F_DEV_ID  LIKE '%${dev_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(dev_Port)"> AND F_DEV_PORT  LIKE '%${dev_Port}%'  </if>
+			<if test="@Ognl@isNotEmpty(opp_ID)"> AND F_OPP_ID  LIKE '%${opp_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(opp_PortType)"> AND F_OPP_PORTTYPE  LIKE '%${opp_PortType}%'  </if>
+			<if test="@Ognl@isNotEmpty(opp_Port)"> AND F_OPP_PORT  LIKE '%${opp_Port}%'  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+			<if test="@Ognl@isNotEmpty(actdefid)"> AND F_ACTDEFID  LIKE '%${actdefid}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.DevicerelationshipCode.model.DevicerelationshipCodePath.Devicerelationship">
+		INSERT INTO W_DEVICERELATIONSHIP
+		(ID,
+		F_ID,F_DEV_ID,F_DEV_PORT,F_OPP_ID,F_OPP_PORTTYPE,F_OPP_PORT,F_REMARK,F_ACTDEFID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{id,jdbcType=NUMERIC}, #{dev_ID,jdbcType=VARCHAR}, #{dev_Port,jdbcType=VARCHAR}, #{opp_ID,jdbcType=VARCHAR}, #{opp_PortType,jdbcType=VARCHAR}, #{opp_Port,jdbcType=VARCHAR}, #{remark,jdbcType=CLOB},#{actdefid,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICERELATIONSHIP 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.DevicerelationshipCode.model.DevicerelationshipCodePath.Devicerelationship">
+		UPDATE W_DEVICERELATIONSHIP SET
+		F_ID=#{id,jdbcType=NUMERIC},
+		F_DEV_ID=#{dev_ID,jdbcType=VARCHAR},
+		F_DEV_PORT=#{dev_Port,jdbcType=VARCHAR},
+		F_OPP_ID=#{opp_ID,jdbcType=VARCHAR},
+		F_OPP_PORTTYPE=#{opp_PortType,jdbcType=VARCHAR},
+		F_OPP_PORT=#{opp_Port,jdbcType=VARCHAR},
+		F_REMARK=#{remark,jdbcType=CLOB},
+		F_ACTDEFID=#{actdefid,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Devicerelationship">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICERELATIONSHIP
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<!--zl更新流程定义id  -->
+	<update id="updateActdefids" parameterType="java.lang.String" >
+		UPDATE W_DEVICERELATIONSHIP SET
+		F_ACTDEFID=#{newactdefid,jdbcType=VARCHAR}
+		WHERE
+		F_ACTDEFID=#{oldactdefID}
+	</update>
+	
+	<select id="getAll" resultMap="Devicerelationship">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICERELATIONSHIP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

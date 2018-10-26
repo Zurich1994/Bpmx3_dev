@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/valid
+END
+formValid.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/valid/formValid.xml
+END
+custom_rules.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/valid/custom_rules.xml
+END
+validation.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/valid/validation.xml
+END
+validator-rules.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/valid/validator-rules.xml
+END

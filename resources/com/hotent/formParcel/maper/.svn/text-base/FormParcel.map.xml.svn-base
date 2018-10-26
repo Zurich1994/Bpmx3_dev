@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.formParcel.model.formParcel.FormParcel">
+	<resultMap id="FormParcel" type="com.hotent.formParcel.model.formParcel.FormParcel">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="form_name" column="F_FORM_NAME" jdbcType="VARCHAR"/>
+		<result property="parcelID" column="F_PARCELID" jdbcType="NUMERIC"/>
+		<result property="parcel_name" column="F_PARCEL_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_FORM_NAME,F_PARCELID,F_PARCEL_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(form_name)"> AND F_FORM_NAME  LIKE '%${form_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(parcelID)"> AND F_PARCELID  =#{parcelID} </if>
+			<if test="@Ognl@isNotEmpty(parcel_name)"> AND F_PARCEL_NAME  LIKE '%${parcel_name}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.formParcel.model.formParcel.FormParcel">
+		INSERT INTO W_FORM_PARCEL
+		(ID,
+		F_FORM_NAME,F_PARCELID,F_PARCEL_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{form_name,jdbcType=VARCHAR}, #{parcelID,jdbcType=NUMERIC}, #{parcel_name,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_FORM_PARCEL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.formParcel.model.formParcel.FormParcel">
+		UPDATE W_FORM_PARCEL SET
+		F_FORM_NAME=#{form_name,jdbcType=VARCHAR},
+		F_PARCELID=#{parcelID,jdbcType=NUMERIC},
+		F_PARCEL_NAME=#{parcel_name,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FormParcel">
+		SELECT <include refid="columns"/>
+		FROM W_FORM_PARCEL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="FormParcel">
+		SELECT <include refid="columns"/>
+		FROM W_FORM_PARCEL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByFormName" parameterType="java.lang.Long" resultMap="FormParcel"  >
+		SELECT <include refid="columns"/>
+		FROM W_FORM_PARCEL
+		WHERE
+		F_FORM_NAME=#{F_FORM_NAME}
+	</select>
+</mapper>

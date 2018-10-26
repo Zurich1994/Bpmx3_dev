@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Ywbsbd.model.Ywbsbd.Ywbsbd">
+	<resultMap id="Ywbsbd" type="com.hotent.Ywbsbd.model.Ywbsbd.Ywbsbd">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="systemId" column="F_SYSTEMID" jdbcType="VARCHAR"/>
+		<result property="defId" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="sysname" column="F_SYSNAME" jdbcType="VARCHAR"/>
+		<result property="sysalias" column="F_SYSALIAS" jdbcType="VARCHAR"/>
+		<result property="sysmemo" column="F_SYSMEMO" jdbcType="VARCHAR"/>
+		<result property="service" column="F_SERVICE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_SYSTEMID,F_DEFID,F_NODEID,F_SYSNAME,F_SYSALIAS,F_SYSMEMO,F_SERVICE
+	</sql>
+	<sql id="wfColumns">
+		ID,F_SYSTEMID,F_DEFID,F_NODEID,F_SYSNAME,F_SYSALIAS,F_SYSMEMO,F_SERVICE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(systemId)"> AND F_SYSTEMID  LIKE '%${systemId}%'  </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND F_DEFID  LIKE '%${defId}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND F_NODEID  LIKE '%${nodeId}%'  </if>
+			<if test="@Ognl@isNotEmpty(sysname)"> AND F_SYSNAME  LIKE '%${sysname}%'  </if>
+			<if test="@Ognl@isNotEmpty(sysalias)"> AND F_SYSALIAS  LIKE '%${sysalias}%'  </if>
+			<if test="@Ognl@isNotEmpty(sysmeno)"> AND F_SYSMEMO  LIKE '%${sysmemo}%'  </if>
+			<if test="@Ognl@isNotEmpty(service)"> AND F_SERVICE  LIKE '%${service}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Ywbsbd.model.Ywbsbd.Ywbsbd">
+		INSERT INTO W_subsystem_relation
+		(ID,
+		F_SYSTEMID,F_DEFID,F_NODEID,F_SYSNAME,F_SYSALIAS,F_SYSMEMO,F_SERVICE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{systemId,jdbcType=VARCHAR}, #{defId,jdbcType=VARCHAR},#{nodeId,jdbcType=VARCHAR}, #{sysname,jdbcType=VARCHAR}, #{sysalias,jdbcType=VARCHAR}, #{sysmemo,jdbcType=VARCHAR}, #{service,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_subsystem_relation 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Ywbsbd.model.Ywbsbd.Ywbsbd">
+		UPDATE W_subsystem_relation SET
+		F_SYSTEMID=#{systemId,jdbcType=VARCHAR},
+		F_DEFID=#{defId,jdbcType=VARCHAR},
+		F_NODEID=#{nodeId,jdbcType=VARCHAR},
+		F_SYSNAME=#{sysname,jdbcType=VARCHAR},
+		F_SYSALIAS=#{sysalias,jdbcType=VARCHAR},
+		F_SYSMEMO=#{sysmemo,jdbcType=VARCHAR},
+		F_SERVICE=#{service,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Ywbsbd">
+		SELECT <include refid="columns"/>
+		FROM W_subsystem_relation
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getBySystemId" parameterType="java.lang.String" resultMap="Ywbsbd">
+		SELECT <include refid="columns"/>
+		FROM W_subsystem_relation
+		WHERE
+		F_SYSTEMID=#{systemId}
+	</select>
+	
+	<select id="exist" parameterType="com.hotent.Ywbsbd.model.Ywbsbd.Ywbsbd" resultMap="Ywbsbd">
+		SELECT <include refid="columns"/>
+		FROM W_subsystem_relation
+		WHERE
+		F_DEFID=#{defId} and
+		F_NODEID=#{nodeId} and
+		F_SYSTEMID=#{systemId} and
+		F_SERVICE=#{service}
+	</select>
+	
+	<select id="getAll" resultMap="Ywbsbd">
+		SELECT <include refid="columns"/>
+		FROM W_subsystem_relation
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+</mapper>

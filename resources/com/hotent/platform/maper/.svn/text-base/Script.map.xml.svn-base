@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.Script">
+	<resultMap id="Script" type="com.hotent.platform.model.system.Script">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="script" column="script" jdbcType="CLOB"/>
+		<result property="category" column="category" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,name,script,category,memo
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  = #{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(script)"> AND script  LIKE #{script}  </if>
+			<if test="@Ognl@isNotEmpty(category)"> AND category  LIKE #{category}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND memo  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.Script">
+		INSERT INTO sys_script
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{script,jdbcType=CLOB}, #{category,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_SCRIPT 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.Script">
+		UPDATE sys_script SET
+		name=#{name,jdbcType=VARCHAR} , 
+		script=#{script,jdbcType=CLOB} , 
+		category=#{category,jdbcType=VARCHAR} , 
+		memo=#{memo,jdbcType=VARCHAR} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Script">
+		SELECT <include refid="columns"/>
+		FROM SYS_SCRIPT
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Script">
+		SELECT <include refid="columns"/>
+		FROM SYS_SCRIPT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getDistinctCategory" resultType="java.lang.String">
+		select distinct category from SYS_SCRIPT 
+	</select>
+	
+	<select id="isExistWithName" resultType="int" parameterType="java.lang.String" >
+		select count(*) from SYS_SCRIPT where name=#{name}
+	</select>
+</mapper>

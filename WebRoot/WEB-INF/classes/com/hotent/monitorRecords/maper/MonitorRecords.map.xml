@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.monitorRecords.model.monitorRecordsPac.MonitorRecords">
+	<resultMap id="MonitorRecords" type="com.hotent.monitorRecords.model.monitorRecordsPac.MonitorRecords">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="device_id" column="F_DEVICE_ID" jdbcType="VARCHAR"/>
+		<result property="quota_id" column="F_QUOTA_ID" jdbcType="VARCHAR"/>
+		<result property="monitorValue" column="F_MONITORVALUE" jdbcType="VARCHAR"/>
+		<result property="monitorTime" column="F_MONITORTIME" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_DEVICE_ID,F_QUOTA_ID,F_MONITORVALUE,F_MONITORTIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(device_id)"> AND F_DEVICE_ID  LIKE '%${device_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(quota_id)"> AND F_QUOTA_ID  LIKE '%${quota_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(monitorValue)"> AND F_MONITORVALUE  LIKE '%${monitorValue}%'  </if>
+			<if test="@Ognl@isNotEmpty(monitorTime)"> AND F_MONITORTIME  =#{monitorTime} </if>
+			<if test="@Ognl@isNotEmpty(beginmonitorTime)"> AND F_MONITORTIME  >=#{beginmonitorTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endmonitorTime)"> AND F_MONITORTIME <![CDATA[ <=#{endmonitorTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginmonitorValue)"> AND F_MONITORVALUE  >=#{beginmonitorValue} </if>
+			<if test="@Ognl@isNotEmpty(endmonitorValue)"> AND F_MONITORVALUE <![CDATA[ <=#{endmonitorValue}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.monitorRecords.model.monitorRecordsPac.MonitorRecords">
+		INSERT INTO W_MONITOR_RECORDS
+		(ID,
+		F_DEVICE_ID,F_QUOTA_ID,F_MONITORVALUE,F_MONITORTIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{device_id,jdbcType=VARCHAR}, #{quota_id,jdbcType=VARCHAR}, #{monitorValue,jdbcType=VARCHAR}, #{monitorTime,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_MONITOR_RECORDS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.monitorRecords.model.monitorRecordsPac.MonitorRecords">
+		UPDATE W_MONITOR_RECORDS SET
+		F_DEVICE_ID=#{device_id,jdbcType=VARCHAR},
+		F_QUOTA_ID=#{quota_id,jdbcType=VARCHAR},
+		F_MONITORVALUE=#{monitorValue,jdbcType=VARCHAR},
+		F_MONITORTIME=#{monitorTime,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MonitorRecords">
+		SELECT <include refid="columns"/>
+		FROM W_MONITOR_RECORDS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MonitorRecords">
+		SELECT <include refid="columns"/>
+		FROM W_MONITOR_RECORDS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getBydeviceidAndquotaid2" parameterType="Map" resultMap="MonitorRecords">
+		SELECT <include refid="columns"/>
+		FROM W_MONITOR_RECORDS
+		WHERE
+		F_DEVICE_ID=#{deviceId}
+		AND
+		F_QUOTA_ID=#{quotaId}
+	</select>
+	<select id="getBydeviceidAndquotaid" parameterType="Map" resultMap="MonitorRecords">
+		SELECT a.ID,a.F_DEVICE_ID,a.F_QUOTA_ID,a.F_MONITORVALUE,a.F_MONITORTIME,b.F_NAME as device_name,c.F_NAME as quota_name
+		FROM W_MONITOR_RECORDS a,w_monitor_device b,w_monitor_quota c
+		WHERE
+		F_DEVICE_ID=#{deviceId}
+		AND
+		F_QUOTA_ID=#{quotaId}
+		AND
+		a.F_DEVICE_ID=b.ID
+		AND
+		a.F_QUOTA_ID=c.ID
+		<if test="startTime != null">
+		AND
+		F_MONITORTIME&gt;=timestamp(#{startTime}) 
+		</if>
+		<if test="curTime != null">
+		AND
+		F_MONITORTIME&lt;=timestamp(#{curTime}) 
+		</if>
+		<if test="@Ognl@isNotEmpty(beginmonitorTime)"> AND F_MONITORTIME  >=#{beginmonitorTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endmonitorTime)"> AND F_MONITORTIME <![CDATA[ <=#{endmonitorTime,jdbcType=DATE}]]> </if>
+		<if test="@Ognl@isNotEmpty(beginmonitorValue)"> AND F_MONITORVALUE  >=#{beginmonitorValue} </if>
+		<if test="@Ognl@isNotEmpty(endmonitorValue)"> AND F_MONITORVALUE <![CDATA[ <=#{endmonitorValue}]]> </if>
+		<if test="@Ognl@isNotEmpty(monitorValue)"> AND F_MONITORVALUE  LIKE '%${monitorValue}%'  </if>
+	</select>
+</mapper>

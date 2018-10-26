@@ -1,0 +1,44 @@
+
+body { 
+    margin: 0px; 
+    padding: 0px; 
+} 
+#topNavWrapper { 
+    width: 100%; 
+    text-align: left; 
+    height: 70px; 
+    margin: 0px auto; 
+    z-index:100; 
+    _position: relative ; 
+    _top:0px; 
+} 
+#topNav { 
+    width: 100%; 
+    float: left; 
+    display: block; 
+    z-index: 100; 
+    overflow: visible; 
+    position: fixed; 
+    top: 0px; /* position fixed for IE6 */ 
+    _position: absolute; 
+    _top: expression(documentElement.scrollTop + "px"); 
+    background-repeat: no-repeat; 
+    background-position: right; 
+    height: 70px; 
+} 
+
+@media print {
+	.noprint{display:none;} 
+	.printForm{display:block !important;} 
+	.noForm{font-size: 14px;font-weight: bold;text-align: center;}
+	input, select { border:none!important;}
+	.link { display:none!important;}
+	select { position:absolute; clip: rect(0px,100px,21px,0px); width: 120px; margin-top: -10px;}
+	.l-text { border:none;}
+	.l-trigger { display:none;}
+	td { text-align: left; min-width:120px;}
+	td.formTitle{padding:2px; border:1px solid #666666; height: 23px; text-align: center;}
+	td.teamHead{border:1px solid #656565; text-align: center;font-size: 14px;font-weight: bold;	height: 32px; color: #464646;}
+	
+}
+

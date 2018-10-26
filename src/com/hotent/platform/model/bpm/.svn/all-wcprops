@@ -1,0 +1,467 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/2196/bpmx_w/src/com/hotent/platform/model/bpm
+END
+BpmBusLinkData.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmBusLinkData.java
+END
+BpmNodeButtonXml.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeButtonXml.java
+END
+BpmTaskExe.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmTaskExe.java
+END
+BpmBusLink.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/892/bpmx_w/src/com/hotent/platform/model/bpm/BpmBusLink.java
+END
+AssignUsers.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/AssignUsers.java
+END
+AuthorizeRight.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/103/bpmx_w/src/com/hotent/platform/model/bpm/AuthorizeRight.java
+END
+TaskExeStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskExeStatus.java
+END
+BpmNodeScript.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/892/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeScript.java
+END
+TaskNodeStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskNodeStatus.java
+END
+TaskSignData.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskSignData.java
+END
+BpmNodeUserResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeUserResult.java
+END
+BpmNodeUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeUser.java
+END
+MonGroupItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/MonGroupItem.java
+END
+TaskAmount.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskAmount.java
+END
+BpmVar.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmVar.java
+END
+NodeMsgTemplate.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/NodeMsgTemplate.java
+END
+TaskReminder.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/892/bpmx_w/src/com/hotent/platform/model/bpm/TaskReminder.java
+END
+AgentSetting.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/AgentSetting.java
+END
+BpmProCopyto.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmProCopyto.java
+END
+SysParamJsonStruct.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/SysParamJsonStruct.java
+END
+BpmFormResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmFormResult.java
+END
+FormDefTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/FormDefTree.java
+END
+BpmProStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmProStatus.java
+END
+BpmCommonWsParams.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmCommonWsParams.java
+END
+AgentCondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/AgentCondition.java
+END
+ReminderState.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/ReminderState.java
+END
+MonGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/MonGroup.java
+END
+BpmProTransTo.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmProTransTo.java
+END
+BpmReferDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmReferDefinition.java
+END
+AgentDef.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/AgentDef.java
+END
+BpmDefRights.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmDefRights.java
+END
+BpmNodeButton.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1848/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeButton.java
+END
+BpmSubtableRights.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmSubtableRights.java
+END
+NodeUserMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/NodeUserMap.java
+END
+FormModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/FormModel.java
+END
+TaskFork.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskFork.java
+END
+ConditionJsonStruct.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/ConditionJsonStruct.java
+END
+BpmDefAct.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmDefAct.java
+END
+BpmDefAuthorize.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmDefAuthorize.java
+END
+BpmNodeMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeMessage.java
+END
+CcMessageType.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/CcMessageType.java
+END
+BpmTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/BpmTree.java
+END
+TaskOpinion.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskOpinion.java
+END
+TaskRead.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskRead.java
+END
+BpmGangedSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmGangedSet.java
+END
+BpmNodeSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/2196/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeSet.java
+END
+BpmNodeWsParams.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeWsParams.java
+END
+BpmNodeWebService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeWebService.java
+END
+BpmNodeSql.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeSql.java
+END
+BpmNodeSign.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeSign.java
+END
+TaskApprovalItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskApprovalItems.java
+END
+MonOrgRole.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/MonOrgRole.java
+END
+BpmUserCondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/995/bpmx_w/src/com/hotent/platform/model/bpm/BpmUserCondition.java
+END
+BpmNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNode.java
+END
+BpmBatchApproval.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/BpmBatchApproval.java
+END
+BpmDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/2103/bpmx_w/src/com/hotent/platform/model/bpm/BpmDefinition.java
+END
+ExecutionStack.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/ExecutionStack.java
+END
+BpmDefAuthorizeType.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmDefAuthorizeType.java
+END
+BpmNodePrivilege.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodePrivilege.java
+END
+TaskUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskUser.java
+END
+ProcessRun.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/892/bpmx_w/src/com/hotent/platform/model/bpm/ProcessRun.java
+END
+BpmNewFlowTrigger.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/BpmNewFlowTrigger.java
+END
+TaskWarningSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/bpm/TaskWarningSet.java
+END
+CommuReceiver.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/CommuReceiver.java
+END
+BpmRunLog.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/892/bpmx_w/src/com/hotent/platform/model/bpm/BpmRunLog.java
+END
+BpmDefVar.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/104/bpmx_w/src/com/hotent/platform/model/bpm/BpmDefVar.java
+END
+NodeTranUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/NodeTranUser.java
+END
+BpmNodeUserUplow.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeUserUplow.java
+END
+BpmButton.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmButton.java
+END
+BpmFormVar.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmFormVar.java
+END
+BpmNodeRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmNodeRule.java
+END
+BpmCommonWsSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmCommonWsSet.java
+END
+BpmFormRun.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/2193/bpmx_w/src/com/hotent/platform/model/bpm/BpmFormRun.java
+END
+BpmFormQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/892/bpmx_w/src/com/hotent/platform/model/bpm/BpmFormQuery.java
+END
+BpmProTransToAssignee.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmProTransToAssignee.java
+END
+BpmDefUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/BpmDefUser.java
+END
+TaskVars.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/bpm/TaskVars.java
+END

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.MonOrgRole">
+	<resultMap id="MonOrgRole" type="com.hotent.platform.model.bpm.MonOrgRole">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="groupid" column="GROUPID" jdbcType="NUMERIC"/>
+		<result property="roleid" column="ROLEID" jdbcType="NUMERIC"/>
+		<result property="orgid" column="ORGID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,GROUPID,ROLEID,ORGID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(groupid)"> AND GROUPID  =#{groupid} </if>
+			<if test="@Ognl@isNotEmpty(roleid)"> AND ROLEID  =#{roleid} </if>
+			<if test="@Ognl@isNotEmpty(orgid)"> AND ORGID  =#{orgid} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.MonOrgRole">
+		INSERT INTO BPM_MON_ORGROLE
+		(ID,GROUPID,ROLEID,ORGID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{groupid,jdbcType=NUMERIC}, #{roleid,jdbcType=NUMERIC}, #{orgid,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_MON_ORGROLE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.MonOrgRole">
+		UPDATE BPM_MON_ORGROLE SET
+		GROUPID=#{groupid,jdbcType=NUMERIC},
+		ROLEID=#{roleid,jdbcType=NUMERIC},
+		ORGID=#{orgid,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MonOrgRole">
+		SELECT <include refid="columns"/>
+		FROM BPM_MON_ORGROLE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MonOrgRole">
+		SELECT <include refid="columns"/>
+		FROM BPM_MON_ORGROLE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<delete id="delByGroupId" parameterType="java.lang.Long">
+		DELETE FROM BPM_MON_ORGROLE 
+		WHERE
+		GROUPID=#{groupId}
+	</delete>
+</mapper>

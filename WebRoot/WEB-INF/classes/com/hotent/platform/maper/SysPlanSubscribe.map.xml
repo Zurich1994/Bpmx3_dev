@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysPlanSubscribe">
+	<resultMap id="SysPlanSubscribe" type="com.hotent.platform.model.system.SysPlanSubscribe">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="planId" column="PLANID" jdbcType="NUMERIC"/>
+		<result property="subscribeId" column="SUBSCRIBEID" jdbcType="NUMERIC"/>
+		<result property="subscribe" column="SUBSCRIBE" jdbcType="VARCHAR"/>
+		<result property="subscribeTime" column="SUBSCRIBETIME" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,PLANID,SUBSCRIBEID,SUBSCRIBE,SUBSCRIBETIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(planId)"> AND PLANID  =#{planId} </if>
+			<if test="@Ognl@isNotEmpty(subscribeId)"> AND SUBSCRIBEID  =#{subscribeId} </if>
+			<if test="@Ognl@isNotEmpty(subscribe)"> AND SUBSCRIBE  LIKE #{subscribe}  </if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysPlanSubscribe">
+		INSERT INTO SYS_PLAN_SUBSCRIBE
+		(ID,PLANID,SUBSCRIBEID,SUBSCRIBE,SUBSCRIBETIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{planId,jdbcType=NUMERIC}, #{subscribeId,jdbcType=NUMERIC}, #{subscribe,jdbcType=VARCHAR}, #{subscribeTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_PLAN_SUBSCRIBE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByPlanId" parameterType="java.lang.Long">
+		DELETE FROM SYS_PLAN_SUBSCRIBE 
+		WHERE
+		PLANID=#{planId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysPlanSubscribe">
+		UPDATE SYS_PLAN_SUBSCRIBE SET
+		PLANID=#{planId,jdbcType=NUMERIC},
+		SUBSCRIBEID=#{subscribeId,jdbcType=NUMERIC},
+		SUBSCRIBE=#{subscribe,jdbcType=VARCHAR},
+		SUBSCRIBETIME=#{subscribeTime,jdbcType=TIMESTAMP}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysPlanSubscribe">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_SUBSCRIBE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	
+	<select id="getByPlanId" parameterType="java.lang.Long" resultMap="SysPlanSubscribe">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_SUBSCRIBE
+		WHERE
+		PLANID=#{planId} 
+	</select>
+	
+	
+	<select id="getAll" resultMap="SysPlanSubscribe">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_SUBSCRIBE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

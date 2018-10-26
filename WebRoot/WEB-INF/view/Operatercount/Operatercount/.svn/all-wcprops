@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount
+END
+operatercountList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountList.jsp
+END
+operatercountGetMyEnd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountGetMyEnd.jsp
+END
+operatercountGetMyTodoTask.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountGetMyTodoTask.jsp
+END
+operatercountGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountGet.jsp
+END
+operatercountDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountDetail.jsp
+END
+operatercountListLg.ftl.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountListLg.ftl.jsp
+END
+operatercountEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountEdit.jsp
+END
+operatercountGetMyDraft.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountGetMyDraft.jsp
+END
+operatercountModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BPMX_2015_WYX/!svn/ver/1660/bpmx_w/WebRoot/WEB-INF/view/Operatercount/Operatercount/operatercountModify.jsp
+END

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate
+END
+codeTemplateGetMyTodoTask.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateGetMyTodoTask.jsp
+END
+codeTemplateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateGet.jsp
+END
+codeTemplateDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateDetail.jsp
+END
+codeTemplateListLg.ftl.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateListLg.ftl.jsp
+END
+codeTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateEdit.jsp
+END
+codeTemplateGetMyDraft.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateGetMyDraft.jsp
+END
+codeTemplateModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateModify.jsp
+END
+codeTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateList.jsp
+END
+codeTemplateGetMyEnd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/1233/bpmx_w/WebRoot/WEB-INF/view/CodeTemplate/CodeTemplate/codeTemplateGetMyEnd.jsp
+END

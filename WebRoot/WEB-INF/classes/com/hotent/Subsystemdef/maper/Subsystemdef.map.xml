@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Subsystemdef.model.Subsystemdef.Subsystemdef">
+	<resultMap id="Subsystemdef" type="com.hotent.Subsystemdef.model.Subsystemdef.Subsystemdef">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="sys_id" column="F_SYS_ID" jdbcType="NUMERIC"/>
+		<result property="sys_defkey" column="F_SYS_DEFKEY" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_SYS_ID,F_SYS_DEFKEY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(sys_id)"> AND F_SYS_ID  =#{sys_id} </if>
+			<if test="@Ognl@isNotEmpty(sys_defkey)"> AND F_SYS_DEFKEY  LIKE '%${sys_defkey}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Subsystemdef.model.Subsystemdef.Subsystemdef">
+		INSERT INTO W_SUBSYSTEMDEF
+		(ID,
+		F_SYS_ID,F_SYS_DEFKEY)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{sys_id,jdbcType=NUMERIC}, #{sys_defkey,jdbcType=VARCHAR})
+	</insert>
+	
+	
+	<select id="getByDefKey1" parameterType="java.lang.Long" resultMap="Subsystemdef">
+		SELECT <include refid="columns"/>
+		FROM W_SUBSYSTEMDEF
+		WHERE
+		F_SYS_DEFKEY=#{sys_defkey}
+	</select>
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SUBSYSTEMDEF 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Subsystemdef.model.Subsystemdef.Subsystemdef">
+		UPDATE W_SUBSYSTEMDEF SET
+		F_SYS_ID=#{sys_id,jdbcType=NUMERIC},
+		F_SYS_DEFKEY=#{sys_defkey,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Subsystemdef">
+		SELECT <include refid="columns"/>
+		FROM W_SUBSYSTEMDEF
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getBy_F_SYS_ID" parameterType="java.lang.Long" resultMap="Subsystemdef">
+		SELECT <include refid="columns"/>
+		FROM W_SUBSYSTEMDEF
+		WHERE
+		F_SYS_ID=#{sys_id}
+	</select>
+	
+	<select id="getAll" resultMap="Subsystemdef">
+		SELECT <include refid="columns"/>
+		FROM W_SUBSYSTEMDEF   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="tongji" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM W_SUBSYSTEMDEF WHERE F_SYS_ID=#{sys_id}
+	</select>
+
+	
+</mapper>

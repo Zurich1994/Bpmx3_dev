@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmGangedSet">
+	<resultMap id="BpmGangedSet" type="com.hotent.platform.model.bpm.BpmGangedSet">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="defid" column="DEFID" jdbcType="NUMERIC"/>
+		<result property="nodeid" column="NODEID" jdbcType="VARCHAR"/>
+		<result property="nodename" column="NODENAME" jdbcType="VARCHAR"/>
+		<result property="choisefield" column="CHOISEFIELD" jdbcType="CLOB"/>
+		<result property="changefield" column="CHANGEFIELD" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,DEFID,NODEID,NODENAME,CHOISEFIELD,CHANGEFIELD
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(defid)"> AND DEFID  =#{defid} </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND NODEID  LIKE '%${nodeid}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodename)"> AND NODENAME  LIKE '%${nodename}%'  </if>
+			<if test="@Ognl@isNotEmpty(choisefield)"> AND CHOISEFIELD  LIKE '%${choisefield}%'  </if>
+			<if test="@Ognl@isNotEmpty(changefield)"> AND CHANGEFIELD  LIKE '%${changefield}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmGangedSet">
+		INSERT INTO BPM_GANGED_SET
+		(ID,DEFID,NODEID,NODENAME,CHOISEFIELD,CHANGEFIELD)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{defid,jdbcType=NUMERIC}, #{nodeid,jdbcType=VARCHAR}, #{nodename,jdbcType=VARCHAR}, #{choisefield,jdbcType=CLOB}, #{changefield,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_GANGED_SET 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmGangedSet">
+		UPDATE BPM_GANGED_SET SET
+		DEFID=#{defid,jdbcType=NUMERIC},
+		NODEID=#{nodeid,jdbcType=VARCHAR},
+		NODENAME=#{nodename,jdbcType=VARCHAR},
+		CHOISEFIELD=#{choisefield,jdbcType=CLOB},
+		CHANGEFIELD=#{changefield,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmGangedSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_GANGED_SET
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByDefId" parameterType="java.lang.Long" resultMap="BpmGangedSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_GANGED_SET 
+		WHERE DEFID = #{defId} 
+	</select>
+	
+	<select id="getByDefIdAndNodeId" parameterType="java.util.Map" resultMap="BpmGangedSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_GANGED_SET
+		WHERE
+		DEFID=#{defId} AND NODEID = #{nodeId}
+	</select>
+	
+	<select id="getAll" resultMap="BpmGangedSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_GANGED_SET   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<delete id="delByDefIdExceptSetId" parameterType="java.util.Map">
+		delete from BPM_GANGED_SET where defid = #{defId} 
+		<if test="@Ognl@isNotEmpty(setId)"> 
+		and id not in (${setId})  
+		</if>		
+	</delete>
+	
+	<delete id="delByDefId" parameterType="java.lang.Long">
+		DELETE FROM BPM_GANGED_SET 
+		WHERE
+		DEFID=#{defId}
+	</delete>
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsCardRecord">
+	<resultMap id="AtsCardRecord" type="com.hotent.platform.model.ats.AtsCardRecord">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="cardNumber" column="CARD_NUMBER" jdbcType="VARCHAR"/>
+		<result property="cardDate" column="CARD_DATE" jdbcType="TIMESTAMP"/>
+		<result property="cardSource" column="CARD_SOURCE" jdbcType="NUMERIC"/>
+		<result property="cardPlace" column="CARD_PLACE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,CARD_NUMBER,CARD_DATE,CARD_SOURCE,CARD_PLACE
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(cardNumber)"> AND CARD_NUMBER  LIKE #{cardNumber}  </if>
+			<if test="@Ognl@isNotEmpty(cardDate)"> AND CARD_DATE  =#{cardDate} </if>
+			<if test="@Ognl@isNotEmpty(begincardDate)"> AND CARD_DATE  >=#{begincardDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(cardTime)"> AND CARD_TIME  =#{cardTime} </if>
+			<if test="@Ognl@isNotEmpty(cardSource)"> AND CARD_SOURCE  = #{cardSource}  </if>
+			<if test="@Ognl@isNotEmpty(cardPlace)"> AND CARD_PLACE  LIKE #{cardPlace}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsCardRecord">
+		INSERT INTO ATS_CARD_RECORD
+		(ID,CARD_NUMBER,CARD_DATE,CARD_SOURCE,CARD_PLACE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{cardNumber,jdbcType=VARCHAR}, #{cardDate,jdbcType=TIMESTAMP}, #{cardSource,jdbcType=NUMERIC}, #{cardPlace,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_CARD_RECORD 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsCardRecord">
+		UPDATE ATS_CARD_RECORD SET
+		CARD_NUMBER=#{cardNumber,jdbcType=VARCHAR},
+		CARD_DATE=#{cardDate,jdbcType=TIMESTAMP},
+		CARD_SOURCE=#{cardSource,jdbcType=NUMERIC},
+		CARD_PLACE=#{cardPlace,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsCardRecord">
+		SELECT <include refid="columns"/>
+		FROM ATS_CARD_RECORD
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsCardRecord">
+		SELECT <include refid="columns"/>
+		FROM ATS_CARD_RECORD   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByCardNumber" parameterType="java.lang.String" resultMap="AtsCardRecord">
+		SELECT <include refid="columns"/>
+		FROM ATS_CARD_RECORD
+		WHERE
+		CARD_NUMBER=#{cardNumber}
+		order by CARD_DATE,CARD_TIME
+	</select>
+	
+	<select id="getByCardNumberCardDate" parameterType="java.lang.String" resultMap="AtsCardRecord">
+		SELECT <include refid="columns"/>
+		FROM ATS_CARD_RECORD
+		WHERE
+		CARD_NUMBER=#{cardNumber}
+		AND CARD_DATE  >=#{startTime,jdbcType=DATE}
+		AND CARD_DATE <![CDATA[ <=#{endTime,jdbcType=DATE}]]> 
+		order by CARD_DATE
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.nodetimeandcount.model.nodetimeandcount.Nodetimeandcount">
+	<resultMap id="Nodetimeandcount" type="com.hotent.nodetimeandcount.model.nodetimeandcount.Nodetimeandcount">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="projectId" column="F_PROJECTID" jdbcType="VARCHAR"/>
+		<result property="defId" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="timeAndCount" column="F_TIMEANDCOUNT" jdbcType="VARCHAR"/>
+		<result property="remain1" column="F_REMAIN1" jdbcType="VARCHAR"/>
+		<result property="remain2" column="F_REMAIN2" jdbcType="VARCHAR"/>
+		<result property="remain3" column="F_REMAIN3" jdbcType="VARCHAR"/>
+		<result property="remain4" column="F_REMAIN4" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PROJECTID,F_DEFID,F_NODEID,F_TIMEANDCOUNT,F_REMAIN1,F_REMAIN2,F_REMAIN3,F_REMAIN4
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(projectId)"> AND F_PROJECTID  LIKE '%${projectId}%'  </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND F_DEFID  LIKE '%${defId}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND F_NODEID  LIKE '%${nodeId}%'  </if>
+			<if test="@Ognl@isNotEmpty(timeAndCount)"> AND F_TIMEANDCOUNT  LIKE '%${timeAndCount}%'  </if>
+			<if test="@Ognl@isNotEmpty(remain1)"> AND F_REMAIN1  LIKE '%${remain1}%'  </if>
+			<if test="@Ognl@isNotEmpty(remain2)"> AND F_REMAIN2  LIKE '%${remain2}%'  </if>
+			<if test="@Ognl@isNotEmpty(remain3)"> AND F_REMAIN3  LIKE '%${remain3}%'  </if>
+			<if test="@Ognl@isNotEmpty(remain4)"> AND F_REMAIN4  LIKE '%${remain4}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.nodetimeandcount.model.nodetimeandcount.Nodetimeandcount">
+		INSERT INTO W_NODETIMEANDCOUNT
+		(ID,
+		F_PROJECTID,F_DEFID,F_NODEID,F_TIMEANDCOUNT,F_REMAIN1,F_REMAIN2,F_REMAIN3,F_REMAIN4)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{projectId,jdbcType=VARCHAR}, #{defId,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{timeAndCount,jdbcType=VARCHAR}, #{remain1,jdbcType=VARCHAR}, #{remain2,jdbcType=VARCHAR}, #{remain3,jdbcType=VARCHAR}, #{remain4,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_NODETIMEANDCOUNT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.nodetimeandcount.model.nodetimeandcount.Nodetimeandcount">
+		UPDATE W_NODETIMEANDCOUNT SET
+		F_PROJECTID=#{projectId,jdbcType=VARCHAR},
+		F_DEFID=#{defId,jdbcType=VARCHAR},
+		F_NODEID=#{nodeId,jdbcType=VARCHAR},
+		F_TIMEANDCOUNT=#{timeAndCount,jdbcType=VARCHAR},
+		F_REMAIN1=#{remain1,jdbcType=VARCHAR},
+		F_REMAIN2=#{remain2,jdbcType=VARCHAR},
+		F_REMAIN3=#{remain3,jdbcType=VARCHAR},
+		F_REMAIN4=#{remain4,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Nodetimeandcount">
+		SELECT <include refid="columns"/>
+		FROM W_NODETIMEANDCOUNT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Nodetimeandcount">
+		SELECT <include refid="columns"/>
+		FROM W_NODETIMEANDCOUNT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

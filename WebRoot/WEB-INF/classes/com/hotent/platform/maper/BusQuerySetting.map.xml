@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bus.BusQuerySetting">
+	<resultMap id="BusQuerySetting" type="com.hotent.platform.model.bus.BusQuerySetting">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="tableName" column="TABLENAME" jdbcType="VARCHAR"/>
+		<result property="displayField" column="DISPLAYFIELD" jdbcType="CLOB"/>
+		<result property="userId" column="USERID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TABLENAME,DISPLAYFIELD,USERID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(tableName)"> AND TABLENAME  LIKE #{tableName}  </if>
+			<if test="@Ognl@isNotEmpty(displayField)"> AND DISPLAYFIELD  LIKE #{displayField}  </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND USERID  =#{userId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bus.BusQuerySetting">
+		INSERT INTO BUS_QUERY_SETTING
+		(ID,TABLENAME,DISPLAYFIELD,USERID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{tableName,jdbcType=VARCHAR}, #{displayField,jdbcType=CLOB}, #{userId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BUS_QUERY_SETTING 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bus.BusQuerySetting">
+		UPDATE BUS_QUERY_SETTING SET
+		TABLENAME=#{tableName,jdbcType=VARCHAR},
+		DISPLAYFIELD=#{displayField,jdbcType=CLOB},
+		USERID=#{userId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BusQuerySetting">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_SETTING
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BusQuerySetting">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_SETTING   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	<select id="getByTableNameUserId"  resultMap="BusQuerySetting">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_SETTING
+		WHERE TABLENAME=#{tableName}
+		AND USERID=#{userId}
+	</select>
+	
+
+</mapper>

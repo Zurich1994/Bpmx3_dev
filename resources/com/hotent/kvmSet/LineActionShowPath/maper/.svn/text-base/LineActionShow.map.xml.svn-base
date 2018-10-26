@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.LineActionShowPath.model.LineActionShowCode.LineActionShow">
+	<resultMap id="LineActionShow" type="com.hotent.LineActionShowPath.model.LineActionShowCode.LineActionShow">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="line_id" column="F_LINE_ID" jdbcType="NUMERIC"/>
+		<result property="start_time" column="F_START_TIME" jdbcType="NUMERIC"/>
+		<result property="actionname" column="F_ACTIONNAME" jdbcType="VARCHAR"/>
+		<result property="actiontime" column="F_ACTIONTIME" jdbcType="VARCHAR"/>
+		<result property="actioncount" column="F_ACTIONCOUNT" jdbcType="VARCHAR"/>
+		<result property="sameaction_sign" column="F_SAMEACTION_SIGN" jdbcType="VARCHAR"/>
+		<result property="sameaction_sign1" column="F_SAMEACTION_SIGN1" jdbcType="VARCHAR"/>
+		<result property="line_color" column="F_LINE_COLOR" jdbcType="VARCHAR"/>
+		<result property="line_color1" column="F_LINE_COLOR1" jdbcType="VARCHAR"/>
+		<result property="line_info" column="F_LINE_INFO" jdbcType="VARCHAR"/>
+		<result property="a" column="F_A" jdbcType="VARCHAR"/>
+		<result property="b" column="F_B" jdbcType="VARCHAR"/>
+		<result property="c" column="F_C" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_LINE_ID,F_START_TIME,F_ACTIONNAME,F_ACTIONTIME,F_ACTIONCOUNT,F_SAMEACTION_SIGN,F_SAMEACTION_SIGN1,F_LINE_COLOR,F_LINE_COLOR1,F_LINE_INFO,F_A,F_B,F_C
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(line_id)"> AND F_LINE_ID  =#{line_id} </if>
+			<if test="@Ognl@isNotEmpty(start_time)"> AND F_START_TIME  =#{start_time} </if>
+			<if test="@Ognl@isNotEmpty(actionname)"> AND F_ACTIONNAME  LIKE '%${actionname}%'  </if>
+			<if test="@Ognl@isNotEmpty(actiontime)"> AND F_ACTIONTIME  LIKE '%${actiontime}%'  </if>
+			<if test="@Ognl@isNotEmpty(actioncount)"> AND F_ACTIONCOUNT  LIKE '%${actioncount}%'  </if>
+			<if test="@Ognl@isNotEmpty(sameaction_sign)"> AND F_SAMEACTION_SIGN  LIKE '%${sameaction_sign}%'  </if>
+			<if test="@Ognl@isNotEmpty(sameaction_sign1)"> AND F_SAMEACTION_SIGN1  LIKE '%${sameaction_sign1}%'  </if>
+			<if test="@Ognl@isNotEmpty(line_color)"> AND F_LINE_COLOR  LIKE '%${line_color}%'  </if>
+			<if test="@Ognl@isNotEmpty(line_color1)"> AND F_LINE_COLOR1  LIKE '%${line_color1}%'  </if>
+			<if test="@Ognl@isNotEmpty(line_info)"> AND F_LINE_INFO  LIKE '%${line_info}%'  </if>
+			<if test="@Ognl@isNotEmpty(a)"> AND F_A  LIKE '%${a}%'  </if>
+			<if test="@Ognl@isNotEmpty(b)"> AND F_B  LIKE '%${b}%'  </if>
+			<if test="@Ognl@isNotEmpty(c)"> AND F_C  LIKE '%${c}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.LineActionShowPath.model.LineActionShowCode.LineActionShow">
+		INSERT INTO W_LINE_ACTION_SHOW
+		(ID,
+		F_LINE_ID,F_START_TIME,F_ACTIONNAME,F_ACTIONTIME,F_ACTIONCOUNT,F_SAMEACTION_SIGN,F_SAMEACTION_SIGN1,F_LINE_COLOR,F_LINE_COLOR1,F_LINE_INFO,F_A,F_B,F_C)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{line_id,jdbcType=NUMERIC}, #{start_time,jdbcType=NUMERIC}, #{actionname,jdbcType=VARCHAR}, #{actiontime,jdbcType=VARCHAR}, #{actioncount,jdbcType=VARCHAR}, #{sameaction_sign,jdbcType=VARCHAR}, #{sameaction_sign1,jdbcType=VARCHAR}, #{line_color,jdbcType=VARCHAR}, #{line_color1,jdbcType=VARCHAR}, #{line_info,jdbcType=VARCHAR}, #{a,jdbcType=VARCHAR}, #{b,jdbcType=VARCHAR}, #{c,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_LINE_ACTION_SHOW 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.LineActionShowPath.model.LineActionShowCode.LineActionShow">
+		UPDATE W_LINE_ACTION_SHOW SET
+		F_LINE_ID=#{line_id,jdbcType=NUMERIC},
+		F_START_TIME=#{start_time,jdbcType=NUMERIC},
+		F_ACTIONNAME=#{actionname,jdbcType=VARCHAR},
+		F_ACTIONTIME=#{actiontime,jdbcType=VARCHAR},
+		F_ACTIONCOUNT=#{actioncount,jdbcType=VARCHAR},
+		F_SAMEACTION_SIGN=#{sameaction_sign,jdbcType=VARCHAR},
+		F_SAMEACTION_SIGN1=#{sameaction_sign1,jdbcType=VARCHAR},
+		F_LINE_COLOR=#{line_color,jdbcType=VARCHAR},
+		F_LINE_COLOR1=#{line_color1,jdbcType=VARCHAR},
+		F_LINE_INFO=#{line_info,jdbcType=VARCHAR},
+		F_A=#{a,jdbcType=VARCHAR},
+		F_B=#{b,jdbcType=VARCHAR},
+		F_C=#{c,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="LineActionShow">
+		SELECT <include refid="columns"/>
+		FROM W_LINE_ACTION_SHOW
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="LineActionShow">
+		SELECT <include refid="columns"/>
+		FROM W_LINE_ACTION_SHOW   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

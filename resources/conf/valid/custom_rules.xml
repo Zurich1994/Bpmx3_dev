@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<form-validation>
+
+   <global>
+
+      <!--自定义规则-->
+      <validator name="equalTo"
+         classname="com.hotent.core.valid.CustomFieldChecks"
+         method="validateEqual"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+         depends="required"
+         msg="errors.equalTo">
+       </validator>
+       
+      <validator name="regex"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateRegx"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+              depends=""
+                  msg="errors.regex">
+
+      </validator>
+      
+      <validator name="number"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateIsNumber"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"    
+              depends=""
+                  msg="errors.number">
+      </validator>
+      
+      
+       <validator name="digits"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateIsDigits"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"        
+              depends=""
+                  msg="errors.digits">
+      </validator>
+      
+      <validator name="max"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateMax"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"      
+              depends=""
+                  msg="errors.max">
+      </validator>
+      
+      
+      <validator name="min"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateMin"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.min">
+      </validator>
+      
+      <validator name="rangelength"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateRangelength"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.rangelength">
+      </validator>
+      
+      
+      <validator name="url"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateUrl"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.url">
+      </validator>
+      
+      <validator name="email"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateEmail"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.email">
+      </validator>
+      
+      
+      <validator name="mobile"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateMobile"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.mobile">
+      </validator>
+      
+      <validator name="phone"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validatePhone"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.phone">
+      </validator>
+      
+      
+      <validator name="zip"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateZip"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.zip">
+      </validator>
+      
+      <validator name="qq"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateQq"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.qq">
+      </validator>
+      
+      <validator name="ip"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateIp"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.ip">
+      </validator>
+      
+      
+       <validator name="chinese"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateChinese"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.chinese">
+      </validator>
+      
+      <validator name="chrnum"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateChrnum"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.chrnum">
+      </validator>
+      
+      
+      <validator name="date"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="validateDateTime"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.date">
+      </validator>
+      
+      <validator name="compStartEndTime"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="compStartEndTime"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.compDate">
+      </validator>
+      
+      <validator name="digitsSum"
+            classname="com.hotent.core.valid.CustomFieldChecks"
+               method="digitsSum"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.digitsSum">
+      </validator>
+
+   </global>
+
+</form-validation>

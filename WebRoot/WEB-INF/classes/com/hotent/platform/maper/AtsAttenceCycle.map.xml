@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsAttenceCycle">
+	<resultMap id="AtsAttenceCycle" type="com.hotent.platform.model.ats.AtsAttenceCycle">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="type" column="TYPE" jdbcType="VARCHAR"/>
+		<result property="year" column="YEAR" jdbcType="NUMERIC"/>
+		<result property="month" column="MONTH" jdbcType="NUMERIC"/>
+		<result property="startMonth" column="START_MONTH" jdbcType="NUMERIC"/>
+		<result property="startDay" column="START_DAY" jdbcType="NUMERIC"/>
+		<result property="endMonth" column="END_MONTH" jdbcType="NUMERIC"/>
+		<result property="endDay" column="END_DAY" jdbcType="NUMERIC"/>
+		<result property="isDefault" column="IS_DEFAULT" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,CODE,NAME,TYPE,YEAR,MONTH,START_MONTH,START_DAY,END_MONTH,END_DAY,IS_DEFAULT,MEMO
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND TYPE  LIKE #{type}  </if>
+			<if test="@Ognl@isNotEmpty(year)"> AND YEAR  =#{year} </if>
+			<if test="@Ognl@isNotEmpty(month)"> AND MONTH  =#{month} </if>
+			<if test="@Ognl@isNotEmpty(startMonth)"> AND START_MONTH  =#{startMonth} </if>
+			<if test="@Ognl@isNotEmpty(startDay)"> AND START_DAY  =#{startDay} </if>
+			<if test="@Ognl@isNotEmpty(endMonth)"> AND END_MONTH  =#{endMonth} </if>
+			<if test="@Ognl@isNotEmpty(endDay)"> AND END_DAY  =#{endDay} </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND IS_DEFAULT  =#{isDefault} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsAttenceCycle">
+		INSERT INTO ATS_ATTENCE_CYCLE
+		(ID,CODE,NAME,TYPE,YEAR,MONTH,START_MONTH,START_DAY,END_MONTH,END_DAY,IS_DEFAULT,MEMO)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{year,jdbcType=NUMERIC}, #{month,jdbcType=NUMERIC}, #{startMonth,jdbcType=NUMERIC}, #{startDay,jdbcType=NUMERIC}, #{endMonth,jdbcType=NUMERIC}, #{endDay,jdbcType=NUMERIC}, #{isDefault,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_CYCLE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsAttenceCycle">
+		UPDATE ATS_ATTENCE_CYCLE SET
+		CODE=#{code,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		TYPE=#{type,jdbcType=VARCHAR},
+		YEAR=#{year,jdbcType=NUMERIC},
+		MONTH=#{month,jdbcType=NUMERIC},
+		START_MONTH=#{startMonth,jdbcType=NUMERIC},
+		START_DAY=#{startDay,jdbcType=NUMERIC},
+		END_MONTH=#{endMonth,jdbcType=NUMERIC},
+		END_DAY=#{endDay,jdbcType=NUMERIC},
+		IS_DEFAULT=#{isDefault,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsAttenceCycle">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CYCLE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsAttenceCycle">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CYCLE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

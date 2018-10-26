@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysOrgType">
+	<resultMap id="SysOrgType" type="com.hotent.platform.model.system.SysOrgType">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="demId" column="DEMID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="levels" column="LEVELS" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="icon"  column="ICON"  jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,DEMID,NAME,LEVELS,MEMO,ICON
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(demId)"> AND DEMID  =#{demId} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(levels)"> AND LEVELS  =#{levels} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo} </if>
+			<if test="@Ognl@isNotEmpty(icon)"> AND ICON  LIKE #{icon} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysOrgType">
+		INSERT INTO SYS_ORG_TYPE
+		(ID,DEMID,NAME,LEVELS,MEMO,ICON)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{demId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{levels,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ORG_TYPE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysOrgType">
+		UPDATE SYS_ORG_TYPE SET
+		DEMID=#{demId,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		LEVELS=#{levels,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		ICON=#{icon,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysOrgType">
+		SELECT <include refid="columns"/>
+		FROM SYS_ORG_TYPE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysOrgType">
+		SELECT <include refid="columns"/>
+		FROM SYS_ORG_TYPE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by levels  asc
+		</if>
+	</select>
+	
+		<select id="getMaxLevel" parameterType="java.lang.Long" resultType="Integer">
+		SELECT MAX(LEVELS)
+		FROM SYS_ORG_TYPE
+		WHERE
+		demId=#{demId} 
+	</select>
+	
+	<select id="getByDemId"  parameterType="java.lang.Long" resultMap="SysOrgType">
+			SELECT <include refid="columns"/>
+			FROM SYS_ORG_TYPE   
+			WHERE DEMID  =#{demId}
+			order by levels  asc
+	</select>
+</mapper>

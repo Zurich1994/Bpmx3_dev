@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.ResourcesUrl">
+	<resultMap id="ResourcesUrl" type="com.hotent.platform.model.system.ResourcesUrl">
+		<id property="resUrlId" column="resUrlId" jdbcType="NUMERIC"/>
+		<result property="resId" column="resId" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="url" column="url" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		resUrlId,resId,name,url
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(resUrlId)"> AND resUrlId  =#{resUrlId} </if>
+			<if test="@Ognl@isNotEmpty(resId)"> AND resId  =#{resId} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(url)"> AND url  LIKE #{url}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.ResourcesUrl">
+		INSERT INTO sys_resurl
+		(<include refid="columns"/>)
+		VALUES
+		(#{resUrlId,jdbcType=NUMERIC}, #{resId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_RESURL 
+		WHERE
+		resUrlId=#{resUrlId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.ResourcesUrl">
+		UPDATE sys_resurl SET
+		resId=#{resId,jdbcType=NUMERIC} , 
+		name=#{name,jdbcType=VARCHAR} , 
+		url=#{url,jdbcType=VARCHAR} 
+		WHERE
+		resUrlId=#{resUrlId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="ResourcesUrl">
+		SELECT <include refid="columns"/>
+		FROM SYS_RESURL
+		WHERE
+		resUrlId=#{resUrlId}
+	</select>
+	
+	<select id="getAll" resultMap="ResourcesUrl">
+		SELECT <include refid="columns"/>
+		FROM SYS_RESURL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by resUrlId  desc
+		</if>
+	</select>
+	
+	<select id="getByResId" parameterType="java.lang.Long" resultMap="ResourcesUrl">
+		SELECT <include refid="columns"/>
+		FROM SYS_RESURL
+		WHERE
+		resId=#{resId}
+	</select>
+	
+	<delete id="delByResId" parameterType="java.lang.Long">
+		DELETE FROM SYS_RESURL  WHERE resId=#{resId}
+	</delete>
+	
+	
+
+	
+	<select id="getUrlAndRoleBySystemId" parameterType="java.lang.Long"  resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		SELECT DISTINCT A.url as url,D.alias AS role
+		FROM
+		SYS_RESURL A
+		INNER JOIN SYS_RES B ON (A.resId=B.resId)
+		LEFT JOIN SYS_ROLE_RES C ON (C.resId=B.resId)
+		LEFT JOIN SYS_ROLE D ON (D.roleId=C.roleId)
+		WHERE  B.systemId=#{systemId}
+	</select>
+	
+	<select id="getUrlAndRoleByUrlSystemAlias"   resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		SELECT DISTINCT A.url as url,D.alias AS role
+		FROM
+		SYS_RESURL A
+		JOIN SYS_RES B ON (A.resId=B.resId)
+		LEFT JOIN SYS_ROLE_RES C ON (C.resId=B.resId)
+		LEFT JOIN SYS_ROLE D ON (D.roleId=C.roleId)
+		LEFT JOIN SYS_SUBSYSTEM E on B.systemId=E.systemId
+		WHERE    E.alias=#{sysAlias} and A.url=#{url}
+	</select>
+	
+	<select id="getSubSystemResources" parameterType="java.lang.String"  resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		SELECT DISTINCT A.url as url,D.alias AS role
+		FROM
+		SYS_RESURL A
+		INNER JOIN SYS_RES B ON (A.resId=B.resId)
+		LEFT JOIN SYS_ROLE_RES C ON (C.resId=B.resId)
+		LEFT JOIN SYS_ROLE D ON (D.roleId=C.roleId)
+		LEFT JOIN SYS_SUBSYSTEM E ON (B.systemId=E.systemId)
+		WHERE  E.defaultUrl=#{defaultUrl}
+	</select>	
+	
+	<select id="getSubSystemResByAlias" parameterType="java.lang.String"  resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		SELECT DISTINCT A.url as url,D.alias AS role
+		FROM
+		SYS_RESURL A
+		INNER JOIN SYS_RES B ON (A.resId=B.resId)
+		LEFT JOIN SYS_ROLE_RES C ON (C.resId=B.resId)
+		LEFT JOIN SYS_ROLE D ON (D.roleId=C.roleId)
+		LEFT JOIN SYS_SUBSYSTEM E ON (B.systemId=E.systemId)
+		WHERE  E.Alias=#{alias}
+	</select>
+	
+	
+</mapper>

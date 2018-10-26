@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Markovchain.model.Markovchain.Markovchain">
+	<resultMap id="Markovchain" type="com.hotent.Markovchain.model.Markovchain.Markovchain">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="markovchainNAME" column="F_MARKOVCHAINNAME" jdbcType="VARCHAR"/>
+		<result property="isSimulation" column="F_ISSIMULATION" jdbcType="VARCHAR"/>
+		<result property="belongto" column="F_BELONGTO" jdbcType="VARCHAR"/>
+		<result property="dependmark" column="F_DEPENDMARK" jdbcType="VARCHAR"/>
+		<result property="frequency" column="F_FREQUENCY" jdbcType="NUMERIC"/>
+		<result property="markovchainDes" column="F_MARKOVCHAINDES" jdbcType="VARCHAR"/>
+		<result property="probability" column="F_PROBABILITY" jdbcType="NUMERIC"/>
+		<result property="dependId" column="F_DEPENDID" jdbcType="NUMERIC"/>
+		<result property="defid" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="markovchainXML" column="F_MARKOVCHAINXML" jdbcType="CLOB"/>
+		<result property="actDeployId" column="F_ACTDEPLOYID" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_MARKOVCHAINNAME,F_ISSIMULATION,F_BELONGTO,F_DEPENDMARK,F_FREQUENCY,F_MARKOVCHAINDES,F_PROBABILITY,F_DEPENDID,F_DEFID,F_MARKOVCHAINXML,F_ACTDEPLOYID
+	</sql>
+	<sql id="wfColumns">
+		ID,F_MARKOVCHAINNAME,F_ISSIMULATION,F_BELONGTO,F_DEPENDMARK,F_FREQUENCY,F_MARKOVCHAINDES,F_PROBABILITY,F_DEPENDID,F_DEFID,F_MARKOVCHAINXML,F_ACTDEPLOYID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(markovchainNAME)"> AND F_MARKOVCHAINNAME  LIKE '%${markovchainNAME}%'  </if>
+			<if test="@Ognl@isNotEmpty(isSimulation)"> AND F_ISSIMULATION  LIKE '%${isSimulation}%'  </if>
+			<if test="@Ognl@isNotEmpty(belongto)"> AND F_BELONGTO  LIKE '%${belongto}%'  </if>
+			<if test="@Ognl@isNotEmpty(dependmark)"> AND F_DEPENDMARK  LIKE '%${dependmark}%'  </if>
+			<if test="@Ognl@isNotEmpty(frequency)"> AND F_FREQUENCY  =#{frequency} </if>
+			<if test="@Ognl@isNotEmpty(markovchainDes)"> AND F_MARKOVCHAINDES  LIKE '%${markovchainDes}%'  </if>
+			<if test="@Ognl@isNotEmpty(probability)"> AND F_PROBABILITY  =#{probability} </if>
+			<if test="@Ognl@isNotEmpty(dependId)"> AND F_DEPENDID  =#{dependId} </if>
+			<if test="@Ognl@isNotEmpty(defid)"> AND F_DEFID  LIKE '%${defid}%'  </if>
+			<if test="@Ognl@isNotEmpty(markovchainXML)"> AND F_MARKOVCHAINXML  =#{markovchainXML} </if>
+			<if test="@Ognl@isNotEmpty(actDeployId)"> AND F_ACTDEPLOYID  =#{actDeployId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Markovchain.model.Markovchain.Markovchain">
+		INSERT INTO W_MARKOVCHAIN
+		(ID,
+		F_MARKOVCHAINNAME,F_ISSIMULATION,F_BELONGTO,F_DEPENDMARK,F_FREQUENCY,F_MARKOVCHAINDES,F_PROBABILITY,F_DEPENDID,F_DEFID,F_MARKOVCHAINXML,F_ACTDEPLOYID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{markovchainNAME,jdbcType=VARCHAR}, #{isSimulation,jdbcType=VARCHAR}, #{belongto,jdbcType=VARCHAR}, #{dependmark,jdbcType=VARCHAR}, #{frequency,jdbcType=NUMERIC}, #{markovchainDes,jdbcType=VARCHAR}, #{probability,jdbcType=NUMERIC}, #{dependId,jdbcType=NUMERIC}, #{defid,jdbcType=VARCHAR}, #{markovchainXML,jdbcType=CLOB},#{actDeployId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_MARKOVCHAIN 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Markovchain.model.Markovchain.Markovchain">
+		UPDATE W_MARKOVCHAIN SET
+		F_MARKOVCHAINNAME=#{markovchainNAME,jdbcType=VARCHAR},
+		F_ISSIMULATION=#{isSimulation,jdbcType=VARCHAR},
+		F_BELONGTO=#{belongto,jdbcType=VARCHAR},
+		F_DEPENDMARK=#{dependmark,jdbcType=VARCHAR},
+		F_FREQUENCY=#{frequency,jdbcType=NUMERIC},
+		F_MARKOVCHAINDES=#{markovchainDes,jdbcType=VARCHAR},
+		F_PROBABILITY=#{probability,jdbcType=NUMERIC},
+		F_DEPENDID=#{dependId,jdbcType=NUMERIC},
+		F_DEFID=#{defid,jdbcType=VARCHAR},
+		F_MARKOVCHAINXML=#{markovchainXML,jdbcType=CLOB},
+		F_ACTDEPLOYID=#{actDeployId,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Markovchain">
+		SELECT <include refid="columns"/>
+		FROM W_MARKOVCHAIN
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Markovchain">
+		SELECT <include refid="columns"/>
+		FROM W_MARKOVCHAIN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByDefId" parameterType="java.lang.Long" resultMap="Markovchain">
+		SELECT <include refid="columns"/>
+		FROM W_MARKOVCHAIN
+		WHERE
+		F_DEFID=#{defId}
+	</select>
+	
+	<select id="getmarkXmlById" parameterType="java.lang.Long" resultMap="Markovchain">
+		SELECT F_MARKOVCHAINXML
+		FROM W_MARKOVCHAIN
+		WHERE
+		ID=#{id}
+	</select>
+	
+</mapper>

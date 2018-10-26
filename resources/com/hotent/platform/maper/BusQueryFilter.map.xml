@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bus.BusQueryFilter">
+	<resultMap id="BusQueryFilter" type="com.hotent.platform.model.bus.BusQueryFilter">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="ruleId" column="RULEID" jdbcType="NUMERIC"/>
+		<result property="tableName" column="TABLENAME" jdbcType="VARCHAR"/>
+		<result property="filterName" column="FILTERNAME" jdbcType="VARCHAR"/>
+		<result property="filterDesc" column="FILTERDESC" jdbcType="CLOB"/>
+		<result property="filterKey" column="FILTERKEY" jdbcType="VARCHAR"/>
+		<result property="queryParameter" column="QUERYPARAMETER" jdbcType="CLOB"/>
+		<result property="sortParameter" column="SORTPARAMETER" jdbcType="CLOB"/>
+		<result property="isShare" column="ISSHARE" jdbcType="NUMERIC"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="createBy" column="CREATEBY" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,RULEID,TABLENAME,FILTERNAME,FILTERDESC,FILTERKEY,QUERYPARAMETER,SORTPARAMETER,ISSHARE,CREATETIME,CREATEBY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(ruleId)"> AND RULEID  =#{ruleId} </if>
+			<if test="@Ognl@isNotEmpty(tableName)"> AND TABLENAME  LIKE #{tableName}  </if>
+			<if test="@Ognl@isNotEmpty(filterName)"> AND FILTERNAME  LIKE #{filterName}  </if>
+			<if test="@Ognl@isNotEmpty(filterDesc)"> AND FILTERDESC  LIKE #{filterDesc}  </if>
+			<if test="@Ognl@isNotEmpty(filterKey)"> AND FILTERKEY  LIKE #{filterKey}  </if>
+			<if test="@Ognl@isNotEmpty(queryParameter)"> AND QUERYPARAMETER  LIKE #{queryParameter}  </if>
+			<if test="@Ognl@isNotEmpty(sortParameter)"> AND SORTPARAMETER  LIKE #{sortParameter}  </if>
+			<if test="@Ognl@isNotEmpty(isShare)"> AND ISSHARE  =#{isShare} </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createBy)"> AND CREATEBY  =#{createBy} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bus.BusQueryFilter">
+		INSERT INTO BUS_QUERY_FILTER
+		(ID,RULEID,TABLENAME,FILTERNAME,FILTERDESC,FILTERKEY,QUERYPARAMETER,SORTPARAMETER,ISSHARE,CREATETIME,CREATEBY)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{ruleId,jdbcType=NUMERIC}, #{tableName,jdbcType=VARCHAR}, #{filterName,jdbcType=VARCHAR}, #{filterDesc,jdbcType=CLOB}, #{filterKey,jdbcType=VARCHAR}, #{queryParameter,jdbcType=CLOB}, #{sortParameter,jdbcType=CLOB}, #{isShare,jdbcType=NUMERIC}, #{createtime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BUS_QUERY_FILTER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bus.BusQueryFilter">
+		UPDATE BUS_QUERY_FILTER SET
+		RULEID=#{ruleId,jdbcType=NUMERIC},
+		TABLENAME=#{tableName,jdbcType=VARCHAR},
+		FILTERNAME=#{filterName,jdbcType=VARCHAR},
+		FILTERDESC=#{filterDesc,jdbcType=CLOB},
+		FILTERKEY=#{filterKey,jdbcType=VARCHAR},
+		QUERYPARAMETER=#{queryParameter,jdbcType=CLOB},
+		SORTPARAMETER=#{sortParameter,jdbcType=CLOB},
+		ISSHARE=#{isShare,jdbcType=NUMERIC},
+		CREATETIME=#{createtime,jdbcType=TIMESTAMP},
+		CREATEBY=#{createBy,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BusQueryFilter">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_FILTER
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BusQueryFilter">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_FILTER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by CREATETIME  desc
+		</if>
+	</select>
+	
+	<select id="getMyFilterList" resultMap="BusQueryFilter">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_FILTER   
+		WHERE TABLENAME= #{tableName} AND CREATEBY= #{userId}
+		order by CREATETIME  desc
+	</select>
+	
+	<select id="getShareFilterList" resultMap="BusQueryFilter">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_FILTER   
+		WHERE TABLENAME= #{tableName} AND CREATEBY != #{userId} AND isShare=1
+		order by CREATETIME  desc
+	</select>
+</mapper>

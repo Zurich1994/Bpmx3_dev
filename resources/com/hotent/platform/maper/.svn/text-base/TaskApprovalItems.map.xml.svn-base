@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.TaskApprovalItems">
+	<resultMap id="TaskApprovalItems" type="com.hotent.platform.model.bpm.TaskApprovalItems">
+		<id property="itemId" column="itemId" jdbcType="NUMERIC"/>
+		<result property="typeId" column="typeId" jdbcType="NUMERIC"/>
+		<result property="defKey" column="defKey" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="NUMERIC"/>
+		<result property="expression" column="expression" jdbcType="VARCHAR"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+	
+	<sql id="columns">
+		itemId,typeId,defKey,type,expression,userId
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(itemId)"> AND itemId  =#{itemId} </if>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND typeId  =#{typeId} </if>
+			<if test="@Ognl@isNotEmpty(defKey)"> AND defKey  LIKE #{defKey}  </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND type  =#{type}  </if>
+			<if test="@Ognl@isNotEmpty(expression)"> AND expression  LIKE #{expression}  </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId = #{userId}  </if>
+			<if test="@Ognl@isNotEmpty(admin)">OR userId =1 
+				<if test="@Ognl@isNotEmpty(expression)"> AND expression  LIKE #{expression}  </if>
+			</if>
+		</where>
+	</sql> 
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.TaskApprovalItems">
+		INSERT INTO BPM_APPROVAL_ITEM 
+		(itemId,typeId,defKey,type,expression,userId)
+		VALUES
+		(#{itemId,jdbcType=NUMERIC},
+		 #{typeId,jdbcType=NUMERIC}, 
+		 #{defKey,jdbcType=VARCHAR}, 
+		 #{type,jdbcType=NUMERIC},  
+		 #{expression,jdbcType=VARCHAR}, 
+		 #{userId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_APPROVAL_ITEM 
+		WHERE
+		itemId=#{itemId}
+	</delete>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="TaskApprovalItems">
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE
+		itemId=#{itemId}
+	</select>
+	
+	<select id="getApprovalByDefKeyAndTypeId" resultMap="TaskApprovalItems">
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE defKey=#{defKey,jdbcType=VARCHAR}
+		AND type = 3
+		UNION ALL
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE  typeId=#{typeId,jdbcType=NUMERIC}
+		AND type=2
+		UNION ALL
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE type=1
+		<if test="@Ognl@isNotEmpty(curUserId)"> 
+			UNION ALL
+			SELECT <include refid="columns"/>
+			FROM BPM_APPROVAL_ITEM
+			WHERE  userId=#{curUserId,jdbcType=NUMERIC}
+			AND type=4
+		</if>
+	</select>
+	
+	
+	<select id="getByDefKeyAndUserAndSys" resultMap="TaskApprovalItems">
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE defKey=#{defKey,jdbcType=VARCHAR}
+		AND type = 3
+		UNION ALL
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE type=1
+		<if test="@Ognl@isNotEmpty(curUserId)"> 
+			UNION ALL
+			SELECT <include refid="columns"/>
+			FROM BPM_APPROVAL_ITEM
+			WHERE  userId=#{curUserId,jdbcType=NUMERIC}
+			AND type=4
+		</if>
+	</select>
+	
+	
+	<select id="getByUserAndAdmin" resultMap="TaskApprovalItems">
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE userId=#{currUserId,jdbcType=NUMERIC}
+		AND type = 4
+		UNION ALL
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE  userId=1
+		AND type=1
+	</select>
+	
+	<select id="getAll" resultMap="TaskApprovalItems">
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		<include refid="dynamicWhere" />
+		ORDER BY itemId DESC
+	</select>
+	
+	<select id="getByType" resultMap="TaskApprovalItems">
+		SELECT <include refid="columns"/>
+		FROM BPM_APPROVAL_ITEM
+		WHERE type=#{type,jdbcType=NUMERIC}
+	</select>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.TaskApprovalItems">
+		UPDATE BPM_APPROVAL_ITEM SET  
+		typeId=#{typeId,jdbcType=NUMERIC},
+		defKey=#{defKey,jdbcType=VARCHAR},
+		type=#{type,jdbcType=NUMERIC},
+		expression=#{expression,jdbcType=VARCHAR},
+		userId=#{userId,jdbcType=NUMERIC}
+		WHERE
+		itemId=#{itemId}
+	</update>
+	
+
+</mapper>

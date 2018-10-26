@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile
+END
+MobileLoginController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile/MobileLoginController.java
+END
+MobileLogoutController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile/MobileLogoutController.java
+END
+MobileBaseController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile/MobileBaseController.java
+END
+MobileUserInfoController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/mobile/MobileUserInfoController.java
+END
+MobileUserController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile/MobileUserController.java
+END
+MobileLangController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile/MobileLangController.java
+END
+MobileProcessRunContoller.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile/MobileProcessRunContoller.java
+END
+MobileTaskController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/982/bpmx_w/src/com/hotent/platform/controller/mobile/MobileTaskController.java
+END

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.e_business.model.e_business.OrderBilling">
+	<resultMap id="OrderBilling" type="com.hotent.e_business.model.e_business.OrderBilling">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="EMAIL" column="F_EMAIL" jdbcType="VARCHAR"/>
+		<result property="FIRSTNAME" column="F_FIRSTNAME" jdbcType="VARCHAR"/>
+		<result property="LASTNAME" column="F_LASTNAME" jdbcType="VARCHAR"/>
+		<result property="ADDRESS" column="F_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="CITY" column="F_CITY" jdbcType="VARCHAR"/>
+		<result property="STATE" column="F_STATE" jdbcType="VARCHAR"/>
+		<result property="ZIP" column="F_ZIP" jdbcType="VARCHAR"/>
+		<result property="PHONE" column="F_PHONE" jdbcType="VARCHAR"/>
+		<result property="CC_TYPE" column="F_CC_TYPE" jdbcType="VARCHAR"/>
+		<result property="CC_NUM" column="F_CC_NUM" jdbcType="VARCHAR"/>
+		<result property="CC_EXPMONTH" column="F_CC_EXPMONTH" jdbcType="VARCHAR"/>
+		<result property="CC_EXPYEAR" column="F_CC_EXPYEAR" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_EMAIL,F_FIRSTNAME,F_LASTNAME,F_ADDRESS,F_CITY,F_STATE,F_ZIP,F_PHONE,F_CC_TYPE,F_CC_NUM,F_CC_EXPMONTH,F_CC_EXPYEAR
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(EMAIL)"> AND F_EMAIL  LIKE '%${EMAIL}%'  </if>
+			<if test="@Ognl@isNotEmpty(FIRSTNAME)"> AND F_FIRSTNAME  LIKE '%${FIRSTNAME}%'  </if>
+			<if test="@Ognl@isNotEmpty(LASTNAME)"> AND F_LASTNAME  LIKE '%${LASTNAME}%'  </if>
+			<if test="@Ognl@isNotEmpty(ADDRESS)"> AND F_ADDRESS  LIKE '%${ADDRESS}%'  </if>
+			<if test="@Ognl@isNotEmpty(CITY)"> AND F_CITY  LIKE '%${CITY}%'  </if>
+			<if test="@Ognl@isNotEmpty(STATE)"> AND F_STATE  LIKE '%${STATE}%'  </if>
+			<if test="@Ognl@isNotEmpty(ZIP)"> AND F_ZIP  LIKE '%${ZIP}%'  </if>
+			<if test="@Ognl@isNotEmpty(PHONE)"> AND F_PHONE  LIKE '%${PHONE}%'  </if>
+			<if test="@Ognl@isNotEmpty(CC_TYPE)"> AND F_CC_TYPE  LIKE '%${CC_TYPE}%'  </if>
+			<if test="@Ognl@isNotEmpty(CC_NUM)"> AND F_CC_NUM  LIKE '%${CC_NUM}%'  </if>
+			<if test="@Ognl@isNotEmpty(CC_EXPMONTH)"> AND F_CC_EXPMONTH  LIKE '%${CC_EXPMONTH}%'  </if>
+			<if test="@Ognl@isNotEmpty(CC_EXPYEAR)"> AND F_CC_EXPYEAR  LIKE '%${CC_EXPYEAR}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.e_business.model.e_business.OrderBilling">
+		INSERT INTO W_ORDER_BILLING
+		(ID,
+		F_EMAIL,F_FIRSTNAME,F_LASTNAME,F_ADDRESS,F_CITY,F_STATE,F_ZIP,F_PHONE,F_CC_TYPE,F_CC_NUM,F_CC_EXPMONTH,F_CC_EXPYEAR)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{EMAIL,jdbcType=VARCHAR}, #{FIRSTNAME,jdbcType=VARCHAR}, #{LASTNAME,jdbcType=VARCHAR}, #{ADDRESS,jdbcType=VARCHAR}, #{CITY,jdbcType=VARCHAR}, #{STATE,jdbcType=VARCHAR}, #{ZIP,jdbcType=VARCHAR}, #{PHONE,jdbcType=VARCHAR}, #{CC_TYPE,jdbcType=VARCHAR}, #{CC_NUM,jdbcType=VARCHAR}, #{CC_EXPMONTH,jdbcType=VARCHAR}, #{CC_EXPYEAR,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ORDER_BILLING 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.e_business.model.e_business.OrderBilling">
+		UPDATE W_ORDER_BILLING SET
+		F_EMAIL=#{EMAIL,jdbcType=VARCHAR},
+		F_FIRSTNAME=#{FIRSTNAME,jdbcType=VARCHAR},
+		F_LASTNAME=#{LASTNAME,jdbcType=VARCHAR},
+		F_ADDRESS=#{ADDRESS,jdbcType=VARCHAR},
+		F_CITY=#{CITY,jdbcType=VARCHAR},
+		F_STATE=#{STATE,jdbcType=VARCHAR},
+		F_ZIP=#{ZIP,jdbcType=VARCHAR},
+		F_PHONE=#{PHONE,jdbcType=VARCHAR},
+		F_CC_TYPE=#{CC_TYPE,jdbcType=VARCHAR},
+		F_CC_NUM=#{CC_NUM,jdbcType=VARCHAR},
+		F_CC_EXPMONTH=#{CC_EXPMONTH,jdbcType=VARCHAR},
+		F_CC_EXPYEAR=#{CC_EXPYEAR,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="OrderBilling">
+		SELECT <include refid="columns"/>
+		FROM W_ORDER_BILLING
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="OrderBilling">
+		SELECT <include refid="columns"/>
+		FROM W_ORDER_BILLING   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

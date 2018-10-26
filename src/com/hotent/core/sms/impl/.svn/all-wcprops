@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/sms/impl
+END
+ModemMessageOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/sms/impl/ModemMessageOperator.java
+END
+ModemMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/sms/impl/ModemMessage.java
+END
+NoneMessageImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/sms/impl/NoneMessageImpl.java
+END
+ShortMessageImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/sms/impl/ShortMessageImpl.java
+END
+ModemMessagePort.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/sms/impl/ModemMessagePort.java
+END

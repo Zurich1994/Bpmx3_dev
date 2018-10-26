@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.ServerRoom.model.ServerRoomPac.Serverroom">
+	<resultMap id="Serverroom" type="com.hotent.ServerRoom.model.ServerRoomPac.Serverroom">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="room_ID" column="F_ROOM_ID" jdbcType="VARCHAR"/>
+		<result property="room_name" column="F_ROOM_NAME" jdbcType="VARCHAR"/>
+		<result property="address" column="F_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ID,F_ROOM_ID,F_ROOM_NAME,F_ADDRESS,F_REMARK
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(room_ID)"> AND F_ROOM_ID  LIKE '%${room_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(room_name)"> AND F_ROOM_NAME  LIKE '%${room_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(address)"> AND F_ADDRESS  LIKE '%${address}%'  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.ServerRoom.model.ServerRoomPac.Serverroom">
+		INSERT INTO W_SERVERROOM
+		(ID,
+		F_ID,F_ROOM_ID,F_ROOM_NAME,F_ADDRESS,F_REMARK)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{id,jdbcType=NUMERIC}, #{room_ID,jdbcType=VARCHAR}, #{room_name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SERVERROOM 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.ServerRoom.model.ServerRoomPac.Serverroom">
+		UPDATE W_SERVERROOM SET
+		F_ID=#{id,jdbcType=NUMERIC},
+		F_ROOM_ID=#{room_ID,jdbcType=VARCHAR},
+		F_ROOM_NAME=#{room_name,jdbcType=VARCHAR},
+		F_ADDRESS=#{address,jdbcType=VARCHAR},
+		F_REMARK=#{remark,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Serverroom">
+		SELECT <include refid="columns"/>
+		FROM W_SERVERROOM
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Serverroom">
+		SELECT <include refid="columns"/>
+		FROM W_SERVERROOM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

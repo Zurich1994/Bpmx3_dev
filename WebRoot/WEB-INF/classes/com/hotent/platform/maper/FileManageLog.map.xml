@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotent.platform.model.file.FileManageLog">
+	<resultMap id="FileManageLog" type="com.hotent.platform.model.file.FileManageLog">
+
+		<id property="id" column="ID" jdbcType="NUMERIC" />
+		<result property="fileId" column="FILEID" jdbcType="NUMERIC" />
+		<result property="fileName" column="FILENAME" jdbcType="VARCHAR" />
+		<result property="categoryName" column="CATEGORYNAME" jdbcType="VARCHAR" />
+		<result property="operationId" column="OPERATIONID" jdbcType="NUMERIC" />
+		<result property="operation" column="OPERATION" jdbcType="VARCHAR" />
+		<result property="operationDeptId" column="OPERATIONDEPTID"
+			jdbcType="NUMERIC" />
+		<result property="operationDept" column="OPERATIONDEPT"
+			jdbcType="VARCHAR" />
+		<result property="operateTime" column="OPERATETIME" jdbcType="TIMESTAMP" />
+		<result property="operateType" column="OPERATETYPE" jdbcType="VARCHAR" />
+		<result property="operateNum" column="OPERATENUM" jdbcType="NUMERIC" />
+	</resultMap>
+
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(categoryId)"> AND CATEGORYID =#{categoryId} </if>
+			<if test="@Ognl@isNotEmpty(fileName)"> AND FILENAME LIKE #{fileName}  </if>
+			<if test="@Ognl@isNotEmpty(operation)"> AND OPERATION LIKE #{operation}  </if>
+			<if test="@Ognl@isNotEmpty(operationDept)"> AND OPERATIONDEPT LIKE #{operationDept}  </if>
+			<if test="@Ognl@isNotEmpty(beginoperateTime)"> AND OPERATETIME >=#{beginoperateTime,jdbcType=DATE}</if>
+			<if test="@Ognl@isNotEmpty(endoperateTime)"> AND OPERATETIME &lt;=#{endoperateTime,jdbcType=DATE}</if>
+		</where>
+	</sql>
+
+	<select id="getAll" resultMap="FileManageLog">
+		 SELECT * FROM (
+			SELECT FL1.FILEID,BF.FILENAME,BF.CATEGORYID,GT.TYPENAME AS CATEGORYNAME,FL1.OPERATIONID,SU.FULLNAME AS OPERATION,
+			FL1.OPERATIONDEPTID,SO.ORGNAME AS OPERATIONDEPT,FL1.OPERATETIME,
+			FL1.OPERATENUM
+			FROM (
+				SELECT FILEID,OPERATIONID,OPERATIONDEPTID,MAX(OPERATETIME) AS OPERATETIME,COUNT(ID) AS OPERATENUM FROM BPM_FILES_LOG
+				WHERE OPERATETYPE = #{operateType}
+				GROUP BY FILEID,OPERATIONID,OPERATIONDEPTID
+			)FL1 
+			LEFT JOIN BPM_FILES BF ON FL1.FILEID = BF.FILEID
+			LEFT JOIN SYS_GL_TYPE GT ON BF.CATEGORYID = GT.TYPEID
+			LEFT JOIN SYS_USER SU ON FL1.OPERATIONID = SU.USERID
+			LEFT JOIN SYS_ORG SO ON FL1.OPERATIONDEPTID = SO.ORGID
+   	 	)TEMP
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by FILEID desc
+		</if>
+	</select>
+
+
+	<insert id="add" parameterType="com.hotent.platform.model.file.FileManageLog">
+		INSERT INTO BPM_FILES_LOG
+		(ID,FILEID,OPERATIONID,OPERATIONDEPTID,OPERATETIME,OPERATETYPE)
+		VALUES
+		(
+		#{id,jdbcType=NUMERIC},#{fileId,jdbcType=NUMERIC},#{operationId,jdbcType=NUMERIC},
+		#{operationDeptId,jdbcType=NUMERIC},#{operateTime,jdbcType=TIMESTAMP},#{operateType,jdbcType=VARCHAR}
+		)
+	</insert>
+
+
+
+
+</mapper>

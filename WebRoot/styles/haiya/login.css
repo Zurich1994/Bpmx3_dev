@@ -1,0 +1,24 @@
+* { margin: 0; padding: 0;}
+img { border: 0;}
+.l { float: left;}
+.r { float: right;}
+.main_login, .main_login2 { text-align: left; margin: 3% auto auto;}
+.content_login {  background: #fff; border: solid 1px #d4d4d4; border-radius: 5px; padding: 25px 35px;}
+.content_login input[type="text"] ,.content_login input[type="password"] { width: 280px; height: 36px; line-height:36px; margin: 10px 0; border: solid 1px #d4d4d4; border-radius: 5px; padding: 0 5px; background-color:#fff!important;}
+.content_login .vcode input[type="text"] { width: 130px;}
+.vcode div {width: 100px; display: inline-block;}
+.vcode { width: 300px; display: inline-block;}
+.column { margin: 5px 0;}
+.vcode_img { vertical-align: top; margin-left: 65px;}
+.vcode_img img { width: 82px; padding: 13px 0px 5px;}
+.vcode_img a { line-height: 25px; color: #4b93ff; cursor: pointer;}
+.confirm { border-top: solid 1px #d4d4d4; border-bottom: solid 1px #d4d4d4; border-bottom-left-radius: 5px;  border-bottom-right-radius: 5px; margin: 15px -36px -23px; padding: 35px 35px 45px;}
+.btn { width: 76px; height: 34px; border-radius: 3px; display: inline-block; text-align: center; line-height: 36px; color: #fff; margin-left: 10px; cursor: pointer;}
+.reset_btn { background: url(images/reset_btn.jpg) repeat-x; border: solid 1px #c8995c;}
+.login_btn { background: url(images/login_btn.jpg) repeat-x; border: solid 1px #5c91c8;}
+.confirm input[type="checkbox"] { margin-top: 10px; margin-right: 5px;}
+.copy { color: #515151; position: absolute; left: 50%; margin-left: -160px; bottom: 15px;}
+.main_login2 { width: 410px}
+.main_login { width: 364px;}
+.btn2 { margin-top: -34px; line-height: 20px; font-family: 'Microsoft Yahei',verdana; font-size:12px;}
+.logo2 { margin-left: 60px; margin-bottom: 50px;}

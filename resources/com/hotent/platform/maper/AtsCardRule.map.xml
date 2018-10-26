@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsCardRule">
+	<resultMap id="AtsCardRule" type="com.hotent.platform.model.ats.AtsCardRule">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="startNum" column="START_NUM" jdbcType="NUMERIC"/>
+		<result property="endNum" column="END_NUM" jdbcType="NUMERIC"/>
+		<result property="timeInterval" column="TIME_INTERVAL" jdbcType="NUMERIC"/>
+		<result property="segmentNum" column="SEGMENT_NUM" jdbcType="NUMERIC"/>
+		<result property="isDefault" column="IS_DEFAULT" jdbcType="NUMERIC"/>
+		<result property="segBefFirStartNum" column="SEG_BEF_FIR_START_NUM" jdbcType="NUMERIC"/>
+		<result property="segBefFirEndNum" column="SEG_BEF_FIR_END_NUM" jdbcType="NUMERIC"/>
+		<result property="segBefFirTakeCardType" column="SEG_BEF_FIR_TAKE_CARD_TYPE" jdbcType="NUMERIC"/>
+		<result property="segAftFirStartNum" column="SEG_AFT_FIR_START_NUM" jdbcType="NUMERIC"/>
+		<result property="segAftFirEndNum" column="SEG_AFT_FIR_END_NUM" jdbcType="NUMERIC"/>
+		<result property="segAftFirTakeCardType" column="SEG_AFT_FIR_TAKE_CARD_TYPE" jdbcType="NUMERIC"/>
+		<result property="segBefSecStartNum" column="SEG_BEF_SEC_START_NUM" jdbcType="NUMERIC"/>
+		<result property="segBefSecEndNum" column="SEG_BEF_SEC_END_NUM" jdbcType="NUMERIC"/>
+		<result property="segBefSecTakeCardType" column="SEG_BEF_SEC_TAKE_CARD_TYPE" jdbcType="NUMERIC"/>
+		<result property="segAftSecStartNum" column="SEG_AFT_SEC_START_NUM" jdbcType="NUMERIC"/>
+		<result property="segAftSecEndNum" column="SEG_AFT_SEC_END_NUM" jdbcType="NUMERIC"/>
+		<result property="segAftSecTakeCardType" column="SEG_AFT_SEC_TAKE_CARD_TYPE" jdbcType="NUMERIC"/>
+		<result property="segFirAssignType" column="SEG_FIR_ASSIGN_TYPE" jdbcType="NUMERIC"/>
+		<result property="segFirAssignSegment" column="SEG_FIR_ASSIGN_SEGMENT" jdbcType="NUMERIC"/>
+		<result property="segSecAssignType" column="SEG_SEC_ASSIGN_TYPE" jdbcType="NUMERIC"/>
+		<result property="segSecAssignSegment" column="SEG_SEC_ASSIGN_SEGMENT" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,CODE,NAME,START_NUM,END_NUM,TIME_INTERVAL,SEGMENT_NUM,IS_DEFAULT,SEG_BEF_FIR_START_NUM,SEG_BEF_FIR_END_NUM,SEG_BEF_FIR_TAKE_CARD_TYPE,SEG_AFT_FIR_START_NUM,SEG_AFT_FIR_END_NUM,SEG_AFT_FIR_TAKE_CARD_TYPE,SEG_BEF_SEC_START_NUM,SEG_BEF_SEC_END_NUM,SEG_BEF_SEC_TAKE_CARD_TYPE,SEG_AFT_SEC_START_NUM,SEG_AFT_SEC_END_NUM,SEG_AFT_SEC_TAKE_CARD_TYPE,SEG_FIR_ASSIGN_TYPE,SEG_FIR_ASSIGN_SEGMENT,SEG_SEC_ASSIGN_TYPE,SEG_SEC_ASSIGN_SEGMENT
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(startNum)"> AND START_NUM  =#{startNum} </if>
+			<if test="@Ognl@isNotEmpty(endNum)"> AND END_NUM  =#{endNum} </if>
+			<if test="@Ognl@isNotEmpty(timeInterval)"> AND TIME_INTERVAL  =#{timeInterval} </if>
+			<if test="@Ognl@isNotEmpty(segmentNum)"> AND SEGMENT_NUM  =#{segmentNum} </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND IS_DEFAULT  =#{isDefault} </if>
+			<if test="@Ognl@isNotEmpty(segBefFirStartNum)"> AND SEG_BEF_FIR_START_NUM  =#{segBefFirStartNum} </if>
+			<if test="@Ognl@isNotEmpty(segBefFirEndNum)"> AND SEG_BEF_FIR_END_NUM  =#{segBefFirEndNum} </if>
+			<if test="@Ognl@isNotEmpty(segBefFirTakeCardType)"> AND SEG_BEF_FIR_TAKE_CARD_TYPE  =#{segBefFirTakeCardType} </if>
+			<if test="@Ognl@isNotEmpty(segAftFirStartNum)"> AND SEG_AFT_FIR_START_NUM  =#{segAftFirStartNum} </if>
+			<if test="@Ognl@isNotEmpty(segAftFirEndNum)"> AND SEG_AFT_FIR_END_NUM  =#{segAftFirEndNum} </if>
+			<if test="@Ognl@isNotEmpty(segAftFirTakeCardType)"> AND SEG_AFT_FIR_TAKE_CARD_TYPE  =#{segAftFirTakeCardType} </if>
+			<if test="@Ognl@isNotEmpty(segBefSecStartNum)"> AND SEG_BEF_SEC_START_NUM  =#{segBefSecStartNum} </if>
+			<if test="@Ognl@isNotEmpty(segBefSecEndNum)"> AND SEG_BEF_SEC_END_NUM  =#{segBefSecEndNum} </if>
+			<if test="@Ognl@isNotEmpty(segBefSecTakeCardType)"> AND SEG_BEF_SEC_TAKE_CARD_TYPE  =#{segBefSecTakeCardType} </if>
+			<if test="@Ognl@isNotEmpty(segAftSecStartNum)"> AND SEG_AFT_SEC_START_NUM  =#{segAftSecStartNum} </if>
+			<if test="@Ognl@isNotEmpty(segAftSecEndNum)"> AND SEG_AFT_SEC_END_NUM  =#{segAftSecEndNum} </if>
+			<if test="@Ognl@isNotEmpty(segAftSecTakeCardType)"> AND SEG_AFT_SEC_TAKE_CARD_TYPE  =#{segAftSecTakeCardType} </if>
+			<if test="@Ognl@isNotEmpty(segFirAssignType)"> AND SEG_FIR_ASSIGN_TYPE  =#{segFirAssignType} </if>
+			<if test="@Ognl@isNotEmpty(segFirAssignSegment)"> AND SEG_FIR_ASSIGN_SEGMENT  =#{segFirAssignSegment} </if>
+			<if test="@Ognl@isNotEmpty(segSecAssignType)"> AND SEG_SEC_ASSIGN_TYPE  =#{segSecAssignType} </if>
+			<if test="@Ognl@isNotEmpty(segSecAssignSegment)"> AND SEG_SEC_ASSIGN_SEGMENT  =#{segSecAssignSegment} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsCardRule">
+		INSERT INTO ATS_CARD_RULE
+		(ID,CODE,NAME,START_NUM,END_NUM,TIME_INTERVAL,SEGMENT_NUM,IS_DEFAULT,SEG_BEF_FIR_START_NUM,SEG_BEF_FIR_END_NUM,SEG_BEF_FIR_TAKE_CARD_TYPE,SEG_AFT_FIR_START_NUM,SEG_AFT_FIR_END_NUM,SEG_AFT_FIR_TAKE_CARD_TYPE,SEG_BEF_SEC_START_NUM,SEG_BEF_SEC_END_NUM,SEG_BEF_SEC_TAKE_CARD_TYPE,SEG_AFT_SEC_START_NUM,SEG_AFT_SEC_END_NUM,SEG_AFT_SEC_TAKE_CARD_TYPE,SEG_FIR_ASSIGN_TYPE,SEG_FIR_ASSIGN_SEGMENT,SEG_SEC_ASSIGN_TYPE,SEG_SEC_ASSIGN_SEGMENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{startNum,jdbcType=NUMERIC}, #{endNum,jdbcType=NUMERIC}, #{timeInterval,jdbcType=NUMERIC}, #{segmentNum,jdbcType=NUMERIC}, #{isDefault,jdbcType=NUMERIC}, #{segBefFirStartNum,jdbcType=NUMERIC}, #{segBefFirEndNum,jdbcType=NUMERIC}, #{segBefFirTakeCardType,jdbcType=NUMERIC}, #{segAftFirStartNum,jdbcType=NUMERIC}, #{segAftFirEndNum,jdbcType=NUMERIC}, #{segAftFirTakeCardType,jdbcType=NUMERIC}, #{segBefSecStartNum,jdbcType=NUMERIC}, #{segBefSecEndNum,jdbcType=NUMERIC}, #{segBefSecTakeCardType,jdbcType=NUMERIC}, #{segAftSecStartNum,jdbcType=NUMERIC}, #{segAftSecEndNum,jdbcType=NUMERIC}, #{segAftSecTakeCardType,jdbcType=NUMERIC}, #{segFirAssignType,jdbcType=NUMERIC}, #{segFirAssignSegment,jdbcType=NUMERIC}, #{segSecAssignType,jdbcType=NUMERIC}, #{segSecAssignSegment,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_CARD_RULE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsCardRule">
+		UPDATE ATS_CARD_RULE SET
+		CODE=#{code,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		START_NUM=#{startNum,jdbcType=NUMERIC},
+		END_NUM=#{endNum,jdbcType=NUMERIC},
+		TIME_INTERVAL=#{timeInterval,jdbcType=NUMERIC},
+		SEGMENT_NUM=#{segmentNum,jdbcType=NUMERIC},
+		IS_DEFAULT=#{isDefault,jdbcType=NUMERIC},
+		SEG_BEF_FIR_START_NUM=#{segBefFirStartNum,jdbcType=NUMERIC},
+		SEG_BEF_FIR_END_NUM=#{segBefFirEndNum,jdbcType=NUMERIC},
+		SEG_BEF_FIR_TAKE_CARD_TYPE=#{segBefFirTakeCardType,jdbcType=NUMERIC},
+		SEG_AFT_FIR_START_NUM=#{segAftFirStartNum,jdbcType=NUMERIC},
+		SEG_AFT_FIR_END_NUM=#{segAftFirEndNum,jdbcType=NUMERIC},
+		SEG_AFT_FIR_TAKE_CARD_TYPE=#{segAftFirTakeCardType,jdbcType=NUMERIC},
+		SEG_BEF_SEC_START_NUM=#{segBefSecStartNum,jdbcType=NUMERIC},
+		SEG_BEF_SEC_END_NUM=#{segBefSecEndNum,jdbcType=NUMERIC},
+		SEG_BEF_SEC_TAKE_CARD_TYPE=#{segBefSecTakeCardType,jdbcType=NUMERIC},
+		SEG_AFT_SEC_START_NUM=#{segAftSecStartNum,jdbcType=NUMERIC},
+		SEG_AFT_SEC_END_NUM=#{segAftSecEndNum,jdbcType=NUMERIC},
+		SEG_AFT_SEC_TAKE_CARD_TYPE=#{segAftSecTakeCardType,jdbcType=NUMERIC},
+		SEG_FIR_ASSIGN_TYPE=#{segFirAssignType,jdbcType=NUMERIC},
+		SEG_FIR_ASSIGN_SEGMENT=#{segFirAssignSegment,jdbcType=NUMERIC},
+		SEG_SEC_ASSIGN_TYPE=#{segSecAssignType,jdbcType=NUMERIC},
+		SEG_SEC_ASSIGN_SEGMENT=#{segSecAssignSegment,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsCardRule">
+		SELECT <include refid="columns"/>
+		FROM ATS_CARD_RULE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsCardRule">
+		SELECT <include refid="columns"/>
+		FROM ATS_CARD_RULE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

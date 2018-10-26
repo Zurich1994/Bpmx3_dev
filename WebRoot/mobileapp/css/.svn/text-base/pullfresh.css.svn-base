@@ -1,0 +1,57 @@
+#pulldown, #pullup {
+	background:#fff;
+	height:2.5em;
+	line-height:2.5em;
+	padding:0.3125em 0.625em;
+	border-bottom:0.0625em solid #ccc;
+	font-weight:bold;
+	font-size:0.875em;
+	color:#888;
+}
+
+#pulldown .pulldown-icon, #pullup .pullup-icon  {
+	
+display:block; 
+
+position: relative;
+
+	width:2.5em; height:2.5em;
+	background:url(img/pull-icon@2x.png) 0 0 no-repeat;
+	-webkit-background-size:2.5em 5.0em; background-size:2.5em 5.0em;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+}
+
+#pulldown .pulldown-icon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullup .pullup-icon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pulldown.flip .pulldown-icon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullup.flip .pullup-icon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pulldown.loading .pulldown-icon, #pullup.loading .pullup-icon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+
+
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}

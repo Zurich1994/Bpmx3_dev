@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsShiftRuleDetail">
+	<resultMap id="AtsShiftRuleDetail" type="com.hotent.platform.model.ats.AtsShiftRuleDetail">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="ruleId" column="RULE_ID" jdbcType="NUMERIC"/>
+		<result property="dateType" column="DATE_TYPE" jdbcType="NUMERIC"/>
+		<result property="shiftId" column="SHIFT_ID" jdbcType="NUMERIC"/>
+		<result property="shiftTime" column="SHIFT_TIME" jdbcType="VARCHAR"/>
+		<result property="sn" column="SN" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,RULE_ID,DATE_TYPE,SHIFT_ID,SHIFT_TIME,SN
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(ruleId)"> AND RULE_ID  =#{ruleId} </if>
+			<if test="@Ognl@isNotEmpty(dateType)"> AND DATE_TYPE  =#{dateType} </if>
+			<if test="@Ognl@isNotEmpty(shiftId)"> AND SHIFT_ID  =#{shiftId} </if>
+			<if test="@Ognl@isNotEmpty(shiftTime)"> AND SHIFT_TIME  LIKE #{shiftTime}  </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND SN  =#{sn} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsShiftRuleDetail">
+		INSERT INTO ATS_SHIFT_RULE_DETAIL
+		(ID,RULE_ID,DATE_TYPE,SHIFT_ID,SHIFT_TIME,SN)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{ruleId,jdbcType=NUMERIC}, #{dateType,jdbcType=NUMERIC}, #{shiftId,jdbcType=NUMERIC}, #{shiftTime,jdbcType=VARCHAR}, #{sn,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_SHIFT_RULE_DETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsShiftRuleDetail">
+		UPDATE ATS_SHIFT_RULE_DETAIL SET
+		RULE_ID=#{ruleId,jdbcType=NUMERIC},
+		DATE_TYPE=#{dateType,jdbcType=NUMERIC},
+		SHIFT_ID=#{shiftId,jdbcType=NUMERIC},
+		SHIFT_TIME=#{shiftTime,jdbcType=VARCHAR},
+		SN=#{sn,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsShiftRuleDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_SHIFT_RULE_DETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsShiftRuleDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_SHIFT_RULE_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<delete id="delByRuleId" parameterType="java.lang.Long">
+		DELETE FROM ATS_SHIFT_RULE_DETAIL 
+		WHERE
+		RULE_ID=#{ruleId}
+	</delete>
+	<select id="getByRuleId" parameterType="java.lang.Long" resultMap="AtsShiftRuleDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_SHIFT_RULE_DETAIL
+		WHERE
+		RULE_ID=#{ruleId}
+		order by sn
+	</select>
+</mapper>

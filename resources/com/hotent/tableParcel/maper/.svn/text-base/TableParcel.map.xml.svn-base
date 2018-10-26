@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tableParcel.model.tableParcel.TableParcel">
+	<resultMap id="TableParcel" type="com.hotent.tableParcel.model.tableParcel.TableParcel">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="table_name" column="F_TABLE_NAME" jdbcType="VARCHAR"/>
+		<result property="parcel_name" column="F_PARCEL_NAME" jdbcType="VARCHAR"/>
+		<result property="parcel_alias" column="F_PARCEL_ALIAS" jdbcType="VARCHAR"/>
+		<result property="parcel_value" column="F_PARCEL_VALUE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_TABLE_NAME,F_PARCEL_NAME,F_PARCEL_ALIAS,F_PARCEL_VALUE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(table_name)"> AND F_TABLE_NAME  LIKE '%${table_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(parcel_name)"> AND F_PARCEL_NAME  LIKE '%${parcel_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(parcel_alias)"> AND F_PARCEL_ALIAS  LIKE '%${parcel_alias}%'  </if>
+			<if test="@Ognl@isNotEmpty(parcel_value)"> AND F_PARCEL_VALUE  LIKE '%${parcel_value}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tableParcel.model.tableParcel.TableParcel">
+		INSERT INTO W_TABLE_PARCEL
+		(ID,
+		F_TABLE_NAME,F_PARCEL_NAME,F_PARCEL_ALIAS,F_PARCEL_VALUE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{table_name,jdbcType=VARCHAR}, #{parcel_name,jdbcType=VARCHAR}, #{parcel_alias,jdbcType=VARCHAR}, #{parcel_value,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_TABLE_PARCEL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tableParcel.model.tableParcel.TableParcel">
+		UPDATE W_TABLE_PARCEL SET
+		F_TABLE_NAME=#{table_name,jdbcType=VARCHAR},
+		F_PARCEL_NAME=#{parcel_name,jdbcType=VARCHAR},
+		F_PARCEL_ALIAS=#{parcel_alias,jdbcType=VARCHAR},
+		F_PARCEL_VALUE=#{parcel_value,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TableParcel">
+		SELECT <include refid="columns"/>
+		FROM W_TABLE_PARCEL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="TableParcel">
+		SELECT <include refid="columns"/>
+		FROM W_TABLE_PARCEL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getParcelsbyTableName"  resultMap="TableParcel">
+		SELECT <include refid="columns"/>
+		FROM W_TABLE_PARCEL   
+		WHERE
+		F_table_name=#{tablename}
+		
+		
+	</select>
+	<select id="getParcelbyName"  resultMap="TableParcel">
+		SELECT <include refid="columns"/>
+		FROM W_TABLE_PARCEL   
+		WHERE
+		F_parcel_name=#{name}
+		AND
+		F_table_name=#{tablename}
+		
+		
+	</select>
+	<select id="getParcelByParcelId"  resultMap="TableParcel">
+		SELECT <include refid="columns"/>
+		FROM W_TABLE_PARCEL   
+		WHERE
+		ID=#{F_parcel_id}
+		
+		
+	</select>
+</mapper>

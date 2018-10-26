@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/1007/bpmx_w/src/com/hotent/support/dao/catelog
+END
+FileListDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1007/bpmx_w/src/com/hotent/support/dao/catelog/FileListDao.java
+END
+CategoryDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/355/bpmx_w/src/com/hotent/support/dao/catelog/CategoryDao.java
+END
+ProductOsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/355/bpmx_w/src/com/hotent/support/dao/catelog/ProductOsDao.java
+END
+ProductsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1007/bpmx_w/src/com/hotent/support/dao/catelog/ProductsDao.java
+END
+LanguagesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/355/bpmx_w/src/com/hotent/support/dao/catelog/LanguagesDao.java
+END
+FileCatalogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1007/bpmx_w/src/com/hotent/support/dao/catelog/FileCatalogDao.java
+END

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    
+  <description>Hotent software Paging</description>
+  <display-name>Hotent software Paging</display-name>
+  <tlib-version>1.0</tlib-version>
+  <short-name>paging</short-name>
+  <uri>http://www.jee-soft.cn/paging</uri>
+
+  <tag>
+    <description>
+       分页标签
+    </description>
+    <name>paging</name>
+    <tag-class>com.hotent.core.web.tag.PageTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+        <description>
+        </description>
+        <name>tableId</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+        </description>
+        <name>showExplain</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+        </description>
+        <name>showPageSize</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+</taglib>

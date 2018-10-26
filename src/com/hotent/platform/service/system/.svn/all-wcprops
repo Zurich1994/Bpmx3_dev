@@ -1,0 +1,653 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/2201/bpmx_w/src/com/hotent/platform/service/system
+END
+SysOrgTacticService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysOrgTacticService.java
+END
+WsDataTemplateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/WsDataTemplateService.java
+END
+SealRightService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SealRightService.java
+END
+AuthRoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/AuthRoleService.java
+END
+SysPropertyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysPropertyService.java
+END
+SysIndexColumnService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysIndexColumnService.java
+END
+SecurityUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SecurityUtil.java
+END
+SysExcelTempService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/1005/bpmx_w/src/com/hotent/platform/service/system/SysExcelTempService.java
+END
+MessageLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/MessageLogService.java
+END
+SysOfficeTemplateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysOfficeTemplateService.java
+END
+SysAcceptIpService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysAcceptIpService.java
+END
+SysOrgTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysOrgTypeService.java
+END
+SysPlanService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysPlanService.java
+END
+SysQueryRightParseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysQueryRightParseService.java
+END
+IOrgService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/IOrgService.java
+END
+GlobalTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/2031/bpmx_w/src/com/hotent/platform/service/system/GlobalTypeService.java
+END
+SysIndexLayoutService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysIndexLayoutService.java
+END
+ScriptService.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/ScriptService.java
+END
+SysCodeTemplateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysCodeTemplateService.java
+END
+ParamSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/ParamSearch.java
+END
+SysQueryExportFieldParseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysQueryExportFieldParseService.java
+END
+SqlParseUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SqlParseUtil.java
+END
+IndexService.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/IndexService.java
+END
+OrgAuthService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/OrgAuthService.java
+END
+ResourcesService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/ResourcesService.java
+END
+PageTestService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/PageTestService.java
+END
+SysIndexLayoutManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysIndexLayoutManageService.java
+END
+SysBulletinService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysBulletinService.java
+END
+IOrgHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/IOrgHandler.java
+END
+CurrentUserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/CurrentUserService.java
+END
+SysQuerySqlService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/1005/bpmx_w/src/com/hotent/platform/service/system/SysQuerySqlService.java
+END
+SysUserOrgService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysUserOrgService.java
+END
+SysOrgService.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysOrgService.java
+END
+CodeUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/CodeUtil.java
+END
+SysQueryDisplayFieldParseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysQueryDisplayFieldParseService.java
+END
+SysTypeKeyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysTypeKeyService.java
+END
+SysBusEventService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysBusEventService.java
+END
+SysWsLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysWsLogService.java
+END
+PersonScriptService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/PersonScriptService.java
+END
+SysParamService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysParamService.java
+END
+MessageReplyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/MessageReplyService.java
+END
+UserRoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/UserRoleService.java
+END
+ShareService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/ShareService.java
+END
+SysQuerySqlDefService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysQuerySqlDefService.java
+END
+UserPositionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/UserPositionService.java
+END
+SysAuditService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysAuditService.java
+END
+SysOrgRoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysOrgRoleService.java
+END
+DesktopService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1002/bpmx_w/src/com/hotent/platform/service/system/DesktopService.java
+END
+MessageReceiverService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/MessageReceiverService.java
+END
+SysQueryFilterFieldParseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysQueryFilterFieldParseService.java
+END
+SysIndexMyLayoutService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysIndexMyLayoutService.java
+END
+JobService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1005/bpmx_w/src/com/hotent/platform/service/system/JobService.java
+END
+SysTemplateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysTemplateService.java
+END
+SysUrlPermissionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysUrlPermissionService.java
+END
+SysJobLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysJobLogService.java
+END
+ConditionScriptService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/ConditionScriptService.java
+END
+SysUserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysUserService.java
+END
+MessageReadService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/MessageReadService.java
+END
+SysOrgRoleManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysOrgRoleManageService.java
+END
+SysAuditLinkService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysAuditLinkService.java
+END
+SealService.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SealService.java
+END
+IUserUnderService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/IUserUnderService.java
+END
+IdentityService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/IdentityService.java
+END
+SysErrorLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysErrorLogService.java
+END
+SysBulletinColumnService.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysBulletinColumnService.java
+END
+MessageSendService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/MessageSendService.java
+END
+ICurUserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/ICurUserService.java
+END
+SysPopupRemindService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysPopupRemindService.java
+END
+SysLogSwitchService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysLogSwitchService.java
+END
+SysQuerySettingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysQuerySettingService.java
+END
+PositionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/PositionService.java
+END
+DictionaryService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/DictionaryService.java
+END
+DesktopLayoutcolService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/DesktopLayoutcolService.java
+END
+SysTransDefService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysTransDefService.java
+END
+SysPaurService.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysPaurService.java
+END
+ReportTemplateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/2201/bpmx_w/src/com/hotent/platform/service/system/ReportTemplateService.java
+END
+SysDataSourceDefService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysDataSourceDefService.java
+END
+SysQueryFieldService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysQueryFieldService.java
+END
+SysReportService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysReportService.java
+END
+SysObjLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysObjLogService.java
+END
+UserSyncService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/UserSyncService.java
+END
+UserUnderService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/UserUnderService.java
+END
+SysFileService.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysFileService.java
+END
+AliasScriptService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/AliasScriptService.java
+END
+ParamResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/ParamResult.java
+END
+SysQueryMetaFieldService.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysQueryMetaFieldService.java
+END
+DemensionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/DemensionService.java
+END
+DesktopColumnService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/1002/bpmx_w/src/com/hotent/platform/service/system/DesktopColumnService.java
+END
+SysDataSourceService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/983/bpmx_w/src/com/hotent/platform/service/system/SysDataSourceService.java
+END
+SysObjRightsService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysObjRightsService.java
+END
+RoleResourcesService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/RoleResourcesService.java
+END
+ResourcesUrlService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/ResourcesUrlService.java
+END
+DesktopMycolumnService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/DesktopMycolumnService.java
+END
+SubSystemService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/2054/bpmx_w/src/com/hotent/platform/service/system/SubSystemService.java
+END
+SysUserParamService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysUserParamService.java
+END
+SysQueryViewService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysQueryViewService.java
+END
+SysRoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysRoleService.java
+END
+SysDataSourceLService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysDataSourceLService.java
+END
+AdSyncListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1005/bpmx_w/src/com/hotent/platform/service/system/AdSyncListener.java
+END
+SysQueryFieldSettingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysQueryFieldSettingService.java
+END
+SysWordTemplateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/system/SysWordTemplateService.java
+END
+DesktopLayoutService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/DesktopLayoutService.java
+END
+SysOrgParamService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysOrgParamService.java
+END
+SysQueryConditionFieldParseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysQueryConditionFieldParseService.java
+END
+SubSystemUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SubSystemUtil.java
+END
+SysQuerySortFieldParseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysQuerySortFieldParseService.java
+END
+SysQueryManageFieldParseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/957/bpmx_w/src/com/hotent/platform/service/system/SysQueryManageFieldParseService.java
+END
+SysUrlRulesService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/system/SysUrlRulesService.java
+END

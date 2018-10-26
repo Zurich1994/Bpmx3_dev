@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codegen>
+	<templates>
+		<!--maper 映射文件模版-->
+		<template alias="mapper" name="映射文件模版" templateDesc="映射文件模版" fileName="{class}.map.xml" dir="src\main\resources\com\hotent\{system}\maper" isSub="true" />
+		<!--实例类 模版-->
+		<template alias="model" name="实体类模板"  templateDesc="实体类模版"  fileName="{class}.java" dir="src\main\java\com\hotent\{system}\model\{package}"  isSub="true" />
+		<!--dao类 模版-->
+		<template alias="dao" name="dao类 模版" templateDesc="dao类 模版" fileName="{class}Dao.java" dir="src\main\java\com\hotent\{system}\dao\{package}" isSub="true" />
+		<!--service类 模版-->
+		<template alias="service" name="service类 模版" templateDesc="service类模版" fileName="{class}Service.java" dir="src\main\java\com\hotent\{system}\service\{package}"/>
+		<!--controller类  主子表模版-->
+		<template alias="controller" name="controller类 模版"  templateDesc="controller类 模版" fileName="{class}Controller.java" dir="src\main\java\com\hotent\{system}\controller\{package}" />
+		<!--controller类  用于ligerUIDemo主子表模版-->
+		<template alias="controllerLg" name="controller类 模版"  templateDesc="controller类 模版" fileName="{class}Controller.java" dir="src\main\java\com\hotent\{system}\controller\{package}" />
+		<!--编辑页面-->
+		<template alias="edit" name="编辑页面" templateDesc="编辑页面" fileName="{classVar}Edit.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1"/>
+		<!--列表模版-->
+		<template alias="list" name="列表模版" templateDesc="列表模版" fileName="{classVar}List.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}"/>
+		<!--列表模版
+		<template alias="listLg" name="列表模版" templateDesc="列表模版" fileName="{classVar}List.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}"/>-->
+		<!-- 明细模版 -->
+		<template alias="get" name="明细模版" templateDesc="明细模板" fileName="{classVar}Get.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1" />
+		<!-- -->
+		<template alias="modify" name="url编辑页面" templateDesc="url编辑页面" fileName="{classVar}Modify.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1"/>
+		<template alias="detail" name="url明细页面" templateDesc="url明细页面" fileName="{classVar}Detail.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1"/>
+		 
+		<template alias="listLg" name="列表模版" templateDesc="列表模版" fileName="{classVar}ListLg.ftl.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1"/>
+		 
+		<template alias="myDraftList" name="我的草稿" templateDesc="我的草稿" fileName="{classVar}GetMyDraft.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1"/>
+		<template alias="myEndList" name="我的办结" templateDesc="我的办结" fileName="{classVar}GetMyEnd.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1"/>
+		<template alias="myTodoList" name="我的待办" templateDesc="我的待办" fileName="{classVar}GetMyTodoTask.jsp" dir="src\main\webapp\WEB-INF\view\{system}\{package}" parseHtml="1"/>
+		 
+	
+		<!-- bpmFormField解释模板 
+		<template alias="bpmFormField" name="bpmFormField解释模板" templateDesc="bpmFormField解释模板" />
+		-->
+	</templates>
+	
+</codegen>
+

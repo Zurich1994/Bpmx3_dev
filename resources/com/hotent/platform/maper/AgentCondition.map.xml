@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.AgentCondition">
+	<resultMap id="AgentCondition" type="com.hotent.platform.model.bpm.AgentCondition">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="settingid" column="SETTINGID" jdbcType="NUMERIC"/>
+		<result property="condition" column="CON" jdbcType="VARCHAR"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="agentid" column="AGENTID" jdbcType="NUMERIC"/>
+		<result property="agent" column="AGENT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,SETTINGID,CON,MEMO,AGENTID,AGENT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(settingid)"> AND SETTINGID  =#{settingid} </if>
+			<if test="@Ognl@isNotEmpty(condition)"> AND CON LIKE #{condition}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(agentid)"> AND AGENTID  =#{agentid} </if>
+			<if test="@Ognl@isNotEmpty(agent)"> AND AGENT  LIKE #{agent}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.AgentCondition">
+		INSERT INTO BPM_AGENT_CONDITION
+		(ID,SETTINGID,CON,MEMO,AGENTID,AGENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{settingid,jdbcType=NUMERIC}, #{condition,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{agentid,jdbcType=NUMERIC}, #{agent,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_AGENT_CONDITION 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.AgentCondition">
+		UPDATE BPM_AGENT_CONDITION SET
+		SETTINGID=#{settingid,jdbcType=NUMERIC},
+		CON=#{condition,jdbcType=VARCHAR},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		AGENTID=#{agentid,jdbcType=NUMERIC},
+		AGENT=#{agent,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AgentCondition">
+		SELECT <include refid="columns"/>
+		FROM BPM_AGENT_CONDITION
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AgentCondition">
+		SELECT <include refid="columns"/>
+		FROM BPM_AGENT_CONDITION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<delete id="delByMainId">
+	    DELETE FROM BPM_AGENT_CONDITION
+	    WHERE
+	    settingid=#{settingid}
+	</delete>    
+	
+	<select id="getAgentConditionList" resultMap="AgentCondition">
+	    SELECT <include refid="columns"/>
+	    FROM BPM_AGENT_CONDITION 
+	    WHERE settingid=#{settingid}
+	</select>
+	
+</mapper>

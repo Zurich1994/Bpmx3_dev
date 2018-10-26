@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/251/bpmx_w/WebRoot/WEB-INF/view/monitorDevice/monitorDevice
+END
+monitorDeviceList_b.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/WebRoot/WEB-INF/view/monitorDevice/monitorDevice/monitorDeviceList_b.jsp
+END
+monitorDeviceGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/WebRoot/WEB-INF/view/monitorDevice/monitorDevice/monitorDeviceGet.jsp
+END
+monitorDeviceEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/251/bpmx_w/WebRoot/WEB-INF/view/monitorDevice/monitorDevice/monitorDeviceEdit.jsp
+END

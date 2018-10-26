@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.projectinfo.model.projectinfo.projectinfo">
+	<resultMap id="projectinfo" type="com.hotent.projectinfo.model.projectinfo.projectinfo">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="projectName" column="F_PROJECTNAME" jdbcType="VARCHAR"/>
+		<result property="description" column="F_DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="stime" column="F_STIME" jdbcType="DATE"/>
+		<result property="etime" column="F_ETIME" jdbcType="DATE"/>
+		<result property="astime" column="F_ASTIME" jdbcType="DATE"/>
+		<result property="aetime" column="F_AETIME" jdbcType="DATE"/>
+		<result property="deleteFlag" column="F_DELETEFLAG" jdbcType="VARCHAR"/>
+		<result property="projectXml" column="F_PROJECTXML" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PROJECTNAME,F_DESCRIPTION,F_STIME,F_ETIME,F_ASTIME,F_AETIME,F_DELETEFLAG,F_PROJECTXML
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(projectName)"> AND F_PROJECTNAME  LIKE '%${projectName}%'  </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND F_DESCRIPTION  LIKE '%${description}%'  </if>
+			<if test="@Ognl@isNotEmpty(stime)"> AND F_STIME  =#{stime} </if>
+			<if test="@Ognl@isNotEmpty(beginstime)"> AND F_STIME  >=#{beginstime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endstime)"> AND F_STIME <![CDATA[ <=#{endstime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(etime)"> AND F_ETIME  =#{etime} </if>
+			<if test="@Ognl@isNotEmpty(beginetime)"> AND F_ETIME  >=#{beginetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endetime)"> AND F_ETIME <![CDATA[ <=#{endetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(astime)"> AND F_ASTIME  =#{astime} </if>
+			<if test="@Ognl@isNotEmpty(beginastime)"> AND F_ASTIME  >=#{beginastime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endastime)"> AND F_ASTIME <![CDATA[ <=#{endastime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(aetime)"> AND F_AETIME  =#{aetime} </if>
+			<if test="@Ognl@isNotEmpty(beginaetime)"> AND F_AETIME  >=#{beginaetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endaetime)"> AND F_AETIME <![CDATA[ <=#{endaetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(deleteFlag)"> AND F_DELETEFLAG  LIKE '%${deleteFlag}%'  </if>
+			<if test="@Ognl@isNotEmpty(projectXml)"> AND F_PROJECTXML  =#{projectXml} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.projectinfo.model.projectinfo.projectinfo">
+		INSERT INTO W_PROJECTINFO
+		(ID,
+		F_PROJECTNAME,F_DESCRIPTION,F_STIME,F_ETIME,F_ASTIME,F_AETIME,F_DELETEFLAG,F_PROJECTXML)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{projectName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{stime,jdbcType=DATE}, #{etime,jdbcType=DATE}, #{astime,jdbcType=DATE}, #{aetime,jdbcType=DATE}, #{deleteFlag,jdbcType=VARCHAR}, #{projectXml,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_PROJECTINFO 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.projectinfo.model.projectinfo.projectinfo">
+		UPDATE W_PROJECTINFO SET
+		F_PROJECTNAME=#{projectName,jdbcType=VARCHAR},
+		F_DESCRIPTION=#{description,jdbcType=VARCHAR},
+		F_STIME=#{stime,jdbcType=DATE},
+		F_ETIME=#{etime,jdbcType=DATE},
+		F_ASTIME=#{astime,jdbcType=DATE},
+		F_AETIME=#{aetime,jdbcType=DATE},
+		F_DELETEFLAG=#{deleteFlag,jdbcType=VARCHAR},
+		F_PROJECTXML=#{projectXml,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="projectinfo">
+		SELECT <include refid="columns"/>
+		FROM W_PROJECTINFO
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="projectinfo">
+		SELECT <include refid="columns"/>
+		FROM W_PROJECTINFO   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

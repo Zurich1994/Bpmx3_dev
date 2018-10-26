@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.redirection.model.redirection.Redirection">
+	<resultMap id="Redirection" type="com.hotent.redirection.model.redirection.Redirection">
+		<id property="defid" column="DEFID" jdbcType="NUMERIC"/>
+		<result property="nodeid" column="NODEID" jdbcType="VARCHAR"/>
+		<result property="redirectionurl" column="REDIRECTIONURL" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		DEFID,NODEID,REDIRECTIONURL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(defid)"> AND DEFID  =#{defid} </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND NODEID  LIKE '%${nodeid}%'  </if>
+			<if test="@Ognl@isNotEmpty(redirectionurl)"> AND REDIRECTIONURL  LIKE '%${redirectionurl}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.redirection.model.redirection.Redirection">
+		INSERT INTO redirection
+		(DEFID,NODEID,REDIRECTIONURL)
+		VALUES
+		(#{defid,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, #{redirectionurl,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM redirection 
+		WHERE
+		DEFID=#{defid}
+	</delete>
+	<delete id="delByIds" parameterType="java.util.Map">
+		DELETE FROM  redirection 
+		WHERE
+		DEFID=#{defid} AND NODEID=#{nodeid}
+	</delete>
+	<update id="update" parameterType="com.hotent.redirection.model.redirection.Redirection">
+		UPDATE redirection SET
+		NODEID=#{nodeid,jdbcType=VARCHAR},
+		REDIRECTIONURL=#{redirectionurl,jdbcType=VARCHAR}
+		WHERE
+		DEFID=#{defid}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Redirection">
+		SELECT <include refid="columns"/>
+		FROM redirection
+		WHERE
+		DEFID=#{defid}
+	</select>
+	
+	<select id="getAll" resultMap="Redirection">
+		SELECT <include refid="columns"/>
+		FROM redirection   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by DEFID desc
+		</if>
+	</select>
+	
+	<select id="search" parameterType="java.util.Map" resultMap="Redirection">
+		SELECT REDIRECTIONURL
+		FROM redirection
+		WHERE
+		DEFID=#{redirection.defid} AND NODEID=#{redirection.nodeid}
+	</select>
+	
+	<update id="updateredirectionurl" parameterType="com.hotent.redirection.model.redirection.Redirection">
+		UPDATE redirection
+		SET REDIRECTIONURL=#{redirection.updateredirectionurl}
+		WHERE
+		DEFID=#{redirection.defid} AND NODEID=#{redirection.nodeid}
+		
+	</update>
+	
+	<select id="getByactDefId" resultMap="Redirection">
+		SELECT <include refid="columns"/>
+		FROM redirection   
+		WHERE
+		defID=#{defID} and nodeID=#{nodeID}
+	</select>
+	
+	<select id="getByTwo" resultType="java.lang.String">
+		SELECT redirectID
+		FROM redirection   
+		WHERE
+		defID=#{defID} and nodeID=#{nodeID}
+	</select>
+	
+</mapper>

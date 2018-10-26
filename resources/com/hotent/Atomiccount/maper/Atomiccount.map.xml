@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Atomiccount.model.Atomiccount.Atomiccount">
+	<resultMap id="Atomiccount" type="com.hotent.Atomiccount.model.Atomiccount.Atomiccount">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="bpmid" column="F_BPMID" jdbcType="VARCHAR"/>
+		<result property="operaterid" column="F_OPERATERID" jdbcType="VARCHAR"/>
+		<result property="transactionid" column="F_TRANSACTIONID" jdbcType="VARCHAR"/>
+		<result property="atomicid" column="F_ATOMICID" jdbcType="VARCHAR"/>
+		<result property="runs" column="F_RUNS" jdbcType="NUMERIC"/>
+		<result property="time" column="F_TIME" jdbcType="DATE"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_BPMID,F_OPERATERID,F_TRANSACTIONID,F_ATOMICID,F_RUNS,F_TIME
+	</sql>
+	<sql id="wfColumns">
+		ID,F_BPMID,F_OPERATERID,F_TRANSACTIONID,F_ATOMICID,F_RUNS,F_TIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(bpmid)"> AND F_BPMID  LIKE '%${bpmid}%'  </if>
+			<if test="@Ognl@isNotEmpty(operaterid)"> AND F_OPERATERID  LIKE '%${operaterid}%'  </if>
+			<if test="@Ognl@isNotEmpty(transactionid)"> AND F_TRANSACTIONID  LIKE '%${transactionid}%'  </if>
+			<if test="@Ognl@isNotEmpty(atomicid)"> AND F_ATOMICID  LIKE '%${atomicid}%'  </if>
+			<if test="@Ognl@isNotEmpty(runs)"> AND F_RUNS  =#{runs} </if>
+			<if test="@Ognl@isNotEmpty(time)"> AND F_TIME  =#{time} </if>
+			<if test="@Ognl@isNotEmpty(begintime)"> AND F_TIME  >=#{begintime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endtime)"> AND F_TIME <![CDATA[ <=#{endtime,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Atomiccount.model.Atomiccount.Atomiccount">
+		INSERT INTO W_ATOMICCOUNT
+		(ID,
+		F_BPMID,F_OPERATERID,F_TRANSACTIONID,F_ATOMICID,F_RUNS,F_TIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{bpmid,jdbcType=VARCHAR}, #{operaterid,jdbcType=VARCHAR}, #{transactionid,jdbcType=VARCHAR}, #{atomicid,jdbcType=VARCHAR}, #{runs,jdbcType=NUMERIC}, #{time,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ATOMICCOUNT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Atomiccount.model.Atomiccount.Atomiccount">
+		UPDATE W_ATOMICCOUNT SET
+		F_BPMID=#{bpmid,jdbcType=VARCHAR},
+		F_OPERATERID=#{operaterid,jdbcType=VARCHAR},
+		F_TRANSACTIONID=#{transactionid,jdbcType=VARCHAR},
+		F_ATOMICID=#{atomicid,jdbcType=VARCHAR},
+		F_RUNS=#{runs,jdbcType=NUMERIC},
+		F_TIME=#{time,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Atomiccount">
+		SELECT <include refid="columns"/>
+		FROM W_ATOMICCOUNT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Atomiccount">
+		SELECT <include refid="columns"/>
+		FROM W_ATOMICCOUNT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--参考配置文档 https://build.phonegap.com/docs/config-xml -->
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		    = "com.hotent.mobile"
+	versionCode = "0.2.0"
+	version 	= "0.2.0"
+>
+	<name>BPMX3</name>
+
+	<description>
+	 BPMX3 业务流程管理系统 移动应用
+	</description>
+
+	<author href="http://www.jee-soft.cn"
+		email="277100963@qq.com">
+		hugh zhuang 
+	</author>
+
+	<gap:platforms>
+		<gap:platform name="ios" />
+		<gap:platform name="android" minVersion="2.1" />
+		<gap:platform name="webos" />
+		<gap:platform name="symbian.wrt" />
+		<gap:platform name="blackberry" project="widgets"/>
+		<gap:platform name="winphone" />
+	</gap:platforms>
+	<!-- 图标 -->
+	<icon src="mobile/resources/icons/icon.png" gap:role="default" />
+	
+	<icon src="mobile/resources/icons/icon.png"     gap:platform="ios" width="57" height="57" />
+	<icon src="mobile/resources/icons/icon@72.png"  gap:platform="ios" width="72" height="72" />
+	<icon src="mobile/resources/icons/icon@2x.png"  gap:platform="ios" width="114" height="114" />
+	<icon src="mobile/resources/icons/icon@144.png" gap:platform="ios" width="144" height="144" />
+	
+	<icon src="mobile/resources/icons/icon@36.png"  gap:platform="android" gap:density="ldpi" />
+	<icon src="mobile/resources/icons/icon@48.png"     gap:platform="android" gap:density="mdpi" />
+	<icon src="mobile/resources/icons/icon@72.png"  gap:platform="android" gap:density="hdpi" />
+	<icon src="mobile/resources/icons/icon@2x.png"  gap:platform="android" gap:density="xhdpi" />
+	<!-- 启动页 -->
+	<gap:splash src="mobile/resources/startup/Default.png"/>
+	
+	<gap:splash src="mobile/resources/startup/Default.png"   gap:platform="ios" width="320" height="460" />
+	<gap:splash src="mobile/resources/startup/640x920.png"   gap:platform="ios" width="640" height="920" />
+	<gap:splash src="mobile/resources/startup/640x1096.png"  gap:platform="ios" width="640" height="1096" />
+	<gap:splash src="mobile/resources/startup/748x1024.png"  gap:platform="ios" width="1024" height="748" />
+	<gap:splash src="mobile/resources/startup/748x1004.png"  gap:platform="ios" width="748" height="1004" />
+	<gap:splash src="mobile/resources/startup/1496x2048.png" gap:platform="ios" width="2048" height="1496" />
+	<gap:splash src="mobile/resources/startup/1536x2008.png" gap:platform="ios" width="1536" height="2008" />
+	
+
+	<gap:splash src="mobile/resources/startup/Default.png"   gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="mobile/resources/startup/640x920.png"   gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="mobile/resources/startup/748x1024.png"  gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="mobile/resources/startup/1496x2048.png" gap:platform="android" gap:density="xhdpi" />
+	
+<!--
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+
+	sample preference specification
+-->
+	<!-- <preference name="autorotate" value="false" readonly="true"/> -->
+</widget>

@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysUser">
+	<resultMap id="SysUser" type="com.hotent.platform.model.system.SysUser">
+		<id property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="fullname" column="fullname" jdbcType="VARCHAR"/>
+		<result property="account" column="account" jdbcType="VARCHAR"/>
+		<result property="password" column="password" jdbcType="VARCHAR"/>
+		<result property="isExpired" column="isExpired" jdbcType="NUMERIC"/>
+		<result property="isLock" column="isLock" jdbcType="NUMERIC"/>
+		<result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+		<result property="status" column="status" jdbcType="NUMERIC"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+		<result property="phone" column="phone" jdbcType="VARCHAR"/>
+		<result property="sex" column="sex" jdbcType="VARCHAR"/>
+		<result property="picture" column="picture" jdbcType="VARCHAR"/>
+		<result property="fromType" column="fromType" jdbcType="NUMERIC"/>
+		<result property="entryDate" column="entrydate" jdbcType="TIMESTAMP"/>
+		<result property="userStatus" column="userStatus" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		userId,fullname,account,password,isExpired,isLock,createtime,status,email,mobile,phone,sex,picture,fromType,entryDate,userStatus
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(fullname)"> AND fullname  LIKE #{fullname}  </if>
+			<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+			<if test="@Ognl@isNotEmpty(isExpired)"> AND isExpired  =#{isExpired} </if>
+			<if test="@Ognl@isNotEmpty(isLock)"> AND isLock  =#{isLock} </if>			
+            <if test="@Ognl@isNotEmpty(createtime)"> AND createtime=#{createtime}</if>
+			<if test="@Ognl@isNotEmpty(status)"> AND status  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(email)"> AND email  LIKE #{email} </if>
+			<if test="@Ognl@isNotEmpty(mobile)"> AND mobile  LIKE #{mobile}  </if>
+			<if test="@Ognl@isNotEmpty(phone)"> AND phone  LIKE #{phone}  </if>
+			<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE {sex}  </if>
+			<if test="@Ognl@isNotEmpty(fromType)"> AND fromType = #{fromType}  </if>
+			<if test="@Ognl@isNotEmpty(entryDate)"> AND entrydate LIKE #{entryDate}  </if>
+			<if test="@Ognl@isNotEmpty(userStatus)"> AND userStatus LIKE #{userStatus}  </if>
+		</where>
+	</sql>
+    
+    
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysUser">
+		INSERT INTO sys_user
+		(<include refid="columns"/>)
+		VALUES
+		(#{userId,jdbcType=NUMERIC}, #{fullname,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+		#{isExpired,jdbcType=NUMERIC}, #{isLock,jdbcType=NUMERIC}, #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=NUMERIC}, 
+		#{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+		#{fromType,jdbcType=NUMERIC},#{entryDate,jdbcType=TIMESTAMP},#{userStatus,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_user 
+		WHERE
+		userId=#{userId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysUser">
+		UPDATE sys_user SET
+		fullname=#{fullname,jdbcType=VARCHAR} , 
+		account=#{account,jdbcType=VARCHAR} , 
+		password=#{password,jdbcType=VARCHAR} , 
+		isExpired=#{isExpired,jdbcType=NUMERIC} , 
+		isLock=#{isLock,jdbcType=NUMERIC} , 
+		createtime=#{createtime,jdbcType=TIMESTAMP} , 
+		status=#{status,jdbcType=NUMERIC} , 
+		email=#{email,jdbcType=VARCHAR} , 
+		mobile=#{mobile,jdbcType=VARCHAR} , 
+		phone=#{phone,jdbcType=VARCHAR} , 
+		sex=#{sex,jdbcType=VARCHAR} , 
+		picture=#{picture,jdbcType=VARCHAR},
+		fromType=#{fromType,jdbcType=NUMERIC},
+		entrydate=#{entryDate,jdbcType=TIMESTAMP},
+		userStatus=#{userStatus,jdbcType=VARCHAR}
+		WHERE
+		userId=#{userId}
+	</update>
+	
+	<update id="updPwd" parameterType="Map">
+		UPDATE sys_user SET password=#{password,jdbcType=VARCHAR} WHERE userId=#{userId}
+	</update>
+	
+	<update id="updStatus" parameterType="Map">
+		UPDATE sys_user SET isLock=#{isLock,jdbcType=NUMERIC} ,
+		status=#{status,jdbcType=NUMERIC}  WHERE userId=#{userId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysUser">
+		SELECT <include refid="columns"/>
+		FROM sys_user
+		WHERE
+		userId=#{userId}
+	</select>
+	
+	<select id="getByAccount" parameterType="java.lang.String" resultMap="SysUser">
+		SELECT <include refid="columns"/> 
+		from sys_user 
+		where account=#{account}
+	</select>
+	
+	<select id="getAll" resultMap="SysUser">
+		SELECT <include refid="columns"/>
+		FROM sys_user   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+		<!-- 手机查询-->
+	<select id="getAllMobile" resultMap="SysUser">
+		SELECT distinct a.userId,a.fullname,a.account,a.entrydate,a.userStatus,c.orgName,e.posName
+		FROM sys_user a
+		left join  sys_user_pos b on a.userid = b.userid and b.ISPRIMARY = 1
+		left join sys_org c on b.orgid = c.orgid
+		left join sys_user_pos d on b.userid = d.userid and d.ISPRIMARY = 1
+		left join sys_pos e on d.posid = e.posid 
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	<select id="getUserByOrgId" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT a.userId,a.fullname,a.account,a.entrydate,a.userStatus,b.userOrgId,c.orgName 
+	    FROM  sys_user a 
+	    join sys_user_pos b  on  a.userId=b.userId
+	    join sys_org c on b.orgId=c.orgId
+		where 1=1
+		<if test="@Ognl@isNotEmpty(path)"> AND c.path  LIKE '${path}%'  </if>
+		<if test="@Ognl@isNotEmpty(fullname)"> AND a.fullname  LIKE #{fullname}  </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND a.account  LIKE #{account}  </if>
+        <if test="@Ognl@isNotEmpty(sex)"> AND a.sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND a.createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND a.createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.userId  desc
+		</if>
+	</select>
+	
+	<select id="getByOrgId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT distinct a.* from SYS_USER a inner join  SYS_USER_POS userOrg on a.userId=userOrg.userId where userOrg.orgId=#{orgId} 
+	</select>
+	
+	<select id="getByPosId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT distinct a.* from SYS_USER a inner join SYS_USER_POS userPos on a.userId=userPos.userId where userPos.posId=#{posId} 
+	</select>
+	
+	<select id="getByJobId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT distinct a.* from SYS_USER a inner join SYS_USER_POS userPos on a.userId=userPos.userId 
+    inner join sys_pos p on p.posid= userPos.Posid        where p.jobid=#{jobId}
+	</select>
+	
+	
+	<select id="getByRoleId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT distinct a.* from SYS_USER a inner join SYS_USER_ROLE userRole on a.userId=userRole.userId where userRole.roleId=#{roleId} 
+	</select>
+	
+   <select id="getUserByQuery" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where isLock=0 and status=1 and isExpired=0 
+		<if test="@Ognl@isNotEmpty(userId)"> AND userId  = #{userId}  </if>
+		<if test="@Ognl@isNotEmpty(fullname)"> AND fullname  LIKE #{fullname}  </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	<select id="getUsersByQuery" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where 1 = 1
+		<if test="@Ognl@isNotEmpty(fullname)"> AND fullname  LIKE #{fullname}  </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(isLock)"> AND isLock  =#{isLock} </if>
+		<if test="@Ognl@isNotEmpty(isExpired)"> AND isExpired  =#{isExpired} </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	 <select id="getUserByQuery_oracle" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where isLock=0 and status=1 and isExpired=0  
+		<if test="@Ognl@isNotEmpty(userId)"> AND userId  = #{userId}  </if>
+		<if test="@Ognl@isNotEmpty(fullname)"> AND (instr(#{fullname},fullname)>0 or  fullname  LIKE #{fullname})   </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	 <select id="getUserByQuery_mysql" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where isLock=0 and status=1 and isExpired=0 
+		<if test="@Ognl@isNotEmpty(userId)"> AND userId  = #{userId}  </if>
+		<if test="@Ognl@isNotEmpty(fullname)"> AND (instr(#{fullname},fullname)>0 or  fullname  LIKE #{fullname})   </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	  <select id="getUserByQuery_mssql" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where isLock=0 and status=1 and isExpired=0 
+		<if test="@Ognl@isNotEmpty(userId)"> AND userId  = #{userId}  </if>
+		<if test="@Ognl@isNotEmpty(fullname)"> AND (charindex(fullname,#{fullname})>0 or  fullname  LIKE #{fullname})   </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	<select id="getUsersByQuery_oracle" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where 1=1
+		<if test="@Ognl@isNotEmpty(fullname)"> AND (instr(#{fullname},fullname)>0 or  fullname  LIKE #{fullname})   </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(isExpired)"> AND isExpired  =#{isExpired} </if>
+		<if test="@Ognl@isNotEmpty(isLock)"> AND isLock  =#{isLock} </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	 <select id="getUsersByQuery_mysql" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where 1=1
+		<if test="@Ognl@isNotEmpty(fullname)"> AND (instr(#{fullname},fullname)>0 or  fullname  LIKE #{fullname})   </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(isExpired)"> AND isExpired  =#{isExpired} </if>
+		<if test="@Ognl@isNotEmpty(isLock)"> AND isLock  =#{isLock} </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	  <select id="getUsersByQuery_mssql" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/>,5 retype
+	    FROM sys_user 
+		where 1=1
+		<if test="@Ognl@isNotEmpty(fullname)"> AND (charindex(fullname,#{fullname})>0 or  fullname  LIKE #{fullname})   </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(isExpired)"> AND isExpired  =#{isExpired} </if>
+		<if test="@Ognl@isNotEmpty(isLock)"> AND isLock  =#{isLock} </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND status  =#{status} </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	<select id="getUserIdsByRoleId" resultType="java.lang.Long">
+		SELECT distinct userId from SYS_USER_ROLE where roleId=#{roleId}  
+	</select>
+	
+	
+	<select id="getUserByRoleId" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT a.userId,a.fullname,a.account,a.password,a.isExpired,a.isLock,a.createtime
+		,a.status,a.email,a.mobile,a.phone,a.sex,a.picture,a.entrydate,a.userStatus,5 retype
+	    FROM  SYS_USER a ,SYS_USER_ROLE b
+	    WHERE a.isLock=0 and a.status=1 and a.userId=b.userId
+	    and b.roleId=#{roleId}
+		
+		<if test="@Ognl@isNotEmpty(fullname)"> AND a.fullname  LIKE #{fullname}  </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND a.account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND a.sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND a.createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND a.createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.userId  desc
+		</if>
+	</select>
+	
+	
+	<select id="getDistinctUserByPosPath" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT DISTINCT a.userId,a.fullname,a.account,a.password,a.isExpired,a.isLock
+		,a.createtime,a.status,a.email,a.mobile,a.phone,a.sex,a.picture,a.entrydate,a.userStatus,5 retype
+	    FROM  SYS_USER a 
+	    inner join SYS_USER_POS b  on  a.userId=b.userId
+	    inner join SYS_POS c on b.posId=c.posId
+		where a.isLock=0 and a.status=1 and c.nodePath LIKE '${nodePath}%' 
+		<if test="@Ognl@isNotEmpty(fullname)"> AND a.fullname  LIKE #{fullname}  </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND a.account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND a.sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND a.createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND a.createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.userId  desc
+		</if>
+	</select>
+	<select id="getDistinctUserByPosId" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT DISTINCT a.userId,a.fullname,a.account,a.password,a.isExpired,a.isLock
+		,a.createtime,a.status,a.email,a.mobile,a.phone,a.sex,a.picture,a.entrydate,a.userStatus,5 retype
+	    FROM  SYS_USER a 
+	    inner join SYS_USER_POS b  on  a.userId=b.userId
+	    inner join SYS_POS c on b.posId=c.posId
+		where a.isLock=0 and a.status=1 and c.posId= #{posId} and b.isdelete =0 
+		<if test="@Ognl@isNotEmpty(fullname)"> AND a.fullname  LIKE #{fullname}  </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND a.account  LIKE #{account}  </if>
+		<if test="@Ognl@isNotEmpty(sex)"> AND a.sex  LIKE #{sex}  </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND a.createtime>=#{begincreatetime}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND a.createtime &lt;=#{endcreatetime}</if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.userId  desc
+		</if>
+	</select>
+	
+	<select id="getUserNoOrg" resultType="com.hotent.platform.model.system.SysUser">
+	   select a.* from sys_user a where a.isLock = 0 and a.status = 1 and a.userid not in(
+         select b.userid from  sys_user_pos b where b.isPrimary=1
+     	)
+     	<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.userId  desc
+		</if>
+	</select>
+	
+	<select id="getDistinctUserByOrgPath" resultType="com.hotent.platform.model.system.SysUser">
+		select * from (		
+		SELECT DISTINCT a.userId,a.account, a.fullname,a.email,a.mobile,a.phone,a.entrydate,a.userStatus,5 retype
+	    FROM  sys_user a 
+	    inner join  sys_user_pos b  on  a.userId=b.userId
+	    <if test="@Ognl@isNotEmpty(isPrimary)">and b.isPrimary = 1</if>
+	    inner join sys_org c on b.orgId=c.orgId
+		where a.isLock=0 and a.status=1 and c.path LIKE '${path}%' and b.isdelete=0
+		<if test="@Ognl@isNotEmpty(fullname)"> AND a.fullname  LIKE #{fullname}  </if>
+		 ) tt
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	<select id="getDistinctUserByOrgId" resultType="com.hotent.platform.model.system.SysUser">
+		select * from (		
+		SELECT DISTINCT a.userId,a.fullname,a.email,a.mobile,a.phone,a.entrydate,a.userStatus,5 retype
+	    FROM  sys_user a 
+	    inner join   sys_user_pos b on  a.userId=b.userId
+	    inner join sys_org c on b.orgId=c.orgId
+		where a.isLock=0 and a.status=1 and c.orgId =#{orgId} and b.isdelete =0 
+		<if test="@Ognl@isNotEmpty(fullname)"> AND a.fullname  LIKE #{fullname}  </if>
+		 ) tt
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userId  desc
+		</if>
+	</select>
+	
+	
+	<select id="isAccountExist"  resultType="Integer">
+	    select count(*) from sys_user  where account=#{account}
+	</select>
+	
+	
+	<select id="isAccountExistForUpd" parameterType="Map"  resultType="Integer">
+	    select count(*) from sys_user  where account=#{account} and userId &lt;>#{userId}
+	</select>
+	
+	
+	
+	<select id="getByUserOrParam_mysql" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM SYS_USER u,SYS_PARAM p,SYS_USER_PARAM v
+		WHERE 1=1
+		AND u.USERID=v.USERID
+		AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  date_format('${paramValue}','%Y-%m-%d')</if>
+	</select>
+	
+	
+	<select id="getByUserOrParam_oracle" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM SYS_USER u,SYS_PARAM p,SYS_USER_PARAM v
+		WHERE 1=1
+		AND u.USERID=v.USERID
+		AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  To_date('${paramValue}','yyyy-mm-dd')</if>
+	</select>
+	
+		<select id="getByUserOrParam_db2" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM SYS_USER u,SYS_PARAM p,SYS_USER_PARAM v
+		WHERE 1=1
+		AND u.USERID=v.USERID
+		AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}   VARCHAR_FORMAT(${paramValue},'yyyy-mm-dd')</if>
+	</select>
+	
+	
+	<select id="getByUserOrParam_h2" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM SYS_USER u,SYS_PARAM p,SYS_USER_PARAM v
+		WHERE 1=1
+		AND u.USERID=v.USERID
+		AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  FORMATDATETIME('${paramValue}','yyyy-MM-dd')</if>
+	</select>
+	
+	
+	
+	<select id="getUpLowPost" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM SYS_USER u,
+ 		SYS_USER_POS up,
+ 		SYS_POS p
+		WHERE  u.USERID=up.USERID
+		AND up.ISDELETE=0
+		AND up.POSID=p.POSID
+		AND p.NODEPATH ${pathCondition} '${path}' 
+		<if test="depthCondition!=0"> AND length(replace(p.NODEPATH, '.', '..'))-length(p.NODEPATH) = ${depthCondition} </if>
+	</select>
+	
+	<select id="getUpLowOrg" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM SYS_USER u,
+ 		 SYS_USER_POS uo,
+ 		SYS_ORG o
+		WHERE u.USERID=uo.USERID
+		AND uo.ISDELETE=0
+		AND uo.ORGID=o.ORGID
+		AND o.PATH ${pathCondition} '${path}'
+		<if test="depthCondition!=0"> AND length(replace(o.PATH, '.', '..'))-length(o.PATH) = ${depthCondition}</if>
+		<if test="isCharge==1"> AND uo.ISCHARGE = ${isCharge} </if>
+	</select>
+	
+	<select id="getByIdSet" resultMap="SysUser">
+		SELECT * FROM SYS_USER WHERE USERID IN (${ids})
+	</select>
+	
+	
+	<select id="getByOrgOrParam_mysql" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM 
+	    SYS_USER u,
+	    SYS_USER_POS uo,
+	    SYS_ORG o,
+	    SYS_PARAM p,
+	    SYS_ORG_PARAM v
+	    WHERE 1=1
+	    AND u.USERID=uo.USERID
+	    AND uo.ORGID=o.ORGID
+	    AND o.ORGID=v.ORGID
+	    AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  date_format('${paramValue}','%Y-%m-%d')</if>
+	</select>
+	
+	
+	<select id="getByOrgOrParam_oracle" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM 
+	    SYS_USER u,
+	    SYS_USER_POS uo,
+	    SYS_ORG o,
+	    SYS_PARAM p,
+	    SYS_ORG_PARAM v
+	    WHERE 1=1
+	    AND u.USERID=uo.USERID
+	    AND uo.ORGID=o.ORGID
+	    AND o.ORGID=v.ORGID
+	    AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  To_date('${paramValue}','yyyy-mm-dd')</if>
+	</select>
+	<select id="getByOrgOrParam_db2" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM 
+	    SYS_USER u,
+	    SYS_USER_POS uo,
+	    SYS_ORG o,
+	    SYS_PARAM p,
+	    SYS_ORG_PARAM v
+	    WHERE 1=1
+	    AND u.USERID=uo.USERID
+	    AND uo.ORGID=o.ORGID
+	    AND o.ORGID=v.ORGID
+	    AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  VARCHAR_FORMAT(${paramValue},'yyyy-mm-dd')</if>
+	</select>
+	<select id="getByOrgOrParam_h2" resultType="com.hotent.platform.model.system.SysUser" >
+		SELECT DISTINCT 
+		u.userId,u.fullname,u.account,u.password,u.isExpired,u.isLock,u.createtime,u.status,u.email,u.mobile,u.phone,u.sex,u.picture
+ 		FROM 
+	    SYS_USER u,
+	    SYS_USER_POS uo,
+	    SYS_ORG o,
+	    SYS_PARAM p,
+	    SYS_ORG_PARAM v
+	    WHERE 1=1
+	    AND u.USERID=uo.USERID
+	    AND uo.ORGID=o.ORGID
+	    AND o.ORGID=v.ORGID
+	    AND v.PARAMID=p.PARAMID
+		<if test="paramValueColumn=='paramValue'">     AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  '${paramValue}'</if>
+		<if test="paramValueColumn=='paramIntValue'">  AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  ${paramValue}</if>
+		<if test="paramValueColumn=='paramDateValue'"> AND paramKey='${paramKey}' AND ${paramValueColumn}  ${condition}  FORMATDATETIME('${paramValue}','yyyy-MM-dd')</if>
+	</select>
+	
+	<select id="getByMail" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/> 	FROM sys_user WHERE email=#{address}
+	</select>
+	
+	<select id="getDirectLeaderByOrgId" resultMap="SysUser">
+		select b.* from sys_user b
+		where b.userid in
+		(select a.userid from  sys_user_pos a where a.orgid=#{orgId} and a.ischarge=1 and a.isdelete =0)
+	</select>
+	
+	<select id="getUserByUnderUserId" resultMap="SysUser" parameterType="java.lang.Long">
+		SELECT b.*  FROM SYS_USER b,SYS_USER_UNDER a 
+		where b.userId=a.userid and a.UNDERUSERID=#{underuserid}
+	</select>
+	
+	<select id="getUnderUserByUserId" resultMap="SysUser" parameterType="java.lang.Long">
+		SELECT b.*  FROM SYS_USER b,SYS_USER_UNDER a 
+		where  a.userid=#{userId} and b.userId=a.underuserid;
+	</select>
+	
+	<select id="getByFromType" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT <include refid="columns"/> 	FROM sys_user WHERE fromType=#{fromType}
+	</select>
+	
+	<select id="getAllIncludeOrg" resultType="com.hotent.platform.model.system.SysUser">
+		SELECT a.userId,a.fullname,a.account,a.password,a.isExpired,a.isLock,a.createtime,
+			a.status,a.email,a.mobile,a.phone,a.sex,a.picture,a.fromType,a.entrydate,a.userStatus,b.userOrgId,c.orgName
+		FROM  sys_user a 
+	    	left join  sys_user_pos b  on  a.userId=b.userId
+	  		left join sys_org c on b.orgId=c.orgId
+	</select>
+	
+	<select id="getExeUserByInstnceId" resultMap="SysUser">
+		select * from sys_user where userid in (
+			select distinct t.exeuserid from BPM_TASK_OPINION T WHERE T.ACTINSTID=#{instId} and taskId is not null)
+  	</select>
+  	
+  	<select id="getByOrgIds" resultMap="SysUser">
+		SELECT distinct a.* from Sys_User a, sys_user_pos b where a.userId=b.userId and b.orgId in 
+		<foreach collection="list" index="index" item="orgId" open="(" close=")" separator=",">
+				${orgId}
+		</foreach>
+	</select>
+	
+	<select id="getMgrByOrgIds" resultMap="SysUser">
+		SELECT distinct a.* from Sys_User a, sys_user_pos b where a.userId=b.userId and b.ISCHARGE=1  and b.orgId in 
+		<foreach collection="list" index="index" item="orgId" open="(" close=")" separator=",">
+			${orgId}
+		</foreach>
+	</select>
+	
+	<select id="getByRoleIds" resultMap="SysUser">
+		SELECT * from Sys_User a,sys_user_role b where a.userId=b.userId and  b.roleId in 
+		<foreach collection="list" index="index" item="roleId" open="(" close=")" separator=",">
+			${roleId}
+		</foreach>
+	</select>
+	
+	<select id="getByJobIds" resultMap="SysUser">
+    	SELECT distinct u.* from Sys_User u
+     inner join sys_user_pos up  on u.userid=up.userid
+     inner join sys_pos  p on p.posid=up.posid      where  p.jobId in
+		<foreach collection="list" index="index" item="jobId" open="(" close=")" separator=",">
+			${jobId}
+		</foreach>
+	</select>
+	<!--
+	<select id="getSuperiorByUserId" resultMap="SysUser">
+		select a.* from sys_user a,_superior b where a.account=b.empnum and b.orgid=#{orgId} and b.userid=#{userId}
+	</select>
+	  -->
+	<select id="getByPos" resultType="com.hotent.platform.model.system.SysUser">
+			select t.userId,t.fullname,t.account from sys_user t ,sys_user_pos a  
+			where t.userid=a.userid and a.isdelete = 0 and  a.posid in
+			<foreach collection="list" index="index" item="posId" open="(" close=")" separator=",">
+				${posId}
+			</foreach>
+	</select>
+	
+	<!--
+	<select id="getSuperiorByUserIdAndOrgId" resultType="com.hotent.platform.model.system.SysUser">
+	      select g.superuserid,
+         (select t.fullname from sys_user t where t.userid = g.superuserid) as supername
+         from  b,_superior g where g.userid = b.userid 
+         and g.orgid = b.orgid and b.orgid =#{orgid} and g.userid = #{userid}
+	
+	</select>
+	  -->
+	<select id="getOrgMainUser" resultType="com.hotent.platform.model.system.SysUser">
+	   select u.fullname　from  s ,(select a.orgid from SYS_ORG a,sys_user_pos b 
+	   where a.orgId=b.orgId and b.isPrimary=1 and b.userId=#{userId}) c,sys_user u
+       where s.orgid=c.orgid and s.userid=u.userid and s.ischarge=1	
+	</select>
+	
+	<select id="getUserByRoleIdOrgId" resultType="com.hotent.platform.model.system.SysUser">
+		select u.* from SYS_USER u left join SYS_USER_POS uo on u.USERID=uo.USERID
+		left join SYS_USER_ROLE ur on u.userid=ur.userid
+		where uo.orgid=#{orgId} and ur.roleid=#{roleId}
+	</select>
+	
+	<select id="getByOrgIdPosId" resultType="com.hotent.platform.model.system.SysUser">
+		select u.* from SYS_USER u left join SYS_USER_POS uo on u.USERID=uo.USERID
+    	left join sys_user_pos up on u.userid=up.userid
+    	where uo.orgid=#{orgId} and up.posid=#{posId}
+	</select>
+	<!-- 与发起人相同岗位的用户 -->
+	<select id="getSamePositionUsersByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUser">
+	        select distinct u.*
+       from sys_user_pos a
+      inner join sys_user u
+         on a.userid = u.userid
+      where a.posid in (select posid
+                          from sys_user_pos
+                         where userid = #{userId}
+                           and isdelete = 0)
+	</select>
+	
+	<!-- 与发起人相同职务的用户 -->
+	<select id="getSameJobUsersByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUser">
+   select distinct u.*
+       from sys_user_pos a
+      inner join sys_user u
+         on a.userid = u.userid
+      inner join sys_pos b
+         on a.posid = b.posid
+      where b.jobid in (select p.jobid
+                          from sys_user_pos up
+                         inner join sys_pos p
+                            on up.posid = p.posid
+                         where userid =  #{userId}
+                           and up.isdelete = 0)
+	</select>
+	
+	
+	<select id="getByOrgRole"  resultType="com.hotent.platform.model.system.SysUser">
+   		select distinct u.*
+       from sys_user u,sys_user_pos up,
+       sys_user_role ur where 
+       u.userId=up.USERID AND up.ISDELETE=0
+       and u.USERID=ur.USERID
+       and up.ORGID=#{orgId} and ur.ROLEID=#{roleId}
+    
+	</select>
+
+	<select id="getByCompanyRole"  resultType="com.hotent.platform.model.system.SysUser">
+ 	  SELECT DISTINCT 
+		  U.USERID,U.FULLNAME,U.ACCOUNT,U.PASSWORD,U.ISEXPIRED,U.ISLOCK,U.CREATETIME,U.STATUS,U.EMAIL,U.MOBILE,U.PHONE,U.SEX,
+		  U.PICTURE,U.FROMTYPE,U.ENTRYDATE,U.USERSTATUS
+	 	  FROM SYS_USER U
+	      INNER JOIN SYS_USER_ROLE UR ON U.USERID = UR.USERID
+	      INNER JOIN SYS_USER_POS UP ON U.USERID = UP.USERID AND UP.ISDELETE = 0
+	      INNER JOIN SYS_ORG O ON UP.ORGID = O.ORGID 
+      WHERE O.COMPANYID = #{companyId} AND UR.ROLEID = #{roleId}
+    
+	</select>
+	
+	<select id="getDisUserList" resultMap="SysUser">
+		SELECT DISTINCT u.USERID userId,  u.account account, u.fullname fullname,o.orgName
+		 FROM  SYS_USER u 
+		LEFT JOIN SYS_USER_POS up  on  u.userId=up.userId and up.ISPRIMARY=1 and ISDELETE =0
+		LEFT JOIN SYS_ORG o on up.orgId=o.orgId
+	 	 LEFT JOIN (select ID,USER_ID from  ats_attendance_file  af 
+	 	) aaf on aaf.USER_ID=u.USERID where aaf.ID is null
+	 	
+  		<if test="@Ognl@isNotEmpty(orgId)"> AND o.orgId  =#{orgId} </if>
+		<if test="@Ognl@isNotEmpty(userId)"> AND u.USER_ID  =#{userId} </if>
+	</select>
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Device_Login_Info.model.Device_Login_InfoPac.DeviceLoginInfo">
+	<resultMap id="DeviceLoginInfo" type="com.hotent.Device_Login_Info.model.Device_Login_InfoPac.DeviceLoginInfo">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="dev_ID" column="F_DEV_ID" jdbcType="VARCHAR"/>
+		<result property="login_manner" column="F_LOGIN_MANNER" jdbcType="VARCHAR"/>
+		<result property="ip_address" column="F_IP_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="port" column="F_PORT" jdbcType="VARCHAR"/>
+		<result property="username" column="F_USERNAME" jdbcType="VARCHAR"/>
+		<result property="password" column="F_PASSWORD" jdbcType="VARCHAR"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ID,F_DEV_ID,F_LOGIN_MANNER,F_IP_ADDRESS,F_PORT,F_USERNAME,F_PASSWORD,F_REMARK
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(dev_ID)"> AND F_DEV_ID  LIKE '%${dev_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(login_manner)"> AND F_LOGIN_MANNER  LIKE '%${login_manner}%'  </if>
+			<if test="@Ognl@isNotEmpty(ip_address)"> AND F_IP_ADDRESS  LIKE '%${ip_address}%'  </if>
+			<if test="@Ognl@isNotEmpty(port)"> AND F_PORT  LIKE '%${port}%'  </if>
+			<if test="@Ognl@isNotEmpty(username)"> AND F_USERNAME  LIKE '%${username}%'  </if>
+			<if test="@Ognl@isNotEmpty(password)"> AND F_PASSWORD  LIKE '%${password}%'  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Device_Login_Info.model.Device_Login_InfoPac.DeviceLoginInfo">
+		INSERT INTO W_DEVICE_LOGIN_INFO
+		(ID,
+		F_ID,F_DEV_ID,F_LOGIN_MANNER,F_IP_ADDRESS,F_PORT,F_USERNAME,F_PASSWORD,F_REMARK)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{id,jdbcType=NUMERIC}, #{dev_ID,jdbcType=VARCHAR}, #{login_manner,jdbcType=VARCHAR}, #{ip_address,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{remark,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_LOGIN_INFO 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Device_Login_Info.model.Device_Login_InfoPac.DeviceLoginInfo">
+		UPDATE W_DEVICE_LOGIN_INFO SET
+		F_ID=#{id,jdbcType=NUMERIC},
+		F_DEV_ID=#{dev_ID,jdbcType=VARCHAR},
+		F_LOGIN_MANNER=#{login_manner,jdbcType=VARCHAR},
+		F_IP_ADDRESS=#{ip_address,jdbcType=VARCHAR},
+		F_PORT=#{port,jdbcType=VARCHAR},
+		F_USERNAME=#{username,jdbcType=VARCHAR},
+		F_PASSWORD=#{password,jdbcType=VARCHAR},
+		F_REMARK=#{remark,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceLoginInfo">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_LOGIN_INFO
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DeviceLoginInfo">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_LOGIN_INFO   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

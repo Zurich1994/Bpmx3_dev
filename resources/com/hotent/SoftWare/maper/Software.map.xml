@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.SoftWare.model.SoftWarePac.Software">
+	<resultMap id="Software" type="com.hotent.SoftWare.model.SoftWarePac.Software">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="softWare_ID" column="F_SOFTWARE_ID" jdbcType="VARCHAR"/>
+		<result property="software_Name" column="F_SOFTWARE_NAME" jdbcType="VARCHAR"/>
+		<result property="software_Type" column="F_SOFTWARE_TYPE" jdbcType="VARCHAR"/>
+		<result property="developer" column="F_DEVELOPER" jdbcType="VARCHAR"/>
+		<result property="stage" column="F_STAGE" jdbcType="VARCHAR"/>
+		<result property="version" column="F_VERSION" jdbcType="VARCHAR"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ID,F_SOFTWARE_ID,F_SOFTWARE_NAME,F_SOFTWARE_TYPE,F_DEVELOPER,F_STAGE,F_VERSION,F_REMARK
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(softWare_ID)"> AND F_SOFTWARE_ID  LIKE '%${softWare_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(software_Name)"> AND F_SOFTWARE_NAME  LIKE '%${software_Name}%'  </if>
+			<if test="@Ognl@isNotEmpty(software_Type)"> AND F_SOFTWARE_TYPE  LIKE '%${software_Type}%'  </if>
+			<if test="@Ognl@isNotEmpty(developer)"> AND F_DEVELOPER  LIKE '%${developer}%'  </if>
+			<if test="@Ognl@isNotEmpty(stage)"> AND F_STAGE  LIKE '%${stage}%'  </if>
+			<if test="@Ognl@isNotEmpty(version)"> AND F_VERSION  LIKE '%${version}%'  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.SoftWare.model.SoftWarePac.Software">
+		INSERT INTO W_SOFTWARE
+		(ID,
+		F_ID,F_SOFTWARE_ID,F_SOFTWARE_NAME,F_SOFTWARE_TYPE,F_DEVELOPER,F_STAGE,F_VERSION,F_REMARK)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{id,jdbcType=NUMERIC}, #{softWare_ID,jdbcType=VARCHAR}, #{software_Name,jdbcType=VARCHAR}, #{software_Type,jdbcType=VARCHAR}, #{developer,jdbcType=VARCHAR}, #{stage,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{remark,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SOFTWARE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.SoftWare.model.SoftWarePac.Software">
+		UPDATE W_SOFTWARE SET
+		F_ID=#{id,jdbcType=NUMERIC},
+		F_SOFTWARE_ID=#{softWare_ID,jdbcType=VARCHAR},
+		F_SOFTWARE_NAME=#{software_Name,jdbcType=VARCHAR},
+		F_SOFTWARE_TYPE=#{software_Type,jdbcType=VARCHAR},
+		F_DEVELOPER=#{developer,jdbcType=VARCHAR},
+		F_STAGE=#{stage,jdbcType=VARCHAR},
+		F_VERSION=#{version,jdbcType=VARCHAR},
+		F_REMARK=#{remark,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Software">
+		SELECT <include refid="columns"/>
+		FROM W_SOFTWARE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Software">
+		SELECT <include refid="columns"/>
+		FROM W_SOFTWARE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

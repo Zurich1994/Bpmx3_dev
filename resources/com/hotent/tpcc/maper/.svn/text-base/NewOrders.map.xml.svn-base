@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.NewOrders">
+	<resultMap id="NewOrders" type="com.hotent.tpcc.model.tpcc.NewOrders">
+		<id property="no_o_id" column="NO_O_ID" jdbcType="NUMERIC"/>
+		<result property="no_d_id" column="NO_D_ID" jdbcType="NUMERIC"/>
+		<result property="no_w_id" column="NO_W_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		NO_O_ID,NO_D_ID,NO_W_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(no_o_id)"> AND NO_O_ID  =#{no_o_id} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.NewOrders">
+		INSERT INTO new_orders
+		(NO_O_ID,NO_D_ID,NO_W_ID)
+		VALUES
+		(#{no_o_id,jdbcType=NUMERIC}, #{no_d_id,jdbcType=NUMERIC}, #{no_w_id,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM new_orders 
+		WHERE
+		NO_O_ID=#{no_o_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.NewOrders">
+		UPDATE new_orders SET
+		NO_D_ID=#{no_d_id,jdbcType=NUMERIC},
+		NO_W_ID=#{no_w_id,jdbcType=NUMERIC}
+		WHERE
+		NO_O_ID=#{no_o_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="NewOrders">
+		SELECT <include refid="columns"/>
+		FROM new_orders
+		WHERE
+		NO_O_ID=#{no_o_id}
+	</select>
+	
+	<select id="getAll" resultMap="NewOrders">
+		SELECT <include refid="columns"/>
+		FROM new_orders   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by NO_O_ID desc
+		</if>
+	</select>
+	<select id="makeneworders" parameterType="java.lang.Long" resultMap="NewOrders">
+	INSERT INTO new_orders (NO_O_ID,NO_D_ID,NO_W_ID) VALUES (#{D_NEXT_O_ID},#{C_D_ID},#{C_W_ID})
+	</select>
+	
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.support.model.catelog.FileList">
+	<resultMap id="FileList" type="com.hotent.support.model.catelog.FileList">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="fileid" column="F_FILEID" jdbcType="NUMERIC"/>
+		<result property="productid" column="F_PRODUCTID" jdbcType="NUMERIC"/>
+		<result property="os" column="F_OS" jdbcType="VARCHAR"/>
+		<result property="filecatalog" column="F_FILECATALOG" jdbcType="VARCHAR"/>
+		<result property="language" column="F_LANGUAGE" jdbcType="VARCHAR"/>
+		<result property="filename" column="F_FILENAME" jdbcType="VARCHAR"/>
+		<result property="filedate" column="F_FILEDATE" jdbcType="DATE"/>
+		<result property="filesize" column="F_FILESIZE" jdbcType="NUMERIC"/>
+		<result property="description" column="F_DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="additional" column="F_ADDITIONAL" jdbcType="VARCHAR"/>
+		<result property="downloadurl" column="F_DOWNLOADURL" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_FILEID,F_PRODUCTID,F_OS,F_FILECATALOG,F_LANGUAGE,F_FILENAME,F_FILEDATE,F_FILESIZE,F_DESCRIPTION,F_ADDITIONAL,F_DOWNLOADURL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(fileid)"> AND F_FILEID  =#{fileid} </if>
+			<if test="@Ognl@isNotEmpty(productid)"> AND F_PRODUCTID  =#{productid} </if>
+			<if test="@Ognl@isNotEmpty(os)"> AND F_OS  LIKE '%${os}%'  </if>
+			<if test="@Ognl@isNotEmpty(filecatalog)"> AND F_FILECATALOG  LIKE '%${filecatalog}%'  </if>
+			<if test="@Ognl@isNotEmpty(language)"> AND F_LANGUAGE  LIKE '%${language}%'  </if>
+			<if test="@Ognl@isNotEmpty(filename)"> AND F_FILENAME  LIKE '%${filename}%'  </if>
+			<if test="@Ognl@isNotEmpty(filedate)"> AND F_FILEDATE  =#{filedate} </if>
+			<if test="@Ognl@isNotEmpty(beginfiledate)"> AND F_FILEDATE  >=#{beginfiledate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endfiledate)"> AND F_FILEDATE <![CDATA[ <=#{endfiledate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(filesize)"> AND F_FILESIZE  =#{filesize} </if>
+			<if test="@Ognl@isNotEmpty(description)"> AND F_DESCRIPTION  LIKE '%${description}%'  </if>
+			<if test="@Ognl@isNotEmpty(additional)"> AND F_ADDITIONAL  LIKE '%${additional}%'  </if>
+			<if test="@Ognl@isNotEmpty(downloadurl)"> AND F_DOWNLOADURL  LIKE '%${downloadurl}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.support.model.catelog.FileList">
+		INSERT INTO W_FILE_LIST
+		(ID,
+		F_FILEID,F_PRODUCTID,F_OS,F_FILECATALOG,F_LANGUAGE,F_FILENAME,F_FILEDATE,F_FILESIZE,F_DESCRIPTION,F_ADDITIONAL,F_DOWNLOADURL)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{fileid,jdbcType=NUMERIC}, #{productid,jdbcType=NUMERIC}, #{os,jdbcType=VARCHAR}, #{filecatalog,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{filedate,jdbcType=DATE}, #{filesize,jdbcType=NUMERIC}, #{description,jdbcType=VARCHAR}, #{additional,jdbcType=VARCHAR}, #{downloadurl,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_FILE_LIST 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.support.model.catelog.FileList">
+		UPDATE W_FILE_LIST SET
+		F_FILEID=#{fileid,jdbcType=NUMERIC},
+		F_PRODUCTID=#{productid,jdbcType=NUMERIC},
+		F_OS=#{os,jdbcType=VARCHAR},
+		F_FILECATALOG=#{filecatalog,jdbcType=VARCHAR},
+		F_LANGUAGE=#{language,jdbcType=VARCHAR},
+		F_FILENAME=#{filename,jdbcType=VARCHAR},
+		F_FILEDATE=#{filedate,jdbcType=DATE},
+		F_FILESIZE=#{filesize,jdbcType=NUMERIC},
+		F_DESCRIPTION=#{description,jdbcType=VARCHAR},
+		F_ADDITIONAL=#{additional,jdbcType=VARCHAR},
+		F_DOWNLOADURL=#{downloadurl,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FileList">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_LIST
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByLi" parameterType="java.util.Map" resultMap="FileList">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_LIST
+		WHERE
+		F_PRODUCTID=#{PRODUCTID}AND
+		F_FILECATALOG=#{FILECATALOG}AND
+		F_OS=#{OS}AND
+		F_LANGUAGE=#{LANGUAGE}
+	</select>
+	
+	<select id="getByp" parameterType="java.util.Map" resultMap="FileList">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_LIST
+		WHERE
+		F_PRODUCTID=#{PRODUCTID}
+	</select>
+	
+	<select id="getByy" parameterType="java.util.Map" resultMap="FileList">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_LIST
+		WHERE
+		F_FILECATALOG=#{FILECATALOG}AND
+		F_OS=#{OS}AND
+		F_LANGUAGE=#{LANGUAGE}
+	</select>
+	
+	<select id="getAll" resultMap="FileList">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_LIST   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getByFILEID" parameterType="java.lang.Long" resultMap="FileList">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_LIST 
+		WHERE
+		F_FILEID=#{fileid}
+	</select>
+</mapper>

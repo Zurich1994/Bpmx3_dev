@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/BPMX_2015_WYX/!svn/ver/1826/bpmx_w/src/com/hotent/core/util
+END
+SystemInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/SystemInfo.java
+END
+StringPool.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/StringPool.java
+END
+ConfigUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/829/bpmx_w/src/com/hotent/core/util/ConfigUtil.java
+END
+AppConfigUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/1826/bpmx_w/src/com/hotent/core/util/AppConfigUtil.java
+END
+JSONUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/837/bpmx_w/src/com/hotent/core/util/JSONUtil.java
+END
+BeanDateConnverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/BeanDateConnverter.java
+END
+DynamicLoadBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/DynamicLoadBean.java
+END
+Dom4jUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/Dom4jUtil.java
+END
+HttpUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/837/bpmx_w/src/com/hotent/core/util/HttpUtil.java
+END
+UniqueIdUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/833/bpmx_w/src/com/hotent/core/util/UniqueIdUtil.java
+END
+ContextUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/847/bpmx_w/src/com/hotent/core/util/ContextUtil.java
+END
+DateFormatUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/842/bpmx_w/src/com/hotent/core/util/DateFormatUtil.java
+END
+ResourceUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/ResourceUtil.java
+END
+BeanUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/1379/bpmx_w/src/com/hotent/core/util/BeanUtils.java
+END
+CertUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/CertUtil.java
+END
+LocaleUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/LocaleUtil.java
+END
+ZipUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/ZipUtil.java
+END
+ClassLoadUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/827/bpmx_w/src/com/hotent/core/util/ClassLoadUtil.java
+END
+DialectUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/839/bpmx_w/src/com/hotent/core/util/DialectUtil.java
+END
+StringUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/835/bpmx_w/src/com/hotent/core/util/StringUtil.java
+END
+PinyinUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/PinyinUtil.java
+END
+ExtpPropertyPlaceholderConfiger.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/ExtpPropertyPlaceholderConfiger.java
+END
+MapUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/836/bpmx_w/src/com/hotent/core/util/MapUtil.java
+END
+DateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/842/bpmx_w/src/com/hotent/core/util/DateUtil.java
+END
+ArrayUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/823/bpmx_w/src/com/hotent/core/util/ArrayUtil.java
+END
+FileUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/FileUtil.java
+END
+AppUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/822/bpmx_w/src/com/hotent/core/util/AppUtil.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/package.html
+END
+ImageUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/ImageUtil.java
+END
+XmlBeanUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/util/XmlBeanUtil.java
+END
+ExceptionUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/837/bpmx_w/src/com/hotent/core/util/ExceptionUtil.java
+END
+TimeUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/834/bpmx_w/src/com/hotent/core/util/TimeUtil.java
+END
+LongUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/837/bpmx_w/src/com/hotent/core/util/LongUtil.java
+END

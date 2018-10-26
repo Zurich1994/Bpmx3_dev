@@ -1,0 +1,181 @@
+{
+	/**
+	 * @cfg {String} applicationName 应用程序名称
+	 * @required
+	 * 这是显示在设备上安装应用程序时，这是你的应用程序的名称。在iOS上，这应该您的应用程序在苹果Provisioning Portal中的名称相匹配。
+	 */
+	"applicationName":"bpmx3",
+
+	/**
+	 * @cfg {String} applicationId 应用程序ID
+	 * 这是为您的应用程序的名称命名空间。在iOS上，这应该符合你的应用程序在苹果供应门户的名称。
+	 */
+	"applicationId":"com.hotent.moblie",
+
+	/**
+	 * @cfg {String} bundleSeedId
+	 * 它代表 Provisioning Portal中苹果的applicationId前十个字符的字符串。
+	 */
+	"bundleSeedId":"KPXFEPZ6EF",
+
+	/**
+	 * @cfg {String} versionString
+	 * @required
+	 * 这是你的应用程序的版本。
+	 */
+	"versionString":"1.0",
+
+	/**
+	 * @cfg {Integer} versionCode
+	 * @required
+	 * 这是整数版本代码的应用程序，或者你可以把它作为一个版本号。仅用于Android的版本。
+	 */
+	"versionCode":"1",
+
+	/**
+	 * @cfg {Object} icon
+	 * 对于iOS，请参阅文档图标大小：
+	 * https://developer.apple.com/library/ios/#documentation/userexperience/conceptual/mobilehig/IconsImages/IconsImages.html
+	 *
+	 * 对于Android，请参阅谷歌启动图标指南：
+	 * http://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher.html
+	 * iOS的采用57，72，114和144大小，Android采用36，48和72大小，如果你包为Android，你可以忽略的iOS图标，反之亦然。
+	 */
+	"icon": {
+		"36":"mobile/resources/icons/icon@36.png",
+		"48":"mobile/resources/icons/icon@48.png",
+		"57":"mobile/resources/icons/icon.png",
+		"72":"mobile/resources/icons/icon@72.png",
+		"114":"mobile/resources/icons/icon@2x.png",
+		"144":"mobile/resources/icons/icon@144.png"
+	},
+
+	/**
+	 * @cfg {String} inputPath
+	 * @required
+	 * 这是Sencha Touch 2应用程序的位置，相对于这个配置文件
+	 */
+	"inputPath":"./",
+
+	/**
+	 * @cfg {String} outputPath
+	 * @required
+	 * 这是生成的应用程序文件输出路径。确保输出路径是不是在输入路径，如果是将可能会陷入循环复制
+	 */
+	"outputPath":"../build/",
+
+	/**
+	 * @cfg {String} configuration
+	 * @required
+	 *这是为您的应用程序的配置。`Debug`应始终使用，除非你提交你的应用程序的在线商店 - 在这种情况下`Release`应指定。
+	 */
+	"configuration":"Debug",
+
+	/**
+	 * @cfg {String} platform
+	 * @required
+	 * 这是一个平台，在这里您将运行您的应用程序。可用的选项有:
+	 *  - iOSSimulator
+	 *  - iOS
+	 *  - Android
+	 *  - AndroidEmulator
+	 */
+	"platform":"AndroidEmulator",
+
+	/**
+	 * @cfg {String} deviceType
+	 * @required
+	 * 这是您的应用程序将运行在设备类型.
+	 *
+	 * 如果你正在开发的Android，这是没有必要的.
+	 *
+	 * 可用的选项有:
+	 *  - iPhone
+	 *  - iPad
+	 *  - Universal
+	 */
+	"deviceType":"Universal",
+
+	/**
+	 * @cfg {String} certificatePath
+	 * 这是您的证书的位置。
+	 * 这是必需的，当你正在开发的Android，或者你在Windows上开发.
+	 */
+	"certificatePath":"C:/Java/jdk1.6.0_38/bin/hotent.keystore",
+
+	/**
+	 * @cfg {String} certificateAlias
+	 * 这是您的证书别名.
+	 *
+	 * 如果你不指定OSX上，我们将自动为您找到证书使用的applicationID.
+	 *
+	 * 这只是一个简单的匹配。例如，如果您的证书名称是“iPhone Developer: Robert Dougan (ABCDEFGHIJ)”，你只是把“iPhone Developer”。
+	 *
+	 * 当您在 Windows使用certificatePath，你不需要指定该别名。
+	 */
+	"certificateAlias":"hotent",
+
+	/**
+	 * @cfg {String} certificatePassword
+	 * 在证书导出指定密钥
+	 */
+	"certificatePassword":"hotent",
+
+	/**
+	 * @cfg {String} provisionProfile
+	 * 路径到提供配置文件（APP_NAME.mobileprovision），您可以创建，然后下载从苹果的供应门户
+	 */
+	"provisionProfile":"",
+
+	/**
+	 * @cfg {String} URLScheme
+	 * URL方案与您的应用程序的通信，可以为空，如果你不使用自定义的URL在您的项目指定。
+	 */
+	"URLScheme":"",
+
+	/**
+	 * @cfg {String} notificationConfiguration
+	 *  推送通知的通知配置，可以“debug”，“release”或为空，如果你没有在你的项目中使用推送通知。
+	 */
+	"notificationConfiguration":"",
+
+	/**
+	 * @cfg {String} sdkPath
+	 * 他是在Android SDK的路径，如果你正在开发一个Android应用程序.
+	 */
+	"sdkPath":"D:/android_sdk",
+
+	/**
+	 * @cfg {String} androidAPILevel
+	 * 这是Android API的级别，使用的Android SDK版本，你可以参考这篇文章：http://developer.android.com/guide/appendix/api-levels.html。
+	 * 请务必安装对应平台的API，在Android SDK管理器（(android_sdk/tools/android）
+	 */
+	"androidAPILevel":"8",
+
+	/**
+	 * @cfg {Array[String]} permissions
+	 * 数组（仅适用于Android的应用程序所使用的权限）
+	 * Android应用程序的权限的完整列表可以在这里找到：http://developer.android.com/reference/android/Manifest.permission.html＃ACCESS_CHECKIN_PROPERTIES
+	 */
+	"permissions":[
+		"INTERNET",
+		"ACCESS_NETWORK_STATE",
+		"CAMERA",
+		"VIBRATE",
+		"ACCESS_FINE_LOCATION",
+		"ACCESS_COARSE_LOCATION",
+		"CALL_PHONE"
+	],
+
+	/**
+	 * @cfg {Array[String]} orientations
+	 * @required
+	 * 这是运行方向，这个应用程序可以运行的方向。
+	 */
+	"orientations": [
+		"portrait",
+		"landscapeLeft",
+		"landscapeRight",
+		"portraitUpsideDown"
+	]
+}

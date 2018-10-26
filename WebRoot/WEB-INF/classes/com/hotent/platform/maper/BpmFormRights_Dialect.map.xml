@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.form.BpmFormRights">
+	<resultMap id="BpmFormRights" type="com.hotent.platform.model.form.BpmFormRights">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="formKey" column="formKey" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="permission" column="permission" jdbcType="VARCHAR"/>
+		<result property="type" column="type" jdbcType="NUMERIC"/>
+		<result property="actDefId" column="actDefId" jdbcType="VARCHAR"/>
+		<result property="parentActDefId" column="parentActDefId" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="nodeId" jdbcType="VARCHAR"/>
+		<result property="platform" column="platform" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,formKey,name,permission,type,actDefId,parentActDefId,nodeId,platform
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND formKey  =#{formKey} </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND type  =#{type} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.form.BpmFormRights">
+		INSERT INTO bpm_form_rights
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{formKey,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+		#{permission,jdbcType=VARCHAR},#{type,jdbcType=NUMERIC},#{actDefId,jdbcType=VARCHAR},
+		#{parentActDefId,jdbcType=VARCHAR},#{nodeId,jdbcType=VARCHAR},#{platform,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM bpm_form_rights  WHERE id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.form.BpmFormRights">
+		UPDATE bpm_form_rights SET
+		formKey=#{formKey,jdbcType=NUMERIC} , 
+		name=#{name,jdbcType=VARCHAR} , 
+		permission=#{permission,jdbcType=VARCHAR},
+		type=#{type,jdbcType=NUMERIC},
+		actDefId=#{actDefId,jdbcType=VARCHAR},
+		parentActDefId=#{parentActDefId,jdbcType=VARCHAR},
+		nodeId=#{nodeId,jdbcType=VARCHAR},
+		platform=#{platform,jdbcType=NUMERIC}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/> FROM bpm_form_rights WHERE id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/>
+		FROM bpm_form_rights   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	<!-- 
+	<delete id="delByFormKey" parameterType="Map">
+		DELETE FROM bpm_form_rights  WHERE formKey=#{formKey} and (nodeId is null or nodeId ='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	 -->
+	<delete id="delByFlowFormNodeId" parameterType="Map">
+		DELETE FROM bpm_form_rights  WHERE actDefId=#{actDefId} and nodeId=#{nodeId} and (parentActDefId is null or parentActDefId='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="delByParentFlowFormNodeId" parameterType="Map">
+		DELETE FROM bpm_form_rights  WHERE actDefId=#{actDefId} and nodeId=#{nodeId} and parentActDefId=#{parentActDefId}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<select id="getByFormDefId" parameterType="Map" resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM bpm_form_rights WHERE formDefId=#{formDefId} and (nodeId is null or nodeId ='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByFlowFormNodeId" parameterType="Map" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/>
+		FROM bpm_form_rights
+		WHERE  actDefId=#{actDefId} and nodeId=#{nodeId} and (parentActDefId is null or parentActDefId='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByParentFlowFormNodeId" parameterType="Map" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/>
+		FROM bpm_form_rights
+		WHERE  actDefId=#{actDefId} and nodeId=#{nodeId} and parentActDefId=#{parentActDefId}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<delete id="deleteByTableId_oracle" parameterType="Map">
+		delete from bpm_form_rights a where exists (select 1 from bpm_form_def b where a.formKey=b.formkey and b.tableid=#{tableId}) 
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="deleteByTableId_dm" parameterType="Map">
+		delete from bpm_form_rights a where exists (select 1 from bpm_form_def b where a.formKey=b.formkey and b.tableid=#{tableId}) 
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="deleteByTableId_mysql" parameterType="Map">
+		 delete bpm_form_rights from bpm_form_rights , bpm_form_def  where bpm_form_rights.formKey=bpm_form_def.formkey and bpm_form_def.tableid=#{tableId}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="deleteByTableId_mssql" parameterType="Map">
+		 delete from bpm_form_rights where exists (select 1 from bpm_form_rights a, bpm_form_def b where a.formKey=b.formkey and b.tableid=#{tableId})
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="deleteByTableId_db2" parameterType="Map">
+		 delete from bpm_form_rights a where exists (select 1 from bpm_form_def b where a.formKey=b.formkey and b.tableid=#{tableId})
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="deleteByTableId_h2" parameterType="Map">
+		delete from bpm_form_rights a where exists (select 1 from bpm_form_def b where a.formKey=b.formkey and b.tableid=#{tableId})
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if> 
+	</delete>	
+	<!-- 获取表单权限 -->
+	<select id="getBpmFormRights" parameterType="Map" resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM BPM_FORM_RIGHTS 
+		<where>
+	    	<if test="@Ognl@isNotEmpty(formKey)"> AND formKey=#{formKey,jdbcType=VARCHAR} </if>
+	    	<if test="@Ognl@isNotEmpty(actDefIdIsNull)"> AND (ACTDEFID IS  NULL OR ACTDEFID ='') </if>
+	    	<if test="@Ognl@isNotEmpty(actDefId)"> AND ACTDEFID=#{actDefId,jdbcType=VARCHAR} </if>
+			<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=NUMERIC} </if>
+			<if test="@Ognl@isNotEmpty(nodeIdIsNull)"> AND (NODEID IS NULL OR NODEID ='') </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND  NODEID=#{nodeId} </if>
+			<if test="@Ognl@isNotEmpty(parentActDefIdIsNull)">  AND (parentActDefId is null or parentActDefId='') </if>
+			<if test="@Ognl@isNotEmpty(parentActDefId)">  AND parentActDefId=#{parentActDefId,jdbcType=VARCHAR} </if>
+		</where>
+	</select>
+	
+	
+	<select id="getByActDefId" resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM BPM_FORM_RIGHTS WHERE formKey=#{formKey,jdbcType=VARCHAR} AND ACTDEFID=#{actDefId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getByActDefIdExcNodeId"  resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM BPM_FORM_RIGHTS WHERE formKey=#{formKey,jdbcType=VARCHAR} AND ACTDEFID=#{actDefId,jdbcType=VARCHAR} AND (parentActDefId is null or parentActDefId='') AND (NODEID IS NULL OR NODEID ='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByActDefIdAndParentActDefIdExcNodeId"  resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM BPM_FORM_RIGHTS WHERE formKey=#{formKey,jdbcType=VARCHAR} AND ACTDEFID=#{actDefId,jdbcType=VARCHAR} AND parentActDefId=#{parentActDefId,jdbcType=VARCHAR} AND (NODEID IS NULL OR NODEID ='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByFormKeyNodeEmpty" parameterType="Map" resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM bpm_form_rights WHERE formKey=#{formKey} and (nodeId is null or nodeId ='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByFormKey" resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM BPM_FORM_RIGHTS WHERE formKey=#{formKey,jdbcType=VARCHAR}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if> 
+	</select>
+	
+	<select id="getByFormKeyExcActDefId" resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM BPM_FORM_RIGHTS WHERE formKey=#{formKey,jdbcType=VARCHAR} AND (ACTDEFID IS NULL OR ACTDEFID ='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByFormKeyActDefIdIsNotNull" resultMap="BpmFormRights">
+		SELECT  <include refid="columns"/> FROM BPM_FORM_RIGHTS WHERE formKey=#{formKey,jdbcType=VARCHAR} AND (ACTDEFID IS  NOT NULL OR ACTDEFID !='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByActDefIdAndNodeIdAndParentActDefId" parameterType="Map" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/>
+		FROM bpm_form_rights
+		WHERE formKey=#{formKey,jdbcType=VARCHAR} AND  actDefId=#{actDefId} and nodeId=#{nodeId} and parentActDefId=#{parentActDefId}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getByActDefIdAndNodeId" parameterType="Map" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/>
+		FROM bpm_form_rights
+		WHERE formKey=#{formKey,jdbcType=VARCHAR} AND  actDefId=#{actDefId} and nodeId=#{nodeId} and (parentActDefId is null or parentActDefId='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getFormRightsByActDefId" parameterType="java.lang.String" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/>
+		FROM bpm_form_rights
+		WHERE  actDefId=#{actDefId} and (parentActDefId is null or parentActDefId='') 
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	<select id="getFormRightsByActDefIdWithParent" parameterType="java.lang.String" resultMap="BpmFormRights">
+		SELECT <include refid="columns"/>
+		FROM bpm_form_rights
+		WHERE  actDefId=#{actDefId} and parentActDefId=#{parentActDefId} 
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</select>
+	
+	
+	
+	<delete id="deleteByTableId" parameterType="Long">
+		delete from bpm_form_rights  where exists (select 1 from bpm_form_def   where bpm_form_rights.formkey=bpm_form_def.formkey and bpm_form_def.tableid=#{tableId})
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if> 
+	</delete>
+	
+	<delete id="delByFormKey" >
+		delete from bpm_form_rights where formkey=#{formKey}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="delByFormKeyExcActDefId" parameterType="Long">
+		DELETE FROM BPM_FORM_RIGHTS  WHERE BPM_FORM_RIGHTS.formkey=#{formKey} AND (ACTDEFID IS NULL OR ACTDEFID ='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="delByActDefIdAndNodeId" parameterType="Map">
+		DELETE FROM BPM_FORM_RIGHTS  WHERE ACTDEFID=#{actDefId,jdbcType=VARCHAR} and NODEID=#{nodeId,jdbcType=VARCHAR} and (parentActDefId is null or parentActDefId='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="delByActDefIdAndNodeIdAndParentActDefId" parameterType="Map">
+		DELETE FROM BPM_FORM_RIGHTS  WHERE ACTDEFID=#{actDefId,jdbcType=VARCHAR} and NODEID=#{nodeId,jdbcType=VARCHAR} and parentActDefId=#{parentActDefId,jdbcType=VARCHAR}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="delByActDefId" parameterType="Map">
+		DELETE FROM BPM_FORM_RIGHTS  WHERE ACTDEFID=#{actDefId} OR PARENTACTDEFID=#{parentActDefId} 
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="delByActDefIdExcNode" parameterType="Map">
+		DELETE FROM BPM_FORM_RIGHTS  WHERE ACTDEFID=#{actDefId} AND (NODEID IS NULL OR NODEID ='') and (parentActDefId is null or parentActDefId='')
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+	<delete id="delByActDefIdAndParentActDefIdExcNode" parameterType="Map">
+		DELETE FROM BPM_FORM_RIGHTS  WHERE ACTDEFID=#{actDefId} AND (NODEID IS NULL OR NODEID ='') and parentActDefId=#{parentActDefId}
+		<if test="@Ognl@isNotEmpty(platform)"> AND platform  =#{platform ,jdbcType=VARCHAR} </if>
+	</delete>
+	
+</mapper>

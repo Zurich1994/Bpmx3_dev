@@ -1,0 +1,389 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/BPMX_2015_WYX/!svn/ver/1623/bpmx_w/src/com/hotent/platform/dao/bpm
+END
+BpmNodeRuleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeRuleDao.java
+END
+TaskSignDataDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskSignDataDao.java
+END
+BpmDefRightsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDefRightsDao.java
+END
+MonOrgRoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/MonOrgRoleDao.java
+END
+MonGroupItemDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/MonGroupItemDao.java
+END
+BpmDefinitionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1623/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDefinitionDao.java
+END
+BpmFormQueryDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmFormQueryDao.java
+END
+BpmNodePrivilegeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodePrivilegeDao.java
+END
+BpmDefUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDefUserDao.java
+END
+BpmProCopytoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/967/bpmx_w/src/com/hotent/platform/dao/bpm/BpmProCopytoDao.java
+END
+TaskReadDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskReadDao.java
+END
+TaskOpinionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskOpinionDao.java
+END
+BpmBusLinkDataDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmBusLinkDataDao.java
+END
+BpmNodeWsParamsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeWsParamsDao.java
+END
+ProcessRunDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/1002/bpmx_w/src/com/hotent/platform/dao/bpm/ProcessRunDao.java
+END
+BpmCommonWsParamsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmCommonWsParamsDao.java
+END
+AgentConditionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/AgentConditionDao.java
+END
+AgentDefDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/AgentDefDao.java
+END
+BpmSubtableRightsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmSubtableRightsDao.java
+END
+TaskHistoryDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskHistoryDao.java
+END
+ExecutionExtDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/ExecutionExtDao.java
+END
+HistoryProcessInstanceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/HistoryProcessInstanceDao.java
+END
+BpmDefActDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDefActDao.java
+END
+BpmFormRunDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmFormRunDao.java
+END
+TaskReminderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskReminderDao.java
+END
+NodeMsgTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/bpm/NodeMsgTemplateDao.java
+END
+BpmNodeMessageDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeMessageDao.java
+END
+BpmDefAuthorizeTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDefAuthorizeTypeDao.java
+END
+AgentSettingDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/AgentSettingDao.java
+END
+ExecutionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/ExecutionDao.java
+END
+BpmTaskExeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/967/bpmx_w/src/com/hotent/platform/dao/bpm/BpmTaskExeDao.java
+END
+BpmNodeSignDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeSignDao.java
+END
+BpmDefVarDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDefVarDao.java
+END
+TaskApprovalItemsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskApprovalItemsDao.java
+END
+HistoryTaskInstanceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/967/bpmx_w/src/com/hotent/platform/dao/bpm/HistoryTaskInstanceDao.java
+END
+HistoryActivityDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/967/bpmx_w/src/com/hotent/platform/dao/bpm/HistoryActivityDao.java
+END
+BpmNodeButtonDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1437/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeButtonDao.java
+END
+BpmNodeUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeUserDao.java
+END
+TaskForkDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskForkDao.java
+END
+BpmBatchApprovalDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/bpm/BpmBatchApprovalDao.java
+END
+BpmDefAuthorizeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDefAuthorizeDao.java
+END
+ExecutionStackDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/ExecutionStackDao.java
+END
+TaskVarsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskVarsDao.java
+END
+BpmGangedSetDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmGangedSetDao.java
+END
+BpmNodeSetDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/1575/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeSetDao.java
+END
+TaskUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/TaskUserDao.java
+END
+BpmProStatusDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmProStatusDao.java
+END
+BpmNodeSqlDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeSqlDao.java
+END
+CommuReceiverDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/CommuReceiverDao.java
+END
+BpmRunLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmRunLogDao.java
+END
+BpmBusLinkDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/967/bpmx_w/src/com/hotent/platform/dao/bpm/BpmBusLinkDao.java
+END
+AssignUsersDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/bpm/AssignUsersDao.java
+END
+BpmReferDefinitionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmReferDefinitionDao.java
+END
+BpmCommonWsSetDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmCommonWsSetDao.java
+END
+BpmDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmDao.java
+END
+BpmUserConditionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmUserConditionDao.java
+END
+TaskDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/967/bpmx_w/src/com/hotent/platform/dao/bpm/TaskDao.java
+END
+FormDefTreeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/bpm/FormDefTreeDao.java
+END
+BpmNodeWebServiceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/587/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeWebServiceDao.java
+END
+BpmNewFlowTriggerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNewFlowTriggerDao.java
+END
+ReminderStateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/ReminderStateDao.java
+END
+MonGroupDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/MonGroupDao.java
+END
+BpmNodeScriptDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmNodeScriptDao.java
+END
+BpmProTransToDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/bpm/BpmProTransToDao.java
+END

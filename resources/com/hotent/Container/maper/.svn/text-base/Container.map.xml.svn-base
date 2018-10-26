@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Container.model.Container.Container">
+	<resultMap id="Container" type="com.hotent.Container.model.Container.Container">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="containername" column="F_CONTAINERNAME" jdbcType="VARCHAR"/>
+		<result property="type" column="F_TYPE" jdbcType="VARCHAR"/>
+		<result property="computability" column="F_COMPUTABILITY" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_CONTAINERNAME,F_TYPE,F_COMPUTABILITY
+	</sql>
+	<sql id="wfColumns">
+		ID,F_CONTAINERNAME,F_TYPE,F_COMPUTABILITY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(containername)"> AND F_CONTAINERNAME  LIKE '%${containername}%'  </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND F_TYPE  LIKE '%${Type}%'  </if>
+			<if test="@Ognl@isNotEmpty(computability)"> AND F_COMPUTABILITY  LIKE '%${computability}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Container.model.Container.Container">
+		INSERT INTO W_CONTAINER
+		(ID,
+		F_CONTAINERNAME,F_TYPE,F_COMPUTABILITY)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{containername,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{computability,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_CONTAINER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Container.model.Container.Container">
+		UPDATE W_CONTAINER SET
+		F_CONTAINERNAME=#{containername,jdbcType=VARCHAR},
+		F_TYPE=#{type,jdbcType=VARCHAR},
+		F_COMPUTABILITY=#{computability,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Container">
+		SELECT <include refid="columns"/>
+		FROM W_CONTAINER
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Container">
+		SELECT <include refid="columns"/>
+		FROM W_CONTAINER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	
+  
+	
+</mapper>

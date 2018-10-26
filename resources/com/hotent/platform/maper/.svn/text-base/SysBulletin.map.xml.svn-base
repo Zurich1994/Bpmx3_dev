@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysBulletin">
+	<resultMap id="SysBulletin" type="com.hotent.platform.model.system.SysBulletin">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="columnid" column="COLUMNID" jdbcType="NUMERIC"/>
+		<result property="content" column="CONTENT" jdbcType="CLOB"/>
+		<result property="creatorid" column="CREATORID" jdbcType="NUMERIC"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="attachment" column="ATTACHMENT" jdbcType="VARCHAR"/>
+		
+		<result property="columnname" column="COLUMNNAME" jdbcType="VARCHAR"/>
+		<result property="tenantid" column="TENANTID" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,SUBJECT,COLUMNID,CONTENT,CREATORID,CREATOR,CREATETIME,ATTACHMENT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(columnid)"> AND COLUMNID  = #{columnid}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME  >=#{begincreatetime} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME <![CDATA[ <=#{endcreatetime}]]> </if>
+			<if test="isSuperAdmin != true"> AND ( BC.TENANTID = #{companyId} OR BC.TENANTID = 0 )</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysBulletin">
+		INSERT INTO sys_bulletin
+		(ID,SUBJECT,COLUMNID,CONTENT,CREATORID,CREATOR,CREATETIME,ATTACHMENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{subject,jdbcType=VARCHAR}, #{columnid,jdbcType=NUMERIC}, #{content,jdbcType=CLOB}, #{creatorid,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{createtime}, #{attachment,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_bulletin 
+		WHERE
+		ID=#{id}
+	</delete>
+	<delete id="delByColumnId" parameterType="java.lang.Long">
+		DELETE FROM sys_bulletin 
+		WHERE
+		COLUMNID=#{columnId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysBulletin">
+		UPDATE sys_bulletin SET
+		SUBJECT=#{subject,jdbcType=VARCHAR},
+		COLUMNID=#{columnid,jdbcType=NUMERIC},
+		CONTENT=#{content,jdbcType=CLOB},
+		CREATORID=#{creatorid,jdbcType=NUMERIC},
+		CREATOR=#{creator,jdbcType=VARCHAR},
+		CREATETIME=#{createtime,jdbcType=DATE},
+		ATTACHMENT=#{attachment,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysBulletin">
+		SELECT B.ID,B.SUBJECT,B.COLUMNID,B.CONTENT,B.CREATORID,B.CREATOR,B.CREATETIME,B.ATTACHMENT,BC.NAME COLUMNNAME
+		FROM SYS_BULLETIN B
+    	INNER JOIN SYS_BULLETIN_COLUMN BC ON B.COLUMNID = BC.ID
+    	WHERE 
+		B.ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysBulletin">
+		SELECT B.ID,B.SUBJECT,B.COLUMNID,B.CREATORID,B.CREATOR,B.CREATETIME,B.ATTACHMENT,BC.NAME COLUMNNAME,BC.TENANTID
+		FROM SYS_BULLETIN B
+    	INNER JOIN SYS_BULLETIN_COLUMN BC ON B.COLUMNID = BC.ID AND BC.STATUS = 1
+		<where>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(columnid)"> AND COLUMNID  = #{columnid}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME  >=#{begincreatetime} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME <![CDATA[ <=#{endcreatetime}]]> </if>
+			<if test="isSuperAdmin != true"> AND ( BC.TENANTID = #{companyId} OR BC.TENANTID = 0 )</if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID desc
+		</if>
+	</select>
+	
+	<select id="getAllByAlias" resultMap="SysBulletin">
+		SELECT B.ID,B.SUBJECT,B.COLUMNID,B.CREATORID,B.CREATOR,B.CREATETIME,B.ATTACHMENT,BC.NAME COLUMNNAME,BC.TENANTID
+		FROM SYS_BULLETIN B
+    	INNER JOIN SYS_BULLETIN_COLUMN BC ON B.COLUMNID = BC.ID AND BC.STATUS = 1
+    	WHERE BC.ALIAS = #{alias}
+    	<where>
+			<if test="@Ognl@isNotEmpty(subject)"> AND B.SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND B.CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(columnid)"> AND B.COLUMNID  = #{columnid}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND B.CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND B.CREATETIME  >=#{begincreatetime} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND B.CREATETIME <![CDATA[ <=#{endcreatetime}]]> </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID desc
+		</if>
+	</select>
+	
+	<!-- <select id="getPublicList"  resultMap="SysBulletin">
+		SELECT b.ID,b.SUBJECT,b.COLUMNID,b.CREATORID,b.CREATOR,b.CREATETIME,b.ATTACHMENT,bc.name,bc.isPublic,bc.status
+		FROM sys_bulletin b,sys_bulletin_column bc
+		<include refid="dynamicWhere" />
+		and 
+		b.COLUMNID=bc.ID 
+		and
+		bc.status=1
+	</select> -->
+	
+	<!-- <select id="getBranchList"  resultMap="SysBulletin">
+		SELECT b.ID,b.SUBJECT,b.COLUMNID,b.CREATORID,b.CREATOR,b.CREATETIME,b.ATTACHMENT,bc.name,bc.isPublic,bc.status
+		FROM sys_bulletin b,sys_bulletin_column bc
+		<include refid="dynamicWhere" />
+		and 
+		b.COLUMNID=bc.id
+		and
+		bc.status=1
+	</select>
+	
+	<select id="getByCompany"  parameterType="java.lang.Long" resultMap="SysBulletin">
+		SELECT b.ID,b.SUBJECT,b.COLUMNID,b.CREATORID,b.CREATOR,b.CREATETIME,b.ATTACHMENT,bc.name,bc.isPublic,bc.tenantid,bc.status
+		FROM sys_bulletin b,sys_bulletin_column bc
+		<include refid="dynamicWhere" />
+		and
+		b.COLUMNID=bc.ID
+		and 
+		bc.tenantid=#{tenantId}
+		and
+		bc.status=1
+	</select>	
+	
+	<select id="getDesktopList"  resultMap="SysBulletin">
+		SELECT b.ID,b.SUBJECT,b.COLUMNID,b.CREATORID,b.CREATOR,b.CREATETIME,b.ATTACHMENT,bc.name,bc.isPublic,bc.tenantid,bc.status,bc.alias
+		FROM sys_bulletin b,sys_bulletin_column bc
+		where
+		bc.alias=#{alias}
+		and
+		b.COLUMNID=bc.ID
+		and 
+		bc.tenantid=#{tenantId}
+		and
+		bc.status=1
+		order by b.CREATETIME desc
+	</select>
+	
+	<select id="allListForDesktop"  resultMap="SysBulletin">
+		SELECT b.ID,b.SUBJECT,b.COLUMNID,b.CREATORID,b.CREATOR,b.CREATETIME,b.ATTACHMENT,bc.name,bc.isPublic,bc.tenantid,bc.status,bc.alias
+		FROM sys_bulletin b,sys_bulletin_column bc
+		where
+		bc.alias like #{alias}
+		and
+		b.COLUMNID=bc.ID
+		and
+		bc.status=1
+		order by b.CREATETIME desc
+	</select> -->
+	
+</mapper>

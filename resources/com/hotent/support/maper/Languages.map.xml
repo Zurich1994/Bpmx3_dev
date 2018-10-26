@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.support.model.catelog.Languages">
+	<resultMap id="Languages" type="com.hotent.support.model.catelog.Languages">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="LANGUAGE" column="F_LANGUAGE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_LANGUAGE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(LANGUAGE)"> AND F_LANGUAGE  LIKE '%${LANGUAGE}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.support.model.catelog.Languages">
+		INSERT INTO W_LANGUAGES
+		(ID,
+		F_LANGUAGE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{LANGUAGE,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_LANGUAGES 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.support.model.catelog.Languages">
+		UPDATE W_LANGUAGES SET
+		F_LANGUAGE=#{LANGUAGE,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Languages">
+		SELECT <include refid="columns"/>
+		FROM W_LANGUAGES
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Languages">
+		SELECT <include refid="columns"/>
+		FROM W_LANGUAGES   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

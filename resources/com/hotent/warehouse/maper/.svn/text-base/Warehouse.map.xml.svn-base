@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.warehouse.model.warehouse.Warehouse">
+	<resultMap id="Warehouse" type="com.hotent.warehouse.model.warehouse.Warehouse">
+		<id property="w_id" column="W_ID" jdbcType="NUMERIC"/>
+		<result property="w_name" column="W_NAME" jdbcType="VARCHAR"/>
+		<result property="w_street_1" column="W_STREET_1" jdbcType="VARCHAR"/>
+		<result property="w_street_2" column="W_STREET_2" jdbcType="VARCHAR"/>
+		<result property="w_city" column="W_CITY" jdbcType="VARCHAR"/>
+		<result property="w_state" column="W_STATE" jdbcType="VARCHAR"/>
+		<result property="w_zip" column="W_ZIP" jdbcType="VARCHAR"/>
+		<result property="w_tax" column="W_TAX" jdbcType="NUMERIC"/>
+		<result property="w_ytd" column="W_YTD" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		W_ID,W_NAME,W_STREET_1,W_STREET_2,W_CITY,W_STATE,W_ZIP,W_TAX,W_YTD
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(w_id)"> AND W_ID  =#{w_id} </if>
+			<if test="@Ognl@isNotEmpty(w_name)"> AND W_NAME  LIKE '%${w_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(w_street_1)"> AND W_STREET_1  LIKE '%${w_street_1}%'  </if>
+			<if test="@Ognl@isNotEmpty(w_street_2)"> AND W_STREET_2  LIKE '%${w_street_2}%'  </if>
+			<if test="@Ognl@isNotEmpty(w_city)"> AND W_CITY  LIKE '%${w_city}%'  </if>
+			<if test="@Ognl@isNotEmpty(w_state)"> AND W_STATE  LIKE '%${w_state}%'  </if>
+			<if test="@Ognl@isNotEmpty(w_zip)"> AND W_ZIP  LIKE '%${w_zip}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.warehouse.model.warehouse.Warehouse">
+		INSERT INTO warehouse
+		(W_ID,W_NAME,W_STREET_1,W_STREET_2,W_CITY,W_STATE,W_ZIP,W_TAX,W_YTD)
+		VALUES
+		(#{w_id,jdbcType=NUMERIC}, #{w_name,jdbcType=VARCHAR}, #{w_street_1,jdbcType=VARCHAR}, #{w_street_2,jdbcType=VARCHAR}, #{w_city,jdbcType=VARCHAR}, #{w_state,jdbcType=VARCHAR}, #{w_zip,jdbcType=VARCHAR}, #{w_tax,jdbcType=NUMERIC}, #{w_ytd,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM warehouse 
+		WHERE
+		W_ID=#{w_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.warehouse.model.warehouse.Warehouse">
+		UPDATE warehouse SET
+		W_NAME=#{w_name,jdbcType=VARCHAR},
+		W_STREET_1=#{w_street_1,jdbcType=VARCHAR},
+		W_STREET_2=#{w_street_2,jdbcType=VARCHAR},
+		W_CITY=#{w_city,jdbcType=VARCHAR},
+		W_STATE=#{w_state,jdbcType=VARCHAR},
+		W_ZIP=#{w_zip,jdbcType=VARCHAR},
+		W_TAX=#{w_tax,jdbcType=NUMERIC},
+		W_YTD=#{w_ytd,jdbcType=NUMERIC}
+		WHERE
+		W_ID=#{w_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Warehouse">
+		SELECT <include refid="columns"/>
+		FROM warehouse
+		WHERE
+		W_ID=#{w_id}
+	</select>
+	
+	<select id="getAll" resultMap="Warehouse">
+		SELECT <include refid="columns"/>
+		FROM warehouse   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by W_ID desc
+		</if>
+	</select>
+	<!-- whp -->
+	<update id="updataWare" parameterType="java.util.Map">
+		UPDATE warehouse SET
+		W_YTD=W_YTD+#{orderValue,jdbcType=NUMERIC}
+		WHERE
+		W_ID=#{stockStoreNumber}
+	</update>
+</mapper>

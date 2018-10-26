@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/1643/bpmx_w/WebRoot/js/angular/controller
+END
+sysQuerySettingController.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1079/bpmx_w/WebRoot/js/angular/controller/sysQuerySettingController.js
+END
+sysShareRightsController.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/773/bpmx_w/WebRoot/js/angular/controller/sysShareRightsController.js
+END
+bpmDataTemplateController.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1851/bpmx_w/WebRoot/js/angular/controller/bpmDataTemplateController.js
+END
+sysQuerySqlController.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/773/bpmx_w/WebRoot/js/angular/controller/sysQuerySqlController.js
+END
+busQueryRuleController.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/773/bpmx_w/WebRoot/js/angular/controller/busQueryRuleController.js
+END
+sysQueryFieldController.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/773/bpmx_w/WebRoot/js/angular/controller/sysQueryFieldController.js
+END
+sysQueryViewController.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/773/bpmx_w/WebRoot/js/angular/controller/sysQueryViewController.js
+END

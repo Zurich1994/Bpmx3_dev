@@ -1,0 +1,200 @@
+.ui-bar-iphone {
+	border-bottom: 1px solid rgba(0,0,0,0.9);
+	border-top: 1px solid rgba(255,255,255,0.5);
+	background: #6f85a3;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 -1px 1px #000;
+}
+
+.ui-btn-iphone
+{
+	border:1px solid rgba(0,0,0,0);
+	
+}
+.ui-btn-iphone .ui-btn-inner
+{
+	padding-top:0.6em !important;
+	padding-left:1px !important;;
+	padding-right:1px !important;;
+}
+
+.ui-btn-iphone:hover,.ui-btn-iphone:focus
+{
+	opacity:1;
+	-webkit-animation-name: btn_bg; 
+  	-webkit-animation-duration: .6s; 
+  	-webkit-animation-iteration-count: 1;
+  	-webkit-animation-timing-function: ease-in;	
+}
+
+.ui-btn-iphone:active
+{
+	opacity:1;
+	-webkit-animation-name: btn_bg_act; 
+  	-webkit-animation-duration: .6s; 
+  	-webkit-animation-iteration-count: 1;
+  	-webkit-animation-timing-function: ease-in;	
+}
+
+.ui-btn-apple-al
+{
+	padding:0px 0em 0px 1.2em;
+	background-image:url('res-apple/app-btn-l.png');
+	background-repeat:no-repeat;
+	-webkit-background-size:1.2em 100%;
+	background-size:1.2em 100%
+}
+
+.ui-btn-apple-ar
+{
+	padding:0px 0.5em 0px 0em;
+	background-image:url('res-apple/app-btn-r.png');
+	background-repeat:no-repeat;
+	-webkit-background-size:0.5em 100%;
+	background-size:0.5em 100%;
+	background-position:right;
+}
+
+.ui-btn-apple-ac
+{
+	background-image:url('res-apple/app-btn-c.png');
+	background-repeat:repeat;
+	-webkit-background-size:auto 100%;
+	background-size:auto 100%;
+}
+
+.ui-btn-apple-nl
+{
+	padding:0px 0em 0px 0.4em;
+	background-image:url('res-apple/app-rbt-l.png');
+	background-repeat:no-repeat;
+	-webkit-background-size:0.4em 100%;
+	background-size:0.4em 100%
+}
+
+.ui-btn-apple-nr
+{
+	padding:0px 0.4em 0px 0em;
+	background-image:url('res-apple/app-rbt-r.png');
+	background-repeat:no-repeat;
+	-webkit-background-size:0.4em 100%;
+	background-size:0.4em 100%;
+	background-position:right;
+}
+.ui-btn-apple-nc
+{
+	background-image:url('res-apple/app-rbt-c.png');
+	background-repeat:repeat;
+	-webkit-background-size:auto 100%;
+	background-size:auto 100%;
+}
+
+.ui-nav-iphone
+{
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.ui-nav-iphone .ui-btn 
+{
+	margin:0.2em !important;
+}
+.ui-nav-iphone .ui-btn-active
+{
+	background-color:rgba(255,255,255,0.25) !important;
+	border-radius:0.6em;
+	border: 0px;
+	background-image: none;
+}
+
+
+.ui-nav-iphone .ui-btn .ui-btn-inner {
+padding-top: 2.6em !important;
+padding-bottom: 0.2em !important;
+}
+
+
+.ui-nav-iphone .ui-btn .ui-icon {
+width: 2.6em!important;
+height: 2.6em!important;
+margin-left: -1.3em !important;
+box-shadow: none!important;
+-moz-box-shadow: none!important;
+-webkit-box-shadow: none!important;
+-webkit-border-radius: none !important;
+border-radius: none !important;
+}
+
+.ui-nav-iphone .ui-btn-text
+{
+	font-size:0.8em
+}
+
+.ui-nav-iphone input[type="radio"]:checked + label
+{
+	background-color:rgba(255,255,255,0.25) !important;
+	border-radius:0.6em;
+	border: 0px;
+	background-image: none;
+}
+
+input[type="radio"] + label>span.ui-pic-info{
+	background: url(res-apple/info.png) 50% 50% no-repeat;
+}
+
+input[type="radio"]:checked + label>span.ui-pic-info{
+	background: url(res-apple/info-act.png) 50% 50% no-repeat;
+}
+
+input[type="radio"] + label>span.ui-pic-menu{
+	background: url(res-apple/menu.png) 50% 50% no-repeat;
+}
+
+input[type="radio"]:checked + label>span.ui-pic-menu{
+	background: url(res-apple/menu-act.png) 50% 50% no-repeat;
+}
+
+input[type="radio"] + label>span.ui-pic-home{
+	background: url(res-apple/home.png) 50% 50% no-repeat;
+}
+
+input[type="radio"]:checked + label>span.ui-pic-home{
+	background: url(res-apple/home-act.png) 50% 50% no-repeat;
+}
+
+input[type="radio"] + label>span.ui-pic-set{
+	background: url(res-apple/set.png) 50% 50% no-repeat;
+}
+
+input[type="radio"]:checked + label>span.ui-pic-set{
+	background: url(res-apple/set-act.png) 50% 50% no-repeat;
+}
+
+input[type="radio"] + label>span.ui-pic-shop{
+	background: url(res-apple/shop.png) 50% 50% no-repeat;
+}
+
+input[type="radio"]:checked + label>span.ui-pic-shop{
+	background: url(res-apple/shop-act.png) 50% 50% no-repeat;
+}
+
+input[type="radio"] + label>span.ui-pic-talk{
+	background: url(res-apple/talk.png) 50% 50% no-repeat;
+}
+
+input[type="radio"]:checked + label>span.ui-pic-talk{
+	background: url(res-apple/talk-act.png) 50% 50% no-repeat;
+}
+
+.ui-nav-iphone span.ui-icon {
+-webkit-background-size: 2.6em 2.6em;
+background-size: 2.6em 2.6em;
+}
+
+
+
+.ui-btn-iphone-c .ui-btn-inner 
+{
+	padding: .65em 0.13em .65em 0.0em
+}
+

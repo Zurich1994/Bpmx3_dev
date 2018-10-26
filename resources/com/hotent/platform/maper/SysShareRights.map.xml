@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.share.SysShareRights">
+	<resultMap id="SysShareRights" type="com.hotent.platform.model.share.SysShareRights">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="shareItem" column="SHAREITEM" jdbcType="VARCHAR"/>
+		<result property="enable" column="ENABLE" jdbcType="NUMERIC"/>
+		<result property="sync" column="SYNC" jdbcType="NUMERIC"/>
+		<result property="isAll" column="ISALL" jdbcType="NUMERIC"/>
+		<result property="pkid" column="PKID" jdbcType="NUMERIC"/>
+		<result property="source" column="SOURCE" jdbcType="VARCHAR"/>
+		<result property="target" column="TARGET" jdbcType="VARCHAR"/>
+		<result property="shares" column="SHARES" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,NAME,SHAREITEM,ENABLE,SYNC,ISALL,PKID,SOURCE,TARGET,SHARES
+	</sql>
+	<sql id="wfColumns">
+		ID,NAME,SHAREITEM,ENABLE,SYNC,ISALL,PKID,SOURCE,TARGET,SHARES
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE '%${name}%'  </if>
+			<if test="@Ognl@isNotEmpty(shareItem)"> AND SHAREITEM  LIKE '%${shareItem}%'  </if>
+			<if test="@Ognl@isNotEmpty(source)"> AND SOURCE  LIKE '%${source}%'  </if>
+			<if test="@Ognl@isNotEmpty(target)"> AND TARGET  LIKE '%${target}%'  </if>
+			<if test="@Ognl@isNotEmpty(shares)"> AND SHARES  LIKE '%${shares}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.share.SysShareRights">
+		INSERT INTO sys_share_rights
+		(ID,NAME,SHAREITEM,ENABLE,SYNC,ISALL,PKID,SOURCE,TARGET,SHARES)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{shareItem,jdbcType=VARCHAR}, #{enable,jdbcType=NUMERIC}, #{sync,jdbcType=NUMERIC}, #{isAll,jdbcType=NUMERIC}, #{pkid,jdbcType=NUMERIC}, #{source,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, #{shares,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_share_rights 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.share.SysShareRights">
+		UPDATE sys_share_rights SET
+		NAME=#{name,jdbcType=VARCHAR},
+		SHAREITEM=#{shareItem,jdbcType=VARCHAR},
+		ENABLE=#{enable,jdbcType=NUMERIC},
+		SYNC=#{sync,jdbcType=NUMERIC},
+		ISALL=#{isAll,jdbcType=NUMERIC},
+		PKID=#{pkid,jdbcType=NUMERIC},
+		SOURCE=#{source,jdbcType=VARCHAR},
+		TARGET=#{target,jdbcType=VARCHAR},
+		SHARES=#{shares,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysShareRights">
+		SELECT <include refid="columns"/>
+		FROM sys_share_rights
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysShareRights">
+		SELECT <include refid="columns"/>
+		FROM sys_share_rights   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID desc
+		</if>
+	</select>
+	
+	
+	
+</mapper>

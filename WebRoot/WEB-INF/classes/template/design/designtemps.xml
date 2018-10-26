@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 编辑器设计模式模板 -->
+<templates>		
+	<template alias="singleEdit" name="单列行内模式" templateDesc="主表为单列模式，子表为单行模式"/>
+	<template alias="doubleEdit" name="两列行内模式" templateDesc="主表为两列模式，子表为单行模式"/>	
+	<template alias="threeEdit" name="三列行内模式" templateDesc="主表为三列模式，子表为单行模式"/>
+	<template alias="fourEdit" name="四列行内模式" templateDesc="主表为四列模式，子表为单行模式"/>	
+</templates>

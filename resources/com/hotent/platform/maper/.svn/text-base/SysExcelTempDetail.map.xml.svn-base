@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysExcelTempDetail">
+	<resultMap id="SysExcelTempDetail" type="com.hotent.platform.model.system.SysExcelTempDetail">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="tempId" column="TEMP_ID" jdbcType="NUMERIC"/>
+		<result property="columnName" column="COLUMN_NAME" jdbcType="VARCHAR"/>
+		<result property="columnType" column="COLUMN_TYPE" jdbcType="NUMERIC"/>
+		<result property="columnLen" column="COLUMN_LEN" jdbcType="NUMERIC"/>
+		<result property="showIndex" column="SHOW_INDEX" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TEMP_ID,COLUMN_NAME,COLUMN_TYPE,COLUMN_LEN,SHOW_INDEX
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(tempId)"> AND TEMP_ID  =#{tempId} </if>
+			<if test="@Ognl@isNotEmpty(columnName)"> AND COLUMN_NAME  LIKE #{columnName}  </if>
+			<if test="@Ognl@isNotEmpty(columnType)"> AND COLUMN_TYPE  =#{columnType} </if>
+			<if test="@Ognl@isNotEmpty(columnLen)"> AND COLUMN_LEN  =#{columnLen} </if>
+			<if test="@Ognl@isNotEmpty(showIndex)"> AND SHOW_INDEX  =#{showIndex} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysExcelTempDetail">
+		INSERT INTO SYS_EXCEL_TEMP_DETAIL
+		(ID,TEMP_ID,COLUMN_NAME,COLUMN_TYPE,COLUMN_LEN,SHOW_INDEX)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{tempId,jdbcType=NUMERIC}, #{columnName,jdbcType=VARCHAR}, #{columnType,jdbcType=NUMERIC}, #{columnLen,jdbcType=NUMERIC}, #{showIndex,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_EXCEL_TEMP_DETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysExcelTempDetail">
+		UPDATE SYS_EXCEL_TEMP_DETAIL SET
+		TEMP_ID=#{tempId,jdbcType=NUMERIC},
+		COLUMN_NAME=#{columnName,jdbcType=VARCHAR},
+		COLUMN_TYPE=#{columnType,jdbcType=NUMERIC},
+		COLUMN_LEN=#{columnLen,jdbcType=NUMERIC},
+		SHOW_INDEX=#{showIndex,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	<delete id="delByMainId">
+	    DELETE FROM SYS_EXCEL_TEMP_DETAIL
+	    WHERE
+	    TEMP_ID=#{tempId}
+	</delete>    
+	
+	<select id="getSysExcelTempDetailList" resultMap="SysExcelTempDetail">
+	    SELECT <include refid="columns"/>
+	    FROM SYS_EXCEL_TEMP_DETAIL 
+	    WHERE TEMP_ID=#{tempId} 
+	    ORDER BY SHOW_INDEX ASC
+	</select>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysExcelTempDetail">
+		SELECT <include refid="columns"/>
+		FROM SYS_EXCEL_TEMP_DETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysExcelTempDetail">
+		SELECT <include refid="columns"/>
+		FROM SYS_EXCEL_TEMP_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getAllByTempCode" parameterType="java.lang.String" resultMap="SysExcelTempDetail" >
+	   SELECT TD.ID,TD.TEMP_ID,TD.COLUMN_NAME,TD.COLUMN_TYPE,TD.COLUMN_LEN,TD.SHOW_INDEX
+	    FROM SYS_EXCEL_TEMP T
+      	INNER JOIN SYS_EXCEL_TEMP_DETAIL TD ON T.ID = TD.TEMP_ID
+	    WHERE T.TEMP_CODE = #{tempCode} 
+	    ORDER BY TD.SHOW_INDEX ASC
+	</select>
+	
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<form-validation>
+
+<!--
+     This is a blank Validator form file with a commented examples.
+-->
+
+     <global>
+        <constant>
+            <constant-name>number</constant-name>
+            <constant-value>^\d+$</constant-value>
+        </constant>
+        <constant>
+            <constant-name>englishName</constant-name>
+            <constant-value>^[A-Z0-9a-z\s]+$</constant-value>
+        </constant>
+        <constant>
+        <constant-name>invalidCharacter</constant-name>
+            <constant-value><![CDATA[$%'*+:;<=>?@^_`{|}]]></constant-value>
+        </constant>
+        <constant>
+        <constant-name>invalidDiscussionCharacter</constant-name>
+            <constant-value><![CDATA[$%'*+;<=>?@^_`{|}]]></constant-value>
+        </constant>
+        <constant>
+            <constant-name>validDiscussionCharacterReguler</constant-name>
+            <constant-value><![CDATA[^[^${invalidCharacterForFilter}]*$]]></constant-value>
+        </constant>
+
+        <constant>
+        <constant-name>invalidBulletinBoardCharacter</constant-name>
+            <constant-value><![CDATA[$<>^`|]]></constant-value>
+        </constant>
+        <constant>
+            <constant-name>validBulletinBoardCharacterReguler</constant-name>
+            <constant-value><![CDATA[^[^${invalidBulletinBoardCharacter}]*$]]></constant-value>
+        </constant>
+
+        <constant>
+            <constant-name>invalidEmailCharacter</constant-name>
+            <constant-value><![CDATA[$%'*+:;<=>?^_`{|}]]></constant-value>
+        </constant>
+        <constant>
+            <constant-name>validCharacterReguler</constant-name>
+            <constant-value><![CDATA[^[^${invalidCharacter}]*$]]></constant-value>
+        </constant>
+        <constant>
+            <constant-name>validEmail</constant-name>
+            <constant-value><![CDATA[^[^${invalidEmailCharacter}]*$]]></constant-value>
+        </constant>
+        <constant>
+            <constant-name>defaultDateFormat</constant-name>
+            <constant-value><![CDATA[yyyy-MM-dd]]></constant-value>
+        </constant>
+         <constant>
+            <constant-name>longDateFormat</constant-name>
+            <constant-value><![CDATA[yyyy-MM-dd HH:mm:ss]]></constant-value>
+        </constant>
+        <constant>
+            <constant-name>invalidCharacterForFilter</constant-name>
+            <constant-value><![CDATA[$%'*:'<=>^`{|}]]></constant-value>
+        </constant>
+        <constant>
+            <constant-name>validCharacterRegulerForFilter</constant-name>
+            <constant-value><![CDATA[^[^${invalidCharacterForFilter}]*$]]></constant-value>
+        </constant>
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+        
+        
+        
+
+    </global>
+
+   
+
+
+
+</form-validation>

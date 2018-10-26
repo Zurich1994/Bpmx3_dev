@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.Item">
+	<resultMap id="Item" type="com.hotent.tpcc.model.tpcc.Item">
+		<id property="i_id" column="I_ID" jdbcType="NUMERIC"/>
+		<result property="i_im_id" column="I_IM_ID" jdbcType="NUMERIC"/>
+		<result property="i_name" column="I_NAME" jdbcType="VARCHAR"/>
+		<result property="i_price" column="I_PRICE" jdbcType="NUMERIC"/>
+		<result property="i_data" column="I_DATA" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		I_ID,I_IM_ID,I_NAME,I_PRICE,I_DATA
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(i_id)"> AND I_ID  =#{i_id} </if>
+			<if test="@Ognl@isNotEmpty(i_name)"> AND I_NAME  LIKE '%${i_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(i_data)"> AND I_DATA  LIKE '%${i_data}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.Item">
+		INSERT INTO item
+		(I_ID,I_IM_ID,I_NAME,I_PRICE,I_DATA)
+		VALUES
+		(#{i_id,jdbcType=NUMERIC}, #{i_im_id,jdbcType=NUMERIC}, #{i_name,jdbcType=VARCHAR}, #{i_price,jdbcType=NUMERIC}, #{i_data,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM item 
+		WHERE
+		I_ID=#{i_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.Item">
+		UPDATE item SET
+		I_IM_ID=#{i_im_id,jdbcType=NUMERIC},
+		I_NAME=#{i_name,jdbcType=VARCHAR},
+		I_PRICE=#{i_price,jdbcType=NUMERIC},
+		I_DATA=#{i_data,jdbcType=VARCHAR}
+		WHERE
+		I_ID=#{i_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Item">
+		SELECT <include refid="columns"/>
+		FROM item
+		WHERE
+		I_ID=#{i_id}
+	</select>
+	
+	<select id="getAll" resultMap="Item">
+		SELECT <include refid="columns"/>
+		FROM item   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by I_ID desc
+		</if>
+	</select>
+	
+	<select id="queryItem" parameterType="java.lang.Long" resultMap="Item">
+	SELECT I_NAME,I_PRICE,I_DATA FROM item WHERE I_ID =#{I_ID}
+	</select>
+</mapper>

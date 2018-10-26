@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bus
+END
+BusQueryShareService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bus/BusQueryShareService.java
+END
+BusQueryFilterService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bus/BusQueryFilterService.java
+END
+BusQueryRuleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bus/BusQueryRuleService.java
+END
+BusQuerySettingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bus/BusQuerySettingService.java
+END

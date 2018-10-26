@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/244/bpmx_w/WebRoot/WEB-INF/view/RegularOccurrence/lc
+END
+regularoccurrenceList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/244/bpmx_w/WebRoot/WEB-INF/view/RegularOccurrence/lc/regularoccurrenceList.jsp
+END
+regularoccurrenceGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/244/bpmx_w/WebRoot/WEB-INF/view/RegularOccurrence/lc/regularoccurrenceGet.jsp
+END
+regularoccurrenceDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/244/bpmx_w/WebRoot/WEB-INF/view/RegularOccurrence/lc/regularoccurrenceDetail.jsp
+END
+regularoccurrenceEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/244/bpmx_w/WebRoot/WEB-INF/view/RegularOccurrence/lc/regularoccurrenceEdit.jsp
+END
+regularoccurrenceModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/244/bpmx_w/WebRoot/WEB-INF/view/RegularOccurrence/lc/regularoccurrenceModify.jsp
+END

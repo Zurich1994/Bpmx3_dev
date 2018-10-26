@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination
+END
+BasicPagination.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/BasicPagination.cpt
+END
+HeadPagination.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/HeadPagination.cpt
+END
+EnforcePage.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/EnforcePage.cpt
+END
+PageAmount.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/PageAmount.cpt
+END
+BlankPagination.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/BlankPagination.cpt
+END
+GroupInPageAmount.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/GroupInPageAmount.cpt
+END
+GroupPagination.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/GroupPagination.cpt
+END
+Fixedline.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/Fixedline.cpt
+END
+NonePagination.cpt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/1556/bpmx_w/WebRoot/WEB-INF/reportlets/doc/Advanced/Pagination/NonePagination.cpt
+END

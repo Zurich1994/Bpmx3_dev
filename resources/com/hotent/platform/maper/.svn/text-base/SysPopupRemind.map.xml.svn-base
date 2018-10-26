@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysPopupRemind">
+	<resultMap id="SysPopupRemind" type="com.hotent.platform.model.system.SysPopupRemind">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="url" column="URL" jdbcType="VARCHAR"/>
+		<result property="sql" column="SQL_" jdbcType="VARCHAR"/>
+		<result property="dsalias" column="DSALIAS" jdbcType="VARCHAR"/>
+		<result property="sn" column="SN" jdbcType="NUMERIC"/>
+		<result property="enabled" column="ENABLED" jdbcType="NUMERIC"/>
+		<result property="createTime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="desc" column="DESC_" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,SUBJECT,URL,SQL_,DSALIAS,SN,ENABLED,CREATETIME,CREATOR,DESC_
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(url)"> AND URL  LIKE #{url}  </if>
+			<if test="@Ognl@isNotEmpty(sql)"> AND SQL_  LIKE #{sql}  </if>
+			<if test="@Ognl@isNotEmpty(dsalias)"> AND DSALIAS  LIKE #{dsalias}  </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND SN  =#{sn} </if>
+			<if test="@Ognl@isNotEmpty(enabled)"> AND ENABLED  =#{enabled} </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND CREATETIME  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(begincreateTime)"> AND CREATETIME  >=#{begincreateTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreateTime)"> AND CREATETIME <![CDATA[ <=#{endcreateTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysPopupRemind">
+		INSERT INTO sys_popup_remind
+		(ID,SUBJECT,URL,SQL_,DSALIAS,SN,ENABLED,CREATETIME,CREATOR,DESC_)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{subject,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{sql,jdbcType=VARCHAR}, #{dsalias,jdbcType=VARCHAR}, #{sn,jdbcType=NUMERIC}, #{enabled,jdbcType=NUMERIC}, #{createTime,jdbcType=DATE}, #{creator,jdbcType=VARCHAR},#{desc,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_popup_remind 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysPopupRemind">
+		UPDATE sys_popup_remind SET
+		SUBJECT=#{subject,jdbcType=VARCHAR},
+		URL=#{url,jdbcType=VARCHAR},
+		SQL_=#{sql,jdbcType=VARCHAR},
+		DSALIAS=#{dsalias,jdbcType=VARCHAR},
+		SN=#{sn,jdbcType=NUMERIC},
+		ENABLED=#{enabled,jdbcType=NUMERIC},
+		CREATETIME=#{createTime,jdbcType=DATE},
+		CREATOR=#{creator,jdbcType=VARCHAR},
+		DESC_=#{desc,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<update id="updateEnabled">
+		UPDATE sys_popup_remind SET
+		ENABLED=#{enabled,jdbcType=NUMERIC}
+		WHERE
+		ID in <foreach collection="ids" index="index" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysPopupRemind">
+		SELECT <include refid="columns"/>
+		FROM sys_popup_remind
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysPopupRemind">
+		SELECT <include refid="columns"/>
+		FROM sys_popup_remind   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByUser" resultMap="SysPopupRemind"  parameterType="java.util.Map" >
+		select <include refid="columns"/> from sys_popup_remind spr  where ID in(
+			select t.id from (
+				<foreach collection="relationMap" index="key"  item="ent" separator="union">
+					select r.id from sys_popup_remind r,sys_obj_rights rig where rig.OBJECT_ID=r.id and rig.RIGHT_TYPE=#{key} and rig.OBJ_TYPE=#{objType} and r.ENABLED=1 
+					<if test="@Ognl@notEquals(key,'all') and @Ognl@isNotEmpty(ent)">
+							and rig.OWNER_ID in 
+							<foreach collection="ent"  item="id" separator="," open="(" close=")">
+								#{id}
+							</foreach>
+					</if>
+				</foreach>
+			) t 
+		)order by spr.sn
+	</select>
+</mapper>

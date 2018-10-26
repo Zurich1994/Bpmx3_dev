@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<!-- 控件宏模版 -->
+	
+	<template alias="fieldControl" name="自定义表单控件宏" type="macro" templateDesc="自定义表单控件宏"/>
+	<!-- 主表 -->
+	<template alias="oneColumn" name="单列模板" type="main" templateDesc="单列模板" macroAlias="fieldControl"/>
+	<template alias="twoColumn" name="两列模板" type="main" templateDesc="两列模板" macroAlias="fieldControl"/>
+	<template alias="threeColumn" name="叁列模板" type="main" templateDesc="叁列模板" macroAlias="fieldControl"/>
+	<template alias="fourColumn" name="四列模板" type="main" templateDesc="四列模板" macroAlias="fieldControl"/>
+	
+	<!-- 子表 
+	<template alias="inTable2" name="表内编辑模式二" type="subTable" templateDesc="表内编辑模式二" macroAlias="fieldControl"/>
+	<template alias="inTable" name="表内编辑模式" type="subTable" templateDesc="表内编辑模式" macroAlias="fieldControl"/>
+	<template alias="openWindow" name="弹出窗口模板" type="subTable" templateDesc="弹出窗口模板" macroAlias="fieldControl"/>
+	-->
+	<template alias="inTable" name="表内编辑模式" type="subTable" templateDesc="表内编辑模式" macroAlias="fieldControl"/>
+	<template alias="openWindow" name="弹出窗口模板" type="subTable" templateDesc="弹出窗口模板" macroAlias="fieldControl"/>
+	<template alias="inTableNo" name="表内编辑模式(序号)" type="subTable" templateDesc="表内编辑模式(序号)" macroAlias="fieldControl"/>
+	<template alias="openWindowNo" name="弹出窗口模板(序号)" type="subTable" templateDesc="弹出窗口模板(序号)" macroAlias="fieldControl"/>
+	<template alias="blockTemplate1" name="块模板(单列)" type="subTable" templateDesc="块模板(单列)" macroAlias="fieldControl"/>
+	<template alias="blockTemplate2" name="块模板(两列)" type="subTable" templateDesc="块模板(两列)" macroAlias="fieldControl"/>
+	<template alias="blockTemplate3" name="块模板(三列)" type="subTable" templateDesc="块模板(三列)" macroAlias="fieldControl"/>
+	
+	<!-- 明细模版 -->
+	<template alias="detail" name="明细模板" type="detail" templateDesc="明细模板"/>
+	<!-- 明细模版 -->
+	<template alias="listBusiness" name="业务数据列表模板" type="list" templateDesc="业务数据列表模板"/>
+	<template alias="listFlow" name="流程数据列表模板" type="list" templateDesc="流程数据列表模板"/>
+	<template alias="listFlowStart" name="流程数据列表模板(启动流程)" type="list" templateDesc="流程数据列表模板(启动流程)"/>
+	<!-- 自定义表管理模板 -->
+	<template alias="tableManageList" name="自定义表管理列表模板" type="tableManage" templateDesc="自定义表管理列表模板"/>
+	<!-- 业务数据模板 -->
+	<template alias="dataTemplateList" name="业务数据模板" type="dataTemplate" templateDesc="业务数据模板"/>
+	<!--自定义sql查询 -->
+	<template alias="queryDataViewTemplate" name="自定义SQL查询模版" type="queryDataTemplate" templateDesc="自定义SQL查询模版"/>
+</templates>

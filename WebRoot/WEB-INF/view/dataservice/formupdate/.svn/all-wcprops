@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/1150/bpmx_w/WebRoot/WEB-INF/view/dataservice/formupdate
+END
+formUpdateSetting.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/1150/bpmx_w/WebRoot/WEB-INF/view/dataservice/formupdate/formUpdateSetting.jsp
+END
+formUpdateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/82/bpmx_w/WebRoot/WEB-INF/view/dataservice/formupdate/formUpdateGet.jsp
+END
+formUpdateDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/82/bpmx_w/WebRoot/WEB-INF/view/dataservice/formupdate/formUpdateDetail.jsp
+END
+formUpdateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/129/bpmx_w/WebRoot/WEB-INF/view/dataservice/formupdate/formUpdateEdit.jsp
+END
+formUpdateModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/82/bpmx_w/WebRoot/WEB-INF/view/dataservice/formupdate/formUpdateModify.jsp
+END
+formUpdateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/82/bpmx_w/WebRoot/WEB-INF/view/dataservice/formupdate/formUpdateList.jsp
+END

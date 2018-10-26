@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.BusinessCurve.model.lc.BusinessCurve">
+	<resultMap id="BusinessCurve" type="com.hotent.BusinessCurve.model.lc.BusinessCurve">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="curveDataId" column="F_CURVEDATAID" jdbcType="VARCHAR"/>
+		<result property="curveId" column="F_CURVEID" jdbcType="VARCHAR"/>
+		<result property="curveType" column="F_CURVETYPE" jdbcType="VARCHAR"/>
+		<result property="basicExpression" column="F_BASICEXPRESSION" jdbcType="VARCHAR"/>
+		<result property="unknownExp" column="F_UNKNOWNEXP" jdbcType="VARCHAR"/>
+		<result property="curveStartTime" column="F_CURVESTARTTIME" jdbcType="VARCHAR"/>
+		<result property="curveEndTime" column="F_CURVEENDTIME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_CURVEDATAID,F_CURVEID,F_CURVETYPE,F_BASICEXPRESSION,F_UNKNOWNEXP,F_CURVESTARTTIME,F_CURVEENDTIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(curveDataId)"> AND F_CURVEDATAID  LIKE '%${curveDataId}%'  </if>
+			<if test="@Ognl@isNotEmpty(curveId)"> AND F_CURVEID  LIKE '%${curveId}%'  </if>
+			<if test="@Ognl@isNotEmpty(curveType)"> AND F_CURVETYPE  LIKE '%${curveType}%'  </if>
+			<if test="@Ognl@isNotEmpty(basicExpression)"> AND F_BASICEXPRESSION  LIKE '%${basicExpression}%'  </if>
+			<if test="@Ognl@isNotEmpty(unknownExp)"> AND F_UNKNOWNEXP  LIKE '%${unknownExp}%'  </if>
+			<if test="@Ognl@isNotEmpty(curveStartTime)"> AND F_CURVESTARTTIME  LIKE '%${curveStartTime}%'  </if>
+			<if test="@Ognl@isNotEmpty(curveEndTime)"> AND F_CURVEENDTIME  LIKE '%${curveEndTime}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.BusinessCurve.model.lc.BusinessCurve">
+		INSERT INTO W_BUSINESS_CURVE_LC
+		(ID,
+		F_CURVEDATAID,F_CURVEID,F_CURVETYPE,F_BASICEXPRESSION,F_UNKNOWNEXP,F_CURVESTARTTIME,F_CURVEENDTIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{curveDataId,jdbcType=VARCHAR}, #{curveId,jdbcType=VARCHAR}, #{curveType,jdbcType=VARCHAR}, #{basicExpression,jdbcType=VARCHAR}, #{unknownExp,jdbcType=VARCHAR}, #{curveStartTime,jdbcType=VARCHAR}, #{curveEndTime,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_BUSINESS_CURVE_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.BusinessCurve.model.lc.BusinessCurve">
+		UPDATE W_BUSINESS_CURVE_LC SET
+		F_CURVEDATAID=#{curveDataId,jdbcType=VARCHAR},
+		F_CURVEID=#{curveId,jdbcType=VARCHAR},
+		F_CURVETYPE=#{curveType,jdbcType=VARCHAR},
+		F_BASICEXPRESSION=#{basicExpression,jdbcType=VARCHAR},
+		F_UNKNOWNEXP=#{unknownExp,jdbcType=VARCHAR},
+		F_CURVESTARTTIME=#{curveStartTime,jdbcType=VARCHAR},
+		F_CURVEENDTIME=#{curveEndTime,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BusinessCurve">
+		SELECT <include refid="columns"/>
+		FROM W_BUSINESS_CURVE_LC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BusinessCurve">
+		SELECT <include refid="columns"/>
+		FROM W_BUSINESS_CURVE_LC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

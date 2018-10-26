@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsAttenceCalculate">
+	<resultMap id="AtsAttenceCalculate" type="com.hotent.platform.model.ats.AtsAttenceCalculate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
+		<result property="attenceTime" column="ATTENCE_TIME" jdbcType="DATE"/>
+		<result property="isScheduleShift" column="IS_SCHEDULE_SHIFT" jdbcType="NUMERIC"/>
+		<result property="dateType" column="DATE_TYPE" jdbcType="NUMERIC"/>
+		<result property="holidayName" column="HOLIDAY_NAME" jdbcType="VARCHAR"/>
+		<result property="isCardRecord" column="IS_CARD_RECORD" jdbcType="NUMERIC"/>
+		<result property="shiftTime" column="SHIFT_TIME" jdbcType="VARCHAR"/>
+		<result property="shouldAttenceHours" column="SHOULD_ATTENCE_HOURS" jdbcType="NUMERIC"/>
+		<result property="actualAttenceHours" column="ACTUAL_ATTENCE_HOURS" jdbcType="NUMERIC"/>
+		<result property="cardRecord" column="CARD_RECORD" jdbcType="VARCHAR"/>
+		<result property="absentNumber" column="ABSENT_NUMBER" jdbcType="NUMERIC"/>
+		<result property="absentTime" column="ABSENT_TIME" jdbcType="NUMERIC"/>
+		<result property="absentRecord" column="ABSENT_RECORD" jdbcType="VARCHAR"/>
+		<result property="lateNumber" column="LATE_NUMBER" jdbcType="NUMERIC"/>
+		<result property="lateTime" column="LATE_TIME" jdbcType="NUMERIC"/>
+		<result property="lateRecord" column="LATE_RECORD" jdbcType="VARCHAR"/>
+		<result property="leaveNumber" column="LEAVE_NUMBER" jdbcType="NUMERIC"/>
+		<result property="leaveTime" column="LEAVE_TIME" jdbcType="NUMERIC"/>
+		<result property="leaveRecord" column="LEAVE_RECORD" jdbcType="VARCHAR"/>
+		<result property="otNumber" column="OT_NUMBER" jdbcType="NUMERIC"/>
+		<result property="otTime" column="OT_TIME" jdbcType="NUMERIC"/>
+		<result property="otRecord" column="OT_RECORD" jdbcType="VARCHAR"/>
+		<result property="holidayNumber" column="HOLIDAY_NUMBER" jdbcType="NUMERIC"/>
+		<result property="holidayTime" column="HOLIDAY_TIME" jdbcType="NUMERIC"/>
+		<result property="holidayUnit" column="HOLIDAY_UNIT" jdbcType="NUMERIC"/>
+		<result property="holidayRecord" column="HOLIDAY_RECORD" jdbcType="VARCHAR"/>
+		<result property="tripNumber" column="TRIP_NUMBER" jdbcType="NUMERIC"/>
+		<result property="tripTime" column="TRIP_TIME" jdbcType="NUMERIC"/>
+		<result property="tripRecord" column="TRIP_RECORD" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,FILE_ID,ATTENCE_TIME,IS_SCHEDULE_SHIFT,DATE_TYPE,HOLIDAY_NAME,IS_CARD_RECORD,SHIFT_TIME,SHOULD_ATTENCE_HOURS,ACTUAL_ATTENCE_HOURS,CARD_RECORD,ABSENT_NUMBER,ABSENT_TIME,ABSENT_RECORD,LATE_NUMBER,LATE_TIME,LATE_RECORD,LEAVE_NUMBER,LEAVE_TIME,LEAVE_RECORD,OT_NUMBER,OT_TIME,OT_RECORD,HOLIDAY_NUMBER,HOLIDAY_TIME,HOLIDAY_UNIT,HOLIDAY_RECORD,TRIP_NUMBER,TRIP_TIME,TRIP_RECORD
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(fileId)"> AND FILE_ID  =#{fileId} </if>
+			<if test="@Ognl@isNotEmpty(attenceTime)"> AND ATTENCE_TIME  =#{attenceTime} </if>
+			<if test="@Ognl@isNotEmpty(beginattenceTime)"> AND ATTENCE_TIME  >=#{beginattenceTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endattenceTime)"> AND ATTENCE_TIME <![CDATA[ <=#{endattenceTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(shouldAttenceHours)"> AND SHOULD_ATTENCE_HOURS  =#{shouldAttenceHours} </if>
+			<if test="@Ognl@isNotEmpty(actualAttenceHours)"> AND ACTUAL_ATTENCE_HOURS  =#{actualAttenceHours} </if>
+			<if test="@Ognl@isNotEmpty(cardRecord)"> AND CARD_RECORD  LIKE #{cardRecord}  </if>
+			<if test="@Ognl@isNotEmpty(absentNumber)"> AND ABSENT_NUMBER  =#{absentNumber} </if>
+			<if test="@Ognl@isNotEmpty(absentTime)"> AND ABSENT_TIME  =#{absentTime} </if>
+			<if test="@Ognl@isNotEmpty(absentRecord)"> AND ABSENT_RECORD  LIKE #{absentRecord}  </if>
+			<if test="@Ognl@isNotEmpty(lateNumber)"> AND LATE_NUMBER  =#{lateNumber} </if>
+			<if test="@Ognl@isNotEmpty(lateTime)"> AND LATE_TIME  =#{lateTime} </if>
+			<if test="@Ognl@isNotEmpty(lateRecord)"> AND LATE_RECORD  LIKE #{lateRecord}  </if>
+			<if test="@Ognl@isNotEmpty(leaveNumber)"> AND LEAVE_NUMBER  =#{leaveNumber} </if>
+			<if test="@Ognl@isNotEmpty(leaveTime)"> AND LEAVE_TIME  =#{leaveTime} </if>
+			<if test="@Ognl@isNotEmpty(leaveRecord)"> AND LEAVE_RECORD  LIKE #{leaveRecord}  </if>
+			<if test="@Ognl@isNotEmpty(otNumber)"> AND OT_NUMBER  =#{otNumber} </if>
+			<if test="@Ognl@isNotEmpty(otTime)"> AND OT_TIME  =#{otTime} </if>
+			<if test="@Ognl@isNotEmpty(otRecord)"> AND OT_RECORD  LIKE #{otRecord}  </if>
+			<if test="@Ognl@isNotEmpty(holidayNumber)"> AND HOLIDAY_NUMBER  =#{holidayNumber} </if>
+			<if test="@Ognl@isNotEmpty(holidayTime)"> AND HOLIDAY_TIME  =#{holidayTime} </if>
+			<if test="@Ognl@isNotEmpty(holidayUnit)"> AND HOLIDAY_UNIT  =#{holidayUnit} </if>
+			<if test="@Ognl@isNotEmpty(holidayRecord)"> AND HOLIDAY_RECORD  LIKE #{holidayRecord}  </if>
+			<if test="@Ognl@isNotEmpty(tripNumber)"> AND TRIP_NUMBER  =#{tripNumber} </if>
+			<if test="@Ognl@isNotEmpty(tripTime)"> AND TRIP_TIME  =#{tripTime} </if>
+			<if test="@Ognl@isNotEmpty(tripRecord)"> AND TRIP_RECORD  LIKE #{tripRecord}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsAttenceCalculate">
+		INSERT INTO ATS_ATTENCE_CALCULATE
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{fileId,jdbcType=NUMERIC}, #{attenceTime,jdbcType=DATE}, #{isScheduleShift,jdbcType=NUMERIC}, #{dateType,jdbcType=NUMERIC}, #{holidayName,jdbcType=VARCHAR},#{isCardRecord,jdbcType=NUMERIC}, #{shiftTime,jdbcType=VARCHAR}, #{shouldAttenceHours,jdbcType=NUMERIC}, #{actualAttenceHours,jdbcType=NUMERIC}, #{cardRecord,jdbcType=VARCHAR}, #{absentNumber,jdbcType=NUMERIC}, #{absentTime,jdbcType=NUMERIC}, #{absentRecord,jdbcType=VARCHAR}, #{lateNumber,jdbcType=NUMERIC}, #{lateTime,jdbcType=NUMERIC}, #{lateRecord,jdbcType=VARCHAR}, #{leaveNumber,jdbcType=NUMERIC}, #{leaveTime,jdbcType=NUMERIC}, #{leaveRecord,jdbcType=VARCHAR}, #{otNumber,jdbcType=NUMERIC}, #{otTime,jdbcType=NUMERIC}, #{otRecord,jdbcType=VARCHAR}, #{holidayNumber,jdbcType=NUMERIC}, #{holidayTime,jdbcType=NUMERIC}, #{holidayUnit,jdbcType=NUMERIC}, #{holidayRecord,jdbcType=VARCHAR}, #{tripNumber,jdbcType=NUMERIC}, #{tripTime,jdbcType=NUMERIC}, #{tripRecord,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_CALCULATE 
+		WHERE
+		ID=#{id}
+	</delete>
+		
+	<delete id="delByFileId" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_CALCULATE 
+		WHERE
+		FILE_ID=#{fileId}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsAttenceCalculate">
+		UPDATE ATS_ATTENCE_CALCULATE SET
+		FILE_ID=#{fileId,jdbcType=NUMERIC},
+		ATTENCE_TIME=#{attenceTime,jdbcType=DATE},
+		IS_SCHEDULE_SHIFT= #{isScheduleShift,jdbcType=NUMERIC},
+		DATE_TYPE=#{dateType,jdbcType=NUMERIC},
+		HOLIDAY_NAME=#{holidayName,jdbcType=VARCHAR},
+		IS_CARD_RECORD=#{isCardRecord,jdbcType=NUMERIC},
+		SHIFT_TIME = #{shiftTime,jdbcType=VARCHAR},
+		SHOULD_ATTENCE_HOURS=#{shouldAttenceHours,jdbcType=NUMERIC},
+		ACTUAL_ATTENCE_HOURS=#{actualAttenceHours,jdbcType=NUMERIC},
+		CARD_RECORD=#{cardRecord,jdbcType=VARCHAR},
+		ABSENT_NUMBER=#{absentNumber,jdbcType=NUMERIC},
+		ABSENT_TIME=#{absentTime,jdbcType=NUMERIC},
+		ABSENT_RECORD=#{absentRecord,jdbcType=VARCHAR},
+		LATE_NUMBER=#{lateNumber,jdbcType=NUMERIC},
+		LATE_TIME=#{lateTime,jdbcType=NUMERIC},
+		LATE_RECORD=#{lateRecord,jdbcType=VARCHAR},
+		LEAVE_NUMBER=#{leaveNumber,jdbcType=NUMERIC},
+		LEAVE_TIME=#{leaveTime,jdbcType=NUMERIC},
+		LEAVE_RECORD=#{leaveRecord,jdbcType=VARCHAR},
+		OT_NUMBER=#{otNumber,jdbcType=NUMERIC},
+		OT_TIME=#{otTime,jdbcType=NUMERIC},
+		OT_RECORD=#{otRecord,jdbcType=VARCHAR},
+		HOLIDAY_NUMBER=#{holidayNumber,jdbcType=NUMERIC},
+		HOLIDAY_TIME=#{holidayTime,jdbcType=NUMERIC},
+		HOLIDAY_UNIT=#{holidayUnit,jdbcType=NUMERIC},
+		HOLIDAY_RECORD=#{holidayRecord,jdbcType=VARCHAR},
+		TRIP_NUMBER=#{tripNumber,jdbcType=NUMERIC},
+		TRIP_TIME=#{tripTime,jdbcType=NUMERIC},
+		TRIP_RECORD=#{tripRecord,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsAttenceCalculate">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CALCULATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsAttenceCalculate">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CALCULATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	<select id="getList" resultMap="AtsAttenceCalculate">
+		SELECT DISTINCT 
+			a.ID id,a.FILE_ID fileId,a.ATTENCE_TIME attenceTime,a.IS_SCHEDULE_SHIFT isScheduleShift,a.DATE_TYPE dateType,a.HOLIDAY_NAME holidayName,a.IS_CARD_RECORD isCardRecord,a.SHIFT_TIME shiftTime,
+			a.SHOULD_ATTENCE_HOURS shouldAttenceHours,a.ACTUAL_ATTENCE_HOURS actualAttenceHours,a.CARD_RECORD cardRecord,a.ABSENT_NUMBER absentNumber,a.ABSENT_TIME absentTime,a.ABSENT_RECORD absentRecord,
+			a.LATE_NUMBER lateNumber,a.LATE_TIME lateTime,a.LATE_RECORD lateRecord,a.LEAVE_NUMBER leaveNumber,a.LEAVE_TIME leaveTime,a.LEAVE_RECORD leaveRecord,a.OT_NUMBER otNumber,a.OT_TIME otTime,a.OT_RECORD otRecord,
+			a.HOLIDAY_NUMBER holidayNumber,a.HOLIDAY_TIME holidayTime,a.HOLIDAY_UNIT holidayUnit,a.HOLIDAY_RECORD holidayRecord, a.TRIP_NUMBER tripNumber,a.TRIP_TIME tripTime,a.TRIP_RECORD tripRecord,
+			u.account account,u.FULLNAME userName,o.ORGID orgID,o.ORGNAME orgName
+		FROM ATS_ATTENCE_CALCULATE   a
+				LEFT JOIN ATS_ATTENDANCE_FILE af on a.file_id=af.id
+				LEFT JOIN SYS_USER u on   af.user_Id=u.userId
+				LEFT JOIN SYS_USER_POS up  on  u.userId=up.userId and up.ISPRIMARY=1 and ISDELETE =0
+				LEFT JOIN SYS_ORG o on up.orgId=o.orgId
+		<where>
+			<if test="@Ognl@isNotEmpty(fileId)"> AND FILE_ID  =#{fileId} </if>
+			<if test="@Ognl@isNotEmpty(beginattenceTime)"> AND a.ATTENCE_TIME  >=#{beginattenceTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endattenceTime)"> AND a.ATTENCE_TIME <![CDATA[ <=#{endattenceTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(attencePolicy)"> AND af.ATTENCE_POLICY  =#{attencePolicy} </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND o.orgId  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND af.user_ID  =#{userId} </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by o.orgID  desc
+		</if>
+	</select>
+	
+	<select id="getByFileIdTime" parameterType="java.util.Map" resultMap="AtsAttenceCalculate">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CALCULATE
+		WHERE FILE_ID  =#{fileId} 
+		<if test="@Ognl@isNotEmpty(beginattenceTime)"> AND ATTENCE_TIME  >=#{beginattenceTime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endattenceTime)"> AND ATTENCE_TIME <![CDATA[ <=#{endattenceTime,jdbcType=DATE}]]> </if>
+		order by ATTENCE_TIME ASC
+	</select>
+	
+	<select id="getByFileIdAttenceTime" parameterType="java.util.Map" resultMap="AtsAttenceCalculate">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_CALCULATE
+		WHERE
+		 FILE_ID  =#{fileId} AND ATTENCE_TIME  =#{attenceTime}
+	</select>
+	
+</mapper>

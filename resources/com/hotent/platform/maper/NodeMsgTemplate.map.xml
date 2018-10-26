@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.NodeMsgTemplate">
+	<resultMap id="NodeMsgTemplate" type="com.hotent.platform.model.bpm.NodeMsgTemplate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="defId" column="DEFID" jdbcType="NUMERIC"/>
+		<result property="parentDefId" column="PARENTDEFID" jdbcType="NUMERIC"/>
+		<result property="nodeId" column="NODEID" jdbcType="VARCHAR"/>
+		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
+		<result property="html" column="HTML" jdbcType="CLOB"/>
+		<result property="text" column="TEXT" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,DEFID,PARENTDEFID,NODEID,TITLE,HTML,TEXT
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND DEFID  =#{defId} </if>
+			<if test="@Ognl@isNotEmpty(parentDefId)"> AND PARENTDEFID  =#{parentDefId} </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND NODEID  =#{nodeId} </if>
+			<if test="@Ognl@isNotEmpty(title)"> AND TITLE  LIKE #{title}  </if>
+			<if test="@Ognl@isNotEmpty(html)"> AND HTML  LIKE #{html}  </if>
+			<if test="@Ognl@isNotEmpty(text)"> AND TEXT  LIKE #{text}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.NodeMsgTemplate">
+		INSERT INTO bpm_nodemsg_template
+		(ID,DEFID,PARENTDEFID,NODEID,TITLE,HTML,TEXT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{defId,jdbcType=NUMERIC}, #{parentDefId,jdbcType=NUMERIC}, #{nodeId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{html,jdbcType=CLOB}, #{text,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM bpm_nodemsg_template 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.NodeMsgTemplate">
+		UPDATE bpm_nodemsg_template SET
+		DEFID=#{defId,jdbcType=NUMERIC},
+		PARENTDEFID=#{parentDefId,jdbcType=NUMERIC},
+		NODEID=#{nodeId,jdbcType=VARCHAR},
+		TITLE=#{title,jdbcType=VARCHAR},
+		HTML=#{html,jdbcType=CLOB},
+		TEXT=#{text,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="NodeMsgTemplate">
+		SELECT <include refid="columns"/>
+		FROM bpm_nodemsg_template
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getObject" resultMap="NodeMsgTemplate">
+		SELECT <include refid="columns"/>
+		FROM bpm_nodemsg_template
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND DEFID  =#{defId} </if>
+			<if test="@Ognl@isNotEmpty(parentDefId)"> AND PARENTDEFID  =#{parentDefId} </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND NODEID  =#{nodeId} </if>
+		</where>
+	</select>
+	
+	<select id="getAll" resultMap="NodeMsgTemplate">
+		SELECT <include refid="columns"/>
+		FROM bpm_nodemsg_template   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

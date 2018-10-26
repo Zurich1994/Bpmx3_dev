@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats
+END
+AtsAttenceGroupDetailController.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsAttenceGroupDetailController.java
+END
+AtsImportPlanController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsImportPlanController.java
+END
+AtsTurnShiftController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsTurnShiftController.java
+END
+AtsShiftInfoController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsShiftInfoController.java
+END
+AtsBaseItemController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsBaseItemController.java
+END
+AtsScheduleShiftController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsScheduleShiftController.java
+END
+AtsHolidayTypeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsHolidayTypeController.java
+END
+AtsHolidayPolicyDetailController.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsHolidayPolicyDetailController.java
+END
+AtsLegalHolidayController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsLegalHolidayController.java
+END
+AtsAttenceGroupController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsAttenceGroupController.java
+END
+AtsAttenceCalculateController.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsAttenceCalculateController.java
+END
+AtsCardRuleController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsCardRuleController.java
+END
+AtsAttenceCycleController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsAttenceCycleController.java
+END
+AtsAttencePolicyController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsAttencePolicyController.java
+END
+AtsShiftRuleController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsShiftRuleController.java
+END
+AtsAttendanceFileController.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsAttendanceFileController.java
+END
+AtsCardRecordController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsCardRecordController.java
+END
+AtsHolidayPolicyController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsHolidayPolicyController.java
+END
+AtsCalendarTemplController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsCalendarTemplController.java
+END
+AtsWorkCalendarController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsWorkCalendarController.java
+END
+AtsAttenceCalculateSetController.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsAttenceCalculateSetController.java
+END
+AtsShiftTypeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/ats/AtsShiftTypeController.java
+END

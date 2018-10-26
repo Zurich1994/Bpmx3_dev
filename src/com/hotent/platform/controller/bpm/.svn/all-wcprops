@@ -1,0 +1,317 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/2192/bpmx_w/src/com/hotent/platform/controller/bpm
+END
+BpmDefRightController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmDefRightController.java
+END
+AgentSettingController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/AgentSettingController.java
+END
+BpmProCopytoController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/972/bpmx_w/src/com/hotent/platform/controller/bpm/BpmProCopytoController.java
+END
+FormDefTreeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/bpm/FormDefTreeController.java
+END
+TaskController.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/2192/bpmx_w/src/com/hotent/platform/controller/bpm/TaskController.java
+END
+ProcessRunController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/1648/bpmx_w/src/com/hotent/platform/controller/bpm/ProcessRunController.java
+END
+BpmNewFlowTriggerController.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNewFlowTriggerController.java
+END
+AgentConditionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/platform/controller/bpm/AgentConditionController.java
+END
+BpmRunLogController.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmRunLogController.java
+END
+CommuReceiverController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/CommuReceiverController.java
+END
+BpmDefVarController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/1987/bpmx_w/src/com/hotent/platform/controller/bpm/BpmDefVarController.java
+END
+MonGroupController.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/MonGroupController.java
+END
+ReminderStateController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/ReminderStateController.java
+END
+BpmTemplateEventBindController.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/2468/bpmx_w/src/com/hotent/platform/controller/bpm/BpmTemplateEventBindController.java
+END
+BpmProTransToController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/974/bpmx_w/src/com/hotent/platform/controller/bpm/BpmProTransToController.java
+END
+BpmNodeUserUplowController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeUserUplowController.java
+END
+BpmReferDefinitionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmReferDefinitionController.java
+END
+BpmNodeRuleController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeRuleController.java
+END
+TaskReminderFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/TaskReminderFormController.java
+END
+AgentDefController.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/AgentDefController.java
+END
+BpmCommonWsSetController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmCommonWsSetController.java
+END
+BpmNodeButtonController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/2032/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeButtonController.java
+END
+BpmSubtableRightsController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmSubtableRightsController.java
+END
+ProcessRunFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/ProcessRunFormController.java
+END
+BpmDefAuthorizeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmDefAuthorizeController.java
+END
+BpmFormQueryController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/940/bpmx_w/src/com/hotent/platform/controller/bpm/BpmFormQueryController.java
+END
+BpmNodeMessageController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/1428/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeMessageController.java
+END
+BpmDefVarFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/97/bpmx_w/src/com/hotent/platform/controller/bpm/BpmDefVarFormController.java
+END
+ReminderStateFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/ReminderStateFormController.java
+END
+TaskOpinionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/978/bpmx_w/src/com/hotent/platform/controller/bpm/TaskOpinionController.java
+END
+TaskVarsController.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/TaskVarsController.java
+END
+BpmNodeRuleFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeRuleFormController.java
+END
+BpmNodeSetController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/2190/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeSetController.java
+END
+BpmGangedSetController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/947/bpmx_w/src/com/hotent/platform/controller/bpm/BpmGangedSetController.java
+END
+BpmNodeWebServiceController.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/2191/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeWebServiceController.java
+END
+BpmTaskExeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/975/bpmx_w/src/com/hotent/platform/controller/bpm/BpmTaskExeController.java
+END
+BpmNodeSqlController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeSqlController.java
+END
+BpmNodeButtonFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/560/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeButtonFormController.java
+END
+BpmNodeSignController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeSignController.java
+END
+BpmBusLinkController.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmBusLinkController.java
+END
+BpmNodeScriptController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/1428/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeScriptController.java
+END
+TaskApprovalItemsController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/TaskApprovalItemsController.java
+END
+BpmFormQueryFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/210/bpmx_w/src/com/hotent/platform/controller/bpm/BpmFormQueryFormController.java
+END
+BpmNodeMessageFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeMessageFormController.java
+END
+BpmNodeUserController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeUserController.java
+END
+MonOrgRoleController.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/MonOrgRoleController.java
+END
+BpmUserConditionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmUserConditionController.java
+END
+BpmBatchApprovalController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/bpm/BpmBatchApprovalController.java
+END
+BpmDefinitionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/2226/bpmx_w/src/com/hotent/platform/controller/bpm/BpmDefinitionController.java
+END
+NodeMsgTemplateController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/controller/bpm/NodeMsgTemplateController.java
+END
+TaskReminderController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/977/bpmx_w/src/com/hotent/platform/controller/bpm/TaskReminderController.java
+END
+BpmNodeSignFormController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/controller/bpm/BpmNodeSignFormController.java
+END

@@ -1,0 +1,389 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc
+END
+customerDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerDetail.jsp
+END
+customerQuery.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerQuery.jsp
+END
+itemList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/itemList.jsp
+END
+customerOrderno.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerOrderno.jsp
+END
+districtEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtEdit.jsp
+END
+customerList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerList.jsp
+END
+districtModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtModify.jsp
+END
+itemZf.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/itemZf.jsp
+END
+customerGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerGet.jsp
+END
+newOrdersList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/newOrdersList.jsp
+END
+ordersEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersEdit.jsp
+END
+ordersChaxun.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersChaxun.jsp
+END
+ordersSearch1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersSearch1.jsp
+END
+itemModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/itemModify.jsp
+END
+stockDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/stockDetail.jsp
+END
+orderLineOrderno.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineOrderno.jsp
+END
+stockList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/stockList.jsp
+END
+newOrdersModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/newOrdersModify.jsp
+END
+orderLineGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineGet.jsp
+END
+ordersCxkhh.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersCxkhh.jsp
+END
+orderLineEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineEdit.jsp
+END
+orderLineModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineModify.jsp
+END
+ordersGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersGet.jsp
+END
+orderLineMingxi.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineMingxi.jsp
+END
+ordersCxddmx.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersCxddmx.jsp
+END
+districtDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtDetail.jsp
+END
+newOrdersGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/newOrdersGet.jsp
+END
+customerQuery2.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerQuery2.jsp
+END
+districtQuery.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtQuery.jsp
+END
+districtList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtList.jsp
+END
+itemDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/itemDetail.jsp
+END
+history2Get.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/history2Get.jsp
+END
+orderyanGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderyanGet.jsp
+END
+ordersSearch.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersSearch.jsp
+END
+districtGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtGet.jsp
+END
+history2Edit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/history2Edit.jsp
+END
+orderyanEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderyanEdit.jsp
+END
+ordersList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersList.jsp
+END
+newOrdersDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/newOrdersDetail.jsp
+END
+history2Modify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/history2Modify.jsp
+END
+orderyanModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderyanModify.jsp
+END
+itemZfb.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/itemZfb.jsp
+END
+itemEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/itemEdit.jsp
+END
+orderLineDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineDetail.jsp
+END
+ordersModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersModify.jsp
+END
+customerEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerEdit.jsp
+END
+customerModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/customerModify.jsp
+END
+newOrdersEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/newOrdersEdit.jsp
+END
+orderLineList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineList.jsp
+END
+ordersSearchorder.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersSearchorder.jsp
+END
+stockGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/stockGet.jsp
+END
+stockEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/stockEdit.jsp
+END
+stockModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/stockModify.jsp
+END
+districtQuery2.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtQuery2.jsp
+END
+itemGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/itemGet.jsp
+END
+ordersChaxunzuijin.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersChaxunzuijin.jsp
+END
+districtItemno.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/districtItemno.jsp
+END
+history2Detail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/history2Detail.jsp
+END
+orderyanDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderyanDetail.jsp
+END
+ordersChaxunmin.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersChaxunmin.jsp
+END
+history2List.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/history2List.jsp
+END
+orderLineOrder.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderLineOrder.jsp
+END
+orderyanList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/orderyanList.jsp
+END
+ordersDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/651/bpmx_w/WebRoot/WEB-INF/view/tpcc/tpcc/ordersDetail.jsp
+END

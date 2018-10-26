@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.BusinessInformat.model.lc.BusinessInformat">
+	<resultMap id="BusinessInformat" type="com.hotent.BusinessInformat.model.lc.BusinessInformat">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="businessId" column="F_BUSINESSID" jdbcType="VARCHAR"/>
+		<result property="processId" column="F_PROCESSID" jdbcType="VARCHAR"/>
+		<result property="startTime" column="F_STARTTIME" jdbcType="VARCHAR"/>
+		<result property="endTime" column="F_ENDTIME" jdbcType="VARCHAR"/>
+		<result property="occurenceAmount" column="F_OCCURENCEAMOUNT" jdbcType="NUMERIC"/>
+		<result property="operationTime" column="F_OPERATIONTIME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_BUSINESSID,F_PROCESSID,F_STARTTIME,F_ENDTIME,F_OCCURENCEAMOUNT,F_OPERATIONTIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(businessId)"> AND F_BUSINESSID  LIKE '%${businessId}%'  </if>
+			<if test="@Ognl@isNotEmpty(processId)"> AND F_PROCESSID  LIKE '%${processId}%'  </if>
+			<if test="@Ognl@isNotEmpty(startTime)"> AND F_STARTTIME  LIKE '%${startTime}%'  </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND F_ENDTIME  LIKE '%${endTime}%'  </if>
+			<if test="@Ognl@isNotEmpty(occurenceAmount)"> AND F_OCCURENCEAMOUNT  =#{occurenceAmount} </if>
+			<if test="@Ognl@isNotEmpty(operationTime)"> AND F_OPERATIONTIME  LIKE '%${operationTime}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.BusinessInformat.model.lc.BusinessInformat">
+		INSERT INTO W_BUSINESS_INFORMAT_LC
+		(ID,
+		F_BUSINESSID,F_PROCESSID,F_STARTTIME,F_ENDTIME,F_OCCURENCEAMOUNT,F_OPERATIONTIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{businessId,jdbcType=VARCHAR}, #{processId,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{occurenceAmount,jdbcType=NUMERIC}, #{operationTime,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_BUSINESS_INFORMAT_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.BusinessInformat.model.lc.BusinessInformat">
+		UPDATE W_BUSINESS_INFORMAT_LC SET
+		F_BUSINESSID=#{businessId,jdbcType=VARCHAR},
+		F_PROCESSID=#{processId,jdbcType=VARCHAR},
+		F_STARTTIME=#{startTime,jdbcType=VARCHAR},
+		F_ENDTIME=#{endTime,jdbcType=VARCHAR},
+		F_OCCURENCEAMOUNT=#{occurenceAmount,jdbcType=NUMERIC},
+		F_OPERATIONTIME=#{operationTime,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BusinessInformat">
+		SELECT <include refid="columns"/>
+		FROM W_BUSINESS_INFORMAT_LC
+		WHERE
+		ID=#{id}
+	</select>
+	<!--zl 根据流程定义id获取  -->
+	<select id="getByDefId" parameterType="java.lang.Long" resultMap="BusinessInformat">
+		SELECT <include refid="columns"/>
+		FROM W_BUSINESS_INFORMAT_LC
+		WHERE
+		F_PROCESSID=#{defId}
+	</select>
+	
+	<select id="getAll" resultMap="BusinessInformat">
+		SELECT <include refid="columns"/>
+		FROM W_BUSINESS_INFORMAT_LC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

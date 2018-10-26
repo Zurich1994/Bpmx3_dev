@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Virtual.model.VirtualPac.DeviceVirtual">
+	<resultMap id="DeviceVirtual" type="com.hotent.Virtual.model.VirtualPac.DeviceVirtual">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="virtual_ID" column="F_VIRTUAL_ID" jdbcType="VARCHAR"/>
+		<result property="server_ID" column="F_SERVER_ID" jdbcType="VARCHAR"/>
+		<result property="ip" column="F_IP" jdbcType="VARCHAR"/>
+		<result property="os_name" column="F_OS_NAME" jdbcType="VARCHAR"/>
+		<result property="user" column="F_USER" jdbcType="VARCHAR"/>
+		<result property="use" column="F_USE" jdbcType="VARCHAR"/>
+		<result property="login_Username" column="F_LOGIN_USERNAME" jdbcType="VARCHAR"/>
+		<result property="login_Password" column="F_LOGIN_PASSWORD" jdbcType="VARCHAR"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ID,F_VIRTUAL_ID,F_SERVER_ID,F_IP,F_OS_NAME,F_USER,F_USE,F_LOGIN_USERNAME,F_LOGIN_PASSWORD,F_REMARK
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(virtual_ID)"> AND F_VIRTUAL_ID  LIKE '%${virtual_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_ID)"> AND F_SERVER_ID  LIKE '%${server_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(ip)"> AND F_IP  LIKE '%${ip}%'  </if>
+			<if test="@Ognl@isNotEmpty(os_name)"> AND F_OS_NAME  LIKE '%${os_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(user)"> AND F_USER  LIKE '%${user}%'  </if>
+			<if test="@Ognl@isNotEmpty(use)"> AND F_USE  LIKE '%${use}%'  </if>
+			<if test="@Ognl@isNotEmpty(login_Username)"> AND F_LOGIN_USERNAME  LIKE '%${login_Username}%'  </if>
+			<if test="@Ognl@isNotEmpty(login_Password)"> AND F_LOGIN_PASSWORD  LIKE '%${login_Password}%'  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Virtual.model.VirtualPac.DeviceVirtual">
+		INSERT INTO W_DEVICE_VIRTUAL
+		(ID,
+		F_ID,F_VIRTUAL_ID,F_SERVER_ID,F_IP,F_OS_NAME,F_USER,F_USE,F_LOGIN_USERNAME,F_LOGIN_PASSWORD,F_REMARK)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{id,jdbcType=NUMERIC}, #{virtual_ID,jdbcType=VARCHAR}, #{server_ID,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{os_name,jdbcType=VARCHAR}, #{user,jdbcType=VARCHAR}, #{use,jdbcType=VARCHAR}, #{login_Username,jdbcType=VARCHAR}, #{login_Password,jdbcType=VARCHAR}, #{remark,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_VIRTUAL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Virtual.model.VirtualPac.DeviceVirtual">
+		UPDATE W_DEVICE_VIRTUAL SET
+		F_ID=#{id,jdbcType=NUMERIC},
+		F_VIRTUAL_ID=#{virtual_ID,jdbcType=VARCHAR},
+		F_SERVER_ID=#{server_ID,jdbcType=VARCHAR},
+		F_IP=#{ip,jdbcType=VARCHAR},
+		F_OS_NAME=#{os_name,jdbcType=VARCHAR},
+		F_USER=#{user,jdbcType=VARCHAR},
+		F_USE=#{use,jdbcType=VARCHAR},
+		F_LOGIN_USERNAME=#{login_Username,jdbcType=VARCHAR},
+		F_LOGIN_PASSWORD=#{login_Password,jdbcType=VARCHAR},
+		F_REMARK=#{remark,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceVirtual">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_VIRTUAL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DeviceVirtual">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_VIRTUAL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

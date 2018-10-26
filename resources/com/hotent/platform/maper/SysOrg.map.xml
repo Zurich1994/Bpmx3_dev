@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysOrg">
+	<resultMap id="Result" type="com.hotent.platform.model.system.SysOrg">
+		<id property="orgId" column="orgId" jdbcType="NUMERIC"/>
+		<result property="demId" column="demId" jdbcType="NUMERIC"/>
+		<result property="orgName" column="orgName" jdbcType="VARCHAR"/>
+		<result property="orgPathname" column="orgPathname" jdbcType="VARCHAR"/>
+		<result property="orgDesc" column="orgDesc" jdbcType="VARCHAR"/>
+		<result property="orgSupId" column="orgSupId" jdbcType="NUMERIC"/>
+		<result property="path" column="path" jdbcType="VARCHAR"/>
+		<result property="depth" column="depth" jdbcType="NUMERIC"/>
+		<result property="orgType" column="orgType" jdbcType="NUMERIC"/>
+		<result property="creatorId" column="creatorId" jdbcType="NUMERIC"/>
+		<result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+		<result property="updateId" column="updateId" jdbcType="NUMERIC"/>
+		<result property="updatetime" column="updatetime" jdbcType="TIMESTAMP"/>
+		<result property="sn" column="sn" jdbcType="NUMERIC"/>
+		<result property="fromType" column="fromType" jdbcType="NUMERIC"/>
+		<result property="code" column="code" jdbcType="VARCHAR"/>
+		<result property="companyId" column="COMPANYID" jdbcType="NUMERIC"/>
+		<result property="company" column="COMPANY" jdbcType="VARCHAR"/>
+		<result property="orgStaff" column="ORGSTAFF" jdbcType="NUMERIC"/>
+	</resultMap>
+		
+	
+	<sql id="columns">
+		orgId,demId,orgName,orgDesc,orgSupId,path,orgPathname,depth,orgType,
+		creatorId,createtime,updateId,updatetime,sn,fromType,code,companyId,company,orgStaff
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+		
+			<if test="@Ognl@isNotEmpty(demId)"> AND demId  =#{demId} </if>
+			<if test="@Ognl@isNotEmpty(orgName)"> AND orgName  LIKE #{orgName}  </if>
+			<if test="@Ognl@isNotEmpty(orgSupId)"> AND orgSupId  =#{orgSupId} </if>
+			<if test="@Ognl@isNotEmpty(path)"> AND path  LIKE #{path}  </if>
+			<if test="@Ognl@isNotEmpty(orgType)"> AND orgType  =#{orgType} </if>
+			<if test="@Ognl@isNotEmpty(fromType)"> AND fromType  =#{fromType} </if>
+			and isdelete=0
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysOrg">
+		INSERT INTO sys_org
+		(<include refid="columns"/>)
+		VALUES
+		(#{orgId,jdbcType=NUMERIC}, #{demId,jdbcType=NUMERIC}, #{orgName,jdbcType=VARCHAR}, 
+		#{orgDesc,jdbcType=VARCHAR}, #{orgSupId,jdbcType=NUMERIC}, #{path,jdbcType=VARCHAR},
+		#{orgPathname,jdbcType=VARCHAR},#{depth,jdbcType=NUMERIC}, 
+		#{orgType,jdbcType=NUMERIC}, #{creatorId,jdbcType=NUMERIC},
+		#{createtime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=NUMERIC}, #{updatetime,jdbcType=TIMESTAMP}, 
+		#{sn,jdbcType=NUMERIC},#{fromType,jdbcType=NUMERIC},#{code,jdbcType=VARCHAR},
+		#{companyId,jdbcType=NUMERIC},#{company,jdbcType=VARCHAR},#{orgStaff,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_org 
+		WHERE
+		orgId=#{orgId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysOrg">
+		UPDATE sys_org SET
+		demId=#{demId,jdbcType=NUMERIC} , 
+		orgName=#{orgName,jdbcType=VARCHAR} , 
+		orgDesc=#{orgDesc,jdbcType=VARCHAR} , 
+		orgSupId=#{orgSupId,jdbcType=NUMERIC} , 
+		path=#{path,jdbcType=VARCHAR} , 
+		orgPathname=#{orgPathname,jdbcType=VARCHAR} , 
+		depth=#{depth,jdbcType=NUMERIC} , 
+		orgType=#{orgType,jdbcType=NUMERIC} , 
+		creatorId=#{creatorId,jdbcType=NUMERIC} , 
+		createtime=#{createtime,jdbcType=TIMESTAMP} , 
+		updateId=#{updateId,jdbcType=NUMERIC} , 
+		updatetime=#{updatetime,jdbcType=TIMESTAMP} , 
+		sn=#{sn,jdbcType=NUMERIC} ,
+		fromType=#{fromType,jdbcType=NUMERIC},
+		code=#{code,jdbcType=VARCHAR},
+		companyId=#{companyId,jdbcType=NUMERIC},
+		company=#{company,jdbcType=VARCHAR},
+		orgStaff=#{orgStaff,jdbcType=NUMERIC}
+		WHERE
+		orgId=#{orgId}
+	</update>
+	
+	<update id="updSn" parameterType="Map">
+		UPDATE sys_org SET
+		sn=#{sn,jdbcType=NUMERIC} 
+		WHERE
+		orgId=#{orgId}
+	</update>
+	
+	<select id="getByOrgIds"  resultMap="Result">
+    	select * from sys_org t where t.orgid in  
+    	<foreach collection="list" index="index" item="orgId" open="(" close=")" separator=",">
+			${orgId}
+		</foreach>
+		where t.isdelete=0
+		order by depth,sn ,orgname
+    </select>
+	
+	<select id="getByOrgMonGroup"  resultMap="Result">
+    	SELECT * FROM SYS_ORG o where o.orgid in (SELECT distinct ORGID FROM bpm_mon_orgrole WHERE groupId=#{groupId}) and isdelete=0
+    </select>
+    
+	<select id="getById" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.SysOrg">
+		SELECT  a.orgId,a.demId,a.orgName,a.orgDesc,a.orgSupId,a.path,a.orgPathname, a.depth,a.orgType,
+                a.creatorId,a.createtime,a.updateId,a.updatetime,b.demName,
+                c.orgName OrgSupName,d.fullname createName,u.fullname updateName,a.sn,a.fromType,a.code,a.companyId,a.company,a.orgStaff
+		FROM sys_org a 
+		left join sys_org c on a.orgSupId=c.orgId 
+		join sys_demension b on a.demId=b.demId  
+		left join sys_user d on a.creatorId=d.userId
+		left join sys_user u on a.updateId=u.userId
+		where a.orgId=#{orgId} 
+	</select>
+	
+	<select id="getByCode" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.SysOrg">
+		SELECT  a.orgId,a.demId,a.orgName,a.orgDesc,a.orgSupId,a.path,a.orgPathname, a.depth,a.orgType,
+                a.creatorId,a.createtime,a.updateId,a.updatetime,b.demName,
+                c.orgName OrgSupName,d.fullname createName,u.fullname updateName,a.sn,a.fromType,a.code,a.companyId,a.company
+		FROM sys_org a 
+		left join sys_org c on a.orgSupId=c.orgId 
+		join sys_demension b on a.demId=b.demId  
+		left join sys_user d on a.creatorId=d.userId
+		left join sys_user u on a.updateId=u.userId
+		where a.code=#{code} 
+	</select>
+	
+	<select id="getByOrgName" parameterType="java.util.Map" resultMap="Result">
+		select <include refid="columns"/> from sys_org where  orgName=#{orgName}
+	</select>
+	
+	<select id="getAll" resultMap="Result">
+		SELECT <include refid="columns"/>
+		FROM sys_org   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by orgId  desc
+		</if>
+	</select>
+	
+	<update id="delByPath" parameterType="String">
+		update  sys_org  set isdelete=1 where path like #{path}
+	</update>
+	
+	<select id="getOrgByOrgId" resultType="com.hotent.platform.model.system.SysOrg">
+		SELECT  a.orgId,a.demId,a.orgName,a.orgDesc,a.orgSupId,a.path,a.orgPathname,a.depth,a.orgType,
+                a.creatorId,a.createtime,a.updateId,a.updatetime,b.demName,c.orgName OrgSupName 
+		FROM sys_org a left join sys_org c on a.orgSupId=c.orgId join  sys_demension b on a.demId=b.demId  
+		where 1=1	and c.isdelete=0 and a.isdelete=0
+		<if test="@Ognl@isNotEmpty(path)"> AND a.path  LIKE #{path}  </if>	
+		<if test="@Ognl@isNotEmpty(orgName)"> AND a.orgName  LIKE #{orgName}  </if>
+		<if test="@Ognl@isNotEmpty(orgDesc)"> AND a.orgDesc  LIKE #{orgDesc}  </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by a.path  asc
+		</if>
+	</select>
+	<!-- 取得所有组织列表或按维度取得所有组织 -->
+	<select id="getOrgsByDemIdOrAll" parameterType="java.util.Map" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG org where 1=1 and isdelete=0
+		<if test="@Ognl@isNotEmpty(demId)">and org.demId=#{demId}</if>
+		 order by org.sn asc, org.path asc
+	</select>
+    <!-- 根据工号获取主组织 -->
+    <select id="getOrgByAccount" resultMap="Result">
+    	select distinct  org.* from sys_org org , SYS_USER_POS uo,sys_user u where org.orgid=uo.orgid and uo.userid=u.userid and uo.isprimary=1
+		and u.account=#{account} and org.isdelete=0 and  uo.isdelete=0
+    </select>
+	<select id="getOrgs" parameterType="Long" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG org where org.demId=#{demId} and org.isdelete=0 order by org.path asc, org.sn asc
+	</select>
+			
+	<select id="getOrgByDemId" parameterType="Long" resultType="com.hotent.platform.model.system.SysOrg">
+		SELECT  a.orgId,a.demId,a.orgName,a.orgDesc,a.orgSupId,a.path,a.orgPathname,a.depth,a.orgType,
+                a.creatorId,a.createtime,a.updateId,a.updatetime,a.sn,a.fromType,
+                b.demName,a.companyId,a.company,a.orgStaff
+		FROM sys_org a join sys_demension b on a.demId=b.demId     
+		where   a.demId=#{demId}
+		and a.isdelete=0
+	    order by a.sn
+	</select>
+	
+	<select id="getOneByuserOrgId" resultType="java.lang.Long">
+		SELECT userId  
+		FROM SYS_USER_POS      
+		where userPosId=#{userOrgId}	
+	</select>
+	
+	<select id="getByUserId" parameterType="java.lang.Long"  resultType="com.hotent.platform.model.system.SysOrg">
+	  SELECT distinct  o.*,uo.isPrimary FROM sys_org o join  SYS_USER_POS uo 
+	  on o.orgId = uo.orgId 
+	  where uo.userId=#{userId}
+	  and o.isdelete=0
+	  and uo.isdelete=0
+	</select>
+	
+	<select id="getOrgsByUserId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.SysOrg">
+		select distinct org.* from SYS_ORG org inner join SYS_USER_POS uo on uo.orgId=org.orgId where uo.userId=#{userId}
+		 and org.isdelete=0  and uo.isdelete=0
+	</select>
+	
+	<select id="getByUserIdAndDemId" parameterType="java.lang.Long"  resultType="com.hotent.platform.model.system.SysOrg">
+	  SELECT DISTINCT o.*,uo.isPrimary FROM sys_org o join  SYS_USER_POS uo 
+	  on o.orgId = uo.orgId 
+	  where uo.userId=#{userId}
+	  and o.demId=#{demId}
+	  and o.isdelete=0
+	  and uo.isdelete=0
+	</select>
+	
+	<select id="getByDepth" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG where depth=#{depth} and  isdelete=0 order by orgSupId asc	
+	</select>
+	
+	<select id="getByOrgPath" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG where path LIKE #{path} and isdelete=0 order by sn asc
+	</select>
+	
+	<select id="getPrimaryOrgByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.SysOrg">
+		select distinct a.* from SYS_ORG a,SYS_USER_POS b 
+		where a.orgId=b.orgId 
+		and b.isPrimary=1 
+		and b.userId=#{userId} 
+		and a.isdelete=0
+		and b.isdelete=0
+	</select>
+	
+	<select id="getByFromType" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG where fromType=#{fromType}  and isdelete=0 order by orgSupId asc	
+	</select>
+	
+	<select id="getOrgByIds" parameterType="Map" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG org where org.orgId in (${orgIds}) order by org.path asc
+	</select>
+	
+	<select id="getOrgByOrgSupId" parameterType="Map" resultType="com.hotent.platform.model.system.SysOrg">
+		select a.orgId,a.demId,a.orgName,a.orgDesc,a.orgSupId,a.path,a.orgPathname,a.depth,a.orgType,
+               a.creatorId,a.createtime,a.updateId,a.updatetime, (select count(*) from sys_org t where t.orgsupid=a.orgid)  isLeaf,
+               a.companyId,a.company from sys_org a where a.orgsupid=#{orgSupId}
+               and a.isdelete=0
+			   order by a.sn asc
+	</select>
+	
+    <select id="getOrgByOrgName" parameterType="Map" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG  where orgName = #{orgName} and isdelete=0
+	</select>
+	
+	 <select id="getOrgByUserIdPath" parameterType="Map" resultType="com.hotent.platform.model.system.SysOrg">
+		select distinct o.* from sys_org o inner join SYS_USER_POS u on o.orgid=u.orgid   
+        where u.userId=#{userId} and o.path LIKE #{path} and  o.isdelete=0 and u.isdelete=0
+	</select>
+	
+	 <select id="getBySupId4MobileOrg" parameterType="java.util.Map" resultType="com.hotent.platform.model.system.SysOrg">
+		SELECT <include refid="columns"/>
+		FROM sys_org
+		<where>
+		<if test="@Ognl@isEmpty(orgName)">AND orgSupId=#{orgid}</if>
+		<if test="@Ognl@isNotEmpty(orgName)"> 
+			AND orgid in (select i.orgid from sys_org i start with i.orgid=#{orgid} 
+			connect by prior i.orgid =i.orgsupid) 
+			AND orgName  LIKE '%'||#{orgName,jdbcType=VARCHAR}||'%'
+		</if>
+		</where>
+		order by depth ,sn ,orgname
+	</select>
+	 <select id="getByOrgType" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.SysOrg">
+		select * from SYS_ORG  where orgType = #{orgType} and isdelete=0
+	</select>
+	<select id="getCompany" resultType="java.util.HashMap">
+		SELECT DISTINCT COMPANYID,COMPANY FROM SYS_ORG 
+			WHERE COMPANYID IS NOT NULL AND COMPANY IS NOT NULL
+	</select>
+</mapper>

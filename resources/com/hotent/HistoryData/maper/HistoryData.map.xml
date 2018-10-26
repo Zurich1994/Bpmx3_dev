@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.HistoryData.model.lc.HistoryData">
+	<resultMap id="HistoryData" type="com.hotent.HistoryData.model.lc.HistoryData">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="historyDataId" column="F_HISTORYDATAID" jdbcType="VARCHAR"/>
+		<result property="processId" column="F_PROCESSID" jdbcType="VARCHAR"/>
+		<result property="timeType" column="F_TIMETYPE" jdbcType="VARCHAR"/>
+		<result property="occurenceAmount" column="F_OCCURENCEAMOUNT" jdbcType="NUMERIC"/>
+		<result property="occurenceTime" column="F_OCCURENCETIME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_HISTORYDATAID,F_PROCESSID,F_TIMETYPE,F_OCCURENCEAMOUNT,F_OCCURENCETIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(historyDataId)"> AND F_HISTORYDATAID  LIKE '%${historyDataId}%'  </if>
+			<if test="@Ognl@isNotEmpty(processId)"> AND F_PROCESSID  LIKE '%${processId}%'  </if>
+			<if test="@Ognl@isNotEmpty(timeType)"> AND F_TIMETYPE  LIKE '%${timeType}%'  </if>
+			<if test="@Ognl@isNotEmpty(occurenceAmount)"> AND F_OCCURENCEAMOUNT  =#{occurenceAmount} </if>
+			<if test="@Ognl@isNotEmpty(occurenceTime)"> AND F_OCCURENCETIME  LIKE '%${occurenceTime}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.HistoryData.model.lc.HistoryData">
+		INSERT INTO W_HISTORY_DATA_LC
+		(ID,
+		F_HISTORYDATAID,F_PROCESSID,F_TIMETYPE,F_OCCURENCEAMOUNT,F_OCCURENCETIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{historyDataId,jdbcType=VARCHAR}, #{processId,jdbcType=VARCHAR}, #{timeType,jdbcType=VARCHAR}, #{occurenceAmount,jdbcType=NUMERIC}, #{occurenceTime,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_HISTORY_DATA_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.HistoryData.model.lc.HistoryData">
+		UPDATE W_HISTORY_DATA_LC SET
+		F_HISTORYDATAID=#{historyDataId,jdbcType=VARCHAR},
+		F_PROCESSID=#{processId,jdbcType=VARCHAR},
+		F_TIMETYPE=#{timeType,jdbcType=VARCHAR},
+		F_OCCURENCEAMOUNT=#{occurenceAmount,jdbcType=NUMERIC},
+		F_OCCURENCETIME=#{occurenceTime,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="HistoryData">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY_DATA_LC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	
+	
+	<select id="getAll" resultMap="HistoryData">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY_DATA_LC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getProcessId" parameterType="String" resultMap="HistoryData">
+		SELECT DISTINCT F_PROCESSID
+		FROM W_HISTORY_DATA_LC 
+		WHERE
+		F_TIMETYPE=#{timeType}
+	</select>
+	
+	<parameterMap type="java.util.HashMap" id="manyParameters">   
+    <parameter property="processId" javaType="String" jdbcType="VARCHAR" />   
+    <parameter property="timeType" javaType="String" jdbcType="VARCHAR" />   
+	</parameterMap>	
+	<select id="getPictureData" parameterMap="manyParameters" resultMap="HistoryData">
+		SELECT F_OCCURENCETIME,F_OCCURENCEAMOUNT
+		FROM W_HISTORY_DATA_LC
+		WHERE
+		F_PROCESSID=#{processId} AND F_TIMETYPE=#{timeType}
+	</select>
+	
+	<parameterMap type="java.util.HashMap" id="occurenceMap">   
+    <parameter property="processId" javaType="String" jdbcType="VARCHAR" />   
+    <parameter property="occurenceTime" javaType="String" jdbcType="VARCHAR" />   
+	</parameterMap>	
+	<select id="getOccurence" parameterMap="occurenceMap" resultMap="HistoryData">
+		SELECT F_OCCURENCEAMOUNT
+		FROM W_HISTORY_DATA_LC
+		WHERE
+		F_PROCESSID=#{processId} AND F_OCCURENCETIME=#{occurenceTime}
+	</select>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Atomicoperate.model.Atomicoperate.Atomicoperate">
+	<resultMap id="Atomicoperate" type="com.hotent.Atomicoperate.model.Atomicoperate.Atomicoperate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="F_NAME" jdbcType="VARCHAR"/>
+		<result property="serviceID" column="F_SERVICEID" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_NAME,F_SERVICEID
+	</sql>
+	<sql id="wfColumns">
+		ID,F_NAME,F_SERVICEID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND F_NAME  LIKE '%${name}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceID)"> AND F_SERVICEID  =#{serviceID} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Atomicoperate.model.Atomicoperate.Atomicoperate">
+		INSERT INTO W_ATOMICOPERATE
+		(ID,
+		F_NAME,F_SERVICEID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{name,jdbcType=VARCHAR}, #{serviceID,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ATOMICOPERATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Atomicoperate.model.Atomicoperate.Atomicoperate">
+		UPDATE W_ATOMICOPERATE SET
+		F_NAME=#{name,jdbcType=VARCHAR},
+		F_SERVICEID=#{serviceID,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Atomicoperate">
+		SELECT <include refid="columns"/>
+		FROM W_ATOMICOPERATE
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getByServiceId" parameterType="java.lang.Long" resultMap="Atomicoperate">
+		SELECT <include refid="columns"/>
+		FROM W_ATOMICOPERATE
+		WHERE
+		F_SERVICEID=#{serviceID}
+	</select>
+	
+	<select id="getAll" resultMap="Atomicoperate">
+		SELECT <include refid="columns"/>
+		FROM W_ATOMICOPERATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	
+  
+	
+</mapper>

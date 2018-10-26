@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/db
+END
+DynamicDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/DynamicDataSource.java
+END
+GenericDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/db/GenericDao.java
+END
+JdbcHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/JdbcHelper.java
+END
+IRollBack.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/IRollBack.java
+END
+DynamicDataSourceCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/DynamicDataSourceCache.java
+END
+ProxoolDataSourceFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/db/ProxoolDataSourceFactory.java
+END
+JdbcDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/JdbcDao.java
+END
+RollbackJdbcTemplate.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/db/RollbackJdbcTemplate.java
+END
+DbContextHolder.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/DbContextHolder.java
+END
+IEntityDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/IEntityDao.java
+END
+ProxoolDataSourceEX.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/ProxoolDataSourceEX.java
+END
+WfBaseDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/815/bpmx_w/src/com/hotent/core/db/WfBaseDao.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/package.html
+END
+BaseDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/db/BaseDao.java
+END

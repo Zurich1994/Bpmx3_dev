@@ -1,0 +1,63 @@
+@charset "utf-8";
+.con-item {
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	margin: 8px 55px 8px 8px;
+	border: 1px solid #ccc;
+	cursor: default;
+	font-size:13px;
+	overflow:hidden;
+}
+
+.con-item-selected {
+	border: 1px solid #f00;
+}
+
+.con-branch {
+	
+}
+
+.con-leaf {
+	height: 30px;
+}
+
+.line-span {
+	position: absolute;
+	font-size: 1px;
+}
+
+.computing-select {
+	position: absolute;
+	width: 40px;
+	height: 20px;
+}
+
+.label-span {
+	cursor: pointer;
+	background: #ededed;
+	height: 30px;
+	display: inline-block;
+	line-height: 30px;
+}
+
+#jquerytree {
+	width: 850px;
+	border: 3px solid #ff0;
+}
+
+.flowVars {
+	width: 180px;
+}
+.left{
+	float:left;	
+}
+.margin-set{
+	margin:3px 0 0 8px;
+}
+.short-select{
+	width:80px;
+}
+.judgeExp2{
+	margin-left:10px;
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Assemble.model.Assemble.Assemble">
+	<resultMap id="Assemble" type="com.hotent.Assemble.model.Assemble.Assemble">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="needID" column="F_NEEDID" jdbcType="NUMERIC"/>
+		<result property="containerID" column="F_CONTAINERID" jdbcType="NUMERIC"/>
+		<result property="serviceproductID" column="F_SERVICEPRODUCTID" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_NEEDID,F_CONTAINERID,F_SERVICEPRODUCTID
+	</sql>
+	<sql id="wfColumns">
+		ID,F_NEEDID,F_CONTAINERID,F_SERVICEPRODUCTID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(needID)"> AND F_NEEDID  =#{needID} </if>
+			<if test="@Ognl@isNotEmpty(containerID)"> AND F_CONTAINERID  =#{containerID} </if>
+			<if test="@Ognl@isNotEmpty(serviceproductID)"> AND F_SERVICEPRODUCTID  =#{serviceproductID} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Assemble.model.Assemble.Assemble">
+		INSERT INTO W_ASSEMBLE
+		(ID,
+		F_NEEDID,F_CONTAINERID,F_SERVICEPRODUCTID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{needID,jdbcType=NUMERIC}, #{containerID,jdbcType=NUMERIC}, #{serviceproductID,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ASSEMBLE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Assemble.model.Assemble.Assemble">
+		UPDATE W_ASSEMBLE SET
+		F_NEEDID=#{needID,jdbcType=NUMERIC},
+		F_CONTAINERID=#{containerID,jdbcType=NUMERIC},
+		F_SERVICEPRODUCTID=#{serviceproductID,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Assemble">
+		SELECT <include refid="columns"/>
+		FROM W_ASSEMBLE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Assemble">
+		SELECT <include refid="columns"/>
+		FROM W_ASSEMBLE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	
+  
+	
+</mapper>

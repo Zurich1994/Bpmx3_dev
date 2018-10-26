@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.District">
+	<resultMap id="District" type="com.hotent.tpcc.model.tpcc.District">
+		<id property="d_id" column="D_ID" jdbcType="NUMERIC"/>
+		<result property="d_w_id" column="D_W_ID" jdbcType="NUMERIC"/>
+		<result property="d_name" column="D_NAME" jdbcType="VARCHAR"/>
+		<result property="d_street_1" column="D_STREET_1" jdbcType="VARCHAR"/>
+		<result property="d_street_2" column="D_STREET_2" jdbcType="VARCHAR"/>
+		<result property="d_city" column="D_CITY" jdbcType="VARCHAR"/>
+		<result property="d_state" column="D_STATE" jdbcType="VARCHAR"/>
+		<result property="d_zip" column="D_ZIP" jdbcType="VARCHAR"/>
+		<result property="d_tax" column="D_TAX" jdbcType="NUMERIC"/>
+		<result property="d_ytd" column="D_YTD" jdbcType="NUMERIC"/>
+		<result property="d_next_o_id" column="D_NEXT_O_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		D_ID,D_W_ID,D_NAME,D_STREET_1,D_STREET_2,D_CITY,D_STATE,D_ZIP,D_TAX,D_YTD,D_NEXT_O_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(d_id)"> AND D_ID  =#{d_id} </if>
+			<if test="@Ognl@isNotEmpty(d_name)"> AND D_NAME  LIKE '%${d_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(d_street_1)"> AND D_STREET_1  LIKE '%${d_street_1}%'  </if>
+			<if test="@Ognl@isNotEmpty(d_street_2)"> AND D_STREET_2  LIKE '%${d_street_2}%'  </if>
+			<if test="@Ognl@isNotEmpty(d_city)"> AND D_CITY  LIKE '%${d_city}%'  </if>
+			<if test="@Ognl@isNotEmpty(d_state)"> AND D_STATE  LIKE '%${d_state}%'  </if>
+			<if test="@Ognl@isNotEmpty(d_zip)"> AND D_ZIP  LIKE '%${d_zip}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.District">
+		INSERT INTO district
+		(D_ID,D_W_ID,D_NAME,D_STREET_1,D_STREET_2,D_CITY,D_STATE,D_ZIP,D_TAX,D_YTD,D_NEXT_O_ID)
+		VALUES
+		(#{d_id,jdbcType=NUMERIC}, #{d_w_id,jdbcType=NUMERIC}, #{d_name,jdbcType=VARCHAR}, #{d_street_1,jdbcType=VARCHAR}, #{d_street_2,jdbcType=VARCHAR}, #{d_city,jdbcType=VARCHAR}, #{d_state,jdbcType=VARCHAR}, #{d_zip,jdbcType=VARCHAR}, #{d_tax,jdbcType=NUMERIC}, #{d_ytd,jdbcType=NUMERIC}, #{d_next_o_id,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM district 
+		WHERE
+		D_ID=#{d_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.District">
+		UPDATE district SET
+		D_W_ID=#{d_w_id,jdbcType=NUMERIC},
+		D_NAME=#{d_name,jdbcType=VARCHAR},
+		D_STREET_1=#{d_street_1,jdbcType=VARCHAR},
+		D_STREET_2=#{d_street_2,jdbcType=VARCHAR},
+		D_CITY=#{d_city,jdbcType=VARCHAR},
+		D_STATE=#{d_state,jdbcType=VARCHAR},
+		D_ZIP=#{d_zip,jdbcType=VARCHAR},
+		D_TAX=#{d_tax,jdbcType=NUMERIC},
+		D_YTD=#{d_ytd,jdbcType=NUMERIC},
+		D_NEXT_O_ID=#{d_next_o_id,jdbcType=NUMERIC}
+		WHERE
+		D_ID=#{d_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="District">
+		SELECT <include refid="columns"/>
+		FROM district
+		WHERE
+		D_ID=#{d_id}
+	</select>
+	
+	<select id="getAll" resultMap="District">
+		SELECT <include refid="columns"/>
+		FROM district   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by D_ID desc
+		</if>
+	</select>
+	
+	<select id="orderno" parameterType="java.lang.Long" resultMap="District">
+		UPDATE district SET d_next_o_id = d_next_o_id + 1 WHERE d_id = #{D_ID} AND d_w_id = #{W_ID}
+	</select>
+	<select id="itemno"  resultType="java.lang.Integer">
+			SELECT COUNT(*) 
+               FROM order_line, stock
+               WHERE ol_w_id=#{W_ID} AND
+                     ol_d_id=#{D_ID} AND ol_o_id&lt; #{D_NEXT_O_ID} AND
+                     ol_o_id&gt;=  #{D_NEXT_O_ID1} AND s_w_id=#{W_ID} AND
+                     s_i_id=ol_i_id AND s_quantity &lt; #{D_LEVEL}
+	</select>
+	
+	<select id="getorderMsg" parameterType="java.util.Map" resultMap="District">
+		SELECT dt.D_TAX , dt.D_NEXT_O_ID
+		FROM district dt
+		WHERE
+		dt.D_W_ID =#{W_ID} AND dt.D_ID =#{D_ID}
+	</select>
+	<select id="getorderMsg2" parameterType="java.util.Map" resultMap="District">
+		SELECT DISTINCT d_next_o_id FROM district WHERE d_id =#{D_ID}
+	</select>
+	<!-- whp -->	
+	<update id="updateDis" parameterType="java.util.Map">
+		UPDATE district SET
+		D_YTD=D_YTD+#{orderValue,jdbcType=NUMERIC}
+		WHERE
+		D_ID=#{stockAreaNumber} AND D_W_ID=#{stockStoreNumber,jdbcType=NUMERIC}
+	</update>
+	<select id="getByStoreIdAndAreaId" parameterType="java.util.Map" resultMap="District">
+		SELECT <include refid="columns"/>
+		FROM district
+		WHERE
+		D_ID=#{stockAreaNumber} AND D_W_ID=#{stockStoreNumber,jdbcType=NUMERIC}
+	</select>
+</mapper>

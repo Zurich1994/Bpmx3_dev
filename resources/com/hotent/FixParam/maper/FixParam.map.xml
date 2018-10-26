@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.FixParam.model.lc.FixParam">
+	<resultMap id="FixParam" type="com.hotent.FixParam.model.lc.FixParam">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="fix_param_name" column="F_FIX_PARAM_NAME" jdbcType="VARCHAR"/>
+		<result property="fix_param_value" column="F_FIX_PARAM_VALUE" jdbcType="VARCHAR"/>
+		<result property="fix_param_type" column="F_FIX_PARAM_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_FIX_PARAM_NAME,F_FIX_PARAM_VALUE,F_FIX_PARAM_TYPE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(fix_param_name)"> AND F_FIX_PARAM_NAME  LIKE '%${fix_param_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(fix_param_value)"> AND F_FIX_PARAM_VALUE  LIKE '%${fix_param_value}%'  </if>
+			<if test="@Ognl@isNotEmpty(fix_param_type)"> AND F_FIX_PARAM_TYPE  LIKE '%${fix_param_type}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.FixParam.model.lc.FixParam">
+		INSERT INTO W_FIX_PARAM_LC
+		(ID,
+		F_FIX_PARAM_NAME,F_FIX_PARAM_VALUE,F_FIX_PARAM_TYPE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{fix_param_name,jdbcType=VARCHAR}, #{fix_param_value,jdbcType=VARCHAR}, #{fix_param_type,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_FIX_PARAM_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.FixParam.model.lc.FixParam">
+		UPDATE W_FIX_PARAM_LC SET
+		F_FIX_PARAM_NAME=#{fix_param_name,jdbcType=VARCHAR},
+		F_FIX_PARAM_VALUE=#{fix_param_value,jdbcType=VARCHAR},
+		F_FIX_PARAM_TYPE=#{fix_param_type,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FixParam">
+		SELECT <include refid="columns"/>
+		FROM W_FIX_PARAM_LC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="FixParam">
+		SELECT <include refid="columns"/>
+		FROM W_FIX_PARAM_LC 
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getAllByTimeType" parameterType="java.lang.String"  resultMap="FixParam">
+		SELECT <include refid="columns"/>
+		FROM W_FIX_PARAM_LC 
+		WHERE
+		 F_FIX_PARAM_TYPE=#{fix_param_type}
+	</select>
+	
+	<select id="getParamName" parameterType="java.lang.String" resultMap="FixParam">
+		SELECT <include refid="columns"/>
+		FROM W_FIX_PARAM_LC
+		WHERE
+		F_FIX_PARAM_TYPE=#{fix_param_type}
+	</select>
+	
+</mapper>

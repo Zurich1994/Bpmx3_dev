@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/BPMX_2015_WYX/!svn/ver/824/bpmx_w/src/com/hotent/core/excel/style
+END
+Style.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/style/Style.java
+END
+VAlign.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/style/VAlign.java
+END
+DataFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/824/bpmx_w/src/com/hotent/core/excel/style/DataFormat.java
+END
+FillPattern.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/style/FillPattern.java
+END
+StyleBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/style/StyleBuilder.java
+END
+Align.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/style/Align.java
+END
+BorderStyle.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/style/BorderStyle.java
+END
+Color.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/style/Color.java
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/BPMX_2015_WYX/!svn/ver/1140/bpmx_w/metadata/codegen
+END
+codegen.properties
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/codegen.properties
+END
+codegen.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/codegen.xsd
+END
+codegenconfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/1139/bpmx_w/metadata/codegen/codegenconfig.xml
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/build.xml
+END

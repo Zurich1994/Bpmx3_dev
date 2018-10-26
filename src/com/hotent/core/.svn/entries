@@ -1,0 +1,121 @@
+10
+
+dir
+2225
+https://192.168.4.158/svn/BPMX_2015_WYX/bpmx_w/src/com/hotent/core
+https://192.168.4.158/svn/BPMX_2015_WYX
+
+
+
+2016-04-15T10:04:34.071000Z
+2200
+weiman
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a35d2f50-e60f-2a4a-a767-21531e481a33
+
+ldap
+dir
+
+datakey
+dir
+
+encrypt
+dir
+
+db
+dir
+
+exception
+dir
+
+valid
+dir
+
+model
+dir
+
+cache
+dir
+
+mybatis
+dir
+
+wsdl
+dir
+
+json
+dir
+
+report
+dir
+
+web
+dir
+
+aop
+dir
+
+log
+dir
+
+annotion
+dir
+
+table
+dir
+
+jms
+dir
+
+bpmn20
+dir
+
+service
+dir
+
+excel
+dir
+
+sms
+dir
+
+soap
+dir
+
+script
+dir
+
+engine
+dir
+
+fulltext
+dir
+
+datahandler
+dir
+
+page
+dir
+
+util
+dir
+
+bpm
+dir
+
+scheduler
+dir
+

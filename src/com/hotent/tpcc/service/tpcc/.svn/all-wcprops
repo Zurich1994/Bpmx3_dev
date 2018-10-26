@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc
+END
+ItemService.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/ItemService.java
+END
+OrdersService.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/OrdersService.java
+END
+CustomerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/CustomerService.java
+END
+History2Service.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/History2Service.java
+END
+OrderLineService.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/OrderLineService.java
+END
+OrderyanService.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/OrderyanService.java
+END
+StockService.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/StockService.java
+END
+DistrictService.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/DistrictService.java
+END
+NewOrdersService.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/650/bpmx_w/src/com/hotent/tpcc/service/tpcc/NewOrdersService.java
+END

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.form.BpmFormDefHi">
+	<resultMap id="BpmFormDefHi" type="com.hotent.platform.model.form.BpmFormDefHi">
+		<id property="hisId" column="HISID" jdbcType="NUMERIC"/>
+		<result property="formDefId" column="FORMDEFID" jdbcType="NUMERIC"/>
+		<result property="categoryId" column="CATEGORYID" jdbcType="NUMERIC"/>
+		<result property="formKey" column="FORMKEY" jdbcType="VARCHAR"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="formDesc" column="FORMDESC" jdbcType="VARCHAR"/>
+		<result property="html" column="HTML" jdbcType="CLOB"/>
+		<result property="template" column="TEMPLATE" jdbcType="CLOB"/>
+		<result property="tabTitle" column="TABTITLE" jdbcType="VARCHAR"/>
+		<result property="isDefault" column="ISDEFAULT" jdbcType="NUMERIC"/>
+		<result property="tableId" column="TABLEID" jdbcType="NUMERIC"/>
+		<result property="versionNo" column="VERSIONNO" jdbcType="NUMERIC"/>
+		<result property="isPublished" column="ISPUBLISHED" jdbcType="NUMERIC"/>
+		<result property="publishedBy" column="PUBLISHEDBY" jdbcType="VARCHAR"/>
+		<result property="publishTime" column="PUBLISHTIME" jdbcType="TIMESTAMP"/>
+		<result property="designType" column="DESIGNTYPE" jdbcType="NUMERIC"/>
+		<result property="templatesId" column="TEMPLATESID" jdbcType="NUMERIC"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="createBy" column="CREATEBY" jdbcType="NUMERIC"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="columns">
+		HISID,FORMDEFID,CATEGORYID,FORMKEY,SUBJECT,FORMDESC,HTML,TEMPLATE,ISDEFAULT,VERSIONNO,TABLEID,ISPUBLISHED,PUBLISHEDBY,PUBLISHTIME,TABTITLE,DESIGNTYPE,TEMPLATESID,CREATEBY,CREATOR,CREATETIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(formDefId)">AND FORMDEFID = #{formDefId}</if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(formDesc)"> AND FORMDESC  LIKE #{formDesc}  </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.form.BpmFormDefHi">
+		INSERT INTO BPM_FORM_DEF_HI
+		(HISID,FORMDEFID,CATEGORYID,FORMKEY,SUBJECT,FORMDESC,HTML,TEMPLATE,ISDEFAULT,VERSIONNO,TABLEID,ISPUBLISHED,PUBLISHEDBY,PUBLISHTIME,TABTITLE,DESIGNTYPE,TEMPLATESID,CREATEBY,CREATOR,CREATETIME)
+		VALUES
+		(#{hisId,jdbcType=NUMERIC}, #{formDefId,jdbcType=NUMERIC}, #{categoryId,jdbcType=NUMERIC}, #{formKey,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{formDesc,jdbcType=VARCHAR}, #{html,jdbcType=CLOB}, #{template,jdbcType=CLOB}, #{isDefault,jdbcType=NUMERIC}, #{versionNo,jdbcType=NUMERIC}, #{tableId,jdbcType=NUMERIC}, #{isPublished,jdbcType=NUMERIC}, #{publishedBy,jdbcType=VARCHAR}, #{publishTime,jdbcType=DATE}, #{tabTitle,jdbcType=VARCHAR}, #{designType,jdbcType=NUMERIC}, #{templatesId,jdbcType=VARCHAR}, #{createBy,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_FORM_DEF_HI 
+		WHERE
+		HISID=#{hisId}
+	</delete>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmFormDefHi">
+		SELECT <include refid="columns"/>
+		FROM BPM_FORM_DEF_HI
+		WHERE
+		HISID=#{hisId}
+	</select>
+	
+	<select id="getAll" resultMap="BpmFormDefHi">
+		SELECT <include refid="columns"/>
+		FROM BPM_FORM_DEF_HI 
+		<include refid="dynamicWhere" />
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by HISID  desc
+		</if>
+	</select>
+</mapper>

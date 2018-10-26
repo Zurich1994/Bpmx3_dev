@@ -1,0 +1,166 @@
+.res1{
+	background-image: url(images/icons-18-white_13.png)!important;
+}
+.res2
+{
+	background-image:url('images/t-arrow.png');
+}
+
+.res3
+{
+	background-image:url('images/b-arrow.png');
+}
+.res4
+{
+	background-image:url('images/add-icon.png')!important;
+}
+.res5 {
+	background-image: url(images/del.png);
+}
+.res6{
+	background-image: url(images/icon-search-black.png);
+}
+.res7 {
+	background-image: url(images/refresh.png);
+}
+.res8{
+	background-image: url('img/gs2.png');
+}
+
+.res9
+{
+	background-image: url('images/selected.png');
+}
+
+.res10
+{
+	background-image:url('img/appcan.png')!important;
+}
+.res11
+{
+	background:url('img/head_bg.png') ;
+}
+.res12
+{
+	background:url('img/back1.png') ;
+}
+.res13
+{
+	background:url('img/foot_bg.png') ;
+}
+.res14
+{
+	background:url('img/login.png') ;
+}
+.res15
+{
+	background:url('img/register.png') ;
+}
+.res16
+{
+	background:url('img/appcan.png') ;
+}
+.res17
+{
+	background:url('img/shop_bg.png') ;
+}
+.res18
+{
+	background:url('img/jian.png') ;
+}
+.res19
+{
+	background:url('img/gouzi.png') ;
+}
+.res20
+{
+	background:url('img/jiesuan.png') ;
+}
+.res21
+{
+	background:url('img/btn_r.png') ;
+}
+.res22
+{
+	background:url('img/index_on.png') ;
+}
+.res23
+{
+	background:url('img/index_off.png') ;
+}
+.res24
+{
+	background:url('img/edit.png') ;
+}
+.res25
+{
+	background:url('img/delete.png') ;
+}
+.res26
+{
+	background:url('img/gou.png') ;
+}
+.res27
+{
+	background:url('img/btn_jh.png') ;
+}
+.res28
+{
+	background:url('img/khjh.png') ;
+}
+.res29
+{
+	background:url('img/xgmm.png') ;
+}
+.res30
+{
+	background:url('img/wdsc.png') ;
+}
+.res31
+{
+	background:url('img/gwc.png') ;
+}
+.res32
+{
+	background:url('img/wddd.png') ;
+}
+.res33
+{
+	background:url('img/shdz.png') ;
+}
+.res34
+{
+	background:url('img/zxzh.png') ;
+}
+.res35
+{
+	background:url('img/xiaoxi.png') ;
+}
+.res36
+{
+	background:url('img/dagou.png') ;
+}
+.res37
+{
+	background:url('img/yinying.png')!important;
+}
+.res38
+{
+	background:url('img/zhuanpan.png');
+}
+.res39
+{
+	background:url('img/zhuanpan1.png')!important;
+}
+.res40
+{
+	background:url('img/gre_line.png')!important;
+}
+.res41
+{
+	background:url('img/gra_line.png')!important;
+}
+.res42
+{
+	background:url('img/jifen_bg.png') repeat-x !important;
+}

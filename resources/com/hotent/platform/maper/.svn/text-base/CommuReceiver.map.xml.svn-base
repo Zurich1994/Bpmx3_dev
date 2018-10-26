@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.CommuReceiver">
+	<resultMap id="CommuReceiver" type="com.hotent.platform.model.bpm.CommuReceiver">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="opinionid" column="OPINIONID" jdbcType="NUMERIC"/>
+		<result property="recevierid" column="RECEVIERID" jdbcType="NUMERIC"/>
+		<result property="receivername" column="RECEIVERNAME" jdbcType="VARCHAR"/>
+		<result property="status" column="STATUS" jdbcType="NUMERIC"/>
+		
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="receivetime" column="RECEIVETIME" jdbcType="TIMESTAMP"/>
+		<result property="feedbacktime" column="FEEDBACKTIME" jdbcType="TIMESTAMP"/>
+		<result property="taskId" column="TASKID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,OPINIONID,RECEVIERID,RECEIVERNAME,STATUS,RECEIVETIME,TASKID,CREATETIME,FEEDBACKTIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(opinionid)"> AND OPINIONID  =#{opinionid} </if>
+			<if test="@Ognl@isNotEmpty(recevierid)"> AND RECEVIERID  =#{recevierid} </if>
+			<if test="@Ognl@isNotEmpty(receivername)"> AND RECEIVERNAME  LIKE #{receivername}  </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND STATUS  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(receivetime)"> AND RECEIVETIME  =#{receivetime} </if>
+			<if test="@Ognl@isNotEmpty(beginreceivetime)"> AND RECEIVETIME  >=#{beginreceivetime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endreceivetime)"> AND RECEIVETIME <![CDATA[ <=#{endreceivetime,jdbcType=TIMESTAMP}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.CommuReceiver">
+		INSERT INTO BPM_COMMU_RECEIVER
+		(ID,OPINIONID,RECEVIERID,RECEIVERNAME,STATUS,RECEIVETIME,TASKID,CREATETIME,FEEDBACKTIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{opinionid,jdbcType=NUMERIC}, #{recevierid,jdbcType=NUMERIC}, 
+		#{receivername,jdbcType=VARCHAR}, #{status,jdbcType=NUMERIC}, #{receivetime,jdbcType=TIMESTAMP},
+		#{taskId,jdbcType=NUMERIC} ,#{createtime,jdbcType=TIMESTAMP},#{feedbacktime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_COMMU_RECEIVER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByTaskId" parameterType="java.lang.Long">
+		DELETE FROM BPM_COMMU_RECEIVER 
+		WHERE
+		TASKID=#{taskId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.CommuReceiver">
+		UPDATE BPM_COMMU_RECEIVER SET
+		OPINIONID=#{opinionid,jdbcType=NUMERIC},
+		RECEVIERID=#{recevierid,jdbcType=NUMERIC},
+		RECEIVERNAME=#{receivername,jdbcType=VARCHAR},
+		STATUS=#{status,jdbcType=NUMERIC},
+		RECEIVETIME=#{receivetime,jdbcType=TIMESTAMP},
+		CREATETIME=#{createtime,jdbcType=TIMESTAMP},
+		FEEDBACKTIME=#{feedbacktime,jdbcType=TIMESTAMP}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="CommuReceiver">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMU_RECEIVER
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="CommuReceiver">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMU_RECEIVER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByOpinionId" parameterType="java.lang.Long" resultMap="CommuReceiver">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMU_RECEIVER
+		WHERE
+		OPINIONID=#{opinionId}
+	</select>
+	
+	<select id="getByTaskReceiver" resultMap="CommuReceiver">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMU_RECEIVER
+		WHERE
+		taskId=#{taskId} and recevierid=#{recevierid}
+	</select>
+	
+	
+</mapper>

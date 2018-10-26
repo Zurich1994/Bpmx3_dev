@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.GlobalType">
+	<resultMap id="GlobalType" type="com.hotent.platform.model.system.GlobalType">
+		<id property="typeId" column="typeId" jdbcType="NUMERIC"/>
+		<result property="typeName" column="typeName" jdbcType="VARCHAR"/>
+		<result property="nodePath" column="nodePath" jdbcType="VARCHAR"/>
+		<result property="depth" column="depth" jdbcType="NUMERIC"/>
+		<result property="parentId" column="parentId" jdbcType="NUMERIC"/>
+		<result property="nodeKey" column="nodeKey" jdbcType="VARCHAR"/>
+		<result property="sn" column="sn" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="depId" column="depId" jdbcType="NUMERIC"/>
+		<result property="type" column="type" jdbcType="NUMERIC"/>
+		<result property="catKey" column="catKey" jdbcType="VARCHAR"/>
+		<result property="isLeaf" column="isLeaf" jdbcType="NUMERIC"/>
+		<result property="nodeCode" column="nodeCode" jdbcType="VARCHAR"/>
+		<result property="nodeCodeType" column="nodeCodeType" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap type="com.hotent.platform.model.system.GlobalType" id="GlobalTypeExt">
+		<result property="childNodes" column="childNodes" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		typeId,typeName,nodePath,depth,parentId,nodeKey,sn,userId,depId,type,catKey,isLeaf,nodeCode,nodeCodeType
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(typeName)"> AND typeName  LIKE #{typeName}  </if>
+			<if test="@Ognl@isNotEmpty(nodePath)"> AND nodePath  LIKE #{nodePath}  AND nodePath  != #{nodePath}</if>
+			<if test="@Ognl@isNotEmpty(nodeKey)"> AND nodeKey  = #{nodeKey}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.GlobalType">
+		INSERT INTO sys_gl_type
+		(<include refid="columns"/>)
+		VALUES
+		(#{typeId,jdbcType=NUMERIC}, #{typeName,jdbcType=VARCHAR}, #{nodePath,jdbcType=VARCHAR}, 
+		#{depth,jdbcType=NUMERIC}, #{parentId,jdbcType=NUMERIC}, #{nodeKey,jdbcType=VARCHAR}, 
+		#{sn,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{depId,jdbcType=NUMERIC}, 
+		#{type,jdbcType=NUMERIC}, #{catKey,jdbcType=VARCHAR}, #{isLeaf,jdbcType=NUMERIC},
+		#{nodeCode,jdbcType=VARCHAR}, #{nodeCodeType,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_GL_TYPE 
+		WHERE
+		typeId=#{typeId}
+	</delete>
+
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.GlobalType">
+		UPDATE sys_gl_type SET
+		typeName=#{typeName,jdbcType=VARCHAR} , 
+		nodePath=#{nodePath,jdbcType=VARCHAR} , 
+		depth=#{depth,jdbcType=NUMERIC} , 
+		nodeKey=#{nodeKey,jdbcType=VARCHAR} , 
+		sn=#{sn,jdbcType=NUMERIC} , 
+		parentId=#{parentId,jdbcType=NUMERIC},
+		userId=#{userId,jdbcType=NUMERIC} , 
+		depId=#{depId,jdbcType=NUMERIC} , 
+		type=#{type,jdbcType=NUMERIC} , 
+		catKey=#{catKey,jdbcType=VARCHAR} , 
+		isLeaf=#{isLeaf,jdbcType=NUMERIC} ,
+		nodeCode=#{nodeCode,jdbcType=NUMERIC} ,
+		nodeCodeType=#{nodeCodeType,jdbcType=NUMERIC} 
+		WHERE
+		typeId=#{typeId}
+	</update>
+	
+	<update id="updSn" parameterType="com.hotent.platform.model.system.GlobalType">
+		UPDATE sys_gl_type SET sn=#{sn,jdbcType=NUMERIC}  WHERE typeId=#{typeId}
+	</update>
+	
+	
+	
+	
+	<!-- 按表单分类及用户id，取得有权限访问的表单分类 -->
+	<select id="getByFormRights" resultMap="GlobalType">
+		select t.* from sys_gl_type t left join BPM_TABLE_TEMPRIGHTS R on t.typeid=r.category_id
+			where t.catkey=#{catKey} and (r.category_id is null or (r.owner_id=#{ownerId} and r.search_type=1)
+			<if test="@Ognl@isNotEmpty(roleIds)">
+			or (r.owner_id in (${roleIds}) and r.search_type=2)
+			</if>
+			<if test="@Ognl@isNotEmpty(orgIds)">
+			 or (r.owner_id in (${orgIds}) and r.search_type=3)
+			 </if> 
+		) order by nodepath desc ,sn asc
+	</select>
+	
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="GlobalType">
+		SELECT <include refid="columns"/>
+		FROM SYS_GL_TYPE
+		WHERE
+		typeId=#{typeId}
+	</select>
+	
+	
+	<select id="getAll" resultMap="GlobalType" parameterType="java.util.Map">
+		SELECT <include refid="columns"/>
+		FROM SYS_GL_TYPE  WHERE CATKEY='FLOW_TYPE'  
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by sn
+		</if>
+	</select>
+	
+	<select id="getByParentId" parameterType="java.lang.Long" resultMap="GlobalTypeExt">
+		select t.*, (select count(*) from sys_gl_type a where a.parentid=t.typeId) childNodes  
+		from sys_gl_type t  
+		where parentId=#{parentId}
+		order by sn
+	</select>
+	
+	
+	
+	<select id="isNodeKeyExists" resultType="java.lang.Integer">
+		SELECT count(*) FROM SYS_GL_TYPE where nodeKey = #{nodeKey,jdbcType=VARCHAR} and catkey=#{catkey,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="isNodeKeyExistsForUpdate" resultType="java.lang.Integer">
+		SELECT count(*) FROM SYS_GL_TYPE where typeId &lt;>#{typeId,jdbcType=NUMERIC} and  nodeKey = #{nodeKey,jdbcType=VARCHAR} and catkey=#{catkey,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getByNodePath" parameterType="String"  resultMap="GlobalType">
+		SELECT * FROM SYS_GL_TYPE WHERE nodePath LIKE #{nodePath} order by sn
+	</select>
+	
+	<select id="getByCatKey" parameterType="String"  resultMap="GlobalTypeExt">
+		select t.*, (select count(*) from sys_gl_type a where a.parentid=t.typeId) childNodes  
+		from sys_gl_type t  
+		where catkey=#{catkey,jdbcType=VARCHAR}
+		order by sn
+	</select>
+	
+	<select id="getByCatKey1" parameterType="String"  resultMap="GlobalTypeExt">
+		select t.*, (select count(*) from sys_gl_type1 a where a.parentid=t.typeId) childNodes  
+		from sys_gl_type1 t  
+		where catkey=#{catkey,jdbcType=VARCHAR}
+		order by sn
+	</select>
+	
+	<select id="getByDictNodeKey" parameterType="String"  resultMap="GlobalType">
+		SELECT * FROM SYS_GL_TYPE 	WHERE catKey='DIC' and nodeKey=#{nodeKey,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getByDictNodeKey1" parameterType="String"  resultMap="GlobalType">
+		SELECT * FROM SYS_GL_TYPE1 	WHERE catKey='SubSystem_key' and nodeKey=#{nodeKey,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getByCateKeyAndNodeKey" parameterType="Map"  resultMap="GlobalType">
+		SELECT * FROM SYS_GL_TYPE 	WHERE catKey=#{catKey,jdbcType=VARCHAR} and nodeKey=#{nodeKey,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getPersonType" parameterType="Map"  resultMap="GlobalType">
+		SELECT * FROM SYS_GL_TYPE 	WHERE catkey=#{catkey,jdbcType=VARCHAR} and (userId=0 or userId=#{userId,jdbcType=NUMERIC})
+	</select>
+	
+</mapper>

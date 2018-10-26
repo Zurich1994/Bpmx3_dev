@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysOfficeTemplate">
+	<resultMap id="SysOfficeTemplate" type="com.hotent.platform.model.system.SysOfficeTemplate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="templatetype" column="TEMPLATETYPE" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="creatorid" column="CREATORID" jdbcType="NUMERIC"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="path" column="PATH" jdbcType="VARCHAR"/>
+		<result property="templateBlob" column="TEMPLATEBLOB" jdbcType="BLOB"/>
+	</resultMap>
+	
+	<sql id="columns">
+		ID,SUBJECT,TEMPLATETYPE,MEMO,CREATORID,CREATOR,CREATETIME,PATH,TEMPLATEBLOB
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(templatetype)"> AND TEMPLATETYPE  = #{templatetype} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(creatorid)"> AND CREATORID  =#{creatorid} </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(path)"> AND PATH  LIKE #{path}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysOfficeTemplate">
+		INSERT INTO SYS_OFFICE_TEMPLATE
+		(ID,SUBJECT,TEMPLATETYPE,MEMO,CREATORID,CREATOR,CREATETIME,PATH,TEMPLATEBLOB)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{subject,jdbcType=VARCHAR}, #{templatetype,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR}, #{creatorid,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{path,jdbcType=VARCHAR},#{templateBlob,jdbcType=BLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_OFFICE_TEMPLATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysOfficeTemplate">
+		UPDATE SYS_OFFICE_TEMPLATE SET
+		SUBJECT=#{subject,jdbcType=VARCHAR} , 
+		TEMPLATETYPE=#{templatetype,jdbcType=NUMERIC} , 
+		MEMO=#{memo,jdbcType=VARCHAR} , 
+		CREATORID=#{creatorid,jdbcType=NUMERIC} , 
+		CREATOR=#{creator,jdbcType=VARCHAR} , 
+		CREATETIME=#{createtime,jdbcType=TIMESTAMP} , 
+		PATH=#{path,jdbcType=VARCHAR},
+		TEMPLATEBLOB=#{templateBlob,jdbcType=BLOB} 
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysOfficeTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_OFFICE_TEMPLATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysOfficeTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_OFFICE_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getOfficeTemplateByUserId"  resultMap="SysOfficeTemplate"  parameterType="java.util.Map">
+		
+		select * from (
+			select s.id,s.subject,s.templatetype,s.path from SYS_OFFICE_TEMPLATE s , SYS_SEAL_RIGHT r where  s.id = r.sealId and r.rightType ='user' and rightId =(${userId})
+
+			<if test="@Ognl@isNotEmpty(roleIds)">
+			union
+            select s.id,s.subject,s.templatetype,s.path from SYS_OFFICE_TEMPLATE s , SYS_SEAL_RIGHT r where  s.id = r.sealId and r.rightType ='role' and rightId in(${roleIds})
+			</if>
+			
+			<if test="@Ognl@isNotEmpty(orgIds)">
+			union
+            select s.id,s.subject,s.templatetype,s.path from SYS_OFFICE_TEMPLATE s , SYS_SEAL_RIGHT r where  s.id = r.sealId and r.rightType ='org' and rightId in(${orgIds})
+
+			</if>
+			
+			union
+            select s.id,s.subject,s.templatetype,s.path from SYS_OFFICE_TEMPLATE s , SYS_SEAL_RIGHT r where  s.id = r.sealId and r.rightType ='all' 
+
+		) tmp 
+		
+		<include refid="dynamicWhere" />
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		    order by ${orderField} ${orderSeq}
+		</if>
+		
+		<if test="@Ognl@isEmpty(orderField)">
+		    order by ID  desc
+		</if>
+		
+	</select>
+</mapper>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+
+
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+/* demo */
+.demo{width:500px;margin:40px auto;}
+.demo span{display:inline-block;width:240px;}
+.demo span input{padding:3px;width:120px;font-size:12px;font-family:Arial, Helvetica, sans-serif;}
+</style>
+
+
+<div class="demo">
+	<span>获取时分秒：<input type="text" value="" id="" onclick="SelectDate(this,'yyyy-MM-dd hh:mm:ss')"/></span>
+	<span>获取日期：<input type="text" value="" id="" onclick="SelectDate(this,'yyyy-MM-dd')"/></span>
+</div>	
+
+<script type="text/javascript" src="adddate.js" ></script> 
+
+</body>
+</html>

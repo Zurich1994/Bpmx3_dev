@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.FormDefTree">
+	<resultMap id="FormDefTree" type="com.hotent.platform.model.bpm.FormDefTree">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="formDefId" column="FORM_DEF_ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS" jdbcType="VARCHAR"/>
+		<result property="treeId" column="TREE_ID" jdbcType="VARCHAR"/>
+		<result property="parentId" column="PARENT_ID" jdbcType="VARCHAR"/>
+		<result property="displayField" column="DISPLAY_FIELD" jdbcType="VARCHAR"/>
+		<result property="loadType" column="LOAD_TYPE" jdbcType="NUMERIC"/>
+		<result property="rootId" column="ROOT_ID" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,FORM_DEF_ID,NAME,ALIAS,TREE_ID,PARENT_ID,DISPLAY_FIELD,LOAD_TYPE,ROOT_ID
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(formDefId)"> AND FORM_DEF_ID  =#{formDefId} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND ALIAS  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(treeId)"> AND TREE_ID  LIKE #{treeId}  </if>
+			<if test="@Ognl@isNotEmpty(parentId)"> AND PARENT_ID  LIKE #{parentId}  </if>
+			<if test="@Ognl@isNotEmpty(displayField)"> AND DISPLAY_FIELD  LIKE #{displayField}  </if>
+			<if test="@Ognl@isNotEmpty(formDefId)"> AND LOAD_TYPE  =#{loadType} </if>
+			<if test="@Ognl@isNotEmpty(rootId)"> AND ROOT_ID  =#{rootId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.FormDefTree">
+		INSERT INTO form_def_tree
+		(ID,FORM_DEF_ID,NAME,ALIAS,TREE_ID,PARENT_ID,DISPLAY_FIELD,LOAD_TYPE,ROOT_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{formDefId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{treeId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{displayField,jdbcType=VARCHAR},#{loadType,jdbcType=NUMERIC},#{rootId,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM form_def_tree 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByFormDefId" parameterType="java.lang.Long">
+		DELETE FROM form_def_tree 
+		WHERE
+		FORM_DEF_ID=#{formDefId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.FormDefTree">
+		UPDATE form_def_tree SET
+		FORM_DEF_ID=#{formDefId,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		ALIAS=#{alias,jdbcType=VARCHAR},
+		TREE_ID=#{treeId,jdbcType=VARCHAR},
+		PARENT_ID=#{parentId,jdbcType=VARCHAR},
+		DISPLAY_FIELD=#{displayField,jdbcType=VARCHAR},
+		LOAD_TYPE=#{loadType,jdbcType=NUMERIC},
+		ROOT_ID=#{rootId,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FormDefTree">
+		SELECT <include refid="columns"/>
+		FROM form_def_tree
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByFormDefId" parameterType="java.lang.Long" resultMap="FormDefTree">
+		SELECT <include refid="columns"/>
+		FROM form_def_tree
+		WHERE
+		FORM_DEF_ID=#{formDefId}
+	</select>
+	
+	<select id="getByAlias" resultMap="FormDefTree">
+		SELECT <include refid="columns"/>
+		FROM form_def_tree
+		WHERE
+		ALIAS=#{alias}
+	</select>
+	
+	<select id="getAll" resultMap="FormDefTree">
+		SELECT <include refid="columns"/>
+		FROM form_def_tree   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.banking.model.banking.Checkyan">
+	<resultMap id="Checkyan" type="com.hotent.banking.model.banking.Checkyan">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="checkno" column="F_CHECKNO" jdbcType="VARCHAR"/>
+		<result property="userid" column="F_USERID" jdbcType="VARCHAR"/>
+		<result property="account" column="F_ACCOUNT" jdbcType="VARCHAR"/>
+		<result property="fronturl" column="F_FRONTURL" jdbcType="VARCHAR"/>
+		<result property="backurl" column="F_BACKURL" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_CHECKNO,F_USERID,F_ACCOUNT,F_FRONTURL,F_BACKURL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(checkno)"> AND F_CHECKNO  LIKE '%${checkno}%'  </if>
+			<if test="@Ognl@isNotEmpty(userid)"> AND F_USERID  LIKE '%${userid}%'  </if>
+			<if test="@Ognl@isNotEmpty(account)"> AND F_ACCOUNT  LIKE '%${account}%'  </if>
+			<if test="@Ognl@isNotEmpty(fronturl)"> AND F_FRONTURL  LIKE '%${fronturl}%'  </if>
+			<if test="@Ognl@isNotEmpty(backurl)"> AND F_BACKURL  LIKE '%${backurl}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.banking.model.banking.Checkyan">
+		INSERT INTO W_CHECK
+		(ID,
+		F_CHECKNO,F_USERID,F_ACCOUNT,F_FRONTURL,F_BACKURL)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{checkno,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{fronturl,jdbcType=VARCHAR}, #{backurl,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_CHECK 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.banking.model.banking.Checkyan">
+		UPDATE W_CHECK SET
+		F_CHECKNO=#{checkno,jdbcType=VARCHAR},
+		F_USERID=#{userid,jdbcType=VARCHAR},
+		F_ACCOUNT=#{account,jdbcType=VARCHAR},
+		F_FRONTURL=#{fronturl,jdbcType=VARCHAR},
+		F_BACKURL=#{backurl,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Checkyan">
+		SELECT <include refid="columns"/>
+		FROM W_CHECK
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Checkyan">
+		SELECT <include refid="columns"/>
+		FROM W_CHECK   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

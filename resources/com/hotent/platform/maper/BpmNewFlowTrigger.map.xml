@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmNewFlowTrigger">
+	<resultMap id="BpmNewFlowTrigger" type="com.hotent.platform.model.bpm.BpmNewFlowTrigger">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="nodeid" column="nodeId" jdbcType="VARCHAR"/>
+		<result property="action" column="action" jdbcType="VARCHAR"/>
+		<result property="flowkey" column="flowkey" jdbcType="VARCHAR"/>
+		<result property="triggerflowkey" column="triggerflowkey" jdbcType="VARCHAR"/>
+		<result property="triggerflowname" column="triggerflowname" jdbcType="VARCHAR"/>
+		<result property="jsonmaping" column="jsonMaping" jdbcType="VARCHAR"/>
+		<result property="triggerJson" column="triggerjson" jdbcType="VARCHAR"/>
+		<result property="note" column="note" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		id,name,nodeId,action,flowkey,triggerFlowkey,triggerFlowName,jsonMaping,triggerJson,note
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND nodeId  LIKE #{nodeid}  </if>
+			<if test="@Ognl@isNotEmpty(action)"> AND action  LIKE #{action}  </if>
+			<if test="@Ognl@isNotEmpty(flowkey)"> AND flowkey  LIKE #{flowkey}  </if>
+			<if test="@Ognl@isNotEmpty(triggerflowkey)"> AND triggerFlowkey  LIKE #{triggerflowkey}  </if>
+			<if test="@Ognl@isNotEmpty(jsonmaping)"> AND jsonMaping  LIKE #{jsonmaping}  </if>
+			<if test="@Ognl@isNotEmpty(triggerJson)"> AND triggerJson  LIKE #{triggerJson}  </if>
+			<if test="@Ognl@isNotEmpty(note)"> AND note  LIKE #{note}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmNewFlowTrigger">
+		INSERT INTO bpm_newflow_trigger
+		(id,name,nodeId,action,flowkey,triggerFlowkey,triggerflowname,jsonMaping,triggerJson,note)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, #{flowkey,jdbcType=VARCHAR}, #{triggerflowkey,jdbcType=VARCHAR},#{triggerflowname,jdbcType=VARCHAR}, #{jsonmaping,jdbcType=VARCHAR}, #{triggerJson,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM bpm_newflow_trigger 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmNewFlowTrigger">
+		UPDATE bpm_newflow_trigger SET
+		name=#{name,jdbcType=VARCHAR},
+		nodeId=#{nodeid,jdbcType=VARCHAR},
+		action=#{action,jdbcType=VARCHAR},
+		flowkey=#{flowkey,jdbcType=VARCHAR},
+		triggerFlowkey=#{triggerflowkey,jdbcType=VARCHAR},
+		triggerflowname=#{triggerflowname,jdbcType=VARCHAR},
+		jsonMaping=#{jsonmaping,jdbcType=VARCHAR},
+		triggerJson=#{triggerJson,jdbcType=VARCHAR},
+		note=#{note,jdbcType=VARCHAR}
+		WHERE
+		id=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmNewFlowTrigger">
+		SELECT <include refid="columns"/>
+		FROM bpm_newflow_trigger
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmNewFlowTrigger">
+		SELECT <include refid="columns"/>
+		FROM bpm_newflow_trigger   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id
+		</if>
+	</select>
+	
+	<select id="getByFlowkeyNodeId" resultMap="BpmNewFlowTrigger">
+		SELECT <include refid="columns"/>
+		FROM bpm_newflow_trigger   
+		where nodeId = #{nodeId} and flowkey = #{flowkey}
+	</select>
+	
+</mapper>

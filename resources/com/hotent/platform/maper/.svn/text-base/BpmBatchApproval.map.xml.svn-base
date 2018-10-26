@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmBatchApproval">
+	<resultMap id="BpmBatchApproval" type="com.hotent.platform.model.bpm.BpmBatchApproval">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="defKey" column="DEF_KEY" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="NODE_ID" jdbcType="VARCHAR"/>
+		<result property="tableId" column="TABLE_ID" jdbcType="NUMERIC"/>
+		<result property="fieldJson" column="FIELD_JSON" jdbcType="CLOB"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,DEF_KEY,NODE_ID,TABLE_ID,FIELD_JSON
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(defKey)"> AND DEF_KEY  LIKE #{defKey}  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND NODE_ID  LIKE #{nodeId}  </if>
+			<if test="@Ognl@isNotEmpty(tableId)"> AND TABLE_ID  =#{tableId} </if>
+			<if test="@Ognl@isNotEmpty(fieldJson)"> AND FIELD_JSON  LIKE #{fieldJson}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmBatchApproval">
+		INSERT INTO BPM_BATCH_APPROVAL
+		(ID,DEF_KEY,NODE_ID,TABLE_ID,FIELD_JSON)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{defKey,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{tableId,jdbcType=NUMERIC}, #{fieldJson,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_BATCH_APPROVAL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmBatchApproval">
+		UPDATE BPM_BATCH_APPROVAL SET
+		DEF_KEY=#{defKey,jdbcType=VARCHAR},
+		NODE_ID=#{nodeId,jdbcType=VARCHAR},
+		TABLE_ID=#{tableId,jdbcType=NUMERIC},
+		FIELD_JSON=#{fieldJson,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmBatchApproval">
+		SELECT <include refid="columns"/>
+		FROM BPM_BATCH_APPROVAL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmBatchApproval">
+		SELECT <include refid="columns"/>
+		FROM BPM_BATCH_APPROVAL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="isExists" parameterType="java.util.Map" resultMap="BpmBatchApproval">
+		SELECT <include refid="columns"/>
+		FROM BPM_BATCH_APPROVAL
+		WHERE
+		DEF_KEY =#{defKey} and NODE_ID= #{nodeId} 
+			<if test="@Ognl@isNotEmpty(id)">
+				and id != #{id}
+			</if>
+	</select>
+	
+    <sql id="getAllMyTask_Tables">
+	           SELECT task.*,
+	           		run.businessKey businessKey
+	           FROM ACT_RU_TASK task
+	                LEFT JOIN BPM_PRO_RUN run ON task.PROC_INST_ID_ = run.actInstId
+	                LEFT JOIN BPM_DEFINITION def on task.PROC_DEF_ID_=def.actDefId
+	</sql>
+	
+		<!-- 待办事宜  修改该方法 我的待办事宜任务数 getAllMyTaskCount -->
+	<select id="businessKeyList" parameterType="java.util.Map" resultType="java.lang.String">
+		 select businessKey from
+	    (<include refid="getAllMyTask_Tables"/>
+	          WHERE task.ASSIGNEE_ = #{userId} and task.DESCRIPTION_!='39' and def.status!=3  and def.defKey =#{defKey} and task.TASK_DEF_KEY_ =#{nodeId}
+	          
+	         UNION ALL
+	        <include refid="getAllMyTask_Tables"/>
+	           		JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+	          WHERE ident.USER_ID_ = #{userId} 
+	          		and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3  and def.defKey =#{defKey} and task.TASK_DEF_KEY_ =#{nodeId}
+	          		
+	          UNION ALL
+	          
+	           <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'org' and ident.group_id_ in (select uo.orgid from SYS_USER_POS uo  where uo.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3  and def.defKey =#{defKey} and task.TASK_DEF_KEY_ =#{nodeId}
+                
+                UNION ALL
+                
+	           <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'role' and ident.group_id_ in (select ur.roleid from sys_user_role ur where ur.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3  and def.defKey =#{defKey} and task.TASK_DEF_KEY_ =#{nodeId}
+                
+                 UNION ALL
+                 
+	          <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'pos' and ident.group_id_ in (select up.posid from sys_user_pos up where up.userid= #{userId} and up.isdelete=0)
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39'  and def.status!=3  and def.defKey =#{defKey} and task.TASK_DEF_KEY_ =#{nodeId}
+                
+                 UNION ALL
+                 
+	          <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'job' and ident.group_id_ in (select p.jobid from SYS_USER_POS uo inner join sys_pos p on p.posid=uo.posid  where uo.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39'  and def.status!=3  and def.defKey =#{defKey} and task.TASK_DEF_KEY_ =#{nodeId}
+	           )
+	  		  tmp order by tmp.CREATE_TIME_ desc
+	</select>
+	
+</mapper>

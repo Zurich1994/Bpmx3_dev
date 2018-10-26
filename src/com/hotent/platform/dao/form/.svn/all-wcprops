@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/BPMX_2015_WYX/!svn/ver/1693/bpmx_w/src/com/hotent/platform/dao/form
+END
+BpmFormTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/form/BpmFormTemplateDao.java
+END
+BpmFormHandlerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/995/bpmx_w/src/com/hotent/platform/dao/form/BpmFormHandlerDao.java
+END
+BpmFormDefDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/2472/bpmx_w/src/com/hotent/platform/dao/form/BpmFormDefDao.java
+END
+BpmFormDefHiDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/form/BpmFormDefHiDao.java
+END
+BpmFormDialogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/form/BpmFormDialogDao.java
+END
+BpmFormRightsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1003/bpmx_w/src/com/hotent/platform/dao/form/BpmFormRightsDao.java
+END
+BpmDataTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1545/bpmx_w/src/com/hotent/platform/dao/form/BpmDataTemplateDao.java
+END
+BpmFormDialogCombinateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/form/BpmFormDialogCombinateDao.java
+END
+FormDefCombinateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/form/FormDefCombinateDao.java
+END
+BpmFormFieldDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/form/BpmFormFieldDao.java
+END
+BpmPrintTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/968/bpmx_w/src/com/hotent/platform/dao/form/BpmPrintTemplateDao.java
+END
+SubTableSortDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/form/SubTableSortDao.java
+END
+BpmFormRuleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/form/BpmFormRuleDao.java
+END
+BpmFormTableDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/968/bpmx_w/src/com/hotent/platform/dao/form/BpmFormTableDao.java
+END

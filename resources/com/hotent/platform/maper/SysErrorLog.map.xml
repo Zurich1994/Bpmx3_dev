@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysErrorLog">
+	<resultMap id="SysErrorLog" type="com.hotent.platform.model.system.SysErrorLog">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="hashcode" column="HASHCODE" jdbcType="VARCHAR"/>
+		<result property="account" column="ACCOUNT" jdbcType="VARCHAR"/>
+		<result property="ip" column="IP" jdbcType="VARCHAR"/>
+		<result property="errorurl" column="ERRORURL" jdbcType="VARCHAR"/>
+		<result property="error" column="ERROR" jdbcType="CLOB"/>
+		<result property="errordate" column="ERRORDATE" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,HASHCODE,ACCOUNT,IP,ERRORURL,ERROR,ERRORDATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(hashcode)"> AND HASHCODE  LIKE #{hashcode}  </if>
+			<if test="@Ognl@isNotEmpty(account)"> AND ACCOUNT  LIKE #{account}  </if>
+			<if test="@Ognl@isNotEmpty(ip)"> AND IP  LIKE #{ip}  </if>
+			<if test="@Ognl@isNotEmpty(errorurl)"> AND ERRORURL  LIKE #{errorurl}  </if>
+			<if test="@Ognl@isNotEmpty(error)"> AND ERROR  LIKE #{error}  </if>
+			<if test="@Ognl@isNotEmpty(errordate)"> AND ERRORDATE  =#{errordate} </if>
+			<if test="@Ognl@isNotEmpty(beginerrordate)"> AND ERRORDATE  >=#{beginerrordate,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(enderrordate)"> AND ERRORDATE <![CDATA[ <=#{enderrordate,jdbcType=TIMESTAMP}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysErrorLog">
+		INSERT INTO SYS_ERROR_LOG
+		(ID,HASHCODE,ACCOUNT,IP,ERRORURL,ERROR,ERRORDATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{hashcode,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{errorurl,jdbcType=VARCHAR}, #{error,jdbcType=CLOB}, #{errordate,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ERROR_LOG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysErrorLog">
+		UPDATE SYS_ERROR_LOG SET
+		HASHCODE=#{hashcode,jdbcType=VARCHAR},
+		ACCOUNT=#{account,jdbcType=VARCHAR},
+		IP=#{ip,jdbcType=VARCHAR},
+		ERRORURL=#{errorurl,jdbcType=VARCHAR},
+		ERROR=#{error,jdbcType=CLOB},
+		ERRORDATE=#{errordate,jdbcType=TIMESTAMP}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysErrorLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_ERROR_LOG
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysErrorLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_ERROR_LOG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

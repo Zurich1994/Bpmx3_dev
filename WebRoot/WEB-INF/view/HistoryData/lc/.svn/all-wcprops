@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/215/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc
+END
+historyDataLcList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/214/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc/historyDataLcList.jsp
+END
+historyDataLcGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/161/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc/historyDataLcGet.jsp
+END
+historyDataLcDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/161/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc/historyDataLcDetail.jsp
+END
+historyDataLcShowHistory.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/215/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc/historyDataLcShowHistory.jsp
+END
+historyDataLcEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/169/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc/historyDataLcEdit.jsp
+END
+historyDataLcListNew.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/172/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc/historyDataLcListNew.jsp
+END
+historyDataLcModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/161/bpmx_w/WebRoot/WEB-INF/view/HistoryData/lc/historyDataLcModify.jsp
+END

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>BPM X3业务管理移动平台</title>
+<script type="text/javascript">
+	var __ctx="http://localhost:8080/bpm";
+	if(localStorage.getItem("__ctx")!=null){
+		__ctx=localStorage.getItem("__ctx");
+	}
+	var isSetCtx= false;
+</script>
+<link rel="stylesheet" href="mobile/resources/css/sencha-touch.css" />
+<link rel="stylesheet" href="mobile/resources/css/mobile.css" />
+<script type="text/javascript" src="mobile/resources/sencha-touch.gzjs"></script>
+<script type="text/javascript" src="mobile/locale/zh_CN.js"></script>
+<script type="text/javascript" src="mobile/extend/HTExt.js"></script>
+<script type="text/javascript" src="mobile/app/App.js"></script>
+<script type="text/javascript" src="mobile/app/Util.js"></script>
+<script type="text/javascript" src="mobile/app/MenuConfig.js"></script>
+<script type="text/javascript" src="mobile/app/Init.js"></script>
+</head>
+<body>
+</body>
+</html>

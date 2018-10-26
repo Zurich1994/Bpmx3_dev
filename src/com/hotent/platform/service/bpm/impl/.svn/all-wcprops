@@ -1,0 +1,197 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/914/bpmx_w/src/com/hotent/platform/service/bpm/impl
+END
+BpmNodeUserCalculationUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/914/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationUser.java
+END
+BpmNodeUserCalculationSameNodeDepartment.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationSameNodeDepartment.java
+END
+BpmNodeUserCalculationSameJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationSameJob.java
+END
+BpmNodeUserCalculationDirectLeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationDirectLeader.java
+END
+BpmNodeUserCalculationOrg.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationOrg.java
+END
+BpmNodeUserCalculationPrevUserLeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationPrevUserLeader.java
+END
+BpmNodeUserCalculationStartOrPrev.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationStartOrPrev.java
+END
+BpmNodeUserCalculationSameNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/914/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationSameNode.java
+END
+BpmNodeUserCalculationStartOrPrevWithOrg.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationStartOrPrevWithOrg.java
+END
+BpmNodeUserCalculationPrevUserOrgLeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationPrevUserOrgLeader.java
+END
+BpmNodeUserCalculationRole.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationRole.java
+END
+SignComplete.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/914/bpmx_w/src/com/hotent/platform/service/bpm/impl/SignComplete.java
+END
+BpmNodeUserCalculationUpLow.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationUpLow.java
+END
+BpmNodeUserCalculationAssignUsers.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationAssignUsers.java
+END
+BpmNodeUserCalculationUserAttr.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationUserAttr.java
+END
+BpmNodeUserCalculationStartUserLeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationStartUserLeader.java
+END
+BpmNodeUserCalculationFormVar.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationFormVar.java
+END
+BpmNodeUserCalculationApprove.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationApprove.java
+END
+BpmNodeUserCalculationOrgAttr.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationOrgAttr.java
+END
+FlowStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/FlowStatus.java
+END
+BpmNodeUserCalculationPrevTypeUserLeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationPrevTypeUserLeader.java
+END
+BpmNodeUserCalculationPersonScript.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationPersonScript.java
+END
+BpmNodeUserCalculationStartUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/914/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationStartUser.java
+END
+BpmNodeUserUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserUtil.java
+END
+BpmNodeUserCalculationOrgCharge.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationOrgCharge.java
+END
+ScriptImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/914/bpmx_w/src/com/hotent/platform/service/bpm/impl/ScriptImpl.java
+END
+BpmNodeUserCalculationPosition.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationPosition.java
+END
+BpmActService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmActService.java
+END
+BpmNodeUserCalculationScript.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/914/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationScript.java
+END
+BpmNodeUserCalculationSameDepartment.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationSameDepartment.java
+END
+BpmNodeUserCalculationJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationJob.java
+END
+BpmNodeUserCalculationSamePosition.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/impl/BpmNodeUserCalculationSamePosition.java
+END

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysDataSource">
+	<resultMap id="SysDataSource" type="com.hotent.platform.model.system.SysDataSource">
+		<id property="id" column="ID_" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME_" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS_" jdbcType="VARCHAR"/>
+		<result property="dbType" column="DB_TYPE_" jdbcType="VARCHAR"/>
+		<result property="settingJson" column="SETTING_JSON_" jdbcType="CLOB"/>
+		<result property="initOnStart" column="INIT_ON_START_" jdbcType="NUMERIC"/>
+		<result property="enabled" column="ENABLED_" jdbcType="NUMERIC"/>
+		<result property="classPath" column="CLASS_PATH_" jdbcType="VARCHAR"/>
+		<result property="initMethod" column="INIT_METHOD_" jdbcType="VARCHAR"/>
+		<result property="closeMethod" column="CLOSE_METHOD_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID_,NAME_,ALIAS_,DB_TYPE_,SETTING_JSON_,INIT_ON_START_,ENABLED_,CLASS_PATH_,INIT_METHOD_,CLOSE_METHOD_
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID_  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME_  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND ALIAS_  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(dbType)"> AND DB_TYPE_  LIKE #{dbType}  </if>
+			<if test="@Ognl@isNotEmpty(settingJson)"> AND SETTING_JSON_  LIKE #{settingJson}  </if>
+			<if test="@Ognl@isNotEmpty(initOnStart)"> AND INIT_ON_START_  =#{initOnStart} </if>
+			<if test="@Ognl@isNotEmpty(enabled)"> AND ENABLED_  =#{enabled} </if>
+			<if test="@Ognl@isNotEmpty(classPath)"> AND CLASS_PATH_  LIKE #{classPath}  </if>
+			<if test="@Ognl@isNotEmpty(initMethod)"> AND INIT_METHOD_  LIKE #{initMethod}  </if>
+			<if test="@Ognl@isNotEmpty(closeMethod)"> AND CLOSE_METHOD_  LIKE #{closeMethod}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysDataSource">
+		INSERT INTO SYS_DATA_SOURCE
+		(ID_,NAME_,ALIAS_,DB_TYPE_,SETTING_JSON_,INIT_ON_START_,ENABLED_,CLASS_PATH_,INIT_METHOD_,CLOSE_METHOD_)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{dbType,jdbcType=VARCHAR}, #{settingJson,jdbcType=CLOB}, #{initOnStart,jdbcType=NUMERIC}, #{enabled,jdbcType=NUMERIC}, #{classPath,jdbcType=VARCHAR}, #{initMethod,jdbcType=VARCHAR}, #{closeMethod,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_DATA_SOURCE 
+		WHERE
+		ID_=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysDataSource">
+		UPDATE SYS_DATA_SOURCE SET
+		NAME_=#{name,jdbcType=VARCHAR},
+		ALIAS_=#{alias,jdbcType=VARCHAR},
+		DB_TYPE_=#{dbType,jdbcType=VARCHAR},
+		SETTING_JSON_=#{settingJson,jdbcType=CLOB},
+		INIT_ON_START_=#{initOnStart,jdbcType=NUMERIC},
+		ENABLED_=#{enabled,jdbcType=NUMERIC},
+		CLASS_PATH_=#{classPath,jdbcType=VARCHAR},
+		INIT_METHOD_=#{initMethod,jdbcType=VARCHAR},
+		CLOSE_METHOD_=#{closeMethod,jdbcType=VARCHAR}
+		WHERE
+		ID_=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysDataSource">
+		SELECT <include refid="columns"/>
+		FROM SYS_DATA_SOURCE
+		WHERE
+		ID_=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysDataSource">
+		SELECT <include refid="columns"/>
+		FROM SYS_DATA_SOURCE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID_  desc
+		</if>
+	</select>
+	
+	<select id="getByAlias" parameterType="String" resultMap="SysDataSource">
+		SELECT <include refid="columns"/>
+		FROM sys_data_source
+		WHERE  ALIAS_ = #{ALIAS}
+	</select>
+</mapper>

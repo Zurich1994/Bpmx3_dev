@@ -1,0 +1,245 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core
+END
+StringPool.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/StringPool.java
+END
+QueryConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/QueryConstants.java
+END
+BpmFormTableIndex.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/BpmFormTableIndex.java
+END
+ConfigUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/ConfigUtil.java
+END
+AppConfigUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/AppConfigUtil.java
+END
+Dialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/Dialect.java
+END
+QueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/QueryFilter.java
+END
+Dom4jUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/Dom4jUtil.java
+END
+ColumnModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/ColumnModel.java
+END
+DateFormatUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/DateFormatUtil.java
+END
+BeanUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/BeanUtils.java
+END
+RequestUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/RequestUtil.java
+END
+BaseMyBatisDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/BaseMyBatisDao.java
+END
+BaseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/BaseService.java
+END
+IbatisSql.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/IbatisSql.java
+END
+FieldTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/FieldTable.java
+END
+FieldSort.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/FieldSort.java
+END
+GenericService.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/GenericService.java
+END
+PageUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/PageUtils.java
+END
+BaseDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/BaseDao.java
+END
+XmlDateAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/XmlDateAdapter.java
+END
+GenericDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/GenericDao.java
+END
+PageBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/PageBean.java
+END
+StringUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/StringUtil.java
+END
+TableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/TableModel.java
+END
+SqlTypeConst.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/SqlTypeConst.java
+END
+IEntityDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/IEntityDao.java
+END
+ITableOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/ITableOperator.java
+END
+FileUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/FileUtil.java
+END
+BaseController.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/BaseController.java
+END
+AppUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/AppUtil.java
+END
+GenericController.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/GenericController.java
+END
+FreemarkEngine.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/FreemarkEngine.java
+END
+OnlineUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/OnlineUser.java
+END
+DynamicDataSourceCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/DynamicDataSourceCache.java
+END
+ResultMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/ResultMessage.java
+END
+Base64.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/Base64.java
+END
+FieldTableUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/FieldTableUtil.java
+END
+BaseModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/BaseModel.java
+END
+TimeUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/core/TimeUtil.java
+END

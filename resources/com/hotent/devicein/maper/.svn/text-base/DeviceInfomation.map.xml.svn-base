@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.devicein.model.deviceinpack.DeviceInfomation">
+	<resultMap id="DeviceInfomation" type="com.hotent.devicein.model.deviceinpack.DeviceInfomation">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="dev_id" column="F_DEV_ID" jdbcType="VARCHAR"/>
+		<result property="dev_Name" column="F_DEV_NAME" jdbcType="VARCHAR"/>
+		<result property="room_ID" column="F_ROOM_ID" jdbcType="VARCHAR"/>
+		<result property="cabinet_num" column="F_CABINET_NUM" jdbcType="VARCHAR"/>
+		<result property="sbgs" column="F_SBGS" jdbcType="VARCHAR"/>
+		<result property="dev_type" column="F_DEV_TYPE" jdbcType="VARCHAR"/>
+		<result property="dev_brand" column="F_DEV_BRAND" jdbcType="VARCHAR"/>
+		<result property="dev_model" column="F_DEV_MODEL" jdbcType="VARCHAR"/>
+		<result property="dev_sequence" column="F_DEV_SEQUENCE" jdbcType="VARCHAR"/>
+		<result property="dev_config" column="F_DEV_CONFIG" jdbcType="CLOB"/>
+		<result property="fun_Info" column="F_FUN_INFO" jdbcType="CLOB"/>
+		<result property="state" column="F_STATE" jdbcType="VARCHAR"/>
+		<result property="exFactory_Date" column="F_EXFACTORY_DATE" jdbcType="DATE"/>
+		<result property="using_Date" column="F_USING_DATE" jdbcType="DATE"/>
+		<result property="retirement_Date" column="F_RETIREMENT_DATE" jdbcType="DATE"/>
+		<result property="responsible_Person" column="F_RESPONSIBLE_PERSON" jdbcType="VARCHAR"/>
+		<result property="contact" column="F_CONTACT" jdbcType="VARCHAR"/>
+		<result property="project_Name" column="F_PROJECT_NAME" jdbcType="VARCHAR"/>
+		<result property="insert_Time" column="F_INSERT_TIME" jdbcType="DATE"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+		<result property="actdefid" column="F_ACTDEFID" jdbcType="VARCHAR"/>
+		<result property="nodeid" column="F_NODEID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ID,F_DEV_ID,F_DEV_NAME,F_ROOM_ID,F_CABINET_NUM,F_SBGS,F_DEV_TYPE,F_DEV_BRAND,F_DEV_MODEL,F_DEV_SEQUENCE,F_DEV_CONFIG,F_FUN_INFO,F_STATE,F_EXFACTORY_DATE,F_USING_DATE,F_RETIREMENT_DATE,F_RESPONSIBLE_PERSON,F_CONTACT,F_PROJECT_NAME,F_INSERT_TIME,F_REMARK,F_ACTDEFID,F_NODEID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(dev_id)"> AND F_DEV_ID  LIKE '%${dev_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(dev_Name)"> AND F_DEV_NAME  LIKE '%${dev_Name}%'  </if>
+			<if test="@Ognl@isNotEmpty(room_ID)"> AND F_ROOM_ID  LIKE '%${room_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(cabinet_num)"> AND F_CABINET_NUM  LIKE '%${cabinet_num}%'  </if>
+			<if test="@Ognl@isNotEmpty(sbgs)"> AND F_SBGS  LIKE '%${sbgs}%'  </if>
+			<if test="@Ognl@isNotEmpty(dev_type)"> AND F_DEV_TYPE  LIKE '%${dev_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(dev_brand)"> AND F_DEV_BRAND  LIKE '%${dev_brand}%'  </if>
+			<if test="@Ognl@isNotEmpty(dev_model)"> AND F_DEV_MODEL  LIKE '%${dev_model}%'  </if>
+			<if test="@Ognl@isNotEmpty(dev_sequence)"> AND F_DEV_SEQUENCE  LIKE '%${dev_sequence}%'  </if>
+			<if test="@Ognl@isNotEmpty(dev_config)"> AND F_DEV_CONFIG  =#{dev_config} </if>
+			<if test="@Ognl@isNotEmpty(fun_Info)"> AND F_FUN_INFO  =#{fun_Info} </if>
+			<if test="@Ognl@isNotEmpty(state)"> AND F_STATE  LIKE '%${state}%'  </if>
+			<if test="@Ognl@isNotEmpty(exFactory_Date)"> AND F_EXFACTORY_DATE  =#{exFactory_Date} </if>
+			<if test="@Ognl@isNotEmpty(beginexFactory_Date)"> AND F_EXFACTORY_DATE  >=#{beginexFactory_Date,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endexFactory_Date)"> AND F_EXFACTORY_DATE <![CDATA[ <=#{endexFactory_Date,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(using_Date)"> AND F_USING_DATE  =#{using_Date} </if>
+			<if test="@Ognl@isNotEmpty(beginusing_Date)"> AND F_USING_DATE  >=#{beginusing_Date,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endusing_Date)"> AND F_USING_DATE <![CDATA[ <=#{endusing_Date,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(retirement_Date)"> AND F_RETIREMENT_DATE  =#{retirement_Date} </if>
+			<if test="@Ognl@isNotEmpty(beginretirement_Date)"> AND F_RETIREMENT_DATE  >=#{beginretirement_Date,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endretirement_Date)"> AND F_RETIREMENT_DATE <![CDATA[ <=#{endretirement_Date,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(responsible_Person)"> AND F_RESPONSIBLE_PERSON  LIKE '%${responsible_Person}%'  </if>
+			<if test="@Ognl@isNotEmpty(contact)"> AND F_CONTACT  LIKE '%${contact}%'  </if>
+			<if test="@Ognl@isNotEmpty(project_Name)"> AND F_PROJECT_NAME  LIKE '%${project_Name}%'  </if>
+			<if test="@Ognl@isNotEmpty(insert_Time)"> AND F_INSERT_TIME  =#{insert_Time} </if>
+			<if test="@Ognl@isNotEmpty(begininsert_Time)"> AND F_INSERT_TIME  >=#{begininsert_Time,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endinsert_Time)"> AND F_INSERT_TIME <![CDATA[ <=#{endinsert_Time,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+			<if test="@Ognl@isNotEmpty(actdefid)"> AND F_ACTDEFID  LIKE '%${actdefid}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND F_NODEID  LIKE '%${nodeid}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.devicein.model.deviceinpack.DeviceInfomation">
+		INSERT INTO W_DEVICE_INFOMATION
+		(ID,
+		F_ID,F_DEV_ID,F_DEV_NAME,F_ROOM_ID,F_CABINET_NUM,F_SBGS,F_DEV_TYPE,F_DEV_BRAND,F_DEV_MODEL,F_DEV_SEQUENCE,F_DEV_CONFIG,F_FUN_INFO,F_STATE,F_EXFACTORY_DATE,F_USING_DATE,F_RETIREMENT_DATE,F_RESPONSIBLE_PERSON,F_CONTACT,F_PROJECT_NAME,F_INSERT_TIME,F_REMARK,F_ACTDEFID,F_NODEID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{id,jdbcType=NUMERIC}, #{dev_id,jdbcType=VARCHAR}, #{dev_Name,jdbcType=VARCHAR}, #{room_ID,jdbcType=VARCHAR}, #{cabinet_num,jdbcType=VARCHAR}, #{sbgs,jdbcType=VARCHAR}, #{dev_type,jdbcType=VARCHAR}, #{dev_brand,jdbcType=VARCHAR}, #{dev_model,jdbcType=VARCHAR}, #{dev_sequence,jdbcType=VARCHAR}, #{dev_config,jdbcType=CLOB}, #{fun_Info,jdbcType=CLOB}, #{state,jdbcType=VARCHAR}, #{exFactory_Date,jdbcType=DATE}, #{using_Date,jdbcType=DATE}, #{retirement_Date,jdbcType=DATE}, #{responsible_Person,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{project_Name,jdbcType=VARCHAR}, #{insert_Time,jdbcType=DATE}, #{remark,jdbcType=CLOB}, #{actdefid,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_INFOMATION 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.devicein.model.deviceinpack.DeviceInfomation">
+		UPDATE W_DEVICE_INFOMATION SET
+		F_ID=#{id,jdbcType=NUMERIC},
+		F_DEV_ID=#{dev_id,jdbcType=VARCHAR},
+		F_DEV_NAME=#{dev_Name,jdbcType=VARCHAR},
+		F_ROOM_ID=#{room_ID,jdbcType=VARCHAR},
+		F_CABINET_NUM=#{cabinet_num,jdbcType=VARCHAR},
+		F_SBGS=#{sbgs,jdbcType=VARCHAR},
+		F_DEV_TYPE=#{dev_type,jdbcType=VARCHAR},
+		F_DEV_BRAND=#{dev_brand,jdbcType=VARCHAR},
+		F_DEV_MODEL=#{dev_model,jdbcType=VARCHAR},
+		F_DEV_SEQUENCE=#{dev_sequence,jdbcType=VARCHAR},
+		F_DEV_CONFIG=#{dev_config,jdbcType=CLOB},
+		F_FUN_INFO=#{fun_Info,jdbcType=CLOB},
+		F_STATE=#{state,jdbcType=VARCHAR},
+		F_EXFACTORY_DATE=#{exFactory_Date,jdbcType=DATE},
+		F_USING_DATE=#{using_Date,jdbcType=DATE},
+		F_RETIREMENT_DATE=#{retirement_Date,jdbcType=DATE},
+		F_RESPONSIBLE_PERSON=#{responsible_Person,jdbcType=VARCHAR},
+		F_CONTACT=#{contact,jdbcType=VARCHAR},
+		F_PROJECT_NAME=#{project_Name,jdbcType=VARCHAR},
+		F_INSERT_TIME=#{insert_Time,jdbcType=DATE},
+		F_REMARK=#{remark,jdbcType=CLOB},
+		F_ACTDEFID=#{actdefid,jdbcType=VARCHAR},
+		F_NODEID=#{nodeid,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceInfomation">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_INFOMATION
+		WHERE
+		ID=#{id}
+	</select>
+	<!-- 多条件查询zl-->
+	<parameterMap type="java.util.HashMap" id="manyParameters">   
+    <parameter property="actdefid" javaType="String" jdbcType="VARCHAR" />   
+    <parameter property="nodeid" javaType="String" jdbcType="VARCHAR" />   
+	</parameterMap>   
+	<select id="getByNodeIdANDActdefId" parameterMap="manyParameters" resultMap="DeviceInfomation">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_INFOMATION
+		WHERE
+		F_ACTDEFID=#{actdefid} and F_NODEID=#{nodeid}
+	</select>
+	<select id="getAll" resultMap="DeviceInfomation">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_INFOMATION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

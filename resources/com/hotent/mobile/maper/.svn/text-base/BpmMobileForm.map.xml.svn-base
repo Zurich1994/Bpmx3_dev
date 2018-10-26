@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.mobile.model.form.BpmMobileForm">
+	<resultMap id="BpmMobileForm" type="com.hotent.mobile.model.form.BpmMobileForm">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="formId" column="FORMID" jdbcType="NUMERIC"/>
+		<result property="formKey" column="FORMKEY" jdbcType="NUMERIC"/>
+		<result property="html" column="HTML" jdbcType="CLOB"/>
+		<result property="template" column="TEMPLATE" jdbcType="CLOB"/>
+		<result property="formJson" column="FORMJSON" jdbcType="CLOB"/>
+		<result property="isDefault" column="ISDEFAULT" jdbcType="NUMERIC"/>
+		<result property="guid" column="GUID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,FORMID,FORMKEY,HTML,TEMPLATE,FORMJSON,ISDEFAULT,GUID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(formId)"> AND FORMID  =#{formId} </if>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND FORMKEY  =#{formKey} </if>
+			<if test="@Ognl@isNotEmpty(html)"> AND HTML  LIKE #{html}  </if>
+			<if test="@Ognl@isNotEmpty(template)"> AND TEMPLATE  LIKE #{template}  </if>
+			<if test="@Ognl@isNotEmpty(formJson)"> AND FORMJSON  LIKE #{formJson}  </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND ISDEFAULT  =#{isDefault} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.mobile.model.form.BpmMobileForm">
+		INSERT INTO BPM_MOBILE_FORM
+		(ID,FORMID,FORMKEY,HTML,TEMPLATE,FORMJSON,ISDEFAULT,GUID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{formId,jdbcType=NUMERIC}, #{formKey,jdbcType=NUMERIC}, #{html,jdbcType=CLOB}, #{template,jdbcType=CLOB}, #{formJson,jdbcType=CLOB}, #{isDefault,jdbcType=NUMERIC}, #{guid,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_MOBILE_FORM 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.mobile.model.form.BpmMobileForm">
+		UPDATE BPM_MOBILE_FORM SET
+		FORMID=#{formId,jdbcType=NUMERIC},
+		FORMKEY=#{formKey,jdbcType=NUMERIC},
+		HTML=#{html,jdbcType=CLOB},
+		TEMPLATE=#{template,jdbcType=CLOB},
+		FORMJSON=#{formJson,jdbcType=CLOB},
+		ISDEFAULT=#{isDefault,jdbcType=NUMERIC},
+		GUID=#{guid,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmMobileForm">
+		SELECT <include refid="columns"/>
+		FROM BPM_MOBILE_FORM
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmMobileForm">
+		SELECT <include refid="columns"/>
+		FROM BPM_MOBILE_FORM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByMap" resultMap="BpmMobileForm">
+		SELECT <include refid="columns"/>
+		FROM BPM_MOBILE_FORM
+		<where>
+			<if test="@Ognl@isNotEmpty(formId)"> AND FORMID  =#{formId} </if>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND FORMKEY  =#{formKey} </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND ISDEFAULT  =#{isDefault} </if>
+		</where>
+		
+	</select>
+	
+	<select id="getByFormId" resultMap="BpmMobileForm">
+		SELECT <include refid="columns"/>
+		FROM BPM_MOBILE_FORM
+		WHERE
+		 formId = #{formId}
+	</select>
+	
+
+	<select id="getDefaultVersionByFormKey" parameterType="String" resultMap="BpmMobileForm">
+		SELECT <include refid="columns"/>
+		FROM BPM_MOBILE_FORM
+		WHERE
+		FORMKEY = #{formKey}
+		AND ISDEFAULT = 1
+	</select>
+	
+	
+	<select id="getByActDefId" resultMap="BpmMobileForm">
+		SELECT 
+	    	B.*
+		FROM 
+		    BPM_MOBILE_FORM B ,BPM_NODE_SET C 
+		WHERE 
+		    B.FORMKEY=C.MOBILEFORMKEY 
+		    AND C.ACTDEFID=#{actDefId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getByActDefIdAndNodeId" resultMap="BpmMobileForm">
+		SELECT 
+	    	B.*
+		FROM 
+		    BPM_MOBILE_FORM B ,BPM_NODE_SET C 
+		WHERE 
+		    B.FORMKEY=C.MOBILEFORMKEY 
+		    AND C.ACTDEFID=#{actDefId,jdbcType=VARCHAR}
+		    AND C.NODEID=#{nodeId,jdbcType=VARCHAR}
+	</select>
+	<select id="getByActDefIdAndSetType" resultMap="BpmMobileForm">
+		SELECT 
+	    	B.*
+		FROM 
+		    BPM_MOBILE_FORM B ,BPM_NODE_SET C 
+		WHERE 
+		    B.FORMKEY=C.MOBILEFORMKEY 
+		    AND C.ACTDEFID=#{actDefId,jdbcType=VARCHAR}
+		    AND C.SETTYPE=#{setType,jdbcType=NUMERIC}
+	</select>
+</mapper>

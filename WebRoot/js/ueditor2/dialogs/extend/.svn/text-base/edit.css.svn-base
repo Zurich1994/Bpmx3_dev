@@ -1,0 +1,157 @@
+
+.edit_table {
+	padding: 0;
+    margin: 0;
+    border-collapse:collapse;
+    width:100%;
+}
+
+.edit_table th {
+	width: 90px;
+	font-size: 13px;	
+	border: 1px solid #999;  
+    background: #8EC2F2;
+    font-size:13px;
+    padding: 6px 6px 6px 12px;
+}
+
+.edit_table td{
+	border: 1px solid #999;  
+    background: #fff;
+    font-size:12px;
+    padding: 6px 6px 6px 12px;
+}
+
+.edit_table label{
+    padding-left: 15px;
+    text-indent: -15px;
+    cursor:pointer;
+}
+
+.edit_table label input{
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+
+.edit_table input {
+	width: 175px;
+	padding:2px;
+}
+
+.edit_table select {
+	width: 150px;
+	padding:2px;
+}
+
+.hidden {
+	display: none;
+}
+
+.button-td{
+	background: url("../../themes/default/images/icons-all.gif") no-repeat
+		scroll 0 0 transparent;
+	display: inline-block !important;
+	position: relative;
+	vertical-align: top;
+	border: medium none;	
+	height: 24px;
+	font-size:12px;
+	line-height: 24px;
+	text-align: center;
+	width: 95px;
+	float: right;
+	cursor:default;
+	margin:2px 20px 2px 2px;
+}
+
+.button-td-left{
+	float: left;
+	margin:2px;
+}
+
+.button-td-hover{
+	background-position: 0 -30px;
+}
+.dbformat_td{
+	font-size:12px;
+}
+
+.s{ 
+  box-shadow: 0 0 5px #CCCCCC;
+}
+.o{
+  padding: 10px;
+}
+#table-reminder{
+  border-collapse:collapse;
+  font-size: 13px;
+  width: 100%;
+}
+#table-reminder thead tr td{
+  border-top: 1px solid #CCCCCC;
+  overflow: hidden;
+  padding: 10px;
+}
+#option-table{
+  border-collapse:collapse;
+  font-size: 13px;
+  width: 100%;
+  border-left: 1px solid #CCCCCC;
+}
+#option-table thead tr td{
+  border-top: 1px solid #CCCCCC;
+  overflow: hidden;
+  padding: 10px;
+  background: #e6e6e6
+}
+.noramlTr td{
+  cursor: pointer;
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+  overflow: hidden;
+  padding: 7px;
+  white-space: pre;
+}
+.editable-tr td{
+  border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    overflow: hidden;
+    height: 31px;
+}
+.editable-left-div{
+  overflow:hidden;
+  width:330px;
+  height:31px;
+  line-height:31px;
+}
+.editable-right-div{
+  width:40px;
+  overflow:hidden;
+  height:31px;
+  line-height:31px;
+  float:left;
+}
+.hover{
+  background: #D4D4D4;
+}
+.remove-bnt{
+  margin-left: 14px;
+  text-decoration: none;
+}
+#panel input.short{
+  width:60px;
+  height:21px;
+}
+#panel input.long{
+  height:21px;
+  width:150px;
+}
+#panel{
+  margin:8px;
+}

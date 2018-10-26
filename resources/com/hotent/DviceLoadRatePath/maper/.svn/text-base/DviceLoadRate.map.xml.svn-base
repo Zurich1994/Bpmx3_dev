@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.DviceLoadRatePath.model.DviceLoadRateCode.DviceLoadRate">
+	<resultMap id="DviceLoadRate" type="com.hotent.DviceLoadRatePath.model.DviceLoadRateCode.DviceLoadRate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="node_dev_id" column="F_NODE_DEV_ID" jdbcType="NUMERIC"/>
+		<result property="active_start" column="F_ACTIVE_START" jdbcType="NUMERIC"/>
+		<result property="load_type" column="F_LOAD_TYPE" jdbcType="VARCHAR"/>
+		<result property="load_value" column="F_LOAD_VALUE" jdbcType="NUMERIC"/>
+		<result property="load_info" column="F_LOAD_INFO" jdbcType="VARCHAR"/>
+		<result property="load_use_rate" column="F_LOAD_USE_RATE" jdbcType="NUMERIC"/>
+		<result property="a" column="F_A" jdbcType="VARCHAR"/>
+		<result property="b" column="F_B" jdbcType="VARCHAR"/>
+		<result property="c" column="F_C" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_NODE_DEV_ID,F_ACTIVE_START,F_LOAD_TYPE,F_LOAD_VALUE,F_LOAD_INFO,F_LOAD_USE_RATE,F_A,F_B,F_C
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(node_dev_id)"> AND F_NODE_DEV_ID  =#{node_dev_id} </if>
+			<if test="@Ognl@isNotEmpty(active_start)"> AND F_ACTIVE_START  =#{active_start} </if>
+			<if test="@Ognl@isNotEmpty(load_type)"> AND F_LOAD_TYPE  LIKE '%${load_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(load_value)"> AND F_LOAD_VALUE  =#{load_value} </if>
+			<if test="@Ognl@isNotEmpty(load_info)"> AND F_LOAD_INFO  LIKE '%${load_info}%'  </if>
+			<if test="@Ognl@isNotEmpty(load_use_rate)"> AND F_LOAD_USE_RATE  =#{load_use_rate} </if>
+			<if test="@Ognl@isNotEmpty(a)"> AND F_A  LIKE '%${a}%'  </if>
+			<if test="@Ognl@isNotEmpty(b)"> AND F_B  LIKE '%${b}%'  </if>
+			<if test="@Ognl@isNotEmpty(c)"> AND F_C  LIKE '%${c}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.DviceLoadRatePath.model.DviceLoadRateCode.DviceLoadRate">
+		INSERT INTO W_DVICE_LOAD_RATE
+		(ID,
+		F_NODE_DEV_ID,F_ACTIVE_START,F_LOAD_TYPE,F_LOAD_VALUE,F_LOAD_INFO,F_LOAD_USE_RATE,F_A,F_B,F_C)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{node_dev_id,jdbcType=NUMERIC}, #{active_start,jdbcType=NUMERIC}, #{load_type,jdbcType=VARCHAR}, #{load_value,jdbcType=NUMERIC}, #{load_info,jdbcType=VARCHAR}, #{load_use_rate,jdbcType=NUMERIC}, #{a,jdbcType=VARCHAR}, #{b,jdbcType=VARCHAR}, #{c,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DVICE_LOAD_RATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.DviceLoadRatePath.model.DviceLoadRateCode.DviceLoadRate">
+		UPDATE W_DVICE_LOAD_RATE SET
+		F_NODE_DEV_ID=#{node_dev_id,jdbcType=NUMERIC},
+		F_ACTIVE_START=#{active_start,jdbcType=NUMERIC},
+		F_LOAD_TYPE=#{load_type,jdbcType=VARCHAR},
+		F_LOAD_VALUE=#{load_value,jdbcType=NUMERIC},
+		F_LOAD_INFO=#{load_info,jdbcType=VARCHAR},
+		F_LOAD_USE_RATE=#{load_use_rate,jdbcType=NUMERIC},
+		F_A=#{a,jdbcType=VARCHAR},
+		F_B=#{b,jdbcType=VARCHAR},
+		F_C=#{c,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DviceLoadRate">
+		SELECT <include refid="columns"/>
+		FROM W_DVICE_LOAD_RATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DviceLoadRate">
+		SELECT <include refid="columns"/>
+		FROM W_DVICE_LOAD_RATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

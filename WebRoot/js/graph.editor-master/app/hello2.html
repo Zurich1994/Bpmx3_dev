@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Qunee</title>
+    <link rel=stylesheet href=http://demo.qunee.com/editor/libs/bootstrap/css/bootstrap.css>
+    <link rel=stylesheet href=http://demo.qunee.com/editor/libs/graph.editor/graph.editor.css>
+</head>
+<body class="layout">
+<div id="editor" data-options="region:'center'"></div>
+<script src="src/common/PopupMenu.js"></script>
+<script src="http://demo.qunee.com/editor/libs/js.js"></script>
+<script src="http://demo.qunee.com/lib/qunee-min.js?v=1.8"></script>
+<script src="http://demo.qunee.com/editor/libs/graph.editor/graph.editor.js"></script>
+<script>
+   		var json={"version":"2.0","datas":[{"_className":"Q.Node","_refId":"1","json":{"location":{"y":90,"x":210},"name":"开始"}},{"_className":"Q.Node","_refId":"2","json":{"location":{"y":290,"x":110},"name":"结束"}},{"_className":"Q.Node","_refId":"3","json":{"location":{"y":200,"x":370},"name":"发送短信服务"}},{"_className":"Q.Node","_refId":"4","json":{"location":{"y":300,"x":420},"name":"接收短信服务"}},{"_className":"Q.Node","_refId":"5","json":{"location":{"y":200,"x":190},"name":"发邮件服务"}},{"_className":"Q.Node","_refId":"6","json":{"location":{"y":300,"x":270},"name":"收邮件服务"}},{"_className":"Q.Node","_refId":"7","json":{"location":{"y":130,"x":490},"name":"加载地图服务"}},{"_className":"Q.Node","_refId":"8","json":{"location":{"y":220,"x":690},"name":"计算显示路线服务"}},{"_className":"Q.Node","_refId":"9","json":{"location":{"y":340,"x":650},"name":"定位服务"}},{"_className":"Q.Node","_refId":"10","json":{"location":{"y":100,"x":390},"name":"ftp上传服务"}},{"_className":"Q.Node","_refId":"11","json":{"location":{"y":220,"x":530},"name":"ftp下载服务"}},{"_className":"Q.Node","_refId":"12","json":{"location":{"y":60,"x":700},"name":"查询数据"}},{"_className":"Q.Node","_refId":"13","json":{"location":{"y":150,"x":900},"name":"增加数据"}},{"_className":"Q.Edge","_refId":"edge_1","json":{"to":{"_ref":10},"name":"","from":{"_ref":1}}},{"_className":"Q.Edge","_refId":"edge_2","json":{"to":{"_ref":7},"name":"","from":{"_ref":10}}},{"_className":"Q.Edge","_refId":"edge_3","json":{"to":{"_ref":12},"name":"","from":{"_ref":7}}},{"_className":"Q.Edge","_refId":"edge_4","json":{"to":{"_ref":13},"name":"","from":{"_ref":12}}},{"_className":"Q.Edge","_refId":"edge_5","json":{"to":{"_ref":8},"name":"","from":{"_ref":13}}},{"_className":"Q.Edge","_refId":"edge_6","json":{"to":{"_ref":9},"name":"","from":{"_ref":8}}},{"_className":"Q.Edge","_refId":"edge_7","json":{"to":{"_ref":11},"name":"","from":{"_ref":9}}},{"_className":"Q.Edge","_refId":"edge_8","json":{"to":{"_ref":4},"name":"","from":{"_ref":11}}},{"_className":"Q.Edge","_refId":"edge_9","json":{"to":{"_ref":3},"name":"","from":{"_ref":4}}},{"_className":"Q.Edge","_refId":"edge_10","json":{"to":{"_ref":6},"name":"","from":{"_ref":3}}},{"_className":"Q.Edge","_refId":"edge_11","json":{"to":{"_ref":5},"name":"","from":{"_ref":6}}},{"_className":"Q.Edge","_refId":"edge_12","json":{"to":{"_ref":2},"name":"","from":{"_ref":5}}}],"scale":1,"tx":200,"ty":200}
+    $('#editor').graphEditor({callback: function(editor){
+        var graph = editor.graph;
+        //var hello = graph.createNode("Hello", -100, -50);
+        
+        //hello.image = Q.Graphs.server;
+        //var qunee = graph.createNode("Qunee", 100, 50);
+        //var edge = graph.createEdge("Hello\nQunee", hello, qunee);
+      graph.parseJSON(json);
+        //graph.moveToCenter();
+    }});
+</script>
+</body>
+</html>

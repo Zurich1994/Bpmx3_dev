@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.extform.PersonData">
+	<resultMap id="PersonData" type="com.hotent.platform.model.extform.PersonData">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="username" column="USERNAME" jdbcType="VARCHAR"/>
+		<result property="idcard" column="IDCARD" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		id,USERNAME,IDCARD
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(username)"> AND USERNAME  LIKE #{username}  </if>
+			<if test="@Ognl@isNotEmpty(idcard)"> AND IDCARD  LIKE #{idcard}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.extform.PersonData">
+		INSERT INTO PERSON_DATA
+		(id,USERNAME,IDCARD)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PERSON_DATA 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.extform.PersonData">
+		UPDATE PERSON_DATA SET
+		USERNAME=#{username,jdbcType=VARCHAR},
+		IDCARD=#{idcard,jdbcType=VARCHAR}
+		WHERE
+		id=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PersonData">
+		SELECT <include refid="columns"/>
+		FROM PERSON_DATA
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="PersonData">
+		SELECT <include refid="columns"/>
+		FROM PERSON_DATA   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+</mapper>

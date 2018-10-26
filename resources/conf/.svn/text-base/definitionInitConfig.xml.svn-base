@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeners>
+	<listener id="scriptTask" class="com.hotent.platform.service.bpm.ScriptTask"></listener>
+	<listener id="startEventListener" class="com.hotent.platform.service.bpm.listener.StartEventListener"></listener>
+	<listener id="endEventListener" class="com.hotent.platform.service.bpm.listener.EndEventListener"></listener>
+	<listener id="subProcessStartListener" class="com.hotent.platform.service.bpm.listener.SubProcessStartListener"></listener>
+	<listener id="subProcessEndListener" class="com.hotent.platform.service.bpm.listener.SubProcessEndListener"></listener>
+	<listener id="taskCreateListener" class="com.hotent.platform.service.bpm.listener.TaskCreateListener"></listener>
+	<listener id="taskAssignListener" class="com.hotent.platform.service.bpm.listener.TaskAssignListener"></listener>
+	<listener id="taskCompleteListener" class="com.hotent.platform.service.bpm.listener.TaskCompleteListener"></listener>
+	<listener id="autoTaskListener" class="com.hotent.platform.service.bpm.listener.AutoTaskListener"></listener>
+	<listener id="messageTask" class="com.hotent.platform.service.bpm.MessageTask"></listener>
+	<listener id="webServiceTask" class="com.hotent.platform.service.bpm.WebServiceTask"></listener>
+	<listener id="taskSignCreateListener" class="com.hotent.platform.service.bpm.listener.TaskSignCreateListener"></listener>
+	<listener id="callSubProcessStartListener" class="com.hotent.platform.service.bpm.listener.CallSubProcessStartListener"></listener>
+	<listener id="callSubProcessEndListener" class="com.hotent.platform.service.bpm.listener.CallSubProcessEndListener"></listener>
+</listeners>

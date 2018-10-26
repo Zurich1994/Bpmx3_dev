@@ -1,0 +1,27 @@
+/*头部按钮图片*/
+
+.t-btn-a1{
+	background-image:url('head-btn/t-btn1.png');
+}
+.t-btn-a2{
+	background-image:url('head-btn/t-btn2.png');
+}
+.t-btn-a3{
+	background-image:url('head-btn/t-btn3.png');
+}
+.t-btn-a4
+{
+	background-image:url('head-btn/t_del.png');
+}
+.t-btn-a5
+{
+	background-image:url('head-btn/t-btn5.png');
+}
+.t-btn-a6{
+	background-image:url('head-btn/t-btn6.png');
+}
+
+
+.t-icon1{
+	background-image:url('head-btn/t-icon1.png');
+}

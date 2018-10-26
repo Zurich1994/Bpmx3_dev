@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.LineLoadRatePath.model.LineLoadRateCode.LineLoadRate">
+	<resultMap id="LineLoadRate" type="com.hotent.LineLoadRatePath.model.LineLoadRateCode.LineLoadRate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="line_id" column="F_LINE_ID" jdbcType="VARCHAR"/>
+		<result property="time" column="F_TIME" jdbcType="NUMERIC"/>
+		<result property="flownum" column="F_FLOWNUM" jdbcType="NUMERIC"/>
+		<result property="load_type" column="F_LOAD_TYPE" jdbcType="VARCHAR"/>
+		<result property="load_use_rate" column="F_LOAD_USE_RATE" jdbcType="NUMERIC"/>
+		<result property="a" column="F_A" jdbcType="VARCHAR"/>
+		<result property="b" column="F_B" jdbcType="VARCHAR"/>
+		<result property="c" column="F_C" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_LINE_ID,F_TIME,F_FLOWNUM,F_LOAD_TYPE,F_LOAD_USE_RATE,F_A,F_B,F_C
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(line_id)"> AND F_LINE_ID  LIKE '%${line_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(time)"> AND F_TIME  =#{time} </if>
+			<if test="@Ognl@isNotEmpty(flownum)"> AND F_FLOWNUM  =#{flownum} </if>
+			<if test="@Ognl@isNotEmpty(load_type)"> AND F_LOAD_TYPE  LIKE '%${load_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(load_use_rate)"> AND F_LOAD_USE_RATE  =#{load_use_rate} </if>
+			<if test="@Ognl@isNotEmpty(a)"> AND F_A  LIKE '%${a}%'  </if>
+			<if test="@Ognl@isNotEmpty(b)"> AND F_B  LIKE '%${b}%'  </if>
+			<if test="@Ognl@isNotEmpty(c)"> AND F_C  LIKE '%${c}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.LineLoadRatePath.model.LineLoadRateCode.LineLoadRate">
+		INSERT INTO W_LINE_LOAD_RATE
+		(ID,
+		F_LINE_ID,F_TIME,F_FLOWNUM,F_LOAD_TYPE,F_LOAD_USE_RATE,F_A,F_B,F_C)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{line_id,jdbcType=VARCHAR}, #{time,jdbcType=NUMERIC}, #{flownum,jdbcType=NUMERIC}, #{load_type,jdbcType=VARCHAR}, #{load_use_rate,jdbcType=NUMERIC}, #{a,jdbcType=VARCHAR}, #{b,jdbcType=VARCHAR}, #{c,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_LINE_LOAD_RATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.LineLoadRatePath.model.LineLoadRateCode.LineLoadRate">
+		UPDATE W_LINE_LOAD_RATE SET
+		F_LINE_ID=#{line_id,jdbcType=VARCHAR},
+		F_TIME=#{time,jdbcType=NUMERIC},
+		F_FLOWNUM=#{flownum,jdbcType=NUMERIC},
+		F_LOAD_TYPE=#{load_type,jdbcType=VARCHAR},
+		F_LOAD_USE_RATE=#{load_use_rate,jdbcType=NUMERIC},
+		F_A=#{a,jdbcType=VARCHAR},
+		F_B=#{b,jdbcType=VARCHAR},
+		F_C=#{c,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="LineLoadRate">
+		SELECT <include refid="columns"/>
+		FROM W_LINE_LOAD_RATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="LineLoadRate">
+		SELECT <include refid="columns"/>
+		FROM W_LINE_LOAD_RATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysAcceptIp">
+	<resultMap id="SysAcceptIp" type="com.hotent.platform.model.system.SysAcceptIp">
+		<id property="acceptId" column="acceptId" jdbcType="NUMERIC"/>
+		<result property="title" column="title" jdbcType="VARCHAR"/>
+		<result property="startIp" column="startIp" jdbcType="VARCHAR"/>
+		<result property="endIp" column="endIp" jdbcType="VARCHAR"/>		
+		<result property="remark" column="remark" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		acceptId,title,startIp,endIp,remark
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(acceptId)"> AND acceptId  =#{acceptId} </if>
+			<if test="@Ognl@isNotEmpty(title)"> AND title  LIKE #{title}  </if>
+			<if test="@Ognl@isNotEmpty(startIp)"> AND startIp  LIKE #{startIp}  </if>
+			<if test="@Ognl@isNotEmpty(endIp)"> AND endIp  LIKE #{endIp}  </if>		
+			<if test="@Ognl@isNotEmpty(remark)"> AND remark  LIKE #{remark}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysAcceptIp">
+		INSERT INTO sys_accept_ip
+		(<include refid="columns"/>)
+		VALUES
+		(#{acceptId,jdbcType=NUMERIC}, #{title,jdbcType=VARCHAR}, #{startIp,jdbcType=VARCHAR}, #{endIp,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ACCEPT_IP 
+		WHERE
+		acceptId=#{acceptId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysAcceptIp">
+		UPDATE sys_accept_ip SET
+		title=#{title,jdbcType=VARCHAR} , 
+		startIp=#{startIp,jdbcType=VARCHAR} , 
+		endIp=#{endIp,jdbcType=VARCHAR} ,		
+		remark=#{remark,jdbcType=VARCHAR} 
+		WHERE
+		acceptId=#{acceptId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysAcceptIp">
+		SELECT <include refid="columns"/>
+		FROM SYS_ACCEPT_IP
+		WHERE
+		acceptId=#{acceptId}
+	</select>
+	
+	<select id="getAll" resultMap="SysAcceptIp">
+		SELECT <include refid="columns"/>
+		FROM SYS_ACCEPT_IP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by acceptId  desc
+		</if>
+	</select>
+</mapper>

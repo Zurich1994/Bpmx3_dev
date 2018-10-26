@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis
+END
+OffsetLimitInterceptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/OffsetLimitInterceptor.java
+END
+Dialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/Dialect.java
+END
+BaseMyBatisDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/BaseMyBatisDao.java
+END
+IbatisSql.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/IbatisSql.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/mybatis/package.html
+END

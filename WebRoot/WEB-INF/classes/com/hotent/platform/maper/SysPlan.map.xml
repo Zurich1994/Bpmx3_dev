@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysPlan">
+	<resultMap id="SysPlan" type="com.hotent.platform.model.system.SysPlan">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="taskName" column="TASKNAME" jdbcType="VARCHAR"/>
+		<result property="submitId" column="SUBMITID" jdbcType="NUMERIC"/>
+		<result property="submitor" column="SUBMITOR" jdbcType="VARCHAR"/>
+		<result property="chargeId" column="CHARGEID" jdbcType="NUMERIC"/>
+		<result property="charge" column="CHARGE" jdbcType="VARCHAR"/>
+		<result property="startTime" column="STARTTIME" jdbcType="TIMESTAMP"/>
+		<result property="endTime" column="ENDTIME" jdbcType="TIMESTAMP"/>
+		<result property="projectName" column="PROJECTNAME" jdbcType="VARCHAR"/>
+		<result property="doc" column="DOC" jdbcType="VARCHAR"/>
+		<result property="customerId" column="CUSTOMERID" jdbcType="NUMERIC"/>
+		<result property="customer" column="CUSTOMER" jdbcType="VARCHAR"/>
+		<result property="runId" column="RUNID" jdbcType="NUMERIC"/>
+		<result property="runName" column="RUNNAME" jdbcType="VARCHAR"/>
+		<result property="rate" column="RATE" jdbcType="NUMERIC"/>
+		<result property="createTime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+		<result property="subscribeId" column="SUBSCRIBEID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TASKNAME,SUBMITID,SUBMITOR,CHARGEID,CHARGE,STARTTIME,ENDTIME,PROJECTNAME,DOC,CUSTOMERID,CUSTOMER,RUNID,RUNNAME,RATE,CREATETIME,DESCRIPTION
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(taskName)"> AND TASKNAME  LIKE #{taskName}  </if>
+			<if test="@Ognl@isNotEmpty(projectName)"> AND PROJECTNAME  LIKE #{projectName}  </if>
+			<if test="@Ognl@isNotEmpty(charge)"> AND CHARGE  LIKE #{charge}  </if>
+			<if test="@Ognl@isNotEmpty(runName)"> AND RUNNAME  LIKE #{runName}  </if>
+            <if test="@Ognl@isNotEmpty(beginCreateTime)"> AND te.CREATETIME  <![CDATA[ >=#{beginCreateTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(endCreateTime)"> AND te.CREATETIME <![CDATA[ <=#{endCreateTime,jdbcType=TIMESTAMP}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysPlan">
+		INSERT INTO SYS_PLAN
+		(ID,TASKNAME,SUBMITID,SUBMITOR,CHARGEID,CHARGE,STARTTIME,ENDTIME,PROJECTNAME,DOC,CUSTOMERID,CUSTOMER,RUNID,RUNNAME,RATE,CREATETIME,DESCRIPTION)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{taskName,jdbcType=VARCHAR}, #{submitId,jdbcType=NUMERIC}, #{submitor,jdbcType=VARCHAR}, #{chargeId,jdbcType=NUMERIC}, #{charge,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP},#{endTime,jdbcType=TIMESTAMP},
+		 #{projectName,jdbcType=VARCHAR},#{doc,jdbcType=VARCHAR}, #{customerId,jdbcType=NUMERIC}, #{customer,jdbcType=VARCHAR},#{runId,jdbcType=NUMERIC},#{runName,jdbcType=VARCHAR},#{rate,jdbcType=NUMERIC}, #{createTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR})
+	</insert>
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_PLAN 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysPlan">
+		UPDATE SYS_PLAN SET
+		TASKNAME=#{taskName,jdbcType=VARCHAR},
+		SUBMITID=#{submitId,jdbcType=NUMERIC},
+		SUBMITOR=#{submitor,jdbcType=VARCHAR},
+		CHARGEID=#{chargeId,jdbcType=NUMERIC},
+		CHARGE=#{charge,jdbcType=VARCHAR},
+		STARTTIME=#{startTime,jdbcType=TIMESTAMP},
+		ENDTIME= #{endTime,jdbcType=TIMESTAMP},
+		PROJECTNAME=#{projectName,jdbcType=VARCHAR},
+		DOC=#{doc,jdbcType=VARCHAR},
+		CUSTOMERID=#{customerId,jdbcType=NUMERIC},
+		CUSTOMER=#{customer,jdbcType=VARCHAR},
+		RUNID=#{runId,jdbcType=NUMERIC},
+		RUNNAME=#{runName,jdbcType=VARCHAR},
+		RATE=#{rate,jdbcType=NUMERIC},
+		CREATETIME=#{createTime,jdbcType=TIMESTAMP},
+		DESCRIPTION=#{description,jdbcType=VARCHAR}	
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysPlan">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN
+		WHERE
+		ID=#{id}
+	</select>
+	
+	
+	<select id="getBySubmitId" parameterType="java.util.Map" resultMap="SysPlan">
+		
+		SELECT DISTINCT <include refid="columns"/> FROM (
+	         
+	        <if test="@Ognl@isNotEmpty(theFirstDay) and @Ognl@isNotEmpty(theLastDay)"> 
+	          SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				SUBMITID=#{submitId} 
+		        AND STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				SUBMITID=#{submitId} 
+		        AND STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND ENDTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				SUBMITID=#{submitId} 
+		        AND STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND STARTTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>  
+		        AND ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				SUBMITID=#{submitId} 
+				AND STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+				AND ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+		    
+		    </if>  
+		    
+		    <if test="@Ognl@isEmpty(theFirstDay) or @Ognl@isEmpty(theLastDay)"> 
+		      SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				SUBMITID=#{submitId} 
+		    </if>
+			  
+	    ) A ORDER BY A.CREATETIME DESC
+		
+	</select>
+	
+	<select id="getByChargeId" parameterType="java.util.Map" resultMap="SysPlan">
+		
+		SELECT DISTINCT <include refid="columns"/> FROM (
+	         
+	        <if test="@Ognl@isNotEmpty(theFirstDay) and @Ognl@isNotEmpty(theLastDay)"> 
+	          SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				CHARGEID=#{chargeId} 
+		        AND STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				CHARGEID=#{chargeId} 
+		        AND STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND ENDTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				CHARGEID=#{chargeId} 
+		        AND STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND STARTTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>  
+		        AND ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				CHARGEID=#{chargeId}  
+				AND STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+				AND ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+		    
+		    </if>  
+		    
+		    <if test="@Ognl@isEmpty(theFirstDay) or @Ognl@isEmpty(theLastDay)"> 
+		      SELECT <include refid="columns"/>
+				FROM SYS_PLAN
+				WHERE
+				CHARGEID=#{chargeId}  
+		    </if>
+			  
+	    ) A ORDER BY A.CREATETIME DESC
+		
+	</select>
+	
+	
+	<select id="getByParticipantId" parameterType="java.util.Map" resultMap="SysPlan">
+		
+		SELECT DISTINCT A.* FROM (
+	         
+	        <if test="@Ognl@isNotEmpty(theFirstDay) and @Ognl@isNotEmpty(theLastDay)"> 
+	          SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_PARTICIPANTS PA 
+				WHERE 
+			    PL.ID = PA.PLANID AND PA.PARTICIPANTID = #{participantId} 
+		        AND PL.STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND PL.ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_PARTICIPANTS PA 
+				WHERE 
+			    PL.ID = PA.PLANID AND PA.PARTICIPANTID = #{participantId} 
+		        AND PL.STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND PL.ENDTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND PL.ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_PARTICIPANTS PA 
+				WHERE 
+			    PL.ID = PA.PLANID AND PA.PARTICIPANTID = #{participantId} 
+		        AND PL.STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND PL.STARTTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>  
+		        AND PL.ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_PARTICIPANTS PA 
+				WHERE 
+			    PL.ID = PA.PLANID AND PA.PARTICIPANTID = #{participantId}   
+				AND PL.STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+				AND PL.ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+		    
+		    </if>  
+		    
+		    <if test="@Ognl@isEmpty(theFirstDay) or @Ognl@isEmpty(theLastDay)"> 
+		       SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_PARTICIPANTS PA 
+				WHERE 
+			    PL.ID = PA.PLANID AND PA.PARTICIPANTID = #{participantId}  
+		    </if>
+			  
+	    ) A ORDER BY A.CREATETIME DESC
+		
+		
+	</select>
+	
+	
+	<select id="getBySubscribeId" parameterType="java.util.Map" resultMap="SysPlan">
+		
+		SELECT DISTINCT A.* FROM (
+	         
+	        <if test="@Ognl@isNotEmpty(theFirstDay) and @Ognl@isNotEmpty(theLastDay)"> 
+	          SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_SUBSCRIBE PS 
+				WHERE  
+	   			PL.ID = PS.PLANID AND PS.SUBSCRIBEID = #{subscribeId}  
+		        AND PL.STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND PL.ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_SUBSCRIBE PS 
+				WHERE  
+	   			PL.ID = PS.PLANID AND PS.SUBSCRIBEID = #{subscribeId}  
+		        AND PL.STARTTIME <![CDATA[ <=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND PL.ENDTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]>  
+		        AND PL.ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_SUBSCRIBE PS 
+				WHERE  
+	   			PL.ID = PS.PLANID AND PS.SUBSCRIBEID = #{subscribeId}  
+		        AND PL.STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+		        AND PL.STARTTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>  
+		        AND PL.ENDTIME <![CDATA[ >=#{theLastDay,jdbcType=TIMESTAMP}]]>
+				
+			  UNION ALL
+			  
+			  SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_SUBSCRIBE PS 
+				WHERE  
+	   			PL.ID = PS.PLANID AND PS.SUBSCRIBEID = #{subscribeId}     
+				AND PL.STARTTIME <![CDATA[ >=#{theFirstDay,jdbcType=TIMESTAMP}]]> 
+				AND PL.ENDTIME <![CDATA[ <=#{theLastDay,jdbcType=TIMESTAMP}]]>
+		    
+		    </if>  
+		    
+		    <if test="@Ognl@isEmpty(theFirstDay) or @Ognl@isEmpty(theLastDay)"> 
+		      SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_SUBSCRIBE PS 
+				WHERE  
+	   			PL.ID = PS.PLANID AND PS.SUBSCRIBEID = #{subscribeId}  }  
+		    </if>
+			  
+	    ) A ORDER BY A.CREATETIME DESC
+		
+	</select>
+	
+	
+	<select id="getListBySubscribeId" parameterType="java.util.Map" resultMap="SysPlan">
+		
+		      SELECT PL.*   
+				FROM SYS_PLAN PL,SYS_PLAN_SUBSCRIBE PS 
+				WHERE  
+	   			PL.ID = PS.PLANID AND PS.SUBSCRIBEID = #{subscribeId} 
+	   			
+	   			<if test="@Ognl@isNotEmpty(taskName)"> AND PL.TASKNAME  LIKE #{taskName}  </if>
+		
+				<if test="@Ognl@isNotEmpty(projectName)"> AND PL.PROJECTNAME  LIKE #{projectName}  </if>
+					
+				<if test="@Ognl@isNotEmpty(charge)"> AND PL.CHARGE  LIKE #{charge}  </if>
+					
+				<if test="@Ognl@isNotEmpty(runName)"> AND PL.RUNNAME  LIKE #{runName}  </if>
+	   			
+	   			<if test="@Ognl@isNotEmpty(beginStartTime)"> AND PL.STARTTIME  <![CDATA[ >=#{beginStartTime,jdbcType=TIMESTAMP}]]> </if>
+			
+				<if test="@Ognl@isNotEmpty(endStartTime)"> AND PL.STARTTIME <![CDATA[ <=#{endStartTime,jdbcType=TIMESTAMP}]]> </if>
+				
+				<if test="@Ognl@isNotEmpty(beginEndTime)"> AND PL.ENDTIME  <![CDATA[ >=#{beginEndTime,jdbcType=TIMESTAMP}]]> </if>
+					
+				<if test="@Ognl@isNotEmpty(endEndTime)"> AND PL.ENDTIME <![CDATA[ <=#{endEndTime,jdbcType=TIMESTAMP}]]> </if>
+	   			
+	   			ORDER BY PL.CREATETIME DESC
+		
+	</select>
+	
+	
+	<select id="getByChargeUserIds" resultMap="SysPlan">
+		SELECT  PA.*,PS.ID SUBSCRIBEID
+	    FROM SYS_PLAN PA LEFT JOIN (SELECT S.* FROM SYS_PLAN_SUBSCRIBE S WHERE S.SUBSCRIBEID = #{userId} ) PS ON PA.ID = PS.PLANID  
+	    WHERE 
+	    <if test="@Ognl@isNotEmpty(userIds)">
+			PA.CHARGEID IN 
+			<foreach collection="userIds" index="index" item="uId" open="(" close=")" separator=",">
+					${uId}
+			</foreach>
+        </if>
+	    <if test="@Ognl@isEmpty(userIds)">
+			1=2
+        </if>
+		
+		<if test="@Ognl@isNotEmpty(taskName)"> AND PA.TASKNAME  LIKE #{taskName}  </if>
+		
+		<if test="@Ognl@isNotEmpty(projectName)"> AND PA.PROJECTNAME  LIKE #{projectName}  </if>
+			
+		<if test="@Ognl@isNotEmpty(charge)"> AND PA.CHARGE  LIKE #{charge}  </if>
+			
+		<if test="@Ognl@isNotEmpty(runName)"> AND PA.RUNNAME  LIKE #{runName}  </if>
+		
+		<if test="@Ognl@isNotEmpty(beginStartTime)"> AND PA.STARTTIME  <![CDATA[ >=#{beginStartTime,jdbcType=TIMESTAMP}]]> </if>
+			
+		<if test="@Ognl@isNotEmpty(endStartTime)"> AND PA.STARTTIME <![CDATA[ <=#{endStartTime,jdbcType=TIMESTAMP}]]> </if>
+		
+		<if test="@Ognl@isNotEmpty(beginEndTime)"> AND PA.ENDTIME  <![CDATA[ >=#{beginEndTime,jdbcType=TIMESTAMP}]]> </if>
+			
+		<if test="@Ognl@isNotEmpty(endEndTime)"> AND PA.ENDTIME <![CDATA[ <=#{endEndTime,jdbcType=TIMESTAMP}]]> </if>
+		
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		
+		<if test="@Ognl@isEmpty(orderField)">
+			order by PA.CREATETIME  desc
+		</if>
+	</select>
+	
+	
+	<select id="getAll" resultMap="SysPlan">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+
+	<select id="getMyList" resultMap="SysPlan">
+		SELECT <include refid="columns"/> FROM SYS_PLAN P 
+			WHERE P.CHARGEID = #{userId} 
+			OR P.ID IN (SELECT PP.PLANID FROM SYS_PLAN_PARTICIPANTS PP WHERE PP.PARTICIPANTID = #{userId})
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

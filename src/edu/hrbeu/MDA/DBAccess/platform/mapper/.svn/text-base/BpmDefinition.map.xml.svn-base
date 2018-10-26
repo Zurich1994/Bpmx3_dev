@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="edu.hrbeu.MDA.DBAccess.platform.model.BpmDefinition">
+	<resultMap id="BpmDefinition" type="edu.hrbeu.MDA.DBAccess.platform.model.BpmDefinition">
+		<id property="defId" column="defId" jdbcType="NUMERIC"/>
+		<result property="typeId" column="typeId" jdbcType="NUMERIC"/>
+		<result property="subject" column="subject" jdbcType="VARCHAR"/>
+		<result property="defKey" column="defKey" jdbcType="VARCHAR"/>
+		<result property="taskNameRule" column="taskNameRule" jdbcType="VARCHAR"/>
+		<result property="descp" column="descp" jdbcType="VARCHAR"/>
+		<result property="status" column="status" jdbcType="NUMERIC"/>
+		<result property="defXml" column="defXml" jdbcType="CLOB"/>
+		<result property="actDeployId" column="actDeployId" jdbcType="NUMERIC"/>
+		<result property="actDefKey" column="actDefKey" jdbcType="VARCHAR"/>
+		<result property="actDefId" column="actDefId" jdbcType="VARCHAR"/>
+		<result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+		<result property="updatetime" column="updatetime" jdbcType="TIMESTAMP"/>
+		<result property="createBy" column="createBy" jdbcType="NUMERIC"/>
+		<result property="updateBy" column="updateBy" jdbcType="NUMERIC"/>
+		<result property="reason" column="reason" jdbcType="VARCHAR"/>
+		<result property="versionNo" column="versionNo" jdbcType="NUMERIC"/>
+		<result property="parentDefId" column="parentDefId" jdbcType="NUMERIC"/>
+		<result property="isMain" column="isMain" jdbcType="NUMERIC"/>
+		<result property="toFirstNode" column="toFirstNode" jdbcType="NUMERIC" />
+		<result property="showFirstAssignee" column="showFirstAssignee" jdbcType="NUMERIC" />
+		<result property="canChoicePath" column="canPhoicePath" jdbcType="VARCHAR" />
+		<result property="isUseOutForm" column="isUseOutForm" jdbcType="NUMERIC" />
+		<result property="formDetailUrl" column="formDetailUrl" jdbcType="VARCHAR" />
+		<result property="allowFinishedCc" column="allowFinishedCc" jdbcType="NUMERIC"/>
+		<result property="submitConfirm" column="submitConfirm" jdbcType="NUMERIC" />
+		<result property="allowDivert" column="allowDivert" jdbcType="NUMERIC" />
+		<result property="informStart" column="informStart" jdbcType="VARCHAR" />
+		<result property="informType" column="informType" jdbcType="VARCHAR" />
+		<result property="attachment" column="attachment" jdbcType="VARCHAR" />
+		<result property="sameExecutorJump" column="sameExecutorJump" jdbcType="NUMERIC" />
+		<result property="allowRefer" column="allowRefer" jdbcType="NUMERIC" />
+		<result property="instanceAmount" column="instanceAmount" jdbcType="NUMERIC" />
+		<result property="allowFinishedDivert" column="allowFinishedDivert" jdbcType="NUMERIC" />
+		<result property="isPrintForm" column="isPrintForm" jdbcType="NUMERIC" />
+		<result property="directstart" column="directstart" jdbcType="NUMERIC" />
+		<result property="ccMessageType" column="ccMessageType" jdbcType="VARCHAR" />
+		<result property="testStatusTag" column="testStatusTag" jdbcType="VARCHAR"/>
+		<result property="allowMobile" column="allowMobile" jdbcType="NUMERIC" />
+	</resultMap>	
+	
+	<sql id="columns">
+		defId,typeId,subject,defKey,taskNameRule,descp
+		,status,defXml,actDeployId,actDefKey,actDefId
+		,createtime,updatetime,createBy,updateBy,reason
+		,versionNo,parentDefId,isMain,toFirstNode
+		,showFirstAssignee,canChoicePath,isUseOutForm,formDetailUrl
+		,allowFinishedCc,submitConfirm,allowDivert,informStart,informType
+		,attachment,sameExecutorJump,allowRefer,instanceAmount,allowFinishedDivert
+		,isPrintForm,directstart,ccMessageType,testStatusTag,allowMobile
+	</sql>
+	
+	<sql id="columnsNotIncludeDefXml">
+		defId,def.typeId,subject,defKey,taskNameRule,descp
+		,status,actDeployId,actDefKey,actDefId
+	    ,createtime,updatetime,createBy,updateBy,reason
+	    ,versionNo,parentDefId,isMain,toFirstNode
+	    ,showFirstAssignee,canChoicePath,isUseOutForm,formDetailUrl
+	    ,allowFinishedCc,submitConfirm,allowDivert,informStart,informType
+	    ,attachment,sameExecutorJump,allowRefer,instanceAmount,allowFinishedDivert
+	    ,isPrintForm,directstart,ccMessageType,testStatusTag,allowMobile
+	    ,type.typeName typeName
+	</sql>
+	
+	<sql id="dynamicWhere2">
+		<where>
+			 bpm.isMain=1
+			<if test="@Ognl@isNotEmpty(subject)"> AND bpm.subject  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(typeName)"> AND type.typeName LIKE #{typeName} </if>
+			<if test="@Ognl@isNotEmpty(nodePath)"> AND type.nodePath LIKE #{nodePath} </if>
+			<if test="@Ognl@isNotEmpty(defKey)"> AND bpm.defKey  LIKE #{defKey}  </if>
+			<if test="@Ognl@isNotEmpty(taskNameRule)"> AND bpm.taskNameRule  LIKE #{taskNameRule}  </if>
+			<if test="@Ognl@isNotEmpty(descp)"> AND bpm.descp  LIKE #{descp}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND bpm.createtime  >=#{createtime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)" > AND bpm.createtime &lt;=#{endcreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND bpm.status  =#{status} </if>
+			<if test="@Ognl@isNotEmpty(isUseOutForm)"> AND bpm.isUseOutForm  =#{isUseOutForm} </if>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND bpm.typeId  =#{typeId} </if>
+		</where>
+	</sql>
+	
+	<insert id="add" parameterType="edu.hrbeu.MDA.DBAccess.platform.model.BpmDefinition">
+		INSERT INTO bpm_definition
+		(defId,typeId,subject,defKey,
+		taskNameRule,descp,status,defXml,
+		actDeployId,actDefKey,actDefId,createtime,
+		updatetime,createBy,updateBy,reason,
+		versionNo,parentDefId,isMain,toFirstNode,
+		showFirstAssignee,canChoicePath,
+		isUseOutForm,formDetailUrl,
+		allowFinishedCc,submitConfirm,allowDivert,
+		informStart,informType,
+		attachment,sameExecutorJump,
+		allowRefer,instanceAmount,
+		allowFinishedDivert,isPrintForm,
+		directstart,ccMessageType,testStatusTag,allowMobile)
+		VALUES
+		(#{defId,jdbcType=NUMERIC}, #{typeId,jdbcType=NUMERIC}, #{subject,jdbcType=VARCHAR}, #{defKey,jdbcType=VARCHAR}, 
+		#{taskNameRule,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{status,jdbcType=NUMERIC}, #{defXml,jdbcType=CLOB},
+		 #{actDeployId,jdbcType=NUMERIC}, #{actDefKey,jdbcType=VARCHAR}, #{actDefId,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+		  #{updatetime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=NUMERIC}, #{updateBy,jdbcType=NUMERIC}, #{reason,jdbcType=VARCHAR},
+		   #{versionNo,jdbcType=NUMERIC}, #{parentDefId,jdbcType=NUMERIC}, #{isMain,jdbcType=NUMERIC},  #{toFirstNode,jdbcType=NUMERIC},
+		    #{showFirstAssignee,jdbcType=NUMERIC},#{canChoicePath,jdbcType=VARCHAR},
+		    #{isUseOutForm,jdbcType=NUMERIC},#{formDetailUrl,jdbcType=VARCHAR},
+		    #{allowFinishedCc,jdbcType=NUMERIC},#{submitConfirm,jdbcType=NUMERIC},#{allowDivert,jdbcType=NUMERIC},
+		    #{informStart,jdbcType=VARCHAR},#{informType,jdbcType=VARCHAR},
+		    #{attachment,jdbcType=VARCHAR},#{sameExecutorJump,jdbcType=NUMERIC},
+		    #{allowRefer,jdbcType=NUMERIC},#{instanceAmount,jdbcType=NUMERIC},
+		    #{allowFinishedDivert,jdbcType=NUMERIC},#{isPrintForm,jdbcType=NUMERIC},
+		    #{directstart,jdbcType=NUMERIC},#{ccMessageType,jdbcType=VARCHAR},#{testStatusTag,jdbcType=VARCHAR},#{allowMobile,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEFINITION 
+		WHERE
+		defId=#{defId}
+	</delete>
+	
+	<update id="updateIsMain" parameterType="java.util.Map">
+		UPDATE BPM_DEFINITION SET isMain=#{isMain}
+		where defId=#{defId}
+	</update>
+	<update id="saveParam" parameterType="edu.hrbeu.MDA.DBAccess.platform.model.BpmDefinition">
+		UPDATE BPM_DEFINITION SET
+		taskNameRule=#{taskNameRule,jdbcType=VARCHAR},
+		toFirstNode=#{toFirstNode,jdbcType=NUMERIC},
+		showFirstAssignee=#{showFirstAssignee,jdbcType=NUMERIC},
+		isUseOutForm=#{isUseOutForm,jdbcType=NUMERIC},
+		formDetailUrl=#{formDetailUrl,jdbcType=VARCHAR},
+		submitConfirm=#{submitConfirm,jdbcType=NUMERIC},
+		allowDivert=#{allowDivert,jdbcType=NUMERIC},
+		allowFinishedDivert=#{allowFinishedDivert,jdbcType=NUMERIC},
+		informStart=#{informStart,jdbcType=VARCHAR},
+		informType=#{informType,jdbcType=VARCHAR},
+		allowFinishedCc=#{allowFinishedCc,jdbcType=NUMERIC},
+		isPrintForm=#{isPrintForm,jdbcType=NUMERIC},
+		attachment=#{attachment,jdbcType=NUMERIC},
+		status=#{status,jdbcType=NUMERIC},
+		sameExecutorJump=#{sameExecutorJump,jdbcType=NUMERIC},
+		allowRefer=#{allowRefer,jdbcType=NUMERIC},
+		instanceAmount=#{instanceAmount,jdbcType=NUMERIC},
+		directstart=#{directstart,jdbcType=NUMERIC},
+		ccMessageType=#{ccMessageType,jdbcType=VARCHAR},
+		testStatusTag=#{testStatusTag,jdbcType=VARCHAR},
+		allowMobile=#{allowMobile,jdbcType=NUMERIC}
+		where defId=#{defId}
+	</update>
+	
+	<update id="update" parameterType="edu.hrbeu.MDA.DBAccess.platform.model.BpmDefinition">
+		UPDATE bpm_definition SET
+		typeId=#{typeId,jdbcType=NUMERIC} , 
+		subject=#{subject,jdbcType=VARCHAR} , 
+		defKey=#{defKey,jdbcType=VARCHAR} , 
+		taskNameRule=#{taskNameRule,jdbcType=VARCHAR} , 
+		descp=#{descp,jdbcType=VARCHAR} , 
+		status=#{status,jdbcType=NUMERIC} , 
+		defXml=#{defXml,jdbcType=CLOB} , 
+		actDeployId=#{actDeployId,jdbcType=NUMERIC} , 
+		actDefKey=#{actDefKey,jdbcType=VARCHAR} , 
+		actDefId=#{actDefId,jdbcType=VARCHAR} , 
+		createtime=#{createtime,jdbcType=TIMESTAMP} , 
+		updatetime=#{updatetime,jdbcType=TIMESTAMP} , 
+		createBy=#{createBy,jdbcType=NUMERIC} , 
+		updateBy=#{updateBy,jdbcType=NUMERIC} , 
+		reason=#{reason,jdbcType=VARCHAR} , 
+		versionNo=#{versionNo,jdbcType=NUMERIC} , 
+		parentDefId=#{parentDefId,jdbcType=NUMERIC} , 
+		isMain=#{isMain,jdbcType=NUMERIC} , 
+		toFirstNode=#{toFirstNode,jdbcType=NUMERIC},
+		
+		showFirstAssignee=#{showFirstAssignee,jdbcType=NUMERIC},
+		canChoicePath=#{canChoicePath,jdbcType=VARCHAR},
+		isUseOutForm=#{isUseOutForm,jdbcType=NUMERIC},
+		submitConfirm=#{submitConfirm,jdbcType=NUMERIC},
+		allowDivert=#{allowDivert,jdbcType=NUMERIC},
+		informStart=#{informStart,jdbcType=VARCHAR},
+		informType=#{informType,jdbcType=VARCHAR},
+		attachment=#{attachment,jdbcType=VARCHAR},
+		sameExecutorJump=#{sameExecutorJump,jdbcType=NUMERIC},
+		allowRefer=#{allowRefer,jdbcType=NUMERIC},
+		instanceAmount=#{instanceAmount,jdbcType=NUMERIC},
+		allowFinishedDivert=#{allowFinishedDivert,jdbcType=NUMERIC},
+		isPrintForm=#{isPrintForm,jdbcType=NUMERIC},
+		directstart=#{directstart,jdbcType=NUMERIC},
+		testStatusTag=#{testStatusTag,jdbcType=VARCHAR},
+		allowMobile=#{allowMobile,jdbcType=NUMERIC}
+		WHERE
+		defId=#{defId}
+	</update>
+	
+	<update id="updateSubVersions" parameterType="java.util.Map">
+		UPDATE BPM_DEFINITION SET 
+		parentDefId=#{parentDefId},
+		isMain=0
+		where defKey=#{defKey}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmDefinition">
+		SELECT <include refid="columns"/>
+		FROM BPM_DEFINITION
+		WHERE
+		defId=#{defId}
+	</select>
+	
+	<select id="getAllForAdmin" resultMap="BpmDefinition">
+		select bpm.*,type.typeName typeName from BPM_DEFINITION bpm  
+		left join SYS_GL_TYPE type on bpm.typeId=type.typeId 
+		<include refid="dynamicWhere2"/> 
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by defId desc
+		</if>
+	</select>
+	
+	<select id="getAll" resultMap="BpmDefinition">
+		select  <include refid="columnsNotIncludeDefXml"/>
+		 from BPM_DEFINITION def 
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			,SYS_GL_TYPE type where def.typeId=type.typeId 
+			and type.nodePath like #{nodePath} 
+		</if>
+		<if test="@Ognl@isEmpty(nodePath)">
+			left join SYS_GL_TYPE type on def.typeId=type.typeId 
+			where 1=1 
+		</if>
+		<include refid="dynamicWhereGetByUser"/> 
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by def.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by def.defId desc
+		</if>
+	</select>
+	
+	<select id="getByParentDefId" parameterType="java.lang.Long" resultMap="BpmDefinition">
+		select a.*,b.typeName from BPM_DEFINITION a,sys_gl_type b
+		where a.typeId=b.typeId and a.parentDefId=#{parentDefId}
+		order by a.versionNo desc
+	</select>
+	
+	<select id="getByParentDefIdIsMain" parameterType="java.util.Map" resultMap="BpmDefinition">
+		select a.*,b.typeName from BPM_DEFINITION a,sys_gl_type b
+		where a.typeId=b.typeId and a.parentDefId=#{parentDefId} and a.isMain=#{isMain}
+		order by a.versionNo desc
+	</select>
+	
+	<select id="getByActDefId" parameterType="java.lang.String" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where actDefId=#{actDefId}
+	</select>
+	
+	<select id="getByActDefKey" parameterType="java.lang.String" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where actDefKey=#{actDefKey}
+	</select>
+	
+	<select id="isActDefKeyExists" parameterType="java.lang.String" resultType="int">
+		select count(*) amount from BPM_DEFINITION where actDefKey=#{actDefKey}
+	</select>
+	
+	<select id="isDefKeyExists" parameterType="java.lang.String" resultType="int">
+		select count(*) amount from BPM_DEFINITION where defkey=#{defkey}
+	</select>
+	
+	<select id="getByActDefKeyIsMain" parameterType="java.lang.String" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where actDefKey=#{actDefKey} and isMain=1
+	</select>
+	
+	<select id="getByTypeId" parameterType="java.lang.String" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where typeId=#{typeId} and isMain=1
+	</select>
+	
+	<select id="getPublishedByTypeId" parameterType="java.lang.String" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where typeId=#{typeId} and isMain=1 and status in (1,4)
+	</select>
+	
+	<select id="getAllPublished" parameterType="java.util.Map" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where isMain=1 and status in (1,4) and subject LIKE #{subject}
+	</select>
+	
+	<delete id="delByDeployId" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEFINITION 
+		WHERE
+		actDeployId=#{actDeployId}
+	</delete>
+	<select id="getByDeployId"  resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where actDeployId=#{actDeployId}
+	</select>
+	
+	
+	<sql id="dynamicWhereGetByUser">
+		and def.isMain=1
+		<if test="@Ognl@isNotEmpty(subject)"> AND def.subject  LIKE #{subject} </if>
+		<if test="@Ognl@isNotEmpty(defKey)"> AND def.defKey  LIKE #{defKey}  </if>
+		<if test="@Ognl@isNotEmpty(taskNameRule)"> AND def.taskNameRule  LIKE #{taskNameRule}  </if>
+		<if test="@Ognl@isNotEmpty(descp)"> AND def.descp  LIKE #{descp}  </if>
+		<if test="@Ognl@isNotEmpty(createtime)"> AND def.createtime  >=#{createtime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)" > AND def.createtime &lt;=#{endcreatetime,jdbcType=DATE} </if>
+		<if test="@Ognl@isNotEmpty(status)"> AND def.status  =#{status} </if>
+		<if test="validStatus!=null and validStatus==1"> AND (def.status  =1 or def.status  =4)  </if>
+		<if test="validStatus!=null and validStatus==2"> AND (def.status  =1 or def.status  =2 or def.status  =4)  </if>
+		<if test="@Ognl@isNotEmpty(isUseOutForm)"> AND def.isUseOutForm  =#{isUseOutForm} </if>
+		<!-- 按用户授权过滤用户的流程 ：isNeedRight为空时不需要按权限查询，否则按流程的分管授权情况查询-->
+		<if test="@Ognl@isNotEmpty(isNeedRight)">
+		 	<if test="@Ognl@isNotEmpty(actRights)">
+		 		AND def.defKey in(${actRights})  
+			</if>
+			<if test="@Ognl@isEmpty(actRights)">
+		 		AND def.defKey = ''  
+			</if>			
+		</if>
+		
+	</sql>
+	<!-- 按用户授权过滤用户的流程 -->
+	
+	<!-- 按用户授权过滤用户的流程 -->
+	<sql id="defColumn">
+		def.defId,
+        def.typeId,
+        def.subject,
+        def.defKey,
+        def.descp,
+        def.status,
+        def.actDeployId,
+        def.actDefKey,
+        def.actDefId,
+        def.createtime,
+        def.updatetime,
+        def.createBy,
+        def.updateBy,
+        def.reason,
+        def.versionNo,
+        def.parentDefId,
+        def.isMain,
+        def.toFirstNode,
+        def.allowDelDraf,
+        type.typeName     typeName,
+        type.nodePath     nodePath
+	</sql>
+	
+	<sql id="defTable">
+		BPM_DEFINITION def 
+		left join SYS_GL_TYPE type on type.typeId=def.typeId 
+		join  BPM_DEF_RIGHTS rig on rig.defkey=def.defkey
+		where  def.status in (1,4) 
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			and type.nodePath like #{nodePath}
+		</if>
+	</sql>
+	
+	<select id="getByUserIdFilter" resultMap="BpmDefinition"  parameterType="java.util.Map" >
+		
+		select * from (
+			select <include refid="defColumn"/> from <include refid="defTable"/>
+				 and   rig.rightType=0 
+			union
+			
+			select <include refid="defColumn"/> from <include refid="defTable"/>
+ 				and rig.rightType=1 
+ 				and rig.ownerId = #{userId} 
+			
+			<if test="@Ognl@isNotEmpty(roleIds)">
+			union
+			select <include refid="defColumn"/> from <include refid="defTable"/> 
+			and rig.rightType=2
+			and rig.ownerId in  (${roleIds}) 
+			</if>
+			
+			<if test="@Ognl@isNotEmpty(curOrgId)">
+			union
+			select <include refid="defColumn"/> from  <include refid="defTable"/>
+			and rig.rightType=3
+			and rig.ownerId =#{curOrgId}
+			</if>
+			
+			<if test="@Ognl@isNotEmpty(positonIds)">
+			union
+			select <include refid="defColumn"/> from <include refid="defTable"/>
+			and rig.rightType=4
+			and rig.ownerId in (${positonIds}) 
+			</if>
+		
+			<if test="@Ognl@isNotEmpty(orgGrantIds)">
+			union
+			select <include refid="defColumn"/> from  <include refid="defTable"/>
+			and rig.rightType=7
+			and rig.ownerId in  (${orgGrantIds})
+			</if>
+		) tmp
+	
+		<where>
+			<if test="@Ognl@isNotEmpty(subject)"> AND tmp.subject LIKE #{subject} ESCAPE '|'  </if>
+			<if test="@Ognl@isNotEmpty(defKey)"> AND tmp.defKey  LIKE #{defKey} ESCAPE '|'  </if>
+			<if test="@Ognl@isNotEmpty(descp)"> AND tmp.descp  LIKE #{descp} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND tmp.createtime  >=#{createtime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)" > AND tmp.createtime &lt;=#{endcreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND tmp.status  =#{status} </if>
+			<if test="validStatus!=null and validStatus==1"> AND (tmp.status  =1 or tmp.status  =4)  </if>
+		</where>
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by  tmp.subject, tmp.createtime desc
+		</if>
+	</select>
+	
+	
+	
+	
+	<select id="getByUserId"  resultMap="BpmDefinition">
+		
+		<!--流程用户权限-->
+		select def.*,type.typeName typeName from BPM_DEFINITION def
+		left join SYS_GL_TYPE type on(type.typeId=def.typeId)
+		
+		
+		,BPM_DEF_RIGHTS rig
+		where 1=1
+		and rig.searchType=0
+		and def.defKey=rig.defKey
+		<if test="@Ognl@isNotEmpty(userId)">and rig.ownerId = #{userId}</if>
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			and type.nodePath like #{nodePath}
+		</if>
+		
+		<include refid="dynamicWhereGetByUser"/> 
+		
+		<!--流程角色权限-->
+		union all
+		select def.*,type.typeName typeName from BPM_DEFINITION def
+		left join SYS_GL_TYPE type on(type.typeId=def.typeId)
+		
+		,BPM_DEF_RIGHTS rig
+		, SYS_USER_ROLE role
+		where 1=1
+		and rig.searchType=0
+		and def.defKey=rig.defKey
+		and rig.ownerId= role.roleId
+		<if test="@Ognl@isNotEmpty(userId)">and role.userId=#{userId}</if>
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			and type.nodePath like #{nodePath} 
+		</if>
+		<include refid="dynamicWhereGetByUser"/> 
+		
+		<!--流程组织权限-->
+		union all 
+		select def.*,type.typeName typeName from BPM_DEFINITION def
+		left join SYS_GL_TYPE type on(type.typeId=def.typeId)
+		
+		,BPM_DEF_RIGHTS rig
+		,SYS_USER_ORG org
+		where 1=1
+		and rig.searchType=0
+		and def.defKey=rig.defKey
+		and rig.ownerId =org.orgId
+		<if test="@Ognl@isNotEmpty(userId)">and org.userId=#{userId}</if>
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			and type.nodePath like #{nodePath} 
+		</if>
+		<include refid="dynamicWhereGetByUser"/> 
+		
+		<!--分类用户权限-->
+		union all
+		select def.*,ty.typeName typeName from BPM_DEFINITION def
+		left join SYS_GL_TYPE ty on(ty.typeId=def.typeId)
+		,BPM_DEF_RIGHTS rig
+		where 1=1
+		and rig.searchType=1
+        and rig.flowtypeid=ty.typeId
+		
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			and ty.nodePath like #{nodePath}
+		</if>
+		<if test="@Ognl@isNotEmpty(userId)">and rig.ownerId =#{userId}</if>
+		
+		<include refid="dynamicWhereGetByUser"/> 
+		
+		<!--分类角色权限-->
+		union all
+		select def.*,ty.typeName typeName from BPM_DEFINITION def
+		left join SYS_GL_TYPE ty on(ty.typeId=def.typeId)
+		,BPM_DEF_RIGHTS rig, SYS_USER_ROLE role
+		where 1=1
+		and rig.searchType=1
+        and rig.flowtypeid=ty.typeId
+		
+		and rig.ownerId= role.roleId
+		
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			and ty.nodePath like #{nodePath} 
+		</if>
+		<if test="@Ognl@isNotEmpty(userId)">and role.userId=#{userId}</if>
+		
+		<include refid="dynamicWhereGetByUser"/> 
+		
+		<!--分类组织权限-->
+		union all
+		select def.*,ty.typeName typeName from BPM_DEFINITION def
+		left join SYS_GL_TYPE ty on(ty.typeId=def.typeId)
+		,BPM_DEF_RIGHTS rig, SYS_USER_ORG org
+		where 1=1
+		and rig.searchType=1
+        and rig.flowtypeid=ty.typeId
+		
+		and rig.ownerId =org.orgId
+		
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			and ty.nodePath like #{nodePath} 
+		</if>
+		<if test="@Ognl@isNotEmpty(userId)">and org.userId=#{userId}</if>
+		
+		<include refid="dynamicWhereGetByUser"/> 
+
+	</select>
+	
+	<select id="getMainByDefKey" parameterType="java.lang.String" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where defKey=#{defKey} and isMain=1
+	</select>
+	
+
+	<update id="updCategory">
+		UPDATE BPM_DEFINITION SET  typeId=#{typeId} where defKey
+		in <foreach collection="defKeys" index="index" item="defKey" open="(" close=")" separator=",">
+			#{defKey}
+		</foreach>
+	</update>
+	
+	<delete id="delProcDefByActDeployId" parameterType="java.lang.Long">
+		DELETE FROM ACT_RE_PROCDEF WHERE DEPLOYMENT_ID_=#{actDeployId}
+	</delete>
+	<delete id="delDeployMentByActDeployId" parameterType="java.lang.Long">
+		DELETE FROM ACT_RE_DEPLOYMENT WHERE ID_=#{actDeployId}
+	</delete>
+	<delete id="delBytearRayByActDeployId" parameterType="java.lang.Long">
+		DELETE FROM ACT_GE_BYTEARRAY WHERE DEPLOYMENT_ID_=#{actDeployId}
+	</delete>
+	
+	<select id="getByDefKey" parameterType="java.lang.String" resultMap="BpmDefinition">
+		select * from BPM_DEFINITION where defKey=#{defKey}
+	</select>
+	
+	<select id="getBpmDefinitionByFormKey" parameterType="java.lang.Long" resultMap="BpmDefinition">
+		select def.*  from BPM_DEFINITION def
+		where def.ISMAIN = 1 and def.defId in (select distinct node.defId from BPM_NODE_SET node where node.formKey=#{formKey} and node.formType=0)
+	</select>
+	
+	<select id="getByCreateBy" parameterType="java.lang.Long" resultType="java.lang.String">
+		select defKey from BPM_DEFINITION b where b.createBy=#{createBy} and b.isMain=1
+	</select>
+	
+	<select id="getByAuthorizeFilter" resultMap="BpmDefinition"  parameterType="java.util.Map" >
+		select <include refid="defColumn"/> from BPM_DEFINITION def left join SYS_GL_TYPE type on type.typeId=def.typeId 
+		<where>
+			AND def.status in (1,4)  
+			AND def.ismain=1
+			<!-- 按用户授权过滤用户的流程 ：isNeedRight为空时不需要按权限查询，否则按流程的分管授权情况查询-->
+			<if test="@Ognl@isNotEmpty(isNeedRight)">
+			 	<if test="@Ognl@isNotEmpty(actRights)">
+			 		AND def.defKey in(${actRights})  
+				</if>
+				<if test="@Ognl@isEmpty(actRights)">
+			 		AND def.defKey = ''  
+				</if>			
+			</if>
+			<if test="@Ognl@isNotEmpty(nodePath)"> and type.nodePath like #{nodePath} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND def.subject LIKE #{subject} ESCAPE '|'  </if>
+			<if test="@Ognl@isNotEmpty(defKey)"> AND def.defKey  LIKE #{defKey} ESCAPE '|'  </if>
+			<if test="@Ognl@isNotEmpty(descp)"> AND def.descp  LIKE #{descp} ESCAPE '|' </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND def.createtime  >=#{createtime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)" > AND def.createtime &lt;=#{endcreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND def.status  =#{status} </if>
+			<if test="validStatus!=null and validStatus==1"> AND (def.status  =1 or def.status  =4)  </if>
+		</where>
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		
+		<if test="@Ognl@isEmpty(orderField)">
+			order by  def.subject, def.createtime desc
+		</if>
+	
+	</select>
+	
+</mapper>

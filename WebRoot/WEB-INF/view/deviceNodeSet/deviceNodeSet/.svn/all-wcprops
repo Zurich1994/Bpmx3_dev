@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/deviceNodeSet/deviceNodeSet
+END
+deviceNodeSetDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/deviceNodeSet/deviceNodeSet/deviceNodeSetDetail.jsp
+END
+deviceNodeSetEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/deviceNodeSet/deviceNodeSet/deviceNodeSetEdit.jsp
+END
+deviceNodeSetModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/deviceNodeSet/deviceNodeSet/deviceNodeSetModify.jsp
+END
+deviceNodeSetList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/deviceNodeSet/deviceNodeSet/deviceNodeSetList.jsp
+END
+deviceNodeSetGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/deviceNodeSet/deviceNodeSet/deviceNodeSetGet.jsp
+END

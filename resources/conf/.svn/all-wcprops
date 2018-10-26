@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/BPMX_2015_WYX/!svn/ver/1639/bpmx_w/resources/conf
+END
+app-security.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/app-security.xml
+END
+app-resources.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/BPMX_2015_WYX/!svn/ver/1059/bpmx_w/resources/conf/app-resources.xml
+END
+app-security-cas.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/app-security-cas.xml
+END
+app-activiti.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/app-activiti.xml
+END
+app-action.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/app-action.xml
+END
+app-cxf-service.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/app-cxf-service.xml
+END
+tabConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BPMX_2015_WYX/!svn/ver/2208/bpmx_w/resources/conf/tabConfig.xml
+END
+xlsConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/xlsConfig.xml
+END
+app-test.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/app-test.xml
+END
+viewconfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/viewconfig.xml
+END
+app-context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/app-context.xml
+END
+definitionInitConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/definitionInitConfig.xml
+END
+config.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/config.xsd
+END
+app-beans.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/app-beans.xml
+END
+configuration.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/conf/configuration.xml
+END
+app-jms.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/app-jms.xml
+END
+app.properties
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/1816/bpmx_w/resources/conf/app.properties
+END
+resourceConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/resourceConfig.xml
+END
+log4j.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/BPMX_2015_WYX/!svn/ver/1053/bpmx_w/resources/conf/log4j.xml
+END

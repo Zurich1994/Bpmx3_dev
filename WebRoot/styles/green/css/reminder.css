@@ -1,0 +1,80 @@
+@CHARSET "UTF-8";
+.s{	
+	box-shadow: 0 0 5px #CCCCCC;
+}
+.o{
+	padding: 10px;
+}
+#table-reminder{
+	border-collapse:collapse;
+	font-size: 13px;
+	width: 100%;
+}
+#table-reminder thead tr td{
+	border-top: 1px solid #CCCCCC;
+	overflow: hidden;
+	padding: 10px;
+}
+#option-table{
+	border-collapse:collapse;
+	font-size: 13px;
+	width: 100%;
+	border-left: 1px solid #CCCCCC;
+}
+#option-table thead tr td{
+	border-top: 1px solid #CCCCCC;
+	overflow: hidden;
+	padding: 10px;
+}
+.noramlTr td{
+	cursor: pointer;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	overflow: hidden;
+	padding: 7px;
+	white-space: pre;
+}
+.editable-tr td{
+	border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    overflow: hidden;
+    height: 31px;
+}
+.editable-left-div{
+	overflow:hidden;
+	width:450px;
+	height:31px;
+	line-height:31px;
+}
+.editable-right-div{
+	width:90px;
+	overflow:hidden;
+	height:31px;
+	line-height:31px;
+	float:left;
+}
+div.editable-right-div a{
+	text-decoration:none;
+	color:#00f;
+}
+div.editable-right-div a:hover{
+	color:#00f;
+}
+.hover{
+	background: #D4D4D4;
+}
+.remove-bnt{
+	margin: 0 0 0 10px;
+	text-decoration: none;
+}
+.short{
+	width:40px;
+	height:18px;
+}
+.long{
+	height:21px;
+	width:240px;
+}
+#panel{
+	margin:8px;
+}

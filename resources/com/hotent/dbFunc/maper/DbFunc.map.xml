@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.dbFunc.model.dbFunc.DbFunc">
+	<resultMap id="DbFunc" type="com.hotent.dbFunc.model.dbFunc.DbFunc">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="table_name" column="F_TABLE_NAME" jdbcType="VARCHAR"/>
+		<result property="func_type" column="F_FUNC_TYPE" jdbcType="NUMERIC"/>
+		<result property="func_name" column="F_FUNC_NAME" jdbcType="VARCHAR"/>
+		<result property="func_alias" column="F_FUNC_ALIAS" jdbcType="VARCHAR"/>
+		<result property="remarks" column="F_REMARKS" jdbcType="CLOB"/>
+		<result property="parameterType" column="F_PARAMETERTYPE" jdbcType="VARCHAR"/>
+		<result property="resultType" column="F_RESULTTYPE" jdbcType="VARCHAR"/>
+		<result property="resultField" column="F_RESULTFIELD" jdbcType="VARCHAR"/>
+		<result property="conditionField" column="F_CONDITIONFIELD" jdbcType="VARCHAR"/>
+		<result property="sortField" column="F_SORTFIELD" jdbcType="VARCHAR"/>
+		<result property="settingField" column="F_SETTINGFIELD" jdbcType="VARCHAR"/>
+		<result property="displayField" column="F_DISPLAYFIELD" jdbcType="VARCHAR"/>
+		<result property="dsName" column="F_DSNAME" jdbcType="VARCHAR"/>
+		<result property="ds_Alias" column="F_DS_ALIAS" jdbcType="VARCHAR"/>
+		<result property="isTable" column="F_ISTABLE" jdbcType="NUMERIC"/>
+		<result property="is_Using" column="F_IS_USING" jdbcType="NUMERIC"/>
+		<result property="objname" column="F_OBJNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_TABLE_NAME,F_FUNC_TYPE,F_FUNC_NAME,F_FUNC_ALIAS,F_REMARKS,F_PARAMETERTYPE,F_RESULTTYPE,F_RESULTFIELD,F_CONDITIONFIELD,F_SORTFIELD,F_SETTINGFIELD,F_DISPLAYFIELD,F_DSNAME,F_DS_ALIAS,F_ISTABLE,F_IS_USING,F_OBJNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(table_name)"> AND F_TABLE_NAME  LIKE '%${table_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(func_type)"> AND F_FUNC_TYPE  =#{func_type} </if>
+			<if test="@Ognl@isNotEmpty(func_name)"> AND F_FUNC_NAME  LIKE '%${func_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(func_alias)"> AND F_FUNC_ALIAS  LIKE '%${func_alias}%'  </if>
+			<if test="@Ognl@isNotEmpty(remarks)"> AND F_REMARKS  =#{remarks} </if>
+			<if test="@Ognl@isNotEmpty(parameterType)"> AND F_PARAMETERTYPE  LIKE '%${parameterType}%'  </if>
+			<if test="@Ognl@isNotEmpty(resultType)"> AND F_RESULTTYPE  LIKE '%${resultType}%'  </if>
+			<if test="@Ognl@isNotEmpty(resultField)"> AND F_RESULTFIELD  LIKE '%${resultField}%'  </if>
+			<if test="@Ognl@isNotEmpty(conditionField)"> AND F_CONDITIONFIELD  LIKE '%${conditionField}%'  </if>
+			<if test="@Ognl@isNotEmpty(sortField)"> AND F_SORTFIELD  LIKE '%${sortField}%'  </if>
+			<if test="@Ognl@isNotEmpty(settingField)"> AND F_SETTINGFIELD  LIKE '%${settingField}%'  </if>
+			<if test="@Ognl@isNotEmpty(displayField)"> AND F_DISPLAYFIELD  LIKE '%${displayField}%'  </if>
+			<if test="@Ognl@isNotEmpty(dsName)"> AND F_DSNAME  LIKE '%${dsName}%'  </if>
+			<if test="@Ognl@isNotEmpty(ds_Alias)"> AND F_DS_ALIAS  LIKE '%${ds_Alias}%'  </if>
+			<if test="@Ognl@isNotEmpty(isTable)"> AND F_ISTABLE  =#{isTable} </if>
+			<if test="@Ognl@isNotEmpty(is_Using)"> AND F_IS_USING  =#{is_Using} </if>
+			<if test="@Ognl@isNotEmpty(objname)"> AND F_OBJNAME  LIKE '%${objname}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.dbFunc.model.dbFunc.DbFunc">
+		INSERT INTO W_DB_FUNC
+		(ID,F_TABLE_NAME,F_FUNC_TYPE,F_FUNC_NAME,F_FUNC_ALIAS,F_REMARKS,F_PARAMETERTYPE,F_RESULTTYPE,F_RESULTFIELD,F_CONDITIONFIELD,F_SORTFIELD,F_SETTINGFIELD,F_DISPLAYFIELD,F_DSNAME,F_DS_ALIAS,F_ISTABLE,F_IS_USING,F_OBJNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{table_name,jdbcType=VARCHAR}, #{func_type,jdbcType=NUMERIC}, #{func_name,jdbcType=VARCHAR}, #{func_alias,jdbcType=VARCHAR}, #{remarks,jdbcType=CLOB}, #{parameterType,jdbcType=VARCHAR}, #{resultType,jdbcType=VARCHAR}, #{resultField,jdbcType=VARCHAR}, #{conditionField,jdbcType=VARCHAR}, #{sortField,jdbcType=VARCHAR}, #{settingField,jdbcType=VARCHAR}, #{displayField,jdbcType=VARCHAR}, #{dsName,jdbcType=VARCHAR}, #{ds_Alias,jdbcType=VARCHAR}, #{isTable,jdbcType=NUMERIC}, #{is_Using,jdbcType=NUMERIC}, #{objname,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DB_FUNC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.dbFunc.model.dbFunc.DbFunc">
+		UPDATE W_DB_FUNC SET
+		F_TABLE_NAME=#{table_name,jdbcType=VARCHAR},
+		F_FUNC_TYPE=#{func_type,jdbcType=NUMERIC},
+		F_FUNC_NAME=#{func_name,jdbcType=VARCHAR},
+		F_FUNC_ALIAS=#{func_alias,jdbcType=VARCHAR},
+		F_REMARKS=#{remarks,jdbcType=CLOB},
+		F_PARAMETERTYPE=#{parameterType,jdbcType=VARCHAR},
+		F_RESULTTYPE=#{resultType,jdbcType=VARCHAR},
+		F_RESULTFIELD=#{resultField,jdbcType=VARCHAR},
+		F_CONDITIONFIELD=#{conditionField,jdbcType=VARCHAR},
+		F_SORTFIELD=#{sortField,jdbcType=VARCHAR},
+		F_SETTINGFIELD=#{settingField,jdbcType=VARCHAR},
+		F_DISPLAYFIELD=#{displayField,jdbcType=VARCHAR},
+		F_DSNAME=#{dsName,jdbcType=VARCHAR},
+		F_DS_ALIAS=#{ds_Alias,jdbcType=VARCHAR},
+		F_ISTABLE=#{isTable,jdbcType=NUMERIC},
+		F_IS_USING=#{is_Using,jdbcType=NUMERIC},
+		F_OBJNAME=#{objname,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DbFunc">
+		SELECT <include refid="columns"/>
+		FROM W_DB_FUNC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DbFunc">
+		SELECT <include refid="columns"/>
+		FROM W_DB_FUNC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByTableName" resultMap="DbFunc" parameterType="java.lang.String">
+		SELECT <include refid="columns"/>
+		FROM W_DB_FUNC   
+		WHERE
+		F_TABLE_NAME=#{table_name}
+	</select>
+	
+	<select id="getByTableNameandFuncName" resultMap="DbFunc" parameterType="Map">
+		SELECT <include refid="columns"/>
+		FROM W_DB_FUNC   
+		WHERE
+		F_TABLE_NAME=#{table_name} and F_FUNC_NAME=#{func_name}
+	</select>
+	
+	<select id="getResult" parameterType="Map" resultType="java.lang.String">
+		SELECT distinct F_resultField
+		FROM W_DB_FUNC 
+		where		
+		F_table_name=#{namespace}
+		and
+		F_func_name=#{method} 
+	</select>
+	
+	<select id="getCondition" parameterType="Map" resultType="java.lang.String">
+		SELECT distinct F_conditionField
+		FROM W_DB_FUNC 
+		where		
+		F_table_name=#{namespace}
+		and
+		F_func_name=#{method} 
+	</select>
+	
+	<select id="getSort" parameterType="Map" resultType="java.lang.String">
+		SELECT distinct F_sortField
+		FROM W_DB_FUNC 
+		where		
+		F_table_name=#{namespace}
+		and
+		F_func_name=#{method} 
+	</select>
+	
+	<select id="getSetting" parameterType="Map" resultType="java.lang.String">
+		SELECT distinct F_settingField
+		FROM W_DB_FUNC 
+		where		
+		F_table_name=#{namespace}
+		and
+		F_func_name=#{method} 
+	</select>
+	
+	<select id="getDisplay" parameterType="Map" resultType="java.lang.String">
+		SELECT distinct F_displayField
+		FROM W_DB_FUNC 
+		where		
+		F_table_name=#{namespace}
+		and
+		F_func_name=#{method} 
+	</select>
+	
+	<select id="getType" parameterType="Map" resultType="java.lang.String">
+		SELECT F_FUNC_TYPE
+		FROM W_DB_FUNC 
+		where		
+		F_table_name=#{namespace}
+		and
+		F_func_name=#{method} 
+	</select>
+	
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.OrgAuth">
+	<resultMap id="OrgAuth" type="com.hotent.platform.model.system.OrgAuth">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="userId" column="USER_ID" jdbcType="NUMERIC"/>
+		<result property="userName" column="USER_NAME" jdbcType="VARCHAR"/>
+		<result property="orgId" column="ORG_ID" jdbcType="NUMERIC"/>
+		<result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="dimId" column="DIM_ID" jdbcType="NUMERIC"/>
+		<result property="dimName" column="dim_name" jdbcType="VARCHAR"/>
+		<result property="orgPerms" column="ORG_PERMS" jdbcType="VARCHAR"/>
+		<result property="userPerms" column="USER_PERMS" jdbcType="VARCHAR"/>
+		<result property="orgPath" column="orgPath" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,USER_ID,ORG_ID,DIM_ID,ORG_PERMS,USER_PERMS
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND a.ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND a.USER_ID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(userName)"> AND b.fullName =#{userName} </if>
+			<if test="@Ognl@isNotEmpty(orgName)"> AND a.c.orgName =#{orgName} </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND a.ORG_ID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(dimId)"> AND a.DIM_ID  =#{dimId} </if>
+			<if test="@Ognl@isNotEmpty(orgPerms)"> AND a.ORG_PERMS  LIKE #{orgPerms}  </if>
+			<if test="@Ognl@isNotEmpty(userPerms)"> AND a.USER_PERMS  LIKE #{userPerms}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.OrgAuth">
+		INSERT INTO SYS_ORG_AUTH
+		(ID,USER_ID,ORG_ID,DIM_ID,ORG_PERMS,USER_PERMS)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{orgId,jdbcType=NUMERIC}, #{dimId,jdbcType=NUMERIC}, #{orgPerms,jdbcType=VARCHAR}, #{userPerms,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ORG_AUTH 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.OrgAuth">
+		UPDATE SYS_ORG_AUTH SET
+		USER_ID=#{userId,jdbcType=NUMERIC},
+		ORG_ID=#{orgId,jdbcType=NUMERIC},
+		DIM_ID=#{dimId,jdbcType=NUMERIC},
+		ORG_PERMS=#{orgPerms,jdbcType=VARCHAR},
+		USER_PERMS=#{userPerms,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="OrgAuth">
+		SELECT a.ID,a.USER_ID,a.ORG_ID,a.DIM_ID, a.ORG_PERMS, a.USER_PERMS,
+		b.fullname as USER_NAME,c.orgName
+		FROM SYS_ORG_AUTH a 
+		left join sys_user b on a.user_id = b.userId
+		left join sys_org c on a.org_id = c.orgId 
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="OrgAuth">
+		SELECT a.ID,a.USER_ID,a.ORG_ID,a.DIM_ID, a.ORG_PERMS, a.USER_PERMS,
+		b.fullname as USER_NAME,ORGNAME<!-- ,d.demName as dim_name -->
+		FROM SYS_ORG_AUTH a
+		left join sys_user b on a.user_id = b.userId
+		left join sys_org c on a.org_id = c.orgId
+		<!-- left join sys_demension d on a.dim_Id = d.demId -->
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+	</select>
+	
+	<select id="getByUserId" resultMap="OrgAuth">
+		SELECT a.ID,a.USER_ID,a.ORG_ID,a.DIM_ID, a.ORG_PERMS, a.USER_PERMS,
+		b.fullname as USER_NAME,ORGNAME,d.demName as dim_name,c.path as orgPath
+		FROM SYS_ORG_AUTH a 
+		left join sys_user b on a.user_id = b.userId
+		left join sys_org c on a.org_id = c.orgId
+		left join sys_demension d on a.dim_Id = d.demId
+		where a.user_id = #{userId}
+	</select>
+	
+	<select id="getUserIdDimId" parameterType="java.util.Map" resultMap="OrgAuth">
+		SELECT * FROM SYS_ORG_AUTH  WHERE user_id=#{userId} and DIM_ID=#{dimId}
+	</select>
+	
+	<select id="getByUserIdAndOrgId" parameterType="java.util.Map" resultMap="OrgAuth">
+		SELECT * FROM SYS_ORG_AUTH  WHERE USER_ID=#{userId} and ORG_ID=#{orgId}
+	</select>
+	
+	<select id="checkOrgAuthIsExist"  parameterType="java.lang.String" resultType="Integer">
+		SELECT count(*) FROM SYS_ORG_AUTH 
+		WHERE  USER_ID=#{userId}
+		and ORG_ID = #{orgId}
+	</select>
+	
+	
+</mapper>

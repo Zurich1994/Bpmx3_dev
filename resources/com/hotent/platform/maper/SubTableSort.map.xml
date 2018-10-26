@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.form.SubTableSort">
+	<resultMap id="SubTableSort" type="com.hotent.platform.model.form.SubTableSort">
+		<id property="id" column="Id" jdbcType="NUMERIC"/>
+		<result property="actdefkey" column="actDefKey" jdbcType="VARCHAR"/>
+		<result property="tablename" column="tableName" jdbcType="VARCHAR"/>
+		<result property="fieldsort" column="fieldSort" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		Id,actDefKey,tableName,fieldSort
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND Id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(actdefkey)"> AND actDefKey  LIKE #{actdefkey}  </if>
+			<if test="@Ognl@isNotEmpty(tablename)"> AND tableName  LIKE #{tablename}  </if>
+			<if test="@Ognl@isNotEmpty(fieldsort)"> AND fieldSort  LIKE #{fieldsort}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.form.SubTableSort">
+		INSERT INTO bpm_subtable_sort
+		(Id,actDefKey,tableName,fieldSort)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{actdefkey,jdbcType=VARCHAR}, #{tablename,jdbcType=VARCHAR}, #{fieldsort,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM bpm_subtable_sort 
+		WHERE
+		Id=#{id}
+	</delete>
+	
+	
+	<delete id="delByTableNameAndActKey" >
+		DELETE FROM bpm_subtable_sort 
+		WHERE
+		actDefKey=#{actDefKey} and tableName in <foreach collection="tableNameList" index="index" item="tableName" open="(" close=")" separator=",">
+			#{tableName}
+		</foreach>
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.form.SubTableSort">
+		UPDATE bpm_subtable_sort SET
+		actDefKey=#{actdefkey,jdbcType=VARCHAR},
+		tableName=#{tablename,jdbcType=VARCHAR},
+		fieldSort=#{fieldsort,jdbcType=VARCHAR}
+		WHERE
+		Id=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SubTableSort">
+		SELECT <include refid="columns"/>
+		FROM bpm_subtable_sort
+		WHERE
+		Id=#{id}
+	</select>
+	
+	<select id="getByActDefKeyAndTableName"  resultMap="SubTableSort">
+		SELECT <include refid="columns"/>
+		FROM bpm_subtable_sort
+		WHERE
+		actDefKey=#{actDefKey} and tableName in <foreach collection="tableNameList" index="index" item="tableName" open="(" close=")" separator=",">
+			#{tableName}
+		</foreach>
+	</select>
+	
+	<select id="getAll" resultMap="SubTableSort">
+		SELECT <include refid="columns"/>
+		FROM bpm_subtable_sort   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by Id  desc
+		</if>
+	</select>
+	
+	
+</mapper>

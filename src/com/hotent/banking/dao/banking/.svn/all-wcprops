@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/658/bpmx_w/src/com/hotent/banking/dao/banking
+END
+add_payeeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/add_payeeDao.java
+END
+AccountDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/658/bpmx_w/src/com/hotent/banking/dao/banking/AccountDao.java
+END
+BillPayDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/BillPayDao.java
+END
+Account1Dao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/Account1Dao.java
+END
+updateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/updateDao.java
+END
+PayeeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/PayeeDao.java
+END
+CheckyanDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/CheckyanDao.java
+END
+UserTabDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/UserTabDao.java
+END
+quickpayDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/quickpayDao.java
+END
+OrderCheckDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/OrderCheckDao.java
+END
+checkaccountDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/353/bpmx_w/src/com/hotent/banking/dao/banking/checkaccountDao.java
+END

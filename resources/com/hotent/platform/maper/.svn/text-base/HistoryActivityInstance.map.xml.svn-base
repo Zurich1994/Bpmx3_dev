@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity">
+
+	<resultMap id="historicActivityInstanceResultMap" type="org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity">
+	    <id property="id" column="ID_" jdbcType="VARCHAR" />
+	    <result property="processDefinitionId" column="PROC_DEF_ID_" jdbcType="VARCHAR" />
+	    <result property="processInstanceId" column="PROC_INST_ID_" jdbcType="VARCHAR" />
+	    <result property="executionId" column="EXECUTION_ID_" jdbcType="VARCHAR" />
+	    <result property="activityId" column="ACT_ID_" jdbcType="VARCHAR" />
+	    <result property="activityName" column="ACT_NAME_" jdbcType="VARCHAR" />
+	    <result property="activityType" column="ACT_TYPE_" jdbcType="VARCHAR" />
+	    <result property="assignee" column="ASSIGNEE_" jdbcType="VARCHAR" />
+	    <result property="startTime" column="START_TIME_" jdbcType="TIMESTAMP" />
+	    <result property="endTime" column="END_TIME_" jdbcType="TIMESTAMP" />
+	    <result property="durationInMillis" column="DURATION_" jdbcType="BIGINT" />
+	 	</resultMap>
+
+	
+	  <update id="update" parameterType="org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity">
+	    update ACT_HI_ACTINST set
+	      END_TIME_ = #{endTime, jdbcType=TIMESTAMP},
+	      DURATION_ = #{durationInMillis ,jdbcType=BIGINT},
+	      assignee_ = #{assignee, jdbcType=NUMERIC} 
+	    where ID_ = #{id}
+	  </update>
+  
+  <insert id="add" parameterType="org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity">
+		insert into act_hi_actinst (id_, proc_def_id_, execution_id_, act_id_, act_name_, act_type_,
+			start_time_, end_time_, duration_, proc_inst_id_, assignee_)
+		values(#{id},#{processDefinitionId},#{executionId},#{activityId},#{activityName},#{activityType},
+		#{startTime},#{endTime},#{durationInMillis},#{processInstanceId},#{assignee})
+  </insert>
+  
+  
+  <select id="getByInstanceId" parameterType="java.util.Map" resultMap="historicActivityInstanceResultMap">
+		select ID_,PROC_DEF_ID_,PROC_INST_ID_,EXECUTION_ID_,ACT_ID_,ACT_NAME_,ACT_TYPE_,
+		ASSIGNEE_,START_TIME_,END_TIME_,DURATION_
+		 from act_hi_actinst t where t.proc_inst_id_=#{actInstId,jdbcType=NUMERIC} 
+		 and act_id_=#{nodeId,jdbcType=VARCHAR} and end_time_ is null
+  </select>
+  
+  
+  
+  <select id="getByActInstId" parameterType="java.util.Map" resultMap="historicActivityInstanceResultMap">
+		select ID_,PROC_DEF_ID_,PROC_INST_ID_,EXECUTION_ID_,ACT_ID_,ACT_NAME_,ACT_TYPE_,
+		ASSIGNEE_,START_TIME_,END_TIME_,DURATION_ from act_hi_actinst t where t.PROC_INST_ID_=#{actInstId} 
+		and act_id_=#{nodeId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getByExecutionId" parameterType="java.util.Map" resultMap="historicActivityInstanceResultMap">
+		select ID_,PROC_DEF_ID_,PROC_INST_ID_,EXECUTION_ID_,ACT_ID_,ACT_NAME_,ACT_TYPE_,
+		ASSIGNEE_,START_TIME_,END_TIME_,DURATION_ from act_hi_actinst t where t.EXECUTION_ID_=#{executionId} 
+		and act_id_=#{nodeId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getByFilter" parameterType="java.util.Map" resultMap="historicActivityInstanceResultMap">
+		select 
+			ID_,PROC_DEF_ID_,PROC_INST_ID_,EXECUTION_ID_,ACT_ID_,ACT_NAME_,ACT_TYPE_,
+			ASSIGNEE_,START_TIME_,END_TIME_,DURATION_
+		from 
+			act_hi_actinst t 
+		where 
+			1=1
+			<if test="@Ognl@isNotEmpty(actInstId)"> AND t.proc_inst_id_=#{actInstId,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(actId)"> AND t.act_id_=#{act_id_,jdbcType=VARCHAR}</if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND t.end_time_=#{end_time_,jdbcType=VARCHAR}</if>
+  </select>
+  
+  <update id="updateAssignee" parameterType="org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity">
+    update ACT_HI_ACTINST set assignee_ = #{assignee, jdbcType=NUMERIC} ,end_time_=#{endTime} ,duration_=#{durationInMillis}
+    where proc_inst_id_=#{processInstanceId} and act_id_=#{activityId}  and end_time_ is null
+  </update>
+  
+  <update id="updateIsStart" parameterType="java.util.Map">
+    update ACT_HI_ACTINST set isStart=1 where proc_inst_id_=#{processInstanceId} and act_id_=#{activityId} 
+  </update>
+  
+</mapper>

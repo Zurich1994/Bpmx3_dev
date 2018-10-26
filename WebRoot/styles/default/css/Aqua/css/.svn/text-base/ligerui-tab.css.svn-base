@@ -1,0 +1,237 @@
+
+.l-tab-loading {
+    background: url("../images/common/bigloading.gif") no-repeat scroll center 40% white;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 91000;
+}
+.l-tab-links {
+    background: url("../../../images/other/bg.png") repeat scroll 0 -90px transparent;
+    height: 42px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.l-tab-links-left {
+    background: url("../../../images/other/1.png") no-repeat scroll 0 -70px #FFFFFF;
+    border: 8px solid #FFFFFF;
+    cursor: pointer;
+    height: 17px;
+    left: 0;
+    opacity: 0.85;
+    overflow: hidden;
+    position: absolute;
+    top: 5px;
+    width: 9px;
+    z-index: 13;
+}
+.l-tab-links-right {
+    background: url("../../../images/other/1.png") no-repeat scroll -35px -70px #FFFFFF;
+    border: 8px solid #FFFFFF;
+    cursor: pointer;
+    height: 17px;
+    opacity: 0.85;
+    overflow: hidden;
+    position: absolute;
+    right: 1px;
+    top: 5px;
+    width: 9px;
+    z-index: 13;
+}
+.l-tab-links-left-over {
+    background-position: -16px -70px;
+}
+.l-tab-links-right-over {
+    background-position: -50px -70px;
+}
+.l-tab-links-left-invalid {
+    background-position: -34px 0;
+}
+.l-tab-links-right-invalid {
+    background-position: -85px 0;
+}
+.l-tab-links ul {
+    left: 0;
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 9999px;
+}
+.l-tab-links li {
+    cursor: pointer;
+    float: left;
+    font-size: 13px;
+    height: 42px;
+    line-height: 42px;
+    margin: 0 2px;
+    overflow: hidden;
+    position: relative;
+    *margin-top: 10px;
+}
+.l-tab-links li a {
+    border-right: 1px solid #D2D2D2;
+    color: #000000;
+    padding: 0 18px 0 6px;
+    text-decoration: none;
+}
+.l-tab-links li.l-selected {
+    background: none repeat scroll 0 0 transparent;
+}
+.l-tab-links li.l-selected a {
+    background: none repeat scroll 0 0 #C3DBFF;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    outline: 0 none;
+    padding: 5px 20px 5px 7px;
+}
+.l-tab-links-item-close {
+    background: url("../../../images/other/1.png") repeat scroll -40px 0 transparent;
+    cursor: pointer;
+    height: 11px;
+    overflow: hidden;
+    position: absolute;
+    right: 2px;
+    top: 10px;
+    width: 11px;
+    z-index: 12;
+}
+.l-tab-links-item-close-over {
+    background-position: -30px -35px;
+}
+.l-tab-content {
+    border: medium none;
+    height: 100%;
+    margin: 5px 0px;
+    padding: 0;
+    width: 100%;
+}/*z0902 margin: 5px;*/
+.l-tab-content-item {
+    overflow: hidden;
+    width: 100%;
+}
+.l-tab-content-item iframe {
+    border: medium none;
+    height: 100%;
+    width: 100%;
+}
+.l-tab-drag-proxy {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #BDD1EE;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 19px;
+    padding-right: 4px;
+    position: absolute;
+    z-index: 1001;
+}
+.l-tab-drag-proxy .l-drop-icon {
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    top: 5px;
+    width: 16px;
+}
+.l-drop-no {
+    background: url("../images/common/drop-icons.gif") no-repeat scroll 0 -20px white;
+    height: 16px;
+    overflow: hidden;
+    width: 16px;
+}
+.l-drop-yes {
+    background: url("../images/common/drop-icons.gif") no-repeat scroll 0 0 white;
+    height: 16px;
+    overflow: hidden;
+    width: 16px;
+}
+.l-tab-drag-droptip {
+    height: 44px;
+    left: 30px;
+    position: absolute;
+    top: 30px;
+    width: 9px;
+    z-index: 1000;
+}
+.l-tab-drag-droptip .l-drop-move-up {
+    position: absolute;
+    top: 0;
+}
+.l-tab-drag-droptip .l-drop-move-down {
+    bottom: 0;
+    position: absolute;
+}
+.l-drop-move-up {
+    background: url("../images/common/drop-icons.gif") no-repeat scroll -40px 0 transparent;
+    height: 9px;
+    overflow: hidden;
+    width: 9px;
+}
+.l-drop-move-down {
+    background: url("../images/common/drop-icons.gif") no-repeat scroll -60px 0 transparent;
+    height: 9px;
+    overflow: hidden;
+    width: 9px;
+}
+.l-easytab {
+    padding: 0;
+    position: relative;
+}
+.l-easytab ul {
+    left: 0;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    z-index: 101;
+}
+.l-easytab .l-easytab-header {
+    padding-left: 3px;
+}
+.l-easytab .l-easytab-header li {
+    float: left;
+    margin-left: 2px;
+}
+.l-easytab .l-easytab-header li span {
+    background: url("../images/controls/bg-tab-title.gif") repeat-x scroll 0 0 transparent;
+    border: 1px solid #AECAF0;
+    color: #283B56;
+    display: block;
+    height: 22px;
+    line-height: 22px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-decoration: none;
+}
+.l-easytab .l-easytab-header li span.l-over {
+    background: url("../images/controls/bg-tab-title-over.gif") repeat-x scroll 0 0 transparent;
+    border: 1px solid #DAB364;
+    cursor: pointer;
+}
+.l-easytab .l-easytab-header li span.l-selected {
+    background: none repeat scroll 0 0 white;
+    border-color: #FFBD69 #DAB364 white;
+    border-style: solid;
+    border-width: 3px 1px 1px;
+    color: #355686;
+    height: 20px;
+}
+.l-easytab .l-easytab-panelbox {
+    border: 1px solid #AECAF0;
+    clear: left;
+    padding: 4px;
+    position: absolute;
+    top: 23px;
+    z-index: 100;
+}
+/*new*/
+.l-tab-links li img{margin-top:-4px;}
+.subTableToolBar a {
+	margin: 12px 0 0 5px;
+}

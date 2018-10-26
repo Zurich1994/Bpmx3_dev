@@ -1,0 +1,14 @@
+CACHE MANIFEST
+#v1.0.00 and counting!
+CACHE:
+mobile/resources/css/sencha-touch.css
+mobile/resources/css/mobile.css
+mobile/resources/sencha-touch.js
+mobile/locale/zh_CN.js
+mobile/extend/HTExt.js
+mobile/app/App.js
+mobile/app/Util.js
+mobile/app/MenuConfig.js
+mobile/app/Init.js
+NETWORK:
+*

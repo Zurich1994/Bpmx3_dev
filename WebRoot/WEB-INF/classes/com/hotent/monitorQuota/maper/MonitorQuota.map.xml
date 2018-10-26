@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.monitorQuota.model.monitorQuotaPac.MonitorQuota">
+	<resultMap id="MonitorQuota" type="com.hotent.monitorQuota.model.monitorQuotaPac.MonitorQuota">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="F_NAME" jdbcType="VARCHAR"/>
+		<result property="deviceType" column="F_DEVICETYPE" jdbcType="VARCHAR"/>
+		<result property="unit" column="F_UNIT" jdbcType="VARCHAR"/>
+		<result property="propertyName" column="F_PROPERTYNAME" jdbcType="VARCHAR"/>
+		<result property="propertyValue" column="F_PROPERTYVALUE" jdbcType="VARCHAR"/>
+		<result property="monitorType" column="F_MONITORTYPE" jdbcType="VARCHAR"/>
+		<result property="OID" column="F_OID" jdbcType="VARCHAR"/>
+		<result property="className" column="F_CLASSNAME" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_NAME,F_DEVICETYPE,F_UNIT,F_PROPERTYNAME,F_PROPERTYVALUE,F_MONITORTYPE,F_OID,F_CLASSNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND F_NAME  LIKE '%${name}%'  </if>
+			<if test="@Ognl@isNotEmpty(deviceType)"> AND F_DEVICETYPE  LIKE '%${deviceType}%'  </if>
+			<if test="@Ognl@isNotEmpty(unit)"> AND F_UNIT  LIKE '%${unit}%'  </if>
+			<if test="@Ognl@isNotEmpty(propertyName)"> AND F_PROPERTYNAME  LIKE '%${propertyName}%'  </if>
+			<if test="@Ognl@isNotEmpty(propertyValue)"> AND F_PROPERTYVALUE  LIKE '%${propertyValue}%'  </if>
+			<if test="@Ognl@isNotEmpty(monitorType)"> AND F_MONITORTYPE  LIKE '%${monitorType}%'  </if>
+			<if test="@Ognl@isNotEmpty(OID)"> AND F_OID  LIKE '%${OID}%'  </if>
+			<if test="@Ognl@isNotEmpty(className)"> AND F_CLASSNAME  =#{className} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.monitorQuota.model.monitorQuotaPac.MonitorQuota">
+		INSERT INTO W_MONITOR_QUOTA
+		(ID,
+		F_NAME,F_DEVICETYPE,F_UNIT,F_PROPERTYNAME,F_PROPERTYVALUE,F_MONITORTYPE,F_OID,F_CLASSNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{name,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{propertyName,jdbcType=VARCHAR}, #{propertyValue,jdbcType=VARCHAR}, #{monitorType,jdbcType=VARCHAR}, #{OID,jdbcType=VARCHAR}, #{className,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_MONITOR_QUOTA 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.monitorQuota.model.monitorQuotaPac.MonitorQuota">
+		UPDATE W_MONITOR_QUOTA SET
+		F_NAME=#{name,jdbcType=VARCHAR},
+		F_DEVICETYPE=#{deviceType,jdbcType=VARCHAR},
+		F_UNIT=#{unit,jdbcType=VARCHAR},
+		F_PROPERTYNAME=#{propertyName,jdbcType=VARCHAR},
+		F_PROPERTYVALUE=#{propertyValue,jdbcType=VARCHAR},
+		F_MONITORTYPE=#{monitorType,jdbcType=VARCHAR},
+		F_OID=#{OID,jdbcType=VARCHAR},
+		F_CLASSNAME=#{className,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MonitorQuota">
+		SELECT <include refid="columns"/>
+		FROM W_MONITOR_QUOTA
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MonitorQuota">
+		SELECT <include refid="columns"/>
+		FROM W_MONITOR_QUOTA   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

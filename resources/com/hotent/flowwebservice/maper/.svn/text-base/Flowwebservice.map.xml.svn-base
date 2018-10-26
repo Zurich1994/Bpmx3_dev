@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.flowwebservice.model.flowwebservice.Flowwebservice">
+	<resultMap id="Flowwebservice" type="com.hotent.flowwebservice.model.flowwebservice.Flowwebservice">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="serviceName" column="F_SERVICENAME" jdbcType="VARCHAR"/>
+		<result property="serviceUrl" column="F_SERVICEURL" jdbcType="VARCHAR"/>
+		<result property="serviceFuncName" column="F_SERVICEFUNCNAME" jdbcType="VARCHAR"/>
+		<result property="serviceType" column="F_SERVICETYPE" jdbcType="VARCHAR"/>
+		<result property="serviceState" column="F_SERVICESTATE" jdbcType="VARCHAR"/>
+		<result property="defid" column="F_DEFID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_SERVICENAME,F_SERVICEURL,F_SERVICEFUNCNAME,F_SERVICETYPE,F_SERVICESTATE,F_DEFID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(serviceName)"> AND F_SERVICENAME  LIKE '%${serviceName}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceUrl)"> AND F_SERVICEURL  LIKE '%${serviceUrl}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceFuncName)"> AND F_SERVICEFUNCNAME  LIKE '%${serviceFuncName}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceType)"> AND F_SERVICETYPE  LIKE '%${serviceType}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceState)"> AND F_SERVICESTATE  LIKE '%${serviceState}%'  </if>
+			<if test="@Ognl@isNotEmpty(defid)"> AND F_DEFID  =#{defid} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.flowwebservice.model.flowwebservice.Flowwebservice">
+		INSERT INTO W_FLOWWEBSERVICE
+		(ID,
+		F_SERVICENAME,F_SERVICEURL,F_SERVICEFUNCNAME,F_SERVICETYPE,F_SERVICESTATE,F_DEFID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{serviceName,jdbcType=VARCHAR}, #{serviceUrl,jdbcType=VARCHAR}, #{serviceFuncName,jdbcType=VARCHAR}, #{serviceType,jdbcType=VARCHAR}, #{serviceState,jdbcType=VARCHAR}, #{defid,jdbcType=NUMERIC})
+	</insert>
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_FLOWWEBSERVICE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.flowwebservice.model.flowwebservice.Flowwebservice">
+		UPDATE W_FLOWWEBSERVICE SET
+		F_SERVICENAME=#{serviceName,jdbcType=VARCHAR},
+		F_SERVICEURL=#{serviceUrl,jdbcType=VARCHAR},
+		F_SERVICEFUNCNAME=#{serviceFuncName,jdbcType=VARCHAR},
+		F_SERVICETYPE=#{serviceType,jdbcType=VARCHAR},
+		F_SERVICESTATE=#{serviceState,jdbcType=VARCHAR},
+		F_DEFID=#{defid,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Flowwebservice">
+		SELECT <include refid="columns"/>
+		FROM W_FLOWWEBSERVICE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Flowwebservice">
+		SELECT <include refid="columns"/>
+		FROM W_FLOWWEBSERVICE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

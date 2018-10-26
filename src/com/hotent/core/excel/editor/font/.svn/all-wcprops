@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/font
+END
+ItalicFontEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/font/ItalicFontEditor.java
+END
+FontHeightEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/font/FontHeightEditor.java
+END
+FontColorEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/font/FontColorEditor.java
+END
+BoldFontEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/font/BoldFontEditor.java
+END

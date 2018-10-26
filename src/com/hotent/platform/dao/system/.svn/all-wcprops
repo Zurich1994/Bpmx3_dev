@@ -1,0 +1,533 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/2202/bpmx_w/src/com/hotent/platform/dao/system
+END
+SysUrlRulesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysUrlRulesDao.java
+END
+SysOrgTacticDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysOrgTacticDao.java
+END
+WsDataTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/WsDataTemplateDao.java
+END
+SealRightDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SealRightDao.java
+END
+SysPropertyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysPropertyDao.java
+END
+AuthRoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/AuthRoleDao.java
+END
+SysIndexColumnDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysIndexColumnDao.java
+END
+SysExcelTempDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysExcelTempDao.java
+END
+MessageLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/MessageLogDao.java
+END
+SysOfficeTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysOfficeTemplateDao.java
+END
+SysAcceptIpDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysAcceptIpDao.java
+END
+SysOrgTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysOrgTypeDao.java
+END
+SysPlanDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysPlanDao.java
+END
+GlobalTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/902/bpmx_w/src/com/hotent/platform/dao/system/GlobalTypeDao.java
+END
+ScriptDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/ScriptDao.java
+END
+SysIndexLayoutDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysIndexLayoutDao.java
+END
+SysCodeTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysCodeTemplateDao.java
+END
+OrgAuthDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/910/bpmx_w/src/com/hotent/platform/dao/system/OrgAuthDao.java
+END
+ResourcesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/930/bpmx_w/src/com/hotent/platform/dao/system/ResourcesDao.java
+END
+SysPlanParticipantsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysPlanParticipantsDao.java
+END
+PageTestDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/PageTestDao.java
+END
+SysIndexLayoutManageDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysIndexLayoutManageDao.java
+END
+SysBulletinDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysBulletinDao.java
+END
+SysQuerySqlDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysQuerySqlDao.java
+END
+SysUserOrgDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysUserOrgDao.java
+END
+SysOrgDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/935/bpmx_w/src/com/hotent/platform/dao/system/SysOrgDao.java
+END
+SysTypeKeyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/304/bpmx_w/src/com/hotent/platform/dao/system/SysTypeKeyDao.java
+END
+SysBusEventDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysBusEventDao.java
+END
+SysWsLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysWsLogDao.java
+END
+PersonScriptDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/PersonScriptDao.java
+END
+SysPlanExchangeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysPlanExchangeDao.java
+END
+SysParamDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/996/bpmx_w/src/com/hotent/platform/dao/system/SysParamDao.java
+END
+UserRoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/UserRoleDao.java
+END
+MessageReplyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/MessageReplyDao.java
+END
+UserPositionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/UserPositionDao.java
+END
+SysQuerySqlDefDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysQuerySqlDefDao.java
+END
+SysAuditDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysAuditDao.java
+END
+SysExcelTempDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysExcelTempDetailDao.java
+END
+SysOrgRoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/938/bpmx_w/src/com/hotent/platform/dao/system/SysOrgRoleDao.java
+END
+MessageReceiverDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/MessageReceiverDao.java
+END
+SysUrlPermissionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysUrlPermissionDao.java
+END
+SysTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysTemplateDao.java
+END
+JobDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/1002/bpmx_w/src/com/hotent/platform/dao/system/JobDao.java
+END
+SysIndexMyLayoutDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysIndexMyLayoutDao.java
+END
+ConditionScriptDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/ConditionScriptDao.java
+END
+SysJobLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysJobLogDao.java
+END
+SysUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/948/bpmx_w/src/com/hotent/platform/dao/system/SysUserDao.java
+END
+MessageReadDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/MessageReadDao.java
+END
+SysOrgRoleManageDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysOrgRoleManageDao.java
+END
+SealDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SealDao.java
+END
+IdentityDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/IdentityDao.java
+END
+SysErrorLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysErrorLogDao.java
+END
+SysBulletinColumnDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysBulletinColumnDao.java
+END
+MessageSendDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/909/bpmx_w/src/com/hotent/platform/dao/system/MessageSendDao.java
+END
+SysPopupRemindDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysPopupRemindDao.java
+END
+SysQuerySettingDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/944/bpmx_w/src/com/hotent/platform/dao/system/SysQuerySettingDao.java
+END
+SysLogSwitchDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysLogSwitchDao.java
+END
+PositionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/918/bpmx_w/src/com/hotent/platform/dao/system/PositionDao.java
+END
+SysTransDefDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysTransDefDao.java
+END
+DesktopLayoutcolDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/DesktopLayoutcolDao.java
+END
+DictionaryDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/DictionaryDao.java
+END
+SysPaurDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysPaurDao.java
+END
+ReportTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/2202/bpmx_w/src/com/hotent/platform/dao/system/ReportTemplateDao.java
+END
+SysDataSourceDefDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysDataSourceDefDao.java
+END
+SysQueryFieldDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysQueryFieldDao.java
+END
+SysReportDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysReportDao.java
+END
+SysObjLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysObjLogDao.java
+END
+UserUnderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/951/bpmx_w/src/com/hotent/platform/dao/system/UserUnderDao.java
+END
+SysFileDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysFileDao.java
+END
+AliasScriptDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1001/bpmx_w/src/com/hotent/platform/dao/system/AliasScriptDao.java
+END
+SysQueryMetaFieldDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysQueryMetaFieldDao.java
+END
+DemensionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/DemensionDao.java
+END
+DesktopColumnDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/DesktopColumnDao.java
+END
+SysDataSourceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/984/bpmx_w/src/com/hotent/platform/dao/system/SysDataSourceDao.java
+END
+SysObjRightsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysObjRightsDao.java
+END
+SysPlanSubscribeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysPlanSubscribeDao.java
+END
+RoleResourcesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/RoleResourcesDao.java
+END
+DesktopMycolumnDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/DesktopMycolumnDao.java
+END
+ResourcesUrlDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/ResourcesUrlDao.java
+END
+SubSystemDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1672/bpmx_w/src/com/hotent/platform/dao/system/SubSystemDao.java
+END
+SysUserParamDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/949/bpmx_w/src/com/hotent/platform/dao/system/SysUserParamDao.java
+END
+SysQueryViewDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysQueryViewDao.java
+END
+SysRoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysRoleDao.java
+END
+SysDataSourceLDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/SysDataSourceLDao.java
+END
+SysQueryFieldSettingDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysQueryFieldSettingDao.java
+END
+SysWordTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/dao/system/SysWordTemplateDao.java
+END
+SysOrgParamDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/936/bpmx_w/src/com/hotent/platform/dao/system/SysOrgParamDao.java
+END
+DesktopLayoutDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/dao/system/DesktopLayoutDao.java
+END

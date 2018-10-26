@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- receive the send xml format example -->
+<processCmd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <agentTask>false</agentTask>
+    <back>0</back>
+    <businessKey>123</businessKey>
+    <flowKey>orderCheckFlow</flowKey>
+    <userAccount>limin</userAccount>
+    <variables>
+        <entry>
+            <key>total</key>
+            <value xsi:type="xs:decimal">12303.3</value>
+        </entry>
+        <entry>
+            <key>orderNo</key>
+            <value xsi:type="xs:string">SHIP_NO</value>
+        </entry>
+        <entry>
+            <key>orderId</key>
+            <value xsi:type="xs:long">123</value>
+        </entry>
+    </variables>
+</processCmd>

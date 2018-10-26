@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysQueryFieldSetting">
+	<resultMap id="SysQueryFieldSetting" type="com.hotent.platform.model.system.SysQueryFieldSetting">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="viewId" column="VIEW_ID" jdbcType="NUMERIC"/>
+		<result property="fieldName" column="FIELD_NAME" jdbcType="VARCHAR"/>
+		<result property="sortAble" column="SORT_ABLE" jdbcType="NUMERIC"/>
+		<result property="defaultSort" column="DEFAULT_SORT" jdbcType="NUMERIC"/>
+		<result property="sortSeq" column="SORT_SEQ" jdbcType="VARCHAR"/>
+		<result property="align" column="ALIGN" jdbcType="VARCHAR"/>
+		<result property="frozen" column="FROZEN" jdbcType="NUMERIC"/>
+		<result property="summaryType" column="SUMMARY_TYPE" jdbcType="VARCHAR"/>
+		<result property="summaryTemplate" column="SUMMARY_TEMPLATE" jdbcType="VARCHAR"/>
+		<result property="hidden" column="HIDDEN" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,VIEW_ID,FIELD_NAME,SORT_ABLE,DEFAULT_SORT,SORT_SEQ,ALIGN,FROZEN,SUMMARY_TYPE,SUMMARY_TEMPLATE,HIDDEN
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(viewId)"> AND VIEW_ID  =#{viewId} </if>
+			<if test="@Ognl@isNotEmpty(fieldName)"> AND FIELD_NAME  =#{fieldName} </if>
+			<if test="@Ognl@isNotEmpty(sortAble)"> AND SORT_ABLE  =#{sortAble} </if>
+			<if test="@Ognl@isNotEmpty(defaultSort)"> AND DEFAULT_SORT  =#{defaultSort} </if>
+			<if test="@Ognl@isNotEmpty(sortSeq)"> AND SORT_SEQ  LIKE #{sortSeq}  </if>
+			<if test="@Ognl@isNotEmpty(align)"> AND ALIGN  LIKE #{align}  </if>
+			<if test="@Ognl@isNotEmpty(frozen)"> AND FROZEN  =#{frozen} </if>
+			<if test="@Ognl@isNotEmpty(summaryType)"> AND SUMMARY_TYPE  LIKE #{summaryType}  </if>
+			<if test="@Ognl@isNotEmpty(summaryTemplate)"> AND SUMMARY_TEMPLATE  LIKE #{summaryTemplate}  </if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysQueryFieldSetting">
+		INSERT INTO SYS_QUERY_FIELDSETTING
+		(ID,VIEW_ID,FIELD_NAME,SORT_ABLE,DEFAULT_SORT,SORT_SEQ,ALIGN,FROZEN,SUMMARY_TYPE,SUMMARY_TEMPLATE,HIDDEN)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{viewId,jdbcType=NUMERIC}, #{fieldName,jdbcType=VARCHAR}, #{sortAble,jdbcType=NUMERIC}, #{defaultSort,jdbcType=NUMERIC}, #{sortSeq,jdbcType=VARCHAR}, #{align,jdbcType=VARCHAR}, #{frozen,jdbcType=NUMERIC}, #{summaryType,jdbcType=VARCHAR}, #{summaryTemplate,jdbcType=VARCHAR},
+		#{hidden,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_QUERY_FIELDSETTING 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysQueryFieldSetting">
+		UPDATE SYS_QUERY_FIELDSETTING SET
+		VIEW_ID=#{viewId,jdbcType=NUMERIC},
+		FIELD_NAME=#{fieldName,jdbcType=NUMERIC},
+		SORT_ABLE=#{sortAble,jdbcType=NUMERIC},
+		DEFAULT_SORT=#{defaultSort,jdbcType=NUMERIC},
+		SORT_SEQ=#{sortSeq,jdbcType=VARCHAR},
+		ALIGN=#{align,jdbcType=VARCHAR},
+		FROZEN=#{frozen,jdbcType=NUMERIC},
+		SUMMARY_TYPE=#{summaryType,jdbcType=VARCHAR},
+		SUMMARY_TEMPLATE=#{summaryTemplate,jdbcType=VARCHAR},
+		HIDDEN=#{hidden,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysQueryFieldSetting">
+		SELECT <include refid="columns"/>
+		FROM SYS_QUERY_FIELDSETTING
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysQueryFieldSetting">
+		SELECT <include refid="columns"/>
+		FROM SYS_QUERY_FIELDSETTING   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getBySysQueryViewId" parameterType="java.lang.Long" resultMap="SysQueryFieldSetting">
+		SELECT <include refid="columns"/>
+		FROM SYS_QUERY_FIELDSETTING
+		WHERE
+		VIEW_ID=#{viewId}
+	</select>
+	
+	<delete id="removeBySysQueryViewId" parameterType="java.lang.Long">
+		DELETE FROM SYS_QUERY_FIELDSETTING 
+		WHERE
+		VIEW_ID=#{viewId}
+	</delete>
+	
+	
+</mapper>

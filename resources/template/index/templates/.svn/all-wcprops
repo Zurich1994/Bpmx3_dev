@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates
+END
+completedMatters.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/completedMatters.ftl
+END
+defaultIndexPages.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/defaultIndexPages.ftl
+END
+myRequest.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/myRequest.ftl
+END
+myCalendar.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/myCalendar.ftl
+END
+slide.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/slide.ftl
+END
+alreadyMatters.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/alreadyMatters.ftl
+END
+myCompleted.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/myCompleted.ftl
+END
+getMessage.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/getMessage.ftl
+END
+infobox.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/infobox.ftl
+END
+pendingMatters.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/pendingMatters.ftl
+END
+barChart.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/barChart.ftl
+END
+newProcess.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/newProcess.ftl
+END
+lineChart.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/lineChart.ftl
+END
+userInfo.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/index/templates/userInfo.ftl
+END

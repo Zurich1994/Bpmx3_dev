@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysCodeTemplate">
+	<resultMap id="SysCodeTemplate" type="com.hotent.platform.model.system.SysCodeTemplate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="templateName" column="TEMPLATE_NAME" jdbcType="VARCHAR"/>
+		<result property="html" column="HTML" jdbcType="CLOB"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="templateAlias" column="TEMPLATE_ALIAS" jdbcType="VARCHAR"/>
+		<result property="templateType" column="TEMPLATE_TYPE" jdbcType="NUMERIC"/>
+		<result property="isSub" column="ISSUBNEED" jdbcType="NUMERIC"/>
+		<result property="fileName" column="FILENAME" jdbcType="VARCHAR"/>
+		<result property="fileDir" column="FILEDIR" jdbcType="VARCHAR"/>
+		<result property="formEdit" column="formEdit" jdbcType="NUMERIC"/>
+		<result property="formDetail" column="formDetail" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TEMPLATE_NAME,HTML,MEMO,TEMPLATE_ALIAS,TEMPLATE_TYPE,ISSUBNEED,FILENAME,
+		FILEDIR,formEdit,formDetail
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(templateName)"> AND TEMPLATE_NAME  LIKE #{templateName}  </if>
+			<if test="@Ognl@isNotEmpty(templateAlias)"> AND TEMPLATE_ALIAS  LIKE #{templateAlias}  </if>
+			<if test="@Ognl@isNotEmpty(templateType)"> AND TEMPLATE_TYPE  LIKE #{templateType}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysCodeTemplate">
+		INSERT INTO SYS_CODE_TEMPLATE
+		(ID,TEMPLATE_NAME,HTML,MEMO,TEMPLATE_ALIAS,TEMPLATE_TYPE,ISSUBNEED,FILENAME,FILEDIR,formEdit,formDetail)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, 
+		 #{templateName,jdbcType=VARCHAR}, 
+		 #{html,jdbcType=CLOB}, 
+		 #{memo,jdbcType=VARCHAR},
+		 #{templateAlias,jdbcType=VARCHAR},
+		 #{templateType,jdbcType=NUMERIC},
+		 #{isSub,jdbcType=NUMERIC},
+		 #{fileName,jdbcType=VARCHAR},
+		 #{fileDir,jdbcType=VARCHAR},
+		 #{formEdit,jdbcType=NUMERIC},
+		 #{formDetail,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_CODE_TEMPLATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByTemplateType" parameterType="java.lang.Integer">
+		DELETE FROM SYS_CODE_TEMPLATE 
+		WHERE
+		TEMPLATE_TYPE=#{templateType}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysCodeTemplate">
+		UPDATE SYS_CODE_TEMPLATE SET
+		TEMPLATE_NAME=#{templateName,jdbcType=VARCHAR},
+		HTML=#{html,jdbcType=CLOB},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		TEMPLATE_ALIAS=#{templateAlias,jdbcType=VARCHAR},
+		TEMPLATE_TYPE=#{templateType,jdbcType=NUMERIC},
+		ISSUBNEED=#{isSub,jdbcType=NUMERIC},
+		FILENAME=#{fileName,jdbcType=VARCHAR},
+		FILEDIR=#{fileDir,jdbcType=VARCHAR},
+		formEdit=#{formEdit,jdbcType=NUMERIC},
+		formDetail=#{formDetail,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysCodeTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_CODE_TEMPLATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysCodeTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_CODE_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByTemplateAlias" resultMap="SysCodeTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_CODE_TEMPLATE
+		WHERE
+		TEMPLATE_ALIAS=#{alias}
+	</select>
+</mapper>

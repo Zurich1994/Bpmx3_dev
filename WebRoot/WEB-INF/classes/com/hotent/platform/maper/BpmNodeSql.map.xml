@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmNodeSql">
+	<resultMap id="BpmNodeSql" type="com.hotent.platform.model.bpm.BpmNodeSql">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="dsAlias" column="DSALIAS" jdbcType="VARCHAR"/>
+		<result property="actdefId" column="ACTDEFID" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="NODEID" jdbcType="VARCHAR"/>
+		<result property="action" column="ACTION_" jdbcType="VARCHAR"/>
+		<result property="sql" column="SQL_" jdbcType="VARCHAR"/>
+		<result property="desc" column="DESC_" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,NAME,DSALIAS,ACTDEFID,NODEID,ACTION_,SQL_,DESC_
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(dsAlias)"> AND dsAlias  LIKE #{dsAlias}  </if>
+			<if test="@Ognl@isNotEmpty(actdefId)"> AND actdefId  LIKE #{actdefId}  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND nodeId  LIKE #{nodeId}  </if>
+			<if test="@Ognl@isNotEmpty(action)"> AND ACTION_  LIKE #{action}  </if>
+			<if test="@Ognl@isNotEmpty(sql)"> AND SQL_  LIKE #{sql}  </if>
+			<if test="@Ognl@isNotEmpty(desc)"> AND DESC_  LIKE #{desc}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmNodeSql">
+		INSERT INTO bpm_node_sql
+		(ID,NAME,dsAlias,actdefId,nodeId,ACTION_,SQL_,DESC_)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{dsAlias,jdbcType=VARCHAR}, #{actdefId,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, #{sql,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM bpm_node_sql 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmNodeSql">
+		UPDATE bpm_node_sql SET
+		NAME=#{name,jdbcType=VARCHAR},
+		dsAlias=#{dsAlias,jdbcType=VARCHAR},
+		actdefId=#{actdefId,jdbcType=VARCHAR},
+		nodeId=#{nodeId,jdbcType=VARCHAR},
+		ACTION_=#{action,jdbcType=VARCHAR},
+		SQL_=#{sql,jdbcType=VARCHAR},
+		DESC_=#{desc,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmNodeSql">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_sql
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByNodeIdAndActdefIdAndAction" parameterType="java.lang.Long" resultMap="BpmNodeSql">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_sql
+		<where>
+			<if test="@Ognl@isNotEmpty(actdefId)"> AND actdefId  = #{actdefId}  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND nodeId  = #{nodeId}  </if>
+			<if test="@Ognl@isNotEmpty(action)"> AND ACTION_  = #{action}  </if>
+		</where>
+	</select>
+	
+	<select id="getAll" resultMap="BpmNodeSql">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_sql   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+</mapper>

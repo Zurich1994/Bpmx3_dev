@@ -1,0 +1,17 @@
+.jsonTitle {
+    color: rgb(10, 158, 152);
+    font-weight: bold;
+    text-align: center;
+}
+
+.dvjstr {
+    color: rgb(0, 135, 146);
+    font-weight: bold;
+    text-align: center;
+}
+
+.dvjsta {
+    font-size: 14px;
+    text-align: center;
+    padding-top: 6px;
+}

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.Position">
+	<resultMap id="Position" type="com.hotent.platform.model.system.Position">
+		<id property="posId" column="POSID" jdbcType="NUMERIC"/>
+		<result property="posName" column="POSNAME" jdbcType="VARCHAR"/>
+		<result property="posDesc" column="POSDESC" jdbcType="VARCHAR"/>
+		<result property="posCode" column="POSCODE" jdbcType="VARCHAR"/>
+		<result property="orgId" column="ORGID" jdbcType="NUMERIC"/>
+		<result property="jobId" column="JOBID" jdbcType="NUMERIC"/>
+		<result property="isDelete" column="ISDELETE" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		t.POSID,t.POSNAME,t.POSDESC,t.POSCODE,t.ORGID,t.JOBID,t.ISDELETE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(posId)"> AND t.POSID  =#{posId} </if>
+			<if test="@Ognl@isNotEmpty(posName)"> AND t.POSNAME  LIKE #{posName}  </if>
+			<if test="@Ognl@isNotEmpty(posDesc)"> AND t.POSDESC  LIKE #{posDesc}  </if>
+			<if test="@Ognl@isNotEmpty(posCode)"> AND t.POSCODE  LIKE #{posCode}  </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND t.ORGID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(jobId)"> AND t.JOBID  =#{jobId} </if>
+			AND t.ISDELETE=0
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.Position">
+		INSERT INTO SYS_POS
+		(POSID,POSNAME,POSDESC,POSCODE,ORGID,JOBID,ISDELETE)
+		VALUES
+		(#{posId,jdbcType=NUMERIC}, #{posName,jdbcType=VARCHAR}, #{posDesc,jdbcType=VARCHAR},#{posCode,jdbcType=VARCHAR}, #{orgId,jdbcType=NUMERIC}, #{jobId,jdbcType=NUMERIC}, #{isDelete,jdbcType=NUMERIC})
+	</insert>
+	<!--不能删除组织类数据,应修改删除标志  -->
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_POS 
+		WHERE
+		POSID=#{posId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.Position">
+		UPDATE SYS_POS SET
+		POSNAME=#{posName,jdbcType=VARCHAR},
+		POSDESC=#{posDesc,jdbcType=VARCHAR},
+		POSCODE=#{posCode,jdbcType=VARCHAR},
+		ORGID=#{orgId,jdbcType=NUMERIC},
+		JOBID=#{jobId,jdbcType=NUMERIC},
+		ISDELETE=#{isDelete,jdbcType=NUMERIC}
+		WHERE
+		POSID=#{posId}
+	</update>
+	
+	<!--不能删除组织类数据,应修改删除标志  -->
+	<update id="deleteByUpdateFlag" parameterType="com.hotent.platform.model.system.Position">
+		UPDATE SYS_POS 
+		set isdelete=1
+		WHERE
+		POSID=#{posId}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Position">
+		SELECT <include refid="columns"/>
+		FROM SYS_POS t
+		WHERE
+		t.POSID=#{posId}
+	</select>
+	
+	<select id="getByPosCode" resultMap="Position">
+		SELECT <include refid="columns"/>
+		FROM SYS_POS t
+		WHERE
+		t.POSCODE=#{posCode}
+	</select>
+	
+	<select id="getAll" resultMap="Position">
+		SELECT <include refid="columns"/>,o.orgName,j.jobName
+		FROM SYS_POS t  
+		left join sys_org o on o.orgId=t.orgId 
+		left join sys_job j on j.jobId=t.jobId
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by t.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by t.POSID  desc
+		</if>
+	</select>
+	<!-- 获取用户主岗位，一个用户只有一个主岗位 -->
+	<select id="getPrimaryPositionByUserId" parameterType="java.lang.Long"  resultType="com.hotent.platform.model.system.Position">
+		 select distinct p.* from sys_user_pos  up
+			inner join sys_pos p  on up.posid=p.posid
+			where userid=#{userId} and up.isprimary=1 and up.isdelete=0
+	</select>
+	<!-- 根据用户获取岗位列表 -->
+	<select id="getByUserId" parameterType="java.lang.Long"  resultType="com.hotent.platform.model.system.Position">
+	  SELECT o.*,uo.isPrimary FROM SYS_POS o join  SYS_USER_POS uo 
+	  on o.posid = uo.posId 
+	  where uo.userId=#{userId} and uo.isDelete=0
+	</select>
+	
+	<select id="getByPosName" resultMap="Position" parameterType="java.util.Map">
+        SELECT
+       <include refid="columns"/>
+        FROM SYS_POS t
+        WHERE t.posName = #{posName}
+    </select>
+    <!-- 根据组织串得到组织岗位关系 -->
+    <select id="getOrgPosListByOrgIds" parameterType="String" resultType="com.hotent.platform.model.system.Position">
+	    select a.*,o.orgName from SYS_POS a 
+	    inner join sys_org o on a.orgid=o.orgid
+	    where   a.orgId in (${orgIds})
+	    and a.isdelete=0
+	</select>
+
+    <!-- 根据组织串得到组织集合-->
+    <select id="getOrgListByOrgIds" parameterType="String" resultType="com.hotent.platform.model.system.Position">
+		select distinct p.orgid as posid, o.orgname as posname, 0 as orgid
+		from SYS_POS p
+		inner join sys_org o on p.orgid = o.orgid
+		where p.orgid in (${orgIds})
+		and p.isdelete=0
+	</select>
+	
+	<select id="getBySupOrgId" resultMap="Position">
+		SELECT <include refid="columns"/>,j.jobName,d.itemname jobGradeName
+		FROM SYS_POS t 
+		left join sys_job j on t.jobid = j.jobid
+		left join (
+		select * from SYS_DIC where typeid in (
+    		select typeid from SYS_GL_TYPE where catkey = 'DIC' and nodekey = '${nodekey}'
+   			)
+		)d on j.grade = d.itemvalue
+		where  t.isdelete = 0
+		<if test="@Ognl@isNotEmpty(orgPath)">
+			and t.ORGID in(SELECT o.orgId FROM sys_org o where o.path like #{orgPath} and o.isdelete = 0)
+		</if>
+		<if test="@Ognl@isNotEmpty(orgId)"> AND t.ORGID  =#{orgId} </if>
+		<if test="@Ognl@isNotEmpty(posName)"> AND t.POSNAME  LIKE #{posName}  </if>
+		order by t.POSID  desc
+	</select>
+	
+	
+	 <select id="getByOrgJobId"  resultType="com.hotent.platform.model.system.Position">
+	    SELECT <include refid="columns"/>
+		FROM SYS_POS t
+		WHERE ORGID=#{orgId,jdbcType=NUMERIC} and
+		JOBID=#{jobId,jdbcType=NUMERIC} and t.isdelete = 0
+	</select>
+	
+	
+</mapper>

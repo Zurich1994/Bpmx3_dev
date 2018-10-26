@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsAttenceGroupDetail">
+	<resultMap id="AtsAttenceGroupDetail" type="com.hotent.platform.model.ats.AtsAttenceGroupDetail">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="groupId" column="GROUP_ID" jdbcType="NUMERIC"/>
+		<result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,GROUP_ID,FILE_ID
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(groupId)"> AND GROUP_ID  =#{groupId} </if>
+			<if test="@Ognl@isNotEmpty(fileId)"> AND FILE_ID  =#{fileId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsAttenceGroupDetail">
+		INSERT INTO ATS_ATTENCE_GROUP_DETAIL
+		(ID,GROUP_ID,FILE_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{groupId,jdbcType=NUMERIC}, #{fileId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_GROUP_DETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsAttenceGroupDetail">
+		UPDATE ATS_ATTENCE_GROUP_DETAIL SET
+		GROUP_ID=#{groupId,jdbcType=NUMERIC},
+		FILE_ID=#{fileId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsAttenceGroupDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_GROUP_DETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsAttenceGroupDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_GROUP_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<delete id="delByGroupId" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_GROUP_DETAIL 
+		WHERE
+		GROUP_ID=#{groupId}
+	</delete>
+	
+	<delete id="delByFileId" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENCE_GROUP_DETAIL 
+		WHERE
+		FILE_ID=#{fileId}
+	</delete>
+	
+	
+	<select id="getByGroupId" parameterType="java.lang.Long" resultMap="AtsAttenceGroupDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENCE_GROUP_DETAIL
+		WHERE
+		GROUP_ID=#{groupId}
+	</select>
+</mapper>

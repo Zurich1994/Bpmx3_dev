@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.AliasScript">
+	<resultMap id="AliasScript" type="com.hotent.platform.model.system.AliasScript">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="aliasName" column="ALIAS_NAME" jdbcType="VARCHAR"/>
+		<result property="aliasDesc" column="ALIAS_DESC" jdbcType="VARCHAR"/>
+		<result property="className" column="CLASS_NAME" jdbcType="VARCHAR"/>
+		<result property="classInsName" column="CLASS_INS_NAME" jdbcType="VARCHAR"/>
+		<result property="methodName" column="METHOD_NAME" jdbcType="VARCHAR"/>
+		<result property="methodDesc" column="METHOD_DESC" jdbcType="VARCHAR"/>
+		<result property="scriptComten" column="SCRIPT_COMTEN" jdbcType="VARCHAR"/>
+		<result property="returnType" column="RETURN_TYPE" jdbcType="VARCHAR"/>
+		<result property="scriptType" column="SCRIPT_TYPE" jdbcType="VARCHAR"/>
+		<result property="argument" column="ARGUMENT" jdbcType="CLOB"/>
+		<result property="enable" column="ENABLE" jdbcType="NUMERIC"/>
+		<result property="isReturnValue" column="IS_RETURN_VALUE" jdbcType="NUMERIC"/>
+		<result property="returnParamJson" column="RETURN_PARAM_JSON" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ALIAS_NAME,ALIAS_DESC,CLASS_NAME,CLASS_INS_NAME,METHOD_NAME,METHOD_DESC,SCRIPT_COMTEN,RETURN_TYPE,SCRIPT_TYPE,ARGUMENT,ENABLE,IS_RETURN_VALUE,RETURN_PARAM_JSON
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(aliasName)"> AND ALIAS_NAME  LIKE #{aliasName}  </if>
+			<if test="@Ognl@isNotEmpty(aliasDesc)"> AND ALIAS_DESC  LIKE #{aliasDesc}  </if>
+			<if test="@Ognl@isNotEmpty(className)"> AND CLASS_NAME  LIKE #{className}  </if>
+			<if test="@Ognl@isNotEmpty(classInsName)"> AND CLASS_INS_NAME  LIKE #{classInsName}  </if>
+			<if test="@Ognl@isNotEmpty(methodName)"> AND METHOD_NAME  LIKE #{methodName}  </if>
+			<if test="@Ognl@isNotEmpty(methodDesc)"> AND METHOD_DESC  LIKE #{methodDesc}  </if>
+			<if test="@Ognl@isNotEmpty(scriptComten)"> AND SCRIPT_COMTEN  LIKE #{scriptComten}  </if>
+			<if test="@Ognl@isNotEmpty(returnType)"> AND RETURN_TYPE  LIKE #{returnType}  </if>
+			<if test="@Ognl@isNotEmpty(scriptType)"> AND SCRIPT_TYPE  = #{scriptType}  </if>
+			<if test="@Ognl@isNotEmpty(argument)"> AND ARGUMENT  LIKE #{argument}  </if>
+			<if test="enable!=null"> AND ENABLE  =#{enable} </if>
+			<if test="@Ognl@isNotEmpty(isReturnValue)"> AND IS_RETURN_VALUE  =#{isReturnValue} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.AliasScript">
+		INSERT INTO SYS_ALIAS_SCRIPT
+		(ID,ALIAS_NAME,ALIAS_DESC,CLASS_NAME,CLASS_INS_NAME,METHOD_NAME,METHOD_DESC,SCRIPT_COMTEN,RETURN_TYPE,SCRIPT_TYPE,ARGUMENT,ENABLE,RETURN_PARAM_JSON,IS_RETURN_VALUE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{aliasName,jdbcType=VARCHAR}, #{aliasDesc,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, #{classInsName,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{methodDesc,jdbcType=VARCHAR},#{scriptComten,jdbcType=VARCHAR}, #{returnType,jdbcType=VARCHAR},#{scriptType,jdbcType=VARCHAR}, #{argument,jdbcType=CLOB}, #{enable,jdbcType=NUMERIC},#{returnParamJson,jdbcType=VARCHAR}, #{isReturnValue,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ALIAS_SCRIPT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.AliasScript">
+		UPDATE SYS_ALIAS_SCRIPT SET
+		ALIAS_NAME=#{aliasName,jdbcType=VARCHAR},
+		ALIAS_DESC=#{aliasDesc,jdbcType=VARCHAR},
+		CLASS_NAME=#{className,jdbcType=VARCHAR},
+		CLASS_INS_NAME=#{classInsName,jdbcType=VARCHAR},
+		METHOD_NAME=#{methodName,jdbcType=VARCHAR},
+		METHOD_DESC=#{methodDesc,jdbcType=VARCHAR},
+		SCRIPT_COMTEN=#{scriptComten,jdbcType=VARCHAR},
+		RETURN_TYPE=#{returnType,jdbcType=VARCHAR},
+		SCRIPT_TYPE=#{scriptType,jdbcType=VARCHAR},
+		ARGUMENT=#{argument,jdbcType=CLOB},
+		ENABLE=#{enable,jdbcType=NUMERIC},
+		IS_RETURN_VALUE=#{isReturnValue,jdbcType=NUMERIC},
+		RETURN_PARAM_JSON=#{returnParamJson,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AliasScript">
+		SELECT <include refid="columns"/>
+		FROM SYS_ALIAS_SCRIPT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AliasScript">
+		SELECT <include refid="columns"/>
+		FROM SYS_ALIAS_SCRIPT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByName" parameterType="java.util.Map" resultMap="AliasScript">
+		SELECT <include refid="columns"/>
+		FROM SYS_ALIAS_SCRIPT
+		WHERE 1=1 
+		<if test="@Ognl@isNotEmpty(aliasName)"> AND ALIAS_NAME = #{aliasName} </if>
+	</select>
+	
+	<select id="getByReturnValue" parameterType="java.lang.Short" resultMap="AliasScript">
+		SELECT <include refid="columns"/>
+		FROM SYS_ALIAS_SCRIPT
+		WHERE IS_RETURN_VALUE = #{isReturnValue}
+	</select>
+</mapper>

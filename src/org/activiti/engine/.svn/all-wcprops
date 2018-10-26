@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/BPMX_2015_WYX/!svn/ver/995/bpmx_w/src/org/activiti/engine
+END
+ActivitiInclusiveGateWayException.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/org/activiti/engine/ActivitiInclusiveGateWayException.java
+END
+ActivitiVarNotFoundException.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/org/activiti/engine/ActivitiVarNotFoundException.java
+END

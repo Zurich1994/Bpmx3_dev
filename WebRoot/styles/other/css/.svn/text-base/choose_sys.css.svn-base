@@ -1,0 +1,100 @@
+body{
+	font-size:12px;
+	font-family:Verdana, Geneva, sans-serif;
+	line-height:23px;
+	margin:0;
+	padding:0;
+	}
+*{
+	margin:0;
+	padding:0;
+	}
+
+.index_content{
+	width:100%;
+	height:100%;
+	min-width:1024px;
+	background:#bae6f1;
+	padding:0;
+	background:url(../images/choose_sys_bg.jpg);
+	padding-top:13%;
+	}
+
+* a{
+	text-decoration:none;
+	}
+
+.choose_sys_panel{
+	width:704px;
+	height:155px;
+	margin:0 auto;
+	padding-top:95px;
+	padding-left:50px;
+	background:url(../images/choose_sys_03.jpg) no-repeat;
+	}
+.select_sys{
+	width:270px;
+	height:29px;
+	border:1px solid #a9b2c3;
+	background:#fff;
+	font-family:"黑体";
+	font-size:18px;
+	font-weight:bold;
+	color:#35607f;
+	margin-left:290px;
+	padding-left:10px;
+
+	}
+.select_sys img{
+	float:right;
+	cursor:pointer;
+	*+position:absolute;
+	*+margin-left:80px;
+	*+margin-top:2px;
+	border-left:1px solid #b2bbcc;
+	}
+.yes_button{
+	width:65px;
+	height:30px;
+	border:none;
+	background:url(../images/sure_button.jpg);
+	display:block;
+	position:absolute;
+	margin-top:-33px;
+	margin-left:580px;
+	}
+.show_sys{
+	width:280px;
+	border:1px solid #aac9ce;
+	border-top:none;
+	background:#FFF;
+	margin-left:290px;
+	font-family:"黑体";
+	font-size:18px;
+	font-weight:bold;
+	color:#35607f;
+	display:none;
+	}
+.show_sys a{
+	color:#35607f;
+	}
+.show_sys ul{
+	list-style:none;
+	}
+.show_sys ul li{
+	width:270px;
+	height:28px;
+	padding-top:5px;
+	padding-left:10px;
+	border-bottom:1px dashed #aac8d2;
+	}
+.show_sys ul li a{
+	width:270px;
+	display:block;
+	height:28px;
+	margin-left:-10px;
+	padding-left:10px;
+	}
+.show_sys ul li a:hover{
+	background:url(../images/content_bg_hover.jpg) repeat-x;
+	}

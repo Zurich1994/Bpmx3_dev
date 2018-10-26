@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.e_business.model.e_business.Component">
+	<resultMap id="Component" type="com.hotent.e_business.model.e_business.Component">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="PRODUCTID" column="F_PRODUCTID" jdbcType="VARCHAR"/>
+		<result property="PAGE" column="F_PAGE" jdbcType="NUMERIC"/>
+		<result property="COMPONENTTYPE" column="F_COMPONENTTYPE" jdbcType="VARCHAR"/>
+		<result property="COMPONENTNAME" column="F_COMPONENTNAME" jdbcType="VARCHAR"/>
+		<result property="COMPONENTID" column="F_COMPONENTID" jdbcType="VARCHAR"/>
+		<result property="PRICE" column="F_PRICE" jdbcType="NUMERIC"/>
+		<result property="CURRENCY" column="F_CURRENCY" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PRODUCTID,F_PAGE,F_COMPONENTTYPE,F_COMPONENTNAME,F_COMPONENTID,F_PRICE,F_CURRENCY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(PRODUCTID)"> AND F_PRODUCTID  LIKE '%${PRODUCTID}%'  </if>
+			<if test="@Ognl@isNotEmpty(PAGE)"> AND F_PAGE  =#{PAGE} </if>
+			<if test="@Ognl@isNotEmpty(COMPONENTTYPE)"> AND F_COMPONENTTYPE  LIKE '%${COMPONENTTYPE}%'  </if>
+			<if test="@Ognl@isNotEmpty(COMPONENTNAME)"> AND F_COMPONENTNAME  LIKE '%${COMPONENTNAME}%'  </if>
+			<if test="@Ognl@isNotEmpty(COMPONENTID)"> AND F_COMPONENTID  LIKE '%${COMPONENTID}%'  </if>
+			<if test="@Ognl@isNotEmpty(PRICE)"> AND F_PRICE  =#{PRICE} </if>
+			<if test="@Ognl@isNotEmpty(CURRENCY)"> AND F_CURRENCY  LIKE '%${CURRENCY}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.e_business.model.e_business.Component">
+		INSERT INTO W_COMPONENT
+		(ID,
+		F_PRODUCTID,F_PAGE,F_COMPONENTTYPE,F_COMPONENTNAME,F_COMPONENTID,F_PRICE,F_CURRENCY)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{PRODUCTID,jdbcType=VARCHAR}, #{PAGE,jdbcType=NUMERIC}, #{COMPONENTTYPE,jdbcType=VARCHAR}, #{COMPONENTNAME,jdbcType=VARCHAR}, #{COMPONENTID,jdbcType=VARCHAR}, #{PRICE,jdbcType=NUMERIC}, #{CURRENCY,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_COMPONENT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.e_business.model.e_business.Component">
+		UPDATE W_COMPONENT SET
+		F_PRODUCTID=#{PRODUCTID,jdbcType=VARCHAR},
+		F_PAGE=#{PAGE,jdbcType=NUMERIC},
+		F_COMPONENTTYPE=#{COMPONENTTYPE,jdbcType=VARCHAR},
+		F_COMPONENTNAME=#{COMPONENTNAME,jdbcType=VARCHAR},
+		F_COMPONENTID=#{COMPONENTID,jdbcType=VARCHAR},
+		F_PRICE=#{PRICE,jdbcType=NUMERIC},
+		F_CURRENCY=#{CURRENCY,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Component">
+		SELECT <include refid="columns"/>
+		FROM W_COMPONENT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Component">
+		SELECT <include refid="columns"/>
+		FROM W_COMPONENT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

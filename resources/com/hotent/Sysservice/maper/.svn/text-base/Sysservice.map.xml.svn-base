@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Sysservice.model.Sysservice.Sysservice">
+	<resultMap id="Sysservice" type="com.hotent.Sysservice.model.Sysservice.Sysservice">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="f_id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="systemId" column="F_SYSTEMID" jdbcType="NUMERIC"/>
+		<result property="service" column="F_SERVICE" jdbcType="VARCHAR"/>
+		<result property="serviceNum" column="F_SERVICENUM" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_ID,F_SYSTEMID,F_SERVICE,F_SERVICENUM
+	</sql>
+	<sql id="wfColumns">
+		ID,F_ID,F_SYSTEMID,F_SERVICE,F_SERVICENUM
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(f_id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(systemId)"> AND F_SYSTEMID  =#{systemId} </if>
+			<if test="@Ognl@isNotEmpty(service)"> AND F_SERVICE  LIKE '%${service}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceNum)"> AND F_SERVICENUM  =#{serviceNum} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Sysservice.model.Sysservice.Sysservice">
+		INSERT INTO W_SYSSERVICE
+		(ID,
+		F_ID,F_SYSTEMID,F_SERVICE,F_SERVICENUM)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{f_id,jdbcType=NUMERIC}, #{systemId,jdbcType=NUMERIC}, #{service,jdbcType=VARCHAR}, #{serviceNum,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SYSSERVICE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Sysservice.model.Sysservice.Sysservice">
+		UPDATE W_SYSSERVICE SET
+		F_ID=#{f_id,jdbcType=NUMERIC},
+		F_SYSTEMID=#{systemId,jdbcType=NUMERIC},
+		F_SERVICE=#{service,jdbcType=VARCHAR},
+		F_SERVICENUM=#{serviceNum,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Sysservice">
+		SELECT <include refid="columns"/>
+		FROM W_SYSSERVICE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Sysservice">
+		SELECT <include refid="columns"/>
+		FROM W_SYSSERVICE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	
+  
+	
+</mapper>

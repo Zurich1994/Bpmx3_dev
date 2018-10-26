@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysExcelTemp">
+	<resultMap id="SysExcelTemp" type="com.hotent.platform.model.system.SysExcelTemp">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="tempCode" column="TEMP_CODE" jdbcType="VARCHAR"/>
+		<result property="tempName" column="TEMP_NAME" jdbcType="VARCHAR"/>
+		<result property="tempDes" column="TEMP_DES" jdbcType="VARCHAR"/>
+		<result property="tempDesHeight" column="TEMP_DES_HEIGHT" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="tempDataSample" column="TEMP_DATA_SAMPLE" jdbcType="CLOB"/>
+	</resultMap>
+	
+	<sql id="columns">
+		ID,TEMP_CODE,TEMP_NAME,TEMP_DES,TEMP_DES_HEIGHT,MEMO,TEMP_DATA_SAMPLE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(tempCode)"> AND TEMP_CODE  LIKE #{tempCode}  </if>
+			<if test="@Ognl@isNotEmpty(tempName)"> AND TEMP_NAME  LIKE #{tempName}  </if>
+			<if test="@Ognl@isNotEmpty(tempDes)"> AND TEMP_DES  LIKE #{tempDes}  </if>
+			<if test="@Ognl@isNotEmpty(tempDesHeight)"> AND TEMP_DES_HEIGHT  =#{tempDesHeight} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(tempDataSample)"> AND TEMP_DATA_SAMPLE  LIKE #{tempDataSample}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysExcelTemp">
+		INSERT INTO SYS_EXCEL_TEMP
+		(ID,TEMP_CODE,TEMP_NAME,TEMP_DES,TEMP_DES_HEIGHT,MEMO)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{tempCode,jdbcType=VARCHAR}, #{tempName,jdbcType=VARCHAR}, #{tempDes,jdbcType=VARCHAR}, #{tempDesHeight,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_EXCEL_TEMP 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysExcelTemp">
+		UPDATE SYS_EXCEL_TEMP SET
+		TEMP_CODE=#{tempCode,jdbcType=VARCHAR},
+		TEMP_NAME=#{tempName,jdbcType=VARCHAR},
+		TEMP_DES=#{tempDes,jdbcType=VARCHAR},
+		TEMP_DES_HEIGHT=#{tempDesHeight,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysExcelTemp">
+		SELECT <include refid="columns"/>
+		FROM SYS_EXCEL_TEMP
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysExcelTemp">
+		SELECT <include refid="columns"/>
+		FROM SYS_EXCEL_TEMP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="isTempCodeExist" parameterType="Map"  resultType="Integer">
+	    SELECT COUNT(1) FROM SYS_EXCEL_TEMP  WHERE TEMP_CODE = #{tempCode} 
+	    <if test="@Ognl@isNotEmpty(id)"> AND ID  != #{id} </if>
+	</select>
+	
+	<update id="updateTempDataSample" parameterType="Map">
+		UPDATE SYS_EXCEL_TEMP SET
+		TEMP_DATA_SAMPLE=#{tempDataSample,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<select id="getByTempCode" parameterType="java.lang.String" resultMap="SysExcelTemp">
+		SELECT <include refid="columns"/>
+		FROM SYS_EXCEL_TEMP
+		WHERE
+		TEMP_CODE=#{tempCode}
+	</select>
+	
+	
+</mapper>

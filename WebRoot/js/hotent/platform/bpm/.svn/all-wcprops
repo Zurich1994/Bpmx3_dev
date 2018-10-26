@@ -1,0 +1,329 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/BPMX_2015_WYX/!svn/ver/1782/bpmx_w/WebRoot/js/hotent/platform/bpm
+END
+FlowMessageWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowMessageWindow.js
+END
+ViewSubFlowWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/ViewSubFlowWindow.js
+END
+DetailSetWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/DetailSetWindow.js
+END
+ResultTableDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/485/bpmx_w/WebRoot/js/hotent/platform/bpm/ResultTableDialog.js
+END
+BpmNodeWebServiceEdit.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeWebServiceEdit.js
+END
+FlowSetWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowSetWindow.js
+END
+MobileSetWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/MobileSetWindow.js
+END
+TaskBackWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskBackWindow.js
+END
+TaskSignWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskSignWindow.js
+END
+SelectUtil.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/SelectUtil.js
+END
+ActivityInformWindow1.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/414/bpmx_w/WebRoot/js/hotent/platform/bpm/ActivityInformWindow1.js
+END
+SignRuleWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/SignRuleWindow.js
+END
+ProcessUrgeDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/784/bpmx_w/WebRoot/js/hotent/platform/bpm/ProcessUrgeDialog.js
+END
+FlowDetailWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowDetailWindow.js
+END
+CheckVersion.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/CheckVersion.js
+END
+InformTypeWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/InformTypeWindow.js
+END
+TaskAddSignWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskAddSignWindow.js
+END
+TaskImageUserDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/784/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskImageUserDialog.js
+END
+FlowRuleWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowRuleWindow.js
+END
+BpmNodeUserSetWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeUserSetWindow.js
+END
+ColumnDialogOptions.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/ColumnDialogOptions.js
+END
+ImportExportXmlUtil.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/ImportExportXmlUtil.js
+END
+ViewSuperExecutionFlowWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/ViewSuperExecutionFlowWindow.js
+END
+BpmNodeFormBindwb.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1933/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeFormBindwb.js
+END
+ForkConditionWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/ForkConditionWindow.js
+END
+FlowOrgUserScopeWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/755/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowOrgUserScopeWindow.js
+END
+BpmNodeWebServiceEditwb.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1661/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeWebServiceEditwb.js
+END
+VarsWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/VarsWindow.js
+END
+BpmDefinitionConditionEdit.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/784/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmDefinitionConditionEdit.js
+END
+FlowUtil.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/1629/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowUtil.js
+END
+BpmNodeButtonWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeButtonWindow.js
+END
+FlowVarWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/1059/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowVarWindow.js
+END
+MonGroupAuthDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/MonGroupAuthDialog.js
+END
+BpmNodeSetWindows.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/755/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeSetWindows.js
+END
+BpmNodeRule.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeRule.js
+END
+BpmCommonWsSet.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmCommonWsSet.js
+END
+TaskChangePathWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskChangePathWindow.js
+END
+TaskCommentWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskCommentWindow.js
+END
+TaskDetailWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskDetailWindow.js
+END
+FlowWebServiceWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/484/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowWebServiceWindow.js
+END
+BpmNodeButton.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmNodeButton.js
+END
+SetRelationWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/SetRelationWindow.js
+END
+FlowApprovalItemWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowApprovalItemWindow.js
+END
+FlowRightDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowRightDialog.js
+END
+FlowReminderWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowReminderWindow.js
+END
+TaskVarsWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/TaskVarsWindow.js
+END
+RuleDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/RuleDialog.js
+END
+BpmDefAuthorize.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmDefAuthorize.js
+END
+BpmTaskExeAssignDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmTaskExeAssignDialog.js
+END
+SimpleSetWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/SimpleSetWindow.js
+END
+ActivityInformWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1874/bpmx_w/WebRoot/js/hotent/platform/bpm/ActivityInformWindow.js
+END
+FlowForkJoinWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowForkJoinWindow.js
+END
+FlowEventWindow.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/js/hotent/platform/bpm/FlowEventWindow.js
+END
+BpmImageDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/784/bpmx_w/WebRoot/js/hotent/platform/bpm/BpmImageDialog.js
+END

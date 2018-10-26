@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.mobile.MobileUserInfo">
+	<resultMap id="MobileUserInfo" type="com.hotent.platform.model.mobile.MobileUserInfo">
+		<id property="userid" column="USERID" jdbcType="NUMERIC"/>
+		<result property="username" column="USERNAME" jdbcType="VARCHAR"/>
+		<result property="idcard" column="IDCARD" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		USERID,USERNAME,IDCARD
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(userid)"> AND USERID  =#{userid} </if>
+			<if test="@Ognl@isNotEmpty(username)"> AND USERNAME  LIKE #{username}  </if>
+			<if test="@Ognl@isNotEmpty(idcard)"> AND IDCARD  LIKE #{idcard}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.mobile.MobileUserInfo">
+		INSERT INTO MOBILE_USER_INFO
+		(USERID,USERNAME,IDCARD)
+		VALUES
+		(#{userid,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM MOBILE_USER_INFO 
+		WHERE
+		USERID=#{userid}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.mobile.MobileUserInfo">
+		UPDATE MOBILE_USER_INFO SET
+		USERNAME=#{username,jdbcType=VARCHAR},
+		IDCARD=#{idcard,jdbcType=VARCHAR}
+		WHERE
+		USERID=#{userid}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MobileUserInfo">
+		SELECT <include refid="columns"/>
+		FROM MOBILE_USER_INFO
+		WHERE
+		USERID=#{userid}
+	</select>
+	
+	<select id="getAll" resultMap="MobileUserInfo">
+		SELECT <include refid="columns"/>
+		FROM MOBILE_USER_INFO   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by USERID  desc
+		</if>
+	</select>
+</mapper>

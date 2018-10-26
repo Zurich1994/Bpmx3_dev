@@ -1,0 +1,393 @@
+/**
+附件样式表。
+*/
+div.attachement{	
+	float:left;
+	overflow:hidden;
+	padding:3px 0 0 15px;
+	white-space:nowrap;		
+}
+
+span.attachement-span{
+   	float:left;
+	background:#f5f6f4;
+	border:1px solid #e1e1e1;
+	margin:5px 10px 5px 0;
+	padding 1px 3px 1px 5px;
+} 	  
+
+a.attachment{
+	text-decoration: none;
+	font-size: 13px;
+	color:#606060;
+}
+
+a.cancel{
+   	background:url(../images/cancel.png) 0 1px no-repeat;
+   	display:inline-block;
+   	height:14px;
+   	margin-left:8px;
+   	overflow:hidden;
+   	width:14px;
+   	text-decoration:none;	
+}
+
+a.attachment:hover{
+	text-decoration: underline;
+}
+
+table.formTable{
+	border:1px solid #366092;border-collapse :collapse;width:100%;text-align:center;
+	font-size: 12px;
+}
+
+td.formHead{
+	border:1px solid #366092;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #366092;
+	height: 32px;
+	color: #fff;
+}
+
+.window-table{
+	width:50%;
+	padding: 0;
+    margin: 0;
+    margin-top:15px;
+    border-collapse:collapse;
+}
+
+.window-table th{
+	width:40%;
+	font-size: 13px;	
+	border: 1px solid #A8CFEB;  
+    background: #EDF6FC;
+    font-size:13px;
+    padding: 6px 6px 6px 12px;
+}
+
+.window-table td{
+	width:60%;
+	border: 1px solid #A8CFEB;  
+    background: #fff;
+    font-size:12px;
+    padding: 6px 6px 6px 12px;
+}
+
+.blocktable {
+	width:100%;
+	padding: 0;
+    margin: 0;
+    margin-top:15px;
+    border-collapse:collapse;
+}
+
+.blocktable th {
+	font-size: 13px;	
+	border: 1px solid #A8CFEB;  
+    background: #EDF6FC;
+    font-size:13px;
+    padding: 6px 6px 6px 12px;
+}
+
+.blocktable td{
+	border: 1px solid #A8CFEB;  
+    background: #fff;
+    font-size:12px;
+    padding: 6px 6px 6px 12px;
+}
+
+.datepicker input{
+	width:130px;
+	background: url(../images/datePicker.gif) no-repeat scroll right center #FFFFFF;
+    border: 1px solid #999999;
+    height: 20px;
+}
+
+.dictionary input{
+	width:130px;
+	background: url(../images/control-270.png) no-repeat scroll right center #FFFFFF;
+    border: 1px solid #999999;
+    height: 20px;
+}
+
+td.formTitle{
+	padding:2px;border:1px solid #366092;
+	background-color:#EDF6FC;
+	text-align: right;
+	height: 23px;
+}
+
+td.formInput{
+	padding:2px;border:1px solid #366092;
+	background-color:white;
+	text-align: left;
+}
+
+table.listTable{
+	border:1px solid #366092;border-collapse :collapse;width:100%;text-align:center;
+	font-size: 12px;
+}
+
+table.listTable tr.headRow{
+	height: 25px;
+	
+}
+
+table.listTable tr.toolBar{
+	height: 32px;
+	
+	background-color: #366092;
+}
+
+table.listTable tr.toolBar td{
+	border:1px solid #366092;
+	text-align: left;
+	padding-left: 4px;
+}
+
+table.listTable th{
+	border:1px solid #366092;
+	text-align: center;
+	height: 25px;
+	font-size:12px;
+	background-color:#F1F6FF;
+	font-weight:bold;
+	
+}
+
+/*验证表单字段样式*/
+label.error {
+	background: url(../images/valid/unchecked.gif) no-repeat 0px 0px;
+	margin-left: 16px;
+	padding-left: 16px;
+	padding-bottom: 2px;
+	font-weight: bold;
+	color: #EA5200;
+}
+
+table.listTable tr.listRow td{
+	border:1px solid #366092;
+	text-align: center;
+	height: 23px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.taskopinion{
+	display:inline-block;
+	padding:3px;
+	width:600px;
+	height:50px;
+	border:1px dashed #000;
+	background:url(../images/taskopinion_logo.png) 5px 0px no-repeat;
+}
+
+.taskopinion input{
+	border:none;
+	width:1px;
+	height:1px;
+}
+
+.flowchart{
+	display:inline-block;
+	padding:3px;
+	width:600px;
+	height:300px;
+	border:1px dashed #000;
+	background:url(../images/flowchart_logo.png) 5px 0px no-repeat;
+}
+
+.flowchart input{
+	border:none;
+	width:1px;
+	height:1px;
+}
+
+.office-div{
+	width:90%;
+	height:300px;
+	border:1px solid #ccc;
+	background:url(../images/office_logo.png) 5px 0px no-repeat;
+}
+
+.webSign-div{
+	width:90%;
+	height:100px;
+	border:1px solid #ccc;
+	background:url(../images/webSign_logo.png) 5px 0px no-repeat;
+}
+
+.pictureShow-div{
+	width:90%;
+	height:300px;
+	border:1px solid #ccc;
+	background:url(../images/pictureShow_logo.png) 5px 0px no-repeat;
+}
+
+a.link{
+	padding-left:20px;
+	cursor: pointer;  
+	color: blue;
+	font-size:12px;
+	
+	text-decoration: none;
+	display:inline-block;
+	<!--[if !IE]-->
+	display:inline;
+	<!--[endif]--> 
+}
+
+a.link.add{
+	background:url(../images/icons/icons_add.png) 0px -1px no-repeat;
+}
+
+a.link.date{
+	background:url(../images/icons/log_btn.png) 0px -1px no-repeat;
+}
+
+a.link.del{
+	background:url(../images/icons/icons_del.png) 0px -1px no-repeat;
+}
+
+a.link.dic{
+	background:url(../images/icons/dictionary.png) 0px -1px no-repeat;
+}
+
+a.link.role{
+	background:url(../images/icon/find.png) 0px 0px no-repeat;
+}
+
+a.link.position{
+	background:url(../images/icon/find.png) 0px -1px no-repeat;
+}
+
+a.link.attachement{
+	background:url(../images/icon/attachement.png) 0px -1px no-repeat;
+}
+
+a.link.user{
+	background:url(../images/icon/user.gif) 0px -1px no-repeat;
+}
+
+a.link.users{
+	background:url(../images/icon/users.gif) 0px -1px no-repeat;
+}
+
+a.link.org{
+	background:url(../images/icon/org.gif) 0px -1px no-repeat;
+}
+
+input.hidden{
+	border:none;
+	width:0px;
+	height:0px; 
+}
+
+a.extend{
+	padding-left:20px;
+	cursor: pointer;  
+	color: blue;
+	font-size:12px;
+	text-decoration: none;
+	display:inline-block;
+	<!--[if !IE]-->
+	display:inline;
+	<!--[endif]-->
+}
+
+.hidedomain input{
+	border:1px dashed #000;
+	background:url(../images/icon/hidedomain.png) 0 0 no-repeat;
+	width:42px;
+}
+
+.officecontrol input{
+	border:1px dashed #000;
+	width:800px;
+	height:80px;
+	background:url(../images/office_logo.png) 0 0 no-repeat;
+}
+
+.websigncontrol input{
+	border:1px dashed #000;
+	width:800px;
+	height:80px;
+	background:url(../images/webSign_logo.png) 0 0 no-repeat;
+}
+
+/**
+图片控件印章样式    xcx。
+*/
+.pictureshowcontrol input{
+	border:1px dashed #000;
+	width:800px;
+	height:80px;
+	background:url(../images/pictureShow_logo.png) 0 0 no-repeat;
+}
+
+.subtable{
+	width:100%;
+	padding:5px;
+	border:1px solid #ccc;
+}
+
+.ckeditor textarea{
+	border:1px dashed #000;
+	width:800px;
+	height:80px;
+	background:url(../images/ckeditor_logo.png) 0 0 no-repeat;
+}
+
+.ckeditor input{
+	border:1px dashed #000;
+	width:800px;
+	height:80px;
+	background:url(../images/ckeditor_logo.png) 0 0 no-repeat;
+}
+/*--自定义数据显示--*/
+.custom-display{
+	border:1px dashed #000;
+	background-color: silver;
+}
+/*--自定义表管理--*/
+.custom-tablemanage{
+	border:1px dashed #000;
+	background-color: silver;
+}
+
+/*--extend start--*/
+a.extend.stat{
+    background:url(../images/extendIcon/stat.gif) 0px -1px no-repeat;
+}
+
+a.extend.user{
+    background:url(../images/extendIcon/user.png) 0px -1px no-repeat;
+}
+
+a.extend.navigation{
+    background:url(../images/extendIcon/navigation.png) 0px -1px no-repeat;
+}
+
+a.extend.remoteupload{
+    background:url(../images/extendIcon/remoteupload.gif) 0px -1px no-repeat;
+}
+
+a.extend.task{
+    background:url(../images/extendIcon/task.png) 0px -1px no-repeat;
+}
+
+a.extend.message{
+    background:url(../images/extendIcon/message.gif) 0px -1px no-repeat;
+}
+
+a.extend.script{
+    background:url(../images/extendIcon/script.gif) 0px -1px no-repeat;
+}
+
+a.extend.subsys{
+    background:url(../images/extendIcon/subsys.png) 0px -1px no-repeat;
+}
+/*--extend end--*/

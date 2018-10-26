@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/93/bpmx_w/WebRoot/WEB-INF/view/DeviceActionShowPath/DeviceActionShowCode
+END
+deviceActionShowEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BPMX_2015_WYX/!svn/ver/93/bpmx_w/WebRoot/WEB-INF/view/DeviceActionShowPath/DeviceActionShowCode/deviceActionShowEdit.jsp
+END
+deviceActionShowList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BPMX_2015_WYX/!svn/ver/93/bpmx_w/WebRoot/WEB-INF/view/DeviceActionShowPath/DeviceActionShowCode/deviceActionShowList.jsp
+END
+deviceActionShowGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BPMX_2015_WYX/!svn/ver/93/bpmx_w/WebRoot/WEB-INF/view/DeviceActionShowPath/DeviceActionShowCode/deviceActionShowGet.jsp
+END

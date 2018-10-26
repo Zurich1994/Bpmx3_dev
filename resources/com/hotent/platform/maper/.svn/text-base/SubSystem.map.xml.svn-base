@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SubSystem">
+	<resultMap id="SubSystem" type="com.hotent.platform.model.system.SubSystem">
+		<id property="systemId" column="systemId" jdbcType="NUMERIC"/>
+		<result property="sysName" column="sysName" jdbcType="VARCHAR"/>
+		<result property="alias" column="alias" jdbcType="VARCHAR"/>
+		<result property="logo" column="logo" jdbcType="VARCHAR"/>
+		<result property="defaultUrl" column="defaultUrl" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+		<result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+		<result property="creator" column="creator" jdbcType="VARCHAR"/>
+		<result property="allowDel" column="allowDel" jdbcType="NUMERIC"/>
+		<result property="needOrg" column="needOrg" jdbcType="NUMERIC"/>
+		<result property="isActive" column="isActive" jdbcType="NUMERIC"/>
+		<result property="isLocal" column="isLocal" jdbcType="NUMERIC"/>
+		<result property="homePage" column="homePage" jdbcType="VARCHAR"/>
+		<result property="systemType" column="systemType" jdbcType="NUMERIC"/>
+	    <result property="phoneNumber" column="phoneNumber" jdbcType="VARCHAR"/>
+		<result property="platIntroduce" column="platIntroduce" jdbcType="VARCHAR"/>
+		<result property="contacts" column="contacts" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="SubSystemExt" extends="SubSystem"  type="com.hotent.platform.model.system.SubSystem">
+		<collection property="roleList" ofType="com.hotent.platform.model.system.SysRole" javaType="ArrayList" column="systemId">
+			<id property="roleId" column="roleId" />
+			<result property="alias" column="roleAlias" />
+			<result property="roleName" column="roleName" />
+		</collection>
+	</resultMap>
+	
+	<sql id="columns">
+		systemId,sysName,alias,logo,defaultUrl,memo,createtime,creator,allowDel,needOrg,isActive,isLocal,homePage,systemType,phoneNumber,platIntroduce,contacts
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(systemId)"> AND systemId  =#{systemId} </if>
+			<if test="@Ognl@isNotEmpty(sysName)"> AND sysName  LIKE #{sysName}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND alias  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(logo)"> AND logo  LIKE #{logo} </if>
+			<if test="@Ognl@isNotEmpty(defaultUrl)"> AND defaultUrl  LIKE #{defaultUrl}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND memo  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND createtime  >=#{begincreatetime} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND createtime &lt;=#{endcreatetime}</if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND creator  LIKE #{creator} </if>
+			<if test="allowDel!=null"> AND allowDel  =#{allowDel} </if>
+			<if test="@Ognl@isNotEmpty(needOrg)"> AND needOrg  =#{needOrg} </if>
+			<if test="isActive!=null"> AND isActive  =#{isActive} </if>
+			<if test="@Ognl@isNotEmpty(isLocal)"> AND isLocal  =#{isLocal} </if>
+			<if test="@Ognl@isNotEmpty(homePage)"> AND homePage  =#{homePage} </if>
+			 <if test="@Ognl@isNotEmpty(systemType)"> AND systemType  =#{systemType} </if>
+			<if test="@Ognl@isNotEmpty(phoneNumber)"> AND phoneNumber  =#{phoneNumber} </if>
+			 <if test="@Ognl@isNotEmpty(platIntroduce)"> AND platIntroduce  =#{platIntroduce} </if>
+			 <if test="@Ognl@isNotEmpty(contacts)"> AND contacts  =#{contacts} </if>
+			</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SubSystem">
+		INSERT INTO sys_subsystem
+		(<include refid="columns"/>)
+		VALUES
+		(#{systemId,jdbcType=NUMERIC}, #{sysName,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{defaultUrl,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{allowDel,jdbcType=NUMERIC}, #{needOrg,jdbcType=NUMERIC}, #{isActive,jdbcType=NUMERIC}, #{isLocal,jdbcType=NUMERIC}, #{homePage,jdbcType=VARCHAR},#{systemType,jdbcType=NUMERIC},#{phoneNumber,jdbcType=VARCHAR},#{platIntroduce,jdbcType=VARCHAR},#{contacts,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_SUBSYSTEM 
+		WHERE
+		systemId=#{systemId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SubSystem">
+		UPDATE sys_subsystem SET
+		sysName=#{sysName,jdbcType=VARCHAR} , 
+		alias=#{alias,jdbcType=VARCHAR} , 
+		logo=#{logo,jdbcType=VARCHAR} , 
+		defaultUrl=#{defaultUrl,jdbcType=VARCHAR} , 
+		memo=#{memo,jdbcType=VARCHAR} , 
+		createtime=#{createtime,jdbcType=TIMESTAMP} , 
+		creator=#{creator,jdbcType=VARCHAR} , 
+		allowDel=#{allowDel,jdbcType=NUMERIC} , 
+		needOrg=#{needOrg,jdbcType=NUMERIC} , 
+		isActive=#{isActive,jdbcType=NUMERIC} , 
+		isLocal=#{isLocal,jdbcType=NUMERIC} , 
+		homePage=#{homePage,jdbcType=VARCHAR},
+		systemType=#{systemType,jdbcType=NUMERIC},
+		phoneNumber=#{phoneNumber,jdbcType=VARCHAR},
+		platIntroduce=#{platIntroduce,jdbcType=VARCHAR},
+		contacts=#{contacts,jdbcType=VARCHAR}
+		WHERE
+		systemId=#{systemId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SubSystem">
+		SELECT <include refid="columns"/> FROM SYS_SUBSYSTEM 	WHERE 	systemId=#{systemId}
+	</select>
+	
+	<select id="isAliasExist" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM SYS_SUBSYSTEM 	WHERE alias=#{alias}
+	</select>
+	
+	
+	<select id="getByAlias" parameterType="java.lang.String" resultMap="SubSystem">
+		SELECT <include refid="columns"/> FROM SYS_SUBSYSTEM 	WHERE alias=#{alias}
+	</select>
+	
+	
+	<select id="isAliasExistForUpd" parameterType="Map" resultType="Integer">
+		SELECT count(*) FROM SYS_SUBSYSTEM 	WHERE alias=#{alias} and systemId &lt;> #{systemId}
+	</select>
+	
+	<select id="getAll" resultMap="SubSystem">
+		SELECT <include refid="columns"/>
+		FROM SYS_SUBSYSTEM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by systemId  desc
+		</if>
+	</select>
+	<select id="getSubSystemList" resultMap="SubSystemExt">
+		SELECT a.systemId,a.sysName,a.alias,a.logo,a.defaultUrl,a.memo,a.createtime,a.creator,a.allowDel,a.needOrg,a.isActive,a.homePage
+		b.roleId,b.alias as roleAlias,b.roleName
+		 from SYS_SUBSYSTEM a,SYS_ROLE b where a.systemId=b.systemId
+	</select>
+	
+	<select id="getByRoles" resultMap="SubSystem">
+		select a.* from SYS_SUBSYSTEM a where a.SYSTEMID in (
+		select DISTINCT c.SYSTEMID
+		from sys_role b,sys_role_res c 
+		where b.ROLEID = c.ROLEID and b.alias in (${roleNames}))order by systemId  desc
+	</select>
+	
+	<select id="getLocalSystem" parameterType="java.lang.Short" resultMap="SubSystem">
+		SELECT <include refid="columns"/>
+		FROM SYS_SUBSYSTEM   
+		WHERE isLocal=#{isLocal}
+	</select>
+	
+	<select id="getActiveSystem"  resultMap="SubSystem">
+		SELECT <include refid="columns"/> FROM SYS_SUBSYSTEM  WHERE isActive=1
+	</select>
+	
+	
+	<select id="getAll2" resultMap="SubSystem">
+		SELECT <include refid="columns"/>
+		FROM SYS_SUBSYSTEM 
+		where  systemType=1 
+		order by systemId  desc
+	    </select>
+	    
+	<update id="update1" parameterType="Map">
+		UPDATE sys_subsystem SET
+		contacts=#{contacts},	
+		phoneNumber=#{phoneNumber},
+		platIntroduce=#{platIntroduce}
+		WHERE
+		sysName=#{sysName}
+	</update>
+	
+
+</mapper>

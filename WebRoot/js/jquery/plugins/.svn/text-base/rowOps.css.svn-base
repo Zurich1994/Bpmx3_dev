@@ -1,0 +1,93 @@
+@CHARSET "UTF-8";
+.rowOps{
+	width:5%;
+}
+.ops_container_type1 {
+    position:relative;
+    float:right;
+    font-size:12px;
+    left:-22px;
+}
+
+.ops_container_type2 {
+    position:relative;
+    float:right;
+    font-size:12px;
+    left:-25px;
+    top:-10px;
+}
+
+.ops_container a{
+	text-decoration:none;
+}
+
+.ops_btn {
+	position:absolute;
+    background:url(img/icons_09-12.png) 0 0 no-repeat;
+   	display:inline-block;
+   	height:20px;
+   	width:20px;
+   	z-index: 1;
+   	/*left: -25px;
+   	top: -10px;*/
+}
+
+.ops_box{
+	position:absolute;
+    top:20px;
+    right:-25px;
+   	z-index: 5;
+}
+
+.ops_itemDiv {
+    display:none;
+    border-radius:8px 0 8px 8px;    
+    -moz-border-radius:8px;    
+    -webkit-border-radius:8px;  
+    border:1px solid #fff;
+    background-color: #2583A7;
+    /*阴影*/
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=5);/*for ie6,7,8*/
+	-moz-box-shadow:2px 2px 5px #969696;/*firefox*/
+	-webkit-box-shadow:2px 2px 5px #969696;/*webkit*/
+	box-shadow:2px 2px 5px #969696;/*opera或ie9*/
+}
+
+.ops_itemDiv ul li{
+    margin:8px;
+}
+
+.ops_itemDiv li a:hover{
+    color:#fff;
+}
+
+.ops_btn.ops_active {
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px 8px 0 0;
+    border:1px solid #fff;
+    padding: 0 !important;
+    background:#2583A7 url(img/icons_09-12_headstand.png) no-repeat center;
+}
+
+.ops_shadeEm {
+    position:absolute;
+    width:100%;
+    height:3px;
+    display:none;
+    background:#2583A7;
+    width:20px;
+    top:19px;
+    right:-21px;
+    z-index:6;
+}
+
+a.ops_more{
+	padding:0px 5px 0px 22px;
+	color:#ccc;
+	font-size:12px;
+}
+
+li.ops_li{
+	float: left;
+}

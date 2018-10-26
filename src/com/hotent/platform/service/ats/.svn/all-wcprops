@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats
+END
+AtsAttendanceFileService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttendanceFileService.java
+END
+AtsCardRecordService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsCardRecordService.java
+END
+AtsHolidayPolicyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsHolidayPolicyService.java
+END
+AtsCalendarTemplService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsCalendarTemplService.java
+END
+AtsWorkCalendarService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsWorkCalendarService.java
+END
+AtsAttenceCalculateSetService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttenceCalculateSetService.java
+END
+AtsShiftTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsShiftTypeService.java
+END
+AtsLegalHolidayDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsLegalHolidayDetailService.java
+END
+AtsAttenceGroupDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttenceGroupDetailService.java
+END
+AtsImportPlanService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsImportPlanService.java
+END
+IAtsTakeCardRecordService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/IAtsTakeCardRecordService.java
+END
+AtsAttenceCycleDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttenceCycleDetailService.java
+END
+AtsShiftRuleDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsShiftRuleDetailService.java
+END
+AtsShiftInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsShiftInfoService.java
+END
+AtsBaseItemService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsBaseItemService.java
+END
+AtsScheduleShiftService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsScheduleShiftService.java
+END
+AtsHolidayTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsHolidayTypeService.java
+END
+AtsHolidayPolicyDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsHolidayPolicyDetailService.java
+END
+AtsShiftTimeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsShiftTimeService.java
+END
+AtsCalendarTemplDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsCalendarTemplDetailService.java
+END
+AtsLegalHolidayService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsLegalHolidayService.java
+END
+AtsAttenceGroupService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttenceGroupService.java
+END
+AtsCardRuleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsCardRuleService.java
+END
+AtsAttenceCalculateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttenceCalculateService.java
+END
+AtsAttencePolicyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttencePolicyService.java
+END
+AtsAttenceCycleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsAttenceCycleService.java
+END
+AtsShiftRuleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/ats/AtsShiftRuleService.java
+END

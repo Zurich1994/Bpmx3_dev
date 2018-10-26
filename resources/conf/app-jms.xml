@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+	<!--(嵌入配置)activeMq消息容器-->
+    <amq:broker useJmx="true" persistent="true" >
+    	<amq:managementContext>
+    	    <amq:managementContext createConnector="true" connectorPort="${jmx.port}" />
+    	</amq:managementContext>
+    	<amq:persistenceAdapter>
+    		
+    		<amq:kahaDB directory="${jmsDir}"  >
+            </amq:kahaDB>
+        </amq:persistenceAdapter>
+         <amq:transportConnectors>
+			<amq:transportConnector uri="tcp://${jms.ip}:${jms.port}" />
+		</amq:transportConnectors>
+    </amq:broker>
+  
+
+  	 <!-- wireFormat.maxInactivityDuration=0&amp; -->
+  
+  	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL" value="tcp://${jms.ip}:${jms.port}?jms.useAsyncSend=true" />
+	</bean>
+  	
+  	<bean id="simpleJmsConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+	  	<constructor-arg ref="amqConnectionFactory"/>
+		<property name="sessionCacheSize" value="100" />
+		<property name="cacheConsumers" value="true"></property>
+		<property name="exceptionListener" ref="jmsExceptionListener"/>
+	</bean>
+ 
+  	 <bean id="jmsExceptionListener" class="com.hotent.core.jms.JmsExceptionListener"></bean>
+  
+	
+    <!--  Message 转换器  -->
+    <bean id="activeMqMessageConverter" class="com.hotent.core.jms.ActiveMqMessageConverter"/>
+      
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="simpleJmsConnectionFactory" />
+        <property name="defaultDestinationName" value="messageQueue"/>
+    </bean>
+    
+    <!-- 消息对象队列  -->
+    <amq:queue id="messageQueue" name="messageQueue" physicalName="messageQueue" />
+    <!-- 消息生产者   	-->
+    <bean id="messageProducer" class="com.hotent.core.jms.MessageProducer"/>
+  
+    <!-- 
+    	消息消费者 
+    	map配置的是队列中消息处理类。
+    	键：队列中消息类 对应的类 全路径 如： com.hotent.core.model.MailModel
+    	值：消息处理类,需要实现接口类IJmsHandler 。如：com.hotent.platform.service.jms.impl.MailHandler 
+    	用户也可以配置自己的处理方式，配置到这里。
+       --> 
+    
+    <bean name="messageConsumer" class="com.hotent.core.jms.MessageConsumer">
+		<property name="handlers">
+			<map>
+				<entry  key="com.hotent.platform.service.jms.MessageModel">
+					<bean class="com.hotent.platform.service.jms.impl.MessageHandler"></bean>
+				</entry>
+				<entry  key="com.hotent.platform.service.jms.SysMailModel">
+					<bean class="com.hotent.platform.service.jms.impl.SysMailHandler"></bean>
+				</entry>
+			</map>
+		</property>  
+    </bean>
+    
+     
+    <!--
+    	map配置的是队列中消息处理类。
+    	键：1,2,3
+    	值：消息处理类,需要实现接口类IMessageHandler 。
+    	用户也可以配置自己的处理方式，配置到这里。
+                        每增加一种消息方式的时候,需要增加对应的处理器(如下,如smsMessageHandler实现IMessageHandler 接口)--> 
+   
+   
+   <bean id="smsMessageHandler"   class="com.hotent.platform.service.jms.impl.SmsMessageHandler"></bean>
+   <bean id="mailMessageHandler"   class="com.hotent.platform.service.jms.impl.MailMessageHandler"></bean>
+   <bean id="innerMessageHandler"   class="com.hotent.platform.service.jms.impl.InnerMessageHandler"></bean>
+   <bean id="openfireMessageHandler"   class="com.hotent.platform.service.jms.impl.OpenfireMessageHandler"></bean>
+   
+   
+   <bean id="messageHandlerContainer " class="com.hotent.platform.service.jms.MessageHandlerContainer"> 
+		<property name="handlersMap" ref="handlersMap"/> 
+    </bean>
+    
+  <bean id="handlersMap" class="java.util.LinkedHashMap"> 
+	  <constructor-arg> 
+	  	<map> 
+			<entry key="1" value-ref="mailMessageHandler" /> 
+			<entry key="2" value-ref="smsMessageHandler" /> 
+			<entry key="3" value-ref="innerMessageHandler" /> 
+			<entry key="4" value-ref="openfireMessageHandler" /> 
+		</map> 
+	  </constructor-arg> 
+  </bean> 
+   
+    <!--消息监听容器 --> 
+	<bean id="messageListenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="simpleJmsConnectionFactory" />
+		<property name="destination" ref="messageQueue" />
+		<property name="messageListener" ref="messageMsgListener" />
+	</bean>
+    
+    <!-- 邮件消息消费监听器  --> 
+	<bean id="messageMsgListener" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg>
+			<ref bean="messageConsumer"/>		
+		</constructor-arg>
+		<property name="messageConverter" ref="activeMqMessageConverter" />
+		<property name="defaultListenerMethod" value="sendMessage" />
+	</bean>
+
+</beans>	

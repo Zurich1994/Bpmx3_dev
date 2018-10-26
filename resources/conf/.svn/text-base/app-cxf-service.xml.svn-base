@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://cxf.apache.org/core 
+	                    http://cxf.apache.org/schemas/core.xsd 
+	                    http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://cxf.apache.org/jaxws 
+						http://cxf.apache.org/schemas/jaxws.xsd
+						http://cxf.apache.org/jaxrs    
+						http://cxf.apache.org/schemas/jaxrs.xsd
+						">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- IP地址输入拦截器 -->  
+	<bean id="addressInInterceptor"  
+		class="com.hotent.platform.webservice.impl.util.AddressInInterceptor" />  
+	<bean id="afterInterceptor"  
+		class="com.hotent.platform.webservice.impl.util.AfterInterceptor" />  
+
+	<!-- 反回登陆用户-->
+ 	<bean id="UserDetailsServiceImpl" class="com.hotent.platform.webservice.impl.UserDetailsServiceImpl"/>
+	<jaxws:endpoint    
+		id="UserDetailsService"    
+		implementor="#UserDetailsServiceImpl" 
+		implementorClass="com.hotent.platform.webservice.impl.UserDetailsServiceImpl"	
+		address="/UserDetailsService" >
+		<jaxws:inInterceptors>  
+			<ref bean="addressInInterceptor" />  
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="afterInterceptor" /> 
+		</jaxws:outInterceptors>
+	</jaxws:endpoint> 	
+	
+	<!-- 返回权限资源-->
+	<bean id="SystemResourcesServiceImpl" class="com.hotent.platform.webservice.impl.SystemResourcesServiceImpl"/> 
+	<jaxws:endpoint
+		id="SystemResourcesService"
+		implementor="#SystemResourcesServiceImpl"
+		implementorClass="com.hotent.platform.webservice.impl.SystemResourcesServiceImpl"	
+		address="/SystemResourcesService" >
+		<jaxws:inInterceptors>  
+			<ref bean="addressInInterceptor" />  
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="afterInterceptor" /> 
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	
+	<!--流程web服务类 -->  	
+	<bean id="ProcessServiceImpl" class="com.hotent.platform.webservice.impl.ProcessServiceImpl"/>
+	<jaxws:endpoint id="ProcessService"	implementor="#ProcessServiceImpl" 
+		implementorClass="com.hotent.platform.webservice.impl.ProcessServiceImpl"	address="/ProcessService" >
+		<jaxws:inInterceptors>  
+			<ref bean="addressInInterceptor" />  
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="afterInterceptor" /> 
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	<!--流程web服务类 -->  	
+	<bean id="FlowServiceImpl" class="com.hotent.platform.webservice.impl.FlowServiceImpl"/>
+	<jaxws:endpoint id="FlowService"	implementor="#FlowServiceImpl" 
+		implementorClass="com.hotent.platform.webservice.impl.FlowServiceImpl"	address="/FlowService" >
+		<jaxws:inInterceptors>  
+			<ref bean="addressInInterceptor" />  
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="afterInterceptor" /> 
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	
+	<!--流程表单服务类 -->  	
+	<bean id="FormServiceImpl" class="com.hotent.platform.webservice.impl.FormServiceImpl"/>
+	<jaxws:endpoint id="FormService" implementor="#FormServiceImpl" 
+		implementorClass="com.hotent.platform.webservice.impl.FormServiceImpl"	address="/FormService" >
+		<jaxws:inInterceptors>
+			<ref bean="addressInInterceptor" />  
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="afterInterceptor" /> 
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	
+	<!-- 返回登陆用户-->
+ 	<bean id="UserOrgServiceImpl" class="com.hotent.platform.webservice.impl.UserOrgServiceImpl"/>
+	<jaxws:endpoint    
+		id="UserOrgService"    
+		implementor="#UserOrgServiceImpl" 
+		implementorClass="com.hotent.platform.webservice.impl.UserOrgServiceImpl"	
+		address="/UserOrgService" >
+		<jaxws:inInterceptors>  
+			<ref bean="addressInInterceptor" />  
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="afterInterceptor" /> 
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+</beans>

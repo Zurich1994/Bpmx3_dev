@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.BpmFormBang.model.bpmFormBang.BpmFormBang">
+	<resultMap id="BpmFormBang" type="com.hotent.BpmFormBang.model.bpmFormBang.BpmFormBang">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="btn_name" column="F_BTN_NAME" jdbcType="VARCHAR"/>
+		<result property="btn_type" column="F_BTN_TYPE" jdbcType="VARCHAR"/>
+		<result property="btn_probability" column="F_BTN_PROBABILITY" jdbcType="VARCHAR"/>
+		<result property="defbId" column="F_DEFBID" jdbcType="VARCHAR"/>
+		<result property="formId" column="F_FORMID" jdbcType="VARCHAR"/>
+		<result property="defId" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="xId" column="F_XID" jdbcType="VARCHAR"/>
+		<result property="formDefId" column="F_FORMDEFID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_BTN_NAME,F_BTN_TYPE,F_BTN_PROBABILITY,F_DEFBID,F_FORMID,F_DEFID,F_NODEID,F_XID,F_FORMDEFID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(btn_name)"> AND F_BTN_NAME  LIKE '%${btn_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(btn_type)"> AND F_BTN_TYPE  LIKE '%${btn_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(btn_probability)"> AND F_BTN_PROBABILITY  LIKE '%${btn_probability}%'  </if>
+			<if test="@Ognl@isNotEmpty(defbId)"> AND F_DEFBID  LIKE '%${defbId}%'  </if>
+			<if test="@Ognl@isNotEmpty(formId)"> AND F_FORMID  LIKE '%${formId}%'  </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND F_DEFID  LIKE '%${defId}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND F_NODEID  LIKE '%${nodeId}%'  </if>
+			<if test="@Ognl@isNotEmpty(xId)"> AND F_XID  LIKE '%${xId}%'  </if>
+			<if test="@Ognl@isNotEmpty(formDefId)"> AND F_FORMDEFID  LIKE '%${formDefId}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.BpmFormBang.model.bpmFormBang.BpmFormBang">
+		INSERT INTO W_BPM_FORM_BANG
+		(ID,
+		F_BTN_NAME,F_BTN_TYPE,F_BTN_PROBABILITY,F_DEFBID,F_FORMID,F_DEFID,F_NODEID,F_XID,F_FORMDEFID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{btn_name,jdbcType=VARCHAR}, #{btn_type,jdbcType=VARCHAR}, #{btn_probability,jdbcType=VARCHAR}, #{defbId,jdbcType=VARCHAR}, #{formId,jdbcType=VARCHAR}, #{defId,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{xId,jdbcType=VARCHAR}, #{formDefId,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_BPM_FORM_BANG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.BpmFormBang.model.bpmFormBang.BpmFormBang">
+		UPDATE W_BPM_FORM_BANG SET
+		F_BTN_NAME=#{btn_name,jdbcType=VARCHAR},
+		F_BTN_TYPE=#{btn_type,jdbcType=VARCHAR},
+		F_BTN_PROBABILITY=#{btn_probability,jdbcType=VARCHAR},
+		F_DEFBID=#{defbId,jdbcType=VARCHAR},
+		F_FORMID=#{formId,jdbcType=VARCHAR},
+		F_DEFID=#{defId,jdbcType=VARCHAR},
+		F_NODEID=#{nodeId,jdbcType=VARCHAR},
+		F_XID=#{xId,jdbcType=VARCHAR},
+		F_FORMDEFID=#{formDefId,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmFormBang">
+		SELECT <include refid="columns"/>
+		FROM W_BPM_FORM_BANG
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getByDefbId" parameterType="java.lang.String" resultMap="BpmFormBang">
+		SELECT <include refid="columns"/>
+		FROM W_BPM_FORM_BANG
+		WHERE
+		DEFBID=#{defbId}
+	</select>
+	<select id="getByFormDefId" parameterType="java.lang.String" resultMap="BpmFormBang">
+		SELECT <include refid="columns"/>
+		FROM W_BPM_FORM_BANG
+		WHERE
+		F_FORMDEFID=#{formDefId}
+	</select>
+	<select id="getAll" resultMap="BpmFormBang">
+		SELECT <include refid="columns"/>
+		FROM W_BPM_FORM_BANG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

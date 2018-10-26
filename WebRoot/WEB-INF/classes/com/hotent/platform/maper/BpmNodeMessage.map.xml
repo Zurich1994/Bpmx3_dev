@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmNodeMessage">
+	<resultMap id="BpmNodeMessage" type="com.hotent.platform.model.bpm.BpmNodeMessage">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="actDefId" column="ACTDEFID" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="NODEID" jdbcType="VARCHAR"/>
+		<result property="messageType" column="MESSAGETYPE" jdbcType="NUMERIC"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="template" column="TEMPLATE" jdbcType="CLOB"/>
+		<result property="isSend" column="isSend" jdbcType="NUMERIC"/>
+	</resultMap>
+	<sql id="columns">
+		ID,ACTDEFID,NODEID,MESSAGETYPE,SUBJECT,TEMPLATE,isSend
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(actDefId)"> AND actDefId  LIKE #{actDefId}  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND nodeId  LIKE #{nodeId}  </if>
+			<if test="@Ognl@isNotEmpty(messageType)"> AND nodeId  = #{messageType}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmNodeMessage">
+		INSERT INTO BPM_NODE_MESSAGE
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, 
+		 #{actDefId,jdbcType=VARCHAR}, 
+		 #{nodeId,jdbcType=VARCHAR},
+		 #{messageType,jdbcType=NUMERIC},
+		 #{subject,jdbcType=VARCHAR},
+		 #{template,jdbcType=CLOB},
+		 #{isSend,jdbcType=NUMERIC}
+		 )
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_NODE_MESSAGE 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmNodeMessage">
+		UPDATE bpm_node_message SET
+		actDefId=#{actDefId,jdbcType=VARCHAR} , 
+		nodeId=#{nodeId,jdbcType=VARCHAR} ,
+		messageType=#{messageType,jdbcType=NUMERIC},
+		subject = #{subject,jdbcType=VARCHAR},
+		template = #{template,jdbcType=CLOB},
+		isSend=#{isSend,jdbcType=NUMERIC}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmNodeMessage">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_MESSAGE
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmNodeMessage">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_MESSAGE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	<select id="getMessageByActDefIdNodeId" resultMap="BpmNodeMessage">
+	   SELECT <include refid="columns"/>
+		FROM BPM_NODE_MESSAGE
+		WHERE 1=1 
+		<if test="@Ognl@isNotEmpty(actDefId)">
+		and actDefId=#{actDefId} 
+		</if>
+		<if test="@Ognl@isNotEmpty(nodeId)">
+		and nodeId=#{nodeId}
+		</if>
+	</select>
+	
+	<delete id="delByActDefId" parameterType="String">
+		DELETE FROM BPM_NODE_MESSAGE 
+		WHERE
+		actDefId=#{actDefId}
+	</delete>
+	<delete id="delByActDefIdAndNodeId" parameterType="Map">
+		DELETE FROM BPM_NODE_MESSAGE 
+		WHERE
+		actDefId=#{actDefId}
+		and
+		nodeId=#{nodeId}
+	</delete>
+	
+	<select id="getByActDefId" parameterType="java.lang.Long" resultMap="BpmNodeMessage">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_MESSAGE
+		WHERE
+		actDefId=#{actDefId}
+	</select>
+	<select id="getByActDefIdAndNodeId" resultMap="BpmNodeMessage">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_MESSAGE
+		WHERE
+		actDefId=#{actDefId,jdbcType=VARCHAR}
+		AND nodeId = #{nodeId,jdbcType=VARCHAR}
+	</select>
+</mapper>

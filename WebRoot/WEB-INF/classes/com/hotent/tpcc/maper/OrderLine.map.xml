@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.OrderLine">
+	<resultMap id="OrderLine" type="com.hotent.tpcc.model.tpcc.OrderLine">
+		<id property="ol_o_id" column="OL_O_ID" jdbcType="NUMERIC"/>
+		<result property="ol_d_id" column="OL_D_ID" jdbcType="NUMERIC"/>
+		<result property="ol_w_id" column="OL_W_ID" jdbcType="NUMERIC"/>
+		<result property="ol_number" column="OL_NUMBER" jdbcType="NUMERIC"/>
+		<result property="ol_i_id" column="OL_I_ID" jdbcType="NUMERIC"/>
+		<result property="ol_supply_w_id" column="OL_SUPPLY_W_ID" jdbcType="NUMERIC"/>
+		<result property="ol_delivery_d" column="OL_DELIVERY_D" jdbcType="DATE"/>
+		<result property="ol_quantity" column="OL_QUANTITY" jdbcType="NUMERIC"/>
+		<result property="ol_amount" column="OL_AMOUNT" jdbcType="NUMERIC"/>
+		<result property="ol_dist_info" column="OL_DIST_INFO" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		OL_O_ID,OL_D_ID,OL_W_ID,OL_NUMBER,OL_I_ID,OL_SUPPLY_W_ID,OL_DELIVERY_D,OL_QUANTITY,OL_AMOUNT,OL_DIST_INFO
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(ol_o_id)"> AND OL_O_ID  =#{ol_o_id} </if>
+			<if test="@Ognl@isNotEmpty(ol_delivery_d)"> AND OL_DELIVERY_D  =#{ol_delivery_d} </if>
+			<if test="@Ognl@isNotEmpty(beginol_delivery_d)"> AND OL_DELIVERY_D  >=#{beginol_delivery_d,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endol_delivery_d)"> AND OL_DELIVERY_D <![CDATA[ <=#{endol_delivery_d,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(ol_dist_info)"> AND OL_DIST_INFO  LIKE '%${ol_dist_info}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.OrderLine">
+		INSERT INTO order_line
+		(OL_O_ID,OL_D_ID,OL_W_ID,OL_NUMBER,OL_I_ID,OL_SUPPLY_W_ID,OL_DELIVERY_D,OL_QUANTITY,OL_AMOUNT,OL_DIST_INFO)
+		VALUES
+		(#{ol_o_id,jdbcType=NUMERIC}, #{ol_d_id,jdbcType=NUMERIC}, #{ol_w_id,jdbcType=NUMERIC}, #{ol_number,jdbcType=NUMERIC}, #{ol_i_id,jdbcType=NUMERIC}, #{ol_supply_w_id,jdbcType=NUMERIC}, #{ol_delivery_d,jdbcType=DATE}, #{ol_quantity,jdbcType=NUMERIC}, #{ol_amount,jdbcType=NUMERIC}, #{ol_dist_info,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM order_line 
+		WHERE
+		OL_O_ID=#{ol_o_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.OrderLine">
+		UPDATE order_line SET
+		OL_D_ID=#{ol_d_id,jdbcType=NUMERIC},
+		OL_W_ID=#{ol_w_id,jdbcType=NUMERIC},
+		OL_NUMBER=#{ol_number,jdbcType=NUMERIC},
+		OL_I_ID=#{ol_i_id,jdbcType=NUMERIC},
+		OL_SUPPLY_W_ID=#{ol_supply_w_id,jdbcType=NUMERIC},
+		OL_DELIVERY_D=#{ol_delivery_d,jdbcType=DATE},
+		OL_QUANTITY=#{ol_quantity,jdbcType=NUMERIC},
+		OL_AMOUNT=#{ol_amount,jdbcType=NUMERIC},
+		OL_DIST_INFO=#{ol_dist_info,jdbcType=VARCHAR}
+		WHERE
+		OL_O_ID=#{ol_o_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="OrderLine">
+		SELECT <include refid="columns"/>
+		FROM order_line
+		WHERE
+		OL_O_ID=#{ol_o_id}
+	</select>
+	
+	<select id="getAll" resultMap="OrderLine">
+		SELECT <include refid="columns"/>
+		FROM order_line   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by OL_O_ID desc
+		</if>
+	</select>
+	
+	<select id="insertOrderline" parameterType="java.lang.Long" resultMap="OrderLine">
+	INSERT INTO order_line (OL_O_ID,OL_D_ID,OL_W_ID,OL_NUMBER,OL_I_ID,OL_SUPPLY_W_ID,OL_QUANTITY,OL_AMOUNT,OL_DIST_INFO)  VALUES (#{OL_O_ID},#{OL_D_ID},#{OL_W_ID},#{OL_NUMBER},#{OL_I_ID},#{OL_SUPPLY_W_ID},#{OL_QUANTITY},#{OL_AMOUNT},#{OL_DIST_INFO})
+	</select>
+</mapper>

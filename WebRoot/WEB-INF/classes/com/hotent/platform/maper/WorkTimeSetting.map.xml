@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.worktime.WorkTimeSetting">
+	<resultMap id="WorkTimeSetting" type="com.hotent.platform.model.worktime.WorkTimeSetting">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,name,memo
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND memo  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.worktime.WorkTimeSetting">
+		INSERT INTO sys_worktime_setting
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_worktime_setting 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.worktime.WorkTimeSetting">
+		UPDATE sys_worktime_setting SET
+		name=#{name,jdbcType=VARCHAR} , 
+		memo=#{memo,jdbcType=VARCHAR} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="WorkTimeSetting">
+		SELECT <include refid="columns"/>
+		FROM sys_worktime_setting
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="WorkTimeSetting">
+		SELECT <include refid="columns"/>
+		FROM sys_worktime_setting   
+		<include refid="dynamicWhere" />
+		ORDER BY id 
+	</select>
+</mapper>

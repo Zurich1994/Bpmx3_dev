@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.extension.model.bpm.ProcessType">
+
+  <resultMap id="ProcessType" type="com.hotent.extension.model.bpm.ProcessType">
+	   	<id property="typeId" column="proc_def_id_" jdbcType="VARCHAR"/>
+		<result property="typeName" column="processname" jdbcType="VARCHAR"/>
+		<result property="parentId" column="typeid" jdbcType="VARCHAR"/>
+		<result property="isLeaf" column="isLeaf" jdbcType="NUMERIC"/>
+		<result property="count" column="processcount" jdbcType="NUMERIC"/>
+  </resultMap>
+  
+    <resultMap id="TaskType" type="com.hotent.extension.model.bpm.ProcessType">
+	   	<id property="typeId" column="task_def_key_" jdbcType="VARCHAR"/>
+		<result property="typeName" column="name_" jdbcType="VARCHAR"/>
+		<result property="parentId" column="proc_def_id_" jdbcType="VARCHAR"/>
+		<result property="isLeaf" column="isLeaf" jdbcType="NUMERIC"/>
+		<result property="count" column="taskcount" jdbcType="NUMERIC"/>
+  </resultMap>
+  
+	
+<sql id="getAllMyTask_Tables">
+	           SELECT task.*,
+	                run.subject subject,
+	                run.processName processName,
+	                TYPE.typeid typeId,
+	                run.creator,
+	                run.creatorId,
+	               ( case when tread.id is NULL then 0 else 1 end) hasRead,
+	                run.status taskStatus,TYPE.nodePath
+	           FROM ACT_RU_TASK task
+	                LEFT JOIN bpm_task_read tread ON task.id_ =tread.TASKID and tread.userId=#{userId}  
+	                LEFT JOIN BPM_PRO_RUN run ON task.PROC_INST_ID_ = run.actInstId
+	                LEFT JOIN sys_gl_type TYPE ON TYPE.typeid = run.typeid
+	                LEFT JOIN BPM_DEFINITION def on task.PROC_DEF_ID_=def.actDefId
+	</sql>
+	
+	<!-- 获取待办流程，封装成processType -->
+	<select id="getAllMyProcessType" parameterType="java.util.Map" resultMap="ProcessType">
+		 select distinct CONCAT_WS(':',typeId,proc_def_id_) as proc_def_id_,processname,typeid from 
+	    (select distinct * from
+	    (<include refid="getAllMyTask_Tables"/>
+	          WHERE task.ASSIGNEE_ = #{userId} and task.DESCRIPTION_!='39' and def.status!=3
+	          
+	         UNION ALL
+	        <include refid="getAllMyTask_Tables"/>
+	           		JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+	          WHERE ident.USER_ID_ = #{userId} 
+	          		and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+	          		
+	          UNION ALL
+	          
+	           <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'org' and ident.group_id_ in (select uo.orgid from SYS_USER_POS uo  where uo.userid= #{userId} ) 
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+                
+                UNION ALL
+                
+	           <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'role' and ident.group_id_ in (select ur.roleid from sys_user_role ur where ur.userid= #{userId} ) 
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+                
+                 UNION ALL
+                 
+	          <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'pos' and ident.group_id_ in (select up.posid from sys_user_pos up where up.userid= #{userId} ) 
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39'  and def.status!=3
+                
+                 UNION ALL
+                 
+	          <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'job' and ident.group_id_ in (select p.jobid from SYS_USER_POS uo inner join sys_pos p on p.posid=uo.posid  where uo.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39'  and def.status!=3
+	           ) 
+	  		  tmp
+			 ) aaa
+			
+	</select>
+	<!-- author:宋益多 goal:获取待办任务封装成processType -->
+	<select id="getAllMyTaskType" parameterType="java.util.Map" resultMap="TaskType">
+select distinct CONCAT_WS('-', proc_def_id_,task_def_key_)as task_def_key_,name_,CONCAT_WS(':',typeId,proc_def_id_) as proc_def_id_ from
+	    (SELECT task.*,
+	                run.subject subject,
+	                run.processName processName,
+	                TYPE.typeid typeId,
+	                run.creator,
+	                run.creatorId,
+	               ( case when tread.id is NULL then 0 else 1 end) hasRead,
+	                run.status taskStatus,TYPE.nodePath
+	           FROM ACT_RU_TASK task
+	                LEFT JOIN bpm_task_read tread ON task.id_ =tread.TASKID and tread.userId=#{userId}  
+	                LEFT JOIN BPM_PRO_RUN run ON task.PROC_INST_ID_ = run.actInstId
+	                LEFT JOIN sys_gl_type TYPE ON TYPE.typeid = run.typeid
+	                LEFT JOIN BPM_DEFINITION def on task.PROC_DEF_ID_=def.actDefId
+	          WHERE task.ASSIGNEE_ = #{userId} and task.DESCRIPTION_!='39' and def.status!=3
+	         UNION ALL
+	         SELECT task.*,
+	                run.subject subject,
+	                run.processName processName,
+	                TYPE.typeid typeId,
+	                run.creator,
+	                run.creatorId,
+	               ( case when tread.id is NULL then 0 else 1 end) hasRead,
+	                run.status taskStatus,TYPE.nodePath
+	           FROM ACT_RU_TASK task
+	           		JOIN act_ru_identitylink ident 
+	                   ON task.id_ = ident.TASK_ID_
+	                LEFT JOIN bpm_task_read tread
+	                   ON task.id_ =tread.TASKID  and tread.userId=#{userId} 
+	                LEFT JOIN BPM_PRO_RUN run
+	                   ON task.PROC_INST_ID_ = run.actInstId
+	                LEFT JOIN sys_gl_type TYPE
+	                   ON TYPE.typeid = run.typeid
+	                LEFT JOIN BPM_DEFINITION def 
+	                	on task.PROC_DEF_ID_=def.actDefId
+	          WHERE ident.USER_ID_ = #{userId} 
+	          		and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+                UNION ALL
+	           SELECT task.*,
+                  run.subject subject,
+                  run.processName processName,
+                  TYPE.typeid typeId,
+                  run.creator,
+                  run.creatorId,
+                  ( case when tread.id is NULL then 0 else 1 end) hasRead,
+                  run.status taskStatus,TYPE.nodePath
+             FROM ACT_RU_TASK task
+             	  JOIN act_ru_identitylink ident 
+                     ON task.id_ = ident.TASK_ID_
+                  LEFT JOIN bpm_task_read tread
+                     ON task.id_ =tread.TASKID   and tread.userId=#{userId} 
+                  LEFT JOIN BPM_PRO_RUN run
+                     ON task.PROC_INST_ID_ = run.actInstId
+                  LEFT JOIN sys_gl_type TYPE
+                     ON TYPE.typeid = run.typeid
+                  LEFT JOIN BPM_DEFINITION def 
+	                	on task.PROC_DEF_ID_=def.actDefId
+            	WHERE ident.type_ = 'role' and ident.group_id_ in (select ur.roleid from sys_user_role ur where ur.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+                 UNION ALL
+	           SELECT task.*,
+                  run.subject subject,
+                  run.processName processName,
+                  TYPE.typeid typeId,
+                  run.creator,
+                  run.creatorId,
+                  ( case when tread.id is NULL then 0 else 1 end) hasRead,
+                  run.status taskStatus,TYPE.nodePath
+             FROM ACT_RU_TASK task
+             	  JOIN act_ru_identitylink ident 
+                     ON task.id_ = ident.TASK_ID_
+                  LEFT JOIN bpm_task_read tread
+                     ON task.id_ =tread.TASKID   and tread.userId=#{userId} 
+                  LEFT JOIN BPM_PRO_RUN run
+                     ON task.PROC_INST_ID_ = run.actInstId
+                  LEFT JOIN sys_gl_type TYPE
+                     ON TYPE.typeid = run.typeid
+                  LEFT JOIN BPM_DEFINITION def 
+	                	on task.PROC_DEF_ID_=def.actDefId
+            	WHERE ident.type_ = 'pos' and ident.group_id_ in (select up.posid from sys_user_pos up where up.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39'  and def.status!=3
+	           ) aaa
+	</select>
+	<!-- 获取已办流程，封装成processType -->
+	<select id="getAlreadyProcess" parameterType="java.util.Map" resultMap="ProcessType">
+	select  typeid,CONCAT_WS(':',typeid,runactdefid) as proc_def_id_, processname,count(CONCAT_WS(':',typeid,runactdefid)) as processcount from(
+	select  run.runId,run.defId,run.subject,run.creatorId,run.creator,run.createtime,run.busDescp,run.status,
+    run.actInstId as runactinstid,run.actDefId as runactdefid,run.businessKey,run.businessUrl,run.processName as processname,
+    run.endTime,run.duration,run.lastSubmitDuration,run.pkName,run.tableName,run.parentId,
+    run.startOrgId,run.startOrgName,
+    run.typeId as typeid,run.formKeyUrl,run.formType,run.formDefId,run.flowKey,run.dsAlias,run.isFormal
+		from BPM_PRO_RUN run  join ACT_HI_ACTINST tk on run.actInstId=tk.PROC_INST_ID_  and tk.isstart=0
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+    left join BPM_DEFINITION def on run.defId = def.defId 
+    where tk.ASSIGNEE_=#{userId}  and tk.end_time_ is not null and def.status!=3) aaa group by CONCAT_WS(':',typeid,runactdefid),typeid ,processname
+	</select>
+	<!-- 获取已办任务，封装成processType -->
+	<select id="getAlreadyTask" parameterType="java.util.Map" resultMap="TaskType">
+	select CONCAT_WS('-',runactdefid,tkactid) as task_def_key_,CONCAT_WS(':',runtypeid,runactdefid) as proc_def_id_,name_,COUNT(CONCAT_WS(':',runtypeid,runactdefid)) as taskcount
+	from (select  tk.act_id_ as tkactid,tk.act_name_ as name_,run.runId,run.defId,run.subject,run.creatorId,run.creator,run.createtime,run.busDescp,run.status,
+    run.actInstId as runactinstid,run.actDefId as runactdefid,run.businessKey,run.businessUrl,run.processName,
+    run.endTime,run.duration,run.lastSubmitDuration,run.pkName,run.tableName,run.parentId,
+    run.startOrgId,run.startOrgName,
+    run.typeId as runtypeid,run.formKeyUrl,run.formType,run.formDefId,run.flowKey,run.dsAlias,run.isFormal
+		from BPM_PRO_RUN run  join ACT_HI_ACTINST tk on run.actInstId=tk.PROC_INST_ID_  and tk.isstart=0
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+ 		where tk.ASSIGNEE_=#{userId}  and tk.end_time_ is not null and def.status!=3) aaa group by CONCAT_WS('-',runactdefid,tkactid),CONCAT_WS(':',runtypeid,runactdefid),name_
+	</select>
+	<!-- 获取办结流程，封装成processType -->
+	<select id="getCompletedProcess" parameterType="java.util.Map" resultMap="ProcessType">
+	select typeid,CONCAT_WS(':',typeid,runactdefid) as proc_def_id_,processname,count(CONCAT_WS(':',typeid,runactdefid)) as processcount
+	from (select distinct run.runId,run.defId,run.subject,run.creatorId,run.creator,run.createtime,run.busDescp,run.status,
+    run.actInstId as runactinstid,run.actDefId as runactdefid,run.businessKey,run.businessUrl,run.processName as processname,
+    run.endTime,run.duration,run.lastSubmitDuration,run.pkName,run.tableName,run.parentId,
+    run.startOrgId,run.startOrgName,
+    run.typeId as typeid,run.formKeyUrl,run.formType,run.formDefId,run.flowKey,run.dsAlias,run.isFormal
+		from BPM_PRO_RUN_HIS run  join ACT_HI_ACTINST tk on run.actInstId=tk.PROC_INST_ID_ 
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		where tk.ASSIGNEE_=#{userId} AND ( run.status = 2 or  run.status = 3 ) and def.status!=3) aaa group by CONCAT_WS(':',typeid,runactdefid),typeid,processname
+	</select>
+	
+	<!-- 获取办结任务，封装成processType 如果需要将办结任务分类树扩展到任务节点，去掉注释-->
+	
+	<select id="getCompletedTask" parameterType="java.util.Map" resultMap="TaskType">
+	select CONCAT_WS('-',runactdefid,tkactid) as task_def_key_,CONCAT_WS(':',runtypeid,runactdefid) as proc_def_id_,name_,count(CONCAT_WS(':',runtypeid,runactdefid)) as taskcount
+	from (select  tk.act_id_ as tkactid,tk.act_name_ as name_,run.runId,run.defId,run.subject,run.creatorId,run.creator,run.createtime,run.busDescp,run.status,
+    run.actInstId as runactinstid,run.actDefId as runactdefid,run.businessKey,run.businessUrl,run.processName,
+    run.endTime,run.duration,run.lastSubmitDuration,run.pkName,run.tableName,run.parentId,
+    run.startOrgId,run.startOrgName,
+    run.typeId as runtypeid,run.formKeyUrl,run.formType,run.formDefId,run.flowKey,run.dsAlias,run.isFormal
+		from BPM_PRO_RUN_HIS run  join ACT_HI_ACTINST tk on run.actInstId=tk.PROC_INST_ID_ 
+		left join SYS_GL_TYPE type on run.typeId = type.typeId
+		left join BPM_DEFINITION def on run.defId = def.defId 
+		where tk.ASSIGNEE_=#{userId} AND ( run.status = 2 or  run.status = 3 ) and def.status!=3) aaa group by CONCAT_WS('-',runactdefid,tkactid),CONCAT_WS(':',runtypeid,runactdefid),name_
+	</select>
+	
+	
+</mapper>

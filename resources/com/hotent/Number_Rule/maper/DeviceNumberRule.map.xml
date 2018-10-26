@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Number_Rule.model.Number_RulePac.DeviceNumberRule">
+	<resultMap id="DeviceNumberRule" type="com.hotent.Number_Rule.model.Number_RulePac.DeviceNumberRule">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="prefix1" column="F_PREFIX1" jdbcType="VARCHAR"/>
+		<result property="Implication1" column="F_IMPLICATION1" jdbcType="VARCHAR"/>
+		<result property="prefix2" column="F_PREFIX2" jdbcType="VARCHAR"/>
+		<result property="Implication2" column="F_IMPLICATION2" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PREFIX1,F_IMPLICATION1,F_PREFIX2,F_IMPLICATION2
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(prefix1)"> AND F_PREFIX1  LIKE '%${prefix1}%'  </if>
+			<if test="@Ognl@isNotEmpty(Implication1)"> AND F_IMPLICATION1  LIKE '%${Implication1}%'  </if>
+			<if test="@Ognl@isNotEmpty(prefix2)"> AND F_PREFIX2  LIKE '%${prefix2}%'  </if>
+			<if test="@Ognl@isNotEmpty(Implication2)"> AND F_IMPLICATION2  LIKE '%${Implication2}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Number_Rule.model.Number_RulePac.DeviceNumberRule">
+		INSERT INTO W_DEVICE_NUMBER_RULE
+		(ID,
+		F_PREFIX1,F_IMPLICATION1,F_PREFIX2,F_IMPLICATION2)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{prefix1,jdbcType=VARCHAR}, #{Implication1,jdbcType=VARCHAR}, #{prefix2,jdbcType=VARCHAR}, #{Implication2,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_NUMBER_RULE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Number_Rule.model.Number_RulePac.DeviceNumberRule">
+		UPDATE W_DEVICE_NUMBER_RULE SET
+		F_PREFIX1=#{prefix1,jdbcType=VARCHAR},
+		F_IMPLICATION1=#{Implication1,jdbcType=VARCHAR},
+		F_PREFIX2=#{prefix2,jdbcType=VARCHAR},
+		F_IMPLICATION2=#{Implication2,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceNumberRule">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_NUMBER_RULE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DeviceNumberRule">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_NUMBER_RULE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

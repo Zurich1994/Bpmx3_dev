@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmProTransTo">
+	<resultMap id="BpmProTransTo" type="com.hotent.platform.model.bpm.BpmProTransTo">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="taskId" column="TASKID" jdbcType="NUMERIC"/>
+		<result property="transType" column="TRANSTYPE" jdbcType="NUMERIC"/>
+		<result property="action" column="ACTION" jdbcType="NUMERIC"/>
+		<result property="createUserId" column="CREATEUSERID" jdbcType="NUMERIC"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="actInstId" column="ACTINSTID" jdbcType="NUMERIC"/>
+		<result property="transResult" column="TRANSRESULT" jdbcType="NUMERIC"/>
+		<result property="assignee" column="ASSIGNEE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		ID,TASKID,TRANSTYPE,ACTION,CREATEUSERID,CREATETIME,ACTINSTID,TRANSRESULT,ASSIGNEE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			
+			<if test="@Ognl@isNotEmpty(taskId)"> AND TASKID =#{taskId}  </if>
+			<if test="@Ognl@isNotEmpty(createUserId)"> AND CREATEUSERID =#{createUserId}  </if>
+			<if test="@Ognl@isNotEmpty(actInstId)"> AND ACTINSTID =#{actInstId}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmProTransTo">
+		INSERT INTO BPM_PRO_TRANSTO
+		(ID,TASKID,TRANSTYPE,ACTION,CREATEUSERID,CREATETIME,ACTINSTID,TRANSRESULT,ASSIGNEE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{taskId,jdbcType=NUMERIC}, #{transType,jdbcType=NUMERIC}, 
+		#{action,jdbcType=NUMERIC}, #{createUserId,jdbcType=NUMERIC}, #{createtime,jdbcType=TIMESTAMP},
+		#{actInstId,jdbcType=NUMERIC},#{transResult,jdbcType=NUMERIC},#{assignee,jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmProTransTo">
+		UPDATE BPM_PRO_TRANSTO SET
+		TASKID=#{taskId,jdbcType=NUMERIC},
+		TRANSTYPE=#{transType,jdbcType=NUMERIC},
+		ACTION=#{action,jdbcType=NUMERIC},
+		CREATEUSERID=#{createUserId,jdbcType=NUMERIC},
+		CREATETIME=#{createtime,jdbcType=TIMESTAMP},
+		ACTINSTID=#{actInstId,jdbcType=NUMERIC},
+		TRANSRESULT=#{transResult,jdbcType=NUMERIC},
+		ASSIGNEE=#{assignee,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<!-- 流转事宜 -->
+	<select id="mattersList" resultMap="BpmProTransTo">
+		SELECT 	ts.ID,ts.TASKID,ts.ACTINSTID,ts.TRANSTYPE,ts.ACTION,ts.CREATEUSERID,ts.TRANSRESULT,
+		        ts.ASSIGNEE,ts.CREATETIME,run.processName processName,run.runId runId,run.subject subject,type.typeId typeId 
+		FROM BPM_PRO_TRANSTO ts join BPM_PRO_RUN run  on ts.ACTINSTID = run.actinstid 
+		left join SYS_GL_TYPE type on run.typeid = type.typeId	
+		<where>
+			<if test="@Ognl@isNotEmpty(createUserId)"> AND ts.CREATEUSERID=#{createUserId}</if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND upper(run.subject) LIKE upper(#{subject}) escape '|'  </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND ts.CREATETIME  >=#{begincreatetime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND ts.CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(nodePath)"> AND type.nodePath like #{nodePath} </if>
+			<if test="@Ognl@isNotEmpty(processName)"> AND upper(run.processName) LIKE upper(#{processName}) escape '|' </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ts.CREATETIME  desc
+		</if>
+	</select>
+	
+	<select id="getByTaskId" parameterType="java.lang.Long" resultMap="BpmProTransTo">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRO_TRANSTO WHERE TASKID=#{taskId}
+	</select>
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRO_TRANSTO	WHERE ID=#{id}
+	</delete>
+	<delete id="delByActInstId" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRO_TRANSTO	WHERE ACTINSTID=#{actInstId}
+	</delete>
+	
+	<delete id="delByTaskId" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRO_TRANSTO	WHERE TASKID=#{taskId}
+	</delete>
+	
+</mapper>

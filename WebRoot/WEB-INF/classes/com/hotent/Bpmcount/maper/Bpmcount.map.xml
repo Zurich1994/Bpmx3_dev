@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Bpmcount.model.Bpmcount.Bpmcount">
+	<resultMap id="Bpmcount" type="com.hotent.Bpmcount.model.Bpmcount.Bpmcount">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="defid" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="nodeid" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="operaterid" column="F_OPERATERID" jdbcType="VARCHAR"/>
+		<result property="runs" column="F_RUNS" jdbcType="NUMERIC"/>
+		<result property="time" column="F_TIME" jdbcType="DATE"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_DEFID,F_NODEID,F_OPERATERID,F_RUNS,F_TIME
+	</sql>
+	<sql id="wfColumns">
+		ID,F_DEFID,F_NODEID,F_OPERATERID,F_RUNS,F_TIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(defid)"> AND F_DEFID  LIKE '%${defid}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND F_NODEID  LIKE '%${nodeid}%'  </if>
+			<if test="@Ognl@isNotEmpty(operaterid)"> AND F_OPERATERID  LIKE '%${operaterid}%'  </if>
+			<if test="@Ognl@isNotEmpty(runs)"> AND F_RUNS  =#{runs} </if>
+			<if test="@Ognl@isNotEmpty(time)"> AND F_TIME  =#{time} </if>
+			<if test="@Ognl@isNotEmpty(begintime)"> AND F_TIME  >=#{begintime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endtime)"> AND F_TIME <![CDATA[ <=#{endtime,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Bpmcount.model.Bpmcount.Bpmcount">
+		INSERT INTO W_BPMCOUNT
+		(ID,
+		F_DEFID,F_NODEID,F_OPERATERID,F_RUNS,F_TIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{defid,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, #{operaterid,jdbcType=VARCHAR}, #{runs,jdbcType=NUMERIC}, #{time,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_BPMCOUNT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Bpmcount.model.Bpmcount.Bpmcount">
+		UPDATE W_BPMCOUNT SET
+		F_DEFID=#{defid,jdbcType=VARCHAR},
+		F_NODEID=#{nodeid,jdbcType=VARCHAR},
+		F_OPERATERID=#{operaterid,jdbcType=VARCHAR},
+		F_RUNS=#{runs,jdbcType=NUMERIC},
+		F_TIME=#{time,jdbcType=DATE}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Bpmcount">
+		SELECT <include refid="columns"/>
+		FROM W_BPMCOUNT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Bpmcount">
+		SELECT <include refid="columns"/>
+		FROM W_BPMCOUNT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+</mapper>

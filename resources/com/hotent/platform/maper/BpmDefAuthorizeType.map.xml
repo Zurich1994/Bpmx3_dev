@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmDefAuthorizeType">
+	<resultMap id="BpmDefAuthorizeType" type="com.hotent.platform.model.bpm.BpmDefAuthorizeType">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="authorizeId" column="AUTHORIZE_ID" jdbcType="NUMERIC"/>
+		<result property="authorizeType" column="AUTHORIZE_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		ID,AUTHORIZE_ID,AUTHORIZE_TYPE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="id!=null"> AND ID  =#{id} </if>
+			<if test="authorizeId!=null"> AND AUTHORIZE_ID  =#{authorizeId} </if>
+			<if test="authorizeType!=null"> AND AUTHORIZE_TYPE  =#{authorizeType} </if>	
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmDefAuthorizeType">
+		INSERT INTO BPM_DEF_AUTH_TYPE
+		(ID,AUTHORIZE_ID,AUTHORIZE_TYPE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{authorizeId,jdbcType=NUMERIC}, #{authorizeType,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEF_AUTH_TYPE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByMap" parameterType="java.util.Map" >
+		DELETE FROM BPM_DEF_AUTH_TYPE 
+		    <include refid="dynamicWhere" />
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmDefAuthorizeType">
+		UPDATE BPM_DEF_AUTH_TYPE SET
+		AUTHORIZE_ID=#{authorizeId,jdbcType=NUMERIC} , 
+		AUTHORIZE_TYPE=#{authorizeType,jdbcType=VARCHAR} 
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmDefAuthorizeType">
+		SELECT <include refid="columns"/>
+		FROM BPM_DEF_AUTH_TYPE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" parameterType="java.util.Map" resultMap="BpmDefAuthorizeType">
+		SELECT <include refid="columns"/>
+		FROM BPM_DEF_AUTH_TYPE   
+		<include refid="dynamicWhere" />
+		<if test="orderField!=null">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="orderField!=null">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<delete id="delByAuthorizeId" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEF_AUTH_TYPE 
+			WHERE AUTHORIZE_ID=#{authorizeId}
+	</delete>
+	
+	<select id="get"   parameterType="java.lang.Long" resultMap="BpmDefAuthorizeType">
+		SELECT * FROM BPM_DEF_AUTH_TYPE 
+		WHERE 
+		ID=#{id}
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultMap="BpmDefAuthorizeType">
+		SELECT * FROM BPM_DEF_AUTH_TYPE
+		<where>
+			<if test="whereSql!=null">
+				${whereSql}
+			</if>
+		</where>
+		<if test="orderBySql!=null">
+			ORDER BY ${orderBySql}
+		</if>
+		<if test="orderBySql==null">
+			ORDER BY id DESC
+		</if>
+	</select>
+	
+	<delete id="remove" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEF_AUTH_TYPE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+</mapper>

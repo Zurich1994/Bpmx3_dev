@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.sysinfomation.model.sysinfomation.Sysinfomation">
+	<resultMap id="Sysinfomation" type="com.hotent.sysinfomation.model.sysinfomation.Sysinfomation">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="sysNum" column="F_SYSNUM" jdbcType="VARCHAR"/>
+		<result property="sysName" column="F_SYSNAME" jdbcType="VARCHAR"/>
+		<result property="sysId" column="F_SYSID" jdbcType="VARCHAR"/>
+		<result property="nmopNonElemNum" column="F_NMOPNONELEMNUM" jdbcType="VARCHAR"/>
+		<result property="nmopElemTotal" column="F_NMOPELEMTOTAL" jdbcType="VARCHAR"/>
+		<result property="workSubsysMaturity" column="F_WORKSUBSYSMATURITY" jdbcType="VARCHAR"/>
+		<result property="infoStandGrade" column="F_INFOSTANDGRADE" jdbcType="VARCHAR"/>
+		<result property="knowledgeOpnum" column="F_KNOWLEDGEOPNUM" jdbcType="VARCHAR"/>
+		<result property="knowledgeAutoOpnum" column="F_KNOWLEDGEAUTOOPNUM" jdbcType="VARCHAR"/>
+		<result property="knowledStrucktGrade" column="F_KNOWLEDSTRUCKTGRADE" jdbcType="VARCHAR"/>
+		<result property="local" column="F_LOCAL" jdbcType="VARCHAR"/>
+		<result property="outGov" column="F_OUTGOV" jdbcType="VARCHAR"/>
+		<result property="inGov" column="F_INGOV" jdbcType="VARCHAR"/>
+		<result property="outPub" column="F_OUTPUB" jdbcType="VARCHAR"/>
+		<result property="inPub" column="F_INPUB" jdbcType="VARCHAR"/>
+		<result property="infoResOpenGrade" column="F_INFORESOPENGRADE" jdbcType="VARCHAR"/>
+		<result property="flocal" column="F_FLOCAL" jdbcType="VARCHAR"/>
+		<result property="foutGov" column="F_FOUTGOV" jdbcType="VARCHAR"/>
+		<result property="finGov" column="F_FINGOV" jdbcType="VARCHAR"/>
+		<result property="foutPub" column="F_FOUTPUB" jdbcType="VARCHAR"/>
+		<result property="finPub" column="F_FINPUB" jdbcType="VARCHAR"/>
+		<result property="busFrameOpenGrade" column="F_BUSFRAMEOPENGRADE" jdbcType="VARCHAR"/>
+		<result property="defNum" column="F_DEFNUM" jdbcType="VARCHAR"/>
+		<result property="activityNum" column="F_ACTIVITYNUM" jdbcType="VARCHAR"/>
+		<result property="markActivityNum" column="F_MARKACTIVITYNUM" jdbcType="VARCHAR"/>
+		
+		<result property="resspeed" column="F_RES_SPEED" jdbcType="VARCHAR"/>
+		<result property="sercycle" column="F_SER_CYCLE" jdbcType="VARCHAR"/>
+		<result property="dataincre" column="F_DATA_INCRE" jdbcType="VARCHAR"/>
+		<result property="comtrans" column="F_COM_TRANS" jdbcType="VARCHAR"/>
+		<result property="avefreqoccur" column="F_AVE_FREQ_OCCUR" jdbcType="VARCHAR"/>
+		<result property="peakfreq" column="F_PEAK_FREQ" jdbcType="VARCHAR"/>
+		<result property="codelinenum" column="F_CODE_LINE_NUM" jdbcType="VARCHAR"/>
+		
+		</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_SYSNUM,F_SYSNAME,F_SYSID,F_NMOPNONELEMNUM,F_NMOPELEMTOTAL,F_WORKSUBSYSMATURITY,F_INFOSTANDGRADE,F_KNOWLEDGEOPNUM,F_KNOWLEDGEAUTOOPNUM,F_KNOWLEDSTRUCKTGRADE,F_LOCAL,F_OUTGOV,F_INGOV,F_OUTPUB,F_INPUB,F_INFORESOPENGRADE,F_FLOCAL,F_FOUTGOV,F_FINGOV,F_FOUTPUB,F_FINPUB,F_BUSFRAMEOPENGRADE,F_DEFNUM,F_ACTIVITYNUM,F_MARKACTIVITYNUM
+	</sql>
+	<sql id="wfColumns">
+		ID,F_SYSNUM,F_SYSNAME,F_SYSID,F_NMOPNONELEMNUM,F_NMOPELEMTOTAL,F_WORKSUBSYSMATURITY,F_INFOSTANDGRADE,F_KNOWLEDGEOPNUM,F_KNOWLEDGEAUTOOPNUM,F_KNOWLEDSTRUCKTGRADE,F_LOCAL,F_OUTGOV,F_INGOV,F_OUTPUB,F_INPUB,F_INFORESOPENGRADE,F_FLOCAL,F_FOUTGOV,F_FINGOV,F_FOUTPUB,F_FINPUB,F_BUSFRAMEOPENGRADE,F_DEFNUM,F_ACTIVITYNUM,F_MARKACTIVITYNUM
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+		    <if test="@Ognl@isNotEmpty(sysNum)"> AND F_SYSNUM  LIKE '%${sysNum}%'  </if>
+			<if test="@Ognl@isNotEmpty(sysName)"> AND F_SYSNAME  LIKE '%${sysName}%'  </if>
+			<if test="@Ognl@isNotEmpty(sysId)"> AND F_SYSID  LIKE '%${sysId}%'  </if>
+			<if test="@Ognl@isNotEmpty(nmopNonElemNum)"> AND F_NMOPNONELEMNUM  LIKE '%${nmopNonElemNum}%'  </if>
+			<if test="@Ognl@isNotEmpty(nmopElemTotal)"> AND F_NMOPELEMTOTAL  LIKE '%${nmopElemTotal}%'  </if>
+			<if test="@Ognl@isNotEmpty(workSubsysMaturity)"> AND F_WORKSUBSYSMATURITY  LIKE '%${workSubsysMaturity}%'  </if>
+			<if test="@Ognl@isNotEmpty(infoStandGrade)"> AND F_INFOSTANDGRADE  LIKE '%${infoStandGrade}%'  </if>
+			<if test="@Ognl@isNotEmpty(knowledgeOpnum)"> AND F_KNOWLEDGEOPNUM  LIKE '%${knowledgeOpnum}%'  </if>
+			<if test="@Ognl@isNotEmpty(knowledgeAutoOpnum)"> AND F_KNOWLEDGEAUTOOPNUM  LIKE '%${knowledgeAutoOpnum}%'  </if>
+			<if test="@Ognl@isNotEmpty(knowledStrucktGrade)"> AND F_KNOWLEDSTRUCKTGRADE  LIKE '%${knowledStrucktGrade}%'  </if>
+			<if test="@Ognl@isNotEmpty(local)"> AND F_LOCAL  LIKE '%${local}%'  </if>
+			<if test="@Ognl@isNotEmpty(outGov)"> AND F_OUTGOV  LIKE '%${outGov}%'  </if>
+			<if test="@Ognl@isNotEmpty(inGov)"> AND F_INGOV  LIKE '%${inGov}%'  </if>
+			<if test="@Ognl@isNotEmpty(outPub)"> AND F_OUTPUB  LIKE '%${outPub}%'  </if>
+			<if test="@Ognl@isNotEmpty(inPub)"> AND F_INPUB  LIKE '%${inPub}%'  </if>
+			<if test="@Ognl@isNotEmpty(infoResOpenGrade)"> AND F_INFORESOPENGRADE  LIKE '%${infoResOpenGrade}%'  </if>
+			<if test="@Ognl@isNotEmpty(flocal)"> AND F_FLOCAL  LIKE '%${flocal}%'  </if>
+			<if test="@Ognl@isNotEmpty(foutGov)"> AND F_FOUTGOV  LIKE '%${foutGov}%'  </if>
+			<if test="@Ognl@isNotEmpty(finGov)"> AND F_FINGOV  LIKE '%${finGov}%'  </if>
+			<if test="@Ognl@isNotEmpty(foutPub)"> AND F_FOUTPUB  LIKE '%${foutPub}%'  </if>
+			<if test="@Ognl@isNotEmpty(finPub)"> AND F_FINPUB  LIKE '%${finPub}%'  </if>
+			<if test="@Ognl@isNotEmpty(busFrameOpenGrade)"> AND F_BUSFRAMEOPENGRADE  LIKE '%${busFrameOpenGrade}%'  </if>
+			<if test="@Ognl@isNotEmpty(defNum)"> AND F_DEFNUM  LIKE '%${defNum}%'  </if>
+			<if test="@Ognl@isNotEmpty(activityNum)"> AND F_ACTIVITYNUM  LIKE '%${activityNum}%'  </if>
+			<if test="@Ognl@isNotEmpty(markActivityNum)"> AND F_MARKACTIVITYNUM  LIKE '%${markActivityNum}%'  </if>
+			
+		    <if test="@Ognl@isNotEmpty(resspeed)"> AND F_RESSPEED  LIKE '%${resSpeed}%' </if>
+			<if test="@Ognl@isNotEmpty(sercycle)"> AND F_SERCYCLE  LIKE '%${serCycle}%' </if>			
+			<if test="@Ognl@isNotEmpty(dataincre)"> AND F_DATAINCRE  LIKE '%${dataIncre}%' </if>
+			<if test="@Ognl@isNotEmpty(comtrans)"> AND F_COMTRANS  LIKE '%${comTrans}%' </if>
+				
+			<if test="@Ognl@isNotEmpty(avefreqoccur"> AND F_AVEFREQOCCUR  LIKE '%${aveFreqOccur}%' </if>
+			<if test="@Ognl@isNotEmpty(peakfreq)"> AND F_PEAKFREQ  LIKE '%${peakFreq}%' </if>
+			<if test="@Ognl@isNotEmpty(codelinenum)"> AND F_CODELINENUM  LIKE '%${codeLineNum}%' </if>
+		    
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.sysinfomation.model.sysinfomation.Sysinfomation">
+		INSERT INTO W_SYSINFOMATION
+		(ID,
+		F_SYSNUM,F_SYSNAME,F_SYSID,F_NMOPNONELEMNUM,F_NMOPELEMTOTAL,F_WORKSUBSYSMATURITY,F_INFOSTANDGRADE,F_KNOWLEDGEOPNUM,F_KNOWLEDGEAUTOOPNUM,F_KNOWLEDSTRUCKTGRADE,F_LOCAL,F_OUTGOV,F_INGOV,F_OUTPUB,F_INPUB,F_INFORESOPENGRADE,F_FLOCAL,F_FOUTGOV,F_FINGOV,F_FOUTPUB,F_FINPUB,F_BUSFRAMEOPENGRADE,F_DEFNUM,F_ACTIVITYNUM,F_MARKACTIVITYNUM
+		 ,F_RESSPEED,F_SERCYCLE,F_DATAINCRE,F_COMTRANS,F_AVEFREQOCCUR,F_PEAKFREQ,F_CODELINENUM)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{sysNum,jdbcType=VARCHAR},{sysName,jdbcType=VARCHAR}, #{sysId,jdbcType=VARCHAR}, #{nmopNonElemNum,jdbcType=VARCHAR}, #{nmopElemTotal,jdbcType=VARCHAR}, #{workSubsysMaturity,jdbcType=VARCHAR}, #{infoStandGrade,jdbcType=VARCHAR}, #{knowledgeOpnum,jdbcType=VARCHAR}, #{knowledgeAutoOpnum,jdbcType=VARCHAR}, #{knowledStrucktGrade,jdbcType=VARCHAR}, #{local,jdbcType=VARCHAR}, #{outGov,jdbcType=VARCHAR}, #{inGov,jdbcType=VARCHAR}, #{outPub,jdbcType=VARCHAR}, #{inPub,jdbcType=VARCHAR},#{infoResOpenGrade,jdbcType=VARCHAR}, #{flocal,jdbcType=VARCHAR}, #{foutGov,jdbcType=VARCHAR}, #{finGov,jdbcType=VARCHAR}, #{foutPub,jdbcType=VARCHAR}, #{finPub,jdbcType=VARCHAR}, #{busFrameOpenGrade,jdbcType=VARCHAR},#{defNum,jdbcType=VARCHAR},#{activityNum,jdbcType=VARCHAR}, #{markActivityNum,jdbcType=VARCHAR}
+		  {resSpeed,jdbcType=VARCHAR},{serCycle,jdbcType=VARCHAR},{dataIncre,jdbcType=VARCHAR},{comTrans,jdbcType=VARCHAR},{aveFreqOccur,jdbcType=VARCHAR},{peakFreq,jdbcType=VARCHAR},{codeLineNum,jdbcType=VARCHAR} )
+	</insert>
+	<insert id="addBy" >
+		INSERT INTO W_SYSINFOMATION
+		(ID,
+		F_SYSNUM,
+		F_SYSNAME,
+		F_SYSID,
+		F_NMOPNONELEMNUM,
+		
+		F_NMOPELEMTOTAL,
+		F_WORKSUBSYSMATURITY,
+		F_INFOSTANDGRADE,
+		F_KNOWLEDGEOPNUM,
+		F_KNOWLEDGEAUTOOPNUM,
+		
+		F_KNOWLEDSTRUCKTGRADE,
+		F_LOCAL,
+		F_OUTGOV,
+		F_INGOV,
+		F_OUTPUB,
+		
+		F_INPUB,
+		F_INFORESOPENGRADE,
+		F_FLOCAL,
+		F_FOUTGOV,
+		F_FINGOV,
+		
+		F_FOUTPUB,
+		F_FINPUB,
+		F_BUSFRAMEOPENGRADE,
+		F_DEFNUM,
+		F_ACTIVITYNUM,
+		
+		F_MARKACTIVITYNUM,
+		F_RES_SPEED,
+		F_SER_CYCLE,
+		F_DATA_INCRE,
+		F_COM_TRANS,
+		
+		F_AVE_FREQ_OCCUR,
+		F_PEAK_FREQ,
+		F_CODE_LINE_NUM)
+		VALUES
+		(#{id},
+		#{sysNum},
+		#{sysName},
+		#{sysId},
+		#{nmopNonElemNum},
+		  
+	    #{nmopElemTotal},
+		#{workSubsysMaturity}, 
+		#{infoStandGrade},
+		#{knowledgeOpnum},
+		#{knowledgeAutoOpnum},
+		      
+	    #{knowledStrucktGrade},
+		#{local},
+		#{outGov},
+		#{inGov},
+		#{outPub},
+		           
+		#{inPub},
+		#{infoResOpenGrade},
+		#{flocal},
+		#{foutGov},
+		#{finGov},
+		               
+		#{foutPub},
+		#{finPub},
+		#{busFrameOpenGrade},
+		#{defNum},
+	    #{activityNum},
+		                  
+		#{markActivityNum},
+		#{resSpeed},
+		#{serCycle},
+		#{dataIncre},
+		#{comTrans},
+		                   
+	    #{aveFreqOccur},
+		#{peakFreq},
+		#{codeLineNum})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SYSINFOMATION 
+		WHERE
+		ID=#{id}
+	</delete>
+	<delete id="delall">
+		DELETE FROM W_SYSINFOMATION 
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.sysinfomation.model.sysinfomation.Sysinfomation">
+		UPDATE W_SYSINFOMATION SET
+		F_SYSNUM=#{sysNum,jdbcType=VARCHAR},
+		F_SYSNAME=#{sysName,jdbcType=VARCHAR},
+		F_SYSID=#{sysId,jdbcType=VARCHAR},
+		F_NMOPNONELEMNUM=#{nmopNonElemNum,jdbcType=VARCHAR},
+		F_NMOPELEMTOTAL=#{nmopElemTotal,jdbcType=VARCHAR},
+		F_WORKSUBSYSMATURITY=#{workSubsysMaturity,jdbcType=VARCHAR},
+		F_INFOSTANDGRADE=#{infoStandGrade,jdbcType=VARCHAR},
+		F_KNOWLEDGEOPNUM=#{knowledgeOpnum,jdbcType=VARCHAR},
+		F_KNOWLEDGEAUTOOPNUM=#{knowledgeAutoOpnum,jdbcType=VARCHAR},
+		F_KNOWLEDSTRUCKTGRADE=#{knowledStrucktGrade,jdbcType=VARCHAR},
+		F_LOCAL=#{local,jdbcType=VARCHAR},
+		F_OUTGOV=#{outGov,jdbcType=VARCHAR},
+		F_INGOV=#{inGov,jdbcType=VARCHAR},
+		F_OUTPUB=#{outPub,jdbcType=VARCHAR},
+		F_INPUB=#{inPub,jdbcType=VARCHAR},
+		F_INFORESOPENGRADE=#{infoResOpenGrade,jdbcType=VARCHAR},
+		F_FLOCAL=#{flocal,jdbcType=VARCHAR},
+		F_FOUTGOV=#{foutGov,jdbcType=VARCHAR},
+		F_FINGOV=#{finGov,jdbcType=VARCHAR},
+		F_FOUTPUB=#{foutPub,jdbcType=VARCHAR},
+		F_FINPUB=#{finPub,jdbcType=VARCHAR},
+		F_BUSFRAMEOPENGRADE=#{busFrameOpenGrade,jdbcType=VARCHAR},
+		F_DEFNUM=#{defNum,jdbcType=VARCHAR},
+		F_ACTIVITYNUM=#{activityNum,jdbcType=VARCHAR},
+		F_MARKACTIVITYNUM=#{markActivityNum,jdbcType=VARCHAR}
+			
+		F_RESSPEED=#{resSpeed,jdbcType=VARCHAR},
+		F_SERCYCLE=#{serCycle,jdbcType=VARCHAR},	
+		F_DATAINCRE=#{dataIncre,jdbcType=VARCHAR},
+		F_COMTRANS=#{comTrans,jdbcType=VARCHAR},
+		
+		F_AVEFREQOCCUR=#{aveFreqOccur,jdbcType=VARCHAR},
+		F_PEAKFREQ=#{peakFreq,jdbcType=VARCHAR},
+		F_CODELINENUM=#{codeLineNum,jdbcType=VARCHAR}
+		
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Sysinfomation">
+		SELECT <include refid="columns"/>
+		FROM W_SYSINFOMATION
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Sysinfomation">
+		SELECT <include refid="columns"/>
+		FROM W_SYSINFOMATION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getAll1" resultMap="Sysinfomation">
+		SELECT *
+		FROM W_SYSINFOMATION
+	</select>
+	
+	
+</mapper>

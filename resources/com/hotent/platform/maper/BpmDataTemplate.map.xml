@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.form.BpmDataTemplate">
+	<resultMap id="BpmDataTemplate" type="com.hotent.platform.model.form.BpmDataTemplate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="tableId" column="TABLEID" jdbcType="NUMERIC"/>
+		<result property="formKey" column="FORMKEY" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<!-- 
+		<result property="alias" column="ALIAS" jdbcType="VARCHAR"/>
+		 -->
+		<result property="style" column="STYLE" jdbcType="NUMERIC"/>
+		<result property="needPage" column="NEEDPAGE" jdbcType="NUMERIC"/>
+		<result property="pageSize" column="PAGESIZE" jdbcType="NUMERIC"/>
+		<result property="templateAlias" column="TEMPLATEALIAS" jdbcType="VARCHAR"/>
+		<result property="templateHtml" column="TEMPLATEHTML" jdbcType="CLOB"/>
+		<result property="displayField" column="DISPLAYFIELD" jdbcType="CLOB"/>
+		<result property="exportField" column="EXPORTFIELD" jdbcType="CLOB"/>
+		<result property="printField" column="PRINTFIELD" jdbcType="CLOB"/>
+		<result property="conditionField" column="CONDITIONFIELD" jdbcType="CLOB"/>
+		<result property="sortField" column="SORTFIELD" jdbcType="VARCHAR"/>
+		<result property="manageField" column="MANAGEFIELD" jdbcType="VARCHAR"/>
+		<result property="filterType" column="FILTERTYPE" jdbcType="NUMERIC"/>
+		<result property="filterField" column="FILTERFIELD" jdbcType="CLOB"/>
+		<result property="varField" column="VARFIELD" jdbcType="VARCHAR"/>
+		<result property="source" column="SOURCE" jdbcType="VARCHAR"/>
+		<result property="defId" column="DEFID" jdbcType="NUMERIC"/>
+		<result property="isQuery" column="ISQUERY" jdbcType="NUMERIC"/>
+		<result property="isFilter" column="ISFILTER" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TABLEID,FORMKEY,NAME,STYLE,NEEDPAGE,PAGESIZE,TEMPLATEALIAS,TEMPLATEHTML,DISPLAYFIELD,EXPORTFIELD,PRINTFIELD,CONDITIONFIELD,SORTFIELD,MANAGEFIELD,FILTERTYPE,FILTERFIELD,VARFIELD,SOURCE,DEFID,ISQUERY,ISFILTER
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(tableId)"> AND TABLEID  =#{tableId} </if>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND FORMKEY  =#{formKey} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+		
+			<if test="@Ognl@isNotEmpty(style)"> AND STYLE  =#{style} </if>
+			<if test="@Ognl@isNotEmpty(needPage)"> AND NEEDPAGE  =#{needPage} </if>
+			<if test="@Ognl@isNotEmpty(pageSize)"> AND PAGESIZE  =#{pageSize} </if>
+			<if test="@Ognl@isNotEmpty(templateAlias)"> AND TEMPLATEALIAS  =#{templateAlias} </if>
+			<if test="@Ognl@isNotEmpty(templateHtml)"> AND TEMPLATEHTML  LIKE #{templateHtml}  </if>
+			<if test="@Ognl@isNotEmpty(displayField)"> AND DISPLAYFIELD  LIKE #{displayField}  </if>
+			<if test="@Ognl@isNotEmpty(conditionfield)"> AND CONDITIONFIELD  LIKE #{conditionField}  </if>
+			<if test="@Ognl@isNotEmpty(sortField)"> AND SORTFIELD  LIKE #{sortField}  </if>
+			<if test="@Ognl@isNotEmpty(manageField)"> AND MANAGEFIELD  LIKE #{manageField}  </if>
+			<if test="@Ognl@isNotEmpty(filterType)"> AND FILTERTYPE  =#{filterType} </if>
+			<if test="@Ognl@isNotEmpty(filterField)"> AND FILTERFIELD  LIKE #{filterField}  </if>
+			<if test="@Ognl@isNotEmpty(varField)"> AND VARFIELD  LIKE #{varField}  </if>
+			<if test="@Ognl@isNotEmpty(source)"> AND SOURCE  =#{source} </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND DEFID  =#{defId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.form.BpmDataTemplate">
+		INSERT INTO BPM_DATA_TEMPLATE
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		 #{tableId,jdbcType=NUMERIC},
+		 #{formKey,jdbcType=VARCHAR},
+		 #{name,jdbcType=VARCHAR},
+		 #{style,jdbcType=NUMERIC},
+		 #{needPage,jdbcType=NUMERIC},
+		 #{pageSize,jdbcType=NUMERIC},
+		 #{templateAlias,jdbcType=NUMERIC},
+		 #{templateHtml,jdbcType=CLOB},
+		 #{displayField,jdbcType=CLOB},
+		 #{exportField,jdbcType=CLOB},
+		 #{printField,jdbcType=CLOB},
+		 #{conditionField,jdbcType=CLOB},
+		 #{sortField,jdbcType=VARCHAR},
+		 #{manageField,jdbcType=CLOB},
+		 #{filterType,jdbcType=NUMERIC},
+		 #{filterField,jdbcType=CLOB},
+		 #{varField,jdbcType=CLOB},
+		 #{source,jdbcType=VARCHAR},
+		 #{defId,jdbcType=NUMERIC},
+		 #{isQuery,jdbcType=NUMERIC},
+		 #{isFilter,jdbcType=NUMERIC}
+		 )
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_DATA_TEMPLATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.form.BpmDataTemplate">
+		UPDATE BPM_DATA_TEMPLATE SET
+		TABLEID=#{tableId,jdbcType=NUMERIC},
+		FORMKEY=#{formKey,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		STYLE=#{style,jdbcType=NUMERIC},
+		NEEDPAGE=#{needPage,jdbcType=NUMERIC},
+		PAGESIZE=#{pageSize,jdbcType=NUMERIC},
+		TEMPLATEALIAS=#{templateAlias,jdbcType=NUMERIC},
+		TEMPLATEHTML=#{templateHtml,jdbcType=CLOB},
+		DISPLAYFIELD=#{displayField,jdbcType=CLOB},
+		EXPORTFIELD=#{exportField,jdbcType=CLOB},
+		PRINTFIELD=#{printField,jdbcType=CLOB},
+		CONDITIONFIELD=#{conditionField,jdbcType=CLOB},
+		SORTFIELD=#{sortField,jdbcType=VARCHAR},
+		MANAGEFIELD=#{manageField,jdbcType=CLOB},
+		FILTERTYPE=#{filterType,jdbcType=NUMERIC},
+		FILTERFIELD=#{filterField,jdbcType=CLOB},
+		VARFIELD=#{varField,jdbcType=CLOB},
+		SOURCE=#{source,jdbcType=VARCHAR},
+		DEFID=#{defId,jdbcType=NUMERIC},
+		isQuery=#{isQuery,jdbcType=NUMERIC},
+		isFilter=#{isFilter,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmDataTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_DATA_TEMPLATE
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getByMbid" parameterType="java.lang.Long" resultMap="BpmDataTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_DATA_TEMPLATE
+		WHERE
+		ID=#{id}
+	</select>
+	<select id="getByName" parameterType="java.lang.String" resultMap="BpmDataTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_DATA_TEMPLATE
+		WHERE
+		NAME=#{name}
+	</select>
+	
+	<select id="getAll" resultMap="BpmDataTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_DATA_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByFormKey" parameterType="java.lang.String" resultMap="BpmDataTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_DATA_TEMPLATE
+		WHERE
+		formKey=#{formKey}
+	</select>
+	
+	<delete id="delByFormKey" parameterType="java.lang.Long">
+		delete from BPM_DATA_TEMPLATE
+		WHERE
+		formKey=#{formKey}
+	</delete>
+	
+	<select id="getCountByFormKey" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		select count(*) from BPM_DATA_TEMPLATE
+		WHERE
+		formKey=#{formKey}
+	</select>
+	<select id="getCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from BPM_DATA_TEMPLATE
+		WHERE
+		NAME=#{name}
+	</select>
+	
+	<select id="getByTableId" parameterType="java.lang.Long" resultMap="BpmDataTemplate">
+		select * from BPM_DATA_TEMPLATE
+		WHERE
+		TABLEID=#{tableId}
+	</select>
+	
+	
+	
+	
+</mapper>

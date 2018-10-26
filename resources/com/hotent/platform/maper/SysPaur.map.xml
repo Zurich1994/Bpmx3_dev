@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysPaur">
+	<resultMap id="SysPaur" type="com.hotent.platform.model.system.SysPaur">
+		<id property="paurid" column="PAURID" jdbcType="NUMERIC"/>
+		<result property="paurname" column="PAURNAME" jdbcType="VARCHAR"/>
+		<result property="aliasname" column="ALIASNAME" jdbcType="VARCHAR"/>
+		<result property="paurvalue" column="PAURVALUE" jdbcType="VARCHAR"/>
+		<result property="userid" column="USERID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		PAURID,PAURNAME,ALIASNAME,PAURVALUE,USERID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(paurid)"> AND PAURID  =#{paurid} </if>
+			<if test="@Ognl@isNotEmpty(paurname)"> AND PAURNAME  LIKE #{paurname}#  </if>
+			<if test="@Ognl@isNotEmpty(aliasname)"> AND ALIASNAME  LIKE #{aliasname}#  </if>
+			<if test="@Ognl@isNotEmpty(paurvalue)"> AND PAURVALUE  LIKE #{paurvalue}#  </if>
+			<if test="@Ognl@isNotEmpty(userid)"> AND USERID  =#{userid} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysPaur">
+		INSERT INTO SYS_PAUR
+		(PAURID,PAURNAME,ALIASNAME,PAURVALUE,USERID)
+		VALUES
+		(#{paurid,jdbcType=NUMERIC}, #{paurname,jdbcType=VARCHAR}, #{aliasname,jdbcType=VARCHAR}, #{paurvalue,jdbcType=VARCHAR}, #{userid,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_PAUR 
+		WHERE
+		PAURID=#{paurid}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysPaur">
+		UPDATE SYS_PAUR SET
+		PAURNAME=#{paurname,jdbcType=VARCHAR},
+		ALIASNAME=#{aliasname,jdbcType=VARCHAR},
+		PAURVALUE=#{paurvalue,jdbcType=VARCHAR},
+		USERID=#{userid,jdbcType=NUMERIC}
+		WHERE
+		PAURID=#{paurid}
+	</update>
+		    
+	<select id="getById"  parameterType="java.lang.Long" resultMap="SysPaur">
+		SELECT <include refid="columns"/>
+		FROM SYS_PAUR
+		WHERE
+		PAURID=#{paurid}
+	</select>
+	
+	<select id="getAll" resultMap="SysPaur">
+		SELECT <include refid="columns"/>
+		FROM SYS_PAUR   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by PAURID  desc
+		</if>
+	</select>
+	
+	<select id="getByUserAndAlias" resultMap="SysPaur" parameterType="Map">
+		SELECT <include refid="columns"/>
+		FROM SYS_PAUR   
+		WHERE USERID=#{userId} AND ALIASNAME=#{aliasName}
+	</select>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="config.xsd">
+	
+<category id="console">
+	<view name="main" value="/platform/console/main.jsp"/>
+</category>
+<!--start_sys_user-->
+
+<category id="system">
+		<view name="sysUserAdd" value="/platform/system/sysUserAdd.jsp"/>
+		<view name="sysUserUpd" value="/platform/system/sysUserUpd.jsp"/>
+		<view name="sysUserList" value="/platform/system/sysUserList.jsp"/>
+		<view name="sysUserGet" value="/platform/system/sysUserGet.jsp"/>
+		<view name="sysUserReset" value="/platform/system/sysUserReset.jsp"/>
+		
+		
+		<view name="sysRoleAdd" value="/platform/system/sysRoleAdd.jsp"/>
+		<view name="sysRoleUpd" value="/platform/system/sysRoleUpd.jsp"/>
+		<view name="sysRoleList" value="/platform/system/sysRoleList.jsp"/>
+		<view name="sysRoleGet" value="/platform/system/sysRoleGet.jsp"/>
+		
+		
+		<view name="sysOrgAdd" value="/platform/system/sysOrgAdd.jsp"/>
+		<view name="sysOrgUpd" value="/platform/system/sysOrgUpd.jsp"/>
+		<view name="sysOrgList" value="/platform/system/sysOrgList.jsp"/>
+		<view name="sysOrgListById" value="/platform/system/sysOrgListById.jsp"/>
+		<view name="sysOrgUserList" value="/platform/system/sysOrgUserList.jsp"/>
+		<view name="sysOrgGet" value="/platform/system/sysOrgGet.jsp"/>
+		<view name="sysOrgView" value="/platform/system/sysOrgView.jsp"/>
+		<view name="sysOrgTree" value="/platform/system/sysOrgTree.jsp"/>
+</category>
+<!--end_sys_org-->
+<!--start_sys_demension-->
+
+<category id="system">
+
+		<view name="demensionAdd" value="/platform/system/demensionAdd.jsp"/>
+		<view name="demensionUpd" value="/platform/system/demensionUpd.jsp"/>
+		<view name="demensionList" value="/platform/system/demensionList.jsp"/>
+		<view name="demensionGet" value="/platform/system/demensionGet.jsp"/>
+		
+		<view name="sysDataSourceAdd" value="/platform/system/sysDataSourceAdd.jsp"/>
+		<view name="sysDataSourceUpd" value="/platform/system/sysDataSourceUpd.jsp"/>
+		<view name="sysDataSourceList" value="/platform/system/sysDataSourceList.jsp"/>
+		<view name="sysDataSourceGet" value="/platform/system/sysDataSourceGet.jsp"/>
+		
+		<view name="subSystemAdd" value="/platform/system/subSystemAdd.jsp"/>
+		<view name="subSystemUpd" value="/platform/system/subSystemUpd.jsp"/>
+		<view name="subSystemList" value="/platform/system/subSystemList.jsp"/>
+		<view name="subSystemGet" value="/platform/system/subSystemGet.jsp"/>
+		
+		<view name="sysAuditAdd" value="/platform/system/sysAuditAdd.jsp"/>
+		<view name="sysAuditUpd" value="/platform/system/sysAuditUpd.jsp"/>
+		<view name="sysAuditList" value="/platform/system/sysAuditList.jsp"/>
+		<view name="sysAuditGet" value="/platform/system/sysAuditGet.jsp"/>
+		
+		<view name="condition" value="/platform/system/customCondition.jsp"/>
+		
+
+
+</category>
+
+<!--start_BPM_DEFINITION-->
+<category id="bpm">
+		<view name="bpmDefinitionAdd" value="/platform/bpm/bpmDefinitionAdd.jsp"/>
+		<view name="bpmDefinitionUpd" value="/platform/bpm/bpmDefinitionUpd.jsp"/>
+		<view name="bpmDefinitionList" value="/platform/bpm/bpmDefinitionList.jsp"/>
+		<view name="bpmDefinitionGet" value="/platform/bpm/bpmDefinitionGet.jsp"/>
+		<view name="bpmDefinitionOnline" value="/platform/bpm/bpmeditor.jsp"/>
+		<view name="taskVarsList" value="/platform/bpm/taskVarsList.jsp"/>
+</category>
+<!--end_BPM_DEFINITION-->
+
+<category id="console">
+	<view name="main" value="/platform/console/main.jsp"/>
+	<view name="mainExtendIndex" value="/platform/console/mainExtend.jsp"/>
+	<view name="home" value="/platform/console/home.jsp"/>
+	<view name="selectCurrSys" value="/platform/console/selectCurrSys.jsp"/>
+	<view name="turnToMain" value="/platform/console/turnToMain.jsp"/>
+</category>
+
+</root>
+

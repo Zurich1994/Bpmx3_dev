@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.EventGraph.model.EventGraph.EventGraph">
+	<resultMap id="EventGraph" type="com.hotent.EventGraph.model.EventGraph.EventGraph">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="DomId" column="F_DOMID" jdbcType="NUMERIC"/>
+		<result property="DomType" column="F_DOMTYPE" jdbcType="VARCHAR"/>
+		<result property="FormDefId" column="F_FORMDEFID" jdbcType="NUMERIC"/>
+		<result property="Domevent" column="F_DOMEVENT" jdbcType="VARCHAR"/>
+		<result property="defId" column="F_DEFID" jdbcType="NUMERIC"/>
+		<result property="InputDom" column="F_INPUTDOM" jdbcType="CLOB"/>
+		<result property="OutputDom" column="F_OUTPUTDOM" jdbcType="CLOB"/>
+		<result property="datatemplateId" column="F_DATATEMPLATEID" jdbcType="NUMERIC"/>
+		<result property="formKey" column="F_FORMKEY" jdbcType="VARCHAR"/>
+		<result property="xkey" column="F_XKEY" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_DOMID,F_DOMTYPE,F_FORMDEFID,F_DOMEVENT,F_DEFID,F_INPUTDOM,F_OUTPUTDOM,F_DATATEMPLATEID,F_FORMKEY,F_XKEY
+	</sql>
+	<sql id="wfColumns">
+		ID,F_DOMID,F_DOMTYPE,F_FORMDEFID,F_DOMEVENT,F_DEFID,F_INPUTDOM,F_OUTPUTDOM,F_DATATEMPLATEID,F_FORMKEY,F_XKEY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(DomId)"> AND F_DOMID  =#{DomId} </if>
+			<if test="@Ognl@isNotEmpty(DomType)"> AND F_DOMTYPE  LIKE '%${DomType}%'  </if>
+			<if test="@Ognl@isNotEmpty(FormDefId)"> AND F_FORMDEFID  =#{FormDefId} </if>
+			<if test="@Ognl@isNotEmpty(Domevent)"> AND F_DOMEVENT  LIKE '%${Domevent}%'  </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND F_DEFID  =#{defId} </if>
+			<if test="@Ognl@isNotEmpty(InputDom)"> AND F_INPUTDOM  =#{InputDom} </if>
+			<if test="@Ognl@isNotEmpty(OutputDom)"> AND F_OUTPUTDOM  =#{OutputDom} </if>
+			<if test="@Ognl@isNotEmpty(datatemplateId)"> AND F_DATATEMPLATEID  =#{datatemplateId} </if>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND F_FORMKEY  LIKE '%${formKey}%'  </if>
+			<if test="@Ognl@isNotEmpty(xkey)"> AND F_XKEY  LIKE '%${xkey}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.EventGraph.model.EventGraph.EventGraph">
+		INSERT INTO W_EVENT_GRAPH
+		(ID,
+		F_DOMID,F_DOMTYPE,F_FORMDEFID,F_DOMEVENT,F_DEFID,F_INPUTDOM,F_OUTPUTDOM,F_DATATEMPLATEID,F_FORMKEY,F_XKEY)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{DomId,jdbcType=NUMERIC}, #{DomType,jdbcType=VARCHAR}, #{FormDefId,jdbcType=NUMERIC}, #{Domevent,jdbcType=VARCHAR}, #{defId,jdbcType=NUMERIC}, #{InputDom,jdbcType=CLOB}, #{OutputDom,jdbcType=CLOB}, #{datatemplateId,jdbcType=NUMERIC}, #{formKey,jdbcType=VARCHAR}, #{xkey,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_EVENT_GRAPH 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.EventGraph.model.EventGraph.EventGraph">
+		UPDATE W_EVENT_GRAPH SET
+		F_DOMID=#{DomId,jdbcType=NUMERIC},
+		F_DOMTYPE=#{DomType,jdbcType=VARCHAR},
+		F_FORMDEFID=#{FormDefId,jdbcType=NUMERIC},
+		F_DOMEVENT=#{Domevent,jdbcType=VARCHAR},
+		F_DEFID=#{defId,jdbcType=NUMERIC},
+		F_INPUTDOM=#{InputDom,jdbcType=CLOB},
+		F_OUTPUTDOM=#{OutputDom,jdbcType=CLOB},
+		F_DATATEMPLATEID=#{datatemplateId,jdbcType=NUMERIC},
+		F_FORMKEY=#{formKey,jdbcType=VARCHAR},
+		F_XKEY=#{xkey,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="EventGraph">
+		SELECT <include refid="columns"/>
+		FROM W_EVENT_GRAPH
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="EventGraph">
+		SELECT <include refid="columns"/>
+		FROM W_EVENT_GRAPH   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	
+  
+	
+</mapper>

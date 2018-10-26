@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.e_business.model.e_business.ProductModel">
+	<resultMap id="ProductModel" type="com.hotent.e_business.model.e_business.ProductModel">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="REGION" column="F_REGION" jdbcType="VARCHAR"/>
+		<result property="CUSTOMER_TYPE_SHORT" column="F_CUSTOMER_TYPE_SHORT" jdbcType="VARCHAR"/>
+		<result property="CATEGORY" column="F_CATEGORY" jdbcType="VARCHAR"/>
+		<result property="PRODUCTID" column="F_PRODUCTID" jdbcType="VARCHAR"/>
+		<result property="PRODUCTNAME" column="F_PRODUCTNAME" jdbcType="VARCHAR"/>
+		<result property="FEATURE0" column="F_FEATURE0" jdbcType="VARCHAR"/>
+		<result property="FEATURE1" column="F_FEATURE1" jdbcType="VARCHAR"/>
+		<result property="FEATURE2" column="F_FEATURE2" jdbcType="VARCHAR"/>
+		<result property="FEATURE3" column="F_FEATURE3" jdbcType="VARCHAR"/>
+		<result property="KEYWORDS" column="F_KEYWORDS" jdbcType="VARCHAR"/>
+		<result property="URL" column="F_URL" jdbcType="VARCHAR"/>
+		<result property="DESCRIPTION" column="F_DESCRIPTION" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_REGION,F_CUSTOMER_TYPE_SHORT,F_CATEGORY,F_PRODUCTID,F_PRODUCTNAME,F_FEATURE0,F_FEATURE1,F_FEATURE2,F_FEATURE3,F_KEYWORDS,F_URL,F_DESCRIPTION
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(REGION)"> AND F_REGION  LIKE '%${REGION}%'  </if>
+			<if test="@Ognl@isNotEmpty(CUSTOMER_TYPE_SHORT)"> AND F_CUSTOMER_TYPE_SHORT  LIKE '%${CUSTOMER_TYPE_SHORT}%'  </if>
+			<if test="@Ognl@isNotEmpty(CATEGORY)"> AND F_CATEGORY  LIKE '%${CATEGORY}%'  </if>
+			<if test="@Ognl@isNotEmpty(PRODUCTID)"> AND F_PRODUCTID  LIKE '%${PRODUCTID}%'  </if>
+			<if test="@Ognl@isNotEmpty(PRODUCTNAME)"> AND F_PRODUCTNAME  LIKE '%${PRODUCTNAME}%'  </if>
+			<if test="@Ognl@isNotEmpty(FEATURE0)"> AND F_FEATURE0  LIKE '%${FEATURE0}%'  </if>
+			<if test="@Ognl@isNotEmpty(FEATURE1)"> AND F_FEATURE1  LIKE '%${FEATURE1}%'  </if>
+			<if test="@Ognl@isNotEmpty(FEATURE2)"> AND F_FEATURE2  LIKE '%${FEATURE2}%'  </if>
+			<if test="@Ognl@isNotEmpty(FEATURE3)"> AND F_FEATURE3  LIKE '%${FEATURE3}%'  </if>
+			<if test="@Ognl@isNotEmpty(KEYWORDS)"> AND F_KEYWORDS  LIKE '%${KEYWORDS}%'  </if>
+			<if test="@Ognl@isNotEmpty(URL)"> AND F_URL  LIKE '%${URL}%'  </if>
+			<if test="@Ognl@isNotEmpty(DESCRIPTION)"> AND F_DESCRIPTION  LIKE '%${DESCRIPTION}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.e_business.model.e_business.ProductModel">
+		INSERT INTO W_PRODUCT_MODELS
+		(ID,
+		F_REGION,F_CUSTOMER_TYPE_SHORT,F_CATEGORY,F_PRODUCTID,F_PRODUCTNAME,F_FEATURE0,F_FEATURE1,F_FEATURE2,F_FEATURE3,F_KEYWORDS,F_URL,F_DESCRIPTION)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{REGION,jdbcType=VARCHAR}, #{CUSTOMER_TYPE_SHORT,jdbcType=VARCHAR}, #{CATEGORY,jdbcType=VARCHAR}, #{PRODUCTID,jdbcType=VARCHAR}, #{PRODUCTNAME,jdbcType=VARCHAR}, #{FEATURE0,jdbcType=VARCHAR}, #{FEATURE1,jdbcType=VARCHAR}, #{FEATURE2,jdbcType=VARCHAR}, #{FEATURE3,jdbcType=VARCHAR}, #{KEYWORDS,jdbcType=VARCHAR}, #{URL,jdbcType=VARCHAR}, #{DESCRIPTION,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_PRODUCT_MODELS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.e_business.model.e_business.ProductModel">
+		UPDATE W_PRODUCT_MODELS SET
+		F_REGION=#{REGION,jdbcType=VARCHAR},
+		F_CUSTOMER_TYPE_SHORT=#{CUSTOMER_TYPE_SHORT,jdbcType=VARCHAR},
+		F_CATEGORY=#{CATEGORY,jdbcType=VARCHAR},
+		F_PRODUCTID=#{PRODUCTID,jdbcType=VARCHAR},
+		F_PRODUCTNAME=#{PRODUCTNAME,jdbcType=VARCHAR},
+		F_FEATURE0=#{FEATURE0,jdbcType=VARCHAR},
+		F_FEATURE1=#{FEATURE1,jdbcType=VARCHAR},
+		F_FEATURE2=#{FEATURE2,jdbcType=VARCHAR},
+		F_FEATURE3=#{FEATURE3,jdbcType=VARCHAR},
+		F_KEYWORDS=#{KEYWORDS,jdbcType=VARCHAR},
+		F_URL=#{URL,jdbcType=VARCHAR},
+		F_DESCRIPTION=#{DESCRIPTION,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ProductModel">
+		SELECT <include refid="columns"/>
+		FROM W_PRODUCT_MODELS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ProductModel">
+		SELECT <include refid="columns"/>
+		FROM W_PRODUCT_MODELS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

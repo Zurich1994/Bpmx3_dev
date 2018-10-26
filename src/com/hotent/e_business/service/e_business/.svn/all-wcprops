@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business
+END
+ProductModelService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/ProductModelService.java
+END
+ComponentService.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/ComponentService.java
+END
+ProductDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/ProductDetailService.java
+END
+ProductModelsService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/ProductModelsService.java
+END
+ConfirmationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/ConfirmationService.java
+END
+CartService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/CartService.java
+END
+UserInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/UserInfoService.java
+END
+registrationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/registrationService.java
+END
+OrderBillingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/OrderBillingService.java
+END
+OrderShippingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/service/e_business/OrderShippingService.java
+END

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.MessageReply">
+	<resultMap id="MessageReply" type="com.hotent.platform.model.system.MessageReply">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="messageId" column="messageId" jdbcType="NUMERIC"/>
+		<result property="content" column="content" jdbcType="CLOB"/>
+		<result property="replyId" column="replyId" jdbcType="NUMERIC"/>
+		<result property="reply" column="reply" jdbcType="VARCHAR"/>
+		<result property="replyTime" column="replyTime" jdbcType="TIMESTAMP"/>
+		<result property="isPrivate" column="isPrivate" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,messageId,content,replyId,reply,replyTime,isPrivate
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(messageId)"> AND messageId  =#{messageId} </if>
+			<if test="@Ognl@isNotEmpty(content)"> AND content  LIKE #{content}  </if>
+			<if test="@Ognl@isNotEmpty(replyId)"> AND replyId  =#{replyId} </if>
+			<if test="@Ognl@isNotEmpty(reply)"> AND reply  LIKE #{reply}  </if>
+			<if test="@Ognl@isNotEmpty(replyTime)"> AND replyTime  =#{replyTime} </if>
+			<if test="@Ognl@isNotEmpty(isPrivate)"> AND isPrivate  =#{isPrivate} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.MessageReply">
+		INSERT INTO sys_msg_reply
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{messageId,jdbcType=NUMERIC}, #{content,jdbcType=CLOB}, #{replyId,jdbcType=NUMERIC}, #{reply,jdbcType=VARCHAR}, #{replyTime,jdbcType=TIMESTAMP}, #{isPrivate,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_MSG_REPLY 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<delete id="delByMessageId" parameterType="java.lang.Long">
+		DELETE FROM SYS_MSG_REPLY 
+		WHERE
+		MessageId=#{MessageId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.MessageReply">
+		UPDATE sys_msg_reply SET
+		messageId=#{messageId,jdbcType=NUMERIC} , 
+		content=#{content,jdbcType=CLOB} , 
+		replyId=#{replyId,jdbcType=NUMERIC} , 
+		reply=#{reply,jdbcType=VARCHAR} , 
+		replyTime=#{replyTime,jdbcType=TIMESTAMP} , 
+		isPrivate=#{isPrivate,jdbcType=NUMERIC} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="MessageReply">
+		SELECT <include refid="columns"/>
+		FROM SYS_MSG_REPLY
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MessageReply">
+		SELECT <include refid="columns"/>
+		FROM SYS_MSG_REPLY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getReplyByMsgId" resultMap="MessageReply">
+    	select <include refid="columns"/> from SYS_MSG_REPLY a 
+		where a.messageId=#{messageId}
+    </select>
+	
+</mapper>

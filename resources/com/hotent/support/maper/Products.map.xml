@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.support.model.catelog.Products">
+	<resultMap id="Products" type="com.hotent.support.model.catelog.Products">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="PRODUCTID" column="F_PRODUCTID" jdbcType="NUMERIC"/>
+		<result property="CATEGORYID" column="F_CATEGORYID" jdbcType="VARCHAR"/>
+		<result property="PRODUCT" column="F_PRODUCT" jdbcType="VARCHAR"/>
+		<result property="KEYWORDS" column="F_KEYWORDS" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PRODUCTID,F_CATEGORYID,F_PRODUCT,F_KEYWORDS
+	</sql>
+	<sql id="product">
+		ID,F_PRODUCTID,F_PRODUCT
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(PRODUCTID)"> AND F_PRODUCTID  =#{PRODUCTID} </if>
+			<if test="@Ognl@isNotEmpty(CATEGORYID)"> AND F_CATEGORYID  LIKE '%${CATEGORYID}%'  </if>
+			<if test="@Ognl@isNotEmpty(PRODUCT)"> AND F_PRODUCT  LIKE '%${PRODUCT}%'  </if>
+			<if test="@Ognl@isNotEmpty(KEYWORDS)"> AND F_KEYWORDS  LIKE '%${KEYWORDS}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.support.model.catelog.Products">
+		INSERT INTO W_PRODUCTS
+		(ID,
+		F_PRODUCTID,F_CATEGORYID,F_PRODUCT,F_KEYWORDS)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{PRODUCTID,jdbcType=NUMERIC}, #{CATEGORYID,jdbcType=VARCHAR}, #{PRODUCT,jdbcType=VARCHAR}, #{KEYWORDS,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_PRODUCTS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.support.model.catelog.Products">
+		UPDATE W_PRODUCTS SET
+		F_PRODUCTID=#{PRODUCTID,jdbcType=NUMERIC},
+		F_CATEGORYID=#{CATEGORYID,jdbcType=VARCHAR},
+		F_PRODUCT=#{PRODUCT,jdbcType=VARCHAR},
+		F_KEYWORDS=#{KEYWORDS,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Products">
+		SELECT <include refid="product"/>
+		FROM W_PRODUCTS
+		WHERE
+		ID=#{id}
+	</select>
+		<select id="getByCATEGORYID" parameterType="String" resultMap="Products">
+		SELECT <include refid="product"/>
+		FROM W_PRODUCTS
+		WHERE
+		F_CATEGORYID=#{CATEGORYID}
+	</select>
+	
+	
+	<select id="getAll" resultMap="Products">
+		SELECT <include refid="product"/>
+		FROM W_PRODUCTS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

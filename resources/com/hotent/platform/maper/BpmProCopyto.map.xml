@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmProCopyto">
+	<resultMap id="BpmProCopyto" type="com.hotent.platform.model.bpm.BpmProCopyto">
+		<id property="copyId" column="COPY_ID" jdbcType="NUMERIC"/>
+		<result property="actInstId" column="ACT_INST_ID" jdbcType="NUMERIC"/>
+		<result property="runId" column="RUN_ID" jdbcType="NUMERIC"/>
+		<result property="ccUid" column="CC_UID" jdbcType="NUMERIC"/>
+		<result property="ccUname" column="CC_UNAME" jdbcType="VARCHAR"/>
+		<result property="ccTime" column="CC_TIME" jdbcType="TIMESTAMP"/>
+		<result property="isReaded" column="IS_READED" jdbcType="NUMERIC"/>
+		<result property="fillOpinion" column="FILL_OPINION" jdbcType="VARCHAR"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="readTime" column="READ_TIME" jdbcType="TIMESTAMP"/>
+		<result property="cpType" column="CP_TYPE" jdbcType="NUMERIC"/>
+		<result property="createId" column="CREATE_ID" jdbcType="NUMERIC"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="defTypeId" column="DEF_TYPEID" jdbcType="NUMERIC"/>
+		<result property="orgName" column="orgName" jdbcType="VARCHAR"/>
+		<result property="posName" column="posName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		COPY_ID,ACT_INST_ID,RUN_ID,CC_UID,CC_UNAME,CC_TIME,IS_READED,FILL_OPINION,SUBJECT,READ_TIME,CP_TYPE,CREATE_ID,CREATOR,DEF_TYPEID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(copyId)"> AND COPY_ID  =#{copyId} </if>
+			<if test="@Ognl@isNotEmpty(actInstId)"> AND ACT_INST_ID  =#{actInstId} </if>
+			<if test="@Ognl@isNotEmpty(runId)"> AND RUN_ID  =#{runId} </if>
+			<if test="@Ognl@isNotEmpty(ccUid)"> AND CC_UID  =#{ccUid} </if>
+			<if test="@Ognl@isNotEmpty(ccUname)"> AND CC_UNAME  LIKE #{ccUname} </if>
+			<if test="@Ognl@isNotEmpty(ccTime)"> AND CC_TIME  =#{ccTime} </if>
+			<if test="@Ognl@isNotEmpty(beginccTime)"> AND CC_TIME  >=#{beginccTime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endccTime)"> AND CC_TIME <![CDATA[ <=#{endccTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="isReaded!=null"> AND IS_READED  =#{isReaded} </if>
+			<if test="@Ognl@isNotEmpty(fillOpinion)"> AND FILL_OPINION  LIKE #{fillOpinion}  </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(readTime)"> AND READ_TIME  =#{readTime} </if>
+			<if test="@Ognl@isNotEmpty(beginreadTime)"> AND READ_TIME  >=#{beginreadTime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endreadTime)"> AND READ_TIME <![CDATA[ <=#{endreadTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(cpType)"> AND CP_TYPE  =#{cpType} </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+		</where>
+	</sql>
+	
+
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmProCopyto">
+		INSERT INTO BPM_PRO_CPTO
+		(COPY_ID,ACT_INST_ID,RUN_ID,CC_UID,CC_UNAME,CC_TIME,IS_READED,FILL_OPINION,SUBJECT,READ_TIME,CP_TYPE,CREATE_ID,CREATOR,DEF_TYPEID)
+		VALUES
+		(#{copyId,jdbcType=NUMERIC}, #{actInstId,jdbcType=NUMERIC}, #{runId,jdbcType=NUMERIC}, #{ccUid,jdbcType=NUMERIC}, #{ccUname,jdbcType=VARCHAR}, #{ccTime,jdbcType=TIMESTAMP}, #{isReaded,jdbcType=NUMERIC}, #{fillOpinion,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{readTime,jdbcType=TIMESTAMP}, #{cpType,jdbcType=NUMERIC}, #{createId,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{defTypeId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRO_CPTO 
+		WHERE
+		COPY_ID=#{copyId}
+	</delete>
+	
+	<delete id="delByRunId" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRO_CPTO 
+		WHERE
+		RUN_ID=#{runId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmProCopyto">
+		UPDATE BPM_PRO_CPTO SET
+		ACT_INST_ID=#{actInstId,jdbcType=NUMERIC},
+		RUN_ID=#{runId,jdbcType=NUMERIC},
+		CC_UID=#{ccUid,jdbcType=NUMERIC},
+		CC_UNAME=#{ccUname,jdbcType=VARCHAR},
+		CC_TIME=#{ccTime,jdbcType=TIMESTAMP},
+		IS_READED=#{isReaded,jdbcType=NUMERIC},
+		FILL_OPINION=#{fillOpinion,jdbcType=VARCHAR},
+		SUBJECT=#{subject,jdbcType=VARCHAR},
+		READ_TIME=#{readTime,jdbcType=TIMESTAMP},
+		CP_TYPE=#{cpType,jdbcType=NUMERIC},
+		CREATE_ID=#{createId,jdbcType=NUMERIC},
+		CREATOR=#{creator,jdbcType=VARCHAR},
+		DEF_TYPEID=#{defTypeId,jdbcType=NUMERIC}
+		WHERE
+		COPY_ID=#{copyId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmProCopyto">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRO_CPTO
+		WHERE
+		COPY_ID=#{copyId}
+	</select>
+	
+	<select id="getByRunId" parameterType="java.lang.Long" resultMap="BpmProCopyto">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRO_CPTO
+		WHERE
+		RUN_ID=#{runId}
+	</select>
+	<select id="getByActInstId" parameterType="java.lang.Long" resultMap="BpmProCopyto">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRO_CPTO
+		WHERE
+		ACT_INST_ID=#{actInstId}
+	</select>
+	
+	
+	<select id="getAll" resultMap="BpmProCopyto">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRO_CPTO
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by COPY_ID  desc
+		</if>
+	</select>
+	
+	<select id="getByRunIdAndUserId" parameterType="java.util.Map" resultMap="BpmProCopyto">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRO_CPTO t
+		WHERE t.run_id=#{runId} and t.cc_uid=#{userId}
+	</select>
+	
+	<sql id="dynamicWhereGetMyList">
+		<where>
+			<if test="@Ognl@isNotEmpty(ccUid)"> AND cpt.CC_UID  =#{ccUid} </if>
+			<if test="@Ognl@isNotEmpty(beginccTime)"> AND cpt.CC_TIME  >=#{beginccTime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endccTime)"> AND cpt.CC_TIME <![CDATA[ <=#{endccTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="isReaded!=null"> AND cpt.IS_READED  =#{isReaded} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND upper(cpt.SUBJECT)  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(beginreadTime)"> AND cpt.READ_TIME  >=#{beginreadTime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endreadTime)"> AND cpt.READ_TIME <![CDATA[ <=#{endreadTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(cpType)"> AND cpt.CP_TYPE  =#{cpType} </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND cpt.CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+			<if test="@Ognl@isNotEmpty(nodePath)">AND type.nodePath like #{nodePath} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND run.createtime  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND <![CDATA[ run.createtime <= #{endcreatetime,jdbcType=DATE}  ]]> </if>
+		</where>
+	</sql>
+	<select id="getMyList" resultMap="BpmProCopyto">
+		SELECT cpt.*,run.createtime createtime
+		FROM BPM_PRO_CPTO cpt 
+		left join SYS_GL_TYPE type on cpt.DEF_TYPEID = type.typeId	
+		left join BPM_PRO_RUN_HIS run  on cpt.RUN_ID = run.runId 
+		left join BPM_DEFINITION def on run.defId = def.defId 	
+		<include refid="dynamicWhereGetMyList" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by cpt.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by cpt.CC_TIME  desc
+		</if>
+	</select>
+	
+	<select id="getUserInfoByRunId" resultMap="BpmProCopyto">
+		SELECT cp.*,pos.posname,org.orgname
+		FROM BPM_PRO_CPTO cp 
+	    left join sys_user_pos up on cp.cc_uid=up.userid and up.isprimary=1 
+	    left  join sys_pos pos on up.posid=pos.posid 
+	    left  join sys_org org on up.orgid=org.orgid
+		WHERE RUN_ID=${runId} order by CC_TIME  desc
+	</select>
+	
+	<select id="getCountByUser" resultType="int">
+		SELECT count(1) num
+		FROM BPM_PRO_CPTO cpt 
+		where cpt.CC_UID  =#{ccUid}
+	</select>
+
+	<select id="getCountNotReadByUser" resultType="int">
+		SELECT count(1) num
+		FROM BPM_PRO_CPTO cpt 
+		where cpt.CC_UID  =#{ccUid} and cpt.is_readed = 0
+	</select>
+	
+</mapper>

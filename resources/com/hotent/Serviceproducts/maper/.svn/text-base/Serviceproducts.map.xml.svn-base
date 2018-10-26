@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Serviceproducts.model.Serviceproducts.Serviceproducts">
+	<resultMap id="Serviceproducts" type="com.hotent.Serviceproducts.model.Serviceproducts.Serviceproducts">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="F_NAME" jdbcType="VARCHAR"/>
+		<result property="serviceID" column="F_SERVICEID" jdbcType="VARCHAR"/>
+		<result property="serviceaddress" column="F_SERVICEADDRESS" jdbcType="VARCHAR"/>
+		<result property="serviceport" column="F_SERVICEPORT" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_NAME,F_SERVICEID,F_SERVICEADDRESS,F_SERVICEPORT
+	</sql>
+	<sql id="wfColumns">
+		ID,F_NAME,F_SERVICEID,F_SERVICEADDRESS,F_SERVICEPORT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND F_NAME  LIKE '%${name}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceID)"> AND F_SERVICEID  LIKE '%${serviceID}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceaddress)"> AND F_SERVICEADDRESS  LIKE '%${serviceaddress}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceport)"> AND F_SERVICEPORT  LIKE '%${serviceport}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Serviceproducts.model.Serviceproducts.Serviceproducts">
+		INSERT INTO W_SERVICEPRODUCTS
+		(ID,
+		F_NAME,F_SERVICEID,F_SERVICEADDRESS,F_SERVICEPORT)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{name,jdbcType=VARCHAR}, #{serviceID,jdbcType=VARCHAR}, #{serviceaddress,jdbcType=VARCHAR}, #{serviceport,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SERVICEPRODUCTS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Serviceproducts.model.Serviceproducts.Serviceproducts">
+		UPDATE W_SERVICEPRODUCTS SET
+		F_NAME=#{name,jdbcType=VARCHAR},
+		F_SERVICEID=#{serviceID,jdbcType=VARCHAR},
+		F_SERVICEADDRESS=#{serviceaddress,jdbcType=VARCHAR},
+		F_SERVICEPORT=#{serviceport,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Serviceproducts">
+		SELECT <include refid="columns"/>
+		FROM W_SERVICEPRODUCTS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Serviceproducts">
+		SELECT <include refid="columns"/>
+		FROM W_SERVICEPRODUCTS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByserviceId" parameterType="java.lang.Long" resultMap="Serviceproducts">
+		SELECT *
+		FROM W_SERVICEPRODUCTS
+		WHERE
+		F_SERVICEID=#{serviceID}
+	</select>
+	
+	
+  
+	
+</mapper>

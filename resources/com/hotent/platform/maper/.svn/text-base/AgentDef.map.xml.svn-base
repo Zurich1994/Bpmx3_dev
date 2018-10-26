@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.AgentDef">
+	<resultMap id="AgentDef" type="com.hotent.platform.model.bpm.AgentDef">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="settingid" column="SETTINGID" jdbcType="NUMERIC"/>
+		<result property="flowkey" column="FLOWKEY" jdbcType="VARCHAR"/>
+		<result property="flowname" column="FLOWNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,SETTINGID,FLOWKEY,FLOWNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(settingid)"> AND SETTINGID  =#{settingid} </if>
+			<if test="@Ognl@isNotEmpty(flowkey)"> AND FLOWKEY  LIKE #{flowkey}  </if>
+			<if test="@Ognl@isNotEmpty(flowname)"> AND FLOWNAME  LIKE #{flowname}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.AgentDef">
+		INSERT INTO BPM_AGENT_DEF
+		(ID,SETTINGID,FLOWKEY,FLOWNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{settingid,jdbcType=NUMERIC}, #{flowkey,jdbcType=VARCHAR}, #{flowname,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_AGENT_DEF 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.AgentDef">
+		UPDATE BPM_AGENT_DEF SET
+		SETTINGID=#{settingid,jdbcType=NUMERIC},
+		FLOWKEY=#{flowkey,jdbcType=VARCHAR},
+		FLOWNAME=#{flowname,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<delete id="delByMainId">
+	    DELETE FROM BPM_AGENT_DEF
+	    WHERE
+	    settingid=#{settingid}
+	</delete>    
+	
+	<select id="getAgentDefList" resultMap="AgentDef">
+	    SELECT <include refid="columns"/>
+	    FROM BPM_AGENT_DEF 
+	    WHERE settingid=#{settingid}
+	</select>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AgentDef">
+		SELECT <include refid="columns"/>
+		FROM BPM_AGENT_DEF
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AgentDef">
+		SELECT <include refid="columns"/>
+		FROM BPM_AGENT_DEF   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

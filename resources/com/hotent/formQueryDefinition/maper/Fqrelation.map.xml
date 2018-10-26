@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.formQueryDefinition.model.com.Fqrelation">
+	<resultMap id="Fqrelation" type="com.hotent.formQueryDefinition.model.com.Fqrelation">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="fqID" column="F_FQID" jdbcType="VARCHAR"/>
+		<result property="defID" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="nodeID" column="F_NODEID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_FQID,F_DEFID,F_NODEID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(fqID)"> AND F_FQID  LIKE '%${fqID}%'  </if>
+			<if test="@Ognl@isNotEmpty(defID)"> AND F_DEFID  LIKE '%${defID}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeID)"> AND F_NODEID  LIKE '%${nodeID}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.formQueryDefinition.model.com.Fqrelation">
+		INSERT INTO W_FQRELATION
+		(ID,
+		F_FQID,F_DEFID,F_NODEID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{fqID,jdbcType=VARCHAR}, #{defID,jdbcType=VARCHAR}, #{nodeID,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_FQRELATION 
+		WHERE
+		ID=#{id}
+	</delete>
+	<delete id="delByfqId" parameterType="java.lang.Long">
+		DELETE FROM W_FQRELATION 
+		WHERE
+		F_FQID=#{fqId}
+	</delete>
+	<update id="update" parameterType="com.hotent.formQueryDefinition.model.com.Fqrelation">
+		UPDATE W_FQRELATION SET
+		F_FQID=#{fqID,jdbcType=VARCHAR},
+		F_DEFID=#{defID,jdbcType=VARCHAR},
+		F_NODEID=#{nodeID,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Fqrelation">
+		SELECT <include refid="columns"/>
+		FROM W_FQRELATION
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<!-- yuda自定义查询 -->
+	<parameterMap type="java.util.HashMap" id="manyParameters">   
+    <parameter property="defID" javaType="String" jdbcType="VARCHAR" />   
+    <parameter property="nodeID" javaType="String" jdbcType="VARCHAR" />   
+	</parameterMap>  
+	<select id="getQueryMsg" parameterMap="manyParameters" resultMap="Fqrelation">
+		SELECT <include refid="columns"/>
+		FROM W_FQRELATION
+		WHERE
+		F_NODEID=#{nodeID} AND F_DEFID= #{defID}
+	</select>
+	
+	
+	
+	<select id="getAll" resultMap="Fqrelation">
+		SELECT <include refid="columns"/>
+		FROM W_FQRELATION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<p>
+数据库访问类。
+</p>
+<ul>
+	<li>IEntityDao:定义了数据库操作的基本接口方法， GenericDao	实现了该接口。</li>
+	<li>GenericDao:使用mybatis 实现了增查改删分页等操作。</li>
+	<li>BaseDao:继承自GenericDao，实现了主键泛型，在一般情况下，如果主键为Long的情况,具体的DAO从这个类继承就行了。</li>
+	<li>DynamicDataSource:动态数据源类，可以通过spring实现多个数据源。</li>
+	<li>DbContextHolder:如果spring配置了多个数据源，DbContextHolder可以实现当前使用哪一个数据源。</li>
+	<li>JdbcHelper:实现了直接通过Jdbc操作。</li>
+</ul>
+</body>
+</html>

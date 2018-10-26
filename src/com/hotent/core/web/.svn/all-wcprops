@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/BPMX_2015_WYX/!svn/ver/998/bpmx_w/src/com/hotent/core/web
+END
+MixedViewResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/MixedViewResolver.java
+END
+ResultMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/ResultMessage.java
+END
+CustomerMultipartResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/CustomerMultipartResolver.java
+END
+NoSuchViewResolverException.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/NoSuchViewResolverException.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/package.html
+END

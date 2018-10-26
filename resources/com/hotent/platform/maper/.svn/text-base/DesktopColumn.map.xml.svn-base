@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.DesktopColumn">
+	<resultMap id="DesktopColumn" type="com.hotent.platform.model.system.DesktopColumn">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="columnName" column="name" jdbcType="VARCHAR"/>
+		<result property="serviceMethod" column="serviceMethod" jdbcType="VARCHAR"/>
+		<result property="templateName" column="templateName" jdbcType="VARCHAR"/>
+		<result property="templateId" column="templateId" jdbcType="VARCHAR"/>
+		<result property="templatePath" column="templatePath" jdbcType="VARCHAR"/>
+		<result property="columnUrl" column="columnUrl" jdbcType="VARCHAR"/>
+		<result property="isSys" column="isSys" jdbcType="NUMERIC"/>
+		<result property="html" column="html" jdbcType="CLOB"/>
+		<result property="methodType" column="methodType" jdbcType="NUMERIC"/>
+		<result property="queryAlias" column="queryAlias" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,name,serviceMethod,templateName,templateId,templatePath,columnUrl,isSys,html,methodType,queryAlias
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(columnName)"> AND name  LIKE #{columnName}  </if>
+			<if test="@Ognl@isNotEmpty(serviceMethod)"> AND serviceMethod  LIKE #{serviceMethod}  </if>
+			<if test="@Ognl@isNotEmpty(templateName)"> AND templateName  LIKE #{templateName}  </if>
+			<if test="@Ognl@isNotEmpty(templateId)"> AND templateId  LIKE #{templateId}  </if>
+			<if test="@Ognl@isNotEmpty(templatePath)"> AND templatePath  LIKE #{templatePath}  </if>
+			<if test="@Ognl@isNotEmpty(columnUrl)"> AND columnUrl  LIKE #{columnUrl}  </if>
+			<if test="@Ognl@isNotEmpty(html)"> AND html  LIKE #{html}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.DesktopColumn">
+		INSERT INTO SYS_DESKTOP_COLUMN
+		(id,name,serviceMethod,templateName,templateId,templatePath,columnUrl,isSys,html,methodType,queryAlias)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{columnName,jdbcType=VARCHAR}, #{serviceMethod,jdbcType=VARCHAR}, #{templateName,jdbcType=VARCHAR}, #{templateId,jdbcType=VARCHAR}, #{templatePath,jdbcType=VARCHAR}, 
+		#{columnUrl,jdbcType=VARCHAR}, #{isSys,jdbcType=NUMERIC}, #{html,jdbcType=CLOB},#{methodType,jdbcType=NUMERIC},#{queryAlias,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_DESKTOP_COLUMN 
+		WHERE
+		id=#{id}
+	</delete>
+
+	<delete id="delBySysColumn">
+		DELETE FROM SYS_DESKTOP_COLUMN 
+		WHERE
+		isSys=1
+	</delete>
+	
+	<delete id="delAll">
+		DELETE FROM SYS_DESKTOP_COLUMN 
+	</delete>
+		
+	<update id="update" parameterType="com.hotent.platform.model.system.DesktopColumn">
+		UPDATE SYS_DESKTOP_COLUMN SET
+		name=#{columnName,jdbcType=VARCHAR} , 
+		serviceMethod=#{serviceMethod,jdbcType=VARCHAR} , 
+		templateName=#{templateName,jdbcType=VARCHAR} , 
+		templateId=#{templateId,jdbcType=VARCHAR} , 
+		templatePath=#{templatePath,jdbcType=VARCHAR} , 
+		columnUrl=#{columnUrl,jdbcType=VARCHAR} ,
+		html=#{html,jdbcType=CLOB},
+		methodType=#{methodType,jdbcType=NUMERIC},
+		queryAlias=#{queryAlias,jdbcType=VARCHAR}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="DesktopColumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_COLUMN
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getByTemplateId" parameterType="java.lang.String" resultMap="DesktopColumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_COLUMN
+		WHERE
+		templateId=#{templateId}
+	</select>
+
+	<select id="getSysColumn" resultMap="DesktopColumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_COLUMN
+		WHERE
+		isSys=1
+	</select>
+		
+	<select id="getAll" resultMap="DesktopColumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_COLUMN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getNameById" parameterType="java.lang.Long" resultType="String">
+	 SELECT name FROM SYS_DESKTOP_COLUMN where id=#{id}
+    </select>
+    
+    <select id="getCounts" resultType="Integer">
+     SELECT count(*) FROM SYS_DESKTOP_COLUMN
+    </select>	
+ 	
+</mapper>

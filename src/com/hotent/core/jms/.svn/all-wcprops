@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/jms
+END
+MessageConsumer.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/jms/MessageConsumer.java
+END
+ActiveMqMessageConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1015/bpmx_w/src/com/hotent/core/jms/ActiveMqMessageConverter.java
+END
+MessageProducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/jms/MessageProducer.java
+END
+JmsExceptionListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/jms/JmsExceptionListener.java
+END

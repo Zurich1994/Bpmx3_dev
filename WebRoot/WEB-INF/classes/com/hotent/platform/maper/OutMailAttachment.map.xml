@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.mail.OutMailAttachment">
+	<resultMap id="OutMailAttachment" type="com.hotent.platform.model.mail.OutMailAttachment">
+		<id property="fileId" column="FILEID" jdbcType="NUMERIC"/>
+		<result property="fileName" column="FILENAME" jdbcType="VARCHAR"/>
+		<result property="filePath" column="FILEPATH" jdbcType="VARCHAR"/>
+		<result property="mailId" column="MAILID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		FILEID,FILENAME,FILEPATH,MAILID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(fileId)"> AND FILEID  =#{fileId} </if>
+			<if test="@Ognl@isNotEmpty(fileName)"> AND FILENAME  LIKE #{fileName}  </if>
+			<if test="@Ognl@isNotEmpty(filePath)"> AND FILEPATH  LIKE #{filePath}  </if>
+			<if test="@Ognl@isNotEmpty(mailId)"> AND MAILID  =#{mailId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.mail.OutMailAttachment">
+		INSERT INTO OUT_MAIL_ATTACHMENT
+		(FILEID,FILENAME,FILEPATH,MAILID)
+		VALUES
+		(#{fileId,jdbcType=NUMERIC}, #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{mailId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM OUT_MAIL_ATTACHMENT 
+		WHERE
+		FILEID=#{fileId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.mail.OutMailAttachment">
+		UPDATE OUT_MAIL_ATTACHMENT SET
+		FILENAME=#{fileName,jdbcType=VARCHAR},
+		FILEPATH=#{filePath,jdbcType=VARCHAR},
+		MAILID=#{mailId,jdbcType=NUMERIC}
+		WHERE
+		FILEID=#{fileId}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="OutMailAttachment">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_ATTACHMENT
+		WHERE
+		FILEID=#{fileId}
+	</select>
+	
+	<select id="getAll" resultMap="OutMailAttachment">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_ATTACHMENT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by FILEID  desc
+		</if>
+	</select>
+	
+	<select id="getByMailId" parameterType="java.lang.Long" resultMap="OutMailAttachment">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_ATTACHMENT
+		WHERE
+		MAILID=#{mailId}
+	</select>
+	
+	<update id="updateFilePath">
+		UPDATE OUT_MAIL_ATTACHMENT SET
+		FILEPATH=#{filePath,jdbcType=VARCHAR}
+		WHERE
+		FILENAME=#{fileName}
+		AND 
+		MAILID =#{mailId}
+	</update>
+</mapper>

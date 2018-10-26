@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="../internal.js"></script>
+    <style type="text/css">
+        .section {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .section input {
+            margin-left: 5px;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div class="section">
+    <span><var id="lang_tdBkColor"></var></span>
+    <input type="text" id="J_tone"/></br></br>
+    <span><var id="lang_tdBoColor"></var></span>
+    <input type="text" id="B_tone"/>
+</div>
+<script type="text/javascript">
+    var tone = $G("J_tone"),
+            colorPiker = new UE.ui.ColorPicker({
+                editor:editor
+            }),
+            colorPop = new UE.ui.Popup({
+                editor:editor,
+                content:colorPiker
+            });
+    domUtils.on(tone, "click", function () {
+        colorPop.showAnchor(tone);
+    });
+    domUtils.on(document, 'mousedown', function () {
+        colorPop.hide();
+        colorPop1.hide();
+    });
+    colorPiker.addListener("pickcolor", function () {
+        tone.value = arguments[1];
+        colorPop.hide();
+    });
+    colorPiker.addListener("picknocolor", function () {
+        tone.value="";
+        colorPop.hide();
+    });
+    
+    var btone = $G("B_tone"),
+    colorPiker1 = new UE.ui.ColorPicker({
+        editor:editor
+    }),
+    colorPop1 = new UE.ui.Popup({
+        editor:editor,
+        content:colorPiker1
+    });
+    
+    domUtils.on(btone, "click", function () {
+        colorPop1.showAnchor(btone);
+    });
+    
+    colorPiker1.addListener("pickcolor", function () {
+        btone.value = arguments[1];
+        colorPop1.hide();
+    });
+    colorPiker1.addListener("picknocolor", function () {
+        btone.value="";
+        colorPop1.hide();
+    });
+    dialog.onok=function(){
+        editor.execCommand("edittd",tone.value,btone.value);
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.worktime.SysCalendar">
+	<resultMap id="SysCalendar" type="com.hotent.platform.model.worktime.SysCalendar">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+		<result property="isDefault" column="isDefault" jdbcType="NUMERIC"/>
+		
+	</resultMap>
+	
+	<sql id="columns">
+		id,name,memo,isDefault
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND memo  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.worktime.SysCalendar">
+		INSERT INTO sys_calendar
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR},#{isDefault,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_CALENDAR 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.worktime.SysCalendar">
+		UPDATE sys_calendar SET
+		name=#{name,jdbcType=VARCHAR} , 
+		memo=#{memo,jdbcType=VARCHAR} ,
+		isDefault=#{isDefault,jdbcType=NUMERIC}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysCalendar">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysCalendar">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getDefaultCalendar"  resultMap="SysCalendar">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR
+		WHERE isDefault=1
+	</select>
+	
+	
+	<update id="setNotDefaultCal">
+		UPDATE sys_calendar SET isDefault=0
+	</update>
+	
+</mapper>

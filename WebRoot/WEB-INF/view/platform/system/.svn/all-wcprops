@@ -1,0 +1,2261 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/1905/bpmx_w/WebRoot/WEB-INF/view/platform/system
+END
+sysQuerySqlGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlGet.jsp
+END
+dictionaryTree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/dictionaryTree.jsp
+END
+bpmDruidSql.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmDruidSql.jsp
+END
+sysTemplateDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTemplateDialog.jsp
+END
+sysPlanExchangeGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanExchangeGet.jsp
+END
+sysOfficeTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOfficeTemplateEdit.jsp
+END
+roleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/roleList.jsp
+END
+subSystemGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemGet.jsp
+END
+sysOrgTypeEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgTypeEdit.jsp
+END
+positionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/positionList.jsp
+END
+sysIndexMyLayoutDesign.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexMyLayoutDesign.jsp
+END
+sysReportList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysReportList.jsp
+END
+sysObjLogList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/869/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysObjLogList.jsp
+END
+sysQueryMetaFieldEditDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/748/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryMetaFieldEditDetail.jsp
+END
+desktopLayoutShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutShow.jsp
+END
+globalTypeEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeEdit.jsp
+END
+scriptEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/scriptEdit.jsp
+END
+sysFilePictureShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFilePictureShow.jsp
+END
+sysQueryMetaFieldList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/748/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryMetaFieldList.jsp
+END
+resourcesSortList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesSortList.jsp
+END
+sysOrgTacticSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgTacticSelector.jsp
+END
+globalTypeListservice.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/1905/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeListservice.jsp
+END
+demensionGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/demensionGet.jsp
+END
+sysTransDefSet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/753/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTransDefSet.jsp
+END
+messageSendForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageSendForm.jsp
+END
+sysFileHtmlDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/872/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileHtmlDialog.jsp
+END
+sysDataSourceList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceList.jsp
+END
+sysOfficeTemplateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOfficeTemplateGet.jsp
+END
+sysObjRightsList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/869/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysObjRightsList.jsp
+END
+sysPlanSubscribeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanSubscribeList.jsp
+END
+reportParamList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/reportParamList.jsp
+END
+sysDataSourceLDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceLDetail.jsp
+END
+desktopMycolumnList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopMycolumnList.jsp
+END
+sysFileOffice.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileOffice.jsp
+END
+sysUserOrgEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserOrgEdit.jsp
+END
+sysQueryViewList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/751/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryViewList.jsp
+END
+gradeManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/gradeManage.jsp
+END
+sysQuerySqlManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlManage.jsp
+END
+sysIndexLayoutManageDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutManageDialog.jsp
+END
+sysPlanParticipantToExchange.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanParticipantToExchange.jsp
+END
+bpmDruidConnectionInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmDruidConnectionInfo.jsp
+END
+positionGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/positionGet.jsp
+END
+scriptSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/scriptSelector.jsp
+END
+messageReplyEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageReplyEdit.jsp
+END
+sysIndexLayoutManageDesign.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutManageDesign.jsp
+END
+userUnderGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/userUnderGet.jsp
+END
+sysUserParamDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserParamDialog.jsp
+END
+sysUrlPermissionEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUrlPermissionEdit.jsp
+END
+sysOfficeTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOfficeTemplateList.jsp
+END
+sysOrgTypeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgTypeList.jsp
+END
+sysOrgSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgSelector.jsp
+END
+subSystemImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemImport.jsp
+END
+sysOfficeTemplateEditRight.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOfficeTemplateEditRight.jsp
+END
+conditionScriptDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/conditionScriptDialog.jsp
+END
+personScriptSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/personScriptSelector.jsp
+END
+globalTypeUpd1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeUpd1.jsp
+END
+globalTypeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeList.jsp
+END
+sysRoleGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysRoleGet.jsp
+END
+scriptList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/scriptList.jsp
+END
+sysBulletinColumnEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/874/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysBulletinColumnEdit.jsp
+END
+sysPopupRemindEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/747/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPopupRemindEdit.jsp
+END
+reportTemplateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/reportTemplateGet.jsp
+END
+sysIndexLayoutManageSelectTemplate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutManageSelectTemplate.jsp
+END
+dictionarySortList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/dictionarySortList.jsp
+END
+jobGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/jobGet.jsp
+END
+dictionaryEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/dictionaryEdit.jsp
+END
+desktopLayoutcolEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutcolEdit.jsp
+END
+sysPaurEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPaurEdit.jsp
+END
+sysCodeoperateDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1983/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysCodeoperateDetail.jsp
+END
+reportTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/reportTemplateEdit.jsp
+END
+sysUserSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserSelector.jsp
+END
+messageSendReadMsgDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageSendReadMsgDialog.jsp
+END
+sysUserOrgList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserOrgList.jsp
+END
+sysUserOrgGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserOrgGet.jsp
+END
+desktopColumnGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopColumnGet.jsp
+END
+sysOrgListById.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgListById.jsp
+END
+sysErrorLogGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysErrorLogGet.jsp
+END
+resourcesDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesDialog.jsp
+END
+messageReplyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageReplyList.jsp
+END
+globalTypeImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeImport.jsp
+END
+desktopColumnEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopColumnEdit.jsp
+END
+sysPlanCharge.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanCharge.jsp
+END
+scriptGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/scriptGet.jsp
+END
+fineReportDs.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/fineReportDs.jsp
+END
+sysPaurGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPaurGet.jsp
+END
+sysUrlPermissionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUrlPermissionList.jsp
+END
+sysQuerySqlDefSettingEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/749/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlDefSettingEdit.jsp
+END
+sysReportShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysReportShow.jsp
+END
+sysFileGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileGet.jsp
+END
+sysFileSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileSelector.jsp
+END
+sysUrlRulesEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUrlRulesEdit.jsp
+END
+wsDataTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/wsDataTemplateEdit.jsp
+END
+sysOrgRoleRoleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgRoleRoleList.jsp
+END
+sysBulletinColumnList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/874/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysBulletinColumnList.jsp
+END
+identityGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/identityGet.jsp
+END
+messageLogEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageLogEdit.jsp
+END
+sysOrgParamEditByOrgId.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgParamEditByOrgId.jsp
+END
+messageSendReplyDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageSendReplyDetail.jsp
+END
+sysPopupRemindList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/747/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPopupRemindList.jsp
+END
+desktopMycolumnShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopMycolumnShow.jsp
+END
+sysQueryViewShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/751/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryViewShow.jsp
+END
+dictionaryList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/dictionaryList.jsp
+END
+desktopLayoutcolList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutcolList.jsp
+END
+sysPaurList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPaurList.jsp
+END
+sysFileUploadDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileUploadDialog.jsp
+END
+reportTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/reportTemplateList.jsp
+END
+sealDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sealDialog.jsp
+END
+desktopLayoutcolGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutcolGet.jsp
+END
+globalTypeSortList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeSortList.jsp
+END
+sysPlanProcessRunList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanProcessRunList.jsp
+END
+sysIndexLayoutEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutEdit.jsp
+END
+sysUserParamEditByUserId.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserParamEditByUserId.jsp
+END
+sysUserSyncToLdap.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserSyncToLdap.jsp
+END
+sysBulletinEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/874/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysBulletinEdit.jsp
+END
+desktopColumnList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopColumnList.jsp
+END
+sysUserParamGetByParamKey.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserParamGetByParamKey.jsp
+END
+messageCopyEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageCopyEdit.jsp
+END
+messageLogGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageLogGet.jsp
+END
+messageEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageEdit.jsp
+END
+sysPlanMyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanMyList.jsp
+END
+sysUserGetLdapComp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserGetLdapComp.jsp
+END
+sysParamGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysParamGet.jsp
+END
+sysUserGradeDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserGradeDialog.jsp
+END
+personScriptEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/personScriptEdit.jsp
+END
+sysPlanExchangeEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanExchangeEdit.jsp
+END
+globalTypeGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeGet.jsp
+END
+sysQuerySettingEditTemplate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySettingEditTemplate.jsp
+END
+bpmIndexRebuildJobList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmIndexRebuildJobList.jsp
+END
+sysUserSyncList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserSyncList.jsp
+END
+userPositionEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/userPositionEdit.jsp
+END
+wsDataTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/wsDataTemplateList.jsp
+END
+jobEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/jobEdit.jsp
+END
+resourcesMoveTree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesMoveTree.jsp
+END
+messageLogList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageLogList.jsp
+END
+sysWsLogGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWsLogGet.jsp
+END
+sysDataSourceDefDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceDefDetail.jsp
+END
+sysOrgTacticDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgTacticDialog.jsp
+END
+identityEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/identityEdit.jsp
+END
+sysAuditAdd1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysAuditAdd1.jsp
+END
+sysIndexLayoutList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutList.jsp
+END
+sysQueryFieldEditDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryFieldEditDetail.jsp
+END
+desktopMycolumnChange.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopMycolumnChange.jsp
+END
+messageSendEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageSendEdit.jsp
+END
+sysOrgTree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgTree.jsp
+END
+orgAuthGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/orgAuthGet.jsp
+END
+sysBulletinList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/874/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysBulletinList.jsp
+END
+sysIndexLayoutManageList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutManageList.jsp
+END
+sysTemplateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTemplateGet.jsp
+END
+sysTransDefEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/753/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTransDefEdit.jsp
+END
+conditionScriptSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/conditionScriptSelector.jsp
+END
+sysQueryMetaFieldGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/748/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryMetaFieldGet.jsp
+END
+messageList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageList.jsp
+END
+customCondition.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/customCondition.jsp
+END
+sysOrgView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgView.jsp
+END
+userUnderEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/userUnderEdit.jsp
+END
+globalTypeDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeDialog.jsp
+END
+aliasScriptEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/aliasScriptEdit.jsp
+END
+sysUserResetPwdView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserResetPwdView.jsp
+END
+personScriptList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/personScriptList.jsp
+END
+sysTypeKeyGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTypeKeyGet.jsp
+END
+desktopMycolumnNews.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopMycolumnNews.jsp
+END
+sysRoleCopy.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysRoleCopy.jsp
+END
+resourcesAddResource.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesAddResource.jsp
+END
+userPositionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/userPositionList.jsp
+END
+sysQueryViewGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/751/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryViewGet.jsp
+END
+scriptImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/scriptImport.jsp
+END
+sysLogSwitchManagement.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysLogSwitchManagement.jsp
+END
+sysPopupRemindShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/747/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPopupRemindShow.jsp
+END
+subSystemEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemEdit.jsp
+END
+sysIndexLayoutGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutGet.jsp
+END
+subSystemInformation.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1588/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemInformation.jsp
+END
+jobList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/jobList.jsp
+END
+desktopLayoutcolShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutcolShow.jsp
+END
+sysOrgDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgDialog.jsp
+END
+messageReceiverGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageReceiverGet.jsp
+END
+bpmDruidSqlDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmDruidSqlDetail.jsp
+END
+sysWordTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/754/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWordTemplateEdit.jsp
+END
+messageReadList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageReadList.jsp
+END
+sysUserGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserGet.jsp
+END
+sysDataSourceLModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceLModify.jsp
+END
+aliasScriptGoToHelp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/aliasScriptGoToHelp.jsp
+END
+sysIndexColumnSetParam.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexColumnSetParam.jsp
+END
+messageGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageGet.jsp
+END
+sysOrgTacticEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgTacticEdit.jsp
+END
+sysUserFlowDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserFlowDialog.jsp
+END
+identityList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/identityList.jsp
+END
+scriptImplTest.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/scriptImplTest.jsp
+END
+sysErrorLogList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/865/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysErrorLogList.jsp
+END
+sysAcceptIpGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysAcceptIpGet.jsp
+END
+sysIndexLayoutDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutDetail.jsp
+END
+sysJobDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysJobDialog.jsp
+END
+messageSendList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageSendList.jsp
+END
+sysAcceptIpEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysAcceptIpEdit.jsp
+END
+messageReplyGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageReplyGet.jsp
+END
+sysTransDefList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/753/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTransDefList.jsp
+END
+bpmIndexRebuildIndexList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmIndexRebuildIndexList.jsp
+END
+subSystemRoles.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemRoles.jsp
+END
+sysOrgGetEmpty.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgGetEmpty.jsp
+END
+sysWordTemplateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/754/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWordTemplateGet.jsp
+END
+userUnderList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/userUnderList.jsp
+END
+aliasScriptList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/875/bpmx_w/WebRoot/WEB-INF/view/platform/system/aliasScriptList.jsp
+END
+orgAuthEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/orgAuthEdit.jsp
+END
+wsDataTemplateShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/wsDataTemplateShow.jsp
+END
+pageTestEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/779/bpmx_w/WebRoot/WEB-INF/view/platform/system/pageTestEdit.jsp
+END
+positionDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/positionDialog.jsp
+END
+sysOfficeTemplateSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOfficeTemplateSelector.jsp
+END
+sysQuerySettingFilterDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySettingFilterDialog.jsp
+END
+subSystemList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1435/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemList.jsp
+END
+bpmDruidConfig.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmDruidConfig.jsp
+END
+sysOrgEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgEdit.jsp
+END
+desktopMycolumnGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopMycolumnGet.jsp
+END
+sysFileDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileDialog.jsp
+END
+sysTypeKeyEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTypeKeyEdit.jsp
+END
+sysWordTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/754/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWordTemplateList.jsp
+END
+userPositionGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/userPositionGet.jsp
+END
+sysQuerySettingPreview.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySettingPreview.jsp
+END
+userRoleEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/userRoleEdit.jsp
+END
+sysDataSourceDefGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceDefGet.jsp
+END
+sysQuerySqlDefEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/749/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlDefEdit.jsp
+END
+resourcesGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesGet.jsp
+END
+bpmIndexRebuildEditJob.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmIndexRebuildEditJob.jsp
+END
+sysUserOrgUserList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserOrgUserList.jsp
+END
+sysTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTemplateEdit.jsp
+END
+conditionScriptEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/conditionScriptEdit.jsp
+END
+sysAcceptIpList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysAcceptIpList.jsp
+END
+personScriptAddDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/personScriptAddDialog.jsp
+END
+sysCodegenDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1699/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysCodegenDetail.jsp
+END
+sysOrgGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgGet.jsp
+END
+sysPlanGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanGet.jsp
+END
+resourcesTree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesTree.jsp
+END
+sealEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sealEdit.jsp
+END
+sysCodeoperateShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1625/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysCodeoperateShow.jsp
+END
+reportParamGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/reportParamGet.jsp
+END
+sysUserDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserDialog.jsp
+END
+globalTypeFlowTypeSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeFlowTypeSelector.jsp
+END
+sysIndexLayoutManageDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutManageDetail.jsp
+END
+conditionScriptEditDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/conditionScriptEditDialog.jsp
+END
+orgAuthList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/orgAuthList.jsp
+END
+gradeRoleSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/gradeRoleSelector.jsp
+END
+pageTestList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/779/bpmx_w/WebRoot/WEB-INF/view/platform/system/pageTestList.jsp
+END
+sysIndexColumnGetTemp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexColumnGetTemp.jsp
+END
+sysObjLogGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/869/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysObjLogGet.jsp
+END
+sysOrgSearch.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgSearch.jsp
+END
+sysQuerySqlManageTree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlManageTree.jsp
+END
+incToolBarParam.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/840/bpmx_w/WebRoot/WEB-INF/view/platform/system/incToolBarParam.jsp
+END
+desktopColumnGetTemp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopColumnGetTemp.jsp
+END
+aliasScriptToCustomPreview.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/aliasScriptToCustomPreview.jsp
+END
+sysDataSourceDefEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceDefEdit.jsp
+END
+sysUserEditStatusView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserEditStatusView.jsp
+END
+sysOrgList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgList.jsp
+END
+sysPlanUnderList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanUnderList.jsp
+END
+scriptDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/scriptDialog.jsp
+END
+sysTypeKeyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTypeKeyList.jsp
+END
+sealSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sealSelector.jsp
+END
+sysWsLogList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWsLogList.jsp
+END
+sysQuerySettingScript.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySettingScript.jsp
+END
+demensionEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/demensionEdit.jsp
+END
+identitySelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/identitySelector.jsp
+END
+sysPlanSubscribeGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanSubscribeGet.jsp
+END
+sysPlanSubscribe.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanSubscribe.jsp
+END
+sysAuditUpd1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysAuditUpd1.jsp
+END
+sysQuerySqlDefList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/749/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlDefList.jsp
+END
+sysAuditList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/866/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysAuditList.jsp
+END
+resourcesTab.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/858/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesTab.jsp
+END
+roleResourcesEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/roleResourcesEdit.jsp
+END
+resourcesUrlEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesUrlEdit.jsp
+END
+sysAuditGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysAuditGet.jsp
+END
+messageReceiverList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageReceiverList.jsp
+END
+sysRoleEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysRoleEdit.jsp
+END
+sysTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTemplateList.jsp
+END
+conditionScriptList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/conditionScriptList.jsp
+END
+desktopLayoutGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutGet.jsp
+END
+sysDataSourceLEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceLEdit.jsp
+END
+subSystemListservice.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1905/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemListservice.jsp
+END
+sysQueryFieldSettingEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/748/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryFieldSettingEdit.jsp
+END
+desktopLayoutEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutEdit.jsp
+END
+sysPlanSubmit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanSubmit.jsp
+END
+wsDataTemplateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/wsDataTemplateGet.jsp
+END
+sealList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/860/bpmx_w/WebRoot/WEB-INF/view/platform/system/sealList.jsp
+END
+bpmDruidDatasource.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmDruidDatasource.jsp
+END
+userUnderMyLeaders.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/userUnderMyLeaders.jsp
+END
+sysOrgParamDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgParamDialog.jsp
+END
+sysPlanParticipant.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanParticipant.jsp
+END
+sysPropertyEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/747/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPropertyEdit.jsp
+END
+sysIndexColumnEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexColumnEdit.jsp
+END
+sysExcelTempEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/873/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysExcelTempEdit.jsp
+END
+sysPlanEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanEdit.jsp
+END
+sysRoleSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysRoleSelector.jsp
+END
+subSystemVerification.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/1681/bpmx_w/WebRoot/WEB-INF/view/platform/system/subSystemVerification.jsp
+END
+pageTestJqList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/779/bpmx_w/WebRoot/WEB-INF/view/platform/system/pageTestJqList.jsp
+END
+sysDataSourceDefList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/871/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceDefList.jsp
+END
+sysTemplateImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysTemplateImport.jsp
+END
+resourcesIcons.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesIcons.jsp
+END
+sysQueryFieldSettingGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/748/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryFieldSettingGet.jsp
+END
+sysFileAttachUpload.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileAttachUpload.jsp
+END
+sysFileList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/863/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysFileList.jsp
+END
+sysCodeTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysCodeTemplateEdit.jsp
+END
+resourcesFolderEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesFolderEdit.jsp
+END
+demensionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/demensionList.jsp
+END
+resourcesAddResource2.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/194/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesAddResource2.jsp
+END
+sysDataSourceDefModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceDefModify.jsp
+END
+reportTemplateManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/reportTemplateManage.jsp
+END
+resourcesEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1148/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesEdit.jsp
+END
+sealGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sealGet.jsp
+END
+desktopMycolumnWarm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopMycolumnWarm.jsp
+END
+bpmDruidActiveConnectionStackTrace.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/bpmDruidActiveConnectionStackTrace.jsp
+END
+sysOrgSortList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgSortList.jsp
+END
+sysQuerySqlEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlEdit.jsp
+END
+sysPlanExchange.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanExchange.jsp
+END
+globalTypeAdd1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeAdd1.jsp
+END
+sysRoleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysRoleList.jsp
+END
+sysBusEventEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/874/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysBusEventEdit.jsp
+END
+sysWordTemplateInc.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/754/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWordTemplateInc.jsp
+END
+sysDataSourceLList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceLList.jsp
+END
+sysQueryFieldSettingList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/748/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryFieldSettingList.jsp
+END
+sysOrgParamList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgParamList.jsp
+END
+desktopLayoutList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopLayoutList.jsp
+END
+sysQuerySqlDefGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/749/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlDefGet.jsp
+END
+sysCodegenShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1064/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysCodegenShow.jsp
+END
+sysParamEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysParamEdit.jsp
+END
+sysDataSourceLGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceLGet.jsp
+END
+resourcesNext.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/858/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesNext.jsp
+END
+personScriptDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/personScriptDialog.jsp
+END
+sealAddSign.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sealAddSign.jsp
+END
+sysPropertyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/747/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPropertyList.jsp
+END
+sysIndexColumnList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexColumnList.jsp
+END
+sysRoleDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysRoleDialog.jsp
+END
+sysExcelTempList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/873/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysExcelTempList.jsp
+END
+dictionaryTreeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/dictionaryTreeList.jsp
+END
+globalTypeTree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/globalTypeTree.jsp
+END
+sysUserEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserEdit.jsp
+END
+identityShowlist.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/identityShowlist.jsp
+END
+roleResourcesBatchGrant.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/roleResourcesBatchGrant.jsp
+END
+sysBulletinColumnGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/874/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysBulletinColumnGet.jsp
+END
+sysQuerySqlUrlParamsDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlUrlParamsDialog.jsp
+END
+sysUserModifyPwdView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserModifyPwdView.jsp
+END
+sysOrgParamGetByParamKey.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgParamGetByParamKey.jsp
+END
+sysCodeTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysCodeTemplateList.jsp
+END
+sysPlanSubscribeToExchange.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanSubscribeToExchange.jsp
+END
+sysQueryViewEditTemplate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/751/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryViewEditTemplate.jsp
+END
+sysUrlRulesTestScript.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUrlRulesTestScript.jsp
+END
+conditionScriptAddDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/conditionScriptAddDialog.jsp
+END
+sysCodeTemplateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysCodeTemplateGet.jsp
+END
+sysOfficeTemplateDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOfficeTemplateDialog.jsp
+END
+sysQuerySettingEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySettingEdit.jsp
+END
+sysWordTemplateEditTemplate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/754/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWordTemplateEditTemplate.jsp
+END
+sysWordTemplatePreview.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/754/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysWordTemplatePreview.jsp
+END
+positionEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/positionEdit.jsp
+END
+sysUrlPermissionGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUrlPermissionGet.jsp
+END
+sysOrgAllList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgAllList.jsp
+END
+sysIndexLayoutManageGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexLayoutManageGet.jsp
+END
+sysBulletinGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/874/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysBulletinGet.jsp
+END
+messageSendReadDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageSendReadDetail.jsp
+END
+sysQuerySqlList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQuerySqlList.jsp
+END
+sysReportEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysReportEdit.jsp
+END
+aliasScriptToPreview.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/aliasScriptToPreview.jsp
+END
+sysReportManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysReportManage.jsp
+END
+sysIndexColumnGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/867/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysIndexColumnGet.jsp
+END
+sysQueryMetaFieldEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/748/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryMetaFieldEdit.jsp
+END
+sysPlanUnderMatters.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanUnderMatters.jsp
+END
+sysOrgTypeGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysOrgTypeGet.jsp
+END
+sysParamList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysParamList.jsp
+END
+sysPlanProcessRunDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPlanProcessRunDialog.jsp
+END
+messageSendGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/messageSendGet.jsp
+END
+sysDataSourceEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysDataSourceEdit.jsp
+END
+sysObjRightsEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/869/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysObjRightsEdit.jsp
+END
+sysExcelTempImportDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/873/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysExcelTempImportDialog.jsp
+END
+reportParamEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/reportParamEdit.jsp
+END
+desktopMycolumnEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/desktopMycolumnEdit.jsp
+END
+gradeAssignRoleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/gradeAssignRoleList.jsp
+END
+positionSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/positionSelector.jsp
+END
+resourcesImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/resourcesImport.jsp
+END
+sysQueryViewEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/751/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysQueryViewEdit.jsp
+END
+sysUserList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1084/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysUserList.jsp
+END
+aliasScriptGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/system/aliasScriptGet.jsp
+END
+sysPropertyGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/747/bpmx_w/WebRoot/WEB-INF/view/platform/system/sysPropertyGet.jsp
+END

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi
+END
+Label.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/Label.java
+END
+Plane.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/Plane.java
+END
+Shape.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/Shape.java
+END
+Style.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/Style.java
+END
+Diagram.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/Diagram.java
+END
+Edge.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/Edge.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/package-info.java
+END
+Node.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/Node.java
+END
+LabeledShape.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/LabeledShape.java
+END
+LabeledEdge.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/LabeledEdge.java
+END
+DiagramElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/DiagramElement.java
+END
+ObjectFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/omgdi/ObjectFactory.java
+END

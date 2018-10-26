@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysTransDef">
+	<resultMap id="SysTransDef" type="com.hotent.platform.model.system.SysTransDef">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="selectSql" column="SELECTSQL" jdbcType="VARCHAR"/>
+		<result property="updateSql" column="UPDATESQL" jdbcType="VARCHAR"/>
+		<result property="state" column="STATE" jdbcType="NUMERIC"/>
+		<result property="creatorId" column="CREATORID" jdbcType="NUMERIC"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="createTime" column="CREATETIME" jdbcType="DATE"/>
+		<result property="logContent" column="LOGCONTENT" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,NAME,SELECTSQL,UPDATESQL,STATE,CREATORID,CREATOR,CREATETIME,LOGCONTENT
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(selectSql)"> AND SELECTSQL  LIKE #{selectSql}  </if>
+			<if test="@Ognl@isNotEmpty(updateSql)"> AND UPDATESQL  LIKE #{updateSql}  </if>
+			<if test="@Ognl@isNotEmpty(state)"> AND STATE  =#{state} </if>
+			<if test="@Ognl@isNotEmpty(creatorId)"> AND CREATORID  =#{creatorId} </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND CREATETIME  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(begincreateTime)"> AND CREATETIME  >=#{begincreateTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreateTime)"> AND CREATETIME <![CDATA[ <=#{endcreateTime,jdbcType=DATE}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysTransDef">
+		INSERT INTO sys_trans_def
+		(ID,NAME,SELECTSQL,UPDATESQL,STATE,CREATORID,CREATOR,CREATETIME,LOGCONTENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{selectSql,jdbcType=VARCHAR}, #{updateSql,jdbcType=VARCHAR}, #{state,jdbcType=NUMERIC}, #{creatorId,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{logContent,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_trans_def 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysTransDef">
+		UPDATE sys_trans_def SET
+		NAME=#{name,jdbcType=VARCHAR},
+		SELECTSQL=#{selectSql,jdbcType=VARCHAR},
+		UPDATESQL=#{updateSql,jdbcType=VARCHAR},
+		STATE=#{state,jdbcType=NUMERIC},
+		CREATORID=#{creatorId,jdbcType=NUMERIC},
+		CREATOR=#{creator,jdbcType=VARCHAR},
+		CREATETIME=#{createTime,jdbcType=DATE},
+		LOGCONTENT=#{logContent,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysTransDef">
+		SELECT <include refid="columns"/>
+		FROM sys_trans_def
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysTransDef">
+		SELECT <include refid="columns"/>
+		FROM sys_trans_def   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.AgentSetting">
+	<resultMap id="AgentSetting" type="com.hotent.platform.model.bpm.AgentSetting">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="authid" column="AUTHID" jdbcType="NUMERIC"/>
+		<result property="authname" column="AUTHNAME" jdbcType="VARCHAR"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="startdate" column="STARTDATE" jdbcType="DATE"/>
+		<result property="enddate" column="ENDDATE" jdbcType="DATE"/>
+		<result property="enabled" column="ENABLED" jdbcType="NUMERIC"/>
+		<result property="authtype" column="AUTHTYPE" jdbcType="NUMERIC"/>
+		<result property="agentid" column="AGENTID" jdbcType="NUMERIC"/>
+		<result property="agent" column="AGENT" jdbcType="VARCHAR"/>
+		<result property="flowkey" column="FLOWKEY" jdbcType="VARCHAR"/>
+		<result property="flowname" column="FLOWNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="columns">
+		ID,AUTHID,AUTHNAME,CREATETIME,STARTDATE,ENDDATE,ENABLED,AUTHTYPE,AGENTID,AGENT,FLOWKEY,FLOWNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(authid)"> AND AUTHID  =#{authid} </if>
+			<if test="@Ognl@isNotEmpty(authname)"> AND AUTHNAME  LIKE #{authname}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  LIKE #{createtime}  </if>
+			<if test="@Ognl@isNotEmpty(beginstartdate)"> AND STARTDATE  >=#{beginstartdate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endstartdate)"> AND STARTDATE <![CDATA[ < #{endstartdate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginenddate)"> AND ENDDATE  >=#{beginenddate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endenddate)"> AND ENDDATE <![CDATA[ < #{endenddate,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(enabled)"> AND ENABLED  =#{enabled} </if>
+			<if test="@Ognl@isNotEmpty(authtype)"> AND AUTHTYPE  =#{authtype} </if>
+			<if test="@Ognl@isNotEmpty(agentid)"> AND AGENTID  =#{agentid} </if>
+			<if test="@Ognl@isNotEmpty(agent)"> AND AGENT  LIKE #{agent}  </if>
+			<if test="@Ognl@isNotEmpty(flowkey)"> AND FLOWKEY  LIKE #{flowkey}  </if>
+			<if test="@Ognl@isNotEmpty(flowname)"> AND FLOWNAME  LIKE #{flowname}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.AgentSetting">
+		INSERT INTO BPM_AGENT_SETTING
+		(ID,AUTHID,AUTHNAME,CREATETIME,STARTDATE,ENDDATE,ENABLED,AUTHTYPE,AGENTID,AGENT,FLOWKEY,FLOWNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{authid,jdbcType=NUMERIC}, #{authname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{startdate,jdbcType=DATE}, #{enddate,jdbcType=DATE}, #{enabled,jdbcType=NUMERIC}, #{authtype,jdbcType=NUMERIC}, #{agentid,jdbcType=NUMERIC}, #{agent,jdbcType=VARCHAR}, #{flowkey,jdbcType=VARCHAR}, #{flowname,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_AGENT_SETTING 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.AgentSetting">
+		UPDATE BPM_AGENT_SETTING SET
+		AUTHID=#{authid,jdbcType=NUMERIC},
+		AUTHNAME=#{authname,jdbcType=VARCHAR},
+		CREATETIME=#{createtime,jdbcType=TIMESTAMP},
+		STARTDATE=#{startdate,jdbcType=DATE},
+		ENDDATE=#{enddate,jdbcType=DATE},
+		ENABLED=#{enabled,jdbcType=NUMERIC},
+		AUTHTYPE=#{authtype,jdbcType=NUMERIC},
+		AGENTID=#{agentid,jdbcType=NUMERIC},
+		AGENT=#{agent,jdbcType=VARCHAR},
+		FLOWKEY=#{flowkey,jdbcType=VARCHAR},
+		FLOWNAME=#{flowname,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AgentSetting">
+		SELECT <include refid="columns"/>
+		FROM BPM_AGENT_SETTING
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AgentSetting">
+		SELECT <include refid="columns"/>
+		FROM BPM_AGENT_SETTING   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByFlowKey" resultMap="AgentSetting">
+		<![CDATA[
+		SELECT S.* FROM BPM_AGENT_SETTING S 
+		WHERE 
+		(
+			(	S.ID IN 
+	       		(
+	        	 SELECT SETTINGID FROM BPM_AGENT_DEF  DEF WHERE DEF.FLOWKEY = #{flowkey,jdbcType=VARCHAR}
+	       		)
+	       	)
+	       	OR 
+	       	(
+	       		S.FLOWKEY = #{flowkey,jdbcType=VARCHAR}
+	       	)
+	     ) 
+       	 AND 
+       	 (
+      	   (	
+            STARTDATE <= #{startDate,jdbcType=DATE}
+            AND 
+            ENDDATE >= #{startDate,jdbcType=DATE}
+     	   )
+      	  OR
+    	   (
+            STARTDATE >= #{startDate,jdbcType=DATE}
+             AND 
+             STARTDATE <=#{endDate,jdbcType=DATE}
+     	   )
+        )
+        ]]> 
+       	<if test="@Ognl@isNotEmpty(authid)"> AND S.AUTHID  =#{authid,jdbcType=NUMERIC} </if>
+       	<if test="@Ognl@isNotEmpty(authtype)"> AND S.AUTHTYPE  =#{authtype,jdbcType=NUMERIC} </if>
+       	<if test="@Ognl@isNotEmpty(enabled)"> AND S.ENABLED  =#{enabled,jdbcType=NUMERIC} </if>
+       	<if test="@Ognl@isNotEmpty(id)"> AND S.ID != #{id,jdbcType=NUMERIC}</if>
+	</select>
+	
+	<select id="getAgentByFilter" resultMap="AgentSetting">
+		<![CDATA[
+		SELECT S.* FROM BPM_AGENT_SETTING S 
+		WHERE   
+       	 (
+      	   (	
+            STARTDATE <= #{startDate,jdbcType=DATE}
+            AND 
+            ENDDATE >= #{startDate,jdbcType=DATE}
+     	   )
+      	  OR
+    	   (
+            STARTDATE >= #{startDate,jdbcType=DATE}
+             AND 
+             STARTDATE <=#{endDate,jdbcType=DATE}
+     	   )
+        )
+        ]]>
+        <if test="@Ognl@isNotEmpty(authtype)"> AND S.AUTHTYPE  =#{authtype,jdbcType=NUMERIC} </if>
+       	<if test="@Ognl@isNotEmpty(authid)"> AND S.AUTHID  =#{authid,jdbcType=NUMERIC} </if>
+       	<if test="@Ognl@isNotEmpty(enabled)"> AND S.ENABLED  =#{enabled,jdbcType=NUMERIC} </if>
+       	<if test="@Ognl@isNotEmpty(id)"> AND S.ID != #{id,jdbcType=NUMERIC}</if>
+	</select>
+	<select id="getValidByFlowAndAuthidAndDate" resultMap="AgentSetting">
+		<![CDATA[
+		SELECT S.* FROM BPM_AGENT_SETTING S 
+		WHERE
+		S.AUTHID = #{authid,jdbcType=NUMERIC} AND
+		S.ENABLED = 1 AND      
+       	 (
+            S.STARTDATE <= #{date,jdbcType=DATE}
+            AND 
+            S.ENDDATE >= #{date,jdbcType=DATE}
+      	
+        )
+        AND 
+        (
+        	S.AUTHTYPE=0
+        	or
+        	(	
+        		S.AUTHTYPE=1
+        		AND 
+        		S.ID IN 
+	       		(
+	        	 SELECT SETTINGID FROM BPM_AGENT_DEF  DEF WHERE DEF.FLOWKEY = #{flowkey,jdbcType=VARCHAR}
+	       		)
+        	)
+        	or
+        	(
+        		S.AUTHTYPE=2    		
+	       		AND
+		       	(
+		       		S.FLOWKEY = #{flowkey,jdbcType=VARCHAR}
+		       	)
+		    )
+        )
+        ]]>
+	</select>
+</mapper>

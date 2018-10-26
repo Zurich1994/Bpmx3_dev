@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Xlkcs.model.Xlkcs.Xlkcs">
+	<resultMap id="Xlkcs" type="com.hotent.Xlkcs.model.Xlkcs.Xlkcs">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="yh" column="F_YH" jdbcType="VARCHAR"/>
+		<result property="zd2" column="F_ZD2" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_YH,F_ZD2
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(yh)"> AND F_YH  LIKE '%${yh}%'  </if>
+			<if test="@Ognl@isNotEmpty(zd2)"> AND F_ZD2  LIKE '%${zd2}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Xlkcs.model.Xlkcs.Xlkcs">
+		INSERT INTO W_XLKCS
+		(ID,
+		F_YH,F_ZD2)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{yh,jdbcType=VARCHAR}, #{zd2,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_XLKCS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Xlkcs.model.Xlkcs.Xlkcs">
+		UPDATE W_XLKCS SET
+		F_YH=#{yh,jdbcType=VARCHAR},
+		F_ZD2=#{zd2,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Xlkcs">
+		SELECT <include refid="columns"/>
+		FROM W_XLKCS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Xlkcs">
+		SELECT <include refid="columns"/>
+		FROM W_XLKCS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

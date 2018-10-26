@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysJobLog">
+	<resultMap id="SysJobLog" type="com.hotent.platform.model.system.SysJobLog">
+		<id property="logId" column="logId" jdbcType="NUMERIC"/>
+		<result property="jobName" column="jobName" jdbcType="VARCHAR"/>
+		<result property="trigName" column="trigName" jdbcType="VARCHAR"/>
+		<result property="startTime" column="startTime" jdbcType="TIMESTAMP"/>
+		<result property="endTime" column="endTime" jdbcType="TIMESTAMP"/>
+		<result property="content" column="content" jdbcType="CLOB"/>
+		<result property="state" column="state" jdbcType="NUMERIC"/>
+		<result property="runTime" column="runTime" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		logId,jobName,trigName,startTime,endTime,content,state,runTime
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(logId)"> AND logId  =#{logId} </if>
+			<if test="@Ognl@isNotEmpty(jobName)"> AND jobName  LIKE #{jobName}  </if>
+			<if test="@Ognl@isNotEmpty(trigName)"> AND trigName  LIKE #{trigName}  </if>
+			<if test="@Ognl@isNotEmpty(startTime)"> AND startTime  >=#{startTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND endTime  &lt;=#{endTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(content)"> AND content  LIKE #{content}  </if>
+			<if test="@Ognl@isNotEmpty(state)"> AND state  =#{state} </if>
+			<if test="@Ognl@isNotEmpty(runTime)"> AND runTime  =#{runTime} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysJobLog">
+		INSERT INTO sys_joblog
+		(<include refid="columns"/>)
+		VALUES
+		(#{logId,jdbcType=NUMERIC}, #{jobName,jdbcType=VARCHAR}, #{trigName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{content,jdbcType=CLOB}, #{state,jdbcType=NUMERIC}, #{runTime,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_JOBLOG 
+		WHERE
+		logId=#{logId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysJobLog">
+		UPDATE sys_joblog SET
+		jobName=#{jobName,jdbcType=VARCHAR} , 
+		trigName=#{trigName,jdbcType=VARCHAR} , 
+		startTime=#{startTime,jdbcType=TIMESTAMP} , 
+		endTime=#{endTime,jdbcType=TIMESTAMP} , 
+		content=#{content,jdbcType=CLOB} , 
+		state=#{state,jdbcType=NUMERIC} , 
+		runTime=#{runTime,jdbcType=NUMERIC} 
+		WHERE
+		logId=#{logId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysJobLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_JOBLOG
+		WHERE
+		logId=#{logId}
+	</select>
+	
+	<select id="getAll" resultMap="SysJobLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_JOBLOG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by logId  desc
+		</if>
+	</select>
+</mapper>

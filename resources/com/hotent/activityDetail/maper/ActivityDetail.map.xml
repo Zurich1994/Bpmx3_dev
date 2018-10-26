@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.activityDetail.model.activityDetail.ActivityDetail">
+	<resultMap id="ActivityDetail" type="com.hotent.activityDetail.model.activityDetail.ActivityDetail">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="actDef_Id" column="F_ACTDEF_ID" jdbcType="VARCHAR"/>
+		<result property="activity_id" column="F_ACTIVITY_ID" jdbcType="VARCHAR"/>
+		<result property="activity_name" column="F_ACTIVITY_NAME" jdbcType="VARCHAR"/>
+		<result property="activity_num" column="F_ACTIVITY_NUM" jdbcType="VARCHAR"/>
+		<result property="server_shape" column="F_SERVER_SHAPE" jdbcType="VARCHAR"/>
+		
+		<result property="server_way" column="F_SERVER_WAY" jdbcType="VARCHAR"/>
+		<result property="server_class" column="F_SERVER_CLASS" jdbcType="VARCHAR"/>
+		<result property="server_source" column="F_SERVER_SOURCE" jdbcType="VARCHAR"/>
+		<result property="server_nature" column="F_SERVER_NATURE" jdbcType="VARCHAR"/>
+		<result property="info_shape" column="F_INFO_SHAPE" jdbcType="VARCHAR"/>
+		
+		<result property="info_stand" column="F_INFO_STAND" jdbcType="VARCHAR"/>
+		<result property="info_type" column="F_INFO_TYPE" jdbcType="VARCHAR"/>
+		<result property="server_type" column="F_SERVER_TYPE" jdbcType="VARCHAR"/>
+		<result property="op_comp" column="F_OP_COMP" jdbcType="NUMERIC"/>
+		<result property="work_name" column="F_WORK_NAME" jdbcType="VARCHAR"/>
+		
+		<result property="op_info_sum" column="F_OP_INFO_SUM" jdbcType="NUMERIC"/>
+		<result property="work_id" column="F_WORK_ID" jdbcType="VARCHAR"/>
+		<result property="work_subsys" column="F_WORK_SUBSYS" jdbcType="NUMERIC"/>
+		<result property="elem_sum" column="F_ELEM_SUM" jdbcType="NUMERIC"/>
+		<result property="non_s_elem_num" column="F_NON_S_ELEM_NUM" jdbcType="NUMERIC"/>
+		
+		<result property="knowledge_flag" column="F_KNOWLEDGE_FLAG" jdbcType="VARCHAR"/>
+		<result property="work_subsys_name" column="F_WORK_SUBSYS_NAME" jdbcType="VARCHAR"/>
+	    <result property="data_source" column="F_DATA_SOURCE" jdbcType="VARCHAR"/>
+	    <result property="job_ins_name" column="F_JOB_INS_NAME" jdbcType="VARCHAR"/>
+	    <result property="ope_process" column="F_OPE_PROCESS" jdbcType="VARCHAR"/>
+	    
+	    <result property="res_speed" column="F_RES_SPEED" jdbcType="VARCHAR"/>
+	    <result property="ser_cycle" column="F_SER_CYCLE" jdbcType="VARCHAR"/>
+	    <result property="data_incre" column="F_DATA_INCRE" jdbcType="VARCHAR"/>
+	    <result property="com_trans" column="F_COM_TRANS" jdbcType="VARCHAR"/>
+	    <result property="ope_ins_name" column="F_OPE_INS_NAME" jdbcType="VARCHAR"/>
+	    
+	    <result property="ope_obj_name" column="F_OPE_OBJ_NAME" jdbcType="VARCHAR"/>
+	    <result property="info_content" column="F_INFO_CONTENT" jdbcType="VARCHAR"/>
+	    <result property="ave_freq_occur" column="F_AVE_FREQ_OCCUR" jdbcType="VARCHAR"/>
+	    <result property="peak_freq" column="F_PEAK_FREQ" jdbcType="VARCHAR"/>
+	    <result property="code_line_num" column="F_CODE_LINE_NUM" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,
+		F_ACTDEF_ID,
+		F_ACTIVITY_ID,
+		F_ACTIVITY_NAME,
+		F_ACTIVITY_NUM,
+		
+		F_SERVER_SHAPE,
+		F_SERVER_WAY,
+		F_SERVER_CLASS,
+		F_SERVER_SOURCE,
+		F_SERVER_NATURE,
+		
+		F_INFO_SHAPE,
+		F_INFO_STAND,
+		F_INFO_TYPE,
+		F_SERVER_TYPE,
+		F_OP_COMP,
+		
+		F_WORK_NAME,
+		F_OP_INFO_SUM,
+		F_WORK_ID,
+		F_WORK_SUBSYS,
+		F_ELEM_SUM,
+		
+		F_NON_S_ELEM_NUM,
+		F_KNOWLEDGE_FLAG,
+		F_WORK_SUBSYS_NAME,
+		F_DATA_SOURCE,
+		F_JOB_INS_NAME,
+		
+		F_OPE_PROCESS,
+		F_RES_SPEED,
+		F_SER_CYCLE,
+		F_DATA_INCRE,
+		F_COM_TRANS,
+		
+		F_OPE_INS_NAME,
+		F_OPE_OBJ_NAME,
+		F_INFO_CONTENT,
+		F_AVE_FREQ_OCCUR,
+		F_PEAK_FREQ,
+		
+		F_CODE_LINE_NUM
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(actDef_Id)"> AND F_ACTDEF_ID  LIKE '%${actDef_Id}%'  </if>
+			<if test="@Ognl@isNotEmpty(activity_id)"> AND F_ACTIVITY_ID  LIKE '%${activity_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(activity_name)"> AND F_ACTIVITY_NAME  LIKE '%${activity_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(activity_num)"> AND F_ACTIVITY_NUM  LIKE '%${activity_num}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_shape)"> AND F_SERVER_SHAPE  LIKE '%${server_shape}%'  </if>
+			
+			<if test="@Ognl@isNotEmpty(server_way)"> AND F_SERVER_WAY  LIKE '%${server_way}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_class)"> AND F_SERVER_CLASS  LIKE '%${server_class}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_source)"> AND F_SERVER_SOURCE  LIKE '%${server_source}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_nature)"> AND F_SERVER_NATURE  LIKE '%${server_nature}%'  </if>
+			<if test="@Ognl@isNotEmpty(info_shape)"> AND F_INFO_SHAPE  LIKE '%${info_shape}%'  </if>
+			
+			<if test="@Ognl@isNotEmpty(info_stand)"> AND F_INFO_STAND  LIKE '%${info_stand}%'  </if>
+			<if test="@Ognl@isNotEmpty(info_type)"> AND F_INFO_TYPE  LIKE '%${info_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_type)"> AND F_SERVER_TYPE  LIKE '%${server_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(op_comp)"> AND F_OP_COMP=#{op_comp} </if>
+			<if test="@Ognl@isNotEmpty(work_name)"> AND F_WORK_NAME  LIKE '%${work_name}%'  </if>
+			
+			<if test="@Ognl@isNotEmpty(op_info_sum)"> AND F_OP_INFO_SUM=#{op_info_sum}</if>			
+			<if test="@Ognl@isNotEmpty(work_id)"> AND F_WORK_ID  LIKE '%${work_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(work_subsys)"> AND F_WORK_SUBSYS=#{work_subsys}</if>
+			<if test="@Ognl@isNotEmpty(elem_sum)"> AND F_ELEM_SUM=#{elem_sum}</if>
+			<if test="@Ognl@isNotEmpty(non_s_elem_num)"> AND F_NON_S_ELEM_NUM=#{non_s_elem_num}</if>
+			
+			<if test="@Ognl@isNotEmpty(knowledge_flag)"> AND F_KNOWLEDGE_FLAG  LIKE '%${knowledge_flag}%'  </if>
+			<if test="@Ognl@isNotEmpty(work_subsys_name)"> AND F_WORK_SUBSYS_NAME  LIKE '%${work_subsys_name}%'  </if>			
+			<if test="@Ognl@isNotEmpty(data_source)"> AND F_DATA_SOURCE LIKE '%${data_source}%' </if>
+			<if test="@Ognl@isNotEmpty(job_ins_name)"> AND F_JOB_INS_NAME  LIKE '%${job_ins_name}%' </if>
+			<if test="@Ognl@isNotEmpty(ope_process)"> AND F_OPE_PROCESS  LIKE '%${ope_process}%' </if>
+			
+			<if test="@Ognl@isNotEmpty(res_speed)"> AND F_RES_SPEED  LIKE '%${res_speed}%' </if>
+			<if test="@Ognl@isNotEmpty(ser_cycle)"> AND F_SER_CYCLE  LIKE '%${ser_cycle}%' </if>			
+			<if test="@Ognl@isNotEmpty(data_incre)"> AND F_DATA_INCRE  LIKE '%${data_incre}%' </if>
+			<if test="@Ognl@isNotEmpty(com_trans)"> AND F_COM_TRANS  LIKE '%${com_trans}%' </if>
+			<if test="@Ognl@isNotEmpty(ope_ins_name)"> AND F_OPE_INS_NAME  LIKE '%${ope_ins_name}%' </if>
+			
+			<if test="@Ognl@isNotEmpty(ope_obj_name)"> AND F_OPE_OBJ_NAME LIKE '%${ope_obj_name}%' </if>
+			<if test="@Ognl@isNotEmpty(info_content)"> AND F_INFO_CONTENT  LIKE '%${info_content}%' </if>		
+			<if test="@Ognl@isNotEmpty(ave_freq_occur"> AND F_AVE_FREQ_OCCUR  LIKE '%${ave_freq_occur}%' </if>
+			<if test="@Ognl@isNotEmpty(peak_freq)"> AND F_PEAK_FREQ  LIKE '%${peak_freq}%' </if>
+			<if test="@Ognl@isNotEmpty(code_line_num)"> AND F_CODE_LINE_NUM  LIKE '%${code_line_num}%' </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.activityDetail.model.activityDetail.ActivityDetail">
+		INSERT INTO W_ACTIVITY_DETAIL
+		(ID,
+		F_ACTDEF_ID,
+		F_ACTIVITY_ID,
+		
+		F_ACTIVITY_NUM,
+		
+		F_SERVER_SHAPE,
+		F_SERVER_WAY,
+		F_SERVER_CLASS,
+		F_SERVER_SOURCE,
+		F_SERVER_NATURE,
+		
+		F_INFO_SHAPE,
+		F_INFO_STAND,
+		F_INFO_TYPE,
+		F_SERVER_TYPE,		
+		F_OP_COMP,
+		
+		
+		F_OP_INFO_SUM,
+		F_WORK_ID,
+		F_WORK_SUBSYS,
+		F_ELEM_SUM,
+		
+		F_NON_S_ELEM_NUM,
+		F_KNOWLEDGE_FLAG,
+		
+		F_DATA_SOURCE,
+		F_JOB_INS_NAME,
+		
+		F_OPE_PROCESS,
+		F_RES_SPEED,
+		F_SER_CYCLE,
+		F_DATA_INCRE,
+		F_COM_TRANS,
+		
+		F_OPE_INS_NAME,
+		F_OPE_OBJ_NAME,
+		F_INFO_CONTENT,
+		F_AVE_FREQ_OCCUR,
+		F_PEAK_FREQ,
+		
+		F_CODE_LINE_NUM)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{actDef_Id,jdbcType=VARCHAR},
+		#{activity_id,jdbcType=VARCHAR},
+		
+		#{activity_num,jdbcType=VARCHAR}, 
+		  
+		#{server_shape,jdbcType=VARCHAR},
+		#{server_way,jdbcType=VARCHAR},
+		#{server_class,jdbcType=VARCHAR},
+	    #{server_source,jdbcType=VARCHAR},
+		#{server_nature,jdbcType=VARCHAR},
+		      
+		#{info_shape,jdbcType=VARCHAR},
+		#{info_stand,jdbcType=VARCHAR},
+		#{info_type,jdbcType=VARCHAR},
+		#{server_type,jdbcType=VARCHAR},		          
+		#{op_comp,jdbcType=NUMERIC},
+		           
+		
+		#{op_info_sum,jdbcType=NUMERIC},
+		#{work_id,jdbcType=VARCHAR},
+		#{work_subsys,jdbcType=NUMERIC},
+		#{elem_sum,jdbcType=NUMERIC},
+		
+		#{non_s_elem_num,jdbcType=NUMERIC},
+		#{knowledge_flag,jdbcType=VARCHAR},
+		
+		#{data_source,jdbcType=VARCHAR},
+		#{job_ins_name,jdbcType=VARCHAR},
+		
+		#{ope_process,jdbcType=VARCHAR},
+		#{res_speed,jdbcType=VARCHAR},
+		#{ser_cycle,jdbcType=VARCHAR},		
+		#{data_incre,jdbcType=VARCHAR},
+		#{com_trans,jdbcType=VARCHAR},
+		
+		#{ope_ins_name,jdbcType=VARCHAR},
+		#{ope_obj_name,jdbcType=VARCHAR},
+		#{info_content,jdbcType=VARCHAR},	
+		#{ave_freq_occur,jdbcType=VARCHAR},
+		#{peak_freq,jdbcType=VARCHAR},
+		
+		#{code_line_num,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ACTIVITY_DETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.activityDetail.model.activityDetail.ActivityDetail">
+		UPDATE W_ACTIVITY_DETAIL SET
+		F_ACTDEF_ID=#{actDef_Id,jdbcType=VARCHAR},
+		F_ACTIVITY_ID=#{activity_id,jdbcType=VARCHAR},
+		
+		F_ACTIVITY_NUM=#{activity_num,jdbcType=VARCHAR},
+		F_SERVER_SHAPE=#{server_shape,jdbcType=VARCHAR},
+		
+		F_SERVER_WAY=#{server_way,jdbcType=VARCHAR},
+		F_SERVER_CLASS=#{server_class,jdbcType=VARCHAR},
+		F_SERVER_SOURCE=#{server_source,jdbcType=VARCHAR},
+		F_SERVER_NATURE=#{server_nature,jdbcType=VARCHAR},
+		F_INFO_SHAPE=#{info_shape,jdbcType=VARCHAR},
+		
+		F_INFO_STAND=#{info_stand,jdbcType=VARCHAR},
+		F_INFO_TYPE=#{info_type,jdbcType=VARCHAR},
+		F_SERVER_TYPE=#{server_type,jdbcType=VARCHAR},
+		F_OP_COMP=#{op_comp,jdbcType=NUMERIC},
+		
+		
+		F_OP_INFO_SUM=#{op_info_sum,jdbcType=NUMERIC},	
+		F_WORK_ID=#{work_id,jdbcType=VARCHAR},
+		F_WORK_SUBSYS=#{work_subsys,jdbcType=NUMERIC},
+		F_ELEM_SUM=#{elem_sum,jdbcType=NUMERIC},
+		F_NON_S_ELEM_NUM=#{non_s_elem_num,jdbcType=NUMERIC},
+		
+		F_KNOWLEDGE_FLAG=#{knowledge_flag,jdbcType=VARCHAR},
+		
+		F_DATA_SOURCE=#{data_source,jdbcType=VARCHAR},
+		F_JOB_INS_NAME=#{job_ins_name,jdbcType=VARCHAR},
+		F_OPE_PROCESS=#{ope_process,jdbcType=VARCHAR},
+		
+		F_RES_SPEED=#{res_speed,jdbcType=VARCHAR},
+		F_SER_CYCLE=#{ser_cycle,jdbcType=VARCHAR},	
+		F_DATA_INCRE=#{data_incre,jdbcType=VARCHAR},
+		F_COM_TRANS=#{com_trans,jdbcType=VARCHAR},
+		F_OPE_INS_NAME=#{ope_ins_name,jdbcType=VARCHAR},
+		
+		F_OPE_OBJ_NAME=#{ope_obj_name,jdbcType=VARCHAR},
+		F_INFO_CONTENT=#{info_content,jdbcType=VARCHAR},		
+		F_AVE_FREQ_OCCUR=#{ave_freq_occur,jdbcType=VARCHAR},
+		F_PEAK_FREQ=#{peak_freq,jdbcType=VARCHAR},
+		F_CODE_LINE_NUM=#{code_line_num,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<update id="update1" parameterType="Map">
+		UPDATE W_ACTIVITY_DETAIL SET	
+		F_ACTIVITY_NAME=#{activity_name},		
+		F_WORK_NAME=#{work_name},	
+		F_WORK_SUBSYS_NAME=#{work_subsys_name}
+		WHERE
+		 f_actDef_id=#{actDef_Id} and f_activity_id = #{activity_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ActivityDetail">
+		SELECT <include refid="columns"/>
+		FROM W_ACTIVITY_DETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ActivityDetail">
+		SELECT <include refid="columns"/>
+		FROM W_ACTIVITY_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByactDefId" resultMap="ActivityDetail">
+		SELECT <include refid="columns"/>
+		FROM W_ACTIVITY_DETAIL   
+		WHERE
+		F_ACTDEF_ID=#{actDef_Id} and F_ACTIVITY_ID=#{activity_id}
+	</select>
+	<select id="getBy_ActDefId_ActivityId" parameterType="Map" resultMap="ActivityDetail">
+		SELECT *
+		FROM W_ACTIVITY_DETAIL   
+		WHERE
+		F_ACTDEF_ID=#{actDef_Id} and F_ACTIVITY_ID=#{activity_id}
+	</select>
+</mapper>

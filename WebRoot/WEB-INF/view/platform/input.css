@@ -1,0 +1,120 @@
+.base {
+	margin-left: 10px;
+	margin-top: 10px;
+	border: 1px solid #ddd;
+}
+
+.base legend {
+	margin-left: 5px;
+	font-weight: bold;
+	font-size: 12px;
+	color: #0066cc;
+}
+
+.base table {
+	margin-left: 10px;
+}
+
+.base table tr {
+	height: 40px;
+}
+
+.base table th {
+	width: 90px;
+	font-size: 13px;
+}
+
+.base table input {
+	/*width: 200px;*/
+}
+
+.base table select {
+	width: 200px;
+}
+
+.hidden {
+	display: none;
+}
+
+.button-td{
+	background: url("../../themes/default/images/icons-all.gif") no-repeat
+		scroll 0 0 transparent;
+	display: inline-block !important;
+	position: relative;
+	vertical-align: top;
+	border: medium none;	
+	height: 24px;
+	font-size:12px;
+	line-height: 24px;
+	text-align: center;
+	width: 95px;
+	float: right;
+	cursor:default;
+	margin:2px 20px 2px 2px;
+}
+
+.button-td-left{
+	float: left;
+	margin:2px;
+}
+
+.button-td-hover{
+	background-position: 0 -30px;
+}
+
+#icon-div{
+    height:250px;
+}
+#field-div{
+	border:1px solid #828790;
+	width:200px;
+   	height:198px;
+}
+.fields-ul
+{
+	width: 95%;
+	height:95%; 
+	margin: 0; 
+	padding: 0;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+#icon-div ul{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+
+#icon-div ul li{
+   float:left;
+   margin:5px;
+   list-style:none;
+   display:block;
+}
+
+#icon-div ul li a{
+  font-size:17px;
+}
+
+.selected {
+	border-color:  #86a9d1; 
+	background-color:#c3dcfc; 
+}
+
+label.custom-label{
+    padding-left: 15px;
+    text-indent: -15px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+label.custom-label input{
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}

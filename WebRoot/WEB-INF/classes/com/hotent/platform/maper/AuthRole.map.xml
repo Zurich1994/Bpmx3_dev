@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.AuthRole">
+	<resultMap id="AuthRole" type="com.hotent.platform.model.system.AuthRole">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="authId" column="AUTH_ID" jdbcType="NUMERIC"/>
+		<result property="roleId" column="ROLE_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,AUTH_ID,ROLE_ID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(authId)"> AND AUTH_ID  =#{authId} </if>
+			<if test="@Ognl@isNotEmpty(roleId)"> AND ROLE_ID  =#{roleId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.AuthRole">
+		INSERT INTO SYS_AUTH_ROLE
+		(ID,AUTH_ID,ROLE_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{authId,jdbcType=NUMERIC}, #{roleId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_AUTH_ROLE 
+		WHERE
+		ID=#{id}
+	</delete>
+	<delete id="delByAuthId" parameterType="java.lang.Long">
+		DELETE FROM SYS_AUTH_ROLE 
+		WHERE
+		AUTH_ID=#{authId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.AuthRole">
+		UPDATE SYS_AUTH_ROLE SET
+		AUTH_ID=#{authId,jdbcType=NUMERIC},
+		ROLE_ID=#{roleId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AuthRole">
+		SELECT <include refid="columns"/>
+		FROM SYS_AUTH_ROLE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AuthRole">
+		SELECT <include refid="columns"/>
+		FROM SYS_AUTH_ROLE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

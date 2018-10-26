@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsHolidayPolicy">
+	<resultMap id="AtsHolidayPolicy" type="com.hotent.platform.model.ats.AtsHolidayPolicy">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="code" column="CODE" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="orgId" column="ORG_ID" jdbcType="NUMERIC"/>
+		<result property="isDefault" column="IS_DEFAULT" jdbcType="NUMERIC"/>
+		<result property="isHalfDayOff" column="IS_HALF_DAY_OFF" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,CODE,NAME,ORG_ID,IS_DEFAULT,IS_HALF_DAY_OFF,MEMO
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(code)"> AND CODE  LIKE #{code}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND ORG_ID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND IS_DEFAULT  =#{isDefault} </if>
+			<if test="@Ognl@isNotEmpty(isHalfDayOff)"> AND IS_HALF_DAY_OFF  =#{isHalfDayOff} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsHolidayPolicy">
+		INSERT INTO ATS_HOLIDAY_POLICY
+		(ID,CODE,NAME,ORG_ID,IS_DEFAULT,IS_HALF_DAY_OFF,MEMO)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{orgId,jdbcType=NUMERIC}, #{isDefault,jdbcType=NUMERIC}, #{isHalfDayOff,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_HOLIDAY_POLICY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsHolidayPolicy">
+		UPDATE ATS_HOLIDAY_POLICY SET
+		CODE=#{code,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		ORG_ID=#{orgId,jdbcType=NUMERIC},
+		IS_DEFAULT=#{isDefault,jdbcType=NUMERIC},
+		IS_HALF_DAY_OFF=#{isHalfDayOff,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsHolidayPolicy">
+		SELECT <include refid="columns"/>
+		FROM ATS_HOLIDAY_POLICY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsHolidayPolicy">
+		SELECT <include refid="columns"/>
+		FROM ATS_HOLIDAY_POLICY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByDefault"  resultMap="AtsHolidayPolicy">
+		SELECT  <include refid="columns"/>
+		FROM ATS_HOLIDAY_POLICY
+		WHERE
+		IS_DEFAULT=1
+	</select>
+	<select id="getByName"  resultMap="AtsHolidayPolicy">
+		SELECT  <include refid="columns"/>
+		FROM ATS_HOLIDAY_POLICY
+		WHERE
+		NAME=#{name}
+	</select>
+</mapper>

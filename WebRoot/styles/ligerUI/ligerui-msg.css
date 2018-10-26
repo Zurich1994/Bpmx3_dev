@@ -1,0 +1,29 @@
+
+/* --------------
+   *   msg  *
+* ------------ */
+
+.msg .msgFooter, .msg .msgFooter_r, .msg .msgFooter_c { background:url(img/ligerui/msg/msgpanel.png) no-repeat;}
+.msg .msgContent { border-color:#b8d0d6; background:#eef4f5;}
+.msg .warn .msgInner { border-color:#e83e09; background:red;}
+.msg .error .msgInner { border-color:#e50000; background:#fefacf;}
+.msg .correct .msgInner, .msg .info .msgInner { border-color:#b8d0d6; background:red;}
+.msg .confirm .msgInner { border-color:#b8d0d6; background:#fefacf;}
+.msg h1 { border-color:#CCC; background:url(img/ligerui/msg/msgpanel_icon.png) no-repeat;}
+
+.msg { overflow:hidden; z-index:10000; display:block; width:300px; margin-left:-150px; position:absolute; top:0; left:50%;}
+.msg .msgContent { display:block; overflow:hidden; padding:5px 5px 1px 5px; border-style:solid; border-width:1px 1px;}
+.msg .msgInner { display:block; padding:0 9px 9px 9px; text-align:left; border-style:solid; border-width:1px;}
+.msg .msgInner .message { margin:10px; max-height: 200px; overflow: auto;}
+.msg h1 {margin: 0;font-size: 12px;display:block; overflow:hidden; height:30px; margin-bottom:10px; padding:0 0 0 25px; line-height:30px; border-style:solid; border-width:0 0 1px 0; line-height:30px;}
+.msg .error h1 { background-position:2px -42px;}
+.msg .info h1,
+.msg .warn h1 { background-position:2px 8px;}
+.msg .correct h1 { background-position:2px -92px;}
+.msg .confirm h1 { background-position:2px 8px;}
+.msg p { margin:10px;}
+
+.msg .toolBar { display:block; overflow:hidden; height:25px; padding-top:5px; text-align:right;}
+.msg .toolBar ul { float:right;}
+.msg .toolBar li { float:left;}
+.msg .toolBar .button, .msg .toolBar .buttonActive { margin-left:5px;}

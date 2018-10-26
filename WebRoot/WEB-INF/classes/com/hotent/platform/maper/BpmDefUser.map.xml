@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmDefUser">
+	<resultMap id="BpmDefUser" type="com.hotent.platform.model.bpm.BpmDefUser">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="authorizeId" column="AUTHORIZE_ID" jdbcType="NUMERIC"/>
+		<result property="ownerId" column="OWNER_ID" jdbcType="NUMERIC"/>
+		<result property="ownerName" column="OWNER_NAME" jdbcType="VARCHAR"/>
+		<result property="rightType" column="RIGHT_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		ID,AUTHORIZE_ID,OWNER_ID,OWNER_NAME,RIGHT_TYPE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(authorizeId)"> AND AUTHORIZE_ID  =#{authorizeId} </if>
+			<if test="@Ognl@isNotEmpty(ownerId)"> AND OWNER_ID  =#{ownerId} </if>
+			<if test="@Ognl@isNotEmpty(ownerName)"> AND OWNER_NAME LIKE #{ownerName}  </if>
+			<if test="@Ognl@isNotEmpty(rightType)"> AND RIGHT_TYPE  =#{rightType}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmDefUser">
+		INSERT INTO BPM_DEF_USER
+		(ID,AUTHORIZE_ID,OWNER_ID,OWNER_NAME,RIGHT_TYPE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{authorizeId,jdbcType=NUMERIC}, #{ownerId,jdbcType=NUMERIC}, #{ownerName,jdbcType=VARCHAR}, #{rightType,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEF_USER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmDefUser">
+		UPDATE BPM_DEF_USER SET
+		AUTHORIZE_ID=#{authorizeId,jdbcType=NUMERIC} , 
+		OWNER_ID=#{ownerId,jdbcType=NUMERIC} , 
+		OWNER_NAME=#{ownerName,jdbcType=VARCHAR} , 
+		RIGHT_TYPE=#{rightType,jdbcType=VARCHAR}  
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmDefUser">
+		SELECT <include refid="columns"/>
+		FROM BPM_DEF_USER
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmDefUser">
+		SELECT <include refid="columns"/>
+		FROM BPM_DEF_USER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	
+	<delete id="delByAuthorizeId" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEF_USER 
+		WHERE AUTHORIZE_ID=#{authorizeId}
+	</delete>
+	
+	
+	<sql id="getByCurUser">
+		<foreach collection="relationMap" index="key"  item="ent" separator="union">
+				SELECT *
+				FROM BPM_DEF_USER
+				where  RIGHT_TYPE=#{key}
+				and OWNER_ID in 
+				<foreach collection="ent"  item="id" separator="," open="(" close=")">
+					#{id}
+				</foreach>
+		</foreach>
+	</sql>
+
+</mapper>

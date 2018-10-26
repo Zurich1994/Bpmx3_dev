@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/wsdl
+END
+WSDLParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/wsdl/WSDLParser.java
+END
+OperationInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/wsdl/OperationInfo.java
+END
+ParameterInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/wsdl/ParameterInfo.java
+END
+ServiceInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/wsdl/ServiceInfo.java
+END

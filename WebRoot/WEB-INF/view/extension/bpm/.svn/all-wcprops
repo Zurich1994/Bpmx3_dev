@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm
+END
+processTypeAlreadyMattersListWithBus.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/processTypeAlreadyMattersListWithBus.jsp
+END
+processRunDataCompletedMattersView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/processRunDataCompletedMattersView.jsp
+END
+processTypePendingMattersListWithBus.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/processTypePendingMattersListWithBus.jsp
+END
+processRunCompletedMattersWithBusiness.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/processRunCompletedMattersWithBusiness.jsp
+END
+processRunDataAlreadyMattersView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/processRunDataAlreadyMattersView.jsp
+END
+processRunAlreadyMattersWithBusiness.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/processRunAlreadyMattersWithBusiness.jsp
+END
+processTypeCompletedMattersListWithBus.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/processTypeCompletedMattersListWithBus.jsp
+END
+taskPendingMattersWithBusiness.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/taskPendingMattersWithBusiness.jsp
+END
+taskDataGetMyTaskView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/extension/bpm/taskDataGetMyTaskView.jsp
+END

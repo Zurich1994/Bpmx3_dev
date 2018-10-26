@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/1636/bpmx_w/src/com/hotent/platform/model/form
+END
+SubTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/SubTable.java
+END
+CommonVar.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/CommonVar.java
+END
+BpmFormDefHi.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/BpmFormDefHi.java
+END
+BpmFormTableIndex.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/BpmFormTableIndex.java
+END
+DialogField.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/DialogField.java
+END
+QueryResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/QueryResult.java
+END
+FormDefCombinate.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/form/FormDefCombinate.java
+END
+BpmDataTemplate.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1536/bpmx_w/src/com/hotent/platform/model/form/BpmDataTemplate.java
+END
+BpmFormDialogCombinate.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/form/BpmFormDialogCombinate.java
+END
+BpmFormField.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/895/bpmx_w/src/com/hotent/platform/model/form/BpmFormField.java
+END
+TeamModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/TeamModel.java
+END
+PkValue.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/PkValue.java
+END
+FormField.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/895/bpmx_w/src/com/hotent/platform/model/form/FormField.java
+END
+SubTableSort.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/model/form/SubTableSort.java
+END
+BpmFormTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1493/bpmx_w/src/com/hotent/platform/model/form/BpmFormTable.java
+END
+SqlModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/SqlModel.java
+END
+BpmFormDef.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/1023/bpmx_w/src/com/hotent/platform/model/form/BpmFormDef.java
+END
+BpmFormDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/622/bpmx_w/src/com/hotent/platform/model/form/BpmFormDialog.java
+END
+BpmFormRights.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/1001/bpmx_w/src/com/hotent/platform/model/form/BpmFormRights.java
+END
+FilterJsonStruct.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/895/bpmx_w/src/com/hotent/platform/model/form/FilterJsonStruct.java
+END
+TableRelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/TableRelation.java
+END
+BpmPrintTemplate.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/895/bpmx_w/src/com/hotent/platform/model/form/BpmPrintTemplate.java
+END
+BpmFormRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/model/form/BpmFormRule.java
+END
+BpmFormData.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/895/bpmx_w/src/com/hotent/platform/model/form/BpmFormData.java
+END
+BpmFormTemplate.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1636/bpmx_w/src/com/hotent/platform/model/form/BpmFormTemplate.java
+END

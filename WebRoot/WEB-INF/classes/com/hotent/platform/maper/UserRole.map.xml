@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.UserRole">
+	<resultMap id="UserRole" type="com.hotent.platform.model.system.UserRole">
+		<id property="userRoleId" column="userRoleId" jdbcType="NUMERIC"/>
+		<result property="roleId" column="roleId" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		
+	</resultMap>
+	
+	
+	<sql id="columns">
+		roleId,userId,userRoleId
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(roleId)"> AND roleId  =#{roleId} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(userRoleId)"> AND userRoleId  =#{userRoleId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.UserRole">
+		INSERT INTO sys_user_role
+		(<include refid="columns"/>)
+		VALUES
+		(#{roleId,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{userRoleId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_ROLE 
+		WHERE
+		userRoleId=#{userRoleId}
+	</delete>
+	
+	<delete id="delByUserId" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_ROLE  WHERE userId=#{userId}
+	</delete>
+	
+	<delete id="delUserRoleByIds" parameterType="java.util.Map">
+		DELETE FROM SYS_USER_ROLE  WHERE userId=#{userId} and roleId=#{roleId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.UserRole">
+		UPDATE sys_user_role SET
+		roleId=#{roleId,jdbcType=NUMERIC} , 
+		userId=#{userId,jdbcType=NUMERIC} 
+		WHERE
+		userRoleId=#{userRoleId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="UserRole">
+		SELECT a.roleId,a.userId,a.userRoleId,b.fullname,b.account
+		FROM SYS_USER_ROLE a,SYS_USER b WHERE a.userId=b.userId
+		AND a.userRoleId=#{userRoleId}
+	</select>
+	
+	<select id="getAll" resultMap="UserRole" parameterType="java.util.Map">
+		SELECT urro.roleId,urro.userId,urro.userRoleId,ur.fullname,ur.account
+		FROM SYS_USER_ROLE	urro,SYS_USER ur
+		WHERE  urro.userId=ur.userId AND urro.roleId  =#{roleId}
+		<if test="@Ognl@isNotEmpty(fullname)"> AND fullname  like #{fullname} </if>
+		<if test="@Ognl@isNotEmpty(account)"> AND account  like #{account} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ur.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by userRoleId  desc
+		</if>
+	</select>
+	
+	<select id="getUserRoleModel" parameterType="java.util.Map" resultMap="UserRole">
+	    select <include refid="columns"/>
+	    from SYS_USER_ROLE
+	    where  userId=#{userId}  and roleId=#{roleId}  
+	</select>
+	
+	<select id="getUserIdsByRoleId" parameterType="java.lang.Long" resultType="java.lang.Long">
+		select distinct userId from SYS_USER_ROLE where roleId=#{roleId}
+	</select>
+	
+	<select id="getUserByRoleIds" parameterType="String" resultType="com.hotent.platform.model.system.UserRole">
+		select distinct a.userId,b.fullname from SYS_USER_ROLE A,SYS_USER B where A.userId=b.userId and  roleId in (${roleIds})
+	</select>
+	
+    <select id="getUserRoleByRoleId" resultMap="UserRole">
+    	select * from SYS_USER_ROLE where roleId=#{roleId}
+    </select>
+    
+    <delete id="delByRoleId" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_ROLE 
+		WHERE
+		roleId=#{roleId}
+	</delete>
+	
+	<select id="getByUserId" parameterType="Long" resultMap="UserRole">
+    	 select a.*,b.roleName,c.sysname systemName
+      from SYS_USER_ROLE a,SYS_ROLE b left join sys_subsystem c on b.systemid=c.systemid where a.roleid=b.roleId    and  userId=#{userId}
+    </select>
+    
+ 
+</mapper>

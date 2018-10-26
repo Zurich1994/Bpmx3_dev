@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.worktime.CalendarSetting">
+	<resultMap id="CalendarSetting" type="com.hotent.platform.model.worktime.CalendarSetting">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="calendarId" column="calendarId" jdbcType="NUMERIC"/>
+		<result property="years" column="years" jdbcType="NUMERIC"/>
+		<result property="months" column="months" jdbcType="NUMERIC"/>
+		<result property="days" column="days" jdbcType="NUMERIC"/>
+		<result property="type" column="type" jdbcType="NUMERIC"/>
+		<result property="workTimeId" column="workTimeId" jdbcType="NUMERIC"/>
+		<result property="calDay" column="calDay" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="CalendarSettingExt" extends="CalendarSetting"  type="com.hotent.platform.model.worktime.CalendarSetting">
+	  <collection property="workTimeList" ofType="com.hotent.platform.model.worktime.WorkTime" javaType="ArrayList" >
+	 	<result property="startTime" column="startTime" />
+	   	<result property="endTime" column="endTime" />
+	  </collection>
+	</resultMap>
+	
+	<sql id="columns">
+		id,calendarId,years,months,days,type,workTimeId,calDay
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(calendarId)"> AND calendarId  =#{calendarId} </if>
+			<if test="@Ognl@isNotEmpty(years)"> AND years  =#{years} </if>
+			<if test="@Ognl@isNotEmpty(months)"> AND months  =#{months} </if>
+			<if test="@Ognl@isNotEmpty(days)"> AND days  =#{days} </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND type  =#{type} </if>
+			<if test="@Ognl@isNotEmpty(workTimeId)"> AND workTimeId  =#{workTimeId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.worktime.CalendarSetting">
+		INSERT INTO sys_calendar_setting
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{calendarId,jdbcType=NUMERIC}, #{years,jdbcType=NUMERIC}, #{months,jdbcType=NUMERIC}, #{days,jdbcType=NUMERIC}, #{type,jdbcType=NUMERIC}, #{workTimeId,jdbcType=NUMERIC}, #{calDay,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_CALENDAR_SETTING 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.worktime.CalendarSetting">
+		UPDATE sys_calendar_setting SET
+		calendarId=#{calendarId,jdbcType=NUMERIC} , 
+		years=#{years,jdbcType=NUMERIC} , 
+		months=#{months,jdbcType=NUMERIC} , 
+		days=#{days,jdbcType=NUMERIC} , 
+		type=#{type,jdbcType=NUMERIC} , 
+		workTimeId=#{workTimeId,jdbcType=NUMERIC} , 
+		calDay=#{calDay,jdbcType=VARCHAR} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="CalendarSetting">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR_SETTING
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="CalendarSetting">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR_SETTING   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getByCalendarId" parameterType="Map" resultMap="CalendarSettingExt">
+		select a.id,a.calendarId,a.years,a.months,a.days,a.type,a.workTimeId,
+		b.startTime,b.endTime from SYS_CALENDAR_SETTING a,
+		SYS_WORKTIME b where a.workTimeId=b.settingId and a.calendarId=#{calendarId} and a.calDay >=#{startTime} and type=1
+		order by a.calDay,b.startTime
+	</select>
+	
+	<select id="getCalByIdYearMon" parameterType="Map" resultMap="CalendarSetting">
+		select a.id,a.calendarId,a.years,a.months,a.days,a.type,a.workTimeId,b.name wtName
+		from SYS_CALENDAR_SETTING a 
+		left join SYS_WORKTIME_SETTING b on a.WORKTIMEID=b.id 
+		where a.calendarId=#{id} and a.years=#{year} and a.months=#{month} 
+		order by a.days
+	</select>
+	
+	<select id="getSegmentByCalId" parameterType="Map" resultMap="CalendarSettingExt">
+		select a.id,a.calendarId,a.years,a.months,a.days,a.type,a.workTimeId,a.calDay,
+    	b.startTime,b.endTime 
+    	from SYS_CALENDAR_SETTING a 
+    	left join SYS_WORKTIME b on a.WORKTIMEID=B.SETTINGID 
+    	where a.calendarId=#{calendarId} AND TYPE=1 and a.calDay between #{startDate} and #{endDate}
+    	order by a.calDay,b.startTime
+	</select>
+	
+	
+	<delete id="delByCalidYearMon" parameterType="Map">
+		DELETE FROM SYS_CALENDAR_SETTING 
+		WHERE calendarId=#{id} and years=#{year} and months=#{month}
+	</delete>
+	
+	<delete id="delByCalId" parameterType="java.lang.Long">
+		DELETE FROM SYS_CALENDAR_SETTING 
+		WHERE calendarId=#{calendarId}
+	</delete>
+	
+</mapper>

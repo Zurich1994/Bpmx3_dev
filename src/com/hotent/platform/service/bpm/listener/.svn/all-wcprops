@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/2104/bpmx_w/src/com/hotent/platform/service/bpm/listener
+END
+AutoTaskListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/2104/bpmx_w/src/com/hotent/platform/service/bpm/listener/AutoTaskListener.java
+END
+CallSubProcessEndListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/listener/CallSubProcessEndListener.java
+END
+TaskCompleteListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/919/bpmx_w/src/com/hotent/platform/service/bpm/listener/TaskCompleteListener.java
+END
+BaseTaskListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/919/bpmx_w/src/com/hotent/platform/service/bpm/listener/BaseTaskListener.java
+END
+StartEventListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/919/bpmx_w/src/com/hotent/platform/service/bpm/listener/StartEventListener.java
+END
+SubProcessEndListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/listener/SubProcessEndListener.java
+END
+BaseNodeEventListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/1365/bpmx_w/src/com/hotent/platform/service/bpm/listener/BaseNodeEventListener.java
+END
+CallSubProcessStartListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BPMX_2015_WYX/!svn/ver/1366/bpmx_w/src/com/hotent/platform/service/bpm/listener/CallSubProcessStartListener.java
+END
+SubProcessStartListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/bpm/listener/SubProcessStartListener.java
+END
+TaskCreateListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/919/bpmx_w/src/com/hotent/platform/service/bpm/listener/TaskCreateListener.java
+END
+TaskAssignListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/919/bpmx_w/src/com/hotent/platform/service/bpm/listener/TaskAssignListener.java
+END
+TaskSignCreateListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/919/bpmx_w/src/com/hotent/platform/service/bpm/listener/TaskSignCreateListener.java
+END
+EndEventListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/1367/bpmx_w/src/com/hotent/platform/service/bpm/listener/EndEventListener.java
+END

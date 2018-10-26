@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.core.bpm.model.ProcessTask">
+
+  <resultMap id="TaskEntity" type="com.hotent.core.bpm.model.ProcessTask">
+	    <id property="id" column="ID_" jdbcType="VARCHAR"/>
+	   <result property="revision" column="REV_" jdbcType="INTEGER"/>
+	   <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+	   <result property="parentTaskId" column="PARENT_TASK_ID_" jdbcType="VARCHAR"/>
+	   <result property="description" column="DESCRIPTION_" jdbcType="VARCHAR"/>
+	   <result property="priority" column="PRIORITY_" jdbcType="INTEGER"/>
+	   <result property="createTime" column="CREATE_TIME_" jdbcType="TIMESTAMP" />
+	   <result property="owner" column="OWNER_" jdbcType="VARCHAR"/>
+	   <result property="assignee" column="ASSIGNEE_" jdbcType="VARCHAR"/>
+	   <result property="delegationState" column="DELEGATION_" jdbcType="VARCHAR"/>
+	   <result property="executionId" column="EXECUTION_ID_" jdbcType="VARCHAR" />
+	   <result property="processInstanceId" column="PROC_INST_ID_" jdbcType="VARCHAR" />
+	   <result property="processDefinitionId" column="PROC_DEF_ID_" jdbcType="VARCHAR"/>
+	   <result property="taskDefinitionKey" column="TASK_DEF_KEY_" jdbcType="VARCHAR"/>
+	   <result property="dueDate" column="DUE_DATE_" jdbcType="TIMESTAMP"/>
+	   <result property="subject" column="subject" jdbcType="VARCHAR"/>
+	   <result property="processName" column="processName" jdbcType="VARCHAR"/>
+	   <result property="allowDivert" column="allowDivert" jdbcType="NUMERIC"/>
+		<result property="ischeck" column="ischeck" jdbcType="NUMERIC"/>
+		<result property="defId" column="defId" jdbcType="NUMERIC"/>
+		<result property="runId" column="runId" jdbcType="NUMERIC"/>
+		<result property="allowBatchApprove" column="allowBatchApprove" jdbcType="NUMERIC"/>
+	 <result property="typeName" column="typeName" jdbcType="VARCHAR"/>
+	   <result property="orgName" column="orgName" jdbcType="VARCHAR"/>
+	   <result property="tagIds" column="tagIds" jdbcType="VARCHAR" />
+	   <result property="creatorId" column="creatorId" jdbcType="NUMERIC" />
+	   <result property="creator" column="creator" jdbcType="VARCHAR" />
+	   <result property="taskStatus" column="taskStatus" jdbcType="NUMERIC"/> 
+	   <result property="endCreateTime" column="endCreateTime" jdbcType="TIMESTAMP"/> 
+	   <result property="globalFlowNo" column="globalFlowNo" jdbcType="VARCHAR"/>
+  </resultMap>
+	
+	  <insert id="add" parameterType="com.hotent.core.bpm.model.ProcessTask">
+	    insert into ACT_RU_TASK (ID_, REV_, NAME_, PARENT_TASK_ID_, DESCRIPTION_, PRIORITY_, CREATE_TIME_, OWNER_,
+	                      ASSIGNEE_, DELEGATION_, EXECUTION_ID_, PROC_INST_ID_, PROC_DEF_ID_, TASK_DEF_KEY_, DUE_DATE_)
+	    values (#{id, jdbcType=VARCHAR},
+	            1,
+	            #{name, jdbcType=VARCHAR},
+	            #{parentTaskId, jdbcType=VARCHAR},
+	            #{description, jdbcType=VARCHAR},
+	            #{priority, jdbcType=INTEGER},
+	            #{createTime, jdbcType=TIMESTAMP},
+	            #{owner, jdbcType=VARCHAR},
+	            #{assignee, jdbcType=VARCHAR},
+	            #{delegationState, jdbcType=VARCHAR},
+	            #{executionId, jdbcType=VARCHAR},
+	            #{processInstanceId, jdbcType=VARCHAR},
+	            #{processDefinitionId, jdbcType=VARCHAR},
+	            #{taskDefinitionKey, jdbcType=VARCHAR},
+	            #{dueDate, jdbcType=TIMESTAMP}
+	           )
+	  </insert>
+	 <update id="updTaskExecution" parameterType="String">
+		 update act_ru_task set execution_id_ =PROC_INST_ID_ where id_=#{id, jdbcType=VARCHAR}
+	</update> 
+  
+	<update id="setDueDate" parameterType="java.util.Map">
+		update ACT_RU_TASK set DUE_DATE_=#{dueDate} where ID_=#{taskId}
+	</update>
+	<select id="getAll" parameterType="java.util.Map" resultMap="TaskEntity">
+		SELECT task.*,run.subject subject,run.processName processName,run.status taskStatus,run.globalFlowNo
+		FROM ACT_RU_TASK task left join BPM_PRO_RUN run
+		on task.PROC_INST_ID_=run.actInstId
+		left join bpm_definition def on task.PROC_DEF_ID_=def.actDefId
+		where 1=1 and def.status!=3
+		<if test="@Ognl@isNotEmpty(id)"> AND task.id_ LIKE #{id} </if>
+		<if test="@Ognl@isNotEmpty(name)"> AND task.name_ LIKE #{name} </if>
+		<if test="@Ognl@isNotEmpty(assignee)"> AND task.assignee_  in 
+			<foreach collection="assignee" index="index" item="assigneeItem" open="(" close=")" separator=",">
+				#{assigneeItem}
+			</foreach>
+		</if>
+				
+		<!-- 按用户授权过滤用户的流程 ：isNeedRight为空时不需要按权限查询，否则按流程的分管授权情况查询-->
+		<if test="@Ognl@isNotEmpty(isNeedRight)">
+		 	<if test="@Ognl@isNotEmpty(actRights)">
+		 		AND def.defKey in(${actRights})  
+			</if>
+			<if test="@Ognl@isEmpty(actRights)">
+		 		AND def.defKey = ''  
+			</if>			
+		</if>		
+		
+		<if test="@Ognl@isNotEmpty(taskStatus)"> AND run.status = #{taskStatus} </if>
+		<if test="@Ognl@isNotEmpty(createTime)"> AND task.create_time_  >=#{createTime,jdbcType=TIMESTAMP} </if>
+		<if test="@Ognl@isNotEmpty(endCreateTime)">and task.create_time_ &lt;=#{endCreateTime,jdbcType=TIMESTAMP}</if>
+		<if test="@Ognl@isNotEmpty(subject)"> AND run.subject LIKE #{subject} </if>
+		<if test="@Ognl@isNotEmpty(processName)"> AND run.processName LIKE #{processName} </if>
+		<if test="@Ognl@isNotEmpty(createId)"> AND run.CREATORID = #{createId} </if>
+		<if test="@Ognl@isNotEmpty(globalFlowNo)"> AND run.GLOBALFLOWNO LIKE #{globalFlowNo} </if>
+		
+		<if test="@Ognl@isEmpty(orderField)">
+			order by task.CREATE_TIME_ desc
+		</if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>		
+	</select>
+
+    <sql id="getAllMyTask_Tables">
+	           SELECT task.*,
+	                run.subject subject,
+	                run.processName processName,
+	                TYPE.typeid typeId,
+	                TYPE.typeName typeName,
+	                run.creator,
+	                run.creatorId,
+	               ( case when tread.id is NULL then 0 else 1 end) hasRead,
+	                run.status taskStatus,TYPE.nodePath
+	           FROM ACT_RU_TASK task
+	                LEFT JOIN bpm_task_read tread ON task.id_ =tread.TASKID and tread.userId=#{userId}  
+	                LEFT JOIN BPM_PRO_RUN run ON task.PROC_INST_ID_ = run.actInstId
+	                LEFT JOIN sys_gl_type TYPE ON TYPE.typeid = run.typeid
+	                LEFT JOIN BPM_DEFINITION def on task.PROC_DEF_ID_=def.actDefId
+	</sql>
+	
+    <select id="getTaskByUserInstId" parameterType="java.util.Map" resultMap="TaskEntity">	
+		SELECT  task.*
+		FROM ACT_RU_TASK task
+		where task.ASSIGNEE_ = #{userId}  and task.PROC_INST_ID_ = #{actInstId}
+		union all 
+		SELECT  task.*
+		FROM ACT_RU_TASK task join act_ru_identitylink ident on task.id_=ident.TASK_ID_
+		where  ident.USER_ID_ = #{userId} and task.PROC_INST_ID_ = #{actInstId} and task.ASSIGNEE_ =0 
+	</select>
+    
+	<!-- 待办事宜  修改该方法 我的待办事宜任务数 getAllMyTaskCount -->
+	<select id="getAllMyTask" parameterType="java.util.Map" resultMap="TaskEntity">
+		 select distinct * from
+	    (<include refid="getAllMyTask_Tables"/>
+	          WHERE task.ASSIGNEE_ = #{userId} and task.DESCRIPTION_!='39' and def.status!=3
+	          
+	         UNION ALL
+	        <include refid="getAllMyTask_Tables"/>
+	           		JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+	          WHERE ident.USER_ID_ = #{userId} 
+	          		and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+	          		
+	          UNION ALL
+	          
+	           <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'org' and ident.group_id_ in (select uo.orgid from SYS_USER_POS uo  where uo.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+                
+                UNION ALL
+                
+	           <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'role' and ident.group_id_ in (select ur.roleid from sys_user_role ur where ur.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39' and def.status!=3
+                
+                 UNION ALL
+                 
+	          <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'pos' and ident.group_id_ in (select up.posid from sys_user_pos up where up.userid= #{userId} and up.isdelete=0)
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39'  and def.status!=3
+                
+                 UNION ALL
+                 
+	          <include refid="getAllMyTask_Tables"/>
+             	  JOIN act_ru_identitylink ident ON task.id_ = ident.TASK_ID_
+            	WHERE ident.type_ = 'job' and ident.group_id_ in (select p.jobid from SYS_USER_POS uo inner join sys_pos p on p.posid=uo.posid  where uo.userid= #{userId} )
+                and task.ASSIGNEE_ =0 and task.DESCRIPTION_!='39'  and def.status!=3
+	           )
+	  		  tmp
+			<where>
+				<if test="@Ognl@isNotEmpty(subject)"> AND upper(tmp.subject) LIKE #{subject}  ESCAPE '|' </if>
+				<if test="@Ognl@isNotEmpty(processName)"> AND upper(tmp.processName) LIKE #{processName} </if>
+				<if test="@Ognl@isNotEmpty(nodePath)">AND tmp.nodePath like #{nodePath} </if>
+				<if test="@Ognl@isNotEmpty(creatorId)">AND tmp.creatorId =#{creatorId} </if>
+				<if test="@Ognl@isNotEmpty(beginCreateTime)">and tmp.CREATE_TIME_>=#{beginCreateTime,jdbcType=TIMESTAMP}</if>
+				<if test="@Ognl@isNotEmpty(endCreateTime)">and tmp.CREATE_TIME_ &lt;=#{endCreateTime,jdbcType=TIMESTAMP}</if>
+				<if test="@Ognl@isNotEmpty(name)">AND tmp.NAME_ = #{name} </if>
+				<if test="@Ognl@isNotEmpty(type)">
+					AND tmp.description_ = #{type}
+				</if>	
+				<if test="@Ognl@isNotEmpty(status)">
+					AND tmp.taskStatus = #{status}
+				</if>	
+				<if test="@Ognl@isNotEmpty(hasRead)"> AND tmp.hasRead =#{hasRead} </if>
+			</where>
+			<if test="@Ognl@isEmpty(orderField)">
+				order by tmp.PRIORITY_ desc, tmp.CREATE_TIME_ desc 
+			</if>
+			<if test="@Ognl@isNotEmpty(orderField)">
+				order by ${orderField} ${orderSeq}
+			</if>
+	</select>
+	
+	<select id="getMyMobileTask" parameterType="java.util.Map" resultMap="TaskEntity">
+		select * from (
+			SELECT  task.*,
+			run.createtime createDate,
+            run.subject subject,
+            run.processName processName,
+            run.creator,
+            run.creatorId
+			FROM ACT_RU_TASK task 
+			left join BPM_PRO_RUN run     on task.PROC_INST_ID_=run.actInstId
+			where task.ASSIGNEE_ = #{userId} 
+			union all
+			SELECT  task.*,
+			run.createtime createDate,
+            run.subject subject,
+            run.processName processName,
+            run.creator,
+            run.creatorId
+			FROM ACT_RU_TASK task 
+			left join BPM_PRO_RUN run     on task.PROC_INST_ID_=run.actInstId
+			left join act_ru_identitylink ident on task.id_=ident.TASK_ID_  
+			where ident.USER_ID_ = #{userId} and task.ASSIGNEE_ =0 
+		)
+		 result 
+		<where>
+			<if test="@Ognl@isNotEmpty(subject)"> AND subject LIKE #{subject} </if>
+		</where>
+		<if test="@Ognl@isEmpty(orderField)">
+				order by CREATE_TIME_ desc
+		</if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+	</select>
+	<select id="getMyMobileTaskCount" resultType="java.lang.Integer">
+		select count(*)  from (
+			SELECT  task.*,run.subject subject,run.processName processName
+			FROM ACT_RU_TASK task 
+			left join BPM_PRO_RUN run     on task.PROC_INST_ID_=run.actInstId
+			where task.ASSIGNEE_ = #{userId} 
+			union all
+			SELECT  task.*,run.subject subject,run.processName processName
+			FROM ACT_RU_TASK task 
+			left join BPM_PRO_RUN run     on task.PROC_INST_ID_=run.actInstId
+			left join act_ru_identitylink ident on task.id_=ident.TASK_ID_  
+			where ident.USER_ID_ = #{userId} and task.ASSIGNEE_ =0 
+		)
+	</select>
+	
+	
+	<select id="getAllMyEvent" parameterType="java.util.Map" resultMap="TaskEntity">
+	
+		SELECT distinct task.*,run.subject subject,run.processName processName
+		FROM ACT_RU_TASK task left join BPM_PRO_RUN run
+		on task.PROC_INST_ID_=run.actInstId
+        left join act_ru_identitylink ident 
+        on task.id_=ident.TASK_ID_
+		where (task.ASSIGNEE_ = #{userId} 
+		or ( (task.ASSIGNEE_ is NULL) and ( task.OWNER_ = #{userId} or ident.USER_ID_ = #{userId})))
+		AND ((task.CREATE_TIME_ >= #{startDate} AND task.CREATE_TIME_ &lt;= #{endDate}) 
+    	OR (task.DUE_DATE_ >= #{startDate} and task.DUE_DATE_ &lt;= #{endDate})) 
+		ORDER BY task.CREATE_TIME_ 
+		
+	</select>
+	
+	<select id="getReminderTask"  resultMap="TaskEntity">
+		select * from ACT_RU_TASK a where exists (select 1 from bpm_task_due b where a.proc_def_id_=b.actdefid and a.task_def_key_=b.nodeid)
+	</select>
+	
+	<select id="getTasksByRunId" parameterType="java.lang.Long" resultMap="TaskEntity">
+		SELECT task.*,run.subject subject,run.processName processName
+		FROM ACT_RU_TASK task left join BPM_PRO_RUN run
+		ON task.PROC_INST_ID_=run.actInstId
+		where run.runId=#{runId}
+	</select>
+	
+	
+	<select id="getByTaskNameOrTaskIds" parameterType="java.util.Map" resultMap="TaskEntity">
+		SELECT distinct task.*,run.subject subject,run.processName processName
+		FROM ACT_RU_TASK task left join BPM_PRO_RUN run
+		ON task.PROC_INST_ID_=run.actInstId
+		where task.ASSIGNEE_ = #{userId} and ( task.NAME_ like #{taskName} or  task.ID_ in (${taskIds}))
+		order by task.CREATE_TIME_ desc
+	</select>
+	
+	<update id="updateTaskAssignee">
+		update ACT_RU_TASK set ASSIGNEE_=#{userId} where ID_=#{taskId}
+	</update>
+	
+	<update id="updateTaskDescription">
+		update ACT_RU_TASK set DESCRIPTION_=#{description} where ID_=#{taskId}
+	</update>
+	
+	<update id="updateTaskAssigneeNull">
+		update ACT_RU_TASK set ASSIGNEE_=null where ID_=#{taskId}
+	</update>
+	<!-- update the task definition key to new key -->
+	<update id="updateNewTaskDefKeyByInstIdNodeId">
+		update ACT_RU_TASK set TASK_DEF_KEY_=#{newTaskDefKey} where PROC_INST_ID_=#{actInstId} and TASK_DEF_KEY_=#{oldTaskDefKey}
+	</update>
+	
+	<update id="updateOldTaskDefKeyByInstIdNodeId">
+		update ACT_RU_TASK set TASK_DEF_KEY_=#{oldTaskDefKey} where PROC_INST_ID_=#{actInstId} and TASK_DEF_KEY_ like #{newTaskDefKey}
+	</update>
+	
+	<select id="updateTaskOwner">
+		update ACT_RU_TASK set OWNER_=#{userId} where ID_=#{taskId}
+	</select>
+	
+	<select id="getByTaskId" resultMap="TaskEntity">
+		SELECT  task.*,run.subject subject,run.processName processName
+		FROM ACT_RU_TASK task left join BPM_PRO_RUN run
+		ON task.PROC_INST_ID_=run.actInstId where task.ID_=#{taskId}
+	</select>
+	
+	<!-- add by ray 2012-08-09 -->
+	<select id="getByInstanceId" resultMap="TaskEntity">
+		SELECT * FROM ACT_RU_TASK task where  task.PROC_INST_ID_=#{instanceId} and EXECUTION_ID_ >0
+	</select>
+	<!-- add by ray 2012-08-09 -->
+	<delete id="delByInstanceId">
+		DELETE FROM ACT_RU_TASK  where PROC_INST_ID_=#{instanceId}
+	</delete>
+	
+	<delete id="delCustTaskByInstId">
+		DELETE FROM ACT_RU_TASK  where PROC_INST_ID_=#{instanceId} and DESCRIPTION_ in (15,38)
+	</delete>
+	
+	<delete id="delSubCustTaskByInstId">
+		DELETE FROM ACT_RU_TASK  where PARENT_TASK_ID_=#{instanceId} and DESCRIPTION_ in (15,38) 
+	</delete>
+	
+	<delete id="delCandidateByInstanceId">
+		delete from act_ru_identitylink   where task_id_ in (select id_ from act_ru_task where PROC_INST_ID_=#{instanceId}) or PROC_INST_ID_=#{instanceId}
+	</delete>
+	
+	<delete id="delById">
+		DELETE FROM ACT_RU_TASK  where ID_=#{id}
+	</delete>
+	
+	<delete id="delByActDefId">
+		DELETE FROM ACT_RU_TASK  where PROC_DEF_ID_=#{actDefId}
+	</delete>
+	
+	<delete id="delCandidateByActDefId">
+		delete from act_ru_identitylink  where PROC_INST_ID_ =(  select a.PROC_INST_ID_ from    ACT_RU_TASK  a 
+		where a.PROC_DEF_ID_=#{actDefId})
+	</delete>
+	
+	<select id="getHasCandidateExecutor" resultType="java.util.HashMap">
+		SELECT COUNT(*) AMOUNT,t.task_id_ TASKID FROM act_ru_identitylink t  where t.task_id_ in (${taskIds}) group by t.task_id_ 		
+	</select>
+	
+	<select id="getMyTaskCount" resultType="com.hotent.platform.model.bpm.TaskAmount">
+		select typeId,sum(hasread)tread,count(*) total,count(*)-sum(hasread) notRead from (
+				SELECT distinct run.typeid as typeId,case when tread.id is null then 0 else 1 end hasRead ,task.id_
+			    FROM ACT_RU_TASK task 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			        where task.ASSIGNEE_ = #{userId}
+			    union 
+			    
+			    SELECT distinct run.typeid as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			        where  ident.USER_ID_ =#{userId} and task.ASSIGNEE_ =0
+			        
+			    union 
+			    
+			    SELECT distinct run.typeid as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_
+			    FROM ACT_RU_TASK task 
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run on task.PROC_INST_ID_=run.actInstId
+			        where  
+			        ident.type_ ='org' and ident.group_id_  in (select ur.orgId from SYS_USER_POS ur where ur.userid= #{userId})
+			        and task.ASSIGNEE_ =0
+			    
+			    union 
+			    
+			    SELECT distinct run.typeid as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			    where  
+			        ident.type_ ='role' and ident.group_id_  in (select ur.roleId from sys_user_role ur where ur.userid= #{userId})
+			        and task.ASSIGNEE_ =0
+			    
+			    union 
+			    
+			    SELECT distinct run.typeid as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			    where  
+			        ident.type_ ='pos' and ident.group_id_  in (select ur.posId from sys_user_pos ur where ur.userid= #{userId})
+			        and task.ASSIGNEE_ =0
+			        
+			    union 
+			    
+			    SELECT distinct run.typeid as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			    where  
+			        ident.type_ ='job' and ident.group_id_  in (select p.jobid from SYS_USER_POS uo inner join sys_pos p on p.posid=uo.posid  where uo.userid= #{userId})
+			        and task.ASSIGNEE_ =0    
+			    )
+			 tmp group by typeid
+	</select>
+	
+	<!-- 取得某人是否有任务的的参与权限 -->
+	<select id="getHasRightsByTask" resultType="java.lang.Integer" >
+		select count(*) from(
+			select task.id_ FROM ACT_RU_TASK task 
+			where task.id_=#{taskId}   and task.ASSIGNEE_ =#{userId}
+			
+			union all
+			
+			select task.id_ FROM ACT_RU_TASK task 
+			join act_ru_identitylink ident 
+				on task.id_=ident.TASK_ID_
+			where task.id_=#{taskId}   and
+			ident.USER_ID_ =#{userId} and task.ASSIGNEE_ =0 
+			
+			union all
+			
+			select task.id_ FROM ACT_RU_TASK task 
+			join act_ru_identitylink ident 
+				on task.id_=ident.TASK_ID_
+			where 
+				task.id_=#{taskId}   
+				and
+				ident.type_ ='org' and ident.group_id_  in (select ur.orgId from SYS_USER_POS ur where ur.userid= #{userId})
+			
+			union all
+			
+			select task.id_ FROM ACT_RU_TASK task 
+			join act_ru_identitylink ident 
+				on task.id_=ident.TASK_ID_
+			where task.id_=#{taskId}   
+				and
+				ident.type_ ='role' and ident.group_id_  in (select ur.roleId from sys_user_role ur where ur.userid= #{userId})
+			
+			union all
+			
+			select task.id_ FROM ACT_RU_TASK task 
+			join act_ru_identitylink ident on task.id_=ident.TASK_ID_
+			where task.id_=#{taskId}   and
+			ident.type_ ='pos' and ident.group_id_  in (select ur.posId from sys_user_pos ur where ur.userid= #{userId})
+			
+			union all
+			
+			select task.id_ FROM ACT_RU_TASK task 
+			join act_ru_identitylink ident on task.id_=ident.TASK_ID_
+			where task.id_=#{taskId}   and
+			ident.type_ ='job' and ident.group_id_  in (select p.jobid from SYS_USER_POS uo inner join sys_pos p on p.posid=uo.posid  where uo.userid= #{userId})
+		)
+		 result
+	</select>
+	
+	<update id="updateTask">
+		update ACT_RU_TASK set ASSIGNEE_=#{userId},DESCRIPTION_=#{description}, CREATE_TIME_=#{updateTime} where ID_=#{taskId}
+	</update>
+	<!-- 删除指定人某个节点的沟通任务 -->
+	<delete id="delCommuTaskByInstNodeUser" >
+		delete from ACT_RU_TASK  where proc_inst_id_=#{instInstId} and task_def_key_=#{nodeId} and assignee_=#{userId}
+		and  description_='15'
+	</delete>
+	
+<!-- 删除某个任务的沟通任务 -->
+	<delete id="delCommuTaskByParentTaskId" >
+		delete from ACT_RU_TASK where ACT_RU_TASK.parent_task_id_=#{parentTaskId} and  ACT_RU_TASK.description_='15'
+	</delete>
+		
+	<!-- 删除指定parentTaskId的流转任务 -->
+	<delete id="delTransToTaskByParentTaskId" >
+		delete from ACT_RU_TASK where ACT_RU_TASK.parent_task_id_=#{parentTaskId} and  ACT_RU_TASK.description_='38'
+	</delete>
+	
+	<select id="getByInstanceIdTaskDefKey" resultMap="TaskEntity">
+		SELECT * FROM ACT_RU_TASK task where  task.PROC_INST_ID_=#{instanceId} and task.TASK_DEF_KEY_ =#{taskDefKey} and task.description_ ='-1'  and task.parent_task_id_ is null 
+	</select>
+	
+	<select id="getByParentTaskIdAndDesc" resultMap="TaskEntity">
+		SELECT * FROM ACT_RU_TASK task where task.description_ =#{description}  and task.parent_task_id_ =#{parentTaskId} 
+	</select>
+	
+	<select id="getByParentTaskId" resultMap="TaskEntity">
+		SELECT * FROM ACT_RU_TASK task where (task.description_ ='38' or task.description_ ='39')  and task.parent_task_id_ =#{parentTaskId} 
+	</select>
+	
+	<select id="getTaskByParentIdDescAndUser" resultMap="TaskEntity">
+		SELECT * FROM ACT_RU_TASK task where task.description_ =#{description}  and task.parent_task_id_ =#{parentTaskId} and assignee_=#{userId} 
+	</select>
+	
+	<select id="getTaskByParentIdAndUser" resultMap="TaskEntity">
+		SELECT * FROM ACT_RU_TASK task where (task.description_ ='38' or task.description_ ='39')  and task.parent_task_id_ =#{parentTaskId} and assignee_=#{userId} 
+	</select>
+	<update id="updateTaskPriority">
+		update ACT_RU_TASK set priority_=#{level} where ID_=#{taskId}
+	</update>
+		<!-- add by lzc -->
+	<select id="getMyProcessCount" resultType="com.hotent.platform.model.bpm.TaskAmount">
+			select typeId,sum(hasread)tread,count(*) total,count(*)-sum(hasread) notRead from 
+			(
+				SELECT distinct CONCAT_WS(':',run.typeid,task.proc_def_id_) as typeId,case when tread.id is null then 0 else 1 end hasRead ,task.id_ 
+			    FROM ACT_RU_TASK task 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			        where task.ASSIGNEE_ = #{userId}
+			    union 
+			    
+			    SELECT distinct CONCAT_WS(':',run.typeid,task.proc_def_id_) as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_ 
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			        where  ident.USER_ID_ =#{userId} and task.ASSIGNEE_ =0
+			        
+			    union 
+			    
+			    SELECT distinct CONCAT_WS(':',run.typeid,task.proc_def_id_) as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_ 
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			    where  
+			        ident.type_ ='role' and ident.group_id_  in (select ur.roleId from sys_user_role ur where ur.userid= #{userId})
+			        and task.ASSIGNEE_ =0
+			    
+			    union 
+			    
+			    SELECT distinct CONCAT_WS(':',run.typeid,task.proc_def_id_) as typeId,case when tread.id is null then 0 else 1 end hasRead,task.id_ 
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			    where  
+			        ident.type_ ='pos' and ident.group_id_  in (select ur.posId from sys_user_pos ur where ur.userid= #{userId})
+			        and task.ASSIGNEE_ =0
+			    ) 
+			 tmp group by typeId
+	</select>
+	
+	<select id="getMyTaskKeyCount" resultType="com.hotent.platform.model.bpm.TaskAmount">
+		select CONCAT_WS('-',actdefid,taskkey) as typeId,sum(hasread)tread,count(*) total,count(*)-sum(hasread) notRead from
+		( SELECT distinct task.task_def_key_ as taskkey,case when tread.id is null then 0 else 1 end hasRead ,task.id_,run.actdefid as actdefid
+			    FROM ACT_RU_TASK task 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			        where task.ASSIGNEE_ = #{userId}
+			    union 
+			    
+			    SELECT distinct task.task_def_key_ as taskkey,case when tread.id is null then 0 else 1 end hasRead,task.id_,run.actdefid
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			        where  ident.USER_ID_ =#{userId} and task.ASSIGNEE_ =0
+			        
+			    union 
+			    
+			    SELECT distinct task.task_def_key_ as taskkey,case when tread.id is null then 0 else 1 end hasRead,task.id_,run.actdefid
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			    where  
+			        ident.type_ ='role' and ident.group_id_  in (select ur.roleId from sys_user_role ur where ur.userid= #{userId})
+			        and task.ASSIGNEE_ =0
+			    
+			    union 
+			    
+			    SELECT distinct task.task_def_key_ as taskkey,case when tread.id is null then 0 else 1 end hasRead,task.id_,run.actdefid
+			    FROM ACT_RU_TASK task
+			    join act_ru_identitylink ident 
+			    	on task.id_=ident.TASK_ID_ 
+			    left join bpm_task_read tread 
+			    	on task.id_ =tread.TASKID and tread.userId=#{userId} 
+			    left join BPM_PRO_RUN run 
+			    	on task.PROC_INST_ID_=run.actInstId
+			    where  
+			        ident.type_ ='pos' and ident.group_id_  in (select ur.posId from sys_user_pos ur where ur.userid= #{userId})
+			        and task.ASSIGNEE_ =0 ) aaa
+			        group by CONCAT_WS('-',actdefid,taskkey)
+	</select>
+	
+	
+	
+</mapper>

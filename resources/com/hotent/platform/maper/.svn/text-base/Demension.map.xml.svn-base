@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.Demension">
+	<resultMap id="Result" type="com.hotent.platform.model.system.Demension">
+		<id property="demId" column="demId" jdbcType="NUMERIC"/>
+		<result property="demName" column="demName" jdbcType="VARCHAR"/>
+		<result property="demDesc" column="demDesc" jdbcType="VARCHAR"/>
+		<result property="demOrgPath" column="demOrgPath" jdbcType="VARCHAR"/>
+	</resultMap>
+	 
+	
+	<sql id="columns">
+		demId,demName,demDesc
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="demName!=null"> AND demName  LIKE #{demName}  </if>
+			<if test="demDesc!=null"> AND demDesc  LIKE #{demDesc}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.Demension">
+		INSERT INTO sys_demension
+		(<include refid="columns"/>)
+		VALUES
+		(#{demId,jdbcType=NUMERIC}, #{demName,jdbcType=VARCHAR}, #{demDesc,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_demension 
+		WHERE
+		demId=#{demId}
+	</delete>
+	
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.Demension">
+		UPDATE sys_demension SET
+		demName=#{demName,jdbcType=VARCHAR} , 
+		demDesc=#{demDesc,jdbcType=VARCHAR} 
+		WHERE
+		demId=#{demId}
+	</update>
+	
+	<select id="getExists" resultType="java.lang.Integer" >
+	    select count(demId) from sys_demension
+	    where demName=#{demName}
+	</select>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Result">
+		SELECT <include refid="columns"/>
+		FROM sys_demension
+		WHERE
+		demId=#{demId}
+	</select>
+	
+	
+	
+	<select id="getAll" resultMap="Result">
+		SELECT <include refid="columns"/>
+		FROM sys_demension   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by demId  desc
+		</if>
+	</select>
+	
+	<select id="getDemenByQuery" resultMap="Result">
+		SELECT <include refid="columns"/>
+		FROM sys_demension   
+		<where>
+			<if test="demName!=null"> AND demName  LIKE #{demName}  </if>
+			<if test="demDesc!=null"> AND demDesc  LIKE #{demDesc}  </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by demId  desc
+		</if>
+	</select>
+	
+</mapper>

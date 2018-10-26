@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/2161/bpmx_w/src/com/hotent/core/bpm/model
+END
+ProcessTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/bpm/model/ProcessTask.java
+END
+ProcessCmd.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/752/bpmx_w/src/com/hotent/core/bpm/model/ProcessCmd.java
+END
+ProcessExecution.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpm/model/ProcessExecution.java
+END
+ProcessTaskHistory.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpm/model/ProcessTaskHistory.java
+END
+ForkNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpm/model/ForkNode.java
+END
+NodeCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/2161/bpmx_w/src/com/hotent/core/bpm/model/NodeCache.java
+END
+NodeCondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpm/model/NodeCondition.java
+END
+FlowNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/750/bpmx_w/src/com/hotent/core/bpm/model/FlowNode.java
+END

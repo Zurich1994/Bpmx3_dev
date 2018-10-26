@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysProperty">
+	<resultMap id="SysProperty" type="com.hotent.platform.model.system.SysProperty">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME_" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS_" jdbcType="VARCHAR"/>
+		<result property="value" column="VALUE_" jdbcType="VARCHAR"/>
+		<result property="group" column="GROUP_" jdbcType="VARCHAR"/>
+		<result property="sn" column="SN_" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		ID,NAME_,ALIAS_,VALUE_,GROUP_,SN_,MEMO
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME_  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND ALIAS_  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(value)"> AND VALUE_  LIKE #{value}  </if>
+			<if test="@Ognl@isNotEmpty(group)"> AND GROUP_  LIKE #{group}  </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND SN_  =#{sn} </if>
+		</where>
+	</sql>
+
+	<update id="update" parameterType="com.hotent.platform.model.system.SysProperty">
+		UPDATE SYS_PROPERTY SET
+		VALUE_=#{value,jdbcType=VARCHAR},
+		SN_=#{sn,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysProperty">
+		SELECT <include refid="columns"/>
+		FROM SYS_PROPERTY
+		WHERE
+		ID=#{id}
+	</select>
+
+	<select id="getByAlias" resultMap="SysProperty">
+		SELECT <include refid="columns"/>
+		FROM SYS_PROPERTY
+		WHERE
+		ALIAS_=#{alias}
+	</select>
+	
+	<select id="getAll" resultMap="SysProperty">
+		SELECT <include refid="columns"/>
+		FROM SYS_PROPERTY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by GROUP_  desc,SN_ asc
+		</if>
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Qunee Graph Editor V2.0</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+   <!-- <link rel="shortcut icon" href="/favicon.ico">-->
+    <link rel=stylesheet href=libs/bootstrap/css/bootstrap.css>
+    <link rel=stylesheet href=libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css>
+    
+    <link rel="stylesheet" href="src/css/graph.editor.css"/>
+   
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body class="layout">
+<header data-options="region:'north', height: '50'">
+    
+</header>
+<div id="editor" class="graph-editor" data-options="region:'center'"></div>
+
+<!-- build:js libs/js.js -->
+<script src="libs/jquery.min.js"></script>
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/layout.border.js"></script>
+<script src="libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- endbuild -->
+
+<script src="libs/qunee-min-2016-4-30.js"></script>
+
+<!-- build:js libs/graph.editor/graph.editor.js -->
+<script src="src/common/i18n.js"></script>
+<script src="src/common/DomSupport.js"></script>
+<script src="src/common/DragSupport.js"></script>
+<script src="src/common/FileSupport.js"></script>
+<script src="src/common/JSONSerializer.js"></script>
+<script src="src/common/ExportPane.js"></script>
+<script src="src/common/Toolbar.js"></script>
+<script src="src/common/ToolBox.js"></script>
+<script src="src/common/PopupMenu.js"></script>
+<script src="src/common/PropertyPane.js"></script>
+<script src="src/graph.editor.js"></script>
+<!-- endbuild -->
+
+<script>
+var data={
+    "ty": 200,
+    "datas": [
+        {
+            "_className": "Q.Node",
+            "_refId": "1",
+            "extraParams": {
+                
+            },
+            "json": {
+                "typeName": "operationChart",
+                "deployId": 10000064530005,
+                "defKey": "GTest01_C",
+                "defId": 10000064460001,
+                "bpmNodeId": "StartEvent1",
+                "location": {
+                    "y": 20,
+                    "x": 360
+                },
+                "bpmNodeType": "StartEvent",
+                "name": "开始",
+                "actDefId": "GTest01_C:1:10000064530008",
+                "parentActDefId": "",
+                "image": "./data/cisco/start.png"
+                
+            }
+        },
+        {
+            "_className": "Q.Node",
+            "_refId": "2",
+            "extraParams": {
+                
+            },
+            "json": {
+                "typeName": "operationChart",
+                "deployId": 10000064530005,
+                "defKey": "GTest01_C",
+                "defId": 10000064460001,
+                "bpmNodeId": "EndEvent1",
+                "location": {
+                    "y": 620,
+                    "x": 370
+                },
+                "bpmNodeType": "EndEvent",
+                "name": "结束",
+                "actDefId": "GTest01_C:1:10000064530008",
+                "parentActDefId": "",
+                "image": "./data/cisco/stop.png"
+            }
+        },
+        {
+            "_className": "Q.Node",
+            "_refId": "3",
+            "extraParams": {
+                
+            },
+            "json": {
+                "subDefKey": "GTest_S",
+                "bpmNodeId": "ScriptTask1",
+                "location": {
+                    "y": 310,
+                    "x": 180
+                },
+                "actDefId": "GTest01_C:1:10000064530008",
+                "script": "true",
+                "deployId": 10000064530005,
+                "typeName": "operationChart",
+                "affair": "true",
+                "defId": 10000064460001,
+                "defKey": "GTest01_C",
+                "bpmNodeType": "ServiceTask",
+                "name": "事务图1",
+                "parentActDefId": ""
+            }
+        },
+        {
+            "_className": "Q.Node",
+            "_refId": "4",
+            "extraParams": {
+                
+            },
+            "json": {
+                "subDefKey": "yudatest",
+                "bpmNodeId": "ScriptTask2",
+                "location": {
+                    "y": 290,
+                    "x": 480
+                },
+                "actDefId": "GTest01_C:1:10000064530008",
+                "script": "true",
+                "deployId": 10000064530005,
+                "typeName": "operationChart",
+                "affair": "true",
+                "defId": 10000064460001,
+                "defKey": "GTest01_C",
+                "bpmNodeType": "ServiceTask",
+                "name": "事务图2",
+                "parentActDefId": ""
+            }
+        },
+        {
+            "_className": "Q.Node",
+            "_refId": "5",
+            "extraParams": {
+                
+            },
+            "json": {
+                "typeName": "operationChart",
+                "deployId": 10000064530005,
+                "defKey": "GTest01_C",
+                "defId": 10000064460001,
+                "bpmNodeId": "ScriptTask3",
+                "location": {
+                    "y": 480,
+                    "x": 340
+                },
+                "bpmNodeType": "ServiceTask",
+                "name": "脚本任务",
+                "actDefId": "GTest01_C:1:10000064530008",
+                "parentActDefId": "",
+                "script": "true",
+                "image": "./data/cisco/script.png"
+            }
+        },
+        {
+            "_className": "Q.Node",
+            "_refId": "6",
+            "extraParams": {
+                
+            },
+            "json": {
+                "typeName": "operationChart",
+                "deployId": 10000064530005,
+                "subDefKey": "yudaflow2",
+                "defKey": "GTest01_C",
+                "defId": 10000064460001,
+                "bpmNodeId": "UserTask1",
+                "location": {
+                    "y": 120,
+                    "x": 340
+                },
+                "bpmNodeType": "UserTask",
+                "name": "用户任务",
+                "actDefId": "GTest01_C:1:10000064530008",
+                "parentActDefId": "",
+                "user": "true",
+                "image": "./data/cisco/user.png"
+            }
+        },
+        {
+            "_className": "Q.Node",
+            "_refId": "7",
+            "extraParams": {
+                
+            },
+            "json": {
+                "typeName": "operationChart",
+                "deployId": 10000064530005,
+                "subDefKey": "xddswt",
+                "defKey": "GTest01_C",
+                "defId": 10000064460001,
+                "bpmNodeId": "startSubFlowTask1",
+                "startSubFlow": "true",
+                "location": {
+                    "y": 390,
+                    "x": 480
+                },
+                "bpmNodeType": "CallActivity",
+                "name": "外部子图",
+                "actDefId": "GTest01_C:1:10000064530008",
+                "parentActDefId": ""
+            }
+        },
+        {
+            "_className": "Q.Node",
+            "_refId": "8",
+            "extraParams": {
+                
+            },
+            "json": {
+                "typeName": "operationChart",
+                "deployId": 10000064530005,
+                "defKey": "GTest01_C",
+                "defId": 10000064460001,
+                "bpmNodeId": "XORGateway1",
+                "location": {
+                    "y": 210,
+                    "x": 350
+                },
+                "bpmNodeType": "ExclusiveGateway",
+                "name": "分支",
+                "actDefId": "GTest01_C:1:10000064530008",
+                "parentActDefId": ""
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_1",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 6
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow1",
+                "from": {
+                    "_ref": 1
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_2",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 8
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow2",
+                "from": {
+                    "_ref": 6
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_3",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 4
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow3",
+                "from": {
+                    "_ref": 8
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_4",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 7
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow4",
+                "from": {
+                    "_ref": 4
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_5",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 5
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow5",
+                "from": {
+                    "_ref": 7
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_6",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 2
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow6",
+                "from": {
+                    "_ref": 5
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_7",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 3
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow7",
+                "from": {
+                    "_ref": 8
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_8",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 5
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow8",
+                "from": {
+                    "_ref": 3
+                }
+            }
+        },
+        {
+            "_className": "Q.Edge",
+            "_refId": "edge_9",
+            "extraParams": {
+                
+            },
+            "json": {
+                "to": {
+                    "_ref": 2
+                },
+                "name": "",
+                "bpmEdgeId": "sequenceFlow9",
+                "from": {
+                    "_ref": 5
+                }
+            }
+        }
+    ],
+    "tx": 200,
+    "scale": 1,
+    "version": "2.0"
+};
+    $(function () {
+        $('.graph-editor').graphEditor({ images: [
+                {
+                    name: '自定义图标',
+                    images:[
+                    {image: './data/cisco/start.png', properties: {name:'开始',size: {width: 32}}},
+                    {image: './data/cisco/user.png', properties: {name:'用户任务',size: {width: 32}}},
+                    {image: './data/cisco/script.png', properties: {name:'脚本任务',size: {width: 32}}},
+                    {image: './data/cisco/stop.png', properties: {name:'结束',size: {width: 32}}}]
+                }],callback: function(editor){
+        	var graph = editor.graph;
+           this.graph.parseJSON(data);
+           
+       
+        
+        
+         }});
+    });
+
+</script>
+</body>
+</html>

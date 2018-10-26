@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/excel/editor
+END
+SheetEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/excel/editor/SheetEditor.java
+END
+ColumnEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/820/bpmx_w/src/com/hotent/core/excel/editor/ColumnEditor.java
+END
+CellEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/819/bpmx_w/src/com/hotent/core/excel/editor/CellEditor.java
+END
+IFontEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/IFontEditor.java
+END
+IPrintSetup.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/IPrintSetup.java
+END
+AbstractEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/AbstractEditor.java
+END
+RegionEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/excel/editor/RegionEditor.java
+END
+AbstractRegionEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/excel/editor/AbstractRegionEditor.java
+END
+RowEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/excel/editor/RowEditor.java
+END

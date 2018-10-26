@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysQuerySqlDef">
+	<resultMap id="SysQuerySqlDef" type="com.hotent.platform.model.system.SysQuerySqlDef">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="sql" column="sql_" jdbcType="VARCHAR"/>
+		<result property="dsname" column="dsName" jdbcType="VARCHAR"/>
+		<result property="buttonDef" column="button_def" jdbcType="VARCHAR"/>
+		<result property="alias" column="alias" jdbcType="VARCHAR"/>
+		<result property="categoryid" column="categoryid" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,name,sql_,dsName,button_def,alias,categoryid
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(sql)"> AND sql_  LIKE #{sql}  </if>
+			<if test="@Ognl@isNotEmpty(dsname)"> AND dsName  LIKE #{dsname}  </if>
+			<if test="@Ognl@isNotEmpty(buttonDef)"> AND button_def  LIKE #{buttonDef}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND alias  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(categoryid)"> AND categoryid  LIKE #{categoryid}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysQuerySqlDef">
+		INSERT INTO sys_query_sqldef
+		(ID,name,sql_,dsName,button_def,alias,categoryid)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{sql,jdbcType=VARCHAR}, #{dsname,jdbcType=VARCHAR}, #{buttonDef,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{categoryid,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_query_sqldef 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysQuerySqlDef">
+		UPDATE sys_query_sqldef SET
+		name=#{name,jdbcType=VARCHAR},
+		sql_=#{sql,jdbcType=VARCHAR},
+		dsName=#{dsname,jdbcType=VARCHAR},
+		button_def=#{buttonDef,jdbcType=VARCHAR},
+		alias=#{alias,jdbcType=VARCHAR},
+		categoryid=#{categoryid,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysQuerySqlDef">
+		SELECT <include refid="columns"/>
+		FROM sys_query_sqldef
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysQuerySqlDef">
+		SELECT <include refid="columns"/>
+		FROM sys_query_sqldef   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByAlias"  resultMap="SysQuerySqlDef">
+		SELECT *
+		FROM sys_query_sqldef
+		WHERE
+		alias=#{alias}
+	</select>
+	
+	<select id="isAliasExists"  resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM sys_query_sqldef
+		WHERE
+		alias=#{alias}
+		<if test="id>0">
+			and id!=#{id}
+		</if>
+	</select>
+	
+	
+</mapper>

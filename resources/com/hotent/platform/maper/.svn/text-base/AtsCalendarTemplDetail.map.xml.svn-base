@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsCalendarTemplDetail">
+	<resultMap id="AtsCalendarTemplDetail" type="com.hotent.platform.model.ats.AtsCalendarTemplDetail">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="calendarId" column="CALENDAR_ID" jdbcType="NUMERIC"/>
+		<result property="week" column="WEEK" jdbcType="NUMERIC"/>
+		<result property="dayType" column="DAY_TYPE" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,CALENDAR_ID,WEEK,DAY_TYPE,MEMO
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(calendarId)"> AND CALENDAR_ID  =#{calendarId} </if>
+			<if test="@Ognl@isNotEmpty(week)"> AND WEEK  =#{week} </if>
+			<if test="@Ognl@isNotEmpty(dayType)"> AND DAY_TYPE  =#{dayType} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsCalendarTemplDetail">
+		INSERT INTO ATS_CALENDAR_TEMPL_DETAIL
+		(ID,CALENDAR_ID,WEEK,DAY_TYPE,MEMO)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{calendarId,jdbcType=NUMERIC}, #{week,jdbcType=NUMERIC}, #{dayType,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_CALENDAR_TEMPL_DETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsCalendarTemplDetail">
+		UPDATE ATS_CALENDAR_TEMPL_DETAIL SET
+		CALENDAR_ID=#{calendarId,jdbcType=NUMERIC},
+		WEEK=#{week,jdbcType=NUMERIC},
+		DAY_TYPE=#{dayType,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsCalendarTemplDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_CALENDAR_TEMPL_DETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsCalendarTemplDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_CALENDAR_TEMPL_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<delete id="delByCalendarId" parameterType="java.lang.Long">
+		DELETE FROM ATS_CALENDAR_TEMPL_DETAIL 
+		WHERE
+		CALENDAR_ID=#{calendarId}
+	</delete>
+	
+	<select id="getByCalendarId" parameterType="java.lang.Long" resultMap="AtsCalendarTemplDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_CALENDAR_TEMPL_DETAIL
+		WHERE
+		CALENDAR_ID=#{calendarId}
+	</select>
+	
+	
+</mapper>

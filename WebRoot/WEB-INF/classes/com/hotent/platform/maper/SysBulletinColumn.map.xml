@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysBulletinColumn">
+	<resultMap id="SysBulletinColumn" type="com.hotent.platform.model.system.SysBulletinColumn">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS" jdbcType="VARCHAR"/>
+		<result property="tenantid" column="TENANTID" jdbcType="NUMERIC"/>
+		<result property="creatorid" column="CREATORID" jdbcType="NUMERIC"/>
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="status" column="STATUS" jdbcType="NUMERIC"/>
+
+		<result property="tenantname" column="TENANTNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="columns">
+		ID,NAME,ALIAS,TENANTID,CREATORID,CREATOR,CREATETIME,STATUS
+	</sql>
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND BC.NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND BC.ALIAS  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND BC.CREATOR  LIKE #{creator}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND BC.CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND BC.STATUS  LIKE#{status} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND BC.CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND BC.CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+			<if test="isSuperAdmin != true"> AND ( BC.TENANTID = #{companyId} OR BC.TENANTID = 0 )</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysBulletinColumn">
+		INSERT INTO sys_bulletin_column
+		(ID,NAME,ALIAS,TENANTID,CREATORID,CREATOR,CREATETIME,STATUS)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{tenantid,jdbcType=NUMERIC}, #{creatorid,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{createtime}, #{status,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_bulletin_column 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysBulletinColumn">
+		UPDATE sys_bulletin_column SET
+		NAME=#{name,jdbcType=VARCHAR},
+		ALIAS=#{alias,jdbcType=VARCHAR},
+		TENANTID=#{tenantid,jdbcType=NUMERIC},
+		CREATORID=#{creatorid,jdbcType=NUMERIC},
+		CREATOR=#{creator,jdbcType=VARCHAR},
+		CREATETIME=#{createtime,jdbcType=DATE},
+		STATUS=#{status,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysBulletinColumn">
+		SELECT BC.ID,BC.NAME,BC.ALIAS,BC.TENANTID,BC.CREATORID,BC.CREATOR,BC.CREATETIME,BC.STATUS,O.ORGNAME TENANTNAME
+		FROM SYS_BULLETIN_COLUMN BC
+		LEFT JOIN SYS_ORG O ON BC.TENANTID = O.ORGID
+		WHERE
+		BC.ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysBulletinColumn">
+		SELECT BC.ID,BC.NAME,BC.ALIAS,BC.TENANTID,BC.CREATORID,BC.CREATOR,BC.CREATETIME,BC.STATUS,O.ORGNAME TENANTNAME
+		FROM sys_bulletin_column BC
+		LEFT JOIN SYS_ORG O ON BC.TENANTID = O.ORGID
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID desc
+		</if>
+	</select>
+	<!-- <select id="getPublicColumn" resultMap="SysBulletinColumn">
+		SELECT <include refid="columns"/>
+		FROM sys_bulletin_column
+		<include refid="dynamicWhere"/>
+	    AND status=1
+	    order by CREATETIME desc
+	</select>
+	
+	<select id="tenantId" parameterType="java.lang.Long" resultMap="SysBulletinColumn">
+		SELECT <include refid="columns"/>
+		FROM sys_bulletin_column
+		<include refid="dynamicWhere"/>
+		AND tenantid=#{tenantId}
+	</select>
+	
+	<select id="publicColumn" parameterType="java.lang.Long" resultMap="SysBulletinColumn">
+		SELECT <include refid="columns"/>
+		FROM sys_bulletin_column
+		where 
+		ispublic=1
+		AND status = 1 
+	</select>
+	
+	<select id="byTenantId" parameterType="java.lang.Long" resultMap="SysBulletinColumn">
+		SELECT <include refid="columns"/>
+		FROM sys_bulletin_column
+		where 
+		ispublic=0
+		AND tenantid=#{companyId}
+		AND status = 1 
+		order by CREATETIME desc
+	</select>
+	
+	<select id="allBranchList" parameterType="java.lang.Long" resultMap="SysBulletinColumn">
+		SELECT <include refid="columns"/>
+		FROM sys_bulletin_column
+		where
+		ispublic = 0
+		AND status = 1 
+	</select>
+	
+	<select id="getBranchList" resultMap="SysBulletinColumn">
+		SELECT <include refid="columns"/>
+		FROM sys_bulletin_column
+		<include refid="dynamicWhere"/>
+		AND status = 1 
+	</select> -->
+</mapper>

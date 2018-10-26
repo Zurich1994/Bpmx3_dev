@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsAttendanceFile">
+	<resultMap id="AtsAttendanceFile" type="com.hotent.platform.model.ats.AtsAttendanceFile">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="userId" column="USER_ID" jdbcType="NUMERIC"/>
+		<result property="cardNumber" column="CARD_NUMBER" jdbcType="VARCHAR"/>
+		<result property="isAttendance" column="IS_ATTENDANCE" jdbcType="NUMERIC"/>
+		<result property="attencePolicy" column="ATTENCE_POLICY" jdbcType="NUMERIC"/>
+		<result property="holidayPolicy" column="HOLIDAY_POLICY" jdbcType="NUMERIC"/>
+		<result property="defaultShift" column="DEFAULT_SHIFT" jdbcType="NUMERIC"/>
+		<result property="status" column="STATUS" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,USER_ID,CARD_NUMBER,IS_ATTENDANCE,ATTENCE_POLICY,HOLIDAY_POLICY,DEFAULT_SHIFT,STATUS
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND USER_ID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(cardNumber)"> AND CARD_NUMBER  LIKE #{cardNumber}  </if>
+			<if test="@Ognl@isNotEmpty(isAttendance)"> AND IS_ATTENDANCE  =#{isAttendance} </if>
+			<if test="@Ognl@isNotEmpty(attencePolicy)"> AND ATTENCE_POLICY  =#{attencePolicy} </if>
+			<if test="@Ognl@isNotEmpty(holidayPolicy)"> AND HOLIDAY_POLICY  =#{holidayPolicy} </if>
+			<if test="@Ognl@isNotEmpty(defaultShift)"> AND DEFAULT_SHIFT  =#{defaultShift} </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND STATUS  =#{status} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsAttendanceFile">
+		INSERT INTO ATS_ATTENDANCE_FILE
+		(ID,USER_ID,CARD_NUMBER,IS_ATTENDANCE,ATTENCE_POLICY,HOLIDAY_POLICY,DEFAULT_SHIFT,STATUS)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{cardNumber,jdbcType=VARCHAR}, #{isAttendance,jdbcType=NUMERIC}, #{attencePolicy,jdbcType=NUMERIC}, #{holidayPolicy,jdbcType=NUMERIC}, #{defaultShift,jdbcType=NUMERIC},#{status,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_ATTENDANCE_FILE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsAttendanceFile">
+		UPDATE ATS_ATTENDANCE_FILE SET
+		USER_ID=#{userId,jdbcType=NUMERIC},
+		CARD_NUMBER=#{cardNumber,jdbcType=VARCHAR},
+		IS_ATTENDANCE=#{isAttendance,jdbcType=NUMERIC},
+		ATTENCE_POLICY=#{attencePolicy,jdbcType=NUMERIC},
+		HOLIDAY_POLICY=#{holidayPolicy,jdbcType=NUMERIC},
+		DEFAULT_SHIFT=#{defaultShift,jdbcType=NUMERIC},
+		STATUS=#{status,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsAttendanceFile">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENDANCE_FILE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByFileId" parameterType="java.lang.Long" resultMap="AtsAttendanceFile">
+		SELECT distinct 
+			af.ID id,af.USER_ID userId,af.CARD_NUMBER cardNumber,af.IS_ATTENDANCE isAttendance,af.ATTENCE_POLICY attencePolicy,af.HOLIDAY_POLICY holidayPolicy,af.DEFAULT_SHIFT defaultShift,af.STATUS status,
+			u.account account, u.fullname userName,o.orgName
+		FROM ATS_ATTENDANCE_FILE af
+		LEFT JOIN SYS_USER u on   af.user_Id=u.userId
+		LEFT JOIN SYS_USER_POS up  on  u.userId=up.userId and up.ISPRIMARY=1 and ISDELETE =0
+		LEFT JOIN SYS_ORG o on up.orgId=o.orgId
+		WHERE
+		af.ID=#{id}
+	</select>
+	
+	
+	<select id="getAllList" resultMap="AtsAttendanceFile">
+		SELECT distinct af.ID id,af.USER_ID userId,af.CARD_NUMBER cardNumber,af.IS_ATTENDANCE isAttendance,af.ATTENCE_POLICY attencePolicy,af.HOLIDAY_POLICY holidayPolicy,af.DEFAULT_SHIFT defaultShift,af.STATUS status,
+		 u.account account, u.fullname userName,o.orgName
+		FROM ATS_ATTENDANCE_FILE af
+		LEFT JOIN SYS_USER u on   af.user_Id=u.userId
+		LEFT JOIN SYS_USER_POS up  on  u.userId=up.userId and up.ISPRIMARY=1 and ISDELETE =0
+		LEFT JOIN SYS_ORG o on up.orgId=o.orgId
+		<where>
+			<if test="@Ognl@isNotEmpty(userId)"> AND af.USER_ID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(fullname)"> AND u.fullname  LIKE #{fullname} </if>
+			<if test="@Ognl@isNotEmpty(attencePolicy)"> AND af.ATTENCE_POLICY  =#{attencePolicy} </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getList" resultMap="AtsAttendanceFile">
+		SELECT distinct af.ID id,af.USER_ID userId,af.CARD_NUMBER cardNumber,af.IS_ATTENDANCE isAttendance,af.ATTENCE_POLICY attencePolicy,af.HOLIDAY_POLICY holidayPolicy,af.DEFAULT_SHIFT defaultShift,af.STATUS status,
+		 u.account account, u.fullname userName,o.orgName
+		FROM ATS_ATTENDANCE_FILE af
+		LEFT JOIN SYS_USER u on   af.user_Id=u.userId
+		LEFT JOIN SYS_USER_POS up  on  u.userId=up.userId and up.ISPRIMARY=1 and ISDELETE =0
+		LEFT JOIN SYS_ORG o on up.orgId=o.orgId
+		LEFT JOIN ATS_ATTENCE_GROUP_DETAIL agd ON af.ID= agd.FILE_ID
+		<where>
+			<if test="@Ognl@isNotEmpty(userId)"> AND af.USER_ID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(fullname)"> AND u.fullname  LIKE #{fullname} </if>
+			<if test="@Ognl@isNotEmpty(attencePolicy)"> AND af.ATTENCE_POLICY  =#{attencePolicy} </if>
+			<if test="@Ognl@isNotEmpty(attenceGroup)"> AND agd.GROUP_ID  =#{attenceGroup} </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getAll" resultMap="AtsAttendanceFile">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENDANCE_FILE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	<select id="getByUserId" parameterType="java.lang.Long" resultMap="AtsAttendanceFile">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENDANCE_FILE
+		WHERE
+		USER_ID=#{userId}
+	</select>
+	
+	<select id="getByAttendPolicy" parameterType="java.lang.Long" resultMap="AtsAttendanceFile">
+		SELECT <include refid="columns"/>
+		FROM ATS_ATTENDANCE_FILE
+		WHERE
+		ATTENCE_POLICY=#{attendPolicy}
+	</select>
+	<select id="getByAccount" parameterType="java.lang.String" resultMap="AtsAttendanceFile">
+		SELECT af.ID id FROM ats_attendance_file af,sys_user u 
+		WHERE af.USER_ID=u.USERID  AND u.ACCOUNT = #{ACCOUNT} ;
+	</select>
+	
+	<select id="getNoneCalList" resultMap="AtsAttendanceFile">
+		SELECT DISTINCT af.*, u.account account, u.fullname userName,o.orgName FROM  ats_attendance_file af
+			LEFT JOIN SYS_USER u on   af.user_Id=u.userId
+		LEFT JOIN SYS_USER_POS up  on  u.userId=up.userId and up.ISPRIMARY=1 and ISDELETE =0
+		LEFT JOIN SYS_ORG o on up.orgId=o.orgId
+	  	LEFT JOIN (select ID,FILE_ID from  ats_attence_calculate  ac 
+		<where>
+				<if test="@Ognl@isNotEmpty(beginattenceTime)"> AND ac.ATTENCE_TIME  >=#{beginattenceTime,jdbcType=DATE} </if>
+				<if test="@Ognl@isNotEmpty(endattenceTime)"> AND ac.ATTENCE_TIME <![CDATA[ <=#{endattenceTime,jdbcType=DATE}]]> </if>
+		</where>
+	 	) aac on af.ID=aac.FILE_ID where aac.ID is null
+  		<if test="@Ognl@isNotEmpty(orgId)"> AND o.orgId  =#{orgId} </if>
+		<if test="@Ognl@isNotEmpty(userId)"> AND af.USER_ID  =#{userId} </if>
+		<if test="@Ognl@isNotEmpty(attencePolicy)"> AND af.ATTENCE_POLICY  =#{attencePolicy} </if>
+		
+	</select>
+
+</mapper>

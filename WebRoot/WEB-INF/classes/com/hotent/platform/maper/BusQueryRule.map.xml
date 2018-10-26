@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bus.BusQueryRule">
+	<resultMap id="BusQueryRule" type="com.hotent.platform.model.bus.BusQueryRule">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="tableName" column="TABLENAME" jdbcType="VARCHAR"/>
+		<result property="needPage" column="NEEDPAGE" jdbcType="NUMERIC"/>
+		<result property="pageSize" column="PAGESIZE" jdbcType="NUMERIC"/>
+		<result property="isQuery" column="ISQUERY" jdbcType="NUMERIC"/>
+		<result property="isFilter" column="ISFILTER" jdbcType="NUMERIC"/>
+		<result property="displayField" column="DISPLAYFIELD" jdbcType="CLOB"/>
+		<result property="filterField" column="FILTERFIELD" jdbcType="CLOB"/>
+		<result property="sortField" column="SORTFIELD" jdbcType="CLOB"/>
+		<result property="exportField" column="EXPORTFIELD" jdbcType="CLOB"/>
+		<result property="printField" column="PRINTFIELD" jdbcType="CLOB"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="createBy" column="CREATEBY" jdbcType="NUMERIC"/>
+		<result property="updatetime" column="UPDATETIME" jdbcType="TIMESTAMP"/>
+		<result property="updateBy" column="UPDATEBY" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,TABLENAME,NEEDPAGE,PAGESIZE,ISQUERY,ISFILTER,DISPLAYFIELD,FILTERFIELD,SORTFIELD,EXPORTFIELD,PRINTFIELD,CREATETIME,CREATEBY,UPDATETIME,UPDATEBY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(tableName)"> AND TABLENAME  LIKE #{tableName}  </if>
+			<if test="@Ognl@isNotEmpty(needPage)"> AND NEEDPAGE  =#{needPage} </if>
+			<if test="@Ognl@isNotEmpty(pageSize)"> AND PAGESIZE  =#{pageSize} </if>
+			<if test="@Ognl@isNotEmpty(isQuery)"> AND ISQUERY  =#{isQuery} </if>
+			<if test="@Ognl@isNotEmpty(displayField)"> AND DISPLAYFIELD  LIKE #{displayField}  </if>
+			<if test="@Ognl@isNotEmpty(filterField)"> AND FILTERFIELD  LIKE #{filterField}  </if>
+			<if test="@Ognl@isNotEmpty(sortField)"> AND SORTFIELD  LIKE #{sortField}  </if>
+			<if test="@Ognl@isNotEmpty(exportField)"> AND EXPORTFIELD  LIKE #{exportField}  </if>
+			<if test="@Ognl@isNotEmpty(printField)"> AND PRINTFIELD  LIKE #{printField}  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME  >=#{begincreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME <![CDATA[ <=#{endcreatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(createBy)"> AND CREATEBY  =#{createBy} </if>
+			<if test="@Ognl@isNotEmpty(updatetime)"> AND UPDATETIME  =#{updatetime} </if>
+			<if test="@Ognl@isNotEmpty(beginupdatetime)"> AND UPDATETIME  >=#{beginupdatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endupdatetime)"> AND UPDATETIME <![CDATA[ <=#{endupdatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(updateBy)"> AND UPDATEBY  =#{updateBy} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bus.BusQueryRule">
+		INSERT INTO BUS_QUERY_RULE
+		(ID,TABLENAME,NEEDPAGE,PAGESIZE,ISQUERY,ISFILTER,DISPLAYFIELD,FILTERFIELD,SORTFIELD,EXPORTFIELD,PRINTFIELD,CREATETIME,CREATEBY,UPDATETIME,UPDATEBY)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{tableName,jdbcType=VARCHAR}, #{needPage,jdbcType=NUMERIC}, #{pageSize,jdbcType=NUMERIC}, #{isQuery,jdbcType=NUMERIC},#{isFilter,jdbcType=NUMERIC}, #{displayField,jdbcType=CLOB}, #{filterField,jdbcType=CLOB}, #{sortField,jdbcType=CLOB}, #{exportField,jdbcType=CLOB}, #{printField,jdbcType=CLOB}, #{createtime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=NUMERIC}, #{updatetime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BUS_QUERY_RULE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bus.BusQueryRule">
+		UPDATE BUS_QUERY_RULE SET
+		TABLENAME=#{tableName,jdbcType=VARCHAR},
+		NEEDPAGE=#{needPage,jdbcType=NUMERIC},
+		PAGESIZE=#{pageSize,jdbcType=NUMERIC},
+		ISQUERY=#{isQuery,jdbcType=NUMERIC},
+		ISFILTER=#{isFilter,jdbcType=NUMERIC},
+		DISPLAYFIELD=#{displayField,jdbcType=CLOB},
+		FILTERFIELD=#{filterField,jdbcType=CLOB},
+		SORTFIELD=#{sortField,jdbcType=CLOB},
+		EXPORTFIELD=#{exportField,jdbcType=CLOB},
+		PRINTFIELD=#{printField,jdbcType=CLOB},
+		CREATETIME=#{createtime,jdbcType=TIMESTAMP},
+		CREATEBY=#{createBy,jdbcType=NUMERIC},
+		UPDATETIME=#{updatetime,jdbcType=TIMESTAMP},
+		UPDATEBY=#{updateBy,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BusQueryRule">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_RULE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BusQueryRule">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_RULE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+			    
+	<select id="getByTableName" parameterType="java.lang.String" resultMap="BusQueryRule">
+		SELECT <include refid="columns"/>
+		FROM BUS_QUERY_RULE
+		WHERE
+		tableName=#{tableName}
+	</select>
+	
+	<select id="getCountByTableName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from BUS_QUERY_RULE
+		WHERE
+		tableName=#{tableName}
+	</select>
+	
+</mapper>

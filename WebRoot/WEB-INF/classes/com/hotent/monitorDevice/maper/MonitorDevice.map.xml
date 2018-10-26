@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.monitorDevice.model.monitorDevice.MonitorDevice">
+	<resultMap id="MonitorDevice" type="com.hotent.monitorDevice.model.monitorDevice.MonitorDevice">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="typeid" column="F_TYPEID" jdbcType="VARCHAR"/>
+		<result property="name" column="F_NAME" jdbcType="VARCHAR"/>
+		<result property="os_type" column="F_OS_TYPE" jdbcType="VARCHAR"/>
+		<result property="ip" column="F_IP" jdbcType="VARCHAR"/>
+		<result property="brand" column="F_BRAND" jdbcType="VARCHAR"/>
+		<result property="uesrname" column="F_UESRNAME" jdbcType="VARCHAR"/>
+		<result property="password" column="F_PASSWORD" jdbcType="VARCHAR"/>
+		<result property="port" column="F_PORT" jdbcType="NUMERIC"/>
+		<result property="community" column="F_COMMUNITY" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_TYPEID,F_NAME,F_OS_TYPE,F_IP,F_BRAND,F_UESRNAME,F_PASSWORD,F_PORT,F_COMMUNITY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(typeid)"> AND F_TYPEID  LIKE '%${typeid}%'  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND F_NAME  LIKE '%${name}%'  </if>
+			<if test="@Ognl@isNotEmpty(os_type)"> AND F_OS_TYPE  LIKE '%${os_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(ip)"> AND F_IP  LIKE '%${ip}%'  </if>
+			<if test="@Ognl@isNotEmpty(brand)"> AND F_BRAND  LIKE '%${brand}%'  </if>
+			<if test="@Ognl@isNotEmpty(uesrname)"> AND F_UESRNAME  LIKE '%${uesrname}%'  </if>
+			<if test="@Ognl@isNotEmpty(password)"> AND F_PASSWORD  LIKE '%${password}%'  </if>
+			<if test="@Ognl@isNotEmpty(port)"> AND F_PORT  =#{port} </if>
+			<if test="@Ognl@isNotEmpty(community)"> AND F_COMMUNITY  LIKE '%${community}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.monitorDevice.model.monitorDevice.MonitorDevice">
+		INSERT INTO W_MONITOR_DEVICE
+		(ID,
+		F_TYPEID,F_NAME,F_OS_TYPE,F_IP,F_BRAND,F_UESRNAME,F_PASSWORD,F_PORT,F_COMMUNITY)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{typeid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{os_type,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{uesrname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{port,jdbcType=NUMERIC}, #{community,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_MONITOR_DEVICE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.monitorDevice.model.monitorDevice.MonitorDevice">
+		UPDATE W_MONITOR_DEVICE SET
+		F_TYPEID=#{typeid,jdbcType=VARCHAR},
+		F_NAME=#{name,jdbcType=VARCHAR},
+		F_OS_TYPE=#{os_type,jdbcType=VARCHAR},
+		F_IP=#{ip,jdbcType=VARCHAR},
+		F_BRAND=#{brand,jdbcType=VARCHAR},
+		F_UESRNAME=#{uesrname,jdbcType=VARCHAR},
+		F_PASSWORD=#{password,jdbcType=VARCHAR},
+		F_PORT=#{port,jdbcType=NUMERIC},
+		F_COMMUNITY=#{community,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MonitorDevice">
+		SELECT <include refid="columns"/>
+		FROM W_MONITOR_DEVICE
+		WHERE
+		ID=#{id}
+	</select>	
+	
+	<select id="getIPById" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT F_ip
+		FROM W_MONITOR_DEVICE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getQuotaIDSById" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT F_quota_id
+		FROM W_DEVICE_QUOTA_REL
+		WHERE
+		F_device_id=#{id}
+	</select>
+	
+	<select id="getOIDById" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT F_OID
+		FROM W_MONITOR_QUOTA
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getOSTYPEById" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT F_OS_TYPE
+		FROM W_MONITOR_DEVICE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MonitorDevice">
+		SELECT <include refid="columns"/>
+		FROM W_MONITOR_DEVICE DEF
+		<if test="@Ognl@isNotEmpty(nodePath)">
+			,SYS_GL_TYPE type where DEF.F_typeId=type.typeId 
+			and type.nodePath like #{nodePath} 
+		</if>
+		<if test="@Ognl@isEmpty(nodePath)">
+			left join SYS_GL_TYPE type on DEF.F_typeid=type.typeId 
+			where 1=1 
+		</if>
+		
+		<include refid="dynamicWhere" />
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  DESC
+		</if>
+	</select>
+</mapper>

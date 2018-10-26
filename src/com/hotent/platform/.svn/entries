@@ -1,0 +1,61 @@
+10
+
+dir
+2225
+https://192.168.4.158/svn/BPMX_2015_WYX/bpmx_w/src/com/hotent/platform
+https://192.168.4.158/svn/BPMX_2015_WYX
+
+
+
+2016-04-20T07:57:20.711625Z
+2206
+wanghuanran
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a35d2f50-e60f-2a4a-a767-21531e481a33
+
+model
+dir
+
+service
+dir
+
+xml
+dir
+
+event
+dir
+
+controller
+dir
+
+dao
+dir
+
+calendar
+dir
+
+job
+dir
+
+tag
+dir
+
+web
+dir
+
+webservice
+dir
+

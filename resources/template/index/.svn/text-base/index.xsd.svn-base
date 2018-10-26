@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.jee-soft.cn/index"
+    targetNamespace="http://www.jee-soft.cn/index" elementFormDefault="qualified">
+    <xs:element name="indexColumns">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="indexColumn" type="indexColumn" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="indexColumn">
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>栏目名称.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="alias" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>栏目别名.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="catalog" type="xs:long">
+            <xs:annotation>
+                <xs:documentation>栏目分类.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="colType" type="colType"  use="required">
+            <xs:annotation>
+                <xs:documentation>栏目类型.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dataMode" type="dataMode"  use="required">
+            <xs:annotation>
+                <xs:documentation>数据加载方式.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dataFrom" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>数据来源.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dsAlias" type="xs:string" >
+            <xs:annotation>
+                <xs:documentation>数据别名.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dsName" type="xs:string" >
+            <xs:annotation>
+                <xs:documentation>数据源名称.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
+        <xs:attribute name="colHeight" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>栏目高度.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="colUrl" type="xs:string" >
+            <xs:annotation>
+                <xs:documentation>栏目url.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="templateHtml" type="xs:string"  >
+            <xs:annotation>
+                <xs:documentation>栏目模版.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isPublic" type="xs:short"  use="required" >
+            <xs:annotation>
+                <xs:documentation>是否公共栏目.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="orgId" type="xs:long" >
+            <xs:annotation>
+                <xs:documentation>所属组织ID.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="supportRefesh" type="xs:short" default="0"  >
+            <xs:annotation>
+                <xs:documentation>是否支持刷新.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="refeshTime" type="xs:int" >
+            <xs:annotation>
+                <xs:documentation>刷新时间.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="showEffect" type="showEffect"  use="required" >
+            <xs:annotation>
+                <xs:documentation>展示效果.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="memo" type="xs:string" >
+            <xs:annotation>
+                <xs:documentation>描述.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
+    </xs:complexType>
+    <!-- 栏目类型 -->
+    <xs:simpleType name="colType">
+        <xs:annotation>
+            <xs:documentation>栏目类型</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:short">
+            <xs:enumeration value="0" ><xs:annotation><xs:documentation>一般类型栏目</xs:documentation></xs:annotation></xs:enumeration>
+            <xs:enumeration value="1" ><xs:annotation><xs:documentation>图表类型栏目</xs:documentation></xs:annotation></xs:enumeration>
+            <xs:enumeration value="2" ><xs:annotation><xs:documentation>日历类型栏目</xs:documentation></xs:annotation></xs:enumeration>
+            <xs:enumeration value="3" ><xs:annotation><xs:documentation>滚动类型栏目</xs:documentation></xs:annotation></xs:enumeration>      
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- 数据加载方式 -->
+    <xs:simpleType name="dataMode">
+        <xs:annotation>
+            <xs:documentation>数据加载方式.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:short">
+            <xs:enumeration value="0" ><xs:annotation><xs:documentation>服务方法</xs:documentation></xs:annotation></xs:enumeration>
+            <xs:enumeration value="1" ><xs:annotation><xs:documentation>自定义查询</xs:documentation></xs:annotation></xs:enumeration>        
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- 数据加载方式 -->
+    <xs:simpleType name="showEffect">
+        <xs:annotation>
+            <xs:documentation>展示效果.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:short">
+            <xs:enumeration value="0" ><xs:annotation><xs:documentation>默认效果</xs:documentation></xs:annotation></xs:enumeration>
+            <xs:enumeration value="1" ><xs:annotation><xs:documentation>走马灯</xs:documentation></xs:annotation></xs:enumeration>        
+            <xs:enumeration value="2" ><xs:annotation><xs:documentation>幻灯片</xs:documentation></xs:annotation></xs:enumeration>             
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

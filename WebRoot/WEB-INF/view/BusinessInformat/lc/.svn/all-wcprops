@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/158/bpmx_w/WebRoot/WEB-INF/view/BusinessInformat/lc
+END
+businessInformatLcList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/158/bpmx_w/WebRoot/WEB-INF/view/BusinessInformat/lc/businessInformatLcList.jsp
+END
+businessInformatLcGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/158/bpmx_w/WebRoot/WEB-INF/view/BusinessInformat/lc/businessInformatLcGet.jsp
+END
+businessInformatLcDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/158/bpmx_w/WebRoot/WEB-INF/view/BusinessInformat/lc/businessInformatLcDetail.jsp
+END
+businessInformatLcEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/158/bpmx_w/WebRoot/WEB-INF/view/BusinessInformat/lc/businessInformatLcEdit.jsp
+END
+businessInformatLcModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/158/bpmx_w/WebRoot/WEB-INF/view/BusinessInformat/lc/businessInformatLcModify.jsp
+END

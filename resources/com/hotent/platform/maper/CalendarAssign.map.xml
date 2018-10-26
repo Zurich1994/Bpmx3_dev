@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.worktime.CalendarAssign">
+	<resultMap id="CalendarAssign" type="com.hotent.platform.model.worktime.CalendarAssign">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="canlendarId" column="canlendarId" jdbcType="NUMERIC"/>
+		<result property="assignType" column="assignType" jdbcType="NUMERIC"/>
+		<result property="assignId" column="assignId" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,canlendarId,assignType,assignId
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(canlendarId)"> AND canlendarId  =#{canlendarId} </if>
+			<if test="@Ognl@isNotEmpty(assignType)"> AND assignType  =#{assignType} </if>
+			<if test="@Ognl@isNotEmpty(assignId)"> AND assignId  =#{assignId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.worktime.CalendarAssign">
+		INSERT INTO sys_calendar_assign
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{canlendarId,jdbcType=NUMERIC}, #{assignType,jdbcType=NUMERIC}, #{assignId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_CALENDAR_ASSIGN 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.worktime.CalendarAssign">
+		UPDATE sys_calendar_assign SET
+		canlendarId=#{canlendarId,jdbcType=NUMERIC} , 
+		assignType=#{assignType,jdbcType=NUMERIC} , 
+		assignId=#{assignId,jdbcType=NUMERIC} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="CalendarAssign">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR_ASSIGN
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll1" resultMap="CalendarAssign">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR_ASSIGN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getByAssignId" parameterType="Map" resultMap="CalendarAssign">
+		SELECT <include refid="columns"/>
+		FROM SYS_CALENDAR_ASSIGN
+		WHERE assignType=#{assignType} and assignId=#{assignId}
+		 
+	</select>
+	 
+	<select id="getAll" resultMap="CalendarAssign">
+		select id,calendarName,assignType,assignUserName from (
+		SELECT a.id, b.name calendarName, a.assignType, c.fullname assignUserName
+		FROM SYS_CALENDAR_ASSIGN a, SYS_CALENDAR b, SYS_USER c, SYS_ORG d
+		WHERE a.canlendarId = b.id AND a.assignId = c.userId
+		<if test="@Ognl@isNotEmpty(calendarName)">
+		AND b.name like #{calendarName} 
+		</if>
+		<if test="@Ognl@isNotEmpty(assignUserName)">
+		AND c.fullname like #{assignUserName}
+		</if>
+		UNION
+		SELECT a.id, b.name calendarName, a.assignType, c.orgName assignUserName
+		FROM SYS_CALENDAR_ASSIGN a, SYS_CALENDAR b, SYS_ORG c
+		WHERE a.canlendarId = b.id AND a.assignId = c.orgId
+		<if test="@Ognl@isNotEmpty(calendarName)">
+		AND b.name like #{calendarName}
+		</if>
+		<if test="@Ognl@isNotEmpty(assignUserName)">
+		AND c.orgName like #{assignUserName}
+		</if>
+		) temp
+	</select>
+	
+	<delete id="delByCalId" parameterType="java.lang.Long">
+		DELETE FROM SYS_CALENDAR_ASSIGN 
+		WHERE
+		canlendarId=#{canlendarId}
+	</delete>
+	
+	<select id="getbyAssign" parameterType="java.lang.Long" resultMap="CalendarAssign">
+		SELECT <include refid="columns"/> FROM SYS_CALENDAR_ASSIGN
+		WHERE assignId = #{assignId}
+	</select>
+	
+</mapper>

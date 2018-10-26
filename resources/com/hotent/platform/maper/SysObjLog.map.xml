@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysObjLog">
+	<resultMap id="SysObjLog" type="com.hotent.platform.model.system.SysObjLog">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="operatorId" column="OPERATOR_ID" jdbcType="NUMERIC"/>
+		<result property="operator" column="OPERATOR" jdbcType="VARCHAR"/>
+		<result property="createTime" column="CREATE_TIME" jdbcType="DATE"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="content" column="CONTENT" jdbcType="CLOB"/>
+		<result property="objType" column="OBJ_TYPE" jdbcType="VARCHAR"/>
+		<result property="param" column="PARAM" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,OPERATOR_ID,OPERATOR,CREATE_TIME,NAME,CONTENT,OBJ_TYPE,PARAM
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(operatorId)"> AND OPERATOR_ID  =#{operatorId} </if>
+			<if test="@Ognl@isNotEmpty(operator)"> AND OPERATOR  LIKE #{operator}  </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND CREATE_TIME  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(begincreateTime)"> AND CREATE_TIME  >=#{begincreateTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreateTime)"> AND CREATE_TIME <![CDATA[ <=#{endcreateTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(content)"> AND CONTENT  LIKE #{content}  </if>
+			<if test="@Ognl@isNotEmpty(objType)"> AND OBJ_TYPE  = #{objType}  </if>
+			<if test="@Ognl@isNotEmpty(param)"> AND PARAM  LIKE #{param}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysObjLog">
+		INSERT INTO SYS_OBJ_LOG
+		(ID,OPERATOR_ID,OPERATOR,CREATE_TIME,NAME,CONTENT,OBJ_TYPE,PARAM)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{operatorId,jdbcType=NUMERIC}, #{operator,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=CLOB}, #{objType,jdbcType=VARCHAR}, #{param,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_OBJ_LOG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysObjLog">
+		UPDATE SYS_OBJ_LOG SET
+		OPERATOR_ID=#{operatorId,jdbcType=NUMERIC},
+		OPERATOR=#{operator,jdbcType=VARCHAR},
+		CREATE_TIME=#{createTime,jdbcType=DATE},
+		NAME=#{name,jdbcType=VARCHAR},
+		CONTENT=#{content,jdbcType=CLOB},
+		OBJ_TYPE=#{objType,jdbcType=VARCHAR},
+		PARAM=#{param,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysObjLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_OBJ_LOG
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysObjLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_OBJ_LOG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

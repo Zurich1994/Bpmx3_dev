@@ -1,0 +1,7 @@
+typeMismatch.java.lang.NumberFormatException=Invalid value for {0}, accepts only numbers. 
+typeMismatch.java.lang.Integer=Must specify an integer value. 
+typeMismatch.java.lang.Long=Must specify an integer value. 
+typeMismatch.java.lang.Float=Must specify a decimal value. 
+typeMismatch.java.lang.Double=Must specify a decimal value.  
+typeMismatch.int=Invalid number entered 
+typeMismatch=Invalid type entered

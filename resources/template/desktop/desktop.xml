@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<template name="办结事宜 " serviceMethod="desktopService.completedMatters" templateName="信息模板" templateId="getMyAttend" columnUrl="/platform/bpm/processRun/completedMatters.ht" isSys="1"></template>
+	<template name="未读消息 " serviceMethod="desktopService.getMessage" templateName="内部消息栏目模板" templateId="getMessage" columnUrl="/platform/system/messageReceiver/list.ht" isSys="1"></template>
+	<template name="已办事宜" serviceMethod="desktopService.alreadyMatters" templateName="待办任务栏目模板" templateId="getMyAttend" columnUrl="/platform/bpm/processRun/alreadyMatters.ht" isSys="1"></template>
+	<template name="我的办结 " serviceMethod="desktopService.myCompleted" templateName="审批流程模板" templateId="getMyAttend" columnUrl="/platform/bpm/processRun/myCompleted.ht" isSys="1"></template>
+	<template name="我的请求 " serviceMethod="desktopService.myStart" templateName="发起的流程模板" templateId="getMyStart" columnUrl="/platform/bpm/processRun/myRequest.ht" isSys="1"></template>
+	<template name="待办事宜" serviceMethod="desktopService.forMe" templateName="待办事宜模板" templateId="getForAgent" columnUrl="/platform/bpm/task/pendingMatters.ht" isSys="1"></template>
+	<template name="外部邮件" serviceMethod="desktopService.myNewMail" templateName="未读模板" templateId="getMyNewMail" columnUrl="/platform/mail/outMail/warn.ht" isSys="1"></template>
+	<template name="新建流程" serviceMethod="desktopService.myProcess" templateName="未读模板" templateId="getMyProcess" columnUrl="/platform/bpm/bpmDefinition/forMe.ht" isSys="1"></template>
+</templates>

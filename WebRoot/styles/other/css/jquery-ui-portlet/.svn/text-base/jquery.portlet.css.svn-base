@@ -1,0 +1,30 @@
+
+.ui-portlet-column {
+    float: left;
+    padding-bottom: 100px;
+}
+.ui-portlet-header {
+    padding: 0.4em 0.7em;
+}
+.ui-portlet-header .ui-icon {
+    float: right;
+}
+.ui-portlet-item {
+    margin: 0 1em 1em 0;
+}
+.ui-portlet-content {
+    overflow-y: auto;
+    padding: 0.3em;
+}
+.ui-portlet-header .ui-portlet-header-icon {
+    float: left;
+    margin: 0 0.2em 0 -0.5em;
+}
+.ui-sortable-placeholder {
+    border: 1px dotted black;
+    height: 50px !important;
+    visibility: visible !important;
+}
+.ui-sortable-placeholder * {
+    visibility: hidden;
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.MonGroupItem">
+	<resultMap id="MonGroupItem" type="com.hotent.platform.model.bpm.MonGroupItem">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="groupid" column="GROUPID" jdbcType="NUMERIC"/>
+		<result property="flowkey" column="FLOWKEY" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,GROUPID,FLOWKEY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(groupid)"> AND GROUPID  =#{groupid} </if>
+			<if test="@Ognl@isNotEmpty(flowkey)"> AND FLOWKEY  LIKE #{flowkey}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.MonGroupItem">
+		INSERT INTO BPM_MON_GROUPITEM
+		(ID,GROUPID,FLOWKEY)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{groupid,jdbcType=NUMERIC}, #{flowkey,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_MON_GROUPITEM 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.MonGroupItem">
+		UPDATE BPM_MON_GROUPITEM SET
+		GROUPID=#{groupid,jdbcType=NUMERIC},
+		FLOWKEY=#{flowkey,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	<delete id="delByMainId">
+	    DELETE FROM BPM_MON_GROUPITEM
+	    WHERE
+	    groupid=#{groupid}
+	</delete>    
+	
+	<select id="getMonGroupItemList" resultMap="MonGroupItem">
+		 SELECT a.*,def.subject flowName
+	     FROM BPM_MON_GROUPITEM a,bpm_definition def where a.flowkey=def.defkey and def.isMain=1
+    	 and groupid=#{groupid}
+	</select>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MonGroupItem">
+		SELECT <include refid="columns"/>
+		FROM BPM_MON_GROUPITEM
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MonGroupItem">
+		SELECT <include refid="columns"/>
+		FROM BPM_MON_GROUPITEM   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

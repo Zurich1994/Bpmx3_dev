@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.WsDataTemplate">
+	<resultMap id="WsDataTemplate" type="com.hotent.platform.model.system.WsDataTemplate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="serviceId" column="SERVICEID" jdbcType="NUMERIC"/>
+		<result property="template" column="TEMPLATE" jdbcType="CLOB"/>
+		<result property="script" column="SCRIPT" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,NAME,SERVICEID,TEMPLATE,SCRIPT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE '%${name}%'  </if>
+			<if test="@Ognl@isNotEmpty(serviceId)"> AND SERVICEID  =#{serviceId} </if>
+			<if test="@Ognl@isNotEmpty(template)"> AND TEMPLATE  =#{template} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.WsDataTemplate">
+		INSERT INTO SYS_WS_DATA_TEMPLATE
+		(ID,
+		NAME,SERVICEID,TEMPLATE,SCRIPT)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{name,jdbcType=VARCHAR}, #{serviceId,jdbcType=NUMERIC}, #{template,jdbcType=CLOB}, #{script,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_WS_DATA_TEMPLATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.WsDataTemplate">
+		UPDATE SYS_WS_DATA_TEMPLATE SET
+		NAME=#{name,jdbcType=VARCHAR},
+		SERVICEID=#{serviceId,jdbcType=NUMERIC},
+		TEMPLATE=#{template,jdbcType=CLOB},
+		SCRIPT=#{script,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="WsDataTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_WS_DATA_TEMPLATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="WsDataTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_WS_DATA_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

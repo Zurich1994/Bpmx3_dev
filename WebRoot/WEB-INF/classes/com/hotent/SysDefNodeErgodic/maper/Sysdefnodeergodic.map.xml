@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.SysDefNodeErgodic.model.SysDefNodeErgodic.Sysdefnodeergodic">
+	<resultMap id="Sysdefnodeergodic" type="com.hotent.SysDefNodeErgodic.model.SysDefNodeErgodic.Sysdefnodeergodic">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="zj" column="F_ZJ" jdbcType="NUMERIC"/>
+		<result property="sysName" column="F_SYSNAME" jdbcType="VARCHAR"/>
+		<result property="sysId" column="F_SYSID" jdbcType="VARCHAR"/>
+		<result property="defName" column="F_DEFNAME" jdbcType="VARCHAR"/>
+		<result property="defId" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="actDefId" column="F_ACTDEFID" jdbcType="VARCHAR"/>
+		<result property="status" column="F_STATUS" jdbcType="NUMERIC"/>
+		<result property="nodeName" column="F_NODENAME" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="setJudge" column="F_SETJUDGE" jdbcType="VARCHAR"/>
+		<result property="setUp" column="F_SETUP" jdbcType="VARCHAR"/>
+		<result property="nodeWorkName" column="F_NODEWORKNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,F_ZJ,F_SYSNAME,F_SYSID,F_DEFNAME,F_DEFID,F_ACTDEFID,F_STATUS,F_NODENAME,F_NODEID,F_SETJUDGE,F_SETUP,F_NODEWORKNAME
+	</sql>
+	<sql id="wfColumns">
+		ID,F_ZJ,F_SYSNAME,F_SYSID,F_DEFNAME,F_DEFID,F_ACTDEFID,F_STATUS,F_NODENAME,F_NODEID,F_SETJUDGE,F_SETUP,F_NODEWORKNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(zj)"> AND F_ZJ  =#{zj} </if>
+			<if test="@Ognl@isNotEmpty(sysName)"> AND F_SYSNAME  LIKE '%${sysName}%'  </if>
+			<if test="@Ognl@isNotEmpty(sysId)"> AND F_SYSID  LIKE '%${sysId}%'  </if>
+			<if test="@Ognl@isNotEmpty(defName)"> AND F_DEFNAME  LIKE '%${defName}%'  </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND F_DEFID  LIKE '%${defId}%'  </if>
+			<if test="@Ognl@isNotEmpty(actDefId)"> AND F_ACTDEFID  LIKE '%${actDefId}%'  </if>
+			<if test="@Ognl@isNotEmpty(status)"> AND F_STATUS  LIKE '%${status}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeName)"> AND F_NODENAME  LIKE '%${nodeName}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND F_NODEID LIKE '%${nodeId}%'  </if>
+			<if test="@Ognl@isNotEmpty(setJudge)"> AND F_SETJUDGE LIKE '%${setJudge}%'  </if>
+			<if test="@Ognl@isNotEmpty(setUp)"> AND F_SETUP LIKE '%${setUp}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeWorkName)"> AND F_NODEWORKNAME  LIKE '%${nodeWorkName}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.SysDefNodeErgodic.model.SysDefNodeErgodic.Sysdefnodeergodic">
+		INSERT INTO W_SYSDEFNODEERGODIC
+		(ID,
+		F_ZJ,F_SYSNAME,F_SYSID,F_DEFNAME,F_DEFID,F_ACTDEFID,F_STATUS,F_NODENAME,F_NODEID,F_SETJUDGE,F_SETUP,F_NODEWORKNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{zj,jdbcType=NUMERIC}, #{sysName,jdbcType=VARCHAR}, #{sysId,jdbcType=VARCHAR}, #{defName,jdbcType=VARCHAR}, #{defId,jdbcType=VARCHAR}, #{actDefId,jdbcType=VARCHAR},#{status,jdbcType=NUMERIC}, #{nodeName,jdbcType=VARCHAR},#{nodeId,jdbcType=VARCHAR},#{setJudge,jdbcType=VARCHAR},#{setUp,jdbcType=VARCHAR}, #{nodeWorkName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SYSDEFNODEERGODIC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.SysDefNodeErgodic.model.SysDefNodeErgodic.Sysdefnodeergodic">
+		UPDATE W_SYSDEFNODEERGODIC SET
+		F_ZJ=#{zj,jdbcType=NUMERIC},
+		F_SYSNAME=#{sysName,jdbcType=VARCHAR},
+		F_SYSID=#{sysId,jdbcType=VARCHAR},
+		F_DEFNAME=#{defName,jdbcType=VARCHAR},
+		F_DEFID=#{defId,jdbcType=VARCHAR},
+		F_ACTDEFID=#{actDefId,jdbcType=VARCHAR},
+		F_STATUS=#{status,jdbcType=NUMERIC},
+		F_NODENAME=#{nodeName,jdbcType=VARCHAR},
+		F_NODEID=#{nodeId,jdbcType=VARCHAR},
+		F_SETJUDGE=#{setJudge,jdbcType=VARCHAR},
+		F_SETUP=#{setUp,jdbcType=VARCHAR},
+		F_NODEWORKNAME=#{nodeWorkName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Sysdefnodeergodic">
+		SELECT <include refid="columns"/>
+		FROM W_SYSDEFNODEERGODIC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Sysdefnodeergodic">
+		SELECT <include refid="columns"/>
+		FROM W_SYSDEFNODEERGODIC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<delete id="delAll">
+		DELETE FROM W_SYSDEFNODEERGODIC 
+	</delete>
+	
+	
+</mapper>

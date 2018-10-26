@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/ldap/dao
+END
+LdapGroupDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/ldap/dao/LdapGroupDao.java
+END
+LdapUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/ldap/dao/LdapUserDao.java
+END
+LdapOrganizationalUnitDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/ldap/dao/LdapOrganizationalUnitDao.java
+END
+LdapOrganizationDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/ldap/dao/LdapOrganizationDao.java
+END

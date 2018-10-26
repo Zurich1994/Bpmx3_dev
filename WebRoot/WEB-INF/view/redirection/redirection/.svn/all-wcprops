@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/609/bpmx_w/WebRoot/WEB-INF/view/redirection/redirection
+END
+redirectionGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/118/bpmx_w/WebRoot/WEB-INF/view/redirection/redirection/redirectionGet.jsp
+END
+redirectionAddredirection.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/194/bpmx_w/WebRoot/WEB-INF/view/redirection/redirection/redirectionAddredirection.jsp
+END
+redirectionDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/118/bpmx_w/WebRoot/WEB-INF/view/redirection/redirection/redirectionDetail.jsp
+END
+redirectionEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/609/bpmx_w/WebRoot/WEB-INF/view/redirection/redirection/redirectionEdit.jsp
+END
+redirectionModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/118/bpmx_w/WebRoot/WEB-INF/view/redirection/redirection/redirectionModify.jsp
+END
+redirectionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/118/bpmx_w/WebRoot/WEB-INF/view/redirection/redirection/redirectionList.jsp
+END

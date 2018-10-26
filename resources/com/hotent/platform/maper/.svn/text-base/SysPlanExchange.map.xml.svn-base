@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysPlanExchange">
+	<resultMap id="SysPlanExchange" type="com.hotent.platform.model.system.SysPlanExchange">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="planId" column="PLANID" jdbcType="NUMERIC"/>
+		<result property="submitId" column="SUBMITID" jdbcType="NUMERIC"/>
+		<result property="submitor" column="SUBMITOR" jdbcType="VARCHAR"/>
+		<result property="doc" column="DOC" jdbcType="VARCHAR"/>
+		<result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+		<result property="createTime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,PLANID,SUBMITID,SUBMITOR,DOC,CONTENT,CREATETIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(planId)"> AND PLANID  =#{planId} </if>
+			<if test="@Ognl@isNotEmpty(submitId)"> AND SUBMITID  =#{submitId} </if>
+			<if test="@Ognl@isNotEmpty(submitor)"> AND SUBMITOR  LIKE #{submitor}  </if>
+			<if test="@Ognl@isNotEmpty(content)"> AND CONTENT  LIKE #{content}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysPlanExchange">
+		INSERT INTO SYS_PLAN_EXCHANGE
+		(ID,PLANID,SUBMITID,SUBMITOR,DOC,CONTENT,CREATETIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{planId,jdbcType=NUMERIC}, #{submitId,jdbcType=NUMERIC}, #{submitor,jdbcType=VARCHAR}, #{doc,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_PLAN_EXCHANGE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByPlanId" parameterType="java.lang.Long">
+		DELETE FROM SYS_PLAN_EXCHANGE 
+		WHERE
+		PLANID=#{planId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysPlanExchange">
+		UPDATE SYS_PLAN_EXCHANGE SET
+		PLANID=#{planId,jdbcType=NUMERIC},
+		SUBMITID=#{submitId,jdbcType=NUMERIC},
+		SUBMITOR=#{submitor,jdbcType=VARCHAR},
+		DOC=#{doc,jdbcType=VARCHAR},
+		CONTENT=#{content,jdbcType=VARCHAR},
+		CREATETIME=#{createTime,jdbcType=TIMESTAMP}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysPlanExchange">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_EXCHANGE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByPlanId" parameterType="java.lang.Long" resultMap="SysPlanExchange">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_EXCHANGE
+		WHERE
+		PLANID=#{planId} ORDER BY CREATETIME DESC
+	</select>
+	
+	
+	<select id="getAll" resultMap="SysPlanExchange">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_EXCHANGE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/queryTemplate
+END
+修改请读我.txt
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/queryTemplate/%E4%BF%AE%E6%94%B9%E8%AF%B7%E8%AF%BB%E6%88%91.txt
+END
+model.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/queryTemplate/model.ftl
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/queryTemplate/list.jsp
+END
+controller.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/codegen/queryTemplate/controller.ftl
+END

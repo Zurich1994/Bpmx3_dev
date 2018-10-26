@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.dbResult.model.dbResult.DbResult">
+	<resultMap id="DbResult" type="com.hotent.dbResult.model.dbResult.DbResult">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="table_name" column="F_TABLE_NAME" jdbcType="VARCHAR"/>
+		<result property="class_name" column="F_CLASS_NAME" jdbcType="VARCHAR"/>
+		<result property="pro_col" column="F_PRO_COL" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_TABLE_NAME,F_CLASS_NAME,F_PRO_COL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(table_name)"> AND F_TABLE_NAME  LIKE '%${table_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(class_name)"> AND F_CLASS_NAME  LIKE '%${class_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(pro_col)"> AND F_PRO_COL  =#{pro_col} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.dbResult.model.dbResult.DbResult">
+		INSERT INTO W_DB_RESULT
+		(ID,
+		F_TABLE_NAME,F_CLASS_NAME,F_PRO_COL)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{table_name,jdbcType=VARCHAR}, #{class_name,jdbcType=VARCHAR}, #{pro_col,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DB_RESULT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.dbResult.model.dbResult.DbResult">
+		UPDATE W_DB_RESULT SET
+		F_TABLE_NAME=#{table_name,jdbcType=VARCHAR},
+		F_CLASS_NAME=#{class_name,jdbcType=VARCHAR},
+		F_PRO_COL=#{pro_col,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DbResult">
+		SELECT <include refid="columns"/>
+		FROM W_DB_RESULT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DbResult">
+		SELECT <include refid="columns"/>
+		FROM W_DB_RESULT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

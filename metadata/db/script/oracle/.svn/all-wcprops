@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/BPMX_2015_WYX/!svn/ver/724/bpmx_w/metadata/db/script/oracle
+END
+6_data_init.sql
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/724/bpmx_w/metadata/db/script/oracle/6_data_init.sql
+END
+8_activiti14TO15.sql
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/724/bpmx_w/metadata/db/script/oracle/8_activiti14TO15.sql
+END
+3_activiti_fix_up.sql
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/db/script/oracle/3_activiti_fix_up.sql
+END
+4_quartz.sql
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/db/script/oracle/4_quartz.sql
+END
+1_table_create.sql
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/724/bpmx_w/metadata/db/script/oracle/1_table_create.sql
+END
+7.activiti10TO14.sql
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/db/script/oracle/7.activiti10TO14.sql
+END
+2_activiti.sql
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/metadata/db/script/oracle/2_activiti.sql
+END
+5_index_create.sql
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/724/bpmx_w/metadata/db/script/oracle/5_index_create.sql
+END

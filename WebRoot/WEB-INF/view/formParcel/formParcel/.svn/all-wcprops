@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/1024/bpmx_w/WebRoot/WEB-INF/view/formParcel/formParcel
+END
+formParcelList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1024/bpmx_w/WebRoot/WEB-INF/view/formParcel/formParcel/formParcelList.jsp
+END
+formParcelGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1024/bpmx_w/WebRoot/WEB-INF/view/formParcel/formParcel/formParcelGet.jsp
+END
+formParcelDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/1024/bpmx_w/WebRoot/WEB-INF/view/formParcel/formParcel/formParcelDetail.jsp
+END
+formParcelEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1024/bpmx_w/WebRoot/WEB-INF/view/formParcel/formParcel/formParcelEdit.jsp
+END
+formParcelModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/1024/bpmx_w/WebRoot/WEB-INF/view/formParcel/formParcel/formParcelModify.jsp
+END

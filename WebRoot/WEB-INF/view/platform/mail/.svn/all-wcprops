@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/875/bpmx_w/WebRoot/WEB-INF/view/platform/mail
+END
+outMailList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/875/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailList.jsp
+END
+outMailReply.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailReply.jsp
+END
+outMailUserSetingEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailUserSetingEdit.jsp
+END
+outMailGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailGet.jsp
+END
+outMailTree.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailTree.jsp
+END
+outMailUserSetingList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/875/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailUserSetingList.jsp
+END
+outMailEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/875/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailEdit.jsp
+END
+outMailWarn.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailWarn.jsp
+END
+outMailUserSetingGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/mail/outMailUserSetingGet.jsp
+END

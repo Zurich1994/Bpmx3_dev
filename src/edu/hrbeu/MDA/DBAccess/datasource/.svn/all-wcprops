@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/datasource
+END
+DynamicDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/datasource/DynamicDataSource.java
+END
+DataSourceUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/datasource/DataSourceUtil.java
+END
+DbContextHolder.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/datasource/DbContextHolder.java
+END
+DataSourceException.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/datasource/DataSourceException.java
+END
+JdbcTemplateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/83/bpmx_w/src/edu/hrbeu/MDA/DBAccess/datasource/JdbcTemplateUtil.java
+END

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.DesktopMycolumn">
+	<resultMap id="DesktopMycolumn" type="com.hotent.platform.model.system.DesktopMycolumn">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="layoutId" column="layoutId" jdbcType="NUMERIC"/>
+		<result property="columnId" column="columnId" jdbcType="NUMERIC"/>
+		<result property="col" column="col" jdbcType="NUMERIC"/>
+		<result property="sn" column="sn" jdbcType="NUMERIC"/>
+		<result property="columnName" column="columnName" jdbcType="VARCHAR"/>
+		<result property="columnUrl" column="columnUrl" jdbcType="VARCHAR"/>
+		<result property="servicemethod" column="servicemethod" jdbcType="VARCHAR"/>
+		<result property="columnHtml" column="columnHtml" jdbcType="VARCHAR"/>		
+	</resultMap>
+	
+	<sql id="columns">
+		id,userId,layoutId,columnId,col,sn
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(layoutId)"> AND layoutId  =#{layoutId} </if>
+			<if test="@Ognl@isNotEmpty(columnId)"> AND columnId  =#{columnId} </if>
+			<if test="@Ognl@isNotEmpty(col)"> AND col  =#{col} </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND sn  =#{sn} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.DesktopMycolumn">
+		INSERT INTO SYS_DESKTOP_MYCOLUMN
+		(id,userId,layoutId,columnId,col,sn)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{layoutId,jdbcType=NUMERIC}, 
+		#{columnId,jdbcType=NUMERIC}, #{col,jdbcType=NUMERIC}, #{sn,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_DESKTOP_MYCOLUMN 
+		WHERE
+		id=#{id}
+	</delete>
+
+	<delete id="delByUserId" parameterType="java.lang.Long">
+		DELETE FROM SYS_DESKTOP_MYCOLUMN 
+		WHERE
+		userId=#{userId}
+	</delete>
+		
+	<update id="update" parameterType="com.hotent.platform.model.system.DesktopMycolumn">
+		UPDATE SYS_DESKTOP_MYCOLUMN SET
+		userId=#{userId,jdbcType=NUMERIC} , 
+		layoutId=#{layoutId,jdbcType=NUMERIC} , 
+		columnId=#{columnId,jdbcType=NUMERIC} , 
+		col=#{col,jdbcType=NUMERIC} , 
+		sn=#{sn,jdbcType=NUMERIC} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="DesktopMycolumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_MYCOLUMN
+		WHERE
+		id=#{id}
+	</select>
+	
+	<delete id="delByLayoutId" parameterType="java.lang.Long">
+		DELETE FROM SYS_DESKTOP_MYCOLUMN 
+		WHERE
+		layoutId=#{layoutId}
+	</delete>
+	
+	<select id="getByLayoutIdColNum" resultMap="DesktopMycolumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_MYCOLUMN
+		WHERE layoutId=#{layoutId}
+		AND		col=#{colNum}
+		ORDER BY  sn
+	</select>
+	
+	<select id="getByUserId" parameterType="java.lang.Long" resultMap="DesktopMycolumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_MYCOLUMN
+		WHERE
+		userId=#{userId}
+	</select>
+	
+	<select id="getMyDeskData" parameterType="java.lang.Long" resultMap="DesktopMycolumn">
+		SELECT a.*,b.name as columnName,b.columnurl as columnUrl,b.html as columnHtml,b.servicemethod as servicemethod
+		FROM SYS_DESKTOP_MYCOLUMN a,sys_desktop_column b
+		WHERE a.userId=#{userId} and a.columnid=b.id order by a.sn
+	</select>
+	
+	<select id="getDefaultDeskData" resultMap="DesktopMycolumn">
+		select a.COLUMNID,a.COL,a.SN,b.name as columnName,b.columnurl as columnUrl,b.html as columnHtml,b.servicemethod as servicemethod
+		from SYS_DESKTOP_LAYOUTCOL a , SYS_DESKTOP_COLUMN b where a.COLUMNID=b.id and a.layoutId in 
+		(select c.id from sys_desktop_layout c  where c.isdefault=1) order by a.sn
+    </select>
+    
+    <select id="getDefaultDeskDataById" parameterType="java.lang.Long" resultMap="DesktopMycolumn">
+		select a.COLUMNID,a.COL,a.SN,b.name as columnName,b.columnurl as columnUrl,b.html as columnHtml,b.servicemethod as servicemethod
+    	from SYS_DESKTOP_LAYOUTCOL a , SYS_DESKTOP_COLUMN b where a.COLUMNID=b.id and a.layoutId in 
+		(select c.id from sys_desktop_layout c  where c.id=#{layoutId}) order by a.sn
+    </select>
+			
+	<select id="getAll" resultMap="DesktopMycolumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_DESKTOP_MYCOLUMN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<delete id="delByLinkMycolumn" parameterType="java.lang.Long">
+		DELETE FROM SYS_DESKTOP_MYCOLUMN
+		WHERE
+		COLUMNID=#{COLUMNID}
+	</delete>
+	
+</mapper>

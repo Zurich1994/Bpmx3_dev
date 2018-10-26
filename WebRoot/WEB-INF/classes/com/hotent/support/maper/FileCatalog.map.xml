@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.support.model.catelog.FileCatalog">
+	<resultMap id="FileCatalog" type="com.hotent.support.model.catelog.FileCatalog">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="PRODUCTID" column="F_PRODUCTID" jdbcType="NUMERIC"/>
+		<result property="FILECATALOG" column="F_FILECATALOG" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PRODUCTID,F_FILECATALOG
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(PRODUCTID)"> AND F_PRODUCTID  =#{PRODUCTID} </if>
+			<if test="@Ognl@isNotEmpty(FILECATALOG)"> AND F_FILECATALOG  LIKE '%${FILECATALOG}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.support.model.catelog.FileCatalog">
+		INSERT INTO W_FILE_CATALOG
+		(ID,
+		F_PRODUCTID,F_FILECATALOG)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{PRODUCTID,jdbcType=NUMERIC}, #{FILECATALOG,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_FILE_CATALOG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.support.model.catelog.FileCatalog">
+		UPDATE W_FILE_CATALOG SET
+		F_PRODUCTID=#{PRODUCTID,jdbcType=NUMERIC},
+		F_FILECATALOG=#{FILECATALOG,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	<select id="getByIdFromFilecatalog" parameterType="java.util.Map" resultMap="FileCatalog">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_CATALOG
+		WHERE
+		F_PRODUCTID=#{productid}
+	</select>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FileCatalog">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_CATALOG
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="FileCatalog">
+		SELECT <include refid="columns"/>
+		FROM W_FILE_CATALOG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

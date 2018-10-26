@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.BusinessCollectCot.model.lc.BusinessCollectCot">
+	<resultMap id="BusinessCollectCot" type="com.hotent.BusinessCollectCot.model.lc.BusinessCollectCot">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="businessId" column="F_BUSINESSID" jdbcType="VARCHAR"/>
+		<result property="processId" column="F_PROCESSID" jdbcType="VARCHAR"/>
+		<result property="startTime" column="F_STARTTIME" jdbcType="VARCHAR"/>
+		<result property="endTime" column="F_ENDTIME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_BUSINESSID,F_PROCESSID,F_STARTTIME,F_ENDTIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(businessId)"> AND F_BUSINESSID  LIKE '%${businessId}%'  </if>
+			<if test="@Ognl@isNotEmpty(processId)"> AND F_PROCESSID  LIKE '%${processId}%'  </if>
+			<if test="@Ognl@isNotEmpty(startTime)"> AND F_STARTTIME  LIKE '%${startTime}%'  </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND F_ENDTIME  LIKE '%${endTime}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.BusinessCollectCot.model.lc.BusinessCollectCot">
+		INSERT INTO W_BUSINESS_COLLECT_COT
+		(ID,
+		F_BUSINESSID,F_PROCESSID,F_STARTTIME,F_ENDTIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{businessId,jdbcType=VARCHAR}, #{processId,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_BUSINESS_COLLECT_COT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.BusinessCollectCot.model.lc.BusinessCollectCot">
+		UPDATE W_BUSINESS_COLLECT_COT SET
+		F_BUSINESSID=#{businessId,jdbcType=VARCHAR},
+		F_PROCESSID=#{processId,jdbcType=VARCHAR},
+		F_STARTTIME=#{startTime,jdbcType=VARCHAR},
+		F_ENDTIME=#{endTime,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BusinessCollectCot">
+		SELECT <include refid="columns"/>
+		FROM W_BUSINESS_COLLECT_COT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BusinessCollectCot">
+		SELECT <include refid="columns"/>
+		FROM W_BUSINESS_COLLECT_COT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

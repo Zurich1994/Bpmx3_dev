@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmCommonWsSet">
+	<resultMap id="BpmCommonWsSet" type="com.hotent.platform.model.bpm.BpmCommonWsSet">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="alias" column="ALIAS" jdbcType="VARCHAR"/>
+		<result property="wsdlUrl" column="WSDL_URL" jdbcType="VARCHAR"/>
+		<result property="document" column="DOCUMENT" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ALIAS,WSDL_URL,DOCUMENT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND ALIAS  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(wsdlUrl)"> AND WSDL_URL  LIKE #{wsdlUrl}  </if>
+			<if test="@Ognl@isNotEmpty(document)"> AND DOCUMENT  LIKE #{document}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmCommonWsSet">
+		INSERT INTO BPM_COMMON_WS_SET
+		(ID,ALIAS,WSDL_URL,DOCUMENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{alias,jdbcType=VARCHAR}, #{wsdlUrl,jdbcType=VARCHAR}, #{document,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_COMMON_WS_SET 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmCommonWsSet">
+		UPDATE BPM_COMMON_WS_SET SET
+		ALIAS=#{alias,jdbcType=VARCHAR},
+		WSDL_URL=#{wsdlUrl,jdbcType=VARCHAR},
+		DOCUMENT=#{document,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmCommonWsSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMON_WS_SET
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByAlias" resultMap="BpmCommonWsSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMON_WS_SET
+		WHERE
+		ALIAS=#{alias}
+	</select>
+	
+	<select id="getAll" resultMap="BpmCommonWsSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_COMMON_WS_SET   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

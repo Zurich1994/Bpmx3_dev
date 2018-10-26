@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysUrlPermission">
+	<resultMap id="SysUrlPermission" type="com.hotent.platform.model.system.SysUrlPermission">
+		<id property="id" column="ID_" jdbcType="NUMERIC"/>
+		<result property="descp" column="DESCP_" jdbcType="VARCHAR"/>
+		<result property="url" column="URL_" jdbcType="VARCHAR"/>
+		<result property="params" column="PARAMS_" jdbcType="VARCHAR"/>
+		<result property="enable" column="ENABLE_" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID_,DESCP_,URL_,PARAMS_,ENABLE_
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID_  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(descp)"> AND DESCP_  LIKE #{descp}  </if>
+			<if test="@Ognl@isNotEmpty(url)"> AND URL_  LIKE #{url}  </if>
+			<if test="@Ognl@isNotEmpty(params)"> AND PARAMS_  LIKE #{params}  </if>
+			<if test="@Ognl@isNotEmpty(enable)"> AND ENABLE_  =#{enable} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysUrlPermission">
+		INSERT INTO sys_url_permission
+		(ID_,DESCP_,URL_,PARAMS_,ENABLE_)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{descp,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{enable,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_url_permission 
+		WHERE
+		ID_=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysUrlPermission">
+		UPDATE sys_url_permission SET
+		DESCP_=#{descp,jdbcType=VARCHAR},
+		URL_=#{url,jdbcType=VARCHAR},
+		PARAMS_=#{params,jdbcType=VARCHAR},
+		ENABLE_=#{enable,jdbcType=NUMERIC}
+		WHERE
+		ID_=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysUrlPermission">
+		SELECT <include refid="columns"/>
+		FROM sys_url_permission
+		WHERE
+		ID_=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysUrlPermission">
+		SELECT <include refid="columns"/>
+		FROM sys_url_permission   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID_  desc
+		</if>
+	</select>
+</mapper>

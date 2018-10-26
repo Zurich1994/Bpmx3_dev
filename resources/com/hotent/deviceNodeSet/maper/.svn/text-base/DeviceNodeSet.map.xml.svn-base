@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.deviceNodeSet.model.deviceNodeSet.DeviceNodeSet">
+	<resultMap id="DeviceNodeSet" type="com.hotent.deviceNodeSet.model.deviceNodeSet.DeviceNodeSet">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="businessIP" column="F_BUSINESSIP" jdbcType="VARCHAR"/>
+		<result property="actdefid" column="F_ACTDEFID" jdbcType="VARCHAR"/>
+		<result property="nodeid" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="deviceTable" column="F_DEVICETABLE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_BUSINESSIP,F_ACTDEFID,F_NODEID,F_DEVICETABLE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(businessIP)"> AND F_BUSINESSIP  LIKE '%${businessIP}%'  </if>
+			<if test="@Ognl@isNotEmpty(actdefid)"> AND F_ACTDEFID  LIKE '%${actdefid}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND F_NODEID  LIKE '%${nodeid}%'  </if>
+			<if test="@Ognl@isNotEmpty(deviceTable)"> AND F_DEVICETABLE  LIKE '%${deviceTable}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.deviceNodeSet.model.deviceNodeSet.DeviceNodeSet">
+		INSERT INTO W_DEVICE_NODE_SET
+		(ID,
+		F_BUSINESSIP,F_ACTDEFID,F_NODEID,F_DEVICETABLE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{businessIP,jdbcType=VARCHAR}, #{actdefid,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, #{deviceTable,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DEVICE_NODE_SET 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.deviceNodeSet.model.deviceNodeSet.DeviceNodeSet">
+		UPDATE W_DEVICE_NODE_SET SET
+		F_BUSINESSIP=#{businessIP,jdbcType=VARCHAR},
+		F_ACTDEFID=#{actdefid,jdbcType=VARCHAR},
+		F_NODEID=#{nodeid,jdbcType=VARCHAR},
+		F_DEVICETABLE=#{deviceTable,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DeviceNodeSet">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_NODE_SET
+		WHERE
+		ID=#{id}
+	</select>
+	<!--zl更新流程定义id  -->
+	<update id="updateActdefid" parameterType="java.lang.String" >
+		UPDATE W_DEVICE_NODE_SET SET
+		F_ACTDEFID=#{newactdefid,jdbcType=VARCHAR}
+		WHERE
+		F_ACTDEFID=#{oldactdefID}
+	</update>
+	
+	<select id="getAll" resultMap="DeviceNodeSet">
+		SELECT <include refid="columns"/>
+		FROM W_DEVICE_NODE_SET   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

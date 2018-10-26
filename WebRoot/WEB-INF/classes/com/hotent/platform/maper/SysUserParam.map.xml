@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysUserParam">
+	<resultMap id="SysUserParam" type="com.hotent.platform.model.system.SysUserParam">
+		<id property="valueId" column="valueId" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="paramId" column="paramId" jdbcType="NUMERIC"/>
+		<result property="paramValue" column="paramValue" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		valueId,userId,paramId,paramValue,paramIntValue,paramDateValue
+	</sql>
+	
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(valueId)"> AND valueId  =#{valueId} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(paramId)"> AND paramId  =#{paramId} </if>
+			<if test="@Ognl@isNotEmpty(paramValue)"> AND paramValue  LIKE #{paramValue}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysUserParam">
+		INSERT INTO sys_user_param
+		(<include refid="columns"/>)
+		VALUES
+		(
+			#{valueId,jdbcType=NUMERIC}, 
+			#{userId,jdbcType=NUMERIC}, 
+			#{paramId,jdbcType=NUMERIC}, 
+			#{paramValue,jdbcType=VARCHAR},
+			#{paramIntValue,jdbcType=NUMERIC},
+			#{paramDateValue,jdbcType=DATE}
+		)
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_PARAM 
+		WHERE
+		valueId=#{valueId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysUserParam">
+		UPDATE sys_user_param SET
+		userId=#{userId,jdbcType=NUMERIC} , 
+		paramId=#{paramId,jdbcType=NUMERIC} , 
+		paramValue=#{paramValue,jdbcType=VARCHAR} ,
+		
+		paramIntValue=#{paramIntValue,jdbcType=NUMERIC} ,
+		paramDateValue=#{paramDateValue,jdbcType=DATE} 
+ 
+		WHERE
+		valueId=#{valueId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysUserParam">
+		SELECT <include refid="columns"/>
+		FROM SYS_USER_PARAM
+		WHERE
+		valueId=#{valueId}
+	</select>
+	
+	<select id="getAll" resultMap="SysUserParam">
+		SELECT pv.valueId,pv.userId,pv.paramId,pv.paramValue,p.paramName,p.dataType
+		FROM SYS_USER_PARAM pv,SYS_PARAM p
+		WHERE 1=1
+		AND p.paramId=pv.paramId
+		<if test="@Ognl@isNotEmpty(valueId)"> AND valueId  =#{valueId} </if>
+		<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+		<if test="@Ognl@isNotEmpty(paramId)"> AND paramId  =#{paramId} </if>
+		<if test="@Ognl@isNotEmpty(paramValue)"> AND paramValue  LIKE #{paramValue} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by paramId  desc
+		</if>
+	</select>
+	
+	<select id="getStatusParam" resultMap="SysUserParam">
+		SELECT pv.valueId,pv.userId,pv.paramId,pv.paramValue,p.paramName,p.dataType,p.sourceType,p.sourceKey,p.status_,p.description
+		FROM SYS_USER_PARAM pv,SYS_PARAM p
+		WHERE 1=1
+		AND p.status_=1
+		AND p.paramId=pv.paramId
+		<if test="@Ognl@isNotEmpty(valueId)"> AND valueId  =#{valueId} </if>
+		<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+		<if test="@Ognl@isNotEmpty(paramId)"> AND paramId  =#{paramId} </if>
+		<if test="@Ognl@isNotEmpty(paramValue)"> AND paramValue  LIKE #{paramValue} </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by paramId  desc
+		</if>
+	</select>
+	
+	<delete id="delByUserId" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_PARAM 
+		WHERE
+		userId=#{userId}
+	</delete>
+	
+	<select id="getByUserId" parameterType="java.lang.Long" resultMap="SysUserParam">
+		SELECT pv.valueId,pv.userId,pv.paramId,pv.paramValue,p.paramName,p.dataType,pv.paramIntValue,pv.paramDateValue
+		FROM SYS_USER_PARAM pv,SYS_PARAM p
+		WHERE  p.paramId=pv.paramId AND pv.userId=#{userId} AND p.status_=1
+	</select>
+	
+	<select id="getByParaUserId" parameterType="java.util.Map" resultMap="SysUserParam">
+		SELECT pv.valueId,pv.userId,pv.paramId,pv.paramValue,p.paramName,p.dataType,pv.paramIntValue,pv.paramDateValue
+		FROM SYS_USER_PARAM pv,SYS_PARAM p
+		WHERE  p.paramId=pv.paramId AND pv.userId=#{userId} and p.paramKey=#{paramKey}
+	</select>
+	
+	<select id="getByParamKeyValue" parameterType="java.util.Map" resultMap="SysUserParam">
+		SELECT UP.VALUEID,UP.USERID,UP.PARAMID,UP.PARAMVALUE,UP.PARAMINTVALUE,UP.PARAMDATEVALUE 
+		FROM SYS_USER_PARAM UP
+		INNER JOIN SYS_PARAM SP ON SP.PARAMID = UP.PARAMID 
+		WHERE SP.PARAMKEY = #{paramKey} AND UP.PARAMVALUE = #{paramValue}
+	</select>
+	
+</mapper>

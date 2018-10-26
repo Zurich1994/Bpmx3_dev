@@ -1,0 +1,168 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/commons/include/html_doctype.html" %>
+<html>
+<head>
+<title>业务数据模板管理</title>
+<%@include file="/commons/include/get.jsp" %>
+	<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.fix.clone.js"></script>
+	<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+	<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+	<script type="text/javascript" src="${ctx}/js/util/easyTemplate.js" ></script>
+	<script type="text/javascript" src="${ctx}/js/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="${ctx}/js/codemirror/lib/util/matchbrackets.js"></script>
+	<script type="text/javascript" src="${ctx}/js/codemirror/mode/groovy/groovy.js"></script>
+	<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.qtip.js" ></script>
+	<script type="text/javascript" src="${ctx}/js/hotent/platform/system/ScriptDialog.js"></script>
+	<script type="text/javascript" src="${ctx}/js/hotent/platform/system/SysDialog.js"></script>
+	<script type="text/javascript" src="${ctx}/js/hotent/platform/system/AddResourceDialog.js"></script>
+	<script type="text/javascript" src="${ctx}/js/hotent/platform/system/BpmDefinitionDialog.js"></script>
+	<script type="text/javascript" src="${ctx}/js/angular/angular.min.js"></script>
+	<script type="text/javascript"	src="${ctx}/js/angular/service/baseServices.js"></script>
+	<script type="text/javascript" src="${ctx}/js/angular/module/DataRightsApp.js"></script>
+	<script type="text/javascript" src="${ctx}/js/angular/controller/bpmDataTemplateController.js"></script>
+<script type="text/javascript">
+	function addDialog() {
+			var url=__ctx + '/platform/form/bpmFormDef/gllist.ht';
+			win= DialogUtil.open({title:"添加业务数据模板", url: url, height: 800 ,width:1000 ,isResize: false,isDrag:false,pwin:window });		
+	}
+	function showme(id){
+		var url=__ctx+ "/platform/form/bpmDataTemplate/showme.ht?id="+id;
+		DialogUtil.open({
+            title:"",
+            url: url,
+            height:500,
+            width:1000,
+            isResize: false,
+            pwin:window,
+            sucCall:function(){     
+            }
+        });
+	}
+	 function yulan(id){
+		var alias =id;
+		var url=__ctx+ "/platform/form/bpmDataTemplate/dataListbyKey_"+ alias+".ht";
+		url=url.getNewUrl();
+		$.openFullWindow(url);
+	}
+	function tjcd(id){
+		var alias = id;
+		var url="/platform/form/bpmDataTemplate/dataList_"+ alias+".ht";
+		AddResourceDialog({addUrl:url});
+	}
+	function manydel(){ //批量删除模板
+	
+	 var aryChk=$("input:checkbox[name='formkey']:checked");  
+	    if(aryChk.length==0){
+	    	$.ligerDialog.warn('请选择！');
+	    	return;
+	    }
+	  else {
+		    var id="";
+	  	aryChk.each (function(){  
+			id+=$(this).attr("index");
+			id+=",";                     	
+		});	
+		    $.ligerDialog.confirm("确认删除选中的模板吗？","消息提示",function(rtn) {
+				if(rtn) {
+					 var url=__ctx + "/ywsjmk/ywsjmk/ywsjmb/del.ht?id="+id;
+						$.gotoDialogPage(url);
+				}
+			});
+		    
+		}				
+	}
+	  
+ 
+		 function ddd(obj, sType) {  //模板 标题 链接 显示 id
+		var oDiv = document.getElementById(obj); 
+		if (sType == 'show') { oDiv.style.display = 'block';} 
+		if (sType == 'hide') { oDiv.style.display = 'none';} 
+		} 
+
+ 
+</script >
+ 
+</head>
+<body ng-controller="bpmDataTemplateCtrl" >
+	<div class="panel" ng-show="hasInitTab">
+		<div class="panel-top">
+			<div class="tbar-title">
+				<span class="tbar-label">业务数据模板管理列表</span>
+			</div>
+			<div class="panel-toolbar">
+				<div class="toolBar">
+					<div class="group"><a class="link search" id="btnSearch"><span></span>查询</a></div>
+					<div class="l-bar-separator"></div>
+					 <div class="group" id="dialog"><a class="link add" onclick="addDialog();" ><span></span>添加</a></div>
+					  <div class="l-bar-separator"></div>
+					  <div ><a  class="link del"  onclick="manydel()"><span></span>批量删除</a></div>
+					<!--<div class="group"><a class="link update"  action="copy.ht"><span></span>复制</a></div>
+					 <div class="l-bar-separator"></div>
+					<!--  <div class="group"><a class="link add" href="edit.ht"><span></span>添加</a></div>
+					  <div class="l-bar-separator"></div>
+					<div class="group"><a class="link update" id="btnUpd" action="edit.ht"><span></span>修改</a></div>
+					<div class="l-bar-separator"></div>
+					<div class="group"><a class="link del"  action="del.ht"><span></span>删除</a></div>-->
+				</div>	
+			</div>
+			<div class="panel-search">
+				<form id="searchForm" method="post" action="list.ht">
+					<div class="row">
+					    <span class="label">模板名称:</span><input type="text" name="Q_name_S"  class="inputText" />
+						<span class="label">表单标题:</span><input type="text" name="Q_subject_S"  class="inputText" />
+						<span class="label">模板类型:</span><input type="text" name="Q_templatealias_S"  class="inputText" />
+						<span class="label">表单别名:</span><input type="text" name="Q_formkey_S"  class="inputText" />
+						<span class="label">对应表:</span><input type="text" name="Q_tablename_S"  class="inputText" />
+						<span class="label">表单分类:</span><input type="text" name="Q_categoryid_S"  class="inputText" />
+					</div><div><br></div>
+				</form>
+			</div>
+		</div>
+		<div class="panel-body">
+	    	<c:set var="checkAll">
+				<input type="checkbox" id="chkall"/>
+			</c:set>
+		    <display:table name="ywsjmbList"  id="ywsjmbItem" requestURI="list.ht" sort="external" cellpadding="1" cellspacing="1" export="false"  class="table-grid">
+				<display:column title="${checkAll}" media="html" style="width:30px;">
+			  		<input type="checkbox" class="pk" name="formkey" value="${ywsjmbItem.formkey}"index="${ywsjmbItem.id}">
+				</display:column>
+				<display:column  title="模板名称" sortable="true" sortName="NAME">
+				
+				 <a  href="#"  style="text-align:left;"  onmouseover="ddd('${ywsjmbItem.id}', 'show');" onmouseout="ddd('${ywsjmbItem.id}', 'hide');">
+				 <div id="${ywsjmbItem.id}" style="display:none;">模板ID：${ywsjmbItem.id }</div>${ywsjmbItem.name}</a>   
+				 
+				</display:column>
+				<display:column property="subject" title="表单标题" sortable="true" sortName="SUBJECT"></display:column>
+				<display:column  title="模板类型" sortable="true" sortName="TEMPLATEALIAS">
+				 <c:if test="${ywsjmbItem.templatealias eq 'gendataTemplate'}">
+				  	<span class="green">代码生成表格模板</span>
+				  	</c:if>
+				 <c:if test="${ywsjmbItem.templatealias  eq 'dataTemplateList'}">
+				  	<span class="brown">业务仿真数据模板</span>
+				  	</c:if>
+				</display:column>
+				<display:column property="formkey" title="表单别名" sortable="true" sortName="FORMKEY"></display:column>
+				<display:column property="tablename" title="对应表" sortable="true" sortName="TABLENAME"></display:column>
+				<display:column property="typename" title="表单分类" sortable="true" sortName="TYPENAME"></display:column>
+				<display:column title="管理" media="html"  style="width:50px;text-align:center" class="rowOps">
+					<a href="del.ht?id=${ywsjmbItem.id}" class="link del"><span></span>删除</a>
+					<a class="link update"  href="copy.ht?id=${ywsjmbItem.id}"><span></span>复制</a>
+					<a href="${ctx}/platform/form/bpmDataTemplate/editys.ht?formKey=${ywsjmbItem.formkey}&tableId=${ywsjmbItem.tableid}&id=${ywsjmbItem.id}&name=${ywsjmbItem.name}" class="link edit"><span></span>编辑</a>
+					<a class="link preview" onclick="showme(${ywsjmbItem.id })"><span></span>建模信息展现</a>
+					<a class="link preview" onclick="yulan(${ywsjmbItem.id })" ng-click="preview()"><span></span>预览</a>
+					
+					<!--<div class="group"><a class="link edit" href="${ctx}/platform/form/bpmDataTemplate/editTemplate.ht?id=${ywsjmbItem.id}" ng-click="editTemplate()"><span></span>编辑模板</a></div>
+
+					<div class="group"><a class="link collapse" onclick="tjcd(${ywsjmbItem.id })"  ng-click="addToResource()"><span></span>添加为菜单</a></div>
+					--><a href="${basePath}/jsp/getUserInfo.jsp"></a>  
+				</display:column>
+			</display:table>
+			<hotent:paging tableId="ywsjmbItem"/>
+		</div><!-- end of panel-body -->				
+	</div> <!-- end of panel -->
+</body>
+</html>
+
+
+
+

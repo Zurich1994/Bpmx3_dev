@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/1005/bpmx_w/src/com/hotent/platform/service/jms/impl
+END
+SysMailHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/1005/bpmx_w/src/com/hotent/platform/service/jms/impl/SysMailHandler.java
+END
+MessageHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/jms/impl/MessageHandler.java
+END
+MailMessageHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/jms/impl/MailMessageHandler.java
+END
+SmsMessageHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/jms/impl/SmsMessageHandler.java
+END
+OpenfireMessageHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/1005/bpmx_w/src/com/hotent/platform/service/jms/impl/OpenfireMessageHandler.java
+END
+InnerMessageHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/service/jms/impl/InnerMessageHandler.java
+END

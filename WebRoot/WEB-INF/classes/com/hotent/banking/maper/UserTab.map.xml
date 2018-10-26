@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.banking.model.banking.UserTab">
+	<resultMap id="UserTab" type="com.hotent.banking.model.banking.UserTab">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="USERID" column="F_USERID" jdbcType="VARCHAR"/>
+		<result property="PASSWORD" column="F_PASSWORD" jdbcType="VARCHAR"/>
+		<result property="ADDRESS" column="F_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="CITY" column="F_CITY" jdbcType="VARCHAR"/>
+		<result property="STATE" column="F_STATE" jdbcType="VARCHAR"/>
+		<result property="ZIP" column="F_ZIP" jdbcType="VARCHAR"/>
+		<result property="PHONE" column="F_PHONE" jdbcType="VARCHAR"/>
+		<result property="EMAIL" column="F_EMAIL" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_USERID,F_PASSWORD,F_ADDRESS,F_CITY,F_STATE,F_ZIP,F_PHONE,F_EMAIL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(USERID)"> AND F_USERID  LIKE '%${USERID}%'  </if>
+			<if test="@Ognl@isNotEmpty(PASSWORD)"> AND F_PASSWORD  LIKE '%${PASSWORD}%'  </if>
+			<if test="@Ognl@isNotEmpty(ADDRESS)"> AND F_ADDRESS  LIKE '%${ADDRESS}%'  </if>
+			<if test="@Ognl@isNotEmpty(CITY)"> AND F_CITY  LIKE '%${CITY}%'  </if>
+			<if test="@Ognl@isNotEmpty(STATE)"> AND F_STATE  LIKE '%${STATE}%'  </if>
+			<if test="@Ognl@isNotEmpty(ZIP)"> AND F_ZIP  LIKE '%${ZIP}%'  </if>
+			<if test="@Ognl@isNotEmpty(PHONE)"> AND F_PHONE  LIKE '%${PHONE}%'  </if>
+			<if test="@Ognl@isNotEmpty(EMAIL)"> AND F_EMAIL  LIKE '%${EMAIL}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.banking.model.banking.UserTab">
+		INSERT INTO W_USER_TAB
+		(ID,
+		F_USERID,F_PASSWORD,F_ADDRESS,F_CITY,F_STATE,F_ZIP,F_PHONE,F_EMAIL)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{USERID,jdbcType=VARCHAR}, #{PASSWORD,jdbcType=VARCHAR}, #{ADDRESS,jdbcType=VARCHAR}, #{CITY,jdbcType=VARCHAR}, #{STATE,jdbcType=VARCHAR}, #{ZIP,jdbcType=VARCHAR}, #{PHONE,jdbcType=VARCHAR}, #{EMAIL,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_USER_TAB 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.banking.model.banking.UserTab">
+		UPDATE W_USER_TAB SET
+		F_USERID=#{USERID,jdbcType=VARCHAR},
+		F_PASSWORD=#{PASSWORD,jdbcType=VARCHAR},
+		F_ADDRESS=#{ADDRESS,jdbcType=VARCHAR},
+		F_CITY=#{CITY,jdbcType=VARCHAR},
+		F_STATE=#{STATE,jdbcType=VARCHAR},
+		F_ZIP=#{ZIP,jdbcType=VARCHAR},
+		F_PHONE=#{PHONE,jdbcType=VARCHAR},
+		F_EMAIL=#{EMAIL,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="UserTab">
+		SELECT <include refid="columns"/>
+		FROM W_USER_TAB
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="UserTab">
+		SELECT <include refid="columns"/>
+		FROM W_USER_TAB   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

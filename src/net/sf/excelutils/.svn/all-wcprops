@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/BPMX_2015_WYX/!svn/ver/966/bpmx_w/src/net/sf/excelutils
+END
+ExcelException.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/net/sf/excelutils/ExcelException.java
+END
+ExcelUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/net/sf/excelutils/ExcelUtils.java
+END
+ExcelParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/net/sf/excelutils/ExcelParser.java
+END
+WorkbookUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/net/sf/excelutils/WorkbookUtils.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/966/bpmx_w/src/net/sf/excelutils/package.html
+END

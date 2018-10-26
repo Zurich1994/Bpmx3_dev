@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.Identity">
+	<resultMap id="Identity" type="com.hotent.platform.model.system.Identity">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="alias" column="alias" jdbcType="VARCHAR"/>
+		<result property="rule" column="REGULATION" jdbcType="VARCHAR"/>
+		<result property="genType" column="genType" jdbcType="NUMERIC"/>
+		<result property="noLength" column="noLength" jdbcType="NUMERIC"/>
+		<result property="initValue" column="initValue" jdbcType="NUMERIC"/>
+		<result property="curValue" column="curValue" jdbcType="NUMERIC"/>
+		<result property="step" column="step" jdbcType="NUMERIC"/>
+		<result property="curDate" column="curDate" jdbcType="VARCHAR"/>
+		
+	</resultMap>
+	
+	<sql id="columns">
+		id,name,alias,REGULATION,genType,noLength,initValue,curValue,step,curDate
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND alias  LIKE #{alias}  </if>
+		
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.Identity">
+		INSERT INTO sys_identity
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{rule,jdbcType=VARCHAR}, #{genType,jdbcType=NUMERIC}, #{noLength,jdbcType=NUMERIC}, #{initValue,jdbcType=NUMERIC}, #{curValue,jdbcType=NUMERIC}, #{step,jdbcType=NUMERIC}, #{curDate,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_IDENTITY 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.Identity">
+		UPDATE sys_identity SET
+		name=#{name,jdbcType=VARCHAR} , 
+		alias=#{alias,jdbcType=VARCHAR} , 
+		REGULATION=#{rule,jdbcType=VARCHAR} , 
+		genType=#{genType,jdbcType=NUMERIC} , 
+		noLength=#{noLength,jdbcType=NUMERIC} , 
+		initValue=#{initValue,jdbcType=NUMERIC} , 
+		curValue=#{curValue,jdbcType=NUMERIC} , 
+		step=#{step,jdbcType=NUMERIC} , 
+		curDate=#{curDate,jdbcType=VARCHAR}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<update id="updateVersion" parameterType="com.hotent.platform.model.system.Identity">
+		UPDATE sys_identity SET
+		curValue=#{newCurValue,jdbcType=NUMERIC} , 
+		curDate=#{curDate,jdbcType=VARCHAR}
+		WHERE
+		alias=#{alias,jdbcType=VARCHAR} and curValue=#{curValue,jdbcType=NUMERIC} 
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Identity">
+		SELECT <include refid="columns"/>
+		FROM SYS_IDENTITY
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="isAliasExisted" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(*) FROM SYS_IDENTITY WHERE ALIAS = #{ALIAS}
+	</select>
+	
+	<select id="isAliasExistedByUpdate" parameterType="com.hotent.platform.model.system.Identity" resultType="int">
+		SELECT COUNT(*) FROM SYS_IDENTITY WHERE ALIAS = #{alias} AND ID != #{id}
+	</select>
+	
+	
+	<select id="getAll" resultMap="Identity">
+		SELECT <include refid="columns"/>
+		FROM SYS_IDENTITY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getByAlias" parameterType="java.lang.String"  resultMap="Identity">
+		SELECT <include refid="columns"/>
+		FROM SYS_IDENTITY
+		WHERE ALIAS = #{ALIAS}
+	</select>
+	
+	
+
+	
+</mapper>

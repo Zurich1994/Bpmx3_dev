@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.TbaActivityInfoPath.model.TbaActivityInfoCode.TbaActivityInfo">
+	<resultMap id="TbaActivityInfo" type="com.hotent.TbaActivityInfoPath.model.TbaActivityInfoCode.TbaActivityInfo">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="item_id" column="F_ITEM_ID" jdbcType="VARCHAR"/>
+		<result property="work_type" column="F_WORK_TYPE" jdbcType="VARCHAR"/>
+		<result property="work_item" column="F_WORK_ITEM" jdbcType="VARCHAR"/>
+		<result property="work_id" column="F_WORK_ID" jdbcType="VARCHAR"/>
+		<result property="flow_name" column="F_FLOW_NAME" jdbcType="VARCHAR"/>
+		<result property="activity_id" column="F_ACTIVITY_ID" jdbcType="VARCHAR"/>
+		<result property="activity_name" column="F_ACTIVITY_NAME" jdbcType="VARCHAR"/>
+		<result property="server_shape" column="F_SERVER_SHAPE" jdbcType="VARCHAR"/>
+		<result property="server_way" column="F_SERVER_WAY" jdbcType="VARCHAR"/>
+		<result property="server_class" column="F_SERVER_CLASS" jdbcType="VARCHAR"/>
+		<result property="server_source" column="F_SERVER_SOURCE" jdbcType="VARCHAR"/>
+		<result property="server_nature" column="F_SERVER_NATURE" jdbcType="VARCHAR"/>
+		<result property="info_shape" column="F_INFO_SHAPE" jdbcType="VARCHAR"/>
+		<result property="info_stand" column="F_INFO_STAND" jdbcType="VARCHAR"/>
+		<result property="info_type" column="F_INFO_TYPE" jdbcType="VARCHAR"/>
+		<result property="server_type" column="F_SERVER_TYPE" jdbcType="VARCHAR"/>
+		<result property="op_comp" column="F_OP_COMP" jdbcType="NUMERIC"/>
+		<result property="work_name" column="F_WORK_NAME" jdbcType="VARCHAR"/>
+		<result property="op_info_sum" column="F_OP_INFO_SUM" jdbcType="NUMERIC"/>
+		<result property="A" column="F_A" jdbcType="VARCHAR"/>
+		<result property="B" column="F_B" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ITEM_ID,F_WORK_TYPE,F_WORK_ITEM,F_WORK_ID,F_FLOW_NAME,F_ACTIVITY_ID,F_ACTIVITY_NAME,F_SERVER_SHAPE,F_SERVER_WAY,F_SERVER_CLASS,F_SERVER_SOURCE,F_SERVER_NATURE,F_INFO_SHAPE,F_INFO_STAND,F_INFO_TYPE,F_SERVER_TYPE,F_OP_COMP,F_WORK_NAME,F_OP_INFO_SUM,F_A,F_B
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(item_id)"> AND F_ITEM_ID  LIKE '%${item_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(work_type)"> AND F_WORK_TYPE  LIKE '%${work_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(work_item)"> AND F_WORK_ITEM  LIKE '%${work_item}%'  </if>
+			<if test="@Ognl@isNotEmpty(work_id)"> AND F_WORK_ID  LIKE '%${work_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(flow_name)"> AND F_FLOW_NAME  LIKE '%${flow_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(activity_id)"> AND F_ACTIVITY_ID  LIKE '%${activity_id}%'  </if>
+			<if test="@Ognl@isNotEmpty(activity_name)"> AND F_ACTIVITY_NAME  LIKE '%${activity_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_shape)"> AND F_SERVER_SHAPE  LIKE '%${server_shape}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_way)"> AND F_SERVER_WAY  LIKE '%${server_way}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_class)"> AND F_SERVER_CLASS  LIKE '%${server_class}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_source)"> AND F_SERVER_SOURCE  LIKE '%${server_source}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_nature)"> AND F_SERVER_NATURE  LIKE '%${server_nature}%'  </if>
+			<if test="@Ognl@isNotEmpty(info_shape)"> AND F_INFO_SHAPE  LIKE '%${info_shape}%'  </if>
+			<if test="@Ognl@isNotEmpty(info_stand)"> AND F_INFO_STAND  LIKE '%${info_stand}%'  </if>
+			<if test="@Ognl@isNotEmpty(info_type)"> AND F_INFO_TYPE  LIKE '%${info_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(server_type)"> AND F_SERVER_TYPE  LIKE '%${server_type}%'  </if>
+			<if test="@Ognl@isNotEmpty(op_comp)"> AND F_OP_COMP  =#{op_comp} </if>
+			<if test="@Ognl@isNotEmpty(work_name)"> AND F_WORK_NAME  LIKE '%${work_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(op_info_sum)"> AND F_OP_INFO_SUM  =#{op_info_sum} </if>
+			<if test="@Ognl@isNotEmpty(A)"> AND F_A  LIKE '%${A}%'  </if>
+			<if test="@Ognl@isNotEmpty(B)"> AND F_B  LIKE '%${B}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.TbaActivityInfoPath.model.TbaActivityInfoCode.TbaActivityInfo">
+		INSERT INTO W_TBA_ACTIVITY_INFO
+		(ID,
+		F_ITEM_ID,F_WORK_TYPE,F_WORK_ITEM,F_WORK_ID,F_FLOW_NAME,F_ACTIVITY_ID,F_ACTIVITY_NAME,F_SERVER_SHAPE,F_SERVER_WAY,F_SERVER_CLASS,F_SERVER_SOURCE,F_SERVER_NATURE,F_INFO_SHAPE,F_INFO_STAND,F_INFO_TYPE,F_SERVER_TYPE,F_OP_COMP,F_WORK_NAME,F_OP_INFO_SUM,F_A,F_B)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{item_id,jdbcType=VARCHAR}, #{work_type,jdbcType=VARCHAR}, #{work_item,jdbcType=VARCHAR}, #{work_id,jdbcType=VARCHAR}, #{flow_name,jdbcType=VARCHAR}, #{activity_id,jdbcType=VARCHAR}, #{activity_name,jdbcType=VARCHAR}, #{server_shape,jdbcType=VARCHAR}, #{server_way,jdbcType=VARCHAR}, #{server_class,jdbcType=VARCHAR}, #{server_source,jdbcType=VARCHAR}, #{server_nature,jdbcType=VARCHAR}, #{info_shape,jdbcType=VARCHAR}, #{info_stand,jdbcType=VARCHAR}, #{info_type,jdbcType=VARCHAR}, #{server_type,jdbcType=VARCHAR}, #{op_comp,jdbcType=NUMERIC}, #{work_name,jdbcType=VARCHAR}, #{op_info_sum,jdbcType=NUMERIC}, #{A,jdbcType=VARCHAR}, #{B,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_TBA_ACTIVITY_INFO 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.TbaActivityInfoPath.model.TbaActivityInfoCode.TbaActivityInfo">
+		UPDATE W_TBA_ACTIVITY_INFO SET
+		F_ITEM_ID=#{item_id,jdbcType=VARCHAR},
+		F_WORK_TYPE=#{work_type,jdbcType=VARCHAR},
+		F_WORK_ITEM=#{work_item,jdbcType=VARCHAR},
+		F_WORK_ID=#{work_id,jdbcType=VARCHAR},
+		F_FLOW_NAME=#{flow_name,jdbcType=VARCHAR},
+		F_ACTIVITY_ID=#{activity_id,jdbcType=VARCHAR},
+		F_ACTIVITY_NAME=#{activity_name,jdbcType=VARCHAR},
+		F_SERVER_SHAPE=#{server_shape,jdbcType=VARCHAR},
+		F_SERVER_WAY=#{server_way,jdbcType=VARCHAR},
+		F_SERVER_CLASS=#{server_class,jdbcType=VARCHAR},
+		F_SERVER_SOURCE=#{server_source,jdbcType=VARCHAR},
+		F_SERVER_NATURE=#{server_nature,jdbcType=VARCHAR},
+		F_INFO_SHAPE=#{info_shape,jdbcType=VARCHAR},
+		F_INFO_STAND=#{info_stand,jdbcType=VARCHAR},
+		F_INFO_TYPE=#{info_type,jdbcType=VARCHAR},
+		F_SERVER_TYPE=#{server_type,jdbcType=VARCHAR},
+		F_OP_COMP=#{op_comp,jdbcType=NUMERIC},
+		F_WORK_NAME=#{work_name,jdbcType=VARCHAR},
+		F_OP_INFO_SUM=#{op_info_sum,jdbcType=NUMERIC},
+		F_A=#{A,jdbcType=VARCHAR},
+		F_B=#{B,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="TbaActivityInfo">
+		SELECT <include refid="columns"/>
+		FROM W_TBA_ACTIVITY_INFO
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="TbaActivityInfo">
+		SELECT <include refid="columns"/>
+		FROM W_TBA_ACTIVITY_INFO   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

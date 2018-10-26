@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indexColumns xmlns="http://www.jee-soft.cn/index"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.jee-soft.cn/index index.xsd">
+	<indexColumn name="个人信息" 	alias="userInfo" 		 colType="0" dataMode="0" dataFrom="indexService.userInfo" 	isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="未读消息" 	alias="getMessage" 		 colType="0" dataMode="0" dataFrom="indexService.getMessage" 	 colUrl="/platform/system/messageReceiver/list.ht" isPublic="1" supportRefesh="0" showEffect="1"/>
+	<indexColumn name="待办事宜" 	alias="pendingMatters" 	 colType="0" dataMode="0" dataFrom="indexService.pendingMatters"  colUrl="/platform/bpm/task/pendingMatters.ht"	isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="已办事宜" 	alias="alreadyMatters" 	 colType="0" dataMode="0" dataFrom="indexService.alreadyMatters"  colUrl="/platform/bpm/processRun/alreadyMatters.ht" isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="办结事宜" 	alias="completedMatters" colType="0" dataMode="0" dataFrom="indexService.completedMatters" 	 colUrl="/platform/bpm/processRun/completedMatters.ht" isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="我的办结" 	alias="myCompleted" 	 colType="0" dataMode="0" dataFrom="indexService.myCompleted"  colUrl="/platform/bpm/processRun/myCompleted.ht"	isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="我的请求" 	alias="myRequest" 		 colType="0" dataMode="0" dataFrom="indexService.myStart"  colUrl="/platform/bpm/processRun/myRequest.ht" isPublic="1" supportRefesh="0" showEffect="0"/>	
+	<indexColumn name="新建流程" 	alias="newProcess" 	 colType="0" dataMode="0" dataFrom="indexService.myProcess" 	 colUrl="/platform/bpm/bpmDefinition/forMe.ht" isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="折线图例子" alias="lineChart" 		 colType="1" dataMode="0" dataFrom="indexService.lineChart"  	isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="柱状图例子" alias="barChart" 		 colType="1" dataMode="0" dataFrom="indexService.barChart"   isPublic="1" supportRefesh="1" showEffect="0"/>
+	<indexColumn name="幻灯片例子" alias="slide" 		     colType="0" dataMode="0"  colHeight="450" isPublic="1" supportRefesh="0" showEffect="2"/>
+	<indexColumn name="我的日程 "  	alias="myCalendar" 		 colType="2" dataMode="0" dataFrom="indexService.myCalendar"  	isPublic="1" supportRefesh="0" showEffect="0"/>
+	<indexColumn name="信息盒" 	alias="infobox" 		 colType="0" dataMode="0" dataFrom="indexService.getInfobox" 	isPublic="1" supportRefesh="0" showEffect="0"/>
+</indexColumns>

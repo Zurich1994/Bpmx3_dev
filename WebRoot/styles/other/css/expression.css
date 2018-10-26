@@ -1,0 +1,119 @@
+body
+{
+	margin:0;
+	padding:0;		
+	font-size:12px;				
+}
+.comment_div
+{
+	position:absolute;				
+	background-color:#fafafa;
+	border:1px solid #c9cfd6;
+	width:740px;
+	height:540px;
+	top:50%;
+	left:50%;				
+	margin-top:-270px;
+	margin-left:-370px;
+}
+.top_div
+{				
+	height:60%;
+}
+.bottom_div
+{	
+	height:40%;	
+	font-size:13px;	
+}
+.top_left_div
+{
+	margin:5px;
+	border:1px solid #A7D3F0;
+	height:95%;
+	float:left;
+	width:75%;
+}
+.top_right_div
+{				
+	margin:5px;
+	float:left;		
+	width:160px;
+	height:95%;
+	border:1px solid #A7D3F0;
+}				
+.calTool
+{
+	margin:3px;
+	float:left;
+	background:url(../images/calTools.png) 0 0 no-repeat;
+	width:40px;
+	height:40px;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	line-height:38px;
+	cursor:pointer;
+}
+.tool-hover
+{
+	background-position: 0 -40px;
+}
+.title-div
+{
+	line-height:27px;
+	font-size:14px;
+	font-weight:bold;
+}
+.expre-ul
+{
+	width: 100%;
+	height:85%; 
+	margin: 0; 
+	padding: 0;
+	overflow:auto;
+}
+.bottom_toolbar
+{
+	height:40px;
+	margin:5px;
+}
+.toolbar_btn
+{	
+	background-position:0 -80px;
+	width:80px;
+	height:30px;
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	line-height:28px;
+	cursor:pointer;
+	margin:3px 10px;
+}
+.toolbar_btn_hover
+{
+	background-position:0 -110px;
+}
+.result_table {
+	width:100%;
+	padding: 0;
+    margin: 0;
+    margin-top:8px;
+    border-collapse:collapse;
+}
+
+.result_table th {
+	width:90px;
+	font-size: 13px;
+	font-weight:bold;
+	border: 1px solid #A8CFEB;  
+    background: #EDF6FC;
+    font-size:13px;
+    padding: 6px 6px 6px 12px;
+}
+
+.result_table td{
+	border: 1px solid #A8CFEB;  
+    background: #fff;
+    font-size:12px;
+    padding: 6px 6px 6px 12px;
+}

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/org/activiti/engine/impl/persistence/entity
+END
+ByteArrayEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/org/activiti/engine/impl/persistence/entity/ByteArrayEntity.java
+END
+ProcessDefinitionEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/org/activiti/engine/impl/persistence/entity/ProcessDefinitionEntity.java
+END
+HistoricTaskInstanceEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/org/activiti/engine/impl/persistence/entity/HistoricTaskInstanceEntity.java
+END

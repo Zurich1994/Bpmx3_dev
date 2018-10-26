@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.Orderyan">
+	<resultMap id="Orderyan" type="com.hotent.tpcc.model.tpcc.Orderyan">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="o_id" column="F_O_ID" jdbcType="NUMERIC"/>
+		<result property="o_d_id" column="F_O_D_ID" jdbcType="NUMERIC"/>
+		<result property="o_w_id" column="F_O_W_ID" jdbcType="NUMERIC"/>
+		<result property="o_c_id" column="F_O_C_ID" jdbcType="NUMERIC"/>
+		<result property="o_entry_d" column="F_O_ENTRY_D" jdbcType="DATE"/>
+		<result property="o_carrier_id" column="F_O_CARRIER_ID" jdbcType="NUMERIC"/>
+		<result property="o_ol_cnt" column="F_O_OL_CNT" jdbcType="NUMERIC"/>
+		<result property="o_all_local" column="F_O_ALL_LOCAL" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_O_ID,F_O_D_ID,F_O_W_ID,F_O_C_ID,F_O_ENTRY_D,F_O_CARRIER_ID,F_O_OL_CNT,F_O_ALL_LOCAL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(o_id)"> AND F_O_ID  =#{o_id} </if>
+			<if test="@Ognl@isNotEmpty(o_d_id)"> AND F_O_D_ID  =#{o_d_id} </if>
+			<if test="@Ognl@isNotEmpty(o_w_id)"> AND F_O_W_ID  =#{o_w_id} </if>
+			<if test="@Ognl@isNotEmpty(o_c_id)"> AND F_O_C_ID  =#{o_c_id} </if>
+			<if test="@Ognl@isNotEmpty(o_entry_d)"> AND F_O_ENTRY_D  =#{o_entry_d} </if>
+			<if test="@Ognl@isNotEmpty(begino_entry_d)"> AND F_O_ENTRY_D  >=#{begino_entry_d,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endo_entry_d)"> AND F_O_ENTRY_D <![CDATA[ <=#{endo_entry_d,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(o_carrier_id)"> AND F_O_CARRIER_ID  =#{o_carrier_id} </if>
+			<if test="@Ognl@isNotEmpty(o_ol_cnt)"> AND F_O_OL_CNT  =#{o_ol_cnt} </if>
+			<if test="@Ognl@isNotEmpty(o_all_local)"> AND F_O_ALL_LOCAL  =#{o_all_local} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.Orderyan">
+		INSERT INTO W_ORDER
+		(ID,
+		F_O_ID,F_O_D_ID,F_O_W_ID,F_O_C_ID,F_O_ENTRY_D,F_O_CARRIER_ID,F_O_OL_CNT,F_O_ALL_LOCAL)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{o_id,jdbcType=NUMERIC}, #{o_d_id,jdbcType=NUMERIC}, #{o_w_id,jdbcType=NUMERIC}, #{o_c_id,jdbcType=NUMERIC}, #{o_entry_d,jdbcType=DATE}, #{o_carrier_id,jdbcType=NUMERIC}, #{o_ol_cnt,jdbcType=NUMERIC}, #{o_all_local,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ORDER 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.Orderyan">
+		UPDATE W_ORDER SET
+		F_O_ID=#{o_id,jdbcType=NUMERIC},
+		F_O_D_ID=#{o_d_id,jdbcType=NUMERIC},
+		F_O_W_ID=#{o_w_id,jdbcType=NUMERIC},
+		F_O_C_ID=#{o_c_id,jdbcType=NUMERIC},
+		F_O_ENTRY_D=#{o_entry_d,jdbcType=DATE},
+		F_O_CARRIER_ID=#{o_carrier_id,jdbcType=NUMERIC},
+		F_O_OL_CNT=#{o_ol_cnt,jdbcType=NUMERIC},
+		F_O_ALL_LOCAL=#{o_all_local,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Orderyan">
+		SELECT <include refid="columns"/>
+		FROM W_ORDER
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Orderyan">
+		SELECT <include refid="columns"/>
+		FROM W_ORDER   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

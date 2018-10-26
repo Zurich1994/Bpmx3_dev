@@ -1,0 +1,37 @@
+#errors.required={0} is required.
+errors.required={0} 必填
+errors.minlength={0} 最少 {1} 个字符
+errors.maxlength={0} 最多 {1} 个字符.
+errors.regex={0} 请输入正确格式.
+errors.digits={0} 必须填写整数.
+errors.number={0} 必须填写数字
+errors.date=请输入格式为 【{1}】日期.
+errors.range={0} 为 {1} 到 {2} 之间的数字.
+errors.creditcard={0} 请输入有效的信用卡号.
+errors.email=请输入有效的邮件地址.
+errors.equalTo={0}  必须和 {1} 一致
+errors.max={0} 最大值为 {1}
+errors.min={0} 最小值为 {1}
+errors.rangelength={0} 长度在 {1} 到 {2} 字符范围内.
+errors.url=请输入有效的网址.
+
+errors.mobile=手机号码格式错误
+errors.phone=电话号码格式错误
+errors.zip=邮政编码格式错误
+errors.qq=qq号码格式错误
+errors.ip=Ip地址格式错误
+errors.chinese={0}只能输入中文
+errors.chrnum={0}只能输入数字和字母
+errors.compDate=开始日期必须小于或等于结束日期
+errors.digitsSum={0} 之和必需小于等于 {1}
+
+errors.sysDataSource.aliasExisted=别名({0})已存在,请输入其他别名.
+errors.invalid=is not a valid {0}
+
+typeMismatch.java.lang.NumberFormatException={0}必须为数字。 
+typeMismatch.java.lang.Integer=必须为整数。
+typeMismatch.java.lang.Long=必须为整数。 
+typeMismatch.java.lang.Float=必须为浮点数。
+typeMismatch.java.lang.Double=必须为浮点数。  
+typeMismatch.int=非法的数字。 
+typeMismatch=不是有效的输入。

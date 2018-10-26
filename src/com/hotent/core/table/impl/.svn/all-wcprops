@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/table/impl
+END
+DmDbView.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/table/impl/DmDbView.java
+END
+SqlServerTableMeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/880/bpmx_w/src/com/hotent/core/table/impl/SqlServerTableMeta.java
+END
+MysqlDbView.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/880/bpmx_w/src/com/hotent/core/table/impl/MysqlDbView.java
+END
+OracleDbView.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/OracleDbView.java
+END
+Db2DbView.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/table/impl/Db2DbView.java
+END
+SqlserverTableOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/SqlserverTableOperator.java
+END
+H2DbView.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/table/impl/H2DbView.java
+END
+DmTableMeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/table/impl/DmTableMeta.java
+END
+DmTableOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/1085/bpmx_w/src/com/hotent/core/table/impl/DmTableOperator.java
+END
+MySqlTableMeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/MySqlTableMeta.java
+END
+OracleTableMeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/OracleTableMeta.java
+END
+TableMetaFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/880/bpmx_w/src/com/hotent/core/table/impl/TableMetaFactory.java
+END
+Db2TableMeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/table/impl/Db2TableMeta.java
+END
+SqlserverDbView.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/SqlserverDbView.java
+END
+H2TableMeta.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/H2TableMeta.java
+END
+OracleTableOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/OracleTableOperator.java
+END
+MysqlTableOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/880/bpmx_w/src/com/hotent/core/table/impl/MysqlTableOperator.java
+END
+Db2TableOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1052/bpmx_w/src/com/hotent/core/table/impl/Db2TableOperator.java
+END
+H2TableOperator.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/table/impl/H2TableOperator.java
+END

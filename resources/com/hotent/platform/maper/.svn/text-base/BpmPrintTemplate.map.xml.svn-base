@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.form.BpmPrintTemplate">
+	<resultMap id="BpmPrintTemplate" type="com.hotent.platform.model.form.BpmPrintTemplate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="formKey" column="FORM_KEY" jdbcType="VARCHAR"/>
+		<result property="temapalteName" column="TEMAPALTE_NAME" jdbcType="VARCHAR"/>
+		<result property="isDefault" column="IS_DEFAULT" jdbcType="NUMERIC"/>
+		<result property="tableId" column="TABLEID" jdbcType="NUMERIC"/>
+		<result property="html" column="HTML" jdbcType="CLOB"/>
+		<result property="template" column="template" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,FORM_KEY,TEMAPALTE_NAME,IS_DEFAULT,tableId,HTML,template
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND FORM_KEY  LIKE '%${formKey}%'  </if>
+			<if test="@Ognl@isNotEmpty(temapalteName)"> AND TEMAPALTE_NAME  LIKE '%${temapalteName}%'  </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND IS_DEFAULT  =#{isDefault} </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND TABLEID  LIKE '%${tableId}%'  </if>
+			<if test="@Ognl@isNotEmpty(html)"> AND HTML  LIKE '%${html}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.form.BpmPrintTemplate">
+		INSERT INTO BPM_PRINT_TEMPLATE
+		(ID,FORM_KEY,TEMAPALTE_NAME,IS_DEFAULT,TABLEID,HTML,template)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{formKey,jdbcType=VARCHAR}, #{temapalteName,jdbcType=VARCHAR}, #{isDefault,jdbcType=NUMERIC}, #{tableId,jdbcType=VARCHAR}, #{html,jdbcType=CLOB},#{template,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRINT_TEMPLATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByFormKey" parameterType="java.lang.Long">
+		DELETE FROM BPM_PRINT_TEMPLATE
+		WHERE
+		FORM_KEY=#{formKey}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.form.BpmPrintTemplate">
+		UPDATE BPM_PRINT_TEMPLATE SET
+		FORM_KEY=#{formKey,jdbcType=VARCHAR},
+		TEMAPALTE_NAME=#{temapalteName,jdbcType=VARCHAR},
+		IS_DEFAULT=#{isDefault,jdbcType=NUMERIC},
+		TABLEID=#{tableId,jdbcType=VARCHAR},
+		HTML=#{html,jdbcType=CLOB},
+		template=#{template,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<update id="updateIsNotDefault" parameterType="java.lang.Long">
+		UPDATE BPM_PRINT_TEMPLATE SET
+		IS_DEFAULT=0 
+		WHERE
+		FORM_KEY=#{formKey}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmPrintTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRINT_TEMPLATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmPrintTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRINT_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getCountByFormKey" parameterType="java.lang.Long" resultType="int">
+		SELECT COUNT(*) FROM BPM_PRINT_TEMPLATE
+		WHERE
+		FORM_KEY=#{formKey}
+	</select>
+	
+	<select id="getDefaultByFormKey" parameterType="java.lang.Long" resultMap="BpmPrintTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRINT_TEMPLATE   
+		WHERE 	
+		FORM_KEY=#{formKey} AND IS_DEFAULT=1
+	</select>
+	
+	<select id="getByFormKey" parameterType="java.lang.Long" resultMap="BpmPrintTemplate">
+		SELECT <include refid="columns"/>
+		FROM BPM_PRINT_TEMPLATE   
+		WHERE 	
+		FORM_KEY=#{formKey}
+	</select>
+</mapper>

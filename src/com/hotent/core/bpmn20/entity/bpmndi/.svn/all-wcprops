@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi
+END
+BPMNDiagram.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/BPMNDiagram.java
+END
+BPMNEdge.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/BPMNEdge.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/package-info.java
+END
+MessageVisibleKind.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/MessageVisibleKind.java
+END
+ParticipantBandKind.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/ParticipantBandKind.java
+END
+BPMNLabel.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/BPMNLabel.java
+END
+BPMNPlane.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/BPMNPlane.java
+END
+BPMNLabelStyle.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/BPMNLabelStyle.java
+END
+BPMNShape.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/BPMNShape.java
+END
+ObjectFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/bpmn20/entity/bpmndi/ObjectFactory.java
+END

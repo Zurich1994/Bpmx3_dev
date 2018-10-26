@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmUserCondition">
+	<resultMap id="BpmUserCondition" type="com.hotent.platform.model.bpm.BpmUserCondition">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="setId"  column="SETID"  jdbcType="NUMERIC"/>
+		<result property="actdefid" column="ACTDEFID" jdbcType="VARCHAR"/>
+		<result property="nodeid" column="NODEID" jdbcType="VARCHAR"/>
+		<result property="condition" column="CONDITIONCODE" jdbcType="CLOB"/>
+		<result property="sn" column="SN" jdbcType="NUMERIC"/>
+		<result property="formIdentity"  column="FORMIDENTITY"  jdbcType="VARCHAR"/>
+		<result property="conditionname"  column="CONDITIONNAME"  jdbcType="VARCHAR"/>
+		<result property="conditionShow"  column="CONDITIONSHOW"   jdbcType="VARCHAR"/>
+		<result property="conditionType" column="CONDITIONTYPE" jdbcType="NUMERIC"/>
+		<result property="groupNo" column="groupNo" jdbcType="NUMERIC"/>
+		<result property="parentActDefId"  column="PARENTACTDEFID" jdbcType="VARCHAR"/>		
+	</resultMap>
+
+	<sql id="columns">
+		ID,SETID,ACTDEFID,NODEID,CONDITIONCODE,SN,FORMIDENTITY,CONDITIONNAME,CONDITIONSHOW,CONDITIONTYPE,GROUPNO,PARENTACTDEFID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(setId)"> AND SETID  =#{setId} </if>
+			<if test="@Ognl@isNotEmpty(actdefid)"> AND ACTDEFID  LIKE #{actdefid}  </if>
+			<if test="@Ognl@isNotEmpty(nodeid)"> AND NODEID  LIKE #{nodeid}  </if>
+			<if test="@Ognl@isNotEmpty(condition)"> AND CONDITIONCODE  LIKE #{condition}  </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND SN  =#{sn} </if>
+			<if test="@Ognl@isNotEmpty(tableId)"> AND FORMIDENTITY  =#{formIdentity} </if>
+			<if test="@Ognl@isNotEmpty(conditionname)"> AND CONDITIONNAME  LIKE #{conditionname}  </if>
+			<if test="@Ognl@isNotEmpty(conditionShow)"> AND CONDITIONSHOW  LIKE #{conditionShow}  </if>
+			<if test="@Ognl@isNotEmpty(groupNo)"> AND groupNo  = #{groupNo,jdbcType=NUMERIC}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmUserCondition">
+		INSERT INTO BPM_USER_CONDITION 
+		(ID,SETID,ACTDEFID,NODEID,CONDITIONCODE,SN,FORMIDENTITY,CONDITIONNAME,CONDITIONSHOW,CONDITIONTYPE,GROUPNO,PARENTACTDEFID)
+		VALUES
+		(#{id,jdbcType=NUMERIC},#{setId,jdbcType=NUMERIC}, #{actdefid,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, #{condition,jdbcType=CLOB},
+		 #{sn,jdbcType=NUMERIC},#{formIdentity,jdbcType=NUMERIC},#{conditionname,jdbcType=VARCHAR},
+		 #{conditionShow,jdbcType=VARCHAR},#{conditionType,jdbcType=NUMERIC},#{groupNo,jdbcType=NUMERIC},#{parentActDefId,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_USER_CONDITION
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmUserCondition">
+		UPDATE BPM_USER_CONDITION  SET
+		SETID=#{setId,jdbcType=NUMERIC},
+		ACTDEFID=#{actdefid,jdbcType=VARCHAR},
+		NODEID=#{nodeid,jdbcType=VARCHAR},
+		CONDITIONCODE=#{condition,jdbcType=CLOB},
+		SN=#{sn,jdbcType=NUMERIC},
+		FORMIDENTITY=#{formIdentity,jdbcType=VARCHAR},
+		CONDITIONNAME=#{conditionname,jdbcType=VARCHAR},
+		CONDITIONSHOW=#{conditionShow,jdbcType=VARCHAR},
+		CONDITIONTYPE=#{conditionType,jdbcType=NUMERIC},
+		GROUPNO=#{groupNo,jdbcType=NUMERIC},
+		PARENTACTDEFID=#{parentActDefId,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmUserCondition">
+		SELECT <include refid="columns"/>
+		FROM BPM_USER_CONDITION 
+		WHERE
+		ID=#{id}
+		ORDER BY SN asc
+	</select>
+	
+	<select id="getAll" resultMap="BpmUserCondition">
+		SELECT <include refid="columns"/>
+		FROM BPM_USER_CONDITION    
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getBySetId" parameterType="java.lang.Long" resultMap="BpmUserCondition">
+		SELECT *
+		FROM BPM_USER_CONDITION WHERE 
+		SETID = #{setId} 
+		ORDER BY SN asc
+	</select>
+	
+	<select id="getByActDefId" parameterType="java.lang.Long" resultMap="BpmUserCondition">
+		SELECT *
+		FROM BPM_USER_CONDITION WHERE 
+		ACTDEFID = #{actDefId} and (PARENTACTDEFID is null or PARENTACTDEFID='') and CONDITIONTYPE=0
+	</select>
+	
+	<select id="getByActDefIdWithParentId" parameterType="java.util.Map" resultMap="BpmUserCondition">
+		SELECT *
+		FROM BPM_USER_CONDITION WHERE 
+		ACTDEFID = #{actDefId} and PARENTACTDEFID=#{parentActDefId} and CONDITIONTYPE=0 
+	</select>
+	
+	<select id="getByActDefIdForDel" parameterType="java.lang.Long" resultMap="BpmUserCondition">
+		SELECT *
+		FROM BPM_USER_CONDITION WHERE 
+		ACTDEFID = #{actDefId} OR PARENTACTDEFID =#{actDefId} 
+	</select>
+	
+	<select id="getCcByActDefId" parameterType="java.lang.Long" resultMap="BpmUserCondition">
+		SELECT *
+		FROM BPM_USER_CONDITION WHERE 
+		ACTDEFID = #{actDefId} and (PARENTACTDEFID IS NULL OR PARENTACTDEFID='') and CONDITIONTYPE=1 
+		ORDER BY SN asc
+	</select>
+	
+	<select id="getCcByActDefIdAndParentId" parameterType="java.util.Map" resultMap="BpmUserCondition">
+		SELECT *
+		FROM BPM_USER_CONDITION WHERE 
+		ACTDEFID = #{actDefId} and PARENTACTDEFID=#{parentActDefId} and CONDITIONTYPE=1 
+		ORDER BY SN asc
+	</select>
+	
+	<select id="getByActDefIdExport" parameterType="java.lang.Long" resultMap="BpmUserCondition">
+		SELECT *
+		FROM BPM_USER_CONDITION WHERE 
+		ACTDEFID = #{actDefId} and (PARENTACTDEFID IS NULL OR PARENTACTDEFID='')
+	</select>
+	
+	
+	<delete id="delByActDefId">
+		DELETE from BPM_USER_CONDITION 
+		where ACTDEFID=#{actDefId}
+	</delete>
+
+	
+
+
+	
+	<select id="getCcByActDefIdAndNodeId" resultMap="BpmUserCondition">
+		SELECT 
+			*
+		FROM 
+			BPM_USER_CONDITION 
+		WHERE 
+			ACTDEFID = #{actDefId,jdbcType=VARCHAR} 
+		 	AND NODEID = #{nodeId,jdbcType=VARCHAR} 
+		 	AND (PARENTACTDEFID IS NULL OR PARENTACTDEFID='')
+		ORDER BY 
+			SN ASC
+	</select>
+	<select id="getByActDefIdAndNodeIdAndType" resultMap="BpmUserCondition">
+		SELECT 
+			*
+		FROM 
+			BPM_USER_CONDITION 
+		WHERE 
+			ACTDEFID = #{actDefId,jdbcType=VARCHAR} 
+		 	AND NODEID = #{nodeId,jdbcType=VARCHAR}
+		 	AND CONDITIONTYPE = #{conditionType,jdbcType=NUMERIC} 
+		 	AND (PARENTACTDEFID IS NULL OR PARENTACTDEFID='')
+		ORDER BY 
+			SN ASC
+	</select>
+	
+	
+</mapper>

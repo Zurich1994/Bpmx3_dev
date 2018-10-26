@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysTypeKey">
+	<resultMap id="SysTypeKey" type="com.hotent.platform.model.system.SysTypeKey">
+		<id property="typeId" column="typeId" jdbcType="NUMERIC"/>
+		<result property="typeKey" column="typeKey" jdbcType="VARCHAR"/>
+		<result property="typeName" column="typeName" jdbcType="VARCHAR"/>		
+		<result property="flag" column="flag" jdbcType="NUMERIC"/>
+		<result property="sn" column="sn" jdbcType="NUMERIC"/>
+		<result property="type" column="type" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		typeId,typeKey,typeName,sn,flag,type
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND typeId  =#{typeId} </if>
+			<if test="@Ognl@isNotEmpty(typeKey)"> AND typeKey  LIKE #{typeKey}  </if>
+			<if test="@Ognl@isNotEmpty(typeName)"> AND typeName  LIKE #{typeName}  </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND sn  =#{sn} </if>
+			<if test="@Ognl@isNotEmpty(flag)"> AND flag  =#{flag} </if>
+			<if test="@Ognl@isNotEmpty(type)"> AND type  =#{type} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysTypeKey">
+		INSERT INTO SYS_TYPE_KEY
+		(typeId,typeKey,typeName,sn,flag,type)
+		VALUES
+		(#{typeId,jdbcType=NUMERIC}, #{typeKey,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{sn,jdbcType=NUMERIC}, #{flag,jdbcType=NUMERIC}, #{type,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_TYPE_KEY 
+		WHERE
+		typeId=#{typeId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysTypeKey">
+		UPDATE SYS_TYPE_KEY SET
+		typeKey=#{typeKey,jdbcType=VARCHAR} , 
+		typeName=#{typeName,jdbcType=VARCHAR} , 
+		sn=#{sn,jdbcType=NUMERIC},
+		flag=#{flag,jdbcType=NUMERIC},
+		type=#{type,jdbcType=NUMERIC}   
+		WHERE
+		typeId=#{typeId}
+	</update>
+	
+	<update id="updateSequence" parameterType="com.hotent.platform.model.system.SysTypeKey">
+		UPDATE SYS_TYPE_KEY SET sn=#{sn,jdbcType=NUMERIC}  WHERE typeId=#{typeId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysTypeKey">
+		SELECT <include refid="columns"/>
+		FROM SYS_TYPE_KEY
+		where typeId  =#{typeId} 		
+	</select>
+	
+	<select id="getAll" resultMap="SysTypeKey">
+		SELECT <include refid="columns"/>
+		FROM SYS_TYPE_KEY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by sn  ,typeId desc
+		</if>
+	</select>
+	
+	<select id="getByKey" resultMap="SysTypeKey">
+		select * from SYS_TYPE_KEY where lower(typekey)=#{typeKey}
+	</select>
+	
+	<select id="isExistKey" resultType="java.lang.Integer">
+		select count(*) from SYS_TYPE_KEY where lower(typekey)=#{typeKey}
+	</select>
+	
+	<select id="isKeyExistForUpdate" resultType="java.lang.Integer">
+		select count(*) from SYS_TYPE_KEY where lower(typekey)=#{typeKey} and typeId !=#{typeId}
+	</select>
+</mapper>

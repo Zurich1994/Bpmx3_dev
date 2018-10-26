@@ -1,0 +1,32 @@
+﻿<p>
+	<br />
+</p>
+<script>
+function handRowEvent(ev,table){
+		$("td.tdNo",table).each(function(i){
+			$(this).text(i+1);
+		});
+	}
+</script>
+<table class="formTable" border="1" cellspacing="0" cellpadding="2">
+	<tbody>
+		<tr>
+			<td class="formHead" colspan="4">主      表</td>
+		</tr>
+		<tr>
+			<td style="width: 15%" class="formTitle" align="right">主表字段一:</td>
+			<td style="width: 35%" class="formInput"></td>
+			<td style="width: 15%" class="formTitle" align="right">主表字段二:</td>
+			<td style="width: 35%" class="formInput"></td>
+		</tr>
+		<tr>
+			<td style="width: 15%" class="formTitle" align="right">主表字段三:</td>
+			<td style="width: 35%" class="formInput"></td>
+			<td style="width: 15%" class="formTitle" align="right">主表字段四:</td>
+			<td style="width: 35%" class="formInput"></td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	<br />
+</p>

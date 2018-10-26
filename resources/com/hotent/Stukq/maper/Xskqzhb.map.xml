@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Stukq.model.Stuzh.Xskqzhb">
+	<resultMap id="Xskqzhb" type="com.hotent.Stukq.model.Stuzh.Xskqzhb">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="refId" column="REFID" jdbcType="NUMERIC"/>
+		<result property="xsxm" column="F_XSXM" jdbcType="VARCHAR"/>
+		<result property="dysd" column="F_DYSD" jdbcType="VARCHAR"/>
+		<result property="qdsj" column="F_QDSJ" jdbcType="VARCHAR"/>
+		<result property="qtsj" column="F_QTSJ" jdbcType="VARCHAR"/>
+		<result property="cdsj" column="F_CDSJ" jdbcType="VARCHAR"/>
+		<result property="ztsj" column="F_ZTSJ" jdbcType="VARCHAR"/>
+		<result property="gzsj" column="F_GZSJ" jdbcType="VARCHAR"/>
+		<result property="cqsj" column="F_CQSJ" jdbcType="VARCHAR"/>
+		<result property="sbqjb" column="F_SBQJB" jdbcType="VARCHAR"/>
+		<result property="xbhjb" column="F_XBHJB" jdbcType="VARCHAR"/>
+		<result property="jbhj" column="F_JBHJ" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,REFID,F_XSXM,F_DYSD,F_QDSJ,F_QTSJ,F_CDSJ,F_ZTSJ,F_GZSJ,F_CQSJ,F_SBQJB,F_XBHJB,F_JBHJ
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(xsxm)"> AND F_XSXM  LIKE '%${xsxm}%'  </if>
+			<if test="@Ognl@isNotEmpty(dysd)"> AND F_DYSD  LIKE '%${dysd}%'  </if>
+			<if test="@Ognl@isNotEmpty(qdsj)"> AND F_QDSJ  LIKE '%${qdsj}%'  </if>
+			<if test="@Ognl@isNotEmpty(qtsj)"> AND F_QTSJ  LIKE '%${qtsj}%'  </if>
+			<if test="@Ognl@isNotEmpty(cdsj)"> AND F_CDSJ  LIKE '%${cdsj}%'  </if>
+			<if test="@Ognl@isNotEmpty(ztsj)"> AND F_ZTSJ  LIKE '%${ztsj}%'  </if>
+			<if test="@Ognl@isNotEmpty(gzsj)"> AND F_GZSJ  LIKE '%${gzsj}%'  </if>
+			<if test="@Ognl@isNotEmpty(cqsj)"> AND F_CQSJ  LIKE '%${cqsj}%'  </if>
+			<if test="@Ognl@isNotEmpty(sbqjb)"> AND F_SBQJB  LIKE '%${sbqjb}%'  </if>
+			<if test="@Ognl@isNotEmpty(xbhjb)"> AND F_XBHJB  LIKE '%${xbhjb}%'  </if>
+			<if test="@Ognl@isNotEmpty(jbhj)"> AND F_JBHJ  LIKE '%${jbhj}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Stukq.model.Stuzh.Xskqzhb">
+		INSERT INTO W_XSKQZHB
+		(ID,REFID,
+		F_XSXM,F_DYSD,F_QDSJ,F_QTSJ,F_CDSJ,F_ZTSJ,F_GZSJ,F_CQSJ,F_SBQJB,F_XBHJB,F_JBHJ)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{refId,jdbcType=NUMERIC},
+		#{xsxm,jdbcType=VARCHAR}, #{dysd,jdbcType=VARCHAR}, #{qdsj,jdbcType=VARCHAR}, #{qtsj,jdbcType=VARCHAR}, #{cdsj,jdbcType=VARCHAR}, #{ztsj,jdbcType=VARCHAR}, #{gzsj,jdbcType=VARCHAR}, #{cqsj,jdbcType=VARCHAR}, #{sbqjb,jdbcType=VARCHAR}, #{xbhjb,jdbcType=VARCHAR}, #{jbhj,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_XSKQZHB 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Stukq.model.Stuzh.Xskqzhb">
+		UPDATE W_XSKQZHB SET
+		REFID=#{refId,jdbcType=NUMERIC},
+		#{refId,jdbcType=NUMERIC},
+		F_XSXM=#{xsxm,jdbcType=VARCHAR},
+		F_DYSD=#{dysd,jdbcType=VARCHAR},
+		F_QDSJ=#{qdsj,jdbcType=VARCHAR},
+		F_QTSJ=#{qtsj,jdbcType=VARCHAR},
+		F_CDSJ=#{cdsj,jdbcType=VARCHAR},
+		F_ZTSJ=#{ztsj,jdbcType=VARCHAR},
+		F_GZSJ=#{gzsj,jdbcType=VARCHAR},
+		F_CQSJ=#{cqsj,jdbcType=VARCHAR},
+		F_SBQJB=#{sbqjb,jdbcType=VARCHAR},
+		F_XBHJB=#{xbhjb,jdbcType=VARCHAR},
+		F_JBHJ=#{jbhj,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<delete id="delByMainId">
+	    DELETE FROM W_XSKQZHB
+	    WHERE
+	    REFID=#{refId}
+	</delete>    
+	
+	<select id="getXskqzhbList" resultMap="Xskqzhb">
+	    SELECT <include refid="columns"/>
+	    FROM W_XSKQZHB 
+	    WHERE REFID=#{refId}
+	</select>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Xskqzhb">
+		SELECT <include refid="columns"/>
+		FROM W_XSKQZHB
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Xskqzhb">
+		SELECT <include refid="columns"/>
+		FROM W_XSKQZHB   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

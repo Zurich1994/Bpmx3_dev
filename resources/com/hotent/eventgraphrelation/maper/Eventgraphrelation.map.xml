@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.eventgraphrelation.model.eventgraphrelation.Eventgraphrelation">
+	<resultMap id="Eventgraphrelation" type="com.hotent.eventgraphrelation.model.eventgraphrelation.Eventgraphrelation">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="eventID" column="F_EVENTID" jdbcType="VARCHAR"/>
+		<result property="defID" column="F_DEFID" jdbcType="VARCHAR"/>
+		<result property="nodeID" column="F_NODEID" jdbcType="VARCHAR"/>
+		<result property="defbID" column="F_DEFBID" jdbcType="VARCHAR"/>
+		<result property="probability" column="F_PROBABILITY" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_EVENTID,F_DEFID,F_NODEID,F_DEFBID,F_PROBABILITY
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(eventID)"> AND F_EVENTID  LIKE '%${eventID}%'  </if>
+			<if test="@Ognl@isNotEmpty(defID)"> AND F_DEFID  LIKE '%${defID}%'  </if>
+			<if test="@Ognl@isNotEmpty(nodeID)"> AND F_NODEID  LIKE '%${nodeID}%'  </if>
+			<if test="@Ognl@isNotEmpty(defbID)"> AND F_DEFBID  LIKE '%${defbID}%'  </if>
+			<if test="@Ognl@isNotEmpty(probability)"> AND F_PROBABILITY  LIKE '%${probability}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.eventgraphrelation.model.eventgraphrelation.Eventgraphrelation">
+		INSERT INTO W_EVENTGRAPHRELATION
+		(ID,
+		F_EVENTID,F_DEFID,F_NODEID,F_DEFBID,F_PROBABILITY)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{eventID,jdbcType=VARCHAR}, #{defID,jdbcType=VARCHAR}, #{nodeID,jdbcType=VARCHAR}, #{defbID,jdbcType=VARCHAR}, #{probability,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_EVENTGRAPHRELATION 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.eventgraphrelation.model.eventgraphrelation.Eventgraphrelation">
+		UPDATE W_EVENTGRAPHRELATION SET
+		F_EVENTID=#{eventID,jdbcType=VARCHAR},
+		F_DEFID=#{defID,jdbcType=VARCHAR},
+		F_NODEID=#{nodeID,jdbcType=VARCHAR},
+		F_DEFBID=#{defbID,jdbcType=VARCHAR},
+		F_PROBABILITY=#{probability,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Eventgraphrelation">
+		SELECT <include refid="columns"/>
+		FROM W_EVENTGRAPHRELATION
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByEventId" parameterType="java.lang.String" resultMap="Eventgraphrelation">
+		SELECT <include refid="columns"/>
+		FROM W_EVENTGRAPHRELATION
+		WHERE
+		F_EVENTID=#{eventID}
+	</select>
+	
+	<select id="getAll" resultMap="Eventgraphrelation">
+		SELECT <include refid="columns"/>
+		FROM W_EVENTGRAPHRELATION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.ParamRely.model.lc.ParamRely">
+	<resultMap id="ParamRely" type="com.hotent.ParamRely.model.lc.ParamRely">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="relyMethod" column="F_RELYMETHOD" jdbcType="VARCHAR"/>
+		<result property="relyKey" column="F_RELYKEY" jdbcType="VARCHAR"/>
+		<result property="relyValue" column="F_RELYVALUE" jdbcType="VARCHAR"/>
+		<result property="script" column="F_SCRIPT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_RELYMETHOD,F_RELYKEY,F_RELYVALUE,F_SCRIPT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(relyMethod)"> AND F_RELYMETHOD  LIKE '%${relyMethod}%'  </if>
+			<if test="@Ognl@isNotEmpty(relyKey)"> AND F_RELYKEY  LIKE '%${relyKey}%'  </if>
+			<if test="@Ognl@isNotEmpty(relyValue)"> AND F_RELYVALUE  LIKE '%${relyValue}%'  </if>
+			<if test="@Ognl@isNotEmpty(script)"> AND F_SCRIPT  LIKE '%${script}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.ParamRely.model.lc.ParamRely">
+		INSERT INTO W_PARAM_RELY_LC
+		(ID,
+		F_RELYMETHOD,F_RELYKEY,F_RELYVALUE,F_SCRIPT)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{relyMethod,jdbcType=VARCHAR}, #{relyKey,jdbcType=VARCHAR}, #{relyValue,jdbcType=VARCHAR}, #{script,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_PARAM_RELY_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.ParamRely.model.lc.ParamRely">
+		UPDATE W_PARAM_RELY_LC SET
+		F_RELYMETHOD=#{relyMethod,jdbcType=VARCHAR},
+		F_RELYKEY=#{relyKey,jdbcType=VARCHAR},
+		F_RELYVALUE=#{relyValue,jdbcType=VARCHAR},
+		F_SCRIPT=#{script,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ParamRely">
+		SELECT <include refid="columns"/>
+		FROM W_PARAM_RELY_LC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ParamRely">
+		SELECT <include refid="columns"/>
+		FROM W_PARAM_RELY_LC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

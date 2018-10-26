@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysQueryMetaField">
+	<resultMap id="SysQueryMetaField" type="com.hotent.platform.model.system.SysQueryMetaField">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="sqlId" column="SQL_ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="fieldName" column="FIELD_NAME" jdbcType="VARCHAR"/>
+		<result property="fieldDesc" column="FIELD_DESC" jdbcType="VARCHAR"/>
+		<result property="isShow" column="IS_SHOW" jdbcType="NUMERIC"/>
+		<result property="isSearch" column="IS_SEARCH" jdbcType="NUMERIC"/>
+		<result property="controlType" column="CONTROL_TYPE" jdbcType="NUMERIC"/>
+		<result property="dataType" column="DATA_TYPE" jdbcType="VARCHAR"/>
+		<result property="isVirtual" column="IS_VIRTUAL" jdbcType="NUMERIC"/>
+		<result property="virtualFrom" column="VIRTUAL_FROM" jdbcType="VARCHAR"/>
+		<result property="resultFromType" column="RESULT_FROM_TYPE" jdbcType="VARCHAR"/>
+		<result property="resultFrom" column="RESULT_FROM" jdbcType="VARCHAR"/>
+		<result property="alarmSetting" column="ALARM_SETTING" jdbcType="VARCHAR"/>
+		<result property="dateFormat" column="DATE_FORMAT" jdbcType="VARCHAR"/>
+		<result property="controlContent" column="control_content" jdbcType="VARCHAR"/>
+		<result property="url" column="URL" jdbcType="VARCHAR"/>
+		<result property="formater" column="FORMATER" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,SQL_ID,NAME,FIELD_NAME,FIELD_DESC,IS_SHOW,IS_SEARCH,CONTROL_TYPE,DATA_TYPE,IS_VIRTUAL,VIRTUAL_FROM,RESULT_FROM_TYPE,RESULT_FROM,ALARM_SETTING,DATE_FORMAT,control_content,URL,FORMATER
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(sqlId)"> AND SQL_ID  =#{sqlId} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(fieldName)"> AND FIELD_NAME  LIKE #{fieldName}  </if>
+			<if test="@Ognl@isNotEmpty(fieldDesc)"> AND FIELD_DESC  LIKE #{fieldDesc}  </if>
+			<if test="@Ognl@isNotEmpty(isShow)"> AND IS_SHOW  =#{isShow} </if>
+			<if test="@Ognl@isNotEmpty(isSearch)"> AND IS_SEARCH  =#{isSearch} </if>
+			<if test="@Ognl@isNotEmpty(controlType)"> AND CONTROL_TYPE  =#{controlType} </if>
+			<if test="@Ognl@isNotEmpty(dataType)"> AND DATA_TYPE  LIKE #{dataType}  </if>
+			<if test="@Ognl@isNotEmpty(isVirtual)"> AND IS_VIRTUAL  =#{isVirtual} </if>
+			<if test="@Ognl@isNotEmpty(virtualFrom)"> AND VIRTUAL_FROM  LIKE #{virtualFrom}  </if>
+			<if test="@Ognl@isNotEmpty(resultFromType)"> AND RESULT_FROM_TYPE  LIKE #{resultFromType}  </if>
+			<if test="@Ognl@isNotEmpty(resultFrom)"> AND RESULT_FROM  LIKE #{resultFrom}  </if>
+			<if test="@Ognl@isNotEmpty(alarmSetting)"> AND ALARM_SETTING  LIKE #{alarmSetting}  </if>
+			<if test="@Ognl@isNotEmpty(dateFormat)"> AND DATE_FORMAT  LIKE #{dateFormat}  </if>
+			<if test="@Ognl@isNotEmpty(controlContent)"> AND control_content  LIKE #{controlContent}  </if>
+			<if test="@Ognl@isNotEmpty(url)"> AND URL  LIKE #{url}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysQueryMetaField">
+		INSERT INTO sys_query_metafield
+		(ID,SQL_ID,NAME,FIELD_NAME,FIELD_DESC,IS_SHOW,IS_SEARCH,CONTROL_TYPE,DATA_TYPE,IS_VIRTUAL,VIRTUAL_FROM,RESULT_FROM_TYPE,RESULT_FROM,ALARM_SETTING,DATE_FORMAT,control_content,URL,FORMATER)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{sqlId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, #{fieldDesc,jdbcType=VARCHAR}, #{isShow,jdbcType=NUMERIC}, #{isSearch,jdbcType=NUMERIC}, #{controlType,jdbcType=NUMERIC}, #{dataType,jdbcType=VARCHAR}, #{isVirtual,jdbcType=NUMERIC}, #{virtualFrom,jdbcType=VARCHAR}, #{resultFromType,jdbcType=VARCHAR}, #{resultFrom,jdbcType=VARCHAR}, #{alarmSetting,jdbcType=VARCHAR}, #{dateFormat,jdbcType=VARCHAR}, #{controlContent,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},#{formater,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_query_metafield 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysQueryMetaField">
+		UPDATE sys_query_metafield SET
+		SQL_ID=#{sqlId,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		FIELD_NAME=#{fieldName,jdbcType=VARCHAR},
+		FIELD_DESC=#{fieldDesc,jdbcType=VARCHAR},
+		IS_SHOW=#{isShow,jdbcType=NUMERIC},
+		IS_SEARCH=#{isSearch,jdbcType=NUMERIC},
+		CONTROL_TYPE=#{controlType,jdbcType=NUMERIC},
+		DATA_TYPE=#{dataType,jdbcType=VARCHAR},
+		IS_VIRTUAL=#{isVirtual,jdbcType=NUMERIC},
+		VIRTUAL_FROM=#{virtualFrom,jdbcType=VARCHAR},
+		RESULT_FROM_TYPE=#{resultFromType,jdbcType=VARCHAR},
+		RESULT_FROM=#{resultFrom,jdbcType=VARCHAR},
+		ALARM_SETTING=#{alarmSetting,jdbcType=VARCHAR},
+		DATE_FORMAT=#{dateFormat,jdbcType=VARCHAR},
+		control_content=#{controlContent,jdbcType=VARCHAR},
+		URL=#{url,jdbcType=VARCHAR},
+		FORMATER=#{formater,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysQueryMetaField">
+		SELECT <include refid="columns"/>
+		FROM sys_query_metafield
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysQueryMetaField">
+		SELECT <include refid="columns"/>
+		FROM sys_query_metafield   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	
+	<select id="getListBySqlAlias"  resultMap="SysQueryMetaField">
+		SELECT A.*
+		FROM SYS_QUERY_METAFIELD A,sys_query_sqldef B
+		WHERE A.SQL_ID=B.ID AND B.alias=#{alias}
+		
+	</select>
+	
+	
+	<select id="getListBySqlId" parameterType="java.lang.Long" resultMap="SysQueryMetaField">
+		SELECT <include refid="columns"/>
+		FROM SYS_QUERY_METAFIELD
+		WHERE
+		SQL_ID=#{sqlId}
+	</select>
+	
+	
+	<delete id="removeBySQLId" parameterType="java.lang.Long">
+		DELETE FROM SYS_QUERY_METAFIELD 
+		WHERE
+		SQL_ID=#{sqlId}
+	</delete>
+	
+	<select id="getListByView"  resultMap="SysQueryMetaField">
+		SELECT A.*
+		FROM SYS_QUERY_METAFIELD A,sys_query_fieldsetting B
+		WHERE
+		A.NAME=B.FIELD_Name AND B.VIEW_ID=#{viewId}
+		<if test="type!=-1">
+			and IS_VIRTUAL=#{type}
+		</if>
+		ORDER BY B.ID
+	</select>
+	
+	
+	
+</mapper>

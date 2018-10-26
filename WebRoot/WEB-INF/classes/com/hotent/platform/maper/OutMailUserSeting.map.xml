@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.mail.OutMailUserSeting">
+	<resultMap id="OutMailUserSeting" type="com.hotent.platform.model.mail.OutMailUserSeting">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="userName" column="userName" jdbcType="VARCHAR"/>
+		<result property="mailAddress" column="mailAddress" jdbcType="VARCHAR"/>
+		<result property="mailPass" column="mailPass" jdbcType="VARCHAR"/>
+		<result property="smtpHost" column="smtpHost" jdbcType="VARCHAR"/>
+		<result property="smtpPort" column="smtpPort" jdbcType="VARCHAR"/>
+		<result property="popHost" column="popHost" jdbcType="VARCHAR"/>
+		<result property="popPort" column="popPort" jdbcType="VARCHAR"/>
+		<result property="imapHost" column="imapHost" jdbcType="VARCHAR"/>
+		<result property="imapPort" column="imapPort" jdbcType="VARCHAR"/>
+		<result property="isDefault" column="isDefault" jdbcType="NUMERIC"/>
+		<result property="mailType" column="mailType" jdbcType="VARCHAR"/>
+		<result property="SSL" column="USESSL" jdbcType="NUMERIC"/>
+		<result property="validate" column="ISVALIDATE" jdbcType="NUMERIC"/>
+		<result property="isDeleteRemote" column="ISDELETEREMOTE" jdbcType="NUMERIC"/>
+		<result property="isHandleAttach" column="ISHANDLEATTACH" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,userId,userName,mailAddress,mailPass,smtpHost,smtpPort,popHost,popPort,imapHost,imapPort,isDefault,mailType,USESSL,ISVALIDATE,ISDELETEREMOTE,ISHANDLEATTACH
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(userName)"> AND userName  LIKE #{userName}  </if>
+			<if test="@Ognl@isNotEmpty(mailAddress)"> AND mailAddress  LIKE #{mailAddress}  </if>
+			<if test="@Ognl@isNotEmpty(isDefault)"> AND isDefault  =#{isDefault} </if>
+		</where>
+	</sql>
+	
+	<insert id="add" parameterType="com.hotent.platform.model.mail.OutMailUserSeting">
+		INSERT INTO OUT_MAIL_USER_SETING
+		(id,userId,userName,mailAddress,mailPass,smtpHost,smtpPort,popHost,popPort,imapHost,imapPort,isDefault,mailType,USESSL,ISVALIDATE,ISDELETEREMOTE,ISHANDLEATTACH)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{userName,jdbcType=VARCHAR}, #{mailAddress,jdbcType=VARCHAR}, #{mailPass,jdbcType=VARCHAR}, #{smtpHost,jdbcType=VARCHAR}, #{smtpPort,jdbcType=VARCHAR}, #{popHost,jdbcType=VARCHAR}, #{popPort,jdbcType=VARCHAR}, #{imapHost,jdbcType=VARCHAR}, #{imapPort,jdbcType=VARCHAR}, #{isDefault,jdbcType=NUMERIC},#{mailType,jdbcType=VARCHAR},#{SSL,jdbcType=VARCHAR}, #{validate,jdbcType=NUMERIC}, #{isDeleteRemote,jdbcType=NUMERIC}, #{isHandleAttach,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM OUT_MAIL_USER_SETING 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.mail.OutMailUserSeting">
+		UPDATE OUT_MAIL_USER_SETING SET
+		userId=#{userId,jdbcType=NUMERIC} , 
+		userName=#{userName,jdbcType=VARCHAR} , 
+		mailAddress=#{mailAddress,jdbcType=VARCHAR} , 
+		mailPass=#{mailPass,jdbcType=VARCHAR} , 
+		smtpHost=#{smtpHost,jdbcType=VARCHAR} , 
+		smtpPort=#{smtpPort,jdbcType=VARCHAR} , 
+		popHost=#{popHost,jdbcType=VARCHAR} , 
+		popPort=#{popPort,jdbcType=VARCHAR} , 
+		imapHost=#{imapHost,jdbcType=VARCHAR} , 
+		imapPort=#{imapPort,jdbcType=VARCHAR} , 
+		isDefault=#{isDefault,jdbcType=NUMERIC},
+		mailType=#{mailType,jdbcType=VARCHAR},
+		USESSL=#{SSL,jdbcType=VARCHAR}, 
+		ISVALIDATE=#{validate,jdbcType=NUMERIC}, 
+		ISDELETEREMOTE=#{isDeleteRemote,jdbcType=NUMERIC}, 
+		ISHANDLEATTACH=#{isHandleAttach,jdbcType=NUMERIC}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<update id="updateDefault" parameterType="com.hotent.platform.model.mail.OutMailUserSeting">
+		UPDATE OUT_MAIL_USER_SETING SET
+		isDefault=#{isDefault,jdbcType=NUMERIC}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="OutMailUserSeting">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_USER_SETING
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="OutMailUserSeting">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_USER_SETING   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getAllByUserId" resultMap="OutMailUserSeting">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_USER_SETING
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<select id="getMailByAddress" parameterType="java.lang.String" resultMap="OutMailUserSeting">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_USER_SETING
+		WHERE
+		mailAddress=#{address}
+	</select>
+	
+	<select id="getMailByUserId" parameterType="java.lang.Long" resultMap="OutMailUserSeting">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_USER_SETING
+		WHERE
+		userId=#{userId}
+	</select>
+		
+	<select id="getByIsDefault" parameterType="java.lang.Long" resultMap="OutMailUserSeting">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL_USER_SETING
+		WHERE
+		userId=#{userId} and isDefault=1
+	</select>
+	
+	<select id="getCountByAddress" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(*)
+		FROM OUT_MAIL_USER_SETING
+		WHERE
+		mailAddress=#{address}
+	</select>
+	
+	<select id="getCountByUserId" parameterType="java.lang.Long" resultType="int">
+		SELECT COUNT(*)
+		FROM OUT_MAIL_USER_SETING
+		WHERE
+		userId=#{userId}
+	</select>
+</mapper>

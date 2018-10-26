@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotent.platform.model.system.SysQuerySql">
+	<resultMap id="SysQuerySql" type="com.hotent.platform.model.system.SysQuerySql">
+		<id property="id" column="ID" jdbcType="NUMERIC" />
+		<result property="sql" column="SQL_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="dsalias" column="DSALIAS" jdbcType="VARCHAR" />
+		<result property="urlParams" column="URL_PARAMS" jdbcType="VARCHAR" />
+		
+		<result property="categoryId" column="CATEGORYID" jdbcType="NUMERIC" />
+		<result property="categoryName" column="CATEGORYNAME" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="columns">
+		ID,SQL_,NAME,DSALIAS,CATEGORYID,URL_PARAMS
+	</sql>
+	
+	<sql id="columnsAlias">
+		SQ.ID,SQ.SQL_,SQ.NAME,SQ.DSALIAS,SQ.CATEGORYID,SQ.URL_PARAMS
+	</sql>
+
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(categoryId)"> AND CATEGORYID =#{categoryId} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME LIKE #{name}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysQuerySql">
+		INSERT INTO SYS_QUERY_SQL
+		(ID,SQL_,NAME,DSALIAS,CATEGORYID,URL_PARAMS)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{sql,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{dsalias,jdbcType=VARCHAR},
+		#{categoryId,jdbcType=NUMERIC},#{urlParams,jdbcType=VARCHAR})
+	</insert>
+
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_QUERY_SQL
+		WHERE
+		ID=#{id}
+	</delete>
+
+	<update id="update" parameterType="com.hotent.platform.model.system.SysQuerySql">
+		UPDATE SYS_QUERY_SQL SET
+		SQL_=#{sql,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		DSALIAS=#{dsalias,jdbcType=VARCHAR},
+		CATEGORYID=#{categoryId,jdbcType=NUMERIC},
+		URL_PARAMS=#{urlParams,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysQuerySql">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_QUERY_SQL
+		WHERE
+		ID=#{id}
+	</select>
+
+	<select id="getAll" resultMap="SysQuerySql">
+		SELECT * FROM (
+			SELECT
+			<include refid="columnsAlias" />,GT.TYPENAME AS CATEGORYNAME
+			FROM SYS_QUERY_SQL SQ
+			LEFT JOIN SYS_GL_TYPE GT ON SQ.CATEGORYID = GT.TYPEID
+		)TEMP	
+		
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by ID desc
+		</if>
+	</select>
+</mapper>

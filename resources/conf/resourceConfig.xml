@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources filePath="D:\init.sql">
+
+	<resource table="SYS_RES"  pk="RESID" parentId="PARENTID" parentIdVal="0">
+		<sql>SELECT * FROM SYS_RES WHERE SYSTEMID=1 AND PARENTID=${PARENTID} ORDER BY SN</sql>
+		<template>
+insert into SYS_RES (RESID, RESNAME, ALIAS, SN, ICON,PARENTID, DEFAULTURL, ISFOLDER, ISDISPLAYINMENU, ISOPEN, SYSTEMID,PATH)
+values (${RESID}, '${RESNAME}', '${ALIAS}', ${SN}, '${ICON}',${PARENTID}, '${DEFAULTURL}', ${ISFOLDER}, ${ISDISPLAYINMENU},${ISOPEN}, ${SYSTEMID}, '');
+		</template>
+	</resource>
+
+	<resource table="SYS_LAN_RES"  pk="ID" mainTable="SYS_RES" fk="RES_ID"  >
+		<sql>select * from sys_lan_res order by RES_ID asc</sql>
+		<template>
+insert into SYS_LAN_RES (ID, RES_ID, LAN_TYPE, LAN_MSG)
+values (${ID}, ${RES_ID}, '${LAN_TYPE}', '${LAN_MSG}');
+		</template>
+	</resource>
+	
+	<resource table="SYS_LANGUAGE"  pk="ID"   >
+		<sql>SELECT ID ,LANGUAGE,ISDEFAULT,MEMO FROM SYS_LANGUAGE  </sql>
+		<template>
+insert into sys_language(ID, LANGUAGE, ISDEFAULT, MEMO)
+values(${ID}, '${LANGUAGE}',${ISDEFAULT},'${MEMO}');
+		</template>
+	</resource>
+	                                                 
+	<resource table="SYS_SCRIPT" pk="ID">
+		<sql>select * from sys_script</sql>
+		<template>
+insert into SYS_SCRIPT (ID, NAME, SCRIPT, CATEGORY, MEMO)
+values (${ID}, '${NAME}', '${SCRIPT}', '${CATEGORY}', '${MEMO}');
+		</template>
+	</resource>
+
+	<resource table="SYS_TEMPLATE" pk="TEMPLATEID">
+		<sql>select * from SYS_TEMPLATE</sql>
+		<template>
+insert into SYS_TEMPLATE (templateId,name,htmlContent,plainContent,isDefault,useType,title)
+values (${TEMPLATEID}, '${NAME}', '${HTMLCONTENT}', '${PLAINCONTENT}',${ISDEFAULT},${USETYPE},'${TITLE}');
+		</template>
+	</resource>
+
+	<resource table="BPM_FORM_RULE" pk="ID">
+		<sql>select * from BPM_FORM_RULE</sql>
+		<template>
+insert into BPM_FORM_RULE (id,name,REGULATION,memo,tipInfo)
+values (${ID}, '${NAME}', '${REGULATION}', '${MEMO}', '${TIPINFO}');
+		</template>
+	</resource>
+
+</resources>

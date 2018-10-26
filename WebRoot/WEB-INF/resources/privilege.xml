@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PrivilegeManager xmlVersion="20120529" releaseVersion="7.0.0" fsSystemManagerPassSet="true" male="false">
+<rootManagerName>
+<![CDATA[admin]]></rootManagerName>
+<rootManagerPassword>
+<![CDATA[___0072002a00670066000a]]></rootManagerPassword>
+<AP class="com.fr.privilege.providers.NoAuthenticationProvider"/>
+<ForwardUrl>
+<![CDATA[${servletURL}?op=fr_platform]]></ForwardUrl>
+<LoginUI class="com.fr.privilege.ui.EmbeddedLogin"/>
+</PrivilegeManager>

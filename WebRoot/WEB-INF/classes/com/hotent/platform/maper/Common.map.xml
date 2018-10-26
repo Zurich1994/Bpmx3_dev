@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="Common">
+
+    <select id="Common_getBySql" parameterType="Map" resultType="HashMap" >
+    	${sql}
+    </select> 
+    <select id="Common_getSingleBySql" parameterType="Map" resultType="int" >
+    	${sql}
+    </select>
+    <update id="Common_update" parameterType="String"  >
+    	${sql}
+    </update>
+    
+    
+</mapper>

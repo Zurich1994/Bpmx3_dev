@@ -1,0 +1,569 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats
+END
+atsAttendanceFileEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileEdit.jsp
+END
+atsCalendarTemplSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCalendarTemplSelector.jsp
+END
+atsCardRecordEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRecordEdit.jsp
+END
+atsShiftTypeGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftTypeGet.jsp
+END
+atsAttencePolicyDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttencePolicyDialog.jsp
+END
+atsAttenceCycleDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCycleDialog.jsp
+END
+atsAttenceGroupDetailGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupDetailGet.jsp
+END
+atsShiftTypeEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftTypeEdit.jsp
+END
+atsShiftInfoReplace.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftInfoReplace.jsp
+END
+atsShiftInfoList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftInfoList.jsp
+END
+atsShiftInfoGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftInfoGet.jsp
+END
+atsAttenceGroupDetailEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupDetailEdit.jsp
+END
+atsLegalHolidayList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsLegalHolidayList.jsp
+END
+atsWorkCalendarDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsWorkCalendarDialog.jsp
+END
+atsCardRuleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRuleList.jsp
+END
+atsBaseItemEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsBaseItemEdit.jsp
+END
+atsCardRuleGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRuleGet.jsp
+END
+atsHolidayPolicyDetailEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicyDetailEdit.jsp
+END
+atsAttenceCycleSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCycleSelector.jsp
+END
+atsAttencePolicySelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttencePolicySelector.jsp
+END
+atsHolidayPolicyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicyList.jsp
+END
+atsAttenceGroupEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupEdit.jsp
+END
+atsAttendanceFileGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileGet.jsp
+END
+atsCalendarTemplList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCalendarTemplList.jsp
+END
+atsAttendanceFileSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileSelector.jsp
+END
+atsHolidayPolicyGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicyGet.jsp
+END
+atsWorkCalendarGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsWorkCalendarGet.jsp
+END
+atsLegalHolidayDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsLegalHolidayDialog.jsp
+END
+atsImportPlanList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsImportPlanList.jsp
+END
+atsImportPlanGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsImportPlanGet.jsp
+END
+atsHolidayTypeGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayTypeGet.jsp
+END
+atsAttenceCalculateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCalculateList.jsp
+END
+atsAttencePolicyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttencePolicyList.jsp
+END
+atsAttenceCycleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCycleList.jsp
+END
+atsAttenceGroupSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupSelector.jsp
+END
+atsHolidayTypeEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayTypeEdit.jsp
+END
+atsAttendanceFileList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileList.jsp
+END
+atsShiftRuleSetting.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftRuleSetting.jsp
+END
+atsCardRecordList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRecordList.jsp
+END
+atsAttendanceFileDisUser.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileDisUser.jsp
+END
+atsTurnShiftWizard.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsTurnShiftWizard.jsp
+END
+atsShiftTypeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftTypeList.jsp
+END
+atsShiftRuleEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftRuleEdit.jsp
+END
+atsHolidayTypeDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayTypeDialog.jsp
+END
+atsAttenceGroupDetailList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupDetailList.jsp
+END
+atsWorkCalendarEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsWorkCalendarEdit.jsp
+END
+atsAttenceCalculateSetEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCalculateSetEdit.jsp
+END
+atsShiftRuleDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftRuleDialog.jsp
+END
+atsBaseItemList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsBaseItemList.jsp
+END
+atsScheduleShiftList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsScheduleShiftList.jsp
+END
+atsAttendanceFileDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileDialog.jsp
+END
+atsHolidayPolicyDetailList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicyDetailList.jsp
+END
+atsBaseItemGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsBaseItemGet.jsp
+END
+atsAttenceCalculateCalendar.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCalculateCalendar.jsp
+END
+atsAttenceGroupList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupList.jsp
+END
+atsHolidayTypeSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayTypeSelector.jsp
+END
+atsAttendanceFileExportTemp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileExportTemp.jsp
+END
+atsShiftInfoEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftInfoEdit.jsp
+END
+atsAttendanceFileImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileImport.jsp
+END
+atsCardRecordImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRecordImport.jsp
+END
+atsLegalHolidayEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsLegalHolidayEdit.jsp
+END
+atsAttendanceFileSetting.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttendanceFileSetting.jsp
+END
+atsShiftRuleSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftRuleSelector.jsp
+END
+atsCardRuleEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRuleEdit.jsp
+END
+atsCardRecordGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRecordGet.jsp
+END
+atsShiftInfoDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftInfoDialog.jsp
+END
+atsCalendarTemplGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCalendarTemplGet.jsp
+END
+atsWorkCalendarSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsWorkCalendarSelector.jsp
+END
+atsHolidayPolicyEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicyEdit.jsp
+END
+atsAttenceCalculateSummary.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCalculateSummary.jsp
+END
+atsAttenceGroupDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupDialog.jsp
+END
+atsCardRuleDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRuleDialog.jsp
+END
+atsCalendarTemplEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCalendarTemplEdit.jsp
+END
+atsScheduleShiftExportTemp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsScheduleShiftExportTemp.jsp
+END
+atsScheduleShiftImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsScheduleShiftImport.jsp
+END
+atsHolidayTypeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayTypeList.jsp
+END
+atsHolidayPolicyDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicyDialog.jsp
+END
+atsShiftInfoSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftInfoSelector.jsp
+END
+atsImportPlanEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsImportPlanEdit.jsp
+END
+atsCalendarTemplDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCalendarTemplDialog.jsp
+END
+atsHolidayPolicyDetailGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicyDetailGet.jsp
+END
+atsLegalHolidayGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsLegalHolidayGet.jsp
+END
+atsLegalHolidaySelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsLegalHolidaySelector.jsp
+END
+atsAttenceGroupGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceGroupGet.jsp
+END
+atsShiftRuleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftRuleList.jsp
+END
+atsCardRuleSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsCardRuleSelector.jsp
+END
+atsAttenceCycleGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCycleGet.jsp
+END
+atsAttencePolicyGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttencePolicyGet.jsp
+END
+atsAttenceCalculateBill.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCalculateBill.jsp
+END
+atsShiftRuleGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsShiftRuleGet.jsp
+END
+atsWorkCalendarList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsWorkCalendarList.jsp
+END
+atsAttenceCycleEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttenceCycleEdit.jsp
+END
+atsAttencePolicyEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsAttencePolicyEdit.jsp
+END
+atsHolidayPolicySelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/713/bpmx_w/WebRoot/WEB-INF/view/platform/ats/atsHolidayPolicySelector.jsp
+END

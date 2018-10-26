@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.PageTest">
+	<resultMap id="PageTest" type="com.hotent.platform.model.system.PageTest">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="category" column="category" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="amount" column="amount" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		id,category,name,amount
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(category)"> AND category  LIKE #{category}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(amount)"> AND amount  =#{amount} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.PageTest">
+		INSERT INTO PageTest
+		(id,category,name,amount)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{category,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{amount,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM PageTest 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.PageTest">
+		UPDATE PageTest SET
+		category=#{category,jdbcType=VARCHAR},
+		name=#{name,jdbcType=VARCHAR},
+		amount=#{amount,jdbcType=NUMERIC}
+		WHERE
+		id=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="PageTest">
+		SELECT <include refid="columns"/>
+		FROM PageTest
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="PageTest">
+		SELECT <include refid="columns"/>
+		FROM PageTest   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(sortField)">
+		order by ${sortField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(sortField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	
+</mapper>

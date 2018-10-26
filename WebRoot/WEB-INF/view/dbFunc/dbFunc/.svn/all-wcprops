@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/BPMX_2015_WYX/!svn/ver/1271/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc
+END
+dbFuncDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/511/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncDetail.jsp
+END
+dbFuncGetByTableName.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1146/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncGetByTableName.jsp
+END
+dbFuncEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/1271/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncEdit.jsp
+END
+dbFuncModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/513/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncModify.jsp
+END
+dbFuncTableSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/508/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncTableSelector.jsp
+END
+dbFuncDetailwb.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/505/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncDetailwb.jsp
+END
+dbFuncList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/512/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncList.jsp
+END
+dbFuncDetailwbb.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/506/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncDetailwbb.jsp
+END
+dbFuncSetting.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1238/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncSetting.jsp
+END
+dbFuncDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/507/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncDialog.jsp
+END
+dbFuncGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/1047/bpmx_w/WebRoot/WEB-INF/view/dbFunc/dbFunc/dbFuncGet.jsp
+END

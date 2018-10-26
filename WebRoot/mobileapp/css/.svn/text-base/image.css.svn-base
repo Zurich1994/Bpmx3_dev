@@ -1,0 +1,221 @@
+@import "iconmoon.css" ;
+.icon-radio:before{
+	/*
+content: "\e98c";
+*/
+	font-size:1.8em;
+}
+input[type="radio"]:checked + div>div[class*=icon-radio]:before {
+	content: "\e7ab";
+	color:#4F8EF7;
+}
+.icon-checkbox:before{
+	content: "\e989";
+	font-size:1.8em;
+	color:#52adef;
+}
+.icon-checkbox-eee:before {
+	content: "\e989";
+	font-size: 1.8em;
+	color: #eeeeee;
+	}
+.icon-disable-radio:before{
+	font-size: 1.8em;
+	content: "\e7ab";
+	color:#eeeeee !important;
+}
+.icon-disable-checkbox:before{
+	content: "\e988";
+	font-size:1.8em;
+	color:#eeeeee !important;
+}
+input[type="checkbox"]:checked + div>div[class*=icon-checkbox]:before {
+	content: "\e988";
+	color:#52adef;
+}
+input[type="radio"]:checked + div>div[class*=icon-]:before {
+	color:#52adef;
+}
+input[type="radio"]:checked + div>div[class*=icon-radio]:before {
+	color:#52adef;
+}
+input[type="radio"]:checked + div>div[class*=icon-check-green] {
+	color:#52adef;
+}
+input[type="radio"]:checked + div>div[class*=icon-check-black] {
+	color:black;
+}
+.icon-calendar2{
+	content:"\f073";
+	color:#59B1ED;
+}
+.icon-cacelsearch:after {
+	content: "\f057";
+	font-size: 1.3em;
+	color: rgb(202, 197, 197);
+	border-radius: 50%;
+	margin-right:0.2em;
+}
+.icon-refresh3:after {
+	content: "\f021";
+	font-size: 1.3em;
+	color: rgb(202, 197, 197);
+	border-radius: 50%;
+	margin-right:0.2em;
+}
+.icon-cacelinput:after {
+	content: "\f057";
+	color: rgb(202, 197, 197);
+	border-radius: 50%;
+}
+/*
+
+.ion-db:before {
+    content: "\f14e";
+}
+input[type="radio"]:checked + div>div[class*=ion-db]:before {
+    content: "\f14f";
+	color:black;
+}
+.ion-lishi:before {
+    content: "\f171";
+}
+input[type="radio"]:checked + div>div[class*=ion-lishi]:before {
+	  content: "\f172";
+	color:black;
+}
+.ion-radio:before{
+	content: "\f170";
+	font-size:1.8em;
+}
+input[type="radio"]:checked + div>div[class*=ion-radio]:before {
+	content: "\f16f";
+	color:#4F8EF7;
+}
+input[type="radio"]:checked + div>div[class*=ion-]:before {
+	color:black;
+}
+input[type="radio"]:checked + div>div[class*=ion-check-green] {
+	color:black;
+}
+.ion-lianxiren:before {
+    content: "\f1c1";
+}
+input[type="radio"]:checked + div>div[class*=ion-lianxiren]:before {
+	  content: "\f1c2";
+	color:black;
+}
+.ion-gengduo:before {
+    content: "\f1b3";
+}
+input[type="radio"]:checked + div>div[class*=ion-gengduo]:before {
+	  content: "\f1b4";
+	color:black;
+}
+.ion-menu:before{
+	content: "\f20e";
+	font-size: 2.1em;
+}
+.ion-search:before{
+	content: "\f1d9";
+	font-size: 2.1em;
+}
+.ion-newFlow:before{
+	content: "\f2ef";
+}
+.ion-daiban:before{
+	content: "\f12c";
+}
+.ion-faqi:before{
+	content: "\f1a2";
+}
+.ion-chengjie:before{
+	content: "\f16d";
+}
+.ion-times:before{
+	content: "\f291";
+}
+.ion-users:before{
+	content: "\f1c1";
+	font-size:1.3em;
+}
+.ion-settings:before{
+	content: "\f194";
+}
+.ion-edit:before{
+	content: "\f17d";
+	font-size: 2.1em;
+}
+.ion-sz:before {
+	content: "\f194";
+    font-size: 1em;
+    display: block;
+    text-align: -webkit-match-parent;
+    margin: 0.75em;
+}
+.ion-xjlc:before {
+	content: "\f289";
+    font-size: 1em;
+    display: block;
+    text-align: -webkit-match-parent;
+    margin: 0.75em;
+}
+.ion-dlsd:before {
+	content: "\f12c";
+    font-size: 1em;
+    display: block;
+    text-align: -webkit-match-parent;
+    margin: 0.75em;
+}
+.ion-wdsx:before {
+	content: "\f291";
+    font-size: 1em;
+    display: block;
+    text-align: -webkit-match-parent;
+    margin: 0.75em;
+}
+.ion-agree:before {
+    content: "\f16d";
+}
+
+.ion-bohui:before {
+    content: "\f1ed";
+}
+
+.ion-zhuanban:before {
+    content: "\f28e";
+}
+.ion-goutong:before {
+    content: "\f16a";
+}
+.ion-back:before {
+    content: "\f124";
+    font-size: 1em;
+    color: #52adef;
+	margin-left: 1em;
+}
+.ion-canel:before {
+    content: "\f124";
+    color: #52adef;
+    font-size: 1em;
+    margin-left: 1em;
+}
+.ion-ar:before {
+    content: "\f124";
+    color: #52adef;
+    font-size: 1em;
+    margin-left: 1em;
+}
+.ion-calendar-me:before {
+	 content: "\f117";
+}
+.ion-file-me:before {
+	 content: "\f12f";
+	 font-size:1.5em;
+}
+.ion-fileMul-me:before {
+	 content: "\f181";
+	 font-size:1.5em;
+}
+
+*/

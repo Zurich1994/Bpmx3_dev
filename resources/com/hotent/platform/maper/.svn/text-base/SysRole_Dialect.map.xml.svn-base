@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysRole">
+	<resultMap id="Result" type="com.hotent.platform.model.system.SysRole">
+		<id property="roleId" column="roleId" jdbcType="NUMERIC"/>
+		<result property="systemId" column="systemId" jdbcType="NUMERIC"/>
+		<result property="alias" column="alias" jdbcType="VARCHAR"/>
+		<result property="roleName" column="roleName" jdbcType="VARCHAR"/>
+		<result property="memo" column="memo" jdbcType="VARCHAR"/>
+		<result property="allowDel" column="allowDel" jdbcType="NUMERIC"/>
+		<result property="allowEdit" column="allowEdit" jdbcType="NUMERIC"/>
+		<result property="enabled" column="enabled" jdbcType="NUMERIC"/>
+		<result property="systemName" column="subSysName" /> 
+	</resultMap>
+	<resultMap id="ResultExtSys" extends="Result" type="com.hotent.platform.model.system.SysRole">
+		<association property="subSystem" column="systemId" javaType="com.hotent.platform.model.system.SubSystem">
+			<result property="sysName" column="subSysName" />
+		</association>
+	</resultMap>
+
+	<sql id="columns">
+		roleId,systemId,alias,roleName,memo,allowDel,allowEdit,enabled
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(roleId)"> AND role.roleId  =#{roleId} </if>
+			<if test="@Ognl@isNotEmpty(systemId)"> AND role.systemId  =#{systemId} </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND role.alias  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(roleName)"> AND role.roleName  LIKE #{roleName}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND role.memo  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(allowDel)"> AND role.allowDel  =#{allowDel} </if>
+			<if test="@Ognl@isNotEmpty(allowEdit)"> AND role.allowEdit  =#{allowEdit} </if>
+			<if test="@Ognl@isNotEmpty(enabled)"> AND role.enabled  =#{enabled} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysRole">
+		INSERT INTO sys_role
+		(<include refid="columns"/>)
+		VALUES
+		(#{roleId,jdbcType=NUMERIC}, #{systemId,jdbcType=NUMERIC}, #{alias,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{allowDel,jdbcType=NUMERIC}, #{allowEdit,jdbcType=NUMERIC}, #{enabled,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ROLE 
+		WHERE
+		roleId=#{roleId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysRole">
+		UPDATE sys_role SET
+		systemId=#{systemId,jdbcType=NUMERIC} , 
+		alias=#{alias,jdbcType=VARCHAR} , 
+		roleName=#{roleName,jdbcType=VARCHAR} , 
+		memo=#{memo,jdbcType=VARCHAR} , 
+		allowDel=#{allowDel,jdbcType=NUMERIC} , 
+		allowEdit=#{allowEdit,jdbcType=NUMERIC} , 
+		enabled=#{enabled,jdbcType=NUMERIC} 
+		WHERE
+		roleId=#{roleId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Result">
+		select * from SYS_ROLE role where role.roleId=#{roleId}
+	</select>
+	
+	<select id="getByOrgMonGroup"   resultMap="Result">
+	  SELECT * FROM SYS_ROLE o where o.roleId in (SELECT distinct roleId FROM bpm_mon_orgrole WHERE groupId=#{groupId})
+	</select>
+		
+	<select id="getByRoleName" parameterType="java.util.Map"  resultType="com.hotent.platform.model.system.SysRole">
+		select * from SYS_ROLE role where role.roleName=#{roleName}
+	</select>
+	
+	<select id="getRole" resultMap="ResultExtSys">
+		SELECT role.*,sys.sysName as subSysName 
+		FROM SYS_ROLE role left join SYS_SUBSYSTEM sys on role.systemId=sys.systemId
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by role.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by role.roleId  desc
+		</if>
+	</select>
+	
+	<select id="getAll" resultMap="ResultExtSys">
+		SELECT role.*,sys.sysName as subSysName 
+		FROM SYS_ROLE role left join SYS_SUBSYSTEM sys on role.systemId=sys.systemId  
+		where role.enabled=1 
+		<if test="@Ognl@isNotEmpty(systemId)"> AND role.systemId  =#{systemId} </if>
+		<if test="@Ognl@isNotEmpty(alias)"> AND role.alias  LIKE #{alias}  </if>
+		<if test="@Ognl@isNotEmpty(roleName)"> AND role.roleName  LIKE #{roleName}  </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by roleId  desc
+		</if>
+	</select>
+	<!-- 判断角色别名是否存在 -->
+	<select id="isExistRoleAlias" resultType="int">
+	  SELECT count(*) amount FROM SYS_ROLE where alias=#{alias}
+	</select>
+	
+	<select id="getByRoleAlias" parameterType="java.lang.String" resultMap="Result">
+		select * from SYS_ROLE r where r.alias=#{alias}
+	</select>
+	
+	<select id="isExistRoleAliasForUpd" resultType="int">
+	  SELECT count(*) amount FROM SYS_ROLE where alias=#{alias} and roleId &lt;> #{roleId}
+	</select>
+
+	<select id="getByUserId" parameterType="java.lang.Long"  resultMap="Result">
+	  SELECT r.*  FROM SYS_ROLE r join SYS_USER_ROLE ur 
+	  on r.roleId = ur.roleId  where ur.userId=#{userId} and r.enabled=1
+	</select>
+	
+	<select id="getByOrgId" parameterType="java.lang.Long"  resultMap="Result">
+	  SELECT r.*  FROM SYS_ROLE r where r.roleid
+	  in (select t.roleid from sys_org_role t where t.orgid=#{orgId})
+	</select>
+	
+	<select id="getBySystemId" parameterType="java.lang.Long"  resultMap="Result">
+	  SELECT *  FROM SYS_ROLE  where systemId=#{systemId}
+	</select>
+	
+	<select id="getRoleBySystemId" resultMap="Result" parameterType="java.util.Map">
+		select a.roleId,a.systemId,a.alias,a.roleName,a.memo,a.allowDel,a.allowEdit,a.enabled, b.sysName as subSysName
+		from SYS_ROLE a ,SYS_SUBSYSTEM b 
+		where  a.systemId=b.systemId AND b.systemId = #{systemId} and a.enabled=1
+		<if test="@Ognl@isNotEmpty(roleName)"> AND a.roleName  LIKE #{roleName}  </if>
+	</select>
+	
+	<!-- Start dialect -->
+	<select id="getRoleTree_oracle"  resultMap="ResultExtSys">
+	   select * from (
+	   SELECT sr.roleId,decode( sr.systemId,null,-1,sr.systemId) systemId ,sr.alias,sr.roleName,decode(ss.sysName,null,'-',ss.sysName) subSysName,
+	   decode(sr.memo,null,'-', sr.memo)  memo
+	   FROM SYS_ROLE sr left join SYS_SUBSYSTEM ss on sr.systemId=ss.systemId
+	     union select sy.systemId roleId,0 systemId,sy.alias,sy.sysName roleName,sy.sysName subSysName,sy.memo 
+    	 FROM SYS_SUBSYSTEM sy join SYS_ROLE ro on sy.systemId=ro.systemId ) tt where 1=1 
+     <if test="@Ognl@isNotEmpty(systemId)">
+		and systemId=#{systemId}
+	 </if>
+	</select>
+	
+	<select id="getRoleTree_dm"  resultMap="ResultExtSys">
+	   select * from (
+	   SELECT sr.roleId,decode( sr.systemId,null,-1,sr.systemId) systemId ,sr.alias,sr.roleName,decode(ss.sysName,null,'-',ss.sysName) subSysName,
+	   decode(sr.memo,null,'-', sr.memo)  memo
+	   FROM SYS_ROLE sr left join SYS_SUBSYSTEM ss on sr.systemId=ss.systemId
+	     union select sy.systemId roleId,0 systemId,sy.alias,sy.sysName roleName,sy.sysName subSysName,sy.memo 
+    	 FROM SYS_SUBSYSTEM sy join SYS_ROLE ro on sy.systemId=ro.systemId ) tt where 1=1 
+     <if test="@Ognl@isNotEmpty(systemId)">
+		and systemId=#{systemId}
+	 </if>
+	</select>
+	
+	<select id="getRoleTree_mysql"  resultMap="ResultExtSys">
+	   select * from (
+	   SELECT sr.roleId,CASE sr.systemId WHEN null THEN -1 ELSE sr.systemId END systemId ,sr.alias,sr.roleName,CASE ss.sysName WHEN null THEN '-' ELSE ss.sysName END subSysName,
+	   CASE sr.memo WHEN NULL THEN '-' ELSE sr.memo END memo
+	   FROM SYS_ROLE sr left join SYS_SUBSYSTEM ss on sr.systemId=ss.systemId
+	     union select sy.systemId roleId,0 systemId,sy.alias,sy.sysName roleName,sy.sysName subSysName,sy.memo 
+    	 FROM SYS_SUBSYSTEM sy join SYS_ROLE ro on sy.systemId=ro.systemId ) tt where 1=1 
+     <if test="@Ognl@isNotEmpty(systemId)">
+		and systemId=#{systemId}
+	 </if>
+	</select>
+
+	<select id="getRoleTree_mssql"  resultMap="ResultExtSys">
+	   select * from (
+	   SELECT sr.roleId,CASE WHEN sr.systemId IS NULL THEN -1 ELSE sr.systemId END systemId ,sr.alias,sr.roleName,CASE WHEN ss.sysName IS NULL THEN '-' ELSE ss.sysName END subSysName,
+	   CASE WHEN sr.memo IS NULL THEN '-' ELSE sr.memo END memo
+	   FROM SYS_ROLE sr left join SYS_SUBSYSTEM ss on sr.systemId=ss.systemId
+	     union select sy.systemId roleId,0 systemId,sy.alias,sy.sysName roleName,sy.sysName subSysName,sy.memo 
+    	 FROM SYS_SUBSYSTEM sy join SYS_ROLE ro on sy.systemId=ro.systemId ) tt where 1=1 
+     <if test="@Ognl@isNotEmpty(systemId)">
+		and systemId=#{systemId}
+	 </if>
+	</select>
+	
+	<select id="getRoleTree_db2"  resultMap="ResultExtSys">
+	   select * from (
+	    SELECT sr.roleId, (CASE WHEN  sr.systemId IS NULL THEN  -1 ELSE sr.systemId END)   systemId ,sr.alias,sr.roleName,(CASE WHEN  ss.sysName IS NULL THEN  '-' ELSE ss.sysName END)  subSysName,
+	   (CASE WHEN sr.memo IS NULL THEN '-' ELSE sr.memo END) memo
+	   FROM SYS_ROLE sr left join SYS_SUBSYSTEM ss on sr.systemId=ss.systemId
+	     union select sy.systemId roleId,0 systemId,sy.alias,sy.sysName roleName,sy.sysName subSysName,sy.memo 
+    	 FROM SYS_SUBSYSTEM sy join SYS_ROLE ro on sy.systemId=ro.systemId ) tt where 1=1 
+     <if test="@Ognl@isNotEmpty(systemId)">
+		and systemId=#{systemId}
+	 </if>
+	</select>	
+	
+	<select id="getRoleTree_h2"  resultMap="ResultExtSys">
+	   select * from (
+	   SELECT sr.roleId,CASE sr.systemId WHEN null THEN -1 ELSE sr.systemId END systemId ,sr.alias,sr.roleName,CASE ss.sysName WHEN null THEN '-' ELSE ss.sysName END subSysName,
+	   CASE sr.memo WHEN NULL THEN '-' ELSE sr.memo END memo
+	   FROM SYS_ROLE sr left join SYS_SUBSYSTEM ss on sr.systemId=ss.systemId
+	     union select sy.systemId roleId,0 systemId,sy.alias,sy.sysName roleName,sy.sysName subSysName,sy.memo 
+    	 FROM SYS_SUBSYSTEM sy join SYS_ROLE ro on sy.systemId=ro.systemId ) tt where 1=1 
+     <if test="@Ognl@isNotEmpty(systemId)">
+		and systemId=#{systemId}
+	 </if>
+	</select>
+	<!-- End dialect -->
+	
+	<select id="getManageRolesByOrgId" parameterType="Long" resultMap="ResultExtSys">
+		SELECT r.*  FROM SYS_ROLE r join   sys_org_rolemanage ur 
+      on r.roleId = ur.roleId  where ur.orgId=#{orgId} 
+	</select>
+ 
+	<select id="getByAuthId" parameterType="Long" resultMap="ResultExtSys"> 
+		SELECT a.*,c.sysName as subSysName  
+		FROM SYS_ROLE a 
+		left join SYS_AUTH_ROLE b  on a.roleId = b.role_Id  
+		 left join SYS_SUBSYSTEM c on a.systemId=c.systemId 
+     	where b.auth_id=#{authId} and a.enabled=1
+	</select>	
+	
+	<select id="getUserAssignRole" parameterType="java.util.Map"  resultMap="Result">
+		SELECT distinct a.*,c.sysName as subSysName
+		FROM SYS_ROLE a 
+		left join SYS_AUTH_ROLE b  on a.roleId = b.role_Id  
+		left join SYS_SUBSYSTEM c on a.systemId=c.systemId   
+		left join SYS_ORG_AUTH  d on b.auth_id = d.id 
+     	where d.user_id=#{userId} and a.enabled=1
+     	<if test="@Ognl@isNotEmpty(systemId)"> AND a.systemId = #{systemId} </if>
+		<if test="@Ognl@isNotEmpty(roleName)"> AND a.roleName  LIKE #{roleName}  </if>
+	</select>
+	
+</mapper>

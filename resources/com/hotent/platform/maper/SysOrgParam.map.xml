@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysOrgParam">
+	<resultMap id="SysOrgParam" type="com.hotent.platform.model.system.SysOrgParam">
+		<id property="valueId" column="valueId" jdbcType="NUMERIC"/>
+		<result property="orgId" column="orgId" jdbcType="NUMERIC"/>
+		<result property="paramId" column="paramId" jdbcType="NUMERIC"/>
+		<result property="paramValue" column="paramValue" jdbcType="VARCHAR"/>
+		<result property="paramIntValue" column="paramIntValue" jdbcType="NUMERIC"/>
+		<result property="paramDateValue" column="paramDateValue" jdbcType="DATE"/>
+	</resultMap>
+	
+	<sql id="columns">
+		valueId,orgId,paramId,paramValue,paramIntValue,paramDateValue
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(valueId)"> AND valueId  =#{valueId} </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND orgId  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(paramId)"> AND paramId  =#{paramId} </if>
+			<if test="@Ognl@isNotEmpty(paramValue)"> AND paramValue  LIKE #{paramValue}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysOrgParam">
+		INSERT INTO sys_org_param
+		(<include refid="columns"/>)
+		VALUES
+		(#{valueId,jdbcType=NUMERIC}, #{orgId,jdbcType=NUMERIC}, #{paramId,jdbcType=NUMERIC}, #{paramValue,jdbcType=VARCHAR},
+		#{paramIntValue,jdbcType=NUMERIC},#{paramDateValue,jdbcType=DATE})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ORG_PARAM 
+		WHERE
+		valueId=#{valueId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysOrgParam">
+		UPDATE sys_org_param SET
+		orgId=#{orgId,jdbcType=NUMERIC} , 
+		paramId=#{paramId,jdbcType=NUMERIC} , 
+		paramValue=#{paramValue,jdbcType=VARCHAR},
+		
+		paramIntValue=#{paramIntValue,jdbcType=NUMERIC}, 
+		paramDateValue=#{paramDateValue,jdbcType=DATE}  
+		WHERE
+		valueId=#{valueId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysOrgParam">
+		SELECT <include refid="columns"/>
+		FROM SYS_ORG_PARAM
+		WHERE
+		valueId=#{valueId}
+	</select>
+	
+	<select id="getAll" resultMap="SysOrgParam">
+		SELECT v.valueId,v.orgId,v.paramId,v.paramValue,p.paramName,p.dataType
+		FROM SYS_ORG_PARAM v,SYS_PARAM p   
+		WHERE 1=1
+		AND p.paramId=v.paramId	
+		<if test="@Ognl@isNotEmpty(valueId)"> AND valueId  =#{valueId} </if>
+		<if test="@Ognl@isNotEmpty(orgId)"> AND orgId  =#{orgId} </if>
+		<if test="@Ognl@isNotEmpty(paramId)"> AND paramId  =#{paramId} </if>
+		<if test="@Ognl@isNotEmpty(paramValue)"> AND paramValue  LIKE #{paramValue}  </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by paramId  desc
+		</if>
+	</select>
+	
+	<select id="getByOrgId" parameterType="java.lang.Long" resultMap="SysOrgParam">
+		SELECT pv.valueId,pv.orgId,pv.paramId,pv.paramValue,p.paramName,p.dataType,pv.paramIntValue,pv.paramDateValue,p.belongDem
+		FROM SYS_ORG_PARAM pv,SYS_PARAM p
+		WHERE  p.paramId=pv.paramId AND pv.orgId=#{orgId}
+	</select>
+	<delete id="delByOrgId" parameterType="java.lang.Long">
+		DELETE FROM SYS_ORG_PARAM 
+		WHERE
+		orgId=#{orgId}
+	</delete>
+	
+	<select id="getByParamKeyAndOrgId" resultMap="SysOrgParam">
+		SELECT OP.valueId,OP.orgId,OP.paramId,OP.paramValue,OP.paramIntValue,OP.paramDateValue FROM SYS_ORG_PARAM OP  
+		INNER JOIN SYS_PARAM SP ON SP.PARAMID = OP.PARAMID 
+		WHERE SP.PARAMKEY = #{paramKey} AND OP.ORGID = #{orgId}
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.Newjsprelation.model.Newjsprelation.Newjsprelation">
+	<resultMap id="Newjsprelation" type="com.hotent.Newjsprelation.model.Newjsprelation.Newjsprelation">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="FORMDEFID" column="FORMDEFID" jdbcType="NUMERIC"/>
+		<result property="nameandvalue" column="NAMEANDVALUE" jdbcType="CLOB"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,FORMDEFID,NAMEANDVALUE,NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(FORMDEFID)"> AND FORMDEFID  =#{FORMDEFID} </if>
+			<if test="@Ognl@isNotEmpty(nameandvalue)"> AND NAMEANDVALUE  =#{nameandvalue} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE '%${name}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.Newjsprelation.model.Newjsprelation.Newjsprelation">
+		INSERT INTO NEWJSPRELATION
+		(ID,
+		FORMDEFID,NAMEANDVALUE,NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{FORMDEFID,jdbcType=NUMERIC}, #{nameandvalue,jdbcType=CLOB}, #{name,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM NEWJSPRELATION 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.Newjsprelation.model.Newjsprelation.Newjsprelation">
+		UPDATE NEWJSPRELATION SET
+		FORMDEFID=#{FORMDEFID,jdbcType=NUMERIC},
+		NAMEANDVALUE=#{nameandvalue,jdbcType=CLOB},
+		NAME=#{name,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Newjsprelation">
+		SELECT <include refid="columns"/>
+		FROM NEWJSPRELATION
+		WHERE
+		FORMDEFID=#{id}
+	
+	</select>
+	
+	<select id="getAll" resultMap="Newjsprelation">
+		SELECT <include refid="columns"/>
+		FROM NEWJSPRELATION   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getFormDefIdByFormDefId" parameterType="java.lang.Long"  resultType="String" >
+		SELECT FORMDEFID
+		FROM NEWJSPRELATION
+		WHERE
+		FORMDEFID=#{FORMDEFID}
+	</select>
+	<update id="updatenameandvalueByFormDefId" parameterType="com.hotent.Newjsprelation.model.Newjsprelation.Newjsprelation">
+		UPDATE NEWJSPRELATION SET
+		
+		NAMEANDVALUE=#{NAMEANDVALUE,jdbcType=CLOB}
+		
+		WHERE
+		FORMDEFID=#{FORMDEFID,jdbcType=NUMERIC}
+		
+	</update>  
+</mapper>

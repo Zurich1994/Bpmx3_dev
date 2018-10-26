@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<componentPackage>
+  <component class="bpm.XMLSerializer"/>
+  <component class="bpm.graphic.Activity"/>
+  <component class="bpm.graphic.ConnectingObject"/>
+  <component class="bpm.graphic.EndEvent"/>
+  <component class="bpm.graphic.Event"/>
+  <component class="bpm.graphic.FlowObject"/>
+  <component class="bpm.graphic.Gateway"/>
+  <component class="bpm.graphic.HLane"/>
+  <component class="bpm.graphic.HPool"/>
+  <component class="bpm.graphic.HPoolAdorner"/>
+  <component class="bpm.graphic.IntermediateEvent"/>
+  <component class="bpm.graphic.MessageFlow"/>
+  <component class="bpm.graphic.SequenceFlow"/>
+  <component class="bpm.graphic.StartEvent"/>
+  <component class="bpm.graphic.SubProcess"/>
+  <component class="bpm.graphic.Task"/>
+  <component class="bpm.graphic.VLane"/>
+  <component class="bpm.graphic.VPool"/>
+  <component class="bpm.graphic.VPoolAdorner"/>
+
+  <component class="bpm.graphic.skins.EndEventSkin"/>
+  <component class="bpm.graphic.skins.GatewaySkin"/>
+  <component class="bpm.graphic.skins.HLaneSkin"/>
+  <component class="bpm.graphic.skins.HPoolSkin"/>
+  <component class="bpm.graphic.skins.IntermediateEventSkin"/>
+  <component class="bpm.graphic.skins.MessageFlowSkin"/>
+  <component class="bpm.graphic.skins.SequenceFlowSkin"/>
+  <component class="bpm.graphic.skins.StartEventSkin"/> 
+  <component class="bpm.graphic.skins.SubProcessSkin"/>
+  <component class="bpm.graphic.skins.TaskSkin"/>
+  <component class="bpm.graphic.skins.VPoolSkin"/>
+  <component class="bpm.graphic.skins.VLaneSkin"/>
+    
+  
+  <!-- Icons -->
+  <component class="bpm.graphic.icons.BPMNIcon"/>
+    
+  <component class="bpm.graphic.icons.skins.EmptySkin"/>
+  <component class="bpm.graphic.icons.skins.AdHocMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.ANDMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.CancelTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.CompensationMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.CompensationTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.ComplexMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.ErrorTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.EventMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.LinkTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.LoopMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.MessageTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.MultipleInstanceMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.MultipleTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.ORMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.RuleTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.SubProcessMarkerSkin"/>
+  <component class="bpm.graphic.icons.skins.TerminateTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.TimerTriggerSkin"/>
+  <component class="bpm.graphic.icons.skins.XORMarkerSkin"/>
+
+</componentPackage>

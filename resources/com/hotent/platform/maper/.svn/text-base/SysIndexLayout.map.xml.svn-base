@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysIndexLayout">
+	<resultMap id="SysIndexLayout" type="com.hotent.platform.model.system.SysIndexLayout">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="templateHtml" column="TEMPLATE_HTML" jdbcType="CLOB"/>
+		<result property="sn" column="SN" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,NAME,MEMO,TEMPLATE_HTML,SN
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(templateHtml)"> AND TEMPLATE_HTML  LIKE #{templateHtml}  </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND SN  =#{sn} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysIndexLayout">
+		INSERT INTO SYS_INDEX_LAYOUT
+		(ID,NAME,MEMO,TEMPLATE_HTML,SN)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{templateHtml,jdbcType=CLOB}, #{sn,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_INDEX_LAYOUT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysIndexLayout">
+		UPDATE SYS_INDEX_LAYOUT SET
+		NAME=#{name,jdbcType=VARCHAR},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		TEMPLATE_HTML=#{templateHtml,jdbcType=CLOB},
+		SN=#{sn,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysIndexLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_LAYOUT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysIndexLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_LAYOUT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by SN 
+		</if>
+	</select>
+	
+	
+</mapper>

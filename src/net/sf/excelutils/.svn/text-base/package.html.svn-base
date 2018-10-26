@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<p>
+ExcelUtils 模板操作类<br/>
+ <a href="http://excelutils.sourceforge.net">http://excelutils.sourceforge.net</a><br/>
+rainsoft: <a href="http://www.try2it.com/blog">http://www.try2it.com/blog</a><br/>
+jokeway: <a href="http://spaces.msn.com/members/jokeway">http://spaces.msn.com/members/jokeway</a><br/>
+</p>
+<p>
+	We're headache on making web report all long.
+	
+	ExcelUtils is a helper to export excel report in java web project. 
+	It's like velocity, has own tags, but these tags is written in excel file. 
+By these tags, you can custom your excel report format freely, 
+not edit any your source, just ExcelUtils parses your excel template and fills
+values to export your report.
+	It is based POI project and beanutils project. 
+It uses excel and template language's profit to make web reports easily.
+</p>
+<p>After my hardwork, the parser is finished finally, in which report is exported by Excel Template.
+It's funtions include:</p> 
+<ul>
+ <li> 1、<b>${model.name}</b> means getting property of the name from the model object.</li>
+ <li> 2、<b>${!model.name}</b> means that last cell and this cell merge if model.name value equals last cell value.</li>
+ <li> 3、<b>#foreach model in ${list}</b> means that iterate list，modelId is implied index of the list.</li>
+ <li> 4、<b>#each ${model} ${width1},${width2}</b> model can be a Map,JavaBean,Collection or Array object, #each key 
+  will show all property of the<b> model.${width?}</b>means merge <b>${width?}</b> cells. If only one 
+  width, all property use the same width. If more than one, use the witdh in order, not set will use "1".
+ <li> 5、<b>${list[0].name}</b> means get the first object from list, then read the property of name.</li>
+ <li> 6、<b>${map(key)}</b> get the value from the map by the key name.</li>
+ <li> 7、<b>${list[${index}].name} []</b> can be a variable.</li>
+ <li> 8、<b>${map(${key})} ()</b> can be a variable.</li>
+ <li> 9、<b>#sum qty on ${list}</b> where name like <b>/=str sum qty on ${list}</b> collection by where condition.</li>
+ <li>10、In net.sf.excelutils.tags Package, you can implement ITag to exentd Tag key. eg, FooTag will parse #foo.</li>
+ <li>11、ExcelResult for webwork.</li>
+ <li>12、<b>${model${index}}</b> support.</li>
+ <li>13、<b>#call service.method("str", ${name})</b> call a method</li>
+ <li>14、<b>#formual SUM(C${currentRowNo}:F${currentRowNo}) </b>means output excel formula SUM(C?:F?) ? means currentRowNo. </li>
+</ul>
+<p>                                  
+	dependency library:<br/>
+	
+	poi-2.5.1.jar (required)<br/>                                  
+	commons-beanutils.jar (required)<br/>
+	commons-digester.jar (required)<br/>
+	commons-logging.jar (required)<br/>
+	
+	ognl.jar (build required, webwork demo required)<br/>
+	xwork.jar (build required, webwork demo required)<br/>
+	webwork-2.1.7.jar (build required, webwork demo required)<br/>
+	oscore.jar (webwork deom required)<br/>
+	
+	struts.jar (struts demo required)<br/>
+</p>
+<p>修复bug</p>
+<pre>
+zxh fix bug 
+1、兼容poi 3.0以上的版本。
+2、修复 超出execl 的ROW_LAST_COLUMN_NUM最大数 255
+3、修改了用groovy代替原来的计算
+</pre>
+<p>例子</p>
+<pre>
+	@RequestMapping("export")
+	public void export(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+			List<XXX > list = XXX.getAll();
+	
+			  net.sf.excelutils.ExcelUtils.addValue("list", list);
+	
+			  String config = "/WEB-INF/xls/test.xls";
+			  response.reset();
+			  response.setContentType("application/vnd.ms-excel");
+			  try {
+				  net.sf.excelutils.ExcelUtils.export(request.getSession().getServletContext(), config,
+			     response.getOutputStream());
+			  } catch (Exception e) {
+			   e.printStackTrace();
+			  }
+	   }
+</pre>
+</body>
+</html>

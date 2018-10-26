@@ -1,0 +1,1487 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/BPMX_2015_WYX/!svn/ver/1974/bpmx_w/WebRoot/WEB-INF/view/platform/bpm
+END
+bpmDefAuthorizeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefAuthorizeList.jsp
+END
+bpmTemplateEventBindColumnBind.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/2469/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTemplateEventBindColumnBind.jsp
+END
+bpmDefinitionDesignBtn.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/671/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesignBtn.jsp
+END
+BpmSubtableRightsEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/BpmSubtableRightsEdit.jsp
+END
+bpmDefinitionGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionGet.jsp
+END
+taskChangeAssignee.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskChangeAssignee.jsp
+END
+taskReminderGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskReminderGet.jsp
+END
+bpmDefinitionShowmyjson.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/2462/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionShowmyjson.jsp
+END
+bpmNodeUserStartOrPreDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserStartOrPreDialog.jsp
+END
+bpmTaskExeCancelDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTaskExeCancelDialog.jsp
+END
+taskVarsList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskVarsList.jsp
+END
+taskDynamicCreate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskDynamicCreate.jsp
+END
+bpmDefinitionSetCondition1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/1430/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionSetCondition1.jsp
+END
+bpmNodeSetList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1879/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeSetList.jsp
+END
+flowwebserviceEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/596/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/flowwebserviceEdit.jsp
+END
+bpmProCopytoGetCopyUserByInstId.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProCopytoGetCopyUserByInstId.jsp
+END
+bpmFormQueryEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1804/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmFormQueryEdit.jsp
+END
+bpmBatchApprovalManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmBatchApprovalManage.jsp
+END
+bpmDefinitionEditForkJoin.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionEditForkJoin.jsp
+END
+taskFreeJump.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskFreeJump.jsp
+END
+taskMiniDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskMiniDetail.jsp
+END
+bpmReferDefinitionActInstSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmReferDefinitionActInstSelector.jsp
+END
+bpmDefinitionDesign1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/592/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesign1.jsp
+END
+bpmDefinitionUserSet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionUserSet.jsp
+END
+processRunGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunGet.jsp
+END
+bpmDefinitionDesign3.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1717/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesign3.jsp
+END
+bpmGangedSetCascade.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmGangedSetCascade.jsp
+END
+reminderStateGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/reminderStateGet.jsp
+END
+bpmDefinitionSherlockform.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/673/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionSherlockform.jsp
+END
+bpmProTransToMattersList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/799/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProTransToMattersList.jsp
+END
+bpmDefinitionDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/743/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDialog.jsp
+END
+taskToStartCommunicate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskToStartCommunicate.jsp
+END
+bpmDefinitionWatchAllevent.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/2463/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionWatchAllevent.jsp
+END
+bpmDefinitionDetail_b.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDetail_b.jsp
+END
+agentConditionEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/agentConditionEdit.jsp
+END
+bpmDefinitionCopyUserList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionCopyUserList.jsp
+END
+bpmDefinitionDesign.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1812/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesign.jsp
+END
+bpmDefinitionManage3.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1274/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionManage3.jsp
+END
+bpmDefinitionBpmnXml.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionBpmnXml.jsp
+END
+processRunHistory.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/846/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunHistory.jsp
+END
+processRunTaskUser.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunTaskUser.jsp
+END
+flowwebserviceGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/596/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/flowwebserviceGet.jsp
+END
+bpmDefinitionUserImage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionUserImage.jsp
+END
+bpmDefinitionExport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionExport.jsp
+END
+bpmDefinitionDefReferSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDefReferSelector.jsp
+END
+bpmDefinitionRuleSet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionRuleSet.jsp
+END
+bpmDefinitionList_new.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionList_new.jsp
+END
+processRunRedoDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunRedoDialog.jsp
+END
+bpmDefinitionGettransaction.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/2461/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionGettransaction.jsp
+END
+nodeMsgTemplateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/832/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/nodeMsgTemplateEdit.jsp
+END
+taskList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskList.jsp
+END
+taskReminderEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskReminderEdit.jsp
+END
+bpmNodeButtonEdit_new.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/522/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeButtonEdit_new.jsp
+END
+bpmNetworkmapManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNetworkmapManage.jsp
+END
+bpmNodeMessageEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1433/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeMessageEdit.jsp
+END
+processRunCompletedMatters.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunCompletedMatters.jsp
+END
+taskPendingMattersListBatchApprovalCfm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskPendingMattersListBatchApprovalCfm.jsp
+END
+bpmNodeWebServiceEditwb.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1783/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeWebServiceEditwb.jsp
+END
+agentSettingEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/agentSettingEdit.jsp
+END
+bpmDefinitionDesignXml.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesignXml.jsp
+END
+reminderStateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/reminderStateList.jsp
+END
+bpmDefinitionInformType.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/756/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionInformType.jsp
+END
+processRunPrintForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunPrintForm.jsp
+END
+processRunUserImage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunUserImage.jsp
+END
+processRunProcessImage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunProcessImage.jsp
+END
+processRunMyCompleted.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMyCompleted.jsp
+END
+bpmNodeWebServiceForman.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1984/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeWebServiceForman.jsp
+END
+bpmDefAuthorizeUserDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefAuthorizeUserDialog.jsp
+END
+bpmNodeRuleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeRuleList.jsp
+END
+taskSignDataList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskSignDataList.jsp
+END
+bpmDefinitionDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDetail.jsp
+END
+bpmDefinitionListx.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/551/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionListx.jsp
+END
+bpmDefVarEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/96/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefVarEdit.jsp
+END
+bpmDefinitionDesignBtnx.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/672/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesignBtnx.jsp
+END
+BpmSubtableRightsList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/BpmSubtableRightsList.jsp
+END
+taskOpinionListform.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskOpinionListform.jsp
+END
+taskApprovalItemsEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskApprovalItemsEdit.jsp
+END
+processRunInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunInfo.jsp
+END
+bpmDefRtdlList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefRtdlList.jsp
+END
+bpmNodeUserStartOrPrevDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserStartOrPrevDialog.jsp
+END
+taskToTransTo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskToTransTo.jsp
+END
+processRunMyRequest.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMyRequest.jsp
+END
+flowwebserviceList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/596/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/flowwebserviceList.jsp
+END
+bpmDefinitionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/2048/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionList.jsp
+END
+bpmFormQueryList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/788/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmFormQueryList.jsp
+END
+bpmDefinitionTypeSetDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionTypeSetDialog.jsp
+END
+processRunMyStart.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMyStart.jsp
+END
+bpmDefRightList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/781/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefRightList.jsp
+END
+bpmNodeUserGetNodeUserPreview.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserGetNodeUserPreview.jsp
+END
+bpmBatchApprovalEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmBatchApprovalEdit.jsp
+END
+processRunMyForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMyForm.jsp
+END
+taskNotExist.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskNotExist.jsp
+END
+bpmDefinitionManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1585/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionManage.jsp
+END
+taskVarsUpdate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskVarsUpdate.jsp
+END
+incToolBarNode.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1842/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/incToolBarNode.jsp
+END
+bpmDefAuthorizeActDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefAuthorizeActDetail.jsp
+END
+bpmDefinitionTaskNodes.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionTaskNodes.jsp
+END
+bpmDefVarGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefVarGet.jsp
+END
+bpmFormQueryDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmFormQueryDialog.jsp
+END
+processRunRecoverDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunRecoverDialog.jsp
+END
+bpmDefinitionNodeSet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1931/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionNodeSet.jsp
+END
+bpmNodeRuleGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeRuleGet.jsp
+END
+taskOpinionDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskOpinionDialog.jsp
+END
+bpmNodeUserFormVar.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserFormVar.jsp
+END
+bpmNodeButtonGetByNode.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/2464/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeButtonGetByNode.jsp
+END
+bpmNodeScriptEdit_ie6.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/790/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeScriptEdit_ie6.jsp
+END
+taskReminderList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskReminderList.jsp
+END
+nodeMsgTemplateList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/832/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/nodeMsgTemplateList.jsp
+END
+bpmDefinitionList_b.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/585/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionList_b.jsp
+END
+bpmDefVarGetByDeployNode.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefVarGetByDeployNode.jsp
+END
+taskChangePath.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskChangePath.jsp
+END
+bpmNodeMessageList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeMessageList.jsp
+END
+incTaskOpinion.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/832/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/incTaskOpinion.jsp
+END
+agentSettingList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/agentSettingList.jsp
+END
+taskTransToOpinionDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskTransToOpinionDialog.jsp
+END
+taskNoData.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskNoData.jsp
+END
+bpmTaskExeGetAssignDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTaskExeGetAssignDetail.jsp
+END
+processRunCompletedMattersList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunCompletedMattersList.jsp
+END
+bpmNodeUserStartOrPreWithOrgDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserStartOrPreWithOrgDialog.jsp
+END
+bpmTaskExeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/810/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTaskExeList.jsp
+END
+processRunAlreadyMattersList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/964/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunAlreadyMattersList.jsp
+END
+agentSettingManageList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/agentSettingManageList.jsp
+END
+processRunMyCompletedList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMyCompletedList.jsp
+END
+bpmDefVarList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/96/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefVarList.jsp
+END
+taskPendingMattersList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskPendingMattersList.jsp
+END
+taskApprovalItemsList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskApprovalItemsList.jsp
+END
+processRunSubFlowImage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunSubFlowImage.jsp
+END
+processRunMyAttend.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMyAttend.jsp
+END
+bpmDefinitionEventdialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/2230/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionEventdialog.jsp
+END
+bpmNodeWebServiceEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/523/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeWebServiceEdit.jsp
+END
+incToolBarStart.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/incToolBarStart.jsp
+END
+monGroupEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/monGroupEdit.jsp
+END
+processRunMyRequestList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMyRequestList.jsp
+END
+bpmNodeSetListform.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1779/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeSetListform.jsp
+END
+bpmBatchApprovalList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmBatchApprovalList.jsp
+END
+bpmNodeUserUplowGetByUserId.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserUplowGetByUserId.jsp
+END
+bpmBatchApprovalGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmBatchApprovalGet.jsp
+END
+incTaskNotify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/incTaskNotify.jsp
+END
+bpmNodeUserUplowDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserUplowDialog.jsp
+END
+bpmProTransToShowAssignee.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/799/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProTransToShowAssignee.jsp
+END
+bpmDefinitionEventselector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/2230/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionEventselector.jsp
+END
+bpmDefinitionMobileSet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionMobileSet.jsp
+END
+bpmGangedSetList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmGangedSetList.jsp
+END
+processRunGetRefList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunGetRefList.jsp
+END
+bpmRunLogList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/801/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmRunLogList.jsp
+END
+processRunUrgeOwner.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunUrgeOwner.jsp
+END
+bpmNodeUserPreviewMockParams.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/796/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserPreviewMockParams.jsp
+END
+bpmDefinitionDesign2.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/593/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesign2.jsp
+END
+bpmDefinitionDesignsher.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/672/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesignsher.jsp
+END
+incDefinitionHead.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/2057/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/incDefinitionHead.jsp
+END
+bpmRunLogGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/801/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmRunLogGet.jsp
+END
+bpmRunLogMylist.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/801/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmRunLogMylist.jsp
+END
+bpmBatchApprovalFieldDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmBatchApprovalFieldDialog.jsp
+END
+bpmNodeMessageReceiverSetting.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/788/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeMessageReceiverSetting.jsp
+END
+processRunFormHtml.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunFormHtml.jsp
+END
+bpmDefinitionSherlockbutton.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/2228/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionSherlockbutton.jsp
+END
+bpmDefinitionForMe.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionForMe.jsp
+END
+bpmProCopytoForward.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProCopytoForward.jsp
+END
+bpmDefinitionImport.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionImport.jsp
+END
+incHelp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/incHelp.jsp
+END
+bpmDefinitionManage2.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1273/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionManage2.jsp
+END
+processRunFlexShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1484/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunFlexShow.jsp
+END
+bpmDefinitionManage4.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1523/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionManage4.jsp
+END
+bpmFormQuerySetting.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/117/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmFormQuerySetting.jsp
+END
+bpmDefinitionSelector.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/777/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionSelector.jsp
+END
+bpmDefAuthorizeGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefAuthorizeGet.jsp
+END
+monGroupAuth.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/monGroupAuth.jsp
+END
+bpmDefinitionMyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/774/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionMyList.jsp
+END
+bpmProCopytoMyList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProCopytoMyList.jsp
+END
+bpmTemplateEventBindConfig.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/2467/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTemplateEventBindConfig.jsp
+END
+bpmNodeScriptEdit1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/1432/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeScriptEdit1.jsp
+END
+monGroupList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/monGroupList.jsp
+END
+bpmDefinitionTongji.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1341/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionTongji.jsp
+END
+bpmBatchApprovalLists.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmBatchApprovalLists.jsp
+END
+processRunAlreadyMatters.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunAlreadyMatters.jsp
+END
+taskPendingMatters.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskPendingMatters.jsp
+END
+bpmDefinitionManage_new.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionManage_new.jsp
+END
+bpmTaskExeAccordingMattersList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/803/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTaskExeAccordingMattersList.jsp
+END
+bpmNodeSignEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeSignEdit.jsp
+END
+bpmDefinitionFlowImg.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionFlowImg.jsp
+END
+bpmDefinitionInstance.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/756/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionInstance.jsp
+END
+bpmDefinitionShowScript.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/780/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionShowScript.jsp
+END
+taskToStartCopy.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskToStartCopy.jsp
+END
+BpmSubtableRightsGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/BpmSubtableRightsGet.jsp
+END
+bpmDefinitionDesign_b.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1532/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionDesign_b.jsp
+END
+taskBack.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskBack.jsp
+END
+taskToStart.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/2015/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskToStart.jsp
+END
+bpmNodeButtonEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/674/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeButtonEdit.jsp
+END
+processRunDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunDetail.jsp
+END
+taskToSign.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskToSign.jsp
+END
+bpmProCopytoList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProCopytoList.jsp
+END
+taskOpinionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskOpinionList.jsp
+END
+bpmDefAuthorizeEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefAuthorizeEdit.jsp
+END
+flowwebserviceModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/596/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/flowwebserviceModify.jsp
+END
+processRunList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunList.jsp
+END
+taskToAddSign.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskToAddSign.jsp
+END
+bpmProTransToCancelDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProTransToCancelDialog.jsp
+END
+bpmNodeButtonEditnew.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/1420/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeButtonEditnew.jsp
+END
+bpmBatchApprovalDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/719/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmBatchApprovalDialog.jsp
+END
+taskSelExecutors.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskSelExecutors.jsp
+END
+bpmProTransToMatters.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/799/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProTransToMatters.jsp
+END
+bpmDefinitionOtherParam.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/774/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionOtherParam.jsp
+END
+taskToStartEnd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskToStartEnd.jsp
+END
+processRunMonitor.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunMonitor.jsp
+END
+bpmDefinitionSetCondition_ie6.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionSetCondition_ie6.jsp
+END
+bpmMonitordeviceManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmMonitordeviceManage.jsp
+END
+bpmNodeMessageEdit1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/2002/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeMessageEdit1.jsp
+END
+taskOpDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskOpDialog.jsp
+END
+bpmNodeUserStartOrPrevWithOrgDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeUserStartOrPrevWithOrgDialog.jsp
+END
+bpmNodeRuleEdit_ie6.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeRuleEdit_ie6.jsp
+END
+taskDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskDetail.jsp
+END
+taskGetForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskGetForm.jsp
+END
+bpmMonitorShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmMonitorShow.jsp
+END
+bpmDefinitionMiniDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionMiniDetail.jsp
+END
+processRunGetForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/processRunGetForm.jsp
+END
+bpmFormQueryGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/788/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmFormQueryGet.jsp
+END
+taskForAgent.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskForAgent.jsp
+END
+bpmProTransToAssignee.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProTransToAssignee.jsp
+END
+bpmNodeMessageGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeMessageGet.jsp
+END
+taskOpinionGetList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskOpinionGetList.jsp
+END
+taskForMe.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskForMe.jsp
+END
+bpmDefinitionSubFlowImage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionSubFlowImage.jsp
+END
+bpmDefinitionNodeUser.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionNodeUser.jsp
+END
+taskStartFlowForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1136/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskStartFlowForm.jsp
+END
+bpmTaskExeBatCancel.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTaskExeBatCancel.jsp
+END
+bpmNodeSignList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeSignList.jsp
+END
+bpmProTransToAddDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProTransToAddDialog.jsp
+END
+bpmDefinitionConditionEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionConditionEdit.jsp
+END
+bpmNodeSignGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeSignGet.jsp
+END
+incTaskTransTo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/incTaskTransTo.jsp
+END
+taskTranTaskUserMap.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/965/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskTranTaskUserMap.jsp
+END
+bpmTaskExeAssign.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTaskExeAssign.jsp
+END
+flowwebserviceDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/596/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/flowwebserviceDetail.jsp
+END
+bpmDefinitionSetCondition.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/BPMX_2015_WYX/!svn/ver/777/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionSetCondition.jsp
+END
+bpmDefinitionNodeSummary.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionNodeSummary.jsp
+END
+bpmNodeButtonList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeButtonList.jsp
+END
+reminderStateEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/reminderStateEdit.jsp
+END
+bpmTaskExeAccordingMatters.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/BPMX_2015_WYX/!svn/ver/803/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmTaskExeAccordingMatters.jsp
+END
+bpmDefinitionList_defid.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/359/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionList_defid.jsp
+END
+bpmProCopytoBrowse.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmProCopytoBrowse.jsp
+END
+bpmNodeScriptEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/790/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeScriptEdit.jsp
+END
+bpmNodeWebServiceFormwb.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1728/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeWebServiceFormwb.jsp
+END
+bpmDefinitionVersions.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmDefinitionVersions.jsp
+END
+bpmReferDefinitionActInstDialog.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmReferDefinitionActInstDialog.jsp
+END
+bpmNodeSetFlowScope.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/790/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeSetFlowScope.jsp
+END
+bpmNodeRuleEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/412/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/bpmNodeRuleEdit.jsp
+END
+taskPendingMattersListlgBatchApprovalCfm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/WebRoot/WEB-INF/view/platform/bpm/taskPendingMattersListlgBatchApprovalCfm.jsp
+END

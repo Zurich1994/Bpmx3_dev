@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotent.platform.model.system.SysQuerySetting">
+	<resultMap id="SysQuerySetting"
+		type="com.hotent.platform.model.system.SysQuerySetting">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="sqlId" column="SQL_ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS" jdbcType="VARCHAR"/>
+		<result property="style" column="STYLE" jdbcType="NUMERIC"/>
+		<result property="needPage" column="NEED_PAGE" jdbcType="NUMERIC"/>
+		<result property="pageSize" column="PAGE_SIZE" jdbcType="NUMERIC"/>
+		<result property="isQuery" column="IS_QUERY" jdbcType="NUMERIC"/>
+		<result property="templateAlias" column="TEMPLATE_ALIAS" jdbcType="VARCHAR"/>
+		<result property="templateHtml" column="TEMPLATE_HTML" jdbcType="CLOB"/>
+		<result property="displayField" column="DISPLAY_FIELD" jdbcType="CLOB"/>
+		<result property="filterField" column="FILTER_FIELD" jdbcType="CLOB"/>
+		<result property="conditionField" column="CONDITION_FIELD" jdbcType="CLOB"/>
+		<result property="sortField" column="SORT_FIELD" jdbcType="CLOB"/>
+		<result property="exportField" column="EXPORT_FIELD" jdbcType="CLOB"/>
+		<result property="manageField" column="MANAGE_FIELD" jdbcType="CLOB"/>	
+	</resultMap>
+
+	<sql id="columns">
+		ID,SQL_ID,NAME,ALIAS,STYLE,NEED_PAGE,PAGE_SIZE,IS_QUERY,TEMPLATE_ALIAS,TEMPLATE_HTML,DISPLAY_FIELD,FILTER_FIELD,CONDITION_FIELD,SORT_FIELD,EXPORT_FIELD,MANAGE_FIELD
+	</sql>
+
+	<select id="getBySqlId" parameterType="java.lang.Long"
+		resultMap="SysQuerySetting">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_QUERY_SETTING
+		WHERE
+		SQL_ID=#{sqlId}
+	</select>
+	
+	<select id="getByAlias" parameterType="java.lang.String"
+		resultMap="SysQuerySetting">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_QUERY_SETTING
+		WHERE
+		ALIAS=#{alias}
+	</select>
+
+	<update id="update" parameterType="com.hotent.platform.model.system.SysQuerySetting">
+		UPDATE SYS_QUERY_SETTING SET
+		SQL_ID=#{sqlId,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		ALIAS=#{alias,jdbcType=VARCHAR},
+		STYLE=#{style,jdbcType=NUMERIC},
+		NEED_PAGE=#{needPage,jdbcType=NUMERIC},
+		PAGE_SIZE=#{pageSize,jdbcType=NUMERIC},
+		IS_QUERY=#{isQuery,jdbcType=NUMERIC},
+		TEMPLATE_ALIAS=#{templateAlias,jdbcType=VARCHAR},
+		TEMPLATE_HTML=#{templateHtml,jdbcType=CLOB},
+		DISPLAY_FIELD=#{displayField,jdbcType=CLOB},
+		FILTER_FIELD=#{filterField,jdbcType=CLOB},
+		CONDITION_FIELD=#{conditionField,jdbcType=CLOB},
+		SORT_FIELD=#{sortField,jdbcType=CLOB},
+		EXPORT_FIELD=#{exportField,jdbcType=CLOB},
+		MANAGE_FIELD=#{manageField,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysQuerySetting">
+		INSERT INTO SYS_QUERY_SETTING
+		(ID,SQL_ID,NAME,ALIAS,STYLE,NEED_PAGE,PAGE_SIZE,IS_QUERY,TEMPLATE_ALIAS,TEMPLATE_HTML,DISPLAY_FIELD,FILTER_FIELD,CONDITION_FIELD,SORT_FIELD,EXPORT_FIELD,MANAGE_FIELD)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{sqlId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{style,jdbcType=NUMERIC}, 
+		#{needPage,jdbcType=NUMERIC}, #{pageSize,jdbcType=NUMERIC},#{isQuery,jdbcType=NUMERIC},#{templateAlias,jdbcType=VARCHAR}, 
+		#{templateHtml,jdbcType=CLOB}, #{displayField,jdbcType=CLOB}, #{filterField,jdbcType=CLOB}, #{conditionField,jdbcType=CLOB},
+		#{sortField,jdbcType=CLOB},#{exportField,jdbcType=CLOB},#{manageField,jdbcType=CLOB})
+	</insert>
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysQuerySetting">
+		SELECT <include refid="columns"/>
+		FROM SYS_QUERY_SETTING
+		WHERE
+		ID=#{id}
+	</select>
+	<delete id="delBySqlId" parameterType="java.lang.Long" >
+		DELETE FROM SYS_QUERY_SETTING
+		WHERE
+		SQL_ID=#{sqlId}
+	</delete>
+
+</mapper>

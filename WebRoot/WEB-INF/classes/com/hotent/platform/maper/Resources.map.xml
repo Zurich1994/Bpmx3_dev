@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.Resources">
+	<resultMap id="Resources" type="com.hotent.platform.model.system.Resources">
+		<id property="resId" column="resId" jdbcType="NUMERIC"/>
+		<result property="resName" column="resName" jdbcType="VARCHAR"/>
+		<result property="alias" column="alias" jdbcType="VARCHAR"/>
+		<result property="sn" column="sn" jdbcType="NUMERIC"/>
+		<result property="icon" column="icon" jdbcType="VARCHAR"/>
+		<result property="parentId" column="parentId" jdbcType="NUMERIC"/>
+		<result property="defaultUrl" column="defaultUrl" jdbcType="VARCHAR"/>
+		<result property="isFolder" column="isFolder" jdbcType="NUMERIC"/>
+		<result property="isDisplayInMenu" column="isDisplayInMenu" jdbcType="NUMERIC"/>
+		<result property="isOpen" column="isOpen" jdbcType="NUMERIC"/>
+		<result property="systemId" column="systemId" jdbcType="NUMERIC"/>
+		<result property="path" column="path" jdbcType="VARCHAR" />
+		<result property="isNewOpen" column="isNewOpen" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		resId,resName,alias,sn,icon,parentId,defaultUrl,isFolder,isDisplayInMenu,isOpen,systemId,path,isNewOpen
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(resId)"> AND resId =#{resId} </if>
+			<if test="@Ognl@isNotEmpty(resName)"> AND resName LIKE #{resName} </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND alias LIKE #{alias} </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND sn =#{sn} </if>
+			<if test="@Ognl@isNotEmpty(icon)"> AND icon LIKE #{icon} </if>
+			<if test="@Ognl@isNotEmpty(parentId)"> AND parentId =#{parentId} </if>
+			<if test="@Ognl@isNotEmpty(defaultUrl)"> AND defaultUrl LIKE #{defaultUrl} </if>
+			<if test="@Ognl@isNotEmpty(isFolder)"> AND isFolder =#{isFolder} </if>
+			<if test="@Ognl@isNotEmpty(isDisplayInMenu)"> AND isDisplayInMenu =#{isDisplayInMenu} </if>
+			<if test="@Ognl@isNotEmpty(isOpen)"> AND isOpen =#{isOpen} </if>
+			<if test="@Ognl@isNotEmpty(systemId)"> AND systemId =#{systemId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.Resources">
+		INSERT INTO sys_res
+		(<include refid="columns"/>)
+		VALUES
+		(#{resId,jdbcType=NUMERIC}, #{resName,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{sn,jdbcType=NUMERIC}, #{icon,jdbcType=VARCHAR}, #{parentId,jdbcType=NUMERIC}, #{defaultUrl,jdbcType=VARCHAR}, #{isFolder,jdbcType=NUMERIC}, #{isDisplayInMenu,jdbcType=NUMERIC}, #{isOpen,jdbcType=NUMERIC}, #{systemId,jdbcType=NUMERIC},#{path,jdbcType=VARCHAR},#{isNewOpen,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_RES 
+		WHERE
+		resId=#{resId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.Resources">
+			UPDATE sys_res SET
+			resName=#{resName,jdbcType=VARCHAR} , 
+			alias=#{alias,jdbcType=VARCHAR} , 
+			sn=#{sn,jdbcType=NUMERIC} , 
+			icon=#{icon,jdbcType=VARCHAR} , 
+			parentId=#{parentId,jdbcType=NUMERIC} , 
+			defaultUrl=#{defaultUrl,jdbcType=VARCHAR} , 
+			isFolder=#{isFolder,jdbcType=NUMERIC} , 
+			isDisplayInMenu=#{isDisplayInMenu,jdbcType=NUMERIC} , 
+			isOpen=#{isOpen,jdbcType=NUMERIC} , 
+			systemId=#{systemId,jdbcType=NUMERIC},
+			path =#{path,jdbcType=VARCHAR},
+			isNewOpen=#{isNewOpen,jdbcType=NUMERIC}
+			WHERE
+			resId=#{resId}
+	</update>
+	
+	<update id="updSn" parameterType="Map">
+		update SYS_RES set 
+			sn=#{sn,jdbcType=NUMERIC}
+		where 
+		 resId = #{resId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Resources">
+		SELECT <include refid="columns"/>
+		FROM SYS_RES
+		WHERE
+		resId=#{resId}
+	</select>
+	
+	<select id="getAll" resultMap="Resources">
+		SELECT <include refid="columns"/>
+		FROM SYS_RES 
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		ORDER BY sn
+		</if>
+	</select>
+	
+	<select id="getBySystemIdAndParentId" resultMap="Resources">
+		SELECT <include refid="columns"/>
+		FROM SYS_RES 
+		WHERE systemId=#{systemId} AND parentId=#{parentId}
+		ORDER BY sn
+	</select>
+	
+	<select id="getByParentId" parameterType="java.lang.Long" resultMap="Resources">
+		SELECT <include refid="columns"/> FROM SYS_RES WHERE parentId=#{parentId} ORDER BY sn
+	</select>
+	
+	<select id="getByUrl" parameterType="java.lang.String" resultMap="Resources">
+		SELECT <include refid="columns"/> FROM SYS_RES WHERE defaultUrl=#{url} 
+	</select>
+	
+	<select id="getBySystemId" parameterType="java.lang.Long" resultMap="Resources">
+		SELECT <include refid="columns"/>
+		FROM SYS_RES WHERE systemId=#{systemId}
+		ORDER BY sn
+	</select>
+	
+	
+	<select id="getNormMenu" parameterType="java.util.Map" resultMap="Resources">
+		SELECT DISTINCT res.resId,res.resName,res.alias,res.sn,res.icon,res.parentId,res.defaultUrl,
+		res.isFolder,res.isDisplayInMenu,res.isOpen,res.systemId,res.isNewOpen
+		FROM 
+		SYS_ROLE_RES role_res,
+		SYS_USER_ROLE user_role,
+		SYS_RES res
+		WHERE user_role.userId=#{userId} 	AND role_res.roleId=user_role.roleId
+	 	AND role_res.resId=res.resId AND res.systemId=#{systemId}
+	 	AND res.isDisplayInMenu=1
+		ORDER BY sn
+		
+	</select>
+	
+	<select id="getNormMenuByRole" parameterType="java.util.Map" resultMap="Resources">
+		SELECT DISTINCT res.resId,res.resName,res.alias,res.sn,res.icon,res.parentId,res.defaultUrl,
+		 res.isFolder,res.isDisplayInMenu,res.isOpen,res.systemId,res.isNewOpen
+		 FROM 
+		 SYS_ROLE_RES role_res,
+		 SYS_RES res,
+		 sys_user_role ur ,sys_role r
+		 WHERE role_res.roleId = ur.roleId
+		 and ur.userId=#{userId}
+		 and ur.roleId=r.ROLEID
+		 and r.ENABLED=1
+		 AND role_res.resId=res.resId AND res.systemId=#{systemId}
+		 AND res.isDisplayInMenu=1
+	 	ORDER BY sn		
+	</select>
+	
+	<select id="getNormMenuByAllRole" parameterType="java.util.Map" resultMap="Resources">
+		SELECT DISTINCT res.resId,res.resName,res.alias,res.sn,res.icon,res.parentId,res.defaultUrl,
+		 res.isFolder,res.isDisplayInMenu,res.isOpen,res.systemId,res.isNewOpen
+		 FROM 
+		 SYS_ROLE_RES role_res,
+		 SYS_RES res
+		 WHERE role_res.roleId in (select t.roleid from sys_role t where t.alias in (${rolealias})) 
+			AND role_res.resId=res.resId AND res.systemId=#{systemId}
+			AND res.isDisplayInMenu=1
+	 	 ORDER BY sn		
+	</select>
+	
+	
+	<select id="getSuperMenu" parameterType="Long" resultMap="Resources">
+		SELECT <include refid="columns"/>
+		FROM SYS_RES
+		WHERE systemId=#{systemId} 	AND isDisplayInMenu=1 	ORDER BY sn
+	</select>
+	
+	
+	<select id="getDefaultUrlAndRoleBySystemId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		SELECT DISTINCT A.defaultUrl url ,C.alias AS role
+		FROM
+		SYS_RES A
+		LEFT JOIN SYS_ROLE_RES B ON (A.resId=B.resId)
+		LEFT JOIN SYS_ROLE C ON (B.roleId=C.roleId)
+		WHERE A.systemId=#{systemId} and A.defaultUrl is not null
+	</select>
+		
+	<select id="isAliasExists" resultType="Integer">
+		SELECT count(1) as count FROM SYS_RES WHERE systemId=#{systemId} AND alias=#{alias}
+	</select>
+	
+	<select id="isAliasExistsForUpd" resultType="Integer">
+		SELECT count(1) as count FROM SYS_RES WHERE systemId=#{systemId} AND alias=#{alias} and resId!=#{resId}
+	</select>
+	
+	<select id="getFunctionAndRoleBySystemAlias" resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		 SELECT DISTINCT C.alias AS role,A.alias AS func
+		 FROM SYS_RES A
+		 left join 
+		 SYS_ROLE_RES B
+		 on A.resId=B.resId
+		 left join SYS_ROLE C
+		 on B.roleId=C.roleId and c.enabled=1
+		 left JOIN SYS_SUBSYSTEM E on A.systemId=E.systemId 
+		 where e.alias=#{sysAlias} and a.alias=#{func} 
+	</select>
+	
+	<select id="getDefaultUrlAndRoleByUrlSystemAlias" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		SELECT DISTINCT A.defaultUrl url ,C.alias AS role
+		FROM
+		SYS_RES A
+		LEFT JOIN SYS_ROLE_RES B ON (A.resId=B.resId)
+		LEFT JOIN SYS_ROLE C ON (B.roleId=C.roleId)
+		LEFT JOIN SYS_SUBSYSTEM E on A.systemId=E.systemId
+		WHERE E.alias=#{sysAlias} and A.defaultUrl=#{url}
+	
+	</select>
+		
+	<select id="getSubSystemResByAlias" parameterType="java.lang.String" resultType="com.hotent.platform.model.system.ResourcesUrlExt">
+		SELECT DISTINCT A.defaultUrl url , C.alias AS role
+		FROM
+		SYS_RES A
+		LEFT JOIN SYS_ROLE_RES B ON (A.resId=B.resId)
+		LEFT JOIN SYS_ROLE C ON (B.roleId=C.roleId)
+		LEFT JOIN SYS_SUBSYSTEM D ON (A.systemId=D.systemId)
+		WHERE D.Alias=#{alias} and A.defaultUrl is not null
+	</select>
+	
+	<select id="getByAlias" parameterType="java.lang.String" resultMap="Resources">
+		SELECT <include refid="columns"/>
+		FROM SYS_RES
+		WHERE
+		Alias=#{alias}
+	</select>
+	
+	<select id="getByParentUserId" parameterType="java.util.Map" resultMap="Resources">
+		select * from sys_res r where r.resId in (
+		select  res.resId  from  sys_res res,SYS_ROLE_RES rr,sys_user_role ur 
+		where res.PARENTID=#{resId} and res.RESID=rr.RESID 
+		and rr.ROLEID=ur.ROLEID and ur.USERID=#{userId} ) ORDER BY r.sn
+	</select>
+</mapper>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+   This file contains the default Struts Validator pluggable validator
+   definitions.  It should be placed somewhere under /WEB-INF and
+   referenced in the struts-config.xml under the plug-in element
+   for the ValidatorPlugIn.
+
+      <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                                  /WEB-INF/validation.xml"/>
+      </plug-in>
+
+   These are the default error messages associated with
+   each validator defined in this file.  They should be
+   added to your projects ApplicationResources.properties
+   file or you can associate new ones by modifying the
+   pluggable validators msg attributes in this file.
+
+   # Struts Validator Error Messages
+   errors.required={0} is required.
+   errors.minlength={0} can not be less than {1} characters.
+   errors.maxlength={0} can not be greater than {1} characters.
+   errors.invalid={0} is invalid.
+
+   errors.byte={0} must be a byte.
+   errors.short={0} must be a short.
+   errors.integer={0} must be an integer.
+   errors.long={0} must be a long.
+   errors.float={0} must be a float.
+   errors.double={0} must be a double.
+
+   errors.date={0} is not a date.
+   errors.range={0} is not in the range {1} through {2}.
+   errors.creditcard={0} is an invalid credit card number.
+   errors.email={0} is an invalid e-mail address.
+
+-->
+
+<form-validation>
+
+   <global>
+
+      <validator name="required"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateRequired"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                  msg="errors.required">
+      </validator>
+
+      <validator name="requiredif"
+                 classname="org.springmodules.validation.commons.FieldChecks"
+                 method="validateRequiredIf"
+                 methodParams="java.lang.Object,
+                               org.apache.commons.validator.ValidatorAction,
+                               org.apache.commons.validator.Field,
+                               org.springframework.validation.Errors,
+                               org.apache.commons.validator.Validator"
+                               
+                 msg="errors.required">
+      </validator>
+
+      <validator name="minlength"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateMinLength"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.minlength">
+      </validator>
+
+
+      <validator name="maxlength"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateMaxLength"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.maxlength">
+      </validator>
+
+
+     
+
+
+      <validator name="byte"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateByte"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.byte"
+       jsFunctionName="ByteValidations">
+
+
+      </validator>
+
+
+      <validator name="short"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateShort"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.short"
+       jsFunctionName="ShortValidations">
+
+
+      </validator>
+
+
+      <validator name="integer"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateInteger"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.integer"
+       jsFunctionName="IntegerValidations">
+      </validator>
+
+
+      <validator name="long"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateLong"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+              depends=""
+                  msg="errors.long"/>
+
+
+      <validator name="float"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateFloat"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.float"
+       jsFunctionName="FloatValidations">
+
+      </validator>
+
+
+      <validator name="double"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateDouble"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.double"/>
+
+
+     <validator name="doubleRange"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateDoubleRange"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+
+              depends="double"
+                  msg="errors.range"/>
+
+     
+
+<!-- range is deprecated use intRange instead -->
+      <validator name="range"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateIntRange"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends="integer"
+                  msg="errors.range">
+
+
+      </validator>
+
+      <validator name="intRange"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateIntRange"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends="integer"
+                  msg="errors.range">
+
+
+      </validator>
+
+      <validator name="floatRange"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateFloatRange"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends="float"
+                  msg="errors.range">
+      </validator>
+
+      <validator name="creditCard"
+            classname="org.springmodules.validation.commons.FieldChecks"
+               method="validateCreditCard"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.creditcard">
+      </validator>
+
+
+  
+      
+      <validator name="length"
+            classname="gssg.web.common.validation.GssgFieldChecks"
+               method="validateLength"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.springframework.validation.Errors"
+                       
+              depends=""
+                  msg="errors.length">
+      </validator>
+      
+      
+
+
+
+   </global>
+
+</form-validation>

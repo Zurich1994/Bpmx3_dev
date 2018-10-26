@@ -1,0 +1,68 @@
+
+@charset "UTF-8";
+.rowOps {
+    width: 5%;
+}
+.ops_container_type1 {
+    float: right;
+    font-size: 12px;
+    left: -22px;
+    position: relative;
+}
+.ops_container_type2 {
+    float: right;
+    font-size: 12px;
+    left: -25px;
+    position: relative;
+    top: -10px;
+}
+.ops_container a {
+    text-decoration: none;
+}
+.ops_btn {
+    background: url("../../../images/other/1.png") repeat scroll -80px -52px transparent;
+    display: inline-block;
+    height: 16px;
+    position: absolute;
+    width: 16px;
+    z-index: 1;
+}
+.ops_box {
+    position: absolute;
+    right: -25px;
+    top: 16px;
+    z-index: 5;
+}
+.ops_itemDiv {
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 8px 0 8px 8px;
+    box-shadow: 2px 2px 5px #969696;
+    display: none;
+}
+.ops_itemDiv ul {
+     padding: 5px 0;
+}
+.ops_itemDiv ul li {
+     padding: 8px 0;
+}
+.ops_itemDiv li a:hover {
+  background-color: #BADFC9;
+}
+.ops_btn.ops_active {
+    background: url("../../../images/other/1.png") repeat scroll -80px -70px transparent;
+    padding: 0 !important;
+}
+.ops_shadeEm {
+}
+a.ops_more {
+	background-position: 10px 5px !important;
+    color: #555555;
+    font-size: 13px;
+    padding: 5px 3px 5px 28px;
+    
+
+}
+li.ops_li {
+    float: left;
+}

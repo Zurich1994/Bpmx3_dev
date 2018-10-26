@@ -1,0 +1,16 @@
+charset=UTF-8
+#代码生成器目前支持的数据库有如下几种,请根据相应的数据库进行选择。
+#orale 		com.hotent.cgm.db.impl.OracleHelper
+#mysql 		com.hotent.cgm.db.impl.MySqlHelper
+#h2			com.hotent.cgm.db.impl.H2Helper
+#sql2005	com.hotent.cgm.db.impl.Sql2005Helper
+#db2		com.hotent.cgm.db.impl.DB2Helper
+dbHelperClass=com.hotent.cgm.db.impl.OracleHelper
+url=jdbc:oracle:thin:@192.168.1.80:1521:orcl
+username=bpmx32
+password=bpmx32
+
+system=code
+
+
+

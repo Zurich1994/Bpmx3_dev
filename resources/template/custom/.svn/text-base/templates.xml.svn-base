@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<template file="CommonTree/tree.ftl" name="普通树型" setting="/platform/custom/commonTree.jsp"/>
+	<template file="CommonList/list.ftl" name="普通列表" setting="/platform/custom/commonList.jsp"/>
+	<template file="CommonChart/chart.ftl" name="普通图表" setting="/platform/custom/commonChart.jsp"/>
+</templates>

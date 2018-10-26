@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsLegalHolidayDetail">
+	<resultMap id="AtsLegalHolidayDetail" type="com.hotent.platform.model.ats.AtsLegalHolidayDetail">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="holidayId" column="HOLIDAY_ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="startTime" column="START_TIME" jdbcType="DATE"/>
+		<result property="endTime" column="END_TIME" jdbcType="DATE"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,HOLIDAY_ID,NAME,START_TIME,END_TIME,MEMO
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(holidayId)"> AND HOLIDAY_ID  = #{holidayId}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(startTime)"> AND START_TIME  =#{startTime} </if>
+			<if test="@Ognl@isNotEmpty(beginstartTime)"> AND START_TIME  >=#{beginstartTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endstartTime)"> AND START_TIME <![CDATA[ <=#{endstartTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND END_TIME  =#{endTime} </if>
+			<if test="@Ognl@isNotEmpty(beginendTime)"> AND END_TIME  >=#{beginendTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endendTime)"> AND END_TIME <![CDATA[ <=#{endendTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsLegalHolidayDetail">
+		INSERT INTO ATS_LEGAL_HOLIDAY_DETAIL
+		(ID,HOLIDAY_ID,NAME,START_TIME,END_TIME,MEMO)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{holidayId,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, #{memo,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_LEGAL_HOLIDAY_DETAIL 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsLegalHolidayDetail">
+		UPDATE ATS_LEGAL_HOLIDAY_DETAIL SET
+		HOLIDAY_ID=#{holidayId,jdbcType=NUMERIC},
+		NAME=#{name,jdbcType=VARCHAR},
+		START_TIME=#{startTime,jdbcType=DATE},
+		END_TIME=#{endTime,jdbcType=DATE},
+		MEMO=#{memo,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsLegalHolidayDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_LEGAL_HOLIDAY_DETAIL
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsLegalHolidayDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_LEGAL_HOLIDAY_DETAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+		
+	<delete id="delByHolidayId" parameterType="java.lang.Long">
+		DELETE FROM ATS_LEGAL_HOLIDAY_DETAIL 
+		WHERE
+		HOLIDAY_ID=#{holidayId}
+	</delete>
+	<select id="getByHolidayId" parameterType="java.lang.Long" resultMap="AtsLegalHolidayDetail">
+		SELECT <include refid="columns"/>
+		FROM ATS_LEGAL_HOLIDAY_DETAIL
+		WHERE
+		HOLIDAY_ID=#{holidayId}
+	</select>
+	
+	<select id="getHolidayListByAttencePolicy" parameterType="java.lang.Long" resultMap="AtsLegalHolidayDetail">
+		SELECT <include refid="columns"/>
+			FROM ATS_LEGAL_HOLIDAY_DETAIL lhd where  lhd.HOLIDAY_ID =(
+		SELECT wc.LEGAL_HOLIDAY FROM ATS_WORK_CALENDAR wc where wc.ID=(	 
+		SELECT ap.WORK_CALENDAR FROM ATS_ATTENCE_POLICY ap where ap.ID= #{attencePolicy})
+		)
+	</select>
+	
+	
+</mapper>

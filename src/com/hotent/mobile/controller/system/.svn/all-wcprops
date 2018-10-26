@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/mobile/controller/system
+END
+SysMobileLoginController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/mobile/controller/system/SysMobileLoginController.java
+END
+SysMobileLogoutController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/mobile/controller/system/SysMobileLogoutController.java
+END
+SysMobileUserController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/mobile/controller/system/SysMobileUserController.java
+END
+SysMobileFileController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/mobile/controller/system/SysMobileFileController.java
+END
+SysMobileLangController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/mobile/controller/system/SysMobileLangController.java
+END

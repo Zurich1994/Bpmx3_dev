@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysIndexColumn">
+	<resultMap id="SysIndexColumn" type="com.hotent.platform.model.system.SysIndexColumn">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS" jdbcType="VARCHAR"/>
+		<result property="catalog" column="CATALOG" jdbcType="NUMERIC"/>
+		<result property="colType" column="COL_TYPE" jdbcType="NUMERIC"/>
+		<result property="dataMode" column="DATA_MODE" jdbcType="NUMERIC"/>
+		<result property="dataFrom" column="DATA_FROM" jdbcType="VARCHAR"/>
+		<result property="dataParam" column="DATA_PARAM" jdbcType="VARCHAR"/>
+		<result property="dsAlias" column="DS_ALIAS" jdbcType="VARCHAR"/>
+		<result property="dsName" column="DS_NAME" jdbcType="VARCHAR"/>
+		<result property="colHeight" column="COL_HEIGHT" jdbcType="NUMERIC"/>
+		<result property="colUrl" column="COL_URL" jdbcType="VARCHAR"/>
+		<result property="templateHtml" column="TEMPLATE_HTML" jdbcType="CLOB"/>
+		<result property="isPublic" column="IS_PUBLIC" jdbcType="NUMERIC"/>
+		<result property="orgId" column="ORG_ID" jdbcType="NUMERIC"/>
+		<result property="supportRefesh" column="SUPPORT_REFESH" jdbcType="NUMERIC"/>
+		<result property="refeshTime" column="REFESH_TIME" jdbcType="NUMERIC"/>
+		<result property="showEffect" column="SHOW_EFFECT" jdbcType="NUMERIC"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="needPage" column="NEEDPAGE" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,NAME,ALIAS,CATALOG,COL_TYPE,DATA_MODE,DATA_FROM,DATA_PARAM,DS_ALIAS,DS_NAME,COL_HEIGHT,COL_URL,TEMPLATE_HTML,IS_PUBLIC,ORG_ID,SUPPORT_REFESH,REFESH_TIME,SHOW_EFFECT,MEMO,NEEDPAGE
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND ALIAS  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(catalog)"> AND CATALOG  =#{catalog} </if>
+			<if test="@Ognl@isNotEmpty(colType)"> AND COL_TYPE  =#{colType} </if>
+			<if test="@Ognl@isNotEmpty(dataMode)"> AND DATA_MODE  =#{dataMode} </if>
+			<if test="@Ognl@isNotEmpty(dataFrom)"> AND DATA_FROM  LIKE #{dataFrom}  </if>
+			<if test="@Ognl@isNotEmpty(dsAlias)"> AND DS_ALIAS  LIKE #{dsAlias}  </if>
+			<if test="@Ognl@isNotEmpty(dsName)"> AND DS_NAME  LIKE #{dsName}  </if>
+			<if test="@Ognl@isNotEmpty(colHeight)"> AND COL_HEIGHT  =#{colHeight} </if>
+			<if test="@Ognl@isNotEmpty(colUrl)"> AND COL_URL  LIKE #{colUrl}  </if>
+			<if test="@Ognl@isNotEmpty(templateHtml)"> AND TEMPLATE_HTML  LIKE #{templateHtml}  </if>
+			<if test="@Ognl@isNotEmpty(isPublic)"> AND IS_PUBLIC  =#{isPublic} </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND ORG_ID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(supportRefesh)"> AND SUPPORT_REFESH  =#{supportRefesh} </if>
+			<if test="@Ognl@isNotEmpty(refeshTime)"> AND REFESH_TIME  =#{refeshTime} </if>
+			<if test="@Ognl@isNotEmpty(showEffect)"> AND SHOW_EFFECT  =#{showEffect} </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(orgIds)">AND (ORG_ID in (${orgIds} ) or IS_PUBLIC= 1)</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysIndexColumn">
+		INSERT INTO SYS_INDEX_COLUMN
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{catalog,jdbcType=NUMERIC}, #{colType,jdbcType=NUMERIC},  #{dataMode,jdbcType=NUMERIC},#{dataFrom,jdbcType=VARCHAR},#{dataParam,jdbcType=VARCHAR},#{dsAlias,jdbcType=VARCHAR}, #{dsName,jdbcType=VARCHAR}, #{colHeight,jdbcType=NUMERIC}, #{colUrl,jdbcType=VARCHAR}, #{templateHtml,jdbcType=CLOB}, #{isPublic,jdbcType=NUMERIC}, #{orgId,jdbcType=NUMERIC}, #{supportRefesh,jdbcType=NUMERIC}, #{refeshTime,jdbcType=NUMERIC}, #{showEffect,jdbcType=NUMERIC}, #{memo,jdbcType=VARCHAR},#{needPage,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_INDEX_COLUMN 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysIndexColumn">
+		UPDATE SYS_INDEX_COLUMN SET
+		NAME=#{name,jdbcType=VARCHAR},
+		ALIAS=#{alias,jdbcType=VARCHAR},
+		CATALOG=#{catalog,jdbcType=NUMERIC},
+		COL_TYPE=#{colType,jdbcType=NUMERIC},
+		DATA_MODE=#{dataMode,jdbcType=NUMERIC},
+		DATA_FROM=#{dataFrom,jdbcType=VARCHAR},
+		DATA_PARAM=#{dataParam,jdbcType=VARCHAR},
+		DS_ALIAS=#{dsAlias,jdbcType=VARCHAR},
+		DS_NAME=#{dsName,jdbcType=VARCHAR},
+		COL_HEIGHT=#{colHeight,jdbcType=NUMERIC},
+		COL_URL=#{colUrl,jdbcType=VARCHAR},
+		TEMPLATE_HTML=#{templateHtml,jdbcType=CLOB},
+		IS_PUBLIC=#{isPublic,jdbcType=NUMERIC},
+		ORG_ID=#{orgId,jdbcType=NUMERIC},
+		SUPPORT_REFESH=#{supportRefesh,jdbcType=NUMERIC},
+		REFESH_TIME=#{refeshTime,jdbcType=NUMERIC},
+		SHOW_EFFECT=#{showEffect,jdbcType=NUMERIC},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		NEEDPAGE =#{needPage,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysIndexColumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_COLUMN
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysIndexColumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_COLUMN   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getByColumnAlias" parameterType="java.lang.String" resultMap="SysIndexColumn">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_COLUMN
+		WHERE
+		ALIAS=#{alias}
+	</select>
+	<select id="getCounts" resultType="Integer">
+    	 SELECT count(id) FROM SYS_INDEX_COLUMN
+    </select>	
+ 	
+	
+	<select id="isExistAlias" resultType="int" parameterType="java.util.Map">
+	  SELECT count(*) amount FROM SYS_INDEX_COLUMN where alias=#{alias}
+	  <if test="@Ognl@isNotEmpty(id)">  AND id &lt;> #{id}  </if>
+	</select>
+	
+	
+	
+	<select id="getByUserIdFilter" resultMap="SysIndexColumn"  parameterType="java.util.Map" >
+		select <include refid="columns"/> from SYS_INDEX_COLUMN  where ID in(
+			select t.id from (
+				<foreach collection="relationMap" index="key"  item="ent" separator="union">
+					select r.id from SYS_INDEX_COLUMN r,SYS_OBJ_RIGHTS rig where rig.OBJECT_ID=r.id and rig.RIGHT_TYPE=#{key}  and rig.OBJ_TYPE=#{objType}
+					<if test="@Ognl@notEquals(key,'all') and @Ognl@isNotEmpty(ent)">
+							and rig.OWNER_ID in 
+							<foreach collection="ent"  item="id" separator="," open="(" close=")">
+								#{id}
+							</foreach>
+					</if>
+				</foreach>
+			) t 
+		)
+	</select>
+</mapper>

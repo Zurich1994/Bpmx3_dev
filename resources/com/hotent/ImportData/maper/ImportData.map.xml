@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.ImportData.model.lc.ImportData">
+	<resultMap id="ImportData" type="com.hotent.ImportData.model.lc.ImportData">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="year_year_date" column="F_YEAR_YEAR_DATE" jdbcType="VARCHAR"/>
+		<result property="year_month_date" column="F_YEAR_MONTH_DATE" jdbcType="VARCHAR"/>
+		<result property="month_day_date" column="F_MONTH_DAY_DATE" jdbcType="VARCHAR"/>
+		<result property="day_hour_date" column="F_DAY_HOUR_DATE" jdbcType="VARCHAR"/>
+		<result property="hour_minute_date" column="F_HOUR_MINUTE_DATE" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_YEAR_YEAR_DATE,F_YEAR_MONTH_DATE,F_MONTH_DAY_DATE,F_DAY_HOUR_DATE,F_HOUR_MINUTE_DATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(year_year_date)"> AND F_YEAR_YEAR_DATE  LIKE '%${year_year_date}%'  </if>
+			<if test="@Ognl@isNotEmpty(year_month_date)"> AND F_YEAR_MONTH_DATE  LIKE '%${year_month_date}%'  </if>
+			<if test="@Ognl@isNotEmpty(month_day_date)"> AND F_MONTH_DAY_DATE  LIKE '%${month_day_date}%'  </if>
+			<if test="@Ognl@isNotEmpty(day_hour_date)"> AND F_DAY_HOUR_DATE  LIKE '%${day_hour_date}%'  </if>
+			<if test="@Ognl@isNotEmpty(hour_minute_date)"> AND F_HOUR_MINUTE_DATE  LIKE '%${hour_minute_date}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.ImportData.model.lc.ImportData">
+		INSERT INTO W_IMPORT_DATA
+		(ID,
+		F_YEAR_YEAR_DATE,F_YEAR_MONTH_DATE,F_MONTH_DAY_DATE,F_DAY_HOUR_DATE,F_HOUR_MINUTE_DATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{year_year_date,jdbcType=VARCHAR}, #{year_month_date,jdbcType=VARCHAR}, #{month_day_date,jdbcType=VARCHAR}, #{day_hour_date,jdbcType=VARCHAR}, #{hour_minute_date,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_IMPORT_DATA 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.ImportData.model.lc.ImportData">
+		UPDATE W_IMPORT_DATA SET
+		F_YEAR_YEAR_DATE=#{year_year_date,jdbcType=VARCHAR},
+		F_YEAR_MONTH_DATE=#{year_month_date,jdbcType=VARCHAR},
+		F_MONTH_DAY_DATE=#{month_day_date,jdbcType=VARCHAR},
+		F_DAY_HOUR_DATE=#{day_hour_date,jdbcType=VARCHAR},
+		F_HOUR_MINUTE_DATE=#{hour_minute_date,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ImportData">
+		SELECT <include refid="columns"/>
+		FROM W_IMPORT_DATA
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ImportData">
+		SELECT <include refid="columns"/>
+		FROM W_IMPORT_DATA   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

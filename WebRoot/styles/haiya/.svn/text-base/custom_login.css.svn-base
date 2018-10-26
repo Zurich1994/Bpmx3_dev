@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+body {
+	background: #0152a3 url(images/login_bg.jpg) repeat-x 0 0;
+	color: #666567;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+.second_body {
+	background: transparent url(images/login_wrapper.png) no-repeat 0 0;
+	width: 1003px;
+	height: 753px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#form-login {
+	width: 300px;
+	margin: 0 auto;
+	padding: 360px 0 0 100px;
+}
+
+.main_login {
+	margin-top: 5px;
+	width: 100%;
+}
+
+.bpmlogo_login {display: none;}
+
+.content_login {
+	padding: 0;
+	border-width: 0;
+}
+
+.column {margin-top: 0;}
+
+.column span {
+	width: 55px;
+	display: inline-block;
+}
+
+.content_login input[type="text"], .content_login input[type="password"] {
+	margin-top: 0;
+	width: 190px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 0;
+}
+
+.confirm {
+	margin: 0;
+	padding: 5px 48px;
+	float: left;
+	border-width: 0;
+}
+
+.confirm span {
+	display: inline-block;
+	text-indent: 10px;
+}
+
+.login_btn,
+.reset_btn {
+	background: transparent url(images/login_button.png) no-repeat 0 0;
+	border-width: 0;
+	color: #00f;
+	font-weight: normal;
+	width: 76px;
+	height: 23px;
+	line-height: 23px;
+}
+
+.reset_btn {color: #f00;}
+
+.login_btn:hover,
+.reset_btn:hover {background: transparent url(images/login_button_hover.png) no-repeat 0 0;}
+
+.copy {display: none;}
+
+.printmsg {
+	clear:both;
+	width: 400px;
+	margin: 0 auto;
+	padding: 3px 3px 3px 3px ; 
+	
+}

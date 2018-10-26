@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/997/bpmx_w/src/com/hotent/e_business/dao/e_business
+END
+OrderBillingDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/OrderBillingDao.java
+END
+OrderShippingDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/997/bpmx_w/src/com/hotent/e_business/dao/e_business/OrderShippingDao.java
+END
+ProductModelDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/ProductModelDao.java
+END
+ComponentDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/ComponentDao.java
+END
+ProductDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/ProductDetailDao.java
+END
+ProductModelsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/ProductModelsDao.java
+END
+ConfirmationDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/ConfirmationDao.java
+END
+CartDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/CartDao.java
+END
+UserInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/UserInfoDao.java
+END
+registrationDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BPMX_2015_WYX/!svn/ver/354/bpmx_w/src/com/hotent/e_business/dao/e_business/registrationDao.java
+END

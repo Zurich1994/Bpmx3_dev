@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmDefAct">
+	<resultMap id="BpmDefAct" type="com.hotent.platform.model.bpm.BpmDefAct">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="authorizeId" column="AUTHORIZE_ID" jdbcType="NUMERIC"/>
+		<result property="defKey" column="DEF_KEY" jdbcType="VARCHAR"/>
+		<result property="defName" column="DEF_NAME" jdbcType="VARCHAR"/>
+		<result property="rightContent" column="RIGHT_CONTENT" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="columns">
+		ID,AUTHORIZE_ID,DEF_KEY,DEF_NAME,RIGHT_CONTENT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(authorizeId)"> AND AUTHORIZE_ID  =#{authorizeId} </if>
+			<if test="@Ognl@isNotEmpty(defKey)"> AND DEF_KEY  =#{defKey} </if>
+			<if test="@Ognl@isNotEmpty(defName)"> AND DEF_NAME LIKE #{defName}  </if>
+			<if test="@Ognl@isNotEmpty(rightContent)"> AND RIGHT_CONTENT  LIKE #{rightContent}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmDefAct">
+		INSERT INTO BPM_DEF_ACT
+		(ID,AUTHORIZE_ID,DEF_KEY,DEF_NAME,RIGHT_CONTENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{authorizeId,jdbcType=NUMERIC}, #{defKey,jdbcType=VARCHAR}, #{defName,jdbcType=VARCHAR}, #{rightContent,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEF_ACT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByMap" parameterType="java.util.Map" >
+		DELETE FROM BPM_DEF_ACT 
+		    <include refid="dynamicWhere" />
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmDefAct">
+		UPDATE BPM_DEF_ACT SET
+		AUTHORIZE_ID=#{authorizeId,jdbcType=NUMERIC} , 
+		DEF_KEY=#{defKey,jdbcType=VARCHAR} , 
+		DEF_NAME=#{defName,jdbcType=VARCHAR} , 
+		RIGHT_CONTENT=#{rightContent,jdbcType=VARCHAR}  
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmDefAct">
+		SELECT <include refid="columns"/>
+		FROM BPM_DEF_ACT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BpmDefAct">
+		SELECT <include refid="columns"/>
+		FROM BPM_DEF_ACT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<delete id="delByAuthorizeId" parameterType="java.lang.Long">
+		DELETE FROM BPM_DEF_ACT 
+			WHERE AUTHORIZE_ID=#{authorizeId}
+	</delete>
+	
+	<select id="getActRightByUserMap" resultMap="BpmDefAct"  parameterType="java.util.Map" >
+		
+		select b.ID,b.AUTHORIZE_ID,b.DEF_KEY,b.DEF_NAME,b.RIGHT_CONTENT from BPM_DEF_ACT b , BPM_DEF_AUTH_TYPE t where b.AUTHORIZE_ID=t.AUTHORIZE_ID  and t.AUTHORIZE_TYPE=#{authorizeType}  and b.AUTHORIZE_ID in (
+    
+	          select distinct a.ID from  BPM_DEF_AUTHORIZE a, (
+	                select u.AUTHORIZE_ID from BPM_DEF_USER u
+						 where  u.RIGHT_TYPE = #{all}
+					
+					<if test="@Ognl@isNotEmpty(userId)">
+					union
+					select u.AUTHORIZE_ID from BPM_DEF_USER u
+		 				 where  u.RIGHT_TYPE = #{user}  and u.OWNER_ID = #{userId}
+					</if>
+					
+					<if test="@Ognl@isNotEmpty(roleIds)">
+					union
+					select u.AUTHORIZE_ID from BPM_DEF_USER u
+		 				 where  u.RIGHT_TYPE = #{role}  and u.OWNER_ID in (${roleIds}) 
+					</if>
+					
+					<if test="@Ognl@isNotEmpty(orgIds)">
+					union
+					select u.AUTHORIZE_ID from BPM_DEF_USER u
+		 				 where  u.RIGHT_TYPE = #{org}  and u.OWNER_ID in (${orgIds}) 
+					</if>
+					
+					<if test="@Ognl@isNotEmpty(positionIds)">
+					union
+					select u.AUTHORIZE_ID from BPM_DEF_USER u
+		 				 where  u.RIGHT_TYPE = #{position}  and u.OWNER_ID in (${positionIds})  
+					</if>
+				
+					<if test="@Ognl@isNotEmpty(grantIds)">
+					union
+					select u.AUTHORIZE_ID from BPM_DEF_USER u
+		 				 where  u.RIGHT_TYPE = #{grant}  and u.OWNER_ID in (${grantIds}) 
+					</if>
+	          
+	          ) c  where  a.ID = c.AUTHORIZE_ID 
+	              
+	     )
+		
+	</select> 
+	
+
+</mapper>

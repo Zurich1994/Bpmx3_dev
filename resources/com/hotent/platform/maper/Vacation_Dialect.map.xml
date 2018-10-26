@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.worktime.Vacation">
+	<resultMap id="Vacation" type="com.hotent.platform.model.worktime.Vacation">
+		<id property="id" column="id" jdbcType="NUMERIC"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="years" column="years" jdbcType="NUMERIC"/>
+		<result property="statTime" column="statTime" jdbcType="TIMESTAMP"/>
+		<result property="endTime" column="endTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<sql id="columns">
+		id,name,years,statTime,endTime
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND id  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND name  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(years)"> AND years  LIKE #{years} </if>
+			<if test="@Ognl@isNotEmpty(statTime)"> AND statTime  =#{statTime} </if>
+			<if test="@Ognl@isNotEmpty(endTime)"> AND endTime  =#{endTime} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.worktime.Vacation">
+		INSERT INTO sys_vacation
+		(<include refid="columns"/>)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{years,jdbcType=NUMERIC}, #{statTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_vacation 
+		WHERE
+		id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.worktime.Vacation">
+		UPDATE sys_vacation SET
+		name=#{name,jdbcType=VARCHAR} , 
+		years=#{years,jdbcType=NUMERIC} , 
+		statTime=#{statTime,jdbcType=TIMESTAMP} , 
+		endTime=#{endTime,jdbcType=TIMESTAMP} 
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation
+		WHERE
+		id=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by id  desc
+		</if>
+	</select>
+	
+	<!-- start dialect -->
+	<select id="getByYearMon_oracle" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation   
+		WHERE to_char(statTime,'YYYY-MM') = to_char(#{statTime,jdbcType=DATE},'YYYY-MM')
+		OR to_char(endTime,'YYYY-MM') = to_char(#{endTime,jdbcType=DATE},'YYYY-MM')
+		ORDER BY statTime
+	</select>
+
+	<select id="getByYearMon_dm" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation   
+		WHERE to_char(statTime,'YYYY-MM') = to_char(#{statTime,jdbcType=DATE},'YYYY-MM')
+		OR to_char(endTime,'YYYY-MM') = to_char(#{endTime,jdbcType=DATE},'YYYY-MM')
+		ORDER BY statTime
+	</select>
+	
+	<select id="getByYearMon_mysql" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation   
+		WHERE date_format(statTime,'%Y-%m') = date_format(#{statTime,jdbcType=DATE},'%Y-%m')
+		OR date_format(endTime,'%Y-%m') = date_format(#{endTime,jdbcType=DATE},'%Y-%m')
+		ORDER BY statTime
+	</select>
+	
+	<select id="getByYearMon_mssql" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation   
+		WHERE CONVERT(varchar(8) ,statTime,120) = CONVERT(varchar(8) ,#{statTime,jdbcType=DATE},120)
+		OR CONVERT(varchar(8) , endTime, 120 ) = CONVERT(varchar(8) ,#{endTime,jdbcType=DATE},120)
+		ORDER BY statTime
+	</select>
+	
+	<select id="getByYearMon_db2" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation   
+		WHERE VARCHAR_FORMAT(statTime,'yyyy-mm') = VARCHAR_FORMAT(#{statTime,jdbcType=DATE},'yyyy-mm')
+		OR VARCHAR_FORMAT(endTime,'yyyy-mm') = VARCHAR_FORMAT(#{endTime,jdbcType=DATE},'yyyy-mm')
+		ORDER BY statTime
+	</select>
+	<select id="getByYearMon_h2" resultMap="Vacation">
+		SELECT <include refid="columns"/>
+		FROM sys_vacation   
+		WHERE FORMATDATETIME(statTime,'yyyy-MM') = FORMATDATETIME(#{statTime,jdbcType=DATE},'yyyy-MM')
+		OR FORMATDATETIME(endTime,'yyyy-MM') = FORMATDATETIME(#{endTime,jdbcType=DATE},'yyyy-MM')
+		ORDER BY statTime
+	</select>
+	<!-- end dialect -->
+</mapper>

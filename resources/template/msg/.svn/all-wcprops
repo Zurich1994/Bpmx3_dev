@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/msg
+END
+nodeMsgTemp_head.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/msg/nodeMsgTemp_head.ftl
+END
+nodeMsgTemp_subTable.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/msg/nodeMsgTemp_subTable.ftl
+END
+nodeMsgTemp_html.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/msg/nodeMsgTemp_html.ftl
+END
+nodeMsgTemp_text.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BPMX_2015_WYX/!svn/ver/736/bpmx_w/resources/template/msg/nodeMsgTemp_text.ftl
+END

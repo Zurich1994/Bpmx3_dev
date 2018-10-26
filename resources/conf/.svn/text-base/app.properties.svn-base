@@ -1,0 +1,147 @@
+#productKey
+
+#\u7528\u4e8e\u5206\u5e03\u5f0f\u4ea7\u751f\u4e3b\u952eid,\u90e8\u7f72\u5230\u4e0d\u540c\u7684\u670d\u52a1\u5668\u65f6\u4fee\u6539\u8fd9\u4e2a\u503c\uff0c\u4ece1\u5f00\u59cb(\u6b63\u6574\u6570)
+#\u4e0d\u540c\u7684\u5e94\u7528\u670d\u52a1\u5668\uff08\u8fde\u63a5\u540c\u4e00\u6570\u636e\u670d\u52a1\u5668\uff09\u9700\u8981\u4fdd\u8bc1\u8fd9\u4e2a\u6570\u4e0d\u540c\uff0c\u5426\u5219\u5fc5\u7136\u4f1a\u4ea7\u751f\u91cd\u590dID\u3002
+genId.adjust=1
+
+#\u6570\u636e\u5e93\u7c7b\u578b oracle,mysql,mssql,db2,dm
+jdbc.dbType=mysql
+###oracle\u914d\u7f6e\u4fe1\u606f###
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc\:mysql\://192.168.4.157\:3306/bpmx124?useUnicode\=true&characterEncoding\=utf-8&zeroDateTimeBehavior\=round
+jdbc.username=user124
+jdbc.password=123
+#jdbc.driverClassName=com.mysql.jdbc.Driver
+#jdbc.url=jdbc:mysql://192.168.1.211:3306/bpmx?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=round
+#jdbc.username=root
+#jdbc.password=root
+
+#\u963f\u8bf7\u7684\u5e93
+#jdbc.driverClassName=com.mysql.jdbc.Driver
+#jdbc.url=jdbc:mysql://192.168.1.80:3306/bpmx33demo?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=round
+#jdbc.username=root
+#jdbc.password=root
+#jdbc.driverClassName=com.mysql.jdbc.Driver
+#jdbc.url=jdbc:mysql://192.168.1.80:3306/bpmx33showdemo?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=round
+#jdbc.username=root
+#jdbc.password=root
+#jdbc.driverClassName=com.mysql.jdbc.Driver
+#jdbc.url=jdbc:mysql://192.168.1.211:3306/bpm33_lz?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=round
+#jdbc.username=root
+#jdbc.password=root
+
+
+#jdbc.driverClassName=com.mysql.jdbc.Driver
+#jdbc.url=jdbc:mysql://192.168.1.211:3306/bpmx33demo?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=round
+#jdbc.username=root
+#jdbc.password=root
+#---\u4ee5\u4e0b\u662f\u8fde\u63a5\u6570\u636e\u5e93\u7684 \u76f8\u5e94\u914d\u7f6e\u4fe1\u606f----
+###oracle\u914d\u7f6e\u4fe1\u606f###
+
+#jdbc.driverClassName=oracle.jdbc.OracleDriver
+#jdbc.url=jdbc:oracle:thin:@localhost:1521:ORCL
+#jdbc.username=bpmx33
+#jdbc.password=bpmx33
+#jdbc.driverClassName=oracle.jdbc.OracleDriver
+#jdbc.url=jdbc:oracle:thin:@localhost:1521:ORCL
+#jdbc.username=bpm33lily
+#jdbc.password=bpm33lily
+
+#jdbc.driverClassName=oracle.jdbc.OracleDriver
+#jdbc.url=jdbc:oracle:thin:@192.168.1.80:1521:ORCL
+#jdbc.username=bpm33_demo
+#jdbc.password=bpm33_demo
+
+#jdbc.driverClassName=oracle.jdbc.OracleDriver
+#jdbc.url=jdbc:oracle:thin:@192.168.1.80:1521:ORCL
+#jdbc.username=bpm33_xg
+#jdbc.password=bpm33_xg
+
+###DM \u914d\u7f6e\u4fe1\u606f###
+#jdbc.driverClassName=dm.jdbc.driver.DmDriver
+#jdbc.url=jdbc:dm://192.168.1.80:5236/BPMX3sy
+#jdbc.username=BPM3
+#jdbc.password=bpmx2013
+
+###H2 \u914d\u7f6e\u4fe1\u606f###
+#jdbc.driverClassName=org.h2.Driver
+#jdbc.url=jdbc:h2:C:/Users/Administrator/Desktop/Other/h2/data/bpm_revision;SCHEMA=BPMX;AUTO_SERVER=TRUE
+#jdbc.username=
+#jdbc.password=
+
+
+
+#SQLServer \u914d\u7f6e\u4fe1\u606f###
+#jdbc.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+#jdbc.url=jdbc:sqlserver://192.168.1.80:1433;DatabaseName=bpm33_lz
+#jdbc.username=sa
+#jdbc.password=soft123456#.
+#jdbc.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+#jdbc.url=jdbc:sqlserver://192.168.1.80:1433;DatabaseName=bpmx3_sz
+#jdbc.username=sa
+#jdbc.password=soft123456#.
+
+#\u9644\u4ef6\u5b58\u653e\u7c7b\u578b\uff0c\u6570\u636e\u5e93\uff1aDatabase \u6587\u4ef6\u5939\uff1aFolder
+# Database or Folder
+file.saveType=Folder
+#\u9644\u4ef6\u5b58\u653e\u8def\u5f84
+file.upload=/data/web
+
+compression.width=450
+
+
+#\u6570\u636e\u5e93\u8fde\u63a5\u6c60\u7684\u76f8\u5173\u914d\u7f6e
+db.alias=dbpool
+db.simultaneousBuildThrottle=20
+db.maximumActiveTime = 3600000
+db.houseKeepingTestSql=select 1 from SYS_ACCEPT_IP
+db.characterEncoding=UTF-8
+db.maximumConnectionCount=100
+db.minimumConnectionCount=3
+
+
+#\u5728\u6d41\u7a0b\u8df3\u8f6c\u4e2d \u53d1\u9001\u90ae\u4ef6\u65f6\u53d1\u4ef6\u4eba\u7684\u914d\u7f6e\u60c5\u51b5
+mail.from=787874563@qq.com
+mail.host=smtp.qq.com
+mail.username=787874563@qq.com
+mail.password=20yongbufenli.
+#\u90ae\u4ef6\u5185\u5bb9\u9ed8\u8ba4 utf-8\u7f16\u7801
+mail.defaultEncoding=utf-8
+
+#\u5355\u70b9\u767b\u5f55\u65f6\u7684 cas \u670d\u52a1\u5668\u5730\u5740
+cas.url=http://192.168.1.96:8085/cas
+platform.url=http://192.168.1.96:8080/bpmx3
+platform.homepage=/platform/console/main.ht
+security.access.denied.page=/commons/noRights.jsp
+
+#Ldap connect configuration
+ldapUrl=ldap://192.168.1.80:389
+ldapBase=dc=hotent,dc=com
+ldapUserDn=abc@hotent.com
+ldapPassword=abc
+ldapPooled=true
+
+
+#oracle \u4f7f\u7528 org.quartz.impl.jdbcjobstore.oracle.OracleDelegate
+#mysql \u4f7f\u7528org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+quartz.jdbcjobstore=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+
+
+#webservice\u8fde\u63a5\u8d85\u65f6\u65f6\u95f4
+webservice.connTimeout=3000
+webservice.readTimeout=3000
+
+#webservice\u6570\u636e\u5c55\u793a\u6a21\u677f\u8def\u5f84
+webservice.template.path=/template/webservice/list.ftl
+
+#jms\u914d\u7f6e
+jms.ip=127.0.0.1
+jms.port=6222
+jmsDir=c\:\\temp
+jmx.port=1099
+
+
+#\u622a\u53d6\u6807\u9898\u957f\u5ea6\uff0c\u5982\u679c\u4e0d\u8bbe\u7f6e\u9ed8\u8ba4\u4e3a25\u3002
+titleLen=20
+#\u8868\u540d\u548c\u5b57\u6bb5\u540d\u524d\u7f00
+maxUploadSize=104857600

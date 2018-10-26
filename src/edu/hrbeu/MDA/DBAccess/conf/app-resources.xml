@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	   default-autowire="byName" default-lazy-init="false">
+
+	<!-- component-scan @Component , @Controller , @Service , @Repository  -->
+
+    <context:component-scan base-package="edu.hrbeu.MDA.DBAccess.platform.dao" />
+	<context:component-scan base-package="edu.hrbeu.MDA.DBAccess.platform.service" />
+	<!--  <context:component-scan base-package="com.hotent.core.table"/>
+	<context:component-scan base-package="com.hotent.platform.event.listener"/>
+	-->
+
+    <!--加载配置文件-->
+	<bean id="configproperties" 
+         class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+          <property name="location" value="classpath:/conf/app.properties"/>
+    </bean>
+     <bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+         <property name="properties" ref="configproperties"/>
+    </bean>
+	
+	<!--对数据库操作都从这里取jdbcTemplate-->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--专门用来产生ID-->
+    <bean id="jdbcTemplateSN" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSourceSN"/>
+    </bean>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:/conf/configuration.xml"/>
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" >
+        	<list>
+        		<value>classpath:/edu/hrbeu/MDA/DBAccess/platform/mapper/*.map.xml</value>
+        	</list>
+        </property>
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+   
+   
+    <bean id="dataSourceSN" class="org.logicalcobwebs.proxool.ProxoolDataSource">  
+		<property name="driver" value="${jdbc.driverClassName}"/>
+		<property name="driverUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="alias" value="${db.aliasSN}"/>
+		<property name="simultaneousBuildThrottle" value="${db.simultaneousBuildThrottleSN}"/>
+		<property name="maximumActiveTime" value="${db.maximumActiveTimeSN}"/>
+		<property name="houseKeepingTestSql" value="${db.houseKeepingTestSqlSN}"/>
+		<property name="maximumConnectionCount" value="${db.maximumConnectionCountSN}"/>
+		<property name="minimumConnectionCount" value="${db.minimumConnectionCountSN}"/>
+		<property name="delegateProperties" value="characterEncoding=${db.characterEncodingSN}"/>
+	</bean>
+
+   <bean id="dataSource_Default" class="org.logicalcobwebs.proxool.ProxoolDataSource">  
+		<property name="driver" value="${jdbc.driverClassName}"/>
+		<property name="driverUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="alias" value="${db.alias}"/>
+		<property name="simultaneousBuildThrottle" value="${db.simultaneousBuildThrottle}"/>
+		<property name="maximumActiveTime" value="${db.maximumActiveTime}"/>
+		<property name="houseKeepingTestSql" value="${db.houseKeepingTestSql}"/>
+		<property name="maximumConnectionCount" value="${db.maximumConnectionCount}"/>
+		<property name="minimumConnectionCount" value="${db.minimumConnectionCount}"/>
+		<property name="delegateProperties" value="characterEncoding=${db.characterEncoding}"/>
+	</bean> 
+	
+	<!-- 动态数据源start############################################################-->
+	
+	<bean id="dataSource" class="edu.hrbeu.MDA.DBAccess.datasource.DynamicDataSource">
+		<property name="targetDataSources"  >
+			<map>
+    			<entry key="dataSource_Default" value-ref="dataSource_Default" />
+   			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSource_Default" />
+	</bean>
+	
+	
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+		
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+		  	<tx:method name="get*" read-only="true"/>
+			<tx:method name="is*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="*" isolation="DEFAULT"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	<!-- Spring编程式事务  -->
+	<bean id="txTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager"></property>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"></property>
+    </bean>
+
+	
+	
+	
+	<bean id="templateLoader" class="freemarker.cache.StringTemplateLoader"></bean>
+
+	
+	<!--发送邮件配置-->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		<property name="defaultEncoding" value="${mail.defaultEncoding}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- QUARTZ 2.0配置的问题 -->
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
+		lazy-init="false" destroy-method="destroy">
+		<property name="autoStartup" value="true" />
+		<property name="waitForJobsToCompleteOnShutdown" value="false" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="overwriteExistingJobs" value="true" />
+		<property name="startupDelay" value="60"></property>
+		<property name="jobFactory">  
+            <bean class="org.quartz.simpl.SimpleJobFactory"></bean>  
+        </property>  
+		<property name="quartzProperties">
+			<props>
+				<prop key="org.quartz.scheduler.instanceName">ClusteredScheduler</prop>
+				<prop key="org.quartz.scheduler.instanceId">AUTO</prop>
+				<prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+				
+				<prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+				<prop key="org.quartz.threadPool.threadCount">5</prop>
+				<prop key="org.quartz.threadPool.threadPriority">5</prop>
+				
+				<prop key="org.quartz.jobStore.class">org.quartz.impl.jdbcjobstore.JobStoreTX</prop>
+				<prop key="org.quartz.jobStore.driverDelegateClass">${quartz.jdbcjobstore}</prop>
+				<prop key="org.quartz.jobStore.misfireThreshold">60000</prop>
+				<prop key="org.quartz.jobStore.useProperties">false</prop>
+				<prop key="org.quartz.jobStore.tablePrefix">QRTZ_</prop>
+				
+				<prop key="org.quartz.jobStore.isClustered">true</prop>
+				<prop key="org.quartz.jobStore.clusterCheckinInterval">20000</prop>
+				
+				<prop key="org.quartz.scheduler.classLoadHelper.class">org.quartz.simpl.CascadingClassLoadHelper</prop> 
+				<prop key="org.quartz.jobStore.lockHandler.class">org.quartz.impl.jdbcjobstore.UpdateLockRowSemaphore</prop> 
+				<prop key="org.quartz.jobStore.lockHandler.updateLockRowSQL">UPDATE QRTZ_LOCKS SET LOCK_NAME = LOCK_NAME WHERE LOCK_NAME = ?</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- activity directory 活动目录配置-->
+	<bean id="ldapSource" class="org.springframework.ldap.core.support.LdapContextSource">
+		<property name="url" value="${ldapUrl}" />
+		<property name="base" value="${ldapBase}" />
+		<property name="userDn" value="${ldapUserDn}" />
+		<property name="password" value="${ldapPassword}" />
+		<property name="pooled" value="${ldapPooled}"></property>
+	</bean>
+	<bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+		<property name="ContextSource" ref="ldapSource"></property>
+		<property name="ignorePartialResultException" value="true"/>
+	</bean>
+	<!--动态数据源缓存器-->
+	<bean id="dynamicDataSourceCache" class="edu.hrbeu.MDA.DBAccess.core.DynamicDataSourceCache"/>
+	<!--高级查询缓存器-->
+	<!--<bean id="searchCache" class="com.hotent.core.web.query.scan.SearchCache">
+		<property name="basePackage" >
+			<list>
+				<value>classpath:com/hotent/**/model/**/*.class</value>
+			</list>
+		</property>
+	</bean>
+--></beans>

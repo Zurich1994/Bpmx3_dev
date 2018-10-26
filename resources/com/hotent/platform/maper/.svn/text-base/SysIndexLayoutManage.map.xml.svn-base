@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysIndexLayoutManage">
+	<resultMap id="SysIndexLayoutManage" type="com.hotent.platform.model.system.SysIndexLayoutManage">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="memo" column="MEMO" jdbcType="VARCHAR"/>
+		<result property="orgId" column="ORG_ID" jdbcType="NUMERIC"/>
+		<result property="templateHtml" column="TEMPLATE_HTML" jdbcType="CLOB"/>
+		<result property="designHtml" column="DESIGN_HTML" jdbcType="CLOB"/>
+		<result property="isDef" column="IS_DEF" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,NAME,MEMO,ORG_ID,TEMPLATE_HTML,DESIGN_HTML,IS_DEF
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND ORG_ID  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(templateHtml)"> AND TEMPLATE_HTML  LIKE #{templateHtml}  </if>
+			<if test="@Ognl@isNotEmpty(designHtml)"> AND DESIGN_HTML  LIKE #{designHtml}  </if>
+			<if test="@Ognl@isNotEmpty(isDef)"> AND IS_DEF  =#{isDef} </if>
+			<if test="@Ognl@isNotEmpty(orgIds)">AND ORG_ID in (${orgIds}) </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysIndexLayoutManage">
+		INSERT INTO SYS_INDEX_LAYOUT_MANAGE
+		(ID,NAME,MEMO,ORG_ID,TEMPLATE_HTML,DESIGN_HTML,IS_DEF)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{orgId,jdbcType=NUMERIC}, #{templateHtml,jdbcType=CLOB}, #{designHtml,jdbcType=CLOB}, #{isDef,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_INDEX_LAYOUT_MANAGE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysIndexLayoutManage">
+		UPDATE SYS_INDEX_LAYOUT_MANAGE SET
+		NAME=#{name,jdbcType=VARCHAR},
+		MEMO=#{memo,jdbcType=VARCHAR},
+		ORG_ID=#{orgId,jdbcType=NUMERIC},
+		TEMPLATE_HTML=#{templateHtml,jdbcType=CLOB},
+		DESIGN_HTML=#{designHtml,jdbcType=CLOB},
+		IS_DEF=#{isDef,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	<update id="updateIsDef" parameterType="java.lang.Long">
+			UPDATE SYS_INDEX_LAYOUT_MANAGE SET 
+			IS_DEF=0
+			WHERE 
+			<if test="@Ognl@isNotEmpty(orgId)">
+				ORG_ID = #{orgId}
+			</if>
+			<if test="@Ognl@isEmpty(orgId)">
+				ORG_ID is null
+			</if>
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysIndexLayoutManage">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_LAYOUT_MANAGE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysIndexLayoutManage">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_LAYOUT_MANAGE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getManageLayout" resultMap="SysIndexLayoutManage">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_LAYOUT_MANAGE   
+		<where>
+			<if test="@Ognl@isNotEmpty(orgIds)"> AND ORG_ID in (${orgIds}) </if>
+			<if test="@Ognl@isNotEmpty(isDef)"> AND IS_DEF  =${isDef} </if>
+			<if test="@Ognl@isNotEmpty(isNullOrg)"> AND ORG_ID IS NULL </if>
+			
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ORG_ID
+		</if>
+	</select>
+	
+	<select id="getByUserIdFilter" resultMap="SysIndexLayoutManage"  parameterType="java.util.Map" >
+		select <include refid="columns"/> from SYS_INDEX_LAYOUT_MANAGE  where ID in(
+			select t.id from (
+				<foreach collection="relationMap" index="key"  item="ent" separator="union">
+					select r.id from SYS_INDEX_LAYOUT_MANAGE r,SYS_OBJ_RIGHTS rig where rig.OBJECT_ID=r.id and rig.RIGHT_TYPE=#{key}  and rig.OBJ_TYPE=#{objType}
+					<if test="@Ognl@notEquals(key,'all') and @Ognl@isNotEmpty(ent)">
+							and rig.OWNER_ID in 
+							<foreach collection="ent"  item="id" separator="," open="(" close=")">
+								#{id}
+							</foreach>
+					</if>
+				</foreach>
+			) t
+		) 
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(memo)"> AND MEMO  LIKE #{memo}  </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by IS_DEF DESC
+		</if>
+	</select>
+	
+</mapper>

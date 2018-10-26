@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.support.model.catelog.Category">
+	<resultMap id="Category" type="com.hotent.support.model.catelog.Category">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="CATEGORYID" column="F_CATEGORYID" jdbcType="VARCHAR"/>
+		<result property="CATEGORYNAME" column="F_CATEGORYNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_CATEGORYID,F_CATEGORYNAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(CATEGORYID)"> AND F_CATEGORYID  LIKE '%${CATEGORYID}%'  </if>
+			<if test="@Ognl@isNotEmpty(CATEGORYNAME)"> AND F_CATEGORYNAME  LIKE '%${CATEGORYNAME}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.support.model.catelog.Category">
+		INSERT INTO W_CATEGORY
+		(ID,
+		F_CATEGORYID,F_CATEGORYNAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{CATEGORYID,jdbcType=VARCHAR}, #{CATEGORYNAME,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_CATEGORY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.support.model.catelog.Category">
+		UPDATE W_CATEGORY SET
+		F_CATEGORYID=#{CATEGORYID,jdbcType=VARCHAR},
+		F_CATEGORYNAME=#{CATEGORYNAME,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Category">
+		SELECT <include refid="columns"/>
+		FROM W_CATEGORY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Category">
+		SELECT <include refid="columns"/>
+		FROM W_CATEGORY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

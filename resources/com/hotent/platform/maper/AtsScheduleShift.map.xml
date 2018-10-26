@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsScheduleShift">
+	<resultMap id="AtsScheduleShift" type="com.hotent.platform.model.ats.AtsScheduleShift">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
+		<result property="attenceTime" column="ATTENCE_TIME" jdbcType="DATE"/>
+		<result property="dateType" column="DATE_TYPE" jdbcType="NUMERIC"/>
+		<result property="shiftId" column="SHIFT_ID" jdbcType="NUMERIC"/>
+		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,FILE_ID,ATTENCE_TIME,DATE_TYPE,SHIFT_ID,TITLE
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(fileId)"> AND FILE_ID  =#{fileId} </if>
+			<if test="@Ognl@isNotEmpty(attenceTime)"> AND ATTENCE_TIME  =#{attenceTime} </if>
+			<if test="@Ognl@isNotEmpty(beginattenceTime)"> AND ATTENCE_TIME  >=#{beginattenceTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endattenceTime)"> AND ATTENCE_TIME <![CDATA[ <=#{endattenceTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(dateType)"> AND DATE_TYPE  =#{dateType} </if>
+			<if test="@Ognl@isNotEmpty(shiftId)"> AND SHIFT_ID  =#{shiftId} </if>
+			<if test="@Ognl@isNotEmpty(title)"> AND TITLE  LIKE #{title}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsScheduleShift">
+		INSERT INTO ATS_SCHEDULE_SHIFT
+		(ID,FILE_ID,ATTENCE_TIME,DATE_TYPE,SHIFT_ID,TITLE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{fileId,jdbcType=NUMERIC}, #{attenceTime,jdbcType=DATE}, #{dateType,jdbcType=NUMERIC}, #{shiftId,jdbcType=NUMERIC}, #{title,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_SCHEDULE_SHIFT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsScheduleShift">
+		UPDATE ATS_SCHEDULE_SHIFT SET
+		FILE_ID=#{fileId,jdbcType=NUMERIC},
+		ATTENCE_TIME=#{attenceTime,jdbcType=DATE},
+		DATE_TYPE=#{dateType,jdbcType=NUMERIC},
+		SHIFT_ID=#{shiftId,jdbcType=NUMERIC},
+		TITLE=#{title,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsScheduleShift">
+		SELECT <include refid="columns"/>
+		FROM ATS_SCHEDULE_SHIFT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsScheduleShift">
+		SELECT <include refid="columns"/>
+		FROM ATS_SCHEDULE_SHIFT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getList" resultMap="AtsScheduleShift">
+		SELECT id, userId,userName ,orgId,orgName,fileId,attenceTime,dateType,shiftId,title,
+			cardNumber,shiftName,cardRule,cardRuleName,attencePolicy,attencePolicyName
+		FROM (
+			SELECT distinct ss.id id, u.userId userId, u.fullname userName,o.orgId orgId,o.orgName,
+					ss.file_id fileId, ss.attence_time attenceTime ,ss.date_type dateType,ss.shift_id shiftId,ss.title title,
+					af.card_number cardNumber,si.name shiftName,
+					cr.id cardRule,cr.name cardRuleName,ap.id attencePolicy, ap.name attencePolicyName
+				FROM ATS_SCHEDULE_SHIFT ss
+				LEFT JOIN ATS_ATTENDANCE_FILE af on ss.file_id=af.id
+				LEFT JOIN SYS_USER u on   af.user_Id=u.userId
+				LEFT JOIN SYS_USER_POS up  on  u.userId=up.userId and up.ISPRIMARY=1 and ISDELETE =0
+				LEFT JOIN SYS_ORG o on up.orgId=o.orgId
+				LEFT JOIN ATS_SHIFT_INFO si  on ss.shift_Id=si.id
+				LEFT JOIN ATS_CARD_RULE cr   on cr.id=si.card_rule
+				LEFT JOIN ATS_ATTENCE_POLICY ap  on ap.id=af.attence_policy
+		) temp
+		<where>
+			<if test="@Ognl@isNotEmpty(fileId)"> AND fileId  =#{fileId} </if>
+			<if test="@Ognl@isNotEmpty(beginattenceTime)"> AND attenceTime  >=#{beginattenceTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endattenceTime)"> AND attenceTime <![CDATA[ <=#{endattenceTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(dateType)"> AND dateType  =#{dateType} </if>
+			<if test="@Ognl@isNotEmpty(shiftId)"> AND shiftId  =#{shiftId} </if>
+		</where>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by attenceTime 
+		</if>	
+	</select>
+	<select id="getByFileIdAttenceTime" parameterType="java.util.Map" resultMap="AtsScheduleShift">
+		SELECT <include refid="columns"/>
+		FROM ATS_SCHEDULE_SHIFT
+		WHERE
+		 FILE_ID  =#{fileId} AND ATTENCE_TIME  =#{attenceTime}
+	</select>
+	
+	<select id="getByFileIdStartEndTime" parameterType="java.util.Map" resultMap="AtsScheduleShift">
+		SELECT <include refid="columns"/>
+		FROM ATS_SCHEDULE_SHIFT
+		WHERE
+		FILE_ID  =#{fileId}
+		AND ATTENCE_TIME  >=#{startTime,jdbcType=DATE} 
+		AND ATTENCE_TIME <![CDATA[ <=#{endTime,jdbcType=DATE}]]>
+	</select>
+	<delete id="delByFileId" parameterType="java.lang.Long">
+		DELETE FROM ATS_SCHEDULE_SHIFT 
+		WHERE
+		FILE_ID=#{fileId}
+	</delete>
+	
+</mapper>

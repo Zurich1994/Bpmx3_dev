@@ -1,0 +1,209 @@
+<%@ page language="java" contentType="text/html; charset=gbk"
+    pageEncoding="gbk"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+ <%@include file="/commons/include/form.jsp" %>
+        <link rel="stylesheet" type="text/css" href="../input.css">
+        <link rel="stylesheet" type="text/css" href="${ctx}/styles/default/css/form.css">
+        <script type="text/javascript" src="${ctx}/js/ueditor2/dialogs/internal.js">
+        </script>
+        <script type="text/javascript" src="${ctx}/js/hotent/ajaxgrid.js">
+        </script>
+        <script type="text/javascript" src="${ctx}/js/hotent/platform/system/EventDialog.js">
+        </script>
+        <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js">
+        </script>
+        <script type="text/javascript" src="${ctx}/js/hotent/formdata.js">
+        </script>
+        <script type="text/javascript" src="${ctx}/js/hotent/platform/form/CommonDialog.js"></script>
+        <script type="text/javascript" src="${ctx}/js/ueditor2/dialogs/internal.js"></script>
+        <script type="text/javascript" src="${ctx}/js/hotent/platform/system/SysDialog.js">
+        </script>
+        
+        <style type="text/css">
+body {
+    overflow: hidden;
+}
+
+a.extend {
+    display: inline;
+}
+.mybase{
+margin-left: 10px;
+margin-bottom: 10px;
+margin-right: 10px;
+margin-top: 10px;
+border: 1px solid #ddd;
+}
+.base{
+    margin-bottom: 10px;
+}
+.field-ul {
+    width: 95%;
+    height: 95%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.fields-div {
+    float: left;
+    border: 1px solid #828790;
+    width: 160px;
+    height: 260px;
+    overflow: auto;
+}
+
+.domBtnDiv {
+    display: block;
+    margin-left: 5px;
+    float: left;
+    width: 340px;
+    height: 260px;
+    background-color: powderblue;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#fieldtextcontainer {
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#fieldTable {
+    margin: 0;
+}
+table{
+    margin-top: 3px;
+    margin-bottom: 7px;
+}
+select {
+    margin: 5px 0;
+    border: 1px solid #ccc;
+}
+
+.panel-toolbar {
+    height: 20px;
+    margin-top: 2px;
+    padding: 8px 5px 5px;
+    background: #FFFFFF;
+    border-bottom: solid 0px #cacaca;
+    border-top: solid 0px #cacaca;
+}
+
+</style>
+<style type="text/css">
+    .container {
+        position: absolute;
+        display: none;
+        padding-left: 10px;
+    }
+    
+    .shadow {
+        float: left;
+    }
+    
+    .frame {
+        position: relative;
+        background: #fff;
+        padding: 6px;
+        display: block;
+        -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+        -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+    }
+    
+    .clear {
+        clear: left;
+    }
+    
+    label,
+    a {
+        width:75px;
+        font-size: 13px;
+        color: #4f6b72;
+    }
+    input[type="text"] {font-size:13px;color:#4f6b72;border:1px solid #4f6b72;height:25px;display: inline-block;
+    min-height:23px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow
+     ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    text-align:center;}
+    
+    .type {font-size:13px;color:#4f6b72;border:1px solid #4f6b72;display: inline-block;
+    width: 300px;
+    font-size: 12px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow
+     ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    }
+    div.frame div {
+        margin-bottom: 5px;
+    }
+    
+    div.frame div.foot {
+        margin-top: 10px;
+    }
+    
+    div.frame label {
+        margin: 0 10px 0 5px;
+    }
+    
+    div.frame a:link,
+    div.frame span a:visited {
+        text-decoration: none;
+    }
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+		<div id="eventSelectPanel">
+		<fieldset class="base" >
+			 <legend>∞Û∂®–Œ Ω</legend>
+			 <table style="margin-top:0px" border="0" table-layout="fixed">
+			 	<tr>
+			 		
+			 		 	<div class="panel-toolbar" >
+                            <div class="toolBar" >
+                                <div class="group">
+                                	<td>
+                                		<label></label>
+                                	</td>
+                                </div>
+                            </div>
+                        </div>
+                </tr>
+             </table>
+        </fieldset>
+        </div>
+</body>
+</html>

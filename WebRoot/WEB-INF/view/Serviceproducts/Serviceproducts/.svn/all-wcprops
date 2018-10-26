@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/BPMX_2015_WYX/!svn/ver/1937/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts
+END
+serviceproductsGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BPMX_2015_WYX/!svn/ver/1936/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsGet.jsp
+END
+serviceproductsDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BPMX_2015_WYX/!svn/ver/1890/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsDetail.jsp
+END
+serviceproductsListLg.ftl.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BPMX_2015_WYX/!svn/ver/1890/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsListLg.ftl.jsp
+END
+serviceproductsEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/1935/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsEdit.jsp
+END
+serviceproductsGetMyDraft.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BPMX_2015_WYX/!svn/ver/1890/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsGetMyDraft.jsp
+END
+serviceproductsModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BPMX_2015_WYX/!svn/ver/1890/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsModify.jsp
+END
+serviceproductsList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BPMX_2015_WYX/!svn/ver/1937/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsList.jsp
+END
+serviceproductsGetMyEnd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BPMX_2015_WYX/!svn/ver/1890/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsGetMyEnd.jsp
+END
+serviceproductsList1.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BPMX_2015_WYX/!svn/ver/1916/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsList1.jsp
+END
+serviceproductsGetMyTodoTask.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BPMX_2015_WYX/!svn/ver/1890/bpmx_w/WebRoot/WEB-INF/view/Serviceproducts/Serviceproducts/serviceproductsGetMyTodoTask.jsp
+END

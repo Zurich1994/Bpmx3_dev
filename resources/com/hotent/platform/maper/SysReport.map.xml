@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysReport">
+	<resultMap id="SysReport" type="com.hotent.platform.model.system.SysReport">
+			<id property="reportId" column="REPORTID" jdbcType="NUMERIC"/>
+		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
+		<result property="descp" column="DESCP" jdbcType="VARCHAR"/>
+		<result property="filePath" column="FILEPATH" jdbcType="VARCHAR"/>
+		<result property="fileName" column="FILENAME" jdbcType="VARCHAR"/>
+		<result property="createtime" column="CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="status" column="STATUS" jdbcType="NUMERIC"/>
+		<result property="dsName" column="DSNAME" jdbcType="VARCHAR"/>
+		<result property="params" column="PARAMS" jdbcType="VARCHAR"/>
+		<result property="typeId" column="TYPEID" jdbcType="NUMERIC"/>
+		<result property="ext" column="EXT" jdbcType="VARCHAR"/>
+		<result property="sql" column="REALSQL" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		REPORTID,TITLE,DESCP,FILEPATH,FILENAME,CREATETIME,STATUS,DSNAME,PARAMS,TYPEID,EXT,REALSQL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND REPORTID  =#{reportId} </if>
+			<if test="@Ognl@isNotEmpty(title)"> AND TITLE  LIKE '%${title}%'  </if>
+			<if test="@Ognl@isNotEmpty(descp)"> AND DESCP  LIKE '%${descp}%'  </if>
+			<if test="@Ognl@isNotEmpty(filePath)"> AND FILEPATH  LIKE '%${filePath}%'  </if>
+			<if test="@Ognl@isNotEmpty(fileName)"> AND FILENAME  LIKE '%${fileName}%'  </if>
+			<if test="@Ognl@isNotEmpty(createtime)"> AND CREATETIME  =#{createtime} </if>
+			<if test="@Ognl@isNotEmpty(begincreateTime)"> AND CREATETIME  >=#{begincreateTime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endcreateTime)"> AND CREATETIME <![CDATA[ <=#{endcreateTime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(stauts)"> AND STATUS = #{stauts} </if>
+			<if test="@Ognl@isNotEmpty(dsName)"> AND DSNAME  LIKE '%${dsName}%'  </if>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND TYPEID = #{typeId}  </if>
+			<if test="@Ognl@isNotEmpty(ext)"> AND EXT  LIKE '%${ext}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysReport">
+		INSERT INTO SYS_REPORT(<include refid="columns"/>)
+			VALUES
+			(#{reportId,jdbcType=NUMERIC}, #{title,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{status,jdbcType=NUMERIC}, #{dsName,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{typeId,jdbcType=NUMERIC}, #{ext,jdbcType=VARCHAR}, #{sql,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_REPORT 
+		WHERE
+		REPORTID=#{reportId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysReport">
+		UPDATE SYS_REPORT SET
+		TITLE=#{title,jdbcType=VARCHAR},
+		DESCP=#{descp,jdbcType=VARCHAR},
+		STATUS=#{status,jdbcType=NUMERIC},
+		DSNAME=#{dsName,jdbcType=VARCHAR},
+		PARAMS=#{params,jdbcType=VARCHAR},
+		TYPEID=#{typeId,jdbcType=NUMERIC}
+		WHERE
+		REPORTID=#{reportId}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysReport">
+		SELECT <include refid="columns"/>
+		FROM SYS_REPORT
+		WHERE
+		REPORTID=#{reportId}
+	</select>
+	
+	<select id="getAll" resultMap="SysReport">
+		SELECT <include refid="columns"/>
+		FROM SYS_REPORT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by REPORTID desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/bpm/skipimpl
+END
+SameUserSkipCondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/bpm/skipimpl/SameUserSkipCondition.java
+END
+ApproveUserSkipCondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/bpm/skipimpl/ApproveUserSkipCondition.java
+END
+GlobalSkipCondition.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/service/bpm/skipimpl/GlobalSkipCondition.java
+END

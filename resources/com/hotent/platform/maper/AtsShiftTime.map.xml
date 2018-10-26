@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.ats.AtsShiftTime">
+	<resultMap id="AtsShiftTime" type="com.hotent.platform.model.ats.AtsShiftTime">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="shiftId" column="SHIFT_ID" jdbcType="NUMERIC"/>
+		<result property="segment" column="SEGMENT" jdbcType="NUMERIC"/>
+		<result property="attendanceType" column="ATTENDANCE_TYPE" jdbcType="NUMERIC"/>
+		<result property="onTime" column="ON_TIME" jdbcType="TIME"/>
+		<result property="onPunchCard" column="ON_PUNCH_CARD" jdbcType="NUMERIC"/>
+		<result property="onFloatAdjust" column="ON_FLOAT_ADJUST" jdbcType="NUMERIC"/>
+		<result property="segmentRest" column="SEGMENT_REST" jdbcType="NUMERIC"/>
+		<result property="offTime" column="OFF_TIME" jdbcType="TIME"/>
+		<result property="offPunchCard" column="OFF_PUNCH_CARD" jdbcType="NUMERIC"/>
+		<result property="offFloatAdjust" column="OFF_FLOAT_ADJUST" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,SHIFT_ID,SEGMENT,ATTENDANCE_TYPE,ON_TIME,ON_PUNCH_CARD,ON_FLOAT_ADJUST,SEGMENT_REST,OFF_TIME,OFF_PUNCH_CARD,OFF_FLOAT_ADJUST
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(shiftId)"> AND SHIFT_ID  =#{shiftId} </if>
+			<if test="@Ognl@isNotEmpty(segment)"> AND SEGMENT  =#{segment} </if>
+			<if test="@Ognl@isNotEmpty(attendanceType)"> AND ATTENDANCE_TYPE  =#{attendanceType} </if>
+			<if test="@Ognl@isNotEmpty(onTime)"> AND ON_TIME  =#{onTime} </if>
+			<if test="@Ognl@isNotEmpty(onPunchCard)"> AND ON_PUNCH_CARD  =#{onPunchCard} </if>
+			<if test="@Ognl@isNotEmpty(onFloatAdjust)"> AND ON_FLOAT_ADJUST  =#{onFloatAdjust} </if>
+			<if test="@Ognl@isNotEmpty(segmentRest)"> AND SEGMENT_REST  =#{segmentRest} </if>
+			<if test="@Ognl@isNotEmpty(offTime)"> AND OFF_TIME  =#{offTime} </if>
+			<if test="@Ognl@isNotEmpty(offPunchCard)"> AND OFF_PUNCH_CARD  =#{offPunchCard} </if>
+			<if test="@Ognl@isNotEmpty(offFloatAdjust)"> AND OFF_FLOAT_ADJUST  =#{offFloatAdjust} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.ats.AtsShiftTime">
+		INSERT INTO ATS_SHIFT_TIME
+		(ID,SHIFT_ID,SEGMENT,ATTENDANCE_TYPE,ON_TIME,ON_PUNCH_CARD,ON_FLOAT_ADJUST,SEGMENT_REST,OFF_TIME,OFF_PUNCH_CARD,OFF_FLOAT_ADJUST)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{shiftId,jdbcType=NUMERIC}, #{segment,jdbcType=NUMERIC}, #{attendanceType,jdbcType=NUMERIC}, #{onTime,jdbcType=TIME}, #{onPunchCard,jdbcType=NUMERIC}, #{onFloatAdjust,jdbcType=NUMERIC}, #{segmentRest,jdbcType=NUMERIC}, #{offTime,jdbcType=TIME}, #{offPunchCard,jdbcType=NUMERIC}, #{offFloatAdjust,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM ATS_SHIFT_TIME 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.ats.AtsShiftTime">
+		UPDATE ATS_SHIFT_TIME SET
+		SHIFT_ID=#{shiftId,jdbcType=NUMERIC},
+		SEGMENT=#{segment,jdbcType=NUMERIC},
+		ATTENDANCE_TYPE=#{attendanceType,jdbcType=NUMERIC},
+		ON_TIME=#{onTime,jdbcType=TIME},
+		ON_PUNCH_CARD=#{onPunchCard,jdbcType=NUMERIC},
+		ON_FLOAT_ADJUST=#{onFloatAdjust,jdbcType=NUMERIC},
+		SEGMENT_REST=#{segmentRest,jdbcType=NUMERIC},
+		OFF_TIME=#{offTime,jdbcType=TIME},
+		OFF_PUNCH_CARD=#{offPunchCard,jdbcType=NUMERIC},
+		OFF_FLOAT_ADJUST=#{offFloatAdjust,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AtsShiftTime">
+		SELECT <include refid="columns"/>
+		FROM ATS_SHIFT_TIME
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="AtsShiftTime">
+		SELECT <include refid="columns"/>
+		FROM ATS_SHIFT_TIME   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<delete id="delByShiftId" parameterType="java.lang.Long">
+		DELETE FROM ATS_SHIFT_TIME 
+		WHERE
+		SHIFT_ID=#{shiftId}
+	</delete>
+	
+	<select id="getByShiftId" parameterType="java.lang.Long" resultMap="AtsShiftTime">
+		SELECT <include refid="columns"/>
+		FROM ATS_SHIFT_TIME
+		WHERE
+		SHIFT_ID=#{shiftId}
+	</select>
+	
+</mapper>

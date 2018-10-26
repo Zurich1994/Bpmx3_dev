@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.MessageLog">
+	<resultMap id="MessageLog" type="com.hotent.platform.model.system.MessageLog">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+		<result property="sendTime" column="SENDTIME" jdbcType="TIMESTAMP"/>
+		<result property="receiver" column="RECEIVER" jdbcType="VARCHAR"/>
+		<result property="messageType" column="MESSAGETYPE" jdbcType="NUMERIC"/>
+		<result property="state" column="STATE" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,SUBJECT,SENDTIME,RECEIVER,MESSAGETYPE,STATE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(subject)"> AND SUBJECT  LIKE #{subject}  </if>
+			<if test="@Ognl@isNotEmpty(sendTime)"> AND SENDTIME  =#{sendTime} </if>
+			<if test="@Ognl@isNotEmpty(beginSendTime)"> AND SENDTIME  >=#{beginSendTime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endSendTime)"> AND SENDTIME <![CDATA[ <=#{endSendTime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(receiver)"> AND RECEIVER  LIKE #{receiver}  </if>
+			<if test="@Ognl@isNotEmpty(messageType)"> AND MESSAGETYPE  =#{messageType} </if>
+			<if test="state!=null"> AND STATE  =#{state} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.MessageLog">
+		INSERT INTO SYS_MESSAGE_LOG
+		(ID,SUBJECT,SENDTIME,RECEIVER,MESSAGETYPE,STATE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{subject,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{receiver,jdbcType=VARCHAR}, #{messageType,jdbcType=NUMERIC}, #{state,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_MESSAGE_LOG 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.MessageLog">
+		UPDATE SYS_MESSAGE_LOG SET
+		SUBJECT=#{subject,jdbcType=VARCHAR},
+		SENDTIME=#{sendTime,jdbcType=TIMESTAMP},
+		RECEIVER=#{receiver,jdbcType=VARCHAR},
+		MESSAGETYPE=#{messageType,jdbcType=NUMERIC},
+		STATE=#{state,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="MessageLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_MESSAGE_LOG
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="MessageLog">
+		SELECT <include refid="columns"/>
+		FROM SYS_MESSAGE_LOG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

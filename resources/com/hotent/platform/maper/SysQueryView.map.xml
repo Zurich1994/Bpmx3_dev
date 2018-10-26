@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysQueryView">
+	<resultMap id="SysQueryView" type="com.hotent.platform.model.system.SysQueryView">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="sqlAlias" column="sql_alias" jdbcType="VARCHAR"/>
+		<result property="name" column="NAME" jdbcType="VARCHAR"/>
+		<result property="alias" column="ALIAS" jdbcType="VARCHAR"/>
+		<result property="conditions" column="CONDITIONS" jdbcType="CLOB"/>
+		<result property="filter" column="FILTER" jdbcType="CLOB"/>
+		<result property="filterType" column="FILTER_TYPE" jdbcType="NUMERIC"/>
+		<result property="buttons" column="BUTTONS" jdbcType="VARCHAR"/>
+		<result property="initQuery" column="INIT_QUERY" jdbcType="NUMERIC"/>
+		<result property="template" column="TEMPLATE" jdbcType="CLOB"/>
+		<result property="supportGroup" column="SUPPORT_GROUP" jdbcType="NUMERIC"/>
+		<result property="groupSetting" column="GROUP_SETTING" jdbcType="VARCHAR"/>
+		<result property="needPage" column="NEED_PAGE" jdbcType="NUMERIC"/>
+		<result property="pageSize" column="PAGE_SIZE" jdbcType="NUMERIC"/>
+		<result property="showRowsNum" column="SHOW_ROWS_NUM" jdbcType="NUMERIC"/>
+		<result property="sn" column="SN" jdbcType="NUMERIC"/>
+		<result property="templateAlias" column="templateAlias" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<sql id="columns">
+		ID,sql_alias,NAME,ALIAS,CONDITIONS,FILTER,FILTER_TYPE,BUTTONS,INIT_QUERY,TEMPLATE,SUPPORT_GROUP,GROUP_SETTING,NEED_PAGE,PAGE_SIZE,SHOW_ROWS_NUM,SN,TEMPLATEALIAS
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(sqlAlias)"> AND sql_alias  LIKE #{sqlAlias}  </if>
+			<if test="@Ognl@isNotEmpty(name)"> AND NAME  LIKE #{name}  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND ALIAS  LIKE #{alias}  </if>
+			<if test="@Ognl@isNotEmpty(conditions)"> AND CONDITIONS  LIKE #{conditions}  </if>
+			<if test="@Ognl@isNotEmpty(filter)"> AND FILTER  LIKE #{filter}  </if>
+			<if test="@Ognl@isNotEmpty(filterType)"> AND FILTER_TYPE  =#{filterType} </if>
+			<if test="@Ognl@isNotEmpty(buttons)"> AND BUTTONS  LIKE #{buttons}  </if>
+			<if test="@Ognl@isNotEmpty(initQuery)"> AND INIT_QUERY  =#{initQuery} </if>
+			<if test="@Ognl@isNotEmpty(template)"> AND TEMPLATE  LIKE #{template}  </if>
+			<if test="@Ognl@isNotEmpty(supportGroup)"> AND SUPPORT_GROUP  =#{supportGroup} </if>
+			<if test="@Ognl@isNotEmpty(groupSetting)"> AND GROUP_SETTING  LIKE #{groupSetting}  </if>
+			<if test="@Ognl@isNotEmpty(needPage)"> AND NEED_PAGE  =#{needPage} </if>
+			<if test="@Ognl@isNotEmpty(pageSize)"> AND PAGE_SIZE  =#{pageSize} </if>
+			<if test="@Ognl@isNotEmpty(showRowsNum)"> AND SHOW_ROWS_NUM  =#{showRowsNum} </if>
+			<if test="@Ognl@isNotEmpty(sn)"> AND SN  =#{sn} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysQueryView">
+		INSERT INTO sys_query_view
+		(ID,sql_alias,NAME,ALIAS,CONDITIONS,FILTER,FILTER_TYPE,BUTTONS,INIT_QUERY,TEMPLATE,SUPPORT_GROUP,GROUP_SETTING,NEED_PAGE,PAGE_SIZE,SHOW_ROWS_NUM,SN,templateAlias)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{sqlAlias,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{conditions,jdbcType=CLOB}, #{filter,jdbcType=CLOB}, #{filterType,jdbcType=NUMERIC}, #{buttons,jdbcType=VARCHAR}, #{initQuery,jdbcType=NUMERIC}, #{template,jdbcType=CLOB}, #{supportGroup,jdbcType=NUMERIC}, #{groupSetting,jdbcType=VARCHAR}, #{needPage,jdbcType=NUMERIC}, #{pageSize,jdbcType=NUMERIC}, #{showRowsNum,jdbcType=NUMERIC}, #{sn,jdbcType=NUMERIC},#{templateAlias,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_query_view 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysQueryView">
+		UPDATE sys_query_view SET
+		sql_alias=#{sqlAlias,jdbcType=VARCHAR},
+		NAME=#{name,jdbcType=VARCHAR},
+		ALIAS=#{alias,jdbcType=VARCHAR},
+		CONDITIONS=#{conditions,jdbcType=CLOB},
+		FILTER=#{filter,jdbcType=CLOB},
+		FILTER_TYPE=#{filterType,jdbcType=NUMERIC},
+		BUTTONS=#{buttons,jdbcType=VARCHAR},
+		INIT_QUERY=#{initQuery,jdbcType=NUMERIC},
+		TEMPLATE=#{template,jdbcType=CLOB},
+		SUPPORT_GROUP=#{supportGroup,jdbcType=NUMERIC},
+		GROUP_SETTING=#{groupSetting,jdbcType=VARCHAR},
+		NEED_PAGE=#{needPage,jdbcType=NUMERIC},
+		PAGE_SIZE=#{pageSize,jdbcType=NUMERIC},
+		SHOW_ROWS_NUM=#{showRowsNum,jdbcType=NUMERIC},
+		SN=#{sn,jdbcType=NUMERIC},
+		templateAlias=#{templateAlias,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysQueryView">
+		SELECT <include refid="columns"/>
+		FROM sys_query_view
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysQueryView">
+		SELECT <include refid="columns"/>
+		FROM sys_query_view   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getListBySqlAlias" parameterType="java.lang.Long" resultMap="SysQueryView">
+		SELECT <include refid="columns"/>
+		FROM sys_query_view
+		WHERE
+		sql_alias=#{sqlAlias}
+	</select>
+	
+	<select id="getBySqlView"  resultMap="SysQueryView">
+		SELECT <include refid="columns"/>
+		FROM sys_query_view
+		WHERE
+		sql_alias=#{sqlAlias} and ALIAS=#{alias}
+	</select>
+	
+	
+	
+	<delete id="removeBySQLAlias" parameterType="java.lang.Long">
+		DELETE FROM sys_query_view 
+		WHERE
+		sql_alias=#{sqlAlias}
+	</delete>
+	
+	<select id="getHasRights" resultMap="SysQueryView">
+		select ID,sql_alias,NAME,ALIAS from sys_query_view spr  where ID in(
+			select t.id from (
+				<foreach collection="relationMap" index="key"  item="ent" separator="union">
+					select r.id from sys_query_view r,sys_obj_rights rig where rig.OBJECT_ID=r.id and rig.RIGHT_TYPE=#{key} and rig.OBJ_TYPE=#{objType} 
+					<if test="@Ognl@notEquals(key,'all') and @Ognl@isNotEmpty(ent)">
+							and rig.OWNER_ID in 
+							<foreach collection="ent"  item="id" separator="," open="(" close=")">
+								#{id}
+							</foreach>
+					</if>
+				</foreach>
+			) t 
+		)order by spr.sn
+	</select>
+	
+	
+	
+	
+</mapper>

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop
+END
+getUser.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getUser.ftl
+END
+getMyNewMail.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getMyNewMail.ftl
+END
+getMyStart.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getMyStart.ftl
+END
+desktop.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/desktop.xml
+END
+getMessage.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getMessage.ftl
+END
+getMyProcess.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getMyProcess.ftl
+END
+getForAgent.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getForAgent.ftl
+END
+getMyAttend.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getMyAttend.ftl
+END
+getForMe.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getForMe.ftl
+END
+getDeskTop.ftl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/resources/template/desktop/getDeskTop.ftl
+END

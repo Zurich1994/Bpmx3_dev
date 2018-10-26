@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.Stock">
+	<resultMap id="Stock" type="com.hotent.tpcc.model.tpcc.Stock">
+		<id property="s_i_id" column="S_I_ID" jdbcType="NUMERIC"/>
+		<result property="s_w_id" column="S_W_ID" jdbcType="NUMERIC"/>
+		<result property="s_quantity" column="S_QUANTITY" jdbcType="NUMERIC"/>
+		<result property="s_dist_01" column="S_DIST_01" jdbcType="VARCHAR"/>
+		<result property="s_dist_02" column="S_DIST_02" jdbcType="VARCHAR"/>
+		<result property="s_dist_03" column="S_DIST_03" jdbcType="VARCHAR"/>
+		<result property="s_dist_04" column="S_DIST_04" jdbcType="VARCHAR"/>
+		<result property="s_dist_05" column="S_DIST_05" jdbcType="VARCHAR"/>
+		<result property="s_dist_06" column="S_DIST_06" jdbcType="VARCHAR"/>
+		<result property="s_dist_07" column="S_DIST_07" jdbcType="VARCHAR"/>
+		<result property="s_dist_08" column="S_DIST_08" jdbcType="VARCHAR"/>
+		<result property="s_dist_09" column="S_DIST_09" jdbcType="VARCHAR"/>
+		<result property="s_dist_10" column="S_DIST_10" jdbcType="VARCHAR"/>
+		<result property="s_ytd" column="S_YTD" jdbcType="NUMERIC"/>
+		<result property="s_order_cnt" column="S_ORDER_CNT" jdbcType="NUMERIC"/>
+		<result property="s_remote_cnt" column="S_REMOTE_CNT" jdbcType="NUMERIC"/>
+		<result property="s_data" column="S_DATA" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		S_I_ID,S_W_ID,S_QUANTITY,S_DIST_01,S_DIST_02,S_DIST_03,S_DIST_04,S_DIST_05,S_DIST_06,S_DIST_07,S_DIST_08,S_DIST_09,S_DIST_10,S_YTD,S_ORDER_CNT,S_REMOTE_CNT,S_DATA
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(s_i_id)"> AND S_I_ID  =#{s_i_id} </if>
+			<if test="@Ognl@isNotEmpty(s_dist_01)"> AND S_DIST_01  LIKE '%${s_dist_01}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_02)"> AND S_DIST_02  LIKE '%${s_dist_02}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_03)"> AND S_DIST_03  LIKE '%${s_dist_03}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_04)"> AND S_DIST_04  LIKE '%${s_dist_04}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_05)"> AND S_DIST_05  LIKE '%${s_dist_05}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_06)"> AND S_DIST_06  LIKE '%${s_dist_06}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_07)"> AND S_DIST_07  LIKE '%${s_dist_07}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_08)"> AND S_DIST_08  LIKE '%${s_dist_08}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_09)"> AND S_DIST_09  LIKE '%${s_dist_09}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_dist_10)"> AND S_DIST_10  LIKE '%${s_dist_10}%'  </if>
+			<if test="@Ognl@isNotEmpty(s_data)"> AND S_DATA  LIKE '%${s_data}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.Stock">
+		INSERT INTO stock
+		(S_I_ID,S_W_ID,S_QUANTITY,S_DIST_01,S_DIST_02,S_DIST_03,S_DIST_04,S_DIST_05,S_DIST_06,S_DIST_07,S_DIST_08,S_DIST_09,S_DIST_10,S_YTD,S_ORDER_CNT,S_REMOTE_CNT,S_DATA)
+		VALUES
+		(#{s_i_id,jdbcType=NUMERIC}, #{s_w_id,jdbcType=NUMERIC}, #{s_quantity,jdbcType=NUMERIC}, #{s_dist_01,jdbcType=VARCHAR}, #{s_dist_02,jdbcType=VARCHAR}, #{s_dist_03,jdbcType=VARCHAR}, #{s_dist_04,jdbcType=VARCHAR}, #{s_dist_05,jdbcType=VARCHAR}, #{s_dist_06,jdbcType=VARCHAR}, #{s_dist_07,jdbcType=VARCHAR}, #{s_dist_08,jdbcType=VARCHAR}, #{s_dist_09,jdbcType=VARCHAR}, #{s_dist_10,jdbcType=VARCHAR}, #{s_ytd,jdbcType=NUMERIC}, #{s_order_cnt,jdbcType=NUMERIC}, #{s_remote_cnt,jdbcType=NUMERIC}, #{s_data,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM stock 
+		WHERE
+		S_I_ID=#{s_i_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.Stock">
+		UPDATE stock SET
+		S_W_ID=#{s_w_id,jdbcType=NUMERIC},
+		S_QUANTITY=#{s_quantity,jdbcType=NUMERIC},
+		S_DIST_01=#{s_dist_01,jdbcType=VARCHAR},
+		S_DIST_02=#{s_dist_02,jdbcType=VARCHAR},
+		S_DIST_03=#{s_dist_03,jdbcType=VARCHAR},
+		S_DIST_04=#{s_dist_04,jdbcType=VARCHAR},
+		S_DIST_05=#{s_dist_05,jdbcType=VARCHAR},
+		S_DIST_06=#{s_dist_06,jdbcType=VARCHAR},
+		S_DIST_07=#{s_dist_07,jdbcType=VARCHAR},
+		S_DIST_08=#{s_dist_08,jdbcType=VARCHAR},
+		S_DIST_09=#{s_dist_09,jdbcType=VARCHAR},
+		S_DIST_10=#{s_dist_10,jdbcType=VARCHAR},
+		S_YTD=#{s_ytd,jdbcType=NUMERIC},
+		S_ORDER_CNT=#{s_order_cnt,jdbcType=NUMERIC},
+		S_REMOTE_CNT=#{s_remote_cnt,jdbcType=NUMERIC},
+		S_DATA=#{s_data,jdbcType=VARCHAR}
+		WHERE
+		S_I_ID=#{s_i_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Stock">
+		SELECT <include refid="columns"/>
+		FROM stock
+		WHERE
+		S_I_ID=#{s_i_id}
+	</select>
+	
+	<select id="getAll" resultMap="Stock">
+		SELECT <include refid="columns"/>
+		FROM stock   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by S_I_ID desc
+		</if>
+	</select>
+	
+	<select id="queryStock" parameterType="java.lang.Long" resultMap="Stock">
+	SELECT S_QUANTITY,S_DIST_01,S_DIST_02,S_DIST_03,S_DIST_04,S_DIST_05,S_DIST_06,S_DIST_07,S_DIST_08,S_DIST_09,S_DIST_10,S_DATA FROM stock WHERE S_I_ID = #{I_ID} AND S_W_ID =#{S_W_ID} FOR UPDATE
+	</select>
+	
+	<select id="updateStock" parameterType="java.lang.Long" resultMap="Stock">
+	UPDATE stock SET S_QUANTITY = #{S_QUANTITY2} WHERE S_I_ID =#{I_ID} AND S_W_ID = #{S_W_ID}
+	</select>
+</mapper>

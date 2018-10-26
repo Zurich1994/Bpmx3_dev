@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.dataservice.model.formupdate.FormUpdate">
+	<resultMap id="FormUpdate" type="com.hotent.dataservice.model.formupdate.FormUpdate">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="name" column="F_NAME" jdbcType="VARCHAR"/>
+		<result property="alias" column="F_ALIAS" jdbcType="VARCHAR"/>
+		<result property="objName" column="F_OBJNAME" jdbcType="VARCHAR"/>
+		<result property="needpage" column="F_NEEDPAGE" jdbcType="NUMERIC"/>
+		<result property="conditionfield" column="F_CONDITIONFIELD" jdbcType="VARCHAR"/>
+		<result property="updatefield" column="F_UPDATEFIELD" jdbcType="VARCHAR"/>
+		<result property="dsname" column="F_DSNAME" jdbcType="VARCHAR"/>
+		<result property="dsalias" column="F_DSALIAS" jdbcType="VARCHAR"/>
+		<result property="pagesize" column="F_PAGESIZE" jdbcType="NUMERIC"/>
+		<result property="isTable" column="F_ISTABLE" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_NAME,F_ALIAS,F_OBJNAME,F_NEEDPAGE,F_CONDITIONFIELD,F_UPDATEFIELD,F_DSNAME,F_DSALIAS,F_PAGESIZE,F_ISTABLE
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(name)"> AND F_NAME  LIKE '%${name}%'  </if>
+			<if test="@Ognl@isNotEmpty(alias)"> AND F_ALIAS  LIKE '%${alias}%'  </if>
+			<if test="@Ognl@isNotEmpty(objName)"> AND F_OBJNAME  LIKE '%${objName}%'  </if>
+			<if test="@Ognl@isNotEmpty(needpage)"> AND F_NEEDPAGE  =#{needpage} </if>
+			<if test="@Ognl@isNotEmpty(conditionfield)"> AND F_CONDITIONFIELD  LIKE '%${conditionfield}%'  </if>
+			<if test="@Ognl@isNotEmpty(updatefield)"> AND F_UPDATEFIELD  LIKE '%${updatefield}%'  </if>
+			<if test="@Ognl@isNotEmpty(dsname)"> AND F_DSNAME  LIKE '%${dsname}%'  </if>
+			<if test="@Ognl@isNotEmpty(dsalias)"> AND F_DSALIAS  LIKE '%${dsalias}%'  </if>
+			<if test="@Ognl@isNotEmpty(pagesize)"> AND F_PAGESIZE  =#{pagesize} </if>
+			<if test="@Ognl@isNotEmpty(isTable)"> AND F_ISTABLE  =#{isTable} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.dataservice.model.formupdate.FormUpdate">
+		INSERT INTO W_FORM_UPDATE
+		(ID,
+		F_NAME,F_ALIAS,F_OBJNAME,F_NEEDPAGE,F_CONDITIONFIELD,F_UPDATEFIELD,F_DSNAME,F_DSALIAS,F_PAGESIZE,F_ISTABLE)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{objName,jdbcType=VARCHAR}, #{needpage,jdbcType=NUMERIC}, #{conditionfield,jdbcType=VARCHAR}, #{updatefield,jdbcType=VARCHAR}, #{dsname,jdbcType=VARCHAR}, #{dsalias,jdbcType=VARCHAR}, #{pagesize,jdbcType=NUMERIC}, #{isTable,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_FORM_UPDATE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.dataservice.model.formupdate.FormUpdate">
+		UPDATE W_FORM_UPDATE SET
+		F_NAME=#{name,jdbcType=VARCHAR},
+		F_ALIAS=#{alias,jdbcType=VARCHAR},
+		F_OBJNAME=#{objName,jdbcType=VARCHAR},
+		F_NEEDPAGE=#{needpage,jdbcType=NUMERIC},
+		F_CONDITIONFIELD=#{conditionfield,jdbcType=VARCHAR},
+		F_UPDATEFIELD=#{updatefield,jdbcType=VARCHAR},
+		F_DSNAME=#{dsname,jdbcType=VARCHAR},
+		F_DSALIAS=#{dsalias,jdbcType=VARCHAR},
+		F_PAGESIZE=#{pagesize,jdbcType=NUMERIC},
+		F_ISTABLE=#{isTable,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="FormUpdate">
+		SELECT <include refid="columns"/>
+		FROM W_FORM_UPDATE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="FormUpdate">
+		SELECT <include refid="columns"/>
+		FROM W_FORM_UPDATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.Seal">
+	<resultMap id="Seal" type="com.hotent.platform.model.system.Seal">
+		<id property="sealId" column="SEALID" jdbcType="NUMERIC"/>
+		<result property="sealName" column="SEALNAME" jdbcType="VARCHAR"/>
+		<result property="sealPath" column="SEALPATH" jdbcType="VARCHAR"/>
+		<result property="belongId" column="BELONGID" jdbcType="NUMERIC"/>
+		<result property="belongName" column="BELONGNAME" jdbcType="VARCHAR"/>
+		<result property="attachmentId" column="ATTACHMENTID" jdbcType="NUMERIC"/>
+		<result property="showImageId" column="SHOWIMAGEID" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		SEALID,SEALNAME,SEALPATH,BELONGID,BELONGNAME,ATTACHMENTID,SHOWIMAGEID
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(sealId)"> AND SEALID  =#{sealId} </if>
+			<if test="@Ognl@isNotEmpty(sealName)"> AND SEALNAME  LIKE #{sealName} </if>
+			<if test="@Ognl@isNotEmpty(sealPath)"> AND SEALPATH  LIKE #{sealPath}  </if>
+			<if test="@Ognl@isNotEmpty(belongId)"> AND BELONGID  =#{belongId} </if>
+			<if test="@Ognl@isNotEmpty(belongName)"> AND BELONGNAME  LIKE #{belongName}  </if>
+			<if test="@Ognl@isNotEmpty(attachmentId)"> AND ATTACHMENTID  =#{attachmentId} </if>
+			<if test="@Ognl@isNotEmpty(showImageId)"> AND SHOWIMAGEID  =#{showImageId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.Seal">
+		INSERT INTO SYS_SEAL
+		(SEALID,SEALNAME,SEALPATH,BELONGID,BELONGNAME,ATTACHMENTID,SHOWIMAGEID)
+		VALUES
+		(#{sealId,jdbcType=NUMERIC}, #{sealName,jdbcType=VARCHAR}, #{sealPath,jdbcType=VARCHAR}, #{belongId,jdbcType=NUMERIC}, #{belongName,jdbcType=VARCHAR}, #{attachmentId,jdbcType=NUMERIC}, #{showImageId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_SEAL 
+		WHERE
+		sealId=#{sealId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.Seal">
+		UPDATE SYS_SEAL SET
+		SEALNAME=#{sealName,jdbcType=VARCHAR} , 
+		SEALPATH=#{sealPath,jdbcType=VARCHAR} , 
+		BELONGID=#{belongId,jdbcType=NUMERIC} , 
+		BELONGNAME=#{belongName,jdbcType=VARCHAR} , 
+		ATTACHMENTID=#{attachmentId,jdbcType=NUMERIC} , 
+		SHOWIMAGEID=#{showImageId,jdbcType=NUMERIC}
+		WHERE
+		sealId=#{sealId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="Seal">
+		SELECT <include refid="columns"/>
+		FROM SYS_SEAL
+		WHERE
+		sealId=#{sealId}
+	</select>
+	
+	<select id="getAll" resultMap="Seal">
+		SELECT <include refid="columns"/>
+		FROM SYS_SEAL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by sealId  desc
+		</if>
+	</select>
+	
+	
+	
+	<select id="getSealByUserId"  parameterType="java.util.Map" resultMap="Seal"  >
+		
+		select * from (
+			select s.* from SYS_SEAL s , SYS_SEAL_RIGHT r where s.sealId = r.sealId and r.rightType ='user' and rightId =(${userId})
+
+			<if test="@Ognl@isNotEmpty(roleIds)">
+			union
+            select s.* from SYS_SEAL s , SYS_SEAL_RIGHT r where s.sealId = r.sealId and r.rightType ='role' and rightId in(${roleIds})
+			</if>
+			
+			<if test="@Ognl@isNotEmpty(orgIds)">
+			union
+            select s.* from SYS_SEAL s , SYS_SEAL_RIGHT r where s.sealId = r.sealId and r.rightType ='org' and rightId in(${orgIds})
+
+			</if>
+			
+			union
+            select s.* from SYS_SEAL s , SYS_SEAL_RIGHT r where s.sealId = r.sealId and r.rightType ='all' 
+
+		) tmp 
+		
+		<include refid="dynamicWhere" />
+		
+		<if test="@Ognl@isNotEmpty(orderField)">
+		    order by ${orderField} ${orderSeq}
+		</if>
+		
+		<if test="@Ognl@isEmpty(orderField)">
+		    order by sealId  desc
+		</if>
+		
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

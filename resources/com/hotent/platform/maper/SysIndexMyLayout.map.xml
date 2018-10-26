@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysIndexMyLayout">
+	<resultMap id="SysIndexMyLayout" type="com.hotent.platform.model.system.SysIndexMyLayout">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="userId" column="USER_ID" jdbcType="NUMERIC"/>
+		<result property="templateHtml" column="TEMPLATE_HTML" jdbcType="CLOB"/>
+		<result property="designHtml" column="DESIGN_HTML" jdbcType="CLOB"/>
+		<result property="layoutId" column="LAYOUT_ID" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,USER_ID,TEMPLATE_HTML,DESIGN_HTML,LAYOUT_ID
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND USER_ID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(templateHtml)"> AND TEMPLATE_HTML  LIKE #{templateHtml}  </if>
+			<if test="@Ognl@isNotEmpty(designHtml)"> AND DESIGN_HTML  LIKE #{designHtml}  </if>
+			<if test="@Ognl@isNotEmpty(layoutId)"> AND LAYOUT_ID  =#{layoutId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysIndexMyLayout">
+		INSERT INTO SYS_INDEX_MY_LAYOUT
+		(ID,USER_ID,TEMPLATE_HTML,DESIGN_HTML,LAYOUT_ID)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{templateHtml,jdbcType=CLOB}, #{designHtml,jdbcType=CLOB}, #{layoutId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_INDEX_MY_LAYOUT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysIndexMyLayout">
+		UPDATE SYS_INDEX_MY_LAYOUT SET
+		USER_ID=#{userId,jdbcType=NUMERIC},
+		TEMPLATE_HTML=#{templateHtml,jdbcType=CLOB},
+		DESIGN_HTML=#{designHtml,jdbcType=CLOB},
+		LAYOUT_ID=#{layoutId,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysIndexMyLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_MY_LAYOUT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysIndexMyLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_MY_LAYOUT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getByUserId" parameterType="java.lang.Long" resultMap="SysIndexMyLayout">
+		SELECT <include refid="columns"/>
+		FROM SYS_INDEX_MY_LAYOUT
+		WHERE
+		USER_ID=#{userId}
+	</select>
+	
+	
+</mapper>

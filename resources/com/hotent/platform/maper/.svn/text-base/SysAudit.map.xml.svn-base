@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysAudit">
+	<resultMap id="SysAudit" type="com.hotent.platform.model.system.SysAudit">
+		<id property="auditId" column="auditId" jdbcType="NUMERIC"/>
+		<result property="opName" column="opName" jdbcType="VARCHAR"/>
+		<result property="exeTime" column="exeTime" jdbcType="TIMESTAMP"/>
+		<result property="executorId" column="executorId" jdbcType="NUMERIC"/>
+		<result property="executor" column="executor" jdbcType="VARCHAR"/>
+		<result property="fromIp" column="fromIp" jdbcType="VARCHAR"/>
+		<result property="exeMethod" column="exeMethod" jdbcType="VARCHAR"/>
+		<result property="requestURI" column="requestURI" jdbcType="VARCHAR"/>
+		<result property="reqParams" column="reqParams" jdbcType="CLOB"/>
+		<result property="ownermodel" column="ownermodel" jdbcType="VARCHAR"/>
+		<result property="exectype" column="exectype" jdbcType="VARCHAR"/>
+		<result property="orgid" column="orgid" jdbcType="NUMERIC"/>
+		<result property="detail" column="detail" jdbcType="CLOB"/>
+	</resultMap>
+	
+	<sql id="columns">
+		auditId,opName,exeTime,executorId,executor,fromIp,exeMethod,requestURI,reqParams,ownermodel,exectype,orgid,detail
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(auditId)"> AND auditId  =#{auditId} </if>
+			<if test="@Ognl@isNotEmpty(opName)"> AND opName  LIKE #{opName}  </if>
+			<if test="@Ognl@isNotEmpty(beginexeTime)"> AND exeTime &gt;=#{beginexeTime} </if>
+			<if test="@Ognl@isNotEmpty(endexeTime)"> AND exeTime &lt;=#{endexeTime} </if>
+			<if test="@Ognl@isNotEmpty(executorId)"> AND executorId  =#{executorId} </if>
+			<if test="@Ognl@isNotEmpty(executor)"> AND executor  LIKE #{executor}  </if>
+			<if test="@Ognl@isNotEmpty(fromIp)"> AND fromIp  LIKE #{fromIp}  </if>
+			<if test="@Ognl@isNotEmpty(exeMethod)"> AND exeMethod  LIKE #{exeMethod}  </if>
+			<if test="@Ognl@isNotEmpty(requestURI)"> AND requestURI  LIKE #{requestURI}  </if>
+			<if test="@Ognl@isNotEmpty(reqParams)"> AND reqParams  LIKE #{reqParams}  </if>
+			<if test="@Ognl@isNotEmpty(exectype)"> AND exectype  LIKE #{exectype}  </if>
+			<if test="@Ognl@isNotEmpty(ownermodel)"> AND ownermodel  LIKE #{ownermodel}  </if>		
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysAudit">
+		INSERT INTO sys_audit
+		(<include refid="columns"/>)
+		VALUES
+		(
+		#{auditId,jdbcType=NUMERIC}, 
+		#{opName,jdbcType=VARCHAR}, 
+		#{exeTime,jdbcType=TIMESTAMP}, 
+		#{executorId,jdbcType=NUMERIC}, 
+		#{executor,jdbcType=VARCHAR}, 
+		#{fromIp,jdbcType=VARCHAR}, 
+		#{exeMethod,jdbcType=VARCHAR}, 
+		#{requestURI,jdbcType=VARCHAR}, 
+		#{reqParams,jdbcType=CLOB},
+		#{ownermodel,jdbcType=VARCHAR},
+		#{exectype,jdbcType=VARCHAR},
+		#{orgid,jdbcType=NUMERIC},
+		#{detail,jdbcType=CLOB}
+		)
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_AUDIT 
+		WHERE
+		auditId=#{auditId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysAudit">
+		UPDATE sys_audit SET
+		opName=#{opName,jdbcType=VARCHAR} , 
+		exeTime=#{exeTime,jdbcType=TIMESTAMP} , 
+		executorId=#{executorId,jdbcType=NUMERIC} , 
+		executor=#{executor,jdbcType=VARCHAR} , 
+		fromIp=#{fromIp,jdbcType=VARCHAR} , 
+		exeMethod=#{exeMethod,jdbcType=VARCHAR} , 
+		requestURI=#{requestURI,jdbcType=VARCHAR} , 
+		reqParams=#{reqParams,jdbcType=CLOB},
+		ownermodel=#{ownermodel,jdbcType=VARCHAR},
+		exectype=#{exectype,jdbcType=VARCHAR},
+		orgid=#{orgid,jdbcType=NUMERIC},
+		detail=#{detail,jdbcType=CLOB},
+		WHERE
+		auditId=#{auditId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysAudit">
+		SELECT <include refid="columns"/>
+		FROM SYS_AUDIT
+		WHERE
+		auditId=#{auditId}
+	</select>
+	
+	<select id="getAll" resultMap="SysAudit">
+		SELECT <include refid="columns"/>
+		FROM SYS_AUDIT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by auditId  desc
+		</if>
+	</select>
+</mapper>

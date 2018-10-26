@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/BPMX_2015_WYX/!svn/ver/889/bpmx_w/src/com/hotent/core/web/filter
+END
+HtSwitchUserFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/889/bpmx_w/src/com/hotent/core/web/filter/HtSwitchUserFilter.java
+END
+AopFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/889/bpmx_w/src/com/hotent/core/web/filter/AopFilter.java
+END
+EncodingFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/889/bpmx_w/src/com/hotent/core/web/filter/EncodingFilter.java
+END
+GzipJsFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/filter/GzipJsFilter.java
+END
+PermissionFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/filter/PermissionFilter.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/core/web/filter/package.html
+END

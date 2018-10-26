@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/extension/controller/bpm
+END
+TaskDataController.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/extension/controller/bpm/TaskDataController.java
+END
+BpmNodeDataController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/extension/controller/bpm/BpmNodeDataController.java
+END
+ProcessTypeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/extension/controller/bpm/ProcessTypeController.java
+END
+ProcessDataController.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/extension/controller/bpm/ProcessDataController.java
+END

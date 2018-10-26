@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.ServerSoftware.model.ServerSoftwarePac.ServerSoftware">
+	<resultMap id="ServerSoftware" type="com.hotent.ServerSoftware.model.ServerSoftwarePac.ServerSoftware">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="id" column="F_ID" jdbcType="NUMERIC"/>
+		<result property="server_ID" column="F_SERVER_ID" jdbcType="VARCHAR"/>
+		<result property="softWare_ID" column="F_SOFTWARE_ID" jdbcType="VARCHAR"/>
+		<result property="software_Path" column="F_SOFTWARE_PATH" jdbcType="VARCHAR"/>
+		<result property="software_Port" column="F_SOFTWARE_PORT" jdbcType="VARCHAR"/>
+		<result property="login_Type" column="F_LOGIN_TYPE" jdbcType="VARCHAR"/>
+		<result property="dataBase" column="F_DATABASE" jdbcType="VARCHAR"/>
+		<result property="login_UserName" column="F_LOGIN_USERNAME" jdbcType="VARCHAR"/>
+		<result property="login_Password" column="F_LOGIN_PASSWORD" jdbcType="VARCHAR"/>
+		<result property="remark" column="F_REMARK" jdbcType="CLOB"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_ID,F_SERVER_ID,F_SOFTWARE_ID,F_SOFTWARE_PATH,F_SOFTWARE_PORT,F_LOGIN_TYPE,F_DATABASE,F_LOGIN_USERNAME,F_LOGIN_PASSWORD,F_REMARK
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND F_ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(server_ID)"> AND F_SERVER_ID  LIKE '%${server_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(softWare_ID)"> AND F_SOFTWARE_ID  LIKE '%${softWare_ID}%'  </if>
+			<if test="@Ognl@isNotEmpty(software_Path)"> AND F_SOFTWARE_PATH  LIKE '%${software_Path}%'  </if>
+			<if test="@Ognl@isNotEmpty(software_Port)"> AND F_SOFTWARE_PORT  LIKE '%${software_Port}%'  </if>
+			<if test="@Ognl@isNotEmpty(login_Type)"> AND F_LOGIN_TYPE  LIKE '%${login_Type}%'  </if>
+			<if test="@Ognl@isNotEmpty(dataBase)"> AND F_DATABASE  LIKE '%${dataBase}%'  </if>
+			<if test="@Ognl@isNotEmpty(login_UserName)"> AND F_LOGIN_USERNAME  LIKE '%${login_UserName}%'  </if>
+			<if test="@Ognl@isNotEmpty(login_Password)"> AND F_LOGIN_PASSWORD  LIKE '%${login_Password}%'  </if>
+			<if test="@Ognl@isNotEmpty(remark)"> AND F_REMARK  =#{remark} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.ServerSoftware.model.ServerSoftwarePac.ServerSoftware">
+		INSERT INTO W_SERVER_SOFTWARE
+		(ID,
+		F_ID,F_SERVER_ID,F_SOFTWARE_ID,F_SOFTWARE_PATH,F_SOFTWARE_PORT,F_LOGIN_TYPE,F_DATABASE,F_LOGIN_USERNAME,F_LOGIN_PASSWORD,F_REMARK)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{id,jdbcType=NUMERIC}, #{server_ID,jdbcType=VARCHAR}, #{softWare_ID,jdbcType=VARCHAR}, #{software_Path,jdbcType=VARCHAR}, #{software_Port,jdbcType=VARCHAR}, #{login_Type,jdbcType=VARCHAR}, #{dataBase,jdbcType=VARCHAR}, #{login_UserName,jdbcType=VARCHAR}, #{login_Password,jdbcType=VARCHAR}, #{remark,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_SERVER_SOFTWARE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.ServerSoftware.model.ServerSoftwarePac.ServerSoftware">
+		UPDATE W_SERVER_SOFTWARE SET
+		F_ID=#{id,jdbcType=NUMERIC},
+		F_SERVER_ID=#{server_ID,jdbcType=VARCHAR},
+		F_SOFTWARE_ID=#{softWare_ID,jdbcType=VARCHAR},
+		F_SOFTWARE_PATH=#{software_Path,jdbcType=VARCHAR},
+		F_SOFTWARE_PORT=#{software_Port,jdbcType=VARCHAR},
+		F_LOGIN_TYPE=#{login_Type,jdbcType=VARCHAR},
+		F_DATABASE=#{dataBase,jdbcType=VARCHAR},
+		F_LOGIN_USERNAME=#{login_UserName,jdbcType=VARCHAR},
+		F_LOGIN_PASSWORD=#{login_Password,jdbcType=VARCHAR},
+		F_REMARK=#{remark,jdbcType=CLOB}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ServerSoftware">
+		SELECT <include refid="columns"/>
+		FROM W_SERVER_SOFTWARE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ServerSoftware">
+		SELECT <include refid="columns"/>
+		FROM W_SERVER_SOFTWARE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

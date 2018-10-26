@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xlss>
+	<xls name="user">
+		<item key="account"   title="用户名"  required="true"  />
+		<item key="fullname"  title="姓名"    />
+		<item key="mobile"    title="手机号码"    />
+		<item key="phone"     title="办公电话"    />
+		<!-- <item key="email"     title="邮箱"    /> -->
+		<!-- <item key="sex"     title="性别"  /> -->
+	 </xls>
+</xlss>

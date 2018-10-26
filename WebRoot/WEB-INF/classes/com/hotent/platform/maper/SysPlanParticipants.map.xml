@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysPlanParticipants">
+	<resultMap id="SysPlanParticipants" type="com.hotent.platform.model.system.SysPlanParticipants">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="planId" column="PLANID" jdbcType="NUMERIC"/>
+		<result property="participantId" column="PARTICIPANTID" jdbcType="NUMERIC"/>
+		<result property="participant" column="PARTICIPANT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,PLANID,PARTICIPANTID,PARTICIPANT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(planId)"> AND PLANID  =#{planId} </if>
+			<if test="@Ognl@isNotEmpty(participantId)"> AND PARTICIPANTID  =#{participantId} </if>
+			<if test="@Ognl@isNotEmpty(participant)"> AND PARTICIPANT  LIKE #{participant}  </if>
+			
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysPlanParticipants">
+		INSERT INTO SYS_PLAN_PARTICIPANTS
+		(ID,PLANID,PARTICIPANTID,PARTICIPANT)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{planId,jdbcType=NUMERIC}, #{participantId,jdbcType=NUMERIC}, #{participant,jdbcType=VARCHAR})
+	</insert>
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_PLAN_PARTICIPANTS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delByPlanId" parameterType="java.lang.Long">
+		DELETE FROM SYS_PLAN_PARTICIPANTS 
+		WHERE
+		PLANID=#{planId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysPlanParticipants">
+		UPDATE SYS_PLAN_PARTICIPANTS SET
+		PLANID=#{planId,jdbcType=NUMERIC},
+		PARTICIPANTID=#{participantId,jdbcType=NUMERIC},
+		PARTICIPANT=#{participant,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysPlanParticipants">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_PARTICIPANTS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getByPlanId" parameterType="java.lang.Long" resultMap="SysPlanParticipants">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_PARTICIPANTS
+		WHERE
+		PLANID=#{planId} 
+	</select>
+	
+	<select id="getAll" resultMap="SysPlanParticipants">
+		SELECT <include refid="columns"/>
+		FROM SYS_PLAN_PARTICIPANTS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+</mapper>

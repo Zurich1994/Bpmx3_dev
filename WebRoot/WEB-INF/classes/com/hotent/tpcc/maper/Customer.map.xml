@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.tpcc.model.tpcc.Customer">
+	<resultMap id="Customer" type="com.hotent.tpcc.model.tpcc.Customer">
+		<id property="c_id" column="C_ID" jdbcType="NUMERIC"/>
+		<result property="c_d_id" column="C_D_ID" jdbcType="NUMERIC"/>
+		<result property="c_w_id" column="C_W_ID" jdbcType="NUMERIC"/>
+		<result property="c_first" column="C_FIRST" jdbcType="VARCHAR"/>
+		<result property="c_middle" column="C_MIDDLE" jdbcType="VARCHAR"/>
+		<result property="c_last" column="C_LAST" jdbcType="VARCHAR"/>
+		<result property="c_street_1" column="C_STREET_1" jdbcType="VARCHAR"/>
+		<result property="c_street_2" column="C_STREET_2" jdbcType="VARCHAR"/>
+		<result property="c_city" column="C_CITY" jdbcType="VARCHAR"/>
+		<result property="c_state" column="C_STATE" jdbcType="VARCHAR"/>
+		<result property="c_zip" column="C_ZIP" jdbcType="VARCHAR"/>
+		<result property="c_phone" column="C_PHONE" jdbcType="VARCHAR"/>
+		<result property="c_since" column="C_SINCE" jdbcType="DATE"/>
+		<result property="c_credit" column="C_CREDIT" jdbcType="VARCHAR"/>
+		<result property="c_credit_lim" column="C_CREDIT_LIM" jdbcType="NUMERIC"/>
+		<result property="c_discount" column="C_DISCOUNT" jdbcType="NUMERIC"/>
+		<result property="c_balance" column="C_BALANCE" jdbcType="NUMERIC"/>
+		<result property="c_ytd_payment" column="C_YTD_PAYMENT" jdbcType="NUMERIC"/>
+		<result property="c_payment_cnt" column="C_PAYMENT_CNT" jdbcType="NUMERIC"/>
+		<result property="c_delivery_cnt" column="C_DELIVERY_CNT" jdbcType="NUMERIC"/>
+		<result property="c_data" column="C_DATA" jdbcType="CLOB"/>
+		<result property="w_tax" column="W_TAX" jdbcType="NUMERIC"/>
+		<result property="d_tax" column="D_TAX" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		C_ID,C_D_ID,C_W_ID,C_FIRST,C_MIDDLE,C_LAST,C_STREET_1,C_STREET_2,C_CITY,C_STATE,C_ZIP,C_PHONE,C_SINCE,C_CREDIT,C_CREDIT_LIM,C_DISCOUNT,C_BALANCE,C_YTD_PAYMENT,C_PAYMENT_CNT,C_DELIVERY_CNT,C_DATA
+	</sql>
+	
+	<sql id="columns2">
+		C_ID,C_D_ID,C_W_ID,C_FIRST,C_MIDDLE,C_LAST,C_STREET_1,C_STREET_2,C_CITY,C_STATE,C_ZIP,C_PHONE,C_SINCE,C_CREDIT,C_CREDIT_LIM,C_DISCOUNT,C_BALANCE,C_YTD_PAYMENT,C_PAYMENT_CNT,C_DELIVERY_CNT,C_DATA,W_TAX
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(c_id)"> AND C_ID  =#{c_id} </if>
+			<if test="@Ognl@isNotEmpty(c_first)"> AND C_FIRST  LIKE '%${c_first}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_middle)"> AND C_MIDDLE  LIKE '%${c_middle}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_last)"> AND C_LAST  LIKE '%${c_last}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_street_1)"> AND C_STREET_1  LIKE '%${c_street_1}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_street_2)"> AND C_STREET_2  LIKE '%${c_street_2}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_city)"> AND C_CITY  LIKE '%${c_city}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_state)"> AND C_STATE  LIKE '%${c_state}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_zip)"> AND C_ZIP  LIKE '%${c_zip}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_phone)"> AND C_PHONE  LIKE '%${c_phone}%'  </if>
+			<if test="@Ognl@isNotEmpty(c_since)"> AND C_SINCE  =#{c_since} </if>
+			<if test="@Ognl@isNotEmpty(beginc_since)"> AND C_SINCE  >=#{beginc_since,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endc_since)"> AND C_SINCE <![CDATA[ <=#{endc_since,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(c_credit)"> AND C_CREDIT  LIKE '%${c_credit}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.tpcc.model.tpcc.Customer">
+		INSERT INTO customer
+		(C_ID,C_D_ID,C_W_ID,C_FIRST,C_MIDDLE,C_LAST,C_STREET_1,C_STREET_2,C_CITY,C_STATE,C_ZIP,C_PHONE,C_SINCE,C_CREDIT,C_CREDIT_LIM,C_DISCOUNT,C_BALANCE,C_YTD_PAYMENT,C_PAYMENT_CNT,C_DELIVERY_CNT,C_DATA)
+		VALUES
+		(#{c_id,jdbcType=NUMERIC}, #{c_d_id,jdbcType=NUMERIC}, #{c_w_id,jdbcType=NUMERIC}, #{c_first,jdbcType=VARCHAR}, #{c_middle,jdbcType=VARCHAR}, #{c_last,jdbcType=VARCHAR}, #{c_street_1,jdbcType=VARCHAR}, #{c_street_2,jdbcType=VARCHAR}, #{c_city,jdbcType=VARCHAR}, #{c_state,jdbcType=VARCHAR}, #{c_zip,jdbcType=VARCHAR}, #{c_phone,jdbcType=VARCHAR}, #{c_since,jdbcType=DATE}, #{c_credit,jdbcType=VARCHAR}, #{c_credit_lim,jdbcType=NUMERIC}, #{c_discount,jdbcType=NUMERIC}, #{c_balance,jdbcType=NUMERIC}, #{c_ytd_payment,jdbcType=NUMERIC}, #{c_payment_cnt,jdbcType=NUMERIC}, #{c_delivery_cnt,jdbcType=NUMERIC}, #{c_data,jdbcType=CLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM customer 
+		WHERE
+		C_ID=#{c_id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.tpcc.model.tpcc.Customer">
+		UPDATE customer SET
+		C_D_ID=#{c_d_id,jdbcType=NUMERIC},
+		C_W_ID=#{c_w_id,jdbcType=NUMERIC},
+		C_FIRST=#{c_first,jdbcType=VARCHAR},
+		C_MIDDLE=#{c_middle,jdbcType=VARCHAR},
+		C_LAST=#{c_last,jdbcType=VARCHAR},
+		C_STREET_1=#{c_street_1,jdbcType=VARCHAR},
+		C_STREET_2=#{c_street_2,jdbcType=VARCHAR},
+		C_CITY=#{c_city,jdbcType=VARCHAR},
+		C_STATE=#{c_state,jdbcType=VARCHAR},
+		C_ZIP=#{c_zip,jdbcType=VARCHAR},
+		C_PHONE=#{c_phone,jdbcType=VARCHAR},
+		C_SINCE=#{c_since,jdbcType=DATE},
+		C_CREDIT=#{c_credit,jdbcType=VARCHAR},
+		C_CREDIT_LIM=#{c_credit_lim,jdbcType=NUMERIC},
+		C_DISCOUNT=#{c_discount,jdbcType=NUMERIC},
+		C_BALANCE=#{c_balance,jdbcType=NUMERIC},
+		C_YTD_PAYMENT=#{c_ytd_payment,jdbcType=NUMERIC},
+		C_PAYMENT_CNT=#{c_payment_cnt,jdbcType=NUMERIC},
+		C_DELIVERY_CNT=#{c_delivery_cnt,jdbcType=NUMERIC},
+		C_DATA=#{c_data,jdbcType=CLOB}
+		WHERE
+		C_ID=#{c_id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Customer">
+		SELECT <include refid="columns"/>
+		FROM customer
+		WHERE
+		C_ID=#{c_id}
+	</select>
+	
+	<select id="getAll" resultMap="Customer">
+		SELECT <include refid="columns"/>
+		FROM customer   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by C_ID desc
+		</if>
+	</select>
+	
+	<select id="getcustomerMsg" parameterType="java.util.Map" resultMap="Customer">
+		SELECT <include refid="columns2"/>
+		FROM customer cm, warehouse wh
+		WHERE
+		cm.C_W_ID = wh.W_ID AND wh.W_ID =#{W_ID} AND cm.C_D_ID =#{D_ID} AND cm.C_ID =#{C_ID}
+	</select>
+	<!-- whp -->
+	<select id="getcustomerMsg2" parameterType="java.util.Map" resultMap="Customer">
+		SELECT c_id, c_balance, c_first, c_middle, c_last FROM customer WHERE c_w_id = #{W_ID} AND c_d_id =#{D_ID} AND c_id =#{C_ID}
+	</select>
+	<select id="count" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(c_id) FROM customer WHERE c_w_id =#{W_ID} AND c_d_id =#{D_ID} AND c_last =#{C_ID} 
+		
+	</select>
+	<select id="get" parameterType="java.util.Map" resultMap="Customer">
+		SELECT c_id,c_balance, c_first, c_middle, c_last FROM customer WHERE c_w_id =#{W_ID} AND  c_d_id =#{D_ID}  AND c_last =#{C_ID} ORDER BY c_first
+	</select> 
+	<select id="getIdbyStoreIdAndAreaIdAndName" parameterType="java.util.Map" resultMap="Customer">
+		SELECT C_ID
+		FROM customer
+		WHERE
+		C_W_ID=#{customStoreNumber,jdbcType=NUMERIC} AND C_D_ID=#{customAreaNumber,jdbcType=NUMERIC} AND C_LAST=#{customName,jdbcType=VARCHAR} ORDER BY C_LAST
+	</select>
+	<select id="countByIdStoreIdAndAreaIdAndName" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(C_ID)
+		FROM customer
+		WHERE
+		C_W_ID=#{customStoreNumber,jdbcType=NUMERIC} AND C_D_ID=#{customAreaNumber,jdbcType=NUMERIC} AND C_LAST=#{customName,jdbcType=VARCHAR} 
+	</select>
+	<select id="getByStoreIdAndAreaIdAndId" parameterType="java.util.Map" resultMap="Customer">
+		SELECT <include refid="columns"/>
+		FROM customer
+		WHERE
+		C_W_ID=#{customStoreNumber,jdbcType=NUMERIC} AND C_D_ID=#{customAreaNumber,jdbcType=NUMERIC} AND C_ID=#{customNumber,jdbcType=VARCHAR} 
+		FOR UPDATE
+	</select>
+	<select id="getDataByStoreIdAndAreaIdAndId" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT C_DATA
+		FROM customer
+		WHERE
+		C_W_ID=#{customStoreNumber,jdbcType=NUMERIC} AND C_D_ID=#{customAreaNumber,jdbcType=NUMERIC} AND C_ID=#{customNumber,jdbcType=VARCHAR} 
+	</select> 
+	<update id="updateBalanceAndDataByStoreIdAndAreaIdAndId" parameterType="java.util.Map">
+		UPDATE customer SET
+		C_BALANCE=C_BALANCE-#{orderValue,jdbcType=NUMERIC},
+		C_DATA=#{data,jdbcType=CLOB}
+		WHERE
+		C_W_ID=#{customStoreNumber,jdbcType=NUMERIC} AND C_D_ID=#{customAreaNumber,jdbcType=NUMERIC} AND C_ID=#{customNumber,jdbcType=VARCHAR} 
+	</update>
+	<update id="updateBalanceByStoreIdAndAreaIdAndId" parameterType="java.util.Map">
+		UPDATE customer SET
+		C_BALANCE=C_BALANCE-#{orderValue,jdbcType=NUMERIC}
+		WHERE
+		C_W_ID=#{customStoreNumber,jdbcType=NUMERIC} AND C_D_ID=#{customAreaNumber,jdbcType=NUMERIC} AND C_ID=#{customNumber,jdbcType=VARCHAR} 
+	</update>
+	
+	<select id="gxkhb" parameterType="java.lang.Long" resultMap="Customer">
+			
+		SELECT <include refid="columns"/>
+		FROM customer
+		WHERE
+		c_d_id=(select ol_d_id from order_line where ol_o_id=#{o_id})
+		AND c_w_id=(select ol_w_id from order_line where ol_o_id=#{o_id})			
+	</select>
+	
+	
+</mapper>

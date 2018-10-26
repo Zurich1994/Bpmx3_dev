@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.ReportTemplate">
+	<resultMap id="ReportTemplate" type="com.hotent.platform.model.system.ReportTemplate">
+		<id property="reportId" column="reportId" jdbcType="NUMERIC"/>
+		<result property="title" column="title" jdbcType="VARCHAR"/>
+		<result property="descp" column="descp" jdbcType="VARCHAR"/>
+		<result property="reportLocation" column="reportLocation" jdbcType="VARCHAR"/>
+		<result property="createTime" column="createTime" jdbcType="DATE"/>
+		<result property="updateTime" column="updateTime" jdbcType="DATE"/>
+		<result property="reportKey" column="reportKey" jdbcType="VARCHAR"/>
+		<result property="isDefaultIn" column="isDefaultIn" jdbcType="NUMERIC"/>
+		<result property="typeId" column="typeId" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		reportId,title,descp,reportLocation,createTime,updateTime,reportKey,isDefaultIn,typeId
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(reportId)"> AND reportId  =#{reportId} </if>
+			<if test="@Ognl@isNotEmpty(title)"> AND title  LIKE #{title}  </if>
+			<if test="@Ognl@isNotEmpty(descp)"> AND descp  LIKE #{descp}  </if>
+			<if test="@Ognl@isNotEmpty(reportLocation)"> AND reportLocation  LIKE #{reportLocation}  </if>
+			<if test="@Ognl@isNotEmpty(createTime)"> AND createTime  =#{createTime} </if>
+			<if test="@Ognl@isNotEmpty(updateTime)"> AND updateTime  =#{updateTime} </if>
+			<if test="@Ognl@isNotEmpty(reportKey)"> AND reportKey  LIKE #{reportKey}  </if>
+			<if test="@Ognl@isNotEmpty(isDefaultIn)"> AND isDefaultIn  =#{isDefaultIn} </if>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND typeId  =#{typeId} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.ReportTemplate">
+		INSERT INTO SYS_REPORT_TEMPLATE
+		(reportId,title,descp,reportLocation,createTime,updateTime,reportKey,isDefaultIn,typeId)
+		VALUES
+		(#{reportId,jdbcType=NUMERIC}, #{title,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{reportLocation,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{reportKey,jdbcType=VARCHAR}, #{isDefaultIn,jdbcType=NUMERIC}, #{typeId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_REPORT_TEMPLATE 
+		WHERE
+		reportId=#{reportId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.ReportTemplate">
+		UPDATE SYS_REPORT_TEMPLATE SET
+		title=#{title,jdbcType=VARCHAR} , 
+		descp=#{descp,jdbcType=VARCHAR} , 
+		reportLocation=#{reportLocation,jdbcType=VARCHAR} , 
+		createTime=#{createTime,jdbcType=DATE} , 
+		updateTime=#{updateTime,jdbcType=DATE} , 
+		reportKey=#{reportKey,jdbcType=VARCHAR} , 
+		isDefaultIn=#{isDefaultIn,jdbcType=NUMERIC},
+		typeId=#{typeId,jdbcType=NUMERIC} 
+		WHERE
+		reportId=#{reportId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="ReportTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_REPORT_TEMPLATE
+		WHERE
+		reportId=#{reportId}
+	</select>
+	
+	<select id="getAll" resultMap="ReportTemplate">
+		SELECT <include refid="columns"/>
+		FROM SYS_REPORT_TEMPLATE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by reportId  desc
+		</if>
+	</select>
+</mapper>

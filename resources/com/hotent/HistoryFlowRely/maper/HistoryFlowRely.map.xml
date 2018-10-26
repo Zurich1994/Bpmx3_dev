@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.HistoryFlowRely.model.lc.HistoryFlowRely">
+	<resultMap id="HistoryFlowRely" type="com.hotent.HistoryFlowRely.model.lc.HistoryFlowRely">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="relyId" column="F_RELYID" jdbcType="VARCHAR"/>
+		<result property="processId1" column="F_PROCESSID1" jdbcType="VARCHAR"/>
+		<result property="processId2" column="F_PROCESSID2" jdbcType="VARCHAR"/>
+		<result property="relyTimeType" column="F_RELYTIMETYPE" jdbcType="VARCHAR"/>
+		<result property="relyNumber" column="F_RELYNUMBER" jdbcType="NUMERIC"/>
+		<result property="relyOccurTime" column="F_RELYOCCURTIME" jdbcType="VARCHAR"/>
+		<result property="relyEndTime" column="F_RELYENDTIME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_RELYID,F_PROCESSID1,F_PROCESSID2,F_RELYTIMETYPE,F_RELYNUMBER,F_RELYOCCURTIME,F_RELYENDTIME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(relyId)"> AND F_RELYID  LIKE '%${relyId}%'  </if>
+			<if test="@Ognl@isNotEmpty(processId1)"> AND F_PROCESSID1  LIKE '%${processId1}%'  </if>
+			<if test="@Ognl@isNotEmpty(processId2)"> AND F_PROCESSID2  LIKE '%${processId2}%'  </if>
+			<if test="@Ognl@isNotEmpty(relyTimeType)"> AND F_RELYTIMETYPE  LIKE '%${relyTimeType}%'  </if>
+			<if test="@Ognl@isNotEmpty(relyNumber)"> AND F_RELYNUMBER  =#{relyNumber} </if>
+			<if test="@Ognl@isNotEmpty(relyOccurTime)"> AND F_RELYOCCURTIME  LIKE '%${relyOccurTime}%'  </if>
+			<if test="@Ognl@isNotEmpty(relyEndTime)"> AND F_RELYENDTIME  LIKE '%${relyEndTime}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.HistoryFlowRely.model.lc.HistoryFlowRely">
+		INSERT INTO W_HISTORY_FLOW_RELY_LC
+		(ID,
+		F_RELYID,F_PROCESSID1,F_PROCESSID2,F_RELYTIMETYPE,F_RELYNUMBER,F_RELYOCCURTIME,F_RELYENDTIME)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{relyId,jdbcType=VARCHAR}, #{processId1,jdbcType=VARCHAR}, #{processId2,jdbcType=VARCHAR}, #{relyTimeType,jdbcType=VARCHAR}, #{relyNumber,jdbcType=NUMERIC}, #{relyOccurTime,jdbcType=VARCHAR}, #{relyEndTime,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_HISTORY_FLOW_RELY_LC 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.HistoryFlowRely.model.lc.HistoryFlowRely">
+		UPDATE W_HISTORY_FLOW_RELY_LC SET
+		F_RELYID=#{relyId,jdbcType=VARCHAR},
+		F_PROCESSID1=#{processId1,jdbcType=VARCHAR},
+		F_PROCESSID2=#{processId2,jdbcType=VARCHAR},
+		F_RELYTIMETYPE=#{relyTimeType,jdbcType=VARCHAR},
+		F_RELYNUMBER=#{relyNumber,jdbcType=NUMERIC},
+		F_RELYOCCURTIME=#{relyOccurTime,jdbcType=VARCHAR},
+		F_RELYENDTIME=#{relyEndTime,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="HistoryFlowRely">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY_FLOW_RELY_LC
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="HistoryFlowRely">
+		SELECT <include refid="columns"/>
+		FROM W_HISTORY_FLOW_RELY_LC   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

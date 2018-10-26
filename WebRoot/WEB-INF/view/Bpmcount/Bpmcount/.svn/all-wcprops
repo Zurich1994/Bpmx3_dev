@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount
+END
+bpmcountGetMyEnd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountGetMyEnd.jsp
+END
+bpmcountGetMyTodoTask.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountGetMyTodoTask.jsp
+END
+bpmcountGet.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountGet.jsp
+END
+bpmcountDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountDetail.jsp
+END
+bpmcountListLg.ftl.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountListLg.ftl.jsp
+END
+bpmcountEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountEdit.jsp
+END
+bpmcountGetMyDraft.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountGetMyDraft.jsp
+END
+bpmcountModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountModify.jsp
+END
+bpmcountList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BPMX_2015_WYX/!svn/ver/1659/bpmx_w/WebRoot/WEB-INF/view/Bpmcount/Bpmcount/bpmcountList.jsp
+END

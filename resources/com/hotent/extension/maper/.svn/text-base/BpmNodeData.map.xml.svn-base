@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.extension.model.bpm.BpmNodeData">
+	<resultMap id="BpmNodeData" type="com.hotent.extension.model.bpm.BpmNodeData">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="setId" column="SET_ID" jdbcType="NUMERIC"/>
+		<result property="dialogAlias" column="DIALOG_ALIAS" jdbcType="VARCHAR"/>
+		<result property="dialogName" column="DIALOG_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,SET_ID,DIALOG_ALIAS,DIALOG_NAME
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(setId)"> AND SET_ID  =#{setId} </if>
+			<if test="@Ognl@isNotEmpty(dialogAlias)"> AND DIALOG_ALIAS  =#{dialogAlias} </if>
+			<if test="@Ognl@isNotEmpty(dialogName)"> AND DIALOG_NAME  LIKE #{dialogName}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.extension.model.bpm.BpmNodeData">
+		INSERT INTO BPM_NODE_DATA
+		(ID,SET_ID,DIALOG_ALIAS,DIALOG_NAME)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{setId,jdbcType=NUMERIC}, #{dialogAlias,jdbcType=NUMERIC}, #{dialogName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_NODE_DATA 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="delBySetId" parameterType="java.lang.Long">
+		DELETE FROM BPM_NODE_DATA 
+		WHERE
+		SET_ID=#{setId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.extension.model.bpm.BpmNodeData">
+		UPDATE BPM_NODE_DATA SET
+		SET_ID=#{setId,jdbcType=NUMERIC},
+		DIALOG_ALIAS=#{dialogAlias,jdbcType=NUMERIC},
+		DIALOG_NAME=#{dialogName,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmNodeData">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_DATA
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getBySetId" parameterType="java.lang.Long" resultMap="BpmNodeData">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_DATA
+		WHERE
+		SET_ID=#{setId} 
+	</select>
+	
+	<select id="getAll" resultMap="BpmNodeData">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_DATA   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getNameAndAliasByDefId" parameterType="java.lang.Long" resultMap="BpmNodeData">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_DATA nodeData , BPM_NODE_SET nodeSet 
+		 where nodeData.Set_Id = nodeSet.Setid and nodeSet.settype=0 and nodeSet.defId=#{defId}
+	</select>
+	
+	<select id="getGlobalByDefId" parameterType="java.lang.Long" resultMap="BpmNodeData">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_DATA nodeData , BPM_NODE_SET nodeSet 
+		where nodeData.Set_Id = nodeSet.Setid and nodeSet.settype=3 and nodeSet.defId=#{defId}
+	</select>
+</mapper>

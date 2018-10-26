@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.AssignUsers">
+	<resultMap id="AssignUsers" type="com.hotent.platform.model.bpm.AssignUsers">
+		<id property="Id" column="ID" jdbcType="NUMERIC"/>
+		<result property="runId" column="RUNID" jdbcType="NUMERIC"/>
+		<result property="defKey" column="DEFKEY" jdbcType="VARCHAR"/>
+		<result property="nodeId" column="NODEID" jdbcType="VARCHAR"/>
+		<result property="nodeName" column="NODENAME" jdbcType="VARCHAR"/>
+		<result property="userId" column="USERID" jdbcType="NUMERIC"/>
+		<result property="userName" column="USERNAME" jdbcType="VARCHAR"/>
+		<result property="startTime" column="STARTTIME" jdbcType="TIMESTAMP"/>
+		<result property="endTime" column="ENDTIME" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,RUNID,DEFKEY,NODEID,NODENAME,USERID,USERNAME,STARTTIME,ENDTIME
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(Id)"> AND ID  =#{Id} </if>
+			<if test="@Ognl@isNotEmpty(runId)"> AND RUNID  =#{runId} </if>
+			<if test="@Ognl@isNotEmpty(defKey)"> AND DEFKEY  LIKE #{defKey}  </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND NODEID  LIKE #{nodeId}  </if>
+			<if test="@Ognl@isNotEmpty(nodeName)"> AND NODENAME  LIKE #{nodeName}  </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND USERID  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(userName)"> AND USERNAME  LIKE #{userName}  </if>
+			<if test="@Ognl@isNotEmpty(beginstarttime)"> AND STARTTIME  >=#{beginstarttime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endstarttime)"> AND STARTTIME <![CDATA[ <=#{endstarttime,jdbcType=TIMESTAMP}]]> </if>
+			<if test="@Ognl@isNotEmpty(beginendtime)"> AND ENDTIME  >=#{beginendtime,jdbcType=TIMESTAMP} </if>
+			<if test="@Ognl@isNotEmpty(endendtime)"> AND ENDTIME <![CDATA[ <=#{endendtime,jdbcType=TIMESTAMP}]]> </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.AssignUsers">
+		INSERT INTO bpm_assign_users
+		(ID,RUNID,DEFKEY,NODEID,NODENAME,USERID,USERNAME,STARTTIME,ENDTIME)
+		VALUES
+		(#{Id,jdbcType=NUMERIC}, #{runId,jdbcType=NUMERIC}, #{defKey,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{nodeName,jdbcType=VARCHAR}, #{userId,jdbcType=NUMERIC}, #{userName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM bpm_assign_users 
+		WHERE
+		ID=#{Id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.AssignUsers">
+		UPDATE bpm_assign_users SET
+		RUNID=#{runId,jdbcType=NUMERIC},
+		DEFKEY=#{defKey,jdbcType=VARCHAR},
+		NODEID=#{nodeId,jdbcType=VARCHAR},
+		NODENAME=#{nodeName,jdbcType=VARCHAR},
+		USERID=#{userId,jdbcType=NUMERIC},
+		USERNAME=#{userName,jdbcType=VARCHAR},
+		STARTTIME=#{startTime,jdbcType=TIMESTAMP},
+		ENDTIME=#{endTime,jdbcType=TIMESTAMP}
+		WHERE
+		ID=#{Id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="AssignUsers">
+		SELECT <include refid="columns"/>
+		FROM bpm_assign_users
+		WHERE
+		ID=#{Id}
+	</select>
+	
+	<select id="getAll" resultMap="AssignUsers">
+		SELECT <include refid="columns"/>
+		FROM bpm_assign_users   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	
+	<select id="getByRunIdAndNodeId" resultMap="AssignUsers">
+		SELECT <include refid="columns"/>
+		FROM bpm_assign_users  a
+		where a.RUNID  =#{runId} and a.NODEID  LIKE #{nodeId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysOrgRoleManage">
+	<resultMap id="SysOrgRoleManage" type="com.hotent.platform.model.system.SysOrgRoleManage">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="orgid" column="ORGID" jdbcType="NUMERIC"/>
+		<result property="roleid" column="ROLEID" jdbcType="NUMERIC"/>
+		<result property="canDel" column="canDel" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,ORGID,ROLEID,CANDEL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(orgid)"> AND ORGID  =#{orgid} </if>
+			<if test="@Ognl@isNotEmpty(roleid)"> AND ROLEID  =#{roleid} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysOrgRoleManage">
+		INSERT INTO SYS_ORG_ROLEMANAGE
+		(ID,ORGID,ROLEID,CANDEL)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{orgid,jdbcType=NUMERIC}, #{roleid,jdbcType=NUMERIC},#{canDel,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_ORG_ROLEMANAGE 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysOrgRoleManage">
+		UPDATE SYS_ORG_ROLEMANAGE SET
+		ORGID=#{orgid,jdbcType=NUMERIC},
+		ROLEID=#{roleid,jdbcType=NUMERIC},
+		CANDEL=#{canDel,jdbcType=NUMERIC}
+		WHERE ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysOrgRoleManage">
+		SELECT <include refid="columns"/>
+		FROM SYS_ORG_ROLEMANAGE
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysOrgRoleManage">
+		SELECT <include refid="columns"/>
+		FROM SYS_ORG_ROLEMANAGE   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getAssignRoleByOrgId" parameterType="java.lang.Long" resultType="com.hotent.platform.model.system.SysOrgRole">
+		select t.id,t.orgid,t.roleid ,t.canDel, f.alias as "role.alias", f.rolename as "role.roleName" 
+		,f.memo as "role.memo", sys.sysName "role.systemName", m.orgname from SYS_ORG_ROLEMANAGE t 
+    	left join sys_org m on t.orgid=m.orgid 
+    	left join sys_role f on t.roleid=f.roleid left join sys_subsystem sys on f.systemId=sys.systemId
+		where t.orgid=#{orgId} 
+	</select>
+	
+	<select id="isOrgRoleExists" parameterType="Map" resultType="Integer">
+		select count(*) from SYS_ORG_ROLEMANAGE t where t.roleid=#{roleId} and t.orgId=#{orgId}
+	</select>
+	
+</mapper>

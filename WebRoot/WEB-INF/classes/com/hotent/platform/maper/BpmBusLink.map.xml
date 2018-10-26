@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmBusLink">
+	<resultMap id="BpmBusLink" type="com.hotent.platform.model.bpm.BpmBusLink">
+		<id property="busId" column="BUS_ID" jdbcType="NUMERIC"/>
+		<result property="busFormTable" column="BUS_FORM_TABLE" jdbcType="VARCHAR"/>
+		<result property="busPk" column="BUS_PK" jdbcType="NUMERIC"/>
+		<result property="busPkstr" column="BUS_PKSTR" jdbcType="VARCHAR"/>
+		<result property="busDefId" column="BUS_DEF_ID" jdbcType="NUMERIC"/>
+		<result property="busFlowRunid" column="BUS_FLOW_RUNID" jdbcType="NUMERIC"/>
+		<result property="busCreatorId" column="BUS_CREATOR_ID" jdbcType="NUMERIC"/>
+		<result property="busCreator" column="BUS_CREATOR" jdbcType="VARCHAR"/>
+		<result property="busOrgId" column="BUS_ORG_ID" jdbcType="NUMERIC"/>
+		<result property="busOrgName" column="BUS_ORG_NAME" jdbcType="VARCHAR"/>
+		<result property="busCreatetime" column="BUS_CREATETIME" jdbcType="TIMESTAMP"/>
+		<result property="busUpdid" column="BUS_UPDID" jdbcType="NUMERIC"/>
+		<result property="busUpd" column="BUS_UPD" jdbcType="VARCHAR"/>
+		<result property="busUpdtime" column="BUS_UPDTIME" jdbcType="TIMESTAMP"/>
+		<result property="busStatus" column="BUS_STATUS" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		BUS_ID,BUS_FORM_TABLE,BUS_PK,BUS_PKSTR,BUS_DEF_ID,BUS_FLOW_RUNID,BUS_CREATOR_ID,
+		BUS_CREATOR,BUS_ORG_ID,BUS_ORG_NAME,BUS_CREATETIME,BUS_UPDID,BUS_UPD,BUS_UPDTIME,
+		BUS_STATUS
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(busId)"> AND BUS_ID  =#{busId} </if>
+			<if test="@Ognl@isNotEmpty(busFormTable)"> AND BUS_FORM_TABLE  LIKE #{busFormTable}  </if>
+			<if test="@Ognl@isNotEmpty(busPk)"> AND BUS_PK  =#{busPk} </if>
+			<if test="@Ognl@isNotEmpty(busPkstr)"> AND BUS_PKSTR  LIKE #{busPkstr}  </if>
+			<if test="@Ognl@isNotEmpty(busDefId)"> AND BUS_DEF_ID  =#{busDefId} </if>
+			<if test="@Ognl@isNotEmpty(busFlowRunid)"> AND BUS_FLOW_RUNID  =#{busFlowRunid} </if>
+			<if test="@Ognl@isNotEmpty(busCreatorId)"> AND BUS_CREATOR_ID  =#{busCreatorId} </if>
+			<if test="@Ognl@isNotEmpty(busCreator)"> AND BUS_CREATOR  LIKE #{busCreator}  </if>
+			<if test="@Ognl@isNotEmpty(busOrgId)"> AND BUS_ORG_ID  =#{busOrgId} </if>
+			<if test="@Ognl@isNotEmpty(busOrgName)"> AND BUS_ORG_NAME  LIKE #{busOrgName}  </if>
+			<if test="@Ognl@isNotEmpty(busCreatetime)"> AND BUS_CREATETIME  =#{busCreatetime} </if>
+			<if test="@Ognl@isNotEmpty(beginbusCreatetime)"> AND BUS_CREATETIME  >=#{beginbusCreatetime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endbusCreatetime)"> AND BUS_CREATETIME <![CDATA[ <=#{endbusCreatetime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(busUpdid)"> AND BUS_UPDID  =#{busUpdid} </if>
+			<if test="@Ognl@isNotEmpty(busUpd)"> AND BUS_UPD  LIKE #{busUpd}  </if>
+			<if test="@Ognl@isNotEmpty(busUpdtime)"> AND BUS_UPDTIME  =#{busUpdtime} </if>
+			<if test="@Ognl@isNotEmpty(beginbusUpdtime)"> AND BUS_UPDTIME  >=#{beginbusUpdtime,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endbusUpdtime)"> AND BUS_UPDTIME <![CDATA[ <=#{endbusUpdtime,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(busStatus)"> AND BUS_STATUS=#{busStatus} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmBusLink">
+		INSERT INTO BPM_BUS_LINK
+		(BUS_ID,BUS_FORM_TABLE,BUS_PK,BUS_PKSTR,BUS_DEF_ID,BUS_FLOW_RUNID,BUS_CREATOR_ID,BUS_CREATOR,BUS_ORG_ID,BUS_ORG_NAME,BUS_CREATETIME,BUS_UPDID,BUS_UPD,BUS_UPDTIME,BUS_STATUS)
+		VALUES
+		(#{busId,jdbcType=NUMERIC}, #{busFormTable,jdbcType=VARCHAR}, #{busPk,jdbcType=NUMERIC}, #{busPkstr,jdbcType=VARCHAR}, #{busDefId,jdbcType=NUMERIC}, #{busFlowRunid,jdbcType=NUMERIC},
+		 #{busCreatorId,jdbcType=NUMERIC}, #{busCreator,jdbcType=VARCHAR}, #{busOrgId,jdbcType=NUMERIC}, #{busOrgName,jdbcType=VARCHAR}, 
+		 #{busCreatetime,jdbcType=TIMESTAMP}, #{busUpdid,jdbcType=NUMERIC}, #{busUpd,jdbcType=VARCHAR}, #{busUpdtime,jdbcType=TIMESTAMP}, #{busStatus,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_BUS_LINK 
+		WHERE
+		BUS_ID=#{busId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmBusLink">
+		UPDATE BPM_BUS_LINK SET
+		BUS_PK=#{busPk,jdbcType=NUMERIC},
+		BUS_FORM_TABLE=#{busFormTable,jdbcType=VARCHAR},
+		BUS_PKSTR=#{busPkstr,jdbcType=VARCHAR},
+		BUS_DEF_ID=#{busDefId,jdbcType=NUMERIC},
+		BUS_FLOW_RUNID=#{busFlowRunid,jdbcType=NUMERIC},
+		BUS_CREATOR_ID=#{busCreatorId,jdbcType=NUMERIC},
+		BUS_CREATOR=#{busCreator,jdbcType=VARCHAR},
+		BUS_ORG_ID=#{busOrgId,jdbcType=NUMERIC},
+		BUS_ORG_NAME=#{busOrgName,jdbcType=VARCHAR},
+		BUS_CREATETIME=#{busCreatetime,jdbcType=TIMESTAMP},
+		BUS_UPDID=#{busUpdid,jdbcType=NUMERIC},
+		BUS_UPD=#{busUpd,jdbcType=VARCHAR},
+		BUS_UPDTIME=#{busUpdtime,jdbcType=TIMESTAMP},
+		BUS_STATUS= #{busStatus,jdbcType=NUMERIC}
+		WHERE
+		BUS_ID=#{busId}
+	</update>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmBusLink">
+		SELECT <include refid="columns"/>
+		FROM BPM_BUS_LINK
+		WHERE
+		BUS_ID=#{busId}
+	</select>
+	
+	<select id="getAll" resultMap="BpmBusLink">
+		SELECT <include refid="columns"/>
+		FROM BPM_BUS_LINK   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by BUS_ID  desc
+		</if>
+	</select>
+	
+	<select id="isExsitPartition_mysql" parameterType="java.util.Map" resultType="Long"> 
+		select count(*)from information_schema.partitions  where table_schema = schema() and table_name='BPM_BUS_LINK' and partition_name = #{partitionName};
+	</select>
+	<select id="isExsitPartition_oracle" parameterType="java.util.Map" resultType="Long"> 
+		select count(*) from user_tab_partitions where table_name = 'BPM_BUS_LINK' and partition_name = #{partitionName}
+	</select>
+	 
+	<update id="createPartition_mysql" parameterType="java.util.Map" >
+		alter table BPM_BUS_LINK add partition (partition ${partitionName} values in (#{tableName}))
+	</update>
+	<update id="createPartition_oracle" parameterType="java.util.Map" > 
+		 ALTER TABLE BPM_BUS_LINK ADD PARTITION ${partitionName} VALUES ( '${tableName}') NOCOMPRESS 
+	</update>
+	
+	<select id="getMysqlVersion" resultType="String">
+		select VERSION();
+	</select>
+	
+	<select id="getByPk"  resultMap="BpmBusLink">
+		SELECT <include refid="columns"/>
+		FROM BPM_BUS_LINK
+		WHERE
+		BUS_PK=#{pk} 
+	</select>
+	
+	<select id="getByPkStr" parameterType="java.lang.String" resultMap="BpmBusLink">
+		SELECT <include refid="columns"/>
+		FROM BPM_BUS_LINK
+		WHERE
+		BUS_PKSTR=#{pk} 
+	</select>
+	
+	
+	
+	<delete id="delByPk" parameterType="java.lang.Long">
+		DELETE FROM BPM_BUS_LINK 
+		WHERE BUS_PK=#{pk} 
+	</delete>
+	
+	<delete id="delByPkStr" >
+		DELETE FROM BPM_BUS_LINK 
+		WHERE BUS_PKSTR=#{pk}
+	</delete>
+	
+	<update id="updateStatus" parameterType="com.hotent.platform.model.bpm.BpmBusLink">
+		UPDATE BPM_BUS_LINK SET
+		BUS_UPDID=#{busUpdid,jdbcType=NUMERIC},
+		BUS_UPD=#{busUpd,jdbcType=VARCHAR},
+		BUS_UPDTIME=#{busUpdtime,jdbcType=TIMESTAMP},
+		BUS_STATUS= #{busStatus,jdbcType=NUMERIC}
+		WHERE
+		BUS_PK=#{busPk,jdbcType=NUMERIC}
+	</update>
+	
+	
+	<select id="checkBusExist" resultType="int">
+		select count(*) from bpm_bus_link b where b.BUS_PK = #{businessKey}
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.bpm.BpmNodeSet">
+	<resultMap id="BpmNodeSet" type="com.hotent.platform.model.bpm.BpmNodeSet">
+		<id property="setId" column="setId" jdbcType="NUMERIC"/>
+		<result property="defId" column="defId" jdbcType="NUMERIC"/>
+		<result property="nodeName" column="nodeName" jdbcType="VARCHAR"/>
+		<result property="nodeOrder" column="nodeOrder" jdbcType="NUMERIC"/>
+		<result property="nodeId" column="nodeId" jdbcType="VARCHAR"/>
+		<result property="formType" column="formType" jdbcType="NUMERIC"/>
+		<result property="formUrl" column="formUrl" jdbcType="VARCHAR"/>
+		<result property="formKey" column="formKey" jdbcType="VARCHAR"/>
+		<result property="actDefId" column="actDefId" jdbcType="VARCHAR"/>
+		<result property="parentActDefId" column="parentActDefId" jdbcType="VARCHAR"/>
+		<result property="formDefName" column="formDefName" jdbcType="VARCHAR"/>
+		<result property="nodeType" column="nodeType" jdbcType="NUMERIC"/>
+		<result property="joinTaskKey" column="joinTaskKey" jdbcType="VARCHAR"/>
+		<result property="joinTaskName" column="joinTaskName" jdbcType="VARCHAR"/>
+		<result property="beforeHandler" column="beforeHandler" jdbcType="VARCHAR"/>
+		<result property="afterHandler" column="afterHandler" jdbcType="VARCHAR"/>
+		<result property="jumpType" column="jumpType" jdbcType="VARCHAR"/>
+		<result property="setType" column="setType" jdbcType="NUMERIC"/>
+		<result property="isJumpForDef" column="isJumpForDef" jdbcType="NUMERIC"/>
+		<result property="isHideOption" column="isHideOption" jdbcType="NUMERIC"/>
+		<result property="isHidePath" column="isHidePath" jdbcType="NUMERIC"/>
+		<result property="isRequired" column="isRequired" jdbcType="NUMERIC"/>
+		<result property="isPopup" column="isPopup" jdbcType="NUMERIC"/>
+		<result property="opinionField" column="opinionField" jdbcType="VARCHAR"/>
+		<result property="detailUrl" column="detailUrl" jdbcType="VARCHAR"/>
+		<result property="isAllowMobile" column="isAllowMobile" jdbcType="NUMERIC" />
+		<result property="informType" column="informType" jdbcType="VARCHAR"/>
+		<result property="sendMsgToCreator" column="sendMsgToCreator" jdbcType="NUMERIC" />
+		<result property="mobileFormKey" column="mobileFormKey" jdbcType="VARCHAR"/>
+		<result property="mobileFormUrl" column="mobileFormUrl" jdbcType="VARCHAR"/>
+		<result property="mobileDetailUrl" column="mobileDetailUrl" jdbcType="VARCHAR"/>
+		<result property="scope" column="scope" jdbcType="VARCHAR"/>
+		<result property="opinionHtml" column="OPINIONHTML" jdbcType="VARCHAR"/>
+		<result property="tableId" column="TABLEID" jdbcType="VARCHAR"/>
+		<result property="templateId" column="TEMPLATEID" jdbcType="VARCHAR"/>
+		<result property="templateName" column="TEMPLATENAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="BpmNodeSet_form" extends="BpmNodeSet" type="com.hotent.platform.model.bpm.BpmNodeSet">
+		<association property="formDef"   		javaType="com.hotent.platform.model.form.BpmFormDef"    column="formKey"    select="com.hotent.platform.model.form.BpmFormDef.getDefaultVersionByFormKey"></association>
+		<association property="mobileForm"   	javaType="com.hotent.mobile.model.form.BpmMobileForm"   column="mobileFormKey"   select="com.hotent.mobile.model.form.BpmMobileForm.getDefaultVersionByFormKey"></association>
+		<association property="mobileFormDef" 	javaType="com.hotent.platform.model.form.BpmFormDef" 	column="mobileFormKey"  select="com.hotent.platform.model.form.BpmFormDef.getDefaultVersionByFormKey"></association>
+	</resultMap>
+	
+	
+	<resultMap id="BpmNodeSetExt" extends="BpmNodeSet" type="com.hotent.platform.model.bpm.BpmNodeSet">
+		<result property="formDefId" column="formDefId" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		setId,defId,nodeName,nodeId,formType,formUrl,formKey,actDefId,parentActDefId,formDefName,
+		nodeType,joinTaskKey,joinTaskName,beforeHandler,afterHandler,jumpType,
+		setType,isJumpForDef,isHideOption,isHidePath,isRequired,isPopup,opinionField,detailUrl,isAllowMobile,nodeOrder,informType,sendMsgToCreator,
+		mobileFormKey,mobileFormUrl,mobileDetailUrl,scope,opinionHtml,tableId,templateId,templateName
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(setId)"> AND setId  =#{setId} </if>
+			<if test="@Ognl@isNotEmpty(defId)"> AND defId  =#{defId} </if>
+			<if test="@Ognl@isNotEmpty(nodeName)"> AND nodeName  LIKE #{nodeName}  </if>
+			<if test="@Ognl@isNotEmpty(actDefId)"> AND actDefId  =#{actDefId} </if>
+			<if test="@Ognl@isNotEmpty(parentActDefId)"> AND parentActDefId  =#{parentActDefId} </if>
+			<if test="@Ognl@isNotEmpty(nodeId)"> AND nodeId  LIKE #{nodeId}  </if>
+			<if test="@Ognl@isNotEmpty(formType)"> AND formType  =#{formType} </if>
+			<if test="@Ognl@isNotEmpty(formUrl)"> AND formUrl  LIKE #{formUrl}  </if>
+			<if test="@Ognl@isNotEmpty(formKey)"> AND formKey  =#{formKey} </if>
+			<if test="@Ognl@isNotEmpty(formDefName)"> AND formDefName  =#{formDefName} </if>
+			<if test="@Ognl@isNotEmpty(mobileFormUrl)"> AND mobileFormUrl  LIKE #{mobileFormUrl}  </if>
+			<if test="@Ognl@isNotEmpty(scope)"> AND scope  LIKE #{scope}  </if>
+			<if test="@Ognl@isNotEmpty(mobileFormKey)"> AND mobileFormKey  =#{mobileFormKey} </if>
+			AND setType =0
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.bpm.BpmNodeSet">
+		INSERT INTO bpm_node_set
+		(<include refid="columns"/>)
+		VALUES
+		(#{setId,jdbcType=NUMERIC}, #{defId,jdbcType=NUMERIC}, #{nodeName,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, 
+		#{formType,jdbcType=NUMERIC}, #{formUrl,jdbcType=VARCHAR}, #{formKey,jdbcType=VARCHAR}, #{actDefId,jdbcType=VARCHAR},
+		#{parentActDefId,jdbcType=VARCHAR}, #{formDefName,jdbcType=VARCHAR}, #{nodeType,jdbcType=NUMERIC}, #{joinTaskKey,jdbcType=VARCHAR},
+		#{joinTaskName,jdbcType=VARCHAR}, #{beforeHandler,jdbcType=VARCHAR}, #{afterHandler,jdbcType=VARCHAR},
+		#{jumpType,jdbcType=VARCHAR},#{setType,jdbcType=NUMERIC},#{isJumpForDef,jdbcType=NUMERIC},
+		#{isHideOption,jdbcType=NUMERIC},#{isHidePath,jdbcType=NUMERIC},#{isRequired,jdbcType=NUMERIC},#{isPopup,jdbcType=NUMERIC},
+		#{opinionField,jdbcType=VARCHAR},#{detailUrl,jdbcType=VARCHAR},#{isAllowMobile,jdbcType=NUMERIC},
+		#{nodeOrder,jdbcType=NUMERIC},#{informType,jdbcType=VARCHAR},#{sendMsgToCreator,jdbcType=NUMERIC},#{mobileFormKey,jdbcType=VARCHAR},
+		#{mobileFormUrl,jdbcType=VARCHAR},#{mobileDetailUrl,jdbcType=VARCHAR},#{scope,jdbcType=VARCHAR},
+		#{opinionHtml,jdbcType=NUMERIC},#{tableId,jdbcType=VARCHAR},#{templateId,jdbcType=VARCHAR},#{templateName,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_NODE_SET 
+		WHERE
+		setId=#{setId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.bpm.BpmNodeSet">
+		UPDATE bpm_node_set SET
+		defId=#{defId,jdbcType=NUMERIC} , 
+		nodeName=#{nodeName,jdbcType=VARCHAR} , 
+		nodeId=#{nodeId,jdbcType=VARCHAR} , 
+		formType=#{formType,jdbcType=NUMERIC} , 
+		formUrl=#{formUrl,jdbcType=VARCHAR} , 
+		formKey=#{formKey,jdbcType=VARCHAR} , 
+		actDefId=#{actDefId,jdbcType=VARCHAR} , 
+		parentActDefId=#{parentActDefId,jdbcType=VARCHAR} ,
+		formDefName=#{formDefName,jdbcType=VARCHAR} , 
+		nodeType=#{nodeType,jdbcType=NUMERIC} , 
+		joinTaskKey=#{joinTaskKey,jdbcType=VARCHAR} , 
+		joinTaskName=#{joinTaskName,jdbcType=VARCHAR} , 
+		beforeHandler=#{beforeHandler,jdbcType=VARCHAR} , 
+		afterHandler=#{afterHandler,jdbcType=VARCHAR} ,
+		jumpType=#{jumpType,jdbcType=VARCHAR} ,
+		setType=#{setType,jdbcType=NUMERIC},
+		isJumpForDef=#{isJumpForDef,jdbcType=NUMERIC},
+		isHideOption=#{isHideOption,jdbcType=NUMERIC},
+		isHidePath=#{isHidePath,jdbcType=NUMERIC},
+		isRequired=#{isRequired,jdbcType=NUMERIC},
+		isPopup=#{isPopup,jdbcType=NUMERIC},
+		opinionField=#{opinionField,jdbcType=VARCHAR},
+		detailUrl=#{detailUrl,jdbcType=VARCHAR},
+		isAllowMobile=#{isAllowMobile,jdbcType=NUMERIC},
+		nodeOrder=#{nodeOrder,jdbcType=NUMERIC},
+		informType=#{informType,jdbcType=VARCHAR},
+		sendMsgToCreator=#{sendMsgToCreator,jdbcType=NUMERIC},
+		mobileFormKey=#{mobileFormKey,jdbcType=VARCHAR},
+		mobileFormUrl=#{mobileFormUrl,jdbcType=VARCHAR},
+		scope=#{scope,jdbcType=VARCHAR},
+		mobileDetailUrl=#{mobileDetailUrl,jdbcType=VARCHAR},
+		opinionHtml=#{opinionHtml,jdbcType=NUMERIC},
+		tableId=#{tableId,jdbcType=VARCHAR},
+		templateId=#{templateId,jdbcType=VARCHAR},
+		templateName=#{templateName,jdbcType=VARCHAR}
+		WHERE
+		setId=#{setId}
+	</update>
+	
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_SET
+		WHERE
+		setId=#{setId}
+	</select>
+	
+	<select id="getAll" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_SET   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by nodeOrder  desc
+		</if>
+	</select>
+	
+	<select id="getByDefId" parameterType="java.lang.Long" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_set
+		WHERE defId=#{defId} and setType=0 and (parentActDefId is null or parentActDefId='')
+		ORDER BY nodeOrder ,nodeid 
+	</select>
+	
+	<select id="getByDefIdAndParentActDefId" parameterType="java.util.Map" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_set
+		WHERE defId=#{defId}  and parentActDefId=#{parentActDefId}
+		<if test="@Ognl@isNotEmpty(isAll)"> and setType in(0,2,3)  </if>
+		<if test="@Ognl@isEmpty(isAll)">and setType=0 </if>
+		ORDER BY nodeOrder ,nodeid 
+	</select>
+	
+	<select id="getAllByDefId" parameterType="java.lang.Long" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_set
+		WHERE defId=#{defId} AND (parentActDefId is null OR parentActDefId='') 
+	</select>
+	<select id="getByActDef" parameterType="String" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_set
+		WHERE actdefid=#{actDefId}  and setType=0
+		ORDER BY nodeOrder 
+	</select>
+	
+	<select id="getByActDefId" parameterType="String" resultMap="BpmNodeSet_form">
+	   SELECT a.setId,a.defId,a.nodeName,a.nodeId,a.formType,a.formUrl,a.formKey,a.actDefId,a.parentActDefId,a.formDefName,a.nodeType,
+      a.joinTaskKey,a.joinTaskName,a.beforeHandler,a.afterHandler,
+      a.jumpType,a.setType,a.nodeOrder,a.opinionHtml,b.formdefid
+      FROM bpm_node_set a left join bpm_form_def b
+      on a.formkey =b.formkey where a.actdefid=#{actDefId} 
+      and ((a.formtype=0 and b.isdefault=1 and b.ispublished=1) or a.formtype=-1 or a.formtype=1 ) 
+      and (a.parentActDefId is null or a.parentActDefId='') 
+      ORDER BY nodeOrder
+	</select>
+	
+	<select id="getByActDefIdAndParentId" parameterType="Map" resultMap="BpmNodeSet_form">
+	   SELECT a.setId,a.defId,a.nodeName,a.nodeId,a.formType,a.formUrl,a.formKey,a.actDefId,a.parentActDefId,a.formDefName,a.nodeType,
+      a.joinTaskKey,a.joinTaskName,a.beforeHandler,a.afterHandler,
+      a.jumpType,a.setType,a.nodeOrder,a.opinionHtml,b.formdefid
+      FROM bpm_node_set a left join bpm_form_def b
+      on a.formkey =b.formkey where a.actdefid=#{actDefId} 
+      and ((a.formtype=0 and b.isdefault=1 and b.ispublished=1) or a.formtype=-1 or a.formtype=1 ) 
+      and a.parentActDefId=#{parentActDefId} 
+      ORDER BY nodeOrder
+	</select>
+	
+	<select id="getOnlineFormByActDefId" parameterType="String" resultMap="BpmNodeSet_form">
+	   SELECT a.setId,a.defId,a.nodeName,a.nodeId,a.formType,a.formUrl,a.formKey,a.actDefId,a.formDefName,a.nodeType,
+      a.joinTaskKey,a.joinTaskName,a.beforeHandler,a.afterHandler,
+      a.jumpType,a.setType,a.nodeOrder,a.opinionHtml,b.formdefid
+      FROM bpm_node_set a  join bpm_form_def b
+      on a.formkey =b.formkey where a.actdefid=#{actDefId} 
+      and a.formtype=0 and (a.parentActDefId is null or a.parentActDefId='') and b.isdefault=1 and b.ispublished=1 
+      ORDER BY nodeOrder
+	</select>
+	
+	<select id="getOnlineFormByActDefIdAndParentDefId" parameterType="java.util.Map" resultMap="BpmNodeSet_form">
+	   SELECT a.setId,a.defId,a.nodeName,a.nodeId,a.formType,a.formUrl,a.formKey,a.actDefId,a.formDefName,a.nodeType,
+      a.joinTaskKey,a.joinTaskName,a.beforeHandler,a.afterHandler,
+      a.jumpType,a.setType,a.nodeOrder,a.opinionHtml,b.formdefid
+      FROM bpm_node_set a  join bpm_form_def b
+      on a.formkey =b.formkey where a.actdefid=#{actDefId} 
+      and a.formtype=0 and a.parentActDefId=#{parentActDefId} and b.isdefault=1 and b.ispublished=1 
+      ORDER BY nodeOrder
+	</select>
+	
+
+	<select id="getByDefIdNodeId" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_SET
+		WHERE defId=#{defId} and nodeId=#{nodeId} and setType=0 and (parentActDefId is null or parentActDefId='')
+	</select>
+	
+	<select id="getByDefIdNodeIdAndParentActDefId" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_SET
+		WHERE defId=#{defId} and nodeId=#{nodeId} and setType=0 and parentActDefId=#{parentActDefId}
+	</select>
+	
+	<select id="getBySetType" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		 FROM BPM_NODE_SET WHERE defId=#{defId} and setType=#{setType} and (parentActDefId is null or parentActDefId='')
+	</select>
+	
+	<select id="getBySetTypeAndParentActDefId" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		 FROM BPM_NODE_SET WHERE defId=#{defId} and setType=#{setType} and parentActDefId=#{parentActDefId}
+	</select>
+	
+	<select id="getByActDefIdJoinTaskKey" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		 FROM BPM_NODE_SET  where actDefId=#{actDefId} and joinTaskKey=#{joinTaskKey} and setType=0 and (parentActDefId is null or parentActDefId='')
+	</select>
+	
+	<select id="getByActDefIdNodeId" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_SET
+		WHERE actDefId=#{actDefId} and nodeId=#{nodeId} and (parentActDefId is null or parentActDefId='')
+	</select>
+	
+	<select id="getByActDefIdNodeIdAndParentActDefId" resultMap="BpmNodeSet">
+		SELECT <include refid="columns"/>
+		FROM BPM_NODE_SET
+		WHERE actDefId=#{actDefId} and nodeId=#{nodeId} and parentActDefId=#{parentActDefId}
+	</select>
+	
+	<delete id="delByDefId" parameterType="java.util.Map">
+		DELETE FROM BPM_NODE_SET  WHERE defId=#{defId} or parentActDefId=#{parentActDefId} 
+	</delete>
+	
+	<delete id="delByDefIdAndParentActDefId" parameterType="java.util.Map">
+		DELETE FROM BPM_NODE_SET  WHERE defId=#{defId} and parentActDefId=#{parentActDefId}
+	</delete>
+	
+	<delete id="delByDefIdNodeId" parameterType="java.util.Map">
+		DELETE FROM BPM_NODE_SET  WHERE nodeId=#{nodeId} and defId=#{defId}
+	</delete>
+
+	<delete id="delByStartGlobalDefId" parameterType="java.lang.Long">
+		DELETE FROM BPM_NODE_SET  WHERE defId=#{defId} and setType>=1 and (parentActDefId is null or parentActDefId='')
+	</delete>
+	
+	<delete id="delByStartGlobalDefIdAndParentActDefId" parameterType="java.util.Map">
+		DELETE FROM BPM_NODE_SET  WHERE defId=#{defId} and setType>=1 and parentActDefId=#{parentActDefId}
+	</delete>
+	
+	<select id="getByParentActDefId" resultMap="BpmNodeSet_form" parameterType="java.lang.String">
+		SELECT distinct defId, actDefId, parentActDefId FROM BPM_NODE_SET WHERE parentActDefId=#{parentActDefId}
+	</select>
+	
+	<select id="getByStartGlobal" resultMap="BpmNodeSet_form" parameterType="java.lang.Long">
+		SELECT <include refid="columns"/>
+		 FROM BPM_NODE_SET WHERE defId=#{defId} and setType=2 and (parentActDefId is null or parentActDefId='')
+	</select>
+	
+	<select id="getByStartGlobalParentActDefId" resultMap="BpmNodeSet_form" parameterType="java.util.Map">
+		SELECT <include refid="columns"/>
+		 FROM BPM_NODE_SET WHERE defId=#{defId} and setType=2 and parentActDefId=#{parentActDefId}
+	</select>
+	
+	<select id="getByOther" resultMap="BpmNodeSet_form" parameterType="java.lang.Long">
+		SELECT <include refid="columns"/>
+		 FROM BPM_NODE_SET WHERE defId=#{defId} and setType>=1
+	</select>
+	
+	<update id="updateIsJumpForDef" parameterType="java.util.Map">
+		update BPM_NODE_SET set isJumpForDef=#{isJumpForDef,jdbcType=NUMERIC} where nodeId=#{nodeId} and actDefId=#{actDefId}
+	</update>
+	
+	<select id="getByFormKey" parameterType="java.lang.Long" resultMap="BpmNodeSet_form">
+		SELECT distinct formKey,actDefId,formDefName
+		FROM bpm_node_set
+		WHERE formKey=#{formKey}
+	</select>
+	
+	<select id="getParentIdByDefId" parameterType="java.lang.Long" resultMap="BpmNodeSet_form">
+		SELECT distinct parentActDefId 
+		FROM bpm_node_set
+		WHERE defId=#{defId} and parentActDefId is not null 
+	</select>
+	
+	<select id="getParentByDefIdAndNodeId" parameterType="java.util.Map" resultMap="BpmNodeSet_form">
+		SELECT <include refid="columns"/>
+		 FROM bpm_node_set 
+		WHERE defId=#{defId} and nodeId=#{nodeId} and parentActDefId is not null 
+	</select>
+	<select id="getScopeByNodeIdAndActDefId" parameterType="java.util.Map" resultMap="BpmNodeSet">
+		SELECT <include refid="columns"/>
+		 FROM bpm_node_set 
+		WHERE  nodeId=#{nodeId} and actDefId=#{actDefId}
+		<if test="@Ognl@isNotEmpty(parentActDefId)">
+			AND parentActDefId=#{parentActDefId}
+		</if> 
+		<if test="@Ognl@isEmpty(parentActDefId)">
+			AND (parentActDefId is null or parentActDefId='')
+		</if>
+	</select>
+
+	<update id="updateScopeById" parameterType="com.hotent.platform.model.bpm.BpmNodeSet">
+		UPDATE bpm_node_set SET
+		scope=#{scope,jdbcType=VARCHAR}
+		WHERE
+		setId=#{setId}
+	</update>
+	
+	<select id="tongji" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM bpm_node_set WHERE DEFID=#{defId}
+	</select>
+	
+	<select id="getnoteId" parameterType="java.lang.Long" resultMap="BpmNodeSet">
+		SELECT <include refid="columns"/>
+		FROM bpm_node_set
+		WHERE
+		DEFID=#{defId}
+	</select>
+	
+	<select id="get_By_ActDefId_NodeId" parameterType="java.util.Map" resultMap="BpmNodeSet">
+		SELECT *
+		FROM BPM_NODE_SET
+		WHERE actDefId=#{actDefId} and nodeId=#{nodeId)
+	</select>
+	<select id="getBy_ActDef" parameterType="String" resultMap="BpmNodeSet">
+		SELECT *
+		FROM bpm_node_set
+		WHERE actDefId=#{actDefId} and setType=0 group by ACTDEFID,NODEID
+	</select>
+	<select id="getBySetId" parameterType="java.lang.Long" resultMap="BpmNodeSet">
+		SELECT *
+		FROM bpm_node_set
+		WHERE setId=#{setId}
+	</select>
+</mapper>

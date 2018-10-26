@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.dbMap.model.dbMap.DbMap">
+	<resultMap id="DbMap" type="com.hotent.dbMap.model.dbMap.DbMap">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="map_name" column="F_MAP_NAME" jdbcType="VARCHAR"/>
+		<result property="table_name" column="F_TABLE_NAME" jdbcType="VARCHAR"/>
+		<result property="xml_text" column="F_XML_TEXT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_MAP_NAME,F_TABLE_NAME,F_XML_TEXT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(map_name)"> AND F_MAP_NAME  LIKE '%${map_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(table_name)"> AND F_TABLE_NAME  LIKE '%${table_name}%'  </if>
+			<if test="@Ognl@isNotEmpty(xml_text)"> AND F_XML_TEXT  LIKE '%${xml_text}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.dbMap.model.dbMap.DbMap">
+		INSERT INTO W_DB_MAP
+		(ID,
+		F_MAP_NAME,F_TABLE_NAME,F_XML_TEXT)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{map_name,jdbcType=VARCHAR}, #{table_name,jdbcType=VARCHAR}, #{xml_text,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_DB_MAP 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.dbMap.model.dbMap.DbMap">
+		UPDATE W_DB_MAP SET
+		F_MAP_NAME=#{map_name,jdbcType=VARCHAR},
+		F_TABLE_NAME=#{table_name,jdbcType=VARCHAR},
+		F_XML_TEXT=#{xml_text,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="DbMap">
+		SELECT <include refid="columns"/>
+		FROM W_DB_MAP
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="DbMap">
+		SELECT <include refid="columns"/>
+		FROM W_DB_MAP   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

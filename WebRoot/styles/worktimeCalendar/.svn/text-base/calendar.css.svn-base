@@ -1,0 +1,87 @@
+.wtMonth {
+	border-collapse: collapse;
+	table-layout:fixed;
+	width:100%;
+}
+.wtMonth caption {
+	text-align: left;
+	font-family: normal 120% 宋体, arial;
+ 	font-size:12px;
+	font-weight:normal;
+	padding-bottom: 6px;
+}
+
+.wtMonth caption .wtDate{
+    font-size:150%;
+    font-weight:bold;
+}
+
+.wtMonth caption .monthFlag{
+	font-size: 100%;
+	color: red;
+}
+
+.wtMonth th {
+	background-image: url(../default/images/content_bg_sort.jpg);
+	background-color: #6F8DC6;
+	color: #102A49;
+	border: solid 1px #AAA;
+	/*font-weight:bold;*/
+	height: 30px;
+	padding-left: 1px;
+	text-align: center;
+
+}
+.wtMonth td {
+	border: 1px solid #AAA;
+	font: 12px 宋体;
+   	line-height:16px;
+	padding: 2px 2px;
+	margin:0;
+	vertical-align: top;
+	height: 75px;
+}
+td.common{
+	height:23px;width:60px;text-align: center;vertical-align: middle;
+}
+.wtMonth td.workday {
+	background-color: #86D75E;
+}
+.wtMonth td.previous, .wtMonth td.next {
+	background-color: #eee;
+}
+.wtMonth td.active {
+	background-color: #4999D1;
+}
+.wtMonth td.rest {
+	background-color: #F94A8E;
+}
+.wtMonth td.weekend {
+	background-color: #FFCCFF;
+}
+.wtMonth td.legal {
+	background-color: #D35910;
+}
+
+.wtMonth td.noSetting {
+	background-color: #FBF7B4;
+}
+.wtMonth ul {
+	list-style-type: none;
+	margin: 3px;
+	padding:0;
+}
+
+.wtMonth li {
+	color:#fff;
+   	background:transparent url(level-2.gif) no-repeat;
+   	padding:2px;
+	margin-bottom: 6px;
+	height:34px;
+	overflow:hidden;
+	width:100px;
+}
+
+.wtMonth td li.important{
+   background:transparent url(level-1.gif) no-repeat;
+}

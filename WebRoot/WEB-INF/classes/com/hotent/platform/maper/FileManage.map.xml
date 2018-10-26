@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotent.platform.model.file.FileManage">
+	<resultMap id="FileManage" type="com.hotent.platform.model.file.FileManage">
+
+		<id property="fileId" column="FILEID" jdbcType="NUMERIC" />
+		<result property="categoryId" column="CATEGORYID" jdbcType="NUMERIC" />
+		<result property="allPermis" column="ALLPERMIS" jdbcType="NUMERIC" />
+		<result property="filePath" column="FILEPATH" jdbcType="VARCHAR" />
+		<result property="fileName" column="FILENAME" jdbcType="VARCHAR" />
+		<result property="ext" column="EXT" jdbcType="VARCHAR" />
+		<result property="fileSize" column="FILESIZE" jdbcType="VARCHAR" />
+		<result property="totalBytes" column="TOTALBYTES" jdbcType="NUMERIC" />
+		<result property="createTime" column="CREATETIME" jdbcType="TIMESTAMP" />
+		<result property="creatorId" column="CREATORID" jdbcType="NUMERIC" />
+		<result property="creator" column="CREATOR" jdbcType="VARCHAR" />
+		<result property="userPermis" column="USERPERMIS" jdbcType="VARCHAR" />
+		<result property="rolePermis" column="ROLEPERMIS" jdbcType="VARCHAR" />
+		<result property="postPermis" column="POSTPERMIS" jdbcType="VARCHAR" />
+
+		<result property="userPermisName" column="USERPERMISNAME"
+			jdbcType="VARCHAR" />
+		<result property="rolePermisName" column="ROLEPERMISNAME"
+			jdbcType="VARCHAR" />
+		<result property="postpermisName" column="POSTPERMISNAME"
+			jdbcType="VARCHAR" />
+		<result property="remarks" column="REMARKS" jdbcType="VARCHAR" />
+
+		<result property="categoryName" column="CATEGORYNAME" jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<sql id="columns">
+		FILEID,CATEGORYID,ALLPERMIS,FILEPATH,FILENAME,EXT,FILESIZE,TOTALBYTES,CREATETIME,CREATORID,CREATOR,USERPERMIS,ROLEPERMIS,POSTPERMIS,
+		USERPERMISNAME,ROLEPERMISNAME,POSTPERMISNAME,REMARKS
+	</sql>
+	
+	<sql id="columnsAlias">
+		FI.FILEID,FI.CATEGORYID,FI.ALLPERMIS,FI.FILEPATH,FI.FILENAME,FI.EXT,FI.FILESIZE,FI.TOTALBYTES,FI.CREATETIME,FI.CREATORID,FI.CREATOR,
+		FI.USERPERMIS,FI.ROLEPERMIS,FI.POSTPERMIS,FI.USERPERMISNAME,FI.ROLEPERMISNAME,FI.POSTPERMISNAME,FI.REMARKS
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(categoryId)"> AND CATEGORYID =#{categoryId} </if>
+			<if test="@Ognl@isNotEmpty(fileName)"> AND FILENAME LIKE #{fileName}  </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND CREATETIME >=#{begincreatetime,jdbcType=DATE}</if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND CREATETIME &lt;=#{endcreatetime,jdbcType=DATE}</if>
+			<if test="@Ognl@isNotEmpty(ext)"> AND EXT LIKE #{ext}  </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND CREATOR LIKE #{creator} </if>
+		</where>
+	</sql>
+
+	<select id="getAll" resultMap="FileManage">
+		SELECT * FROM (
+			SELECT 
+			<include refid="columnsAlias" />,GT.TYPENAME AS CATEGORYNAME
+			FROM BPM_FILES FI 
+		 	LEFT JOIN SYS_GL_TYPE GT ON FI.CATEGORYID = GT.TYPEID
+		 	WHERE FI.ALLPERMIS = 1
+			OR FI.CREATORID =#{userId}
+			OR EXISTS  (
+		       SELECT UP.FILEID FROM BPM_FILES_USER_PERMIS UP WHERE UP.USERPERMIS = #{userId} AND FI.FILEID = UP.FILEID
+			)
+			OR EXISTS (
+			    SELECT RP.FILEID FROM BPM_FILES_ROLE_PERMIS RP WHERE  EXISTS (
+			        SELECT R.ROLEID  FROM SYS_ROLE R JOIN SYS_USER_ROLE UR 
+				      ON R.ROLEID = UR.ROLEID  WHERE UR.USERID=#{userId} AND R.ENABLED=1 
+			        AND   RP.ROLEPERMIS =   R.ROLEID 
+			    )  AND FI.FILEID = RP.FILEID
+			)
+			OR EXISTS (
+			   SELECT PP.FILEID FROM BPM_FILES_POST_PERMIS PP WHERE  EXISTS (
+			        SELECT O.POSID FROM SYS_POS O JOIN  SYS_USER_POS UO 
+			          ON O.POSID = UO.POSID 
+			          WHERE UO.USERID=#{userId} AND PP.POSTPERMIS = O.POSID
+			   ) AND FI.FILEID  = PP.FILEID
+			)
+		)TEMP
+		
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+			order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+			order by FILEID desc
+		</if>
+	</select>
+
+	<select id="getAllByIds" resultMap="FileManage">
+		SELECT
+		<include refid="columns" />
+		FROM BPM_FILES
+		WHERE FILEID IN
+		<foreach collection="fileIds" open="(" close=")" separator=","
+			item="fileId">
+			${fileId}
+		</foreach>
+	</select>
+
+	<insert id="add" parameterType="com.hotent.platform.model.file.FileManage">
+		INSERT INTO BPM_FILES
+		(FILEID,CATEGORYID,ALLPERMIS,FILEPATH,FILENAME,EXT,FILESIZE,TOTALBYTES,CREATETIME,CREATORID,CREATOR,USERPERMIS,ROLEPERMIS,POSTPERMIS,
+		USERPERMISNAME,ROLEPERMISNAME,POSTPERMISNAME,REMARKS
+		)
+		VALUES
+		(
+		#{fileId,jdbcType=NUMERIC},
+		#{categoryId,jdbcType=NUMERIC},#{allPermis,jdbcType=NUMERIC},
+		#{filePath,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR},
+		#{ext,jdbcType=VARCHAR},#{fileSize,jdbcType=VARCHAR},
+		#{totalBytes,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{creatorId,jdbcType=NUMERIC},
+		#{creator,jdbcType=VARCHAR},#{userPermis,jdbcType=VARCHAR},#{rolePermis,jdbcType=VARCHAR},#{postPermis,jdbcType=VARCHAR},
+		#{userPermisName,jdbcType=VARCHAR},#{rolePermisName,jdbcType=VARCHAR},#{postpermisName,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR})
+	</insert>
+	<update id="update" parameterType="com.hotent.platform.model.file.FileManage">
+		UPDATE BPM_FILES SET
+		CATEGORYID=#{categoryId,jdbcType=NUMERIC},
+		ALLPERMIS=#{allPermis,jdbcType=NUMERIC},
+		USERPERMIS=#{userPermis,jdbcType=VARCHAR},
+		ROLEPERMIS=#{rolePermis,jdbcType=VARCHAR},
+		POSTPERMIS=#{postPermis,jdbcType=VARCHAR},
+		USERPERMISNAME=#{userPermisName,jdbcType=VARCHAR},
+		ROLEPERMISNAME=#{rolePermisName,jdbcType=VARCHAR},
+		POSTPERMISNAME=#{postpermisName,jdbcType=VARCHAR},
+		REMARKS=#{remarks,jdbcType=VARCHAR}
+		WHERE
+		FILEID=#{fileId}
+	</update>
+
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM BPM_FILES
+		WHERE
+		FILEID=#{fileId}
+	</delete>
+
+	<select id="getById" parameterType="java.lang.Long" resultMap="FileManage">
+		SELECT
+		<include refid="columns" />
+		FROM BPM_FILES
+		WHERE
+		FILEID=#{fileId}
+	</select>
+
+	<insert id="savePost" parameterType="com.hotent.platform.model.file.FileManage">
+		INSERT INTO
+		BPM_FILES_POST_PERMIS
+		(ID,FILEID,POSTPERMIS)
+		VALUES(#{id},#{fileId},#{postId} )
+	</insert>
+	
+	<insert id="saveRole" parameterType="com.hotent.platform.model.file.FileManage">
+		INSERT INTO
+		BPM_FILES_ROLE_PERMIS
+		(ID,FILEID,ROLEPERMIS)
+		VALUES(#{id},#{fileId},#{roleId} )
+	</insert>
+	
+	<insert id="saveUser" parameterType="com.hotent.platform.model.file.FileManage">
+		INSERT INTO
+		BPM_FILES_USER_PERMIS
+		(ID,FILEID,USERPERMIS)
+		VALUES(#{id},#{fileId},#{userId} )
+	</insert>
+	
+	<delete id="delPostById" parameterType="java.lang.Long">
+		DELETE FROM BPM_FILES_POST_PERMIS
+		WHERE
+		FILEID=#{fileId}
+	</delete>
+	<delete id="delRoleById" parameterType="java.lang.Long">
+		DELETE FROM BPM_FILES_ROLE_PERMIS
+		WHERE
+		FILEID=#{fileId}
+	</delete>
+	<delete id="delUserById" parameterType="java.lang.Long">
+		DELETE FROM BPM_FILES_USER_PERMIS
+		WHERE
+		FILEID=#{fileId}
+	</delete>
+
+</mapper>

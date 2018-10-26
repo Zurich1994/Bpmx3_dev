@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.banking.model.banking.BillPay">
+	<resultMap id="BillPay" type="com.hotent.banking.model.banking.BillPay">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="USERID" column="F_USERID" jdbcType="VARCHAR"/>
+		<result property="PAYEEID" column="F_PAYEEID" jdbcType="VARCHAR"/>
+		<result property="DATA" column="F_DATA" jdbcType="DATE"/>
+		<result property="PAYMENT" column="F_PAYMENT" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_USERID,F_PAYEEID,F_DATA,F_PAYMENT
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(USERID)"> AND F_USERID  LIKE '%${USERID}%'  </if>
+			<if test="@Ognl@isNotEmpty(PAYEEID)"> AND F_PAYEEID  LIKE '%${PAYEEID}%'  </if>
+			<if test="@Ognl@isNotEmpty(DATA)"> AND F_DATA  =#{DATA} </if>
+			<if test="@Ognl@isNotEmpty(beginDATA)"> AND F_DATA  >=#{beginDATA,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endDATA)"> AND F_DATA <![CDATA[ <=#{endDATA,jdbcType=DATE}]]> </if>
+			<if test="@Ognl@isNotEmpty(PAYMENT)"> AND F_PAYMENT  =#{PAYMENT} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.banking.model.banking.BillPay">
+		INSERT INTO W_BILL_PAY
+		(ID,
+		F_USERID,F_PAYEEID,F_DATA,F_PAYMENT)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{USERID,jdbcType=VARCHAR}, #{PAYEEID,jdbcType=VARCHAR}, #{DATA,jdbcType=DATE}, #{PAYMENT,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_BILL_PAY 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.banking.model.banking.BillPay">
+		UPDATE W_BILL_PAY SET
+		F_USERID=#{USERID,jdbcType=VARCHAR},
+		F_PAYEEID=#{PAYEEID,jdbcType=VARCHAR},
+		F_DATA=#{DATA,jdbcType=DATE},
+		F_PAYMENT=#{PAYMENT,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="BillPay">
+		SELECT <include refid="columns"/>
+		FROM W_BILL_PAY
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="BillPay">
+		SELECT <include refid="columns"/>
+		FROM W_BILL_PAY   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	<select id="getUSERID" resultMap="BillPay" parameterType="java.lang.String">
+		SELECT <include refid="columns"/>
+		FROM W_bill_pay 
+		WHERE
+		F_USERID=#{USERID}
+	</select>
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysFile">
+	<resultMap id="SysFile" type="com.hotent.platform.model.system.SysFile">
+		<id property="fileId" column="fileId" jdbcType="NUMERIC"/>
+		<result property="typeId" column="typeId" jdbcType="NUMERIC"/>
+		<result property="fileName" column="fileName" jdbcType="VARCHAR"/>
+		<result property="filePath" column="filePath" jdbcType="VARCHAR"/>
+		<result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+		<result property="ext" column="ext" jdbcType="VARCHAR"/>
+		<result property="fileType" column="fileType" jdbcType="VARCHAR"/>
+		<result property="note" column="note" jdbcType="VARCHAR"/>
+		<result property="creatorId" column="creatorId" jdbcType="NUMERIC"/>
+		<result property="creator" column="creator" jdbcType="VARCHAR"/>
+		<result property="totalBytes" column="totalBytes" jdbcType="NUMERIC"/>
+		<result property="delFlag" column="delFlag" jdbcType="NUMERIC"/>
+		<result property="fileBlob" column="fileBlob" jdbcType="BLOB"/>
+	</resultMap>
+	
+	<sql id="columns">
+		fileId,typeId,fileName,filePath,createtime,ext,fileType,note,creatorId,creator,totalBytes,delFlag,fileBlob
+	</sql>
+	<!-- sysFile,globalType表关联 -->
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(fileId)"> AND sf.fileId  =#{fileId} </if>
+			<if test="@Ognl@isNotEmpty(typeId)"> AND sf.typeId  =#{typeId} </if>
+			<if test="@Ognl@isNotEmpty(fileName)"> AND sf.fileName  LIKE #{fileName}  </if>
+			<if test="@Ognl@isNotEmpty(filePath)"> AND sf.filePath  LIKE #{filePath}  </if>
+			<if test="@Ognl@isNotEmpty(begincreatetime)"> AND sf.createtime >=#{begincreatetime,jdbcType=DATE}</if>
+			<if test="@Ognl@isNotEmpty(endcreatetime)"> AND sf.createtime &lt;=#{endcreatetime,jdbcType=DATE}</if>
+			<if test="@Ognl@isNotEmpty(ext)"> AND sf.ext  LIKE #{ext}  </if>
+			<if test="@Ognl@isNotEmpty(fileType)"> AND sf.fileType  LIKE #{fileType}  </if>
+			<if test="@Ognl@isNotEmpty(note)"> AND sf.note  LIKE #{note}  </if>
+			<if test="@Ognl@isNotEmpty(creatorId)"> AND sf.creatorId  =#{creatorId} </if>
+			<if test="@Ognl@isNotEmpty(creator)"> AND sf.creator  LIKE #{creator} </if>
+			<if test="@Ognl@isNotEmpty(totalBytes)"> AND sf.totalBytes  =#{totalBytes} </if>
+			<if test="@Ognl@isNotEmpty(delFlag)"> AND sf.delFlag  =#{delFlag} </if>
+			<if test="@Ognl@isNotEmpty(nodePath)"> And st.nodePath like #{nodePath}</if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysFile">
+		INSERT INTO sys_file
+		(<include refid="columns"/>)
+		VALUES
+		(#{fileId,jdbcType=NUMERIC}, #{typeId,jdbcType=NUMERIC}, #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{creatorId,jdbcType=NUMERIC}, #{creator,jdbcType=VARCHAR}, #{totalBytes,jdbcType=NUMERIC}, #{delFlag,jdbcType=NUMERIC}, #{fileBlob,jdbcType=BLOB})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_FILE 
+		WHERE
+		fileId=#{fileId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysFile">
+		UPDATE sys_file SET
+		typeId=#{typeId,jdbcType=NUMERIC} , 
+		fileName=#{fileName,jdbcType=VARCHAR} , 
+		filePath=#{filePath,jdbcType=VARCHAR} , 
+		createtime=#{createtime,jdbcType=TIMESTAMP} , 
+		ext=#{ext,jdbcType=VARCHAR} , 
+		fileType=#{fileType,jdbcType=VARCHAR} , 
+		note=#{note,jdbcType=VARCHAR} , 
+		creatorId=#{creatorId,jdbcType=NUMERIC} , 
+		creator=#{creator,jdbcType=VARCHAR} , 
+		totalBytes=#{totalBytes,jdbcType=NUMERIC} , 
+		delFlag=#{delFlag,jdbcType=NUMERIC} ,
+		fileBlob=#{fileBlob,jdbcType=BLOB}
+		WHERE
+		fileId=#{fileId}
+	</update>
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysFile">
+		SELECT sf.fileId,sf.typeId,sf.fileName,sf.filePath,sf.createtime,sf.ext,sf.fileType,sf.note,
+			sf.creatorId,sf.creator,sf.totalBytes,sf.delFlag,sf.fileBlob,st.typeName
+		FROM SYS_FILE sf
+		left join SYS_GL_TYPE st on sf.typeId = st.typeId
+		WHERE
+		fileId=#{fileId}
+	</select>
+	
+	<select id="getAll" resultMap="SysFile">
+		SELECT sf.fileId,sf.typeId,sf.fileName,sf.filePath,sf.createtime,sf.ext,sf.fileType,sf.note,
+			sf.creatorId,sf.creator,sf.totalBytes,sf.delFlag,st.typeName
+		FROM SYS_FILE sf
+		left join SYS_GL_TYPE st on sf.typeId = st.typeId 
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by sf.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by sf.fileId  desc
+		</if>
+	</select>
+	<!--个人附件  -->
+	<select id="getAllPersonalFile" resultMap="SysFile">
+		SELECT f.fileId,f.typeId,f.fileName,f.filePath,f.createtime,f.fileType,f.ext,f.creator,f.creatorId,
+		f.delFlag,f.note,f.totalBytes
+ 		from SYS_FILE f 
+		where f.delFlag=0 and f.creatorId=#{userId}
+		<if test="@Ognl@isNotEmpty(typeId)">and f.typeId=#{typeId}</if>
+		<if test="@Ognl@isNotEmpty(fileName)">and f.fileName like #{fileName}</if>
+		<if test="@Ognl@isNotEmpty(ext)"> AND f.ext  LIKE #{ext} </if>
+		<if test="@Ognl@isNotEmpty(begincreatetime)"> AND f.createtime>=#{begincreatetime,jdbcType=DATE}</if>
+		<if test="@Ognl@isNotEmpty(endcreatetime)"> AND f.createtime &lt;=#{endcreatetime,jdbcType=DATE}</if>
+		<if test="@Ognl@isNotEmpty(creator)"> AND f.creator  LIKE #{creator}  </if>
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by f.${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by f.createtime  desc
+		</if>
+	</select>
+	
+</mapper>

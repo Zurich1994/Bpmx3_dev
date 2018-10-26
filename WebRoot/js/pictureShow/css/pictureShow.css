@@ -1,0 +1,88 @@
+.div_pictureShow{
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	text-align:center;
+}
+
+.pictureShow_next{
+	background:url('../images/pictureShow_next.png') 0px 1px no-repeat;
+	width: 20px;
+	height: 64px;
+	display: inline-block;
+}
+
+.pictureShow_prev{
+	background:url('../images/pictureShow_prev.png') 0px 1px no-repeat;
+	width: 20px;
+	height: 64px;
+	display: inline-block;
+}
+
+.pictureShow_n_next{
+	background:url('../images/pictureShow_n_next.png') 0px 1px no-repeat;
+	width: 20px;
+	height: 64px;
+	display: inline-block;
+}
+
+.pictureShow_n_prev{
+	background:url('../images/pictureShow_n_prev.png') 0px 1px no-repeat;
+	width: 20px;
+	height: 64px;
+	display: inline-block;
+}
+
+.table_pictureShow{
+	text-align: center;
+	border: 0px;
+	z-index:10;
+	*position:relative;
+}
+
+.table_pictureShow td{
+	border:none;
+	text-align:center;
+}
+
+a:link,a:visited {
+	text-decoration: none; /*超链接无下划线*/
+}
+
+.gallery_active{
+	border: 2px solid #000000 !important;
+}
+
+.gallery_ahover img {
+	border: 2px solid #CCCCCC !important;
+}
+.table.formTable td {
+	border:none;
+}
+.wrap_div{
+	background:#fff;
+    border-bottom:1px solid #ccc;
+    margin:0 auto;
+    display:table;
+    *position:relative;
+    z-index:0;
+}
+.hack_div{
+    display:table-cell;
+    vertical-align:middle;
+    *position:absolute;
+    *top:50%;
+    z-index:1;
+}
+.cnt_div{
+    *position:relative;
+    *top:-50%;
+}
+a.thumbnail-a{
+	display:block;
+	float:left;
+	padding:1px;
+	border:1px solid #ccc;
+}

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.mail.OutMail">
+	<resultMap id="OutMail" type="com.hotent.platform.model.mail.OutMail">
+		<id property="mailId" column="mailId" jdbcType="NUMERIC"/>
+		<result property="title" column="title" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="CLOB"/>
+		<result property="senderAddresses" column="senderAddresses" jdbcType="VARCHAR"/>
+		<result property="senderName" column="senderName" jdbcType="VARCHAR"/>
+		<result property="receiverAddresses" column="receiverAddresses" jdbcType="VARCHAR"/>
+		<result property="receiverNames" column="receiverNames" jdbcType="VARCHAR"/>
+		<result property="ccAddresses" column="ccAddresses" jdbcType="VARCHAR"/>
+		<result property="ccNames" column="ccNames" jdbcType="VARCHAR"/>
+		<result property="bcCAddresses" column="bcCAddresses" jdbcType="VARCHAR"/>
+		<result property="bcCAnames" column="bcCAnames" jdbcType="VARCHAR"/>
+		<result property="mailDate" column="mailDate" jdbcType="TIMESTAMP"/>
+		<result property="fileIds" column="fileIds" jdbcType="VARCHAR"/>
+		<result property="isRead" column="isRead" jdbcType="NUMERIC"/>
+		<result property="isReply" column="isReply" jdbcType="NUMERIC"/>
+		<result property="emailId" column="emailId" jdbcType="VARCHAR"/>
+		<result property="types" column="types" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="setId" column="setId" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		mailId,title,content,senderAddresses,senderName,receiverAddresses,receiverNames,ccAddresses,ccNames,bcCAddresses,bcCAnames,mailDate,fileIds,isRead,isReply,emailId,types,userId,setId
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(mailId)"> AND mailId  =#{mailId} </if>
+			<if test="@Ognl@isNotEmpty(title)"> AND title  LIKE #{title} </if>
+			<if test="@Ognl@isNotEmpty(senderAddresses)"> AND senderAddresses  LIKE #{senderAddresses}  </if>
+			<if test="@Ognl@isNotEmpty(senderName)"> AND senderName  LIKE #{senderName}  </if>
+			<if test="@Ognl@isNotEmpty(receiverAddresses)"> AND receiverAddresses  LIKE #{receiverAddresses}  </if>
+			<if test="@Ognl@isNotEmpty(receiverNames)"> AND receiverNames  LIKE #{receiverNames}  </if>
+			<if test="@Ognl@isNotEmpty(ccAddresses)"> AND ccAddresses  LIKE #{ccAddresses}  </if>
+			<if test="@Ognl@isNotEmpty(ccNames)"> AND ccNames  LIKE #{ccNames}  </if>
+			<if test="@Ognl@isNotEmpty(bcCAddresses)"> AND bcCAddresses  LIKE #{bcCAddresses}  </if>
+			<if test="@Ognl@isNotEmpty(bcCAnames)"> AND bcCAnames  LIKE #{bcCAnames}  </if>
+			<if test="@Ognl@isNotEmpty(mailDate)"> AND mailDate  =#{mailDate} </if>
+			<if test="@Ognl@isNotEmpty(fileIds)"> AND fileIds  LIKE #{fileIds}  </if>
+			<if test="@Ognl@isNotEmpty(isRead)"> AND isRead  =#{isRead} </if>
+			<if test="@Ognl@isNotEmpty(isReply)"> AND isReply  =#{isReply} </if>
+			<if test="@Ognl@isNotEmpty(emailId)"> AND emailId  =#{emailId} </if>
+			<if test="@Ognl@isNotEmpty(types)"> AND types  =#{types} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(setId)"> AND setId  =#{setId} </if>
+		</where>
+	</sql>
+
+	
+	<sql id="dynamicWhere2">
+		<where>
+		    userId=#{userId} 
+			<if test="@Ognl@isNotEmpty(title)"> AND title  LIKE #{title}  </if>
+			<if test="@Ognl@isNotEmpty(beginmailDate)"> AND mail.mailDate  >=#{beginmailDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(endmailDate)" > AND mail.mailDate &lt;=#{endmailDate,jdbcType=DATE} </if>
+			<if test="@Ognl@isNotEmpty(isRead)"> AND isRead  =#{isRead} </if>
+		</where>
+	</sql>
+	
+	<insert id="add" parameterType="com.hotent.platform.model.mail.OutMail">
+		INSERT INTO OUT_MAIL
+		(mailId,title,content,senderAddresses,senderName,receiverAddresses,receiverNames,ccAddresses,ccNames,bcCAddresses,bcCAnames,mailDate,fileIds,isRead,isReply,emailId,types,userId,setId)
+		VALUES
+		(#{mailId,jdbcType=NUMERIC}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=CLOB}, #{senderAddresses,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, #{receiverAddresses,jdbcType=CLOB}, #{receiverNames,jdbcType=CLOB}, #{ccAddresses,jdbcType=CLOB}, #{ccNames,jdbcType=CLOB}, #{bcCAddresses,jdbcType=CLOB}, #{bcCAnames,jdbcType=CLOB}, #{mailDate,jdbcType=TIMESTAMP}, #{fileIds,jdbcType=VARCHAR}, #{isRead,jdbcType=NUMERIC}, #{isReply,jdbcType=NUMERIC}, #{emailId,jdbcType=VARCHAR}, #{types,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC},#{setId,jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM OUT_MAIL 
+		WHERE
+		mailId=#{mailId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.mail.OutMail">
+		UPDATE OUT_MAIL SET
+		title=#{title,jdbcType=VARCHAR} , 
+		content=#{content,jdbcType=CLOB} , 
+		senderAddresses=#{senderAddresses,jdbcType=VARCHAR} , 
+		senderName=#{senderName,jdbcType=VARCHAR} , 
+		receiverAddresses=#{receiverAddresses,jdbcType=CLOB} , 
+		receiverNames=#{receiverNames,jdbcType=CLOB} , 
+		ccAddresses=#{ccAddresses,jdbcType=CLOB} , 
+		ccNames=#{ccNames,jdbcType=CLOB} , 
+		bcCAddresses=#{bcCAddresses,jdbcType=CLOB} , 
+		bcCAnames=#{bcCAnames,jdbcType=CLOB} , 
+		mailDate=#{mailDate,jdbcType=TIMESTAMP} , 
+		fileIds=#{fileIds,jdbcType=VARCHAR} , 
+		isRead=#{isRead,jdbcType=NUMERIC} ,
+		isReply=#{isReply,jdbcType=NUMERIC} ,
+		emailId=#{emailId,jdbcType=VARCHAR} ,
+		types=#{types,jdbcType=NUMERIC} ,
+		userId=#{userId,jdbcType=NUMERIC},
+		setId=#{setId,jdbcType=NUMERIC}
+		WHERE
+		mailId=#{mailId}
+	</update>
+	
+	<update id="updateTypes" parameterType="java.util.Map">
+		UPDATE OUT_MAIL SET 
+		types=#{types}
+		where mailId=#{mailId}
+	</update>
+	
+	<select id="getByIsDefault"  parameterType="java.lang.String" resultMap="OutMail">
+		SELECT * FROM OUT_MAIL  
+        where  RECEIVERADDRESSES=#{receiverAddresses} and USERID=#{userId}
+    </select>
+    
+    <select id="getByEmailId" resultType="int">
+	 SELECT count(*) FROM OUT_MAIL where emailId=#{emailId} and setId=#{setId}
+    </select>	
+    
+	<select id="getById" parameterType="java.lang.Long" resultMap="OutMail">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL
+		WHERE
+		mailId=#{mailId}
+	</select>
+	
+	<select id="getAll" resultMap="OutMail">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by mailId  desc
+		</if>
+	</select>
+	
+	<select id="getDefaultMailList" resultMap="OutMail">
+		SELECT <include refid="columns"/>
+		FROM OUT_MAIL mail
+		<include refid="dynamicWhere2"/> 
+		and 
+		setId=#{setId} and types=#{types}
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by mailId  desc
+		</if>
+	</select>
+		
+	<select id="getFolderList"   parameterType="java.util.Map" resultMap="OutMail">
+    	SELECT <include refid="columns"/>
+		FROM OUT_MAIL mail
+		<include refid="dynamicWhere2"/> 
+		and 
+		setId=#{setId} and types=#{types}
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by mailId  desc
+		</if>
+    </select>
+    
+    <select id="getFolderCount" resultType="int">
+    	SELECT COUNT(*) FROM OUT_MAIL WHERE setId=#{setId} and types=#{types}
+    </select>
+    
+    <delete id="delByEmailid" parameterType="java.lang.String">
+		DELETE FROM OUT_MAIL 
+		WHERE
+		emailId=#{uid}
+	</delete>
+
+	<delete id="delBySetId" parameterType="java.lang.String">
+		DELETE FROM OUT_MAIL 
+		WHERE
+		setId=#{setId}
+	</delete>
+	<select id="getMailByUserId" parameterType="Long" resultType="com.hotent.platform.model.mail.OutMail" >
+		select mailId,title from OUT_MAIL where userId=#{userId} and isRead=0 and types=1 order by mailDate desc
+	</select>
+	
+	<select id="getUIDBySetId" parameterType="Long" resultType="java.lang.String" >
+		select emailId from OUT_MAIL where setId=#{setId} order by mailId desc
+	</select>
+	
+</mapper>

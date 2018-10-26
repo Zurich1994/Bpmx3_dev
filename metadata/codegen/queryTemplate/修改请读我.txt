@@ -1,0 +1,5 @@
+高级查询 与原来模板修改说明：
+1.修改了controller.ftl的list方法
+2.修改了list.jsp的页面
+3.修改了model.ftl的页面（未完善）
+

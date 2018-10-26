@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<!-- spring上下文,可以获取 上下文的Context -->
+	<bean id="appUtil" class="com.hotent.core.util.AppUtil" />
+
+	<!-- 回滚事务类 -->
+	<bean id="rollbackJdbcTemplate" class="com.hotent.core.db.RollbackJdbcTemplate"></bean>
+	<!-- <bean id="dynamicLoadBean" class="com.hotent.core.util.DynamicLoadBean" 
+		/> -->
+	<!-- 资源文件操作类 -->
+	<bean id="resourceUtil" class="com.hotent.core.util.ResourceUtil" />
+	<!-- 缓存操作类，如果需要修改缓存的实现，修改实现的class就可以了，id不要修改。 -->
+	<bean id="iCache" class="com.hotent.core.cache.impl.MemoryCache"></bean>
+
+	<bean id="confValidator"
+		class="org.springmodules.validation.commons.ConfigurableBeanValidator">
+		<property name="validatorFactory" ref="validatorFactory" />
+	</bean>
+	<bean id="validatorFactory"
+		class="org.springmodules.validation.commons.DefaultValidatorFactory">
+		<property name="validationConfigLocations">
+			<list>
+				<value>classpath*:/conf/valid/*.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- <bean id="iCache" class="com.hotent.core.cache.impl.MemcachedCache" 
+		> <property name="memcachedClient" ref="memcachedClient"></property> </bean> 
+		<bean name="memcachedClient" class="net.rubyeye.xmemcached.utils.XMemcachedClientFactoryBean" 
+		destroy-method="shutdown"> <property name="servers" value="localhost:12345"></property> 
+		</bean> -->
+
+
+	<!--流程图颜色配置 -->
+	<bean id="iFlowStatus" class="com.hotent.platform.service.bpm.impl.FlowStatus">
+		<property name="bpmProStatus" ref="bpmProStatusDao"></property>
+		<property name="statusColor" ref="statusColorMap"></property>
+	</bean>
+	<!-- 状态说明：-1:正在审批，0：弃权,1:同意,2:反对,3:驳回,4,追回,5:会签通过,6:会签不通过 14,终止,33.提交,34,重新提交,37.执行过(脚本使用) 
+		用户可以修改状态对应的颜色值，修改图片的颜色。 -->
+	<bean id="statusColorMap" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="1" value="#00FF00"></entry>
+				<entry key="0" value="#FFA500"></entry>
+				<entry key="-1" value="#FF0000"></entry>
+				<entry key="2" value="#0000FF"></entry>
+				<entry key="3" value="#8A0902"></entry>
+				<entry key="4" value="#023B62"></entry>
+				<entry key="5" value="#338848"></entry>
+				<entry key="6" value="#82B7D7"></entry>
+				<entry key="14" value="#EEAF97"></entry>
+				<entry key="33" value="#F89800"></entry>
+				<entry key="34" value="#FFE76E"></entry>
+				<entry key="37" value="#C33A1F"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+
+	<!-- 会签定义完成条件类 -->
+	<bean id="signComplete" class="com.hotent.platform.service.bpm.impl.SignComplete"></bean>
+	<!-- 脚本引擎 -->
+	<bean id="scriptEngine" class="com.hotent.core.engine.GroovyScriptEngine"></bean>
+	<!-- 暴露给脚本引擎的代码，凡实现了IScript接口的类都被注入到groovy引擎使用 -->
+	<bean id="scriptImpl" class="com.hotent.platform.service.bpm.impl.ScriptImpl"></bean>
+	<!-- 基础通用脚本方法 -->
+	<bean id="cs" class="com.hotent.core.script.CommonScript"></bean>
+	<!-- 定时器服务类 -->
+	<bean id="schedulerService" class="com.hotent.core.scheduler.SchedulerService"></bean>
+
+	<!-- 表创建器 -->
+	<bean id="tableOperator" class="com.hotent.core.table.TableOperatorFactoryBean">
+		<property name="dbType" value="${jdbc.dbType}" />
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="dialect" ref="dialect"></property>
+	</bean>
+	<!-- 表元数据操作类 BpmIndexRebuildController 中使用到。 -->
+	<bean id="tableMeta" class="com.hotent.core.table.TableMetaFactoryBean">
+		<!-- <property name="sysDataSource" ref="sysdatasource"></property> -->
+	</bean>
+<!--
+	<bean id="sysdatasource" class="com.hotent.platform.model.system.SysDataSource">
+		<property name="alias" value="system-datasource"></property>
+		<property name="driverName" value="${jdbc.driverClassName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="userName" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="dbType" value="${jdbc.dbType}"></property>
+	</bean>
+	 方言 -->
+	<bean id="dialect" class="com.hotent.core.table.DialectFactoryBean">
+		<property name="dbType" value="${jdbc.dbType}" />
+	</bean>
+	<!-- jdbcDao 实现了分页查询。 -->
+	<bean id="jdbcDao" class="com.hotent.core.db.JdbcDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+		<property name="dialect" ref="dialect"></property>
+	</bean>
+	<!-- 工作台类 -->
+	<bean id="desktopService" class="com.hotent.platform.service.system.DesktopService"></bean>
+
+	<!-- 工作台类 -->
+	<bean id="indexService" class="com.hotent.platform.service.system.IndexService"></bean>
+
+	<!-- 邮件/短信发送引擎 -->
+	<bean id="messageEngine" class="com.hotent.core.engine.MessageEngine">
+		<property name="mailSender" ref="mailSender" />
+		<property name="fromUser" value="${mail.from}" />
+	</bean>
+
+	<!-- 短信发送 com.hotent.core.sms.impl.NoneMessageImpl 可以编写发送短信任何实现方式的demo com.hotent.core.sms.impl.ShortMessageImpl 
+		网关 com.hotent.core.sms.impl.ModemMessage 短信猫 -->
+	<bean id="iShortMessage" class="com.hotent.core.sms.impl.NoneMessageImpl">
+	</bean>
+
+	<!--流程节点用户计算 -->
+	<bean id="orgCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationOrg"></bean>
+	<bean id="orgAttrCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationOrgAttr"></bean>
+	<bean id="orgChargeCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationOrgCharge"></bean>
+	<bean id="positionCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationPosition"></bean>
+	<bean id="pervTypeUserLeaderCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationPrevTypeUserLeader"></bean>
+	<bean id="roleCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationRole"></bean>
+	<bean id="sameNodeCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationSameNode"></bean>
+	<bean id="scriptCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationScript"></bean>
+	<bean id="startUserCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationStartUser"></bean>
+	<bean id="upLowCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationUpLow"></bean>
+	<bean id="userCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationUser"></bean>
+	<bean id="userAttrCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationUserAttr"></bean>
+	<bean id="formVarCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationFormVar"></bean>
+	<bean id="startOrPrevCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationStartOrPrev"></bean>
+	<bean id="startOrPrevWithOrgCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationStartOrPrevWithOrg"></bean>
+	<bean id="approveCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationApprove"></bean>
+	<bean id="jobCalculation"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationJob"></bean>
+	<bean id="sameNodeCalculationDepartment"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationSameNodeDepartment"></bean>
+	<bean id="nodeUserCalculationAssignUsers"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationAssignUsers"></bean>
+	<bean id="personScriptCalculationAssignUsers"
+		class="com.hotent.platform.service.bpm.impl.BpmNodeUserCalculationPersonScript"></bean>
+	
+	<bean id="bpmNodeUserCalculationSelector"
+		class="com.hotent.platform.service.bpm.BpmNodeUserCalculationSelector">
+		<property name="bpmNodeUserCalculation">
+			<map>
+				<!-- 发起人 -->
+				<entry key="startUser" value-ref="startUserCalculation" />
+				<!-- 指定用户 -->
+				<entry key="users" value-ref="userCalculation" />
+				<!-- 指定角色 -->
+				<entry key="role" value-ref="roleCalculation" />
+				<!-- 指定组织 -->
+				<entry key="org" value-ref="orgCalculation" />
+				<!-- 指定组织负责人 -->
+				<entry key="orgCharge" value-ref="orgChargeCalculation" />
+				<!-- 指定岗位 -->
+				<entry key="pos" value-ref="positionCalculation" />
+				<!-- 指定职务 <entry key="job" value-ref="jobCalculation" /> -->
+				<!-- 指定上下级 -->
+				<entry key="upLow" value-ref="upLowCalculation" />
+				<!-- 用户属性 -->
+				<entry key="userAttr" value-ref="userAttrCalculation" />
+				<!-- 组织属性 -->
+				<entry key="orgAttr" value-ref="orgAttrCalculation" />
+				<!-- 与已执行节点相同执行人 -->
+				<entry key="sameNode" value-ref="sameNodeCalculation" />
+				<!-- 使用脚本 -->
+				<entry key="script" value-ref="scriptCalculation" />
+				<!-- 部门的上级类型部门的负责人 -->
+				<entry key="orgTypeUserLeader" value-ref="pervTypeUserLeaderCalculation" />
+				<!-- 表单变量 -->
+				<entry key="formVar" value-ref="formVarCalculation" />
+				<!-- 发起人或上一个任务执行人 -->
+				<entry key="startOrPrev" value-ref="startOrPrevCalculation" />
+				<!-- 发起人或上一个任务执行人的组织 -->
+				<entry key="startOrPrevWithOrg" value-ref="startOrPrevWithOrgCalculation" />
+				<!-- 审批过的人员 -->
+				<entry key="approve" value-ref="approveCalculation" />
+				<!-- 与已执行节点执行人相同部门 -->
+				<entry key="sameNodeDepartment" value-ref="sameNodeCalculationDepartment" />
+				<!-- 人员脚本 -->
+				<entry key="personScript" value-ref="personScriptCalculationAssignUsers" />
+				<!-- 发起节点配置节点人员
+				<entry key="assignUsers" value-ref="nodeUserCalculationAssignUsers" /> -->
+			</map>
+		</property>
+	</bean>
+	<bean id="queuesService" class="com.hotent.platform.service.jms.QueuesService"></bean>
+
+	<bean id="calendarCollection" class="com.hotent.platform.calendar.CalendarCollection">
+		<property name="calendarDatas">
+			<list>
+				<!-- 我的待办 -->
+				<bean id="myEventCalendarData"
+					class="com.hotent.platform.service.calendar.impl.MyEventCalendarData"></bean>
+				<!-- 我的日历 -->
+				<bean id="personalCalendarData"
+					class="com.hotent.platform.service.calendar.impl.PersonalCalendarData"></bean>
+			</list>
+		</property>
+	</bean>
+	
+		<!-- 代码生成器的html解释器 -->
+	<bean id="parseHandlerMap" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="edit" value-ref="editHandler" />
+				<entry key="get" value-ref="detailHandler" />
+				<entry key="modify" value-ref="editHandler" />
+				<entry key="detail" value-ref="detailHandler" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="detailHandler"
+		class="com.hotent.platform.service.form.impl.DetailParseHandler">
+		<property name="template" value="code/detailFormField.ftl"></property>
+	</bean>
+	<bean id="editHandler" class="com.hotent.platform.service.form.impl.EditParseHandler">
+		<property name="template" value="code/editFormField.ftl"></property>
+	</bean>
+	
+	
+	
+	<bean id="orgServiceImpl" class="com.hotent.platform.service.system.impl.OrgServiceImpl">
+	    <property name="handMap">
+	        <map>
+				<!-- 发起人 -->
+				<entry key="all"   value-ref="orgHandlerAll" />
+				<entry key="self"   value-ref="orgHandlerSelf" />
+				<entry key="grade"   value-ref="orgHandlerGrade"/>
+				<entry key="company"   value-ref="orgHandlerGrade"/>
+				<entry key="department"   value-ref="orgHandlerGrade"/>
+				<entry key="group"   value-ref="orgHandlerGrade"/>
+				<entry key="other"   value-ref="orgHandlerGrade"/>
+				<entry key="up"   value-ref="orgHandlerUp"/>
+			</map>
+	    </property>
+	</bean>
+	<bean id="orgHandlerAll" class="com.hotent.platform.service.system.impl.handler.OrgHandlerAll"></bean>
+	<bean id="orgHandlerSelf" class="com.hotent.platform.service.system.impl.handler.OrgHandlerSelf"></bean>
+	<bean id="orgHandlerUp" class="com.hotent.platform.service.system.impl.handler.OrgHandlerUp"></bean>
+	
+	<bean id="orgHandlerGrade" class="com.hotent.platform.service.system.impl.handler.GradeOrgHandler">
+	    <property name="aliasMap">
+	        <map>
+				<!-- 发起人 -->
+				<entry key="grade"   value="1"/>
+				<entry key="company"   value="2"/>
+				<entry key="department"   value="3"/>
+				<entry key="group"   value="4"/>
+				<entry key="other"   value="5"/>
+			</map>
+	    </property>
+	</bean>
+	
+	<bean id="skipConditionMap" class="java.util.LinkedHashMap">
+		<constructor-arg>
+			<map>
+				<entry key="global"  value-ref="globalSkipCondition"/>
+				<entry key="sameUser" value-ref="sameUserSkipCondition" />
+				<entry key="approveUser" value-ref="approveUserSkipCondition" />
+			</map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="sameUserSkipCondition" class="com.hotent.platform.service.bpm.skipimpl.SameUserSkipCondition"></bean>
+	<bean id="globalSkipCondition" class="com.hotent.platform.service.bpm.skipimpl.GlobalSkipCondition"></bean>
+	<bean id="approveUserSkipCondition" class="com.hotent.platform.service.bpm.skipimpl.ApproveUserSkipCondition"></bean>
+	
+	<!-- sysObjRights权限类型列表 -->
+	<bean id="allUserService" class="com.hotent.platform.service.system.impl.curuser.AllUserService"></bean>
+	<bean id="curUserService" class="com.hotent.platform.service.system.impl.curuser.CurUserService"></bean>
+	<bean id="roleUserService" class="com.hotent.platform.service.system.impl.curuser.RoleUserService"></bean>
+	<bean id="orgSubUserService" class="com.hotent.platform.service.system.impl.curuser.OrgSubUserService"></bean>
+	<bean id="orgUserService" class="com.hotent.platform.service.system.impl.curuser.OrgUserService"></bean>
+	<bean id="posUserService" class="com.hotent.platform.service.system.impl.curuser.PosUserService"></bean>
+	
+	<!-- 默认权限列表 -->
+	<bean id="defaultPermissionList" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="allUserService"/>
+				<ref bean="curUserService"/>
+				<ref bean="roleUserService"/>
+				<ref bean="orgUserService"/>
+				<ref bean="orgSubUserService"/>
+				<ref bean="posUserService"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	<!-- 
+	<bean id="updateDataListener" class="com.hotent.core.datahandler.UpdateDataListener">
+		<property name="sqlMap">
+			<map>
+				<entry key="biaoming">
+					<list>
+						<value type="java.lang.String">
+							UPDATE QINGJIA a  SET(username) =(SELECT b.fullname FROM sys_user b WHERE b.userid = a.userid) WHERE a.userid=?
+						</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	 -->
+	<!-- 权限共享 -->
+	<bean id="shareRightsCalc" class="com.hotent.platform.service.share.rights.ShareRightsCalc"></bean> 	
+	<bean id="shareRightsContainer" class="com.hotent.platform.service.share.rights.ShareRightsContainer">
+			<property name="shareRightsList">
+				<list>
+				   	<bean id="offFormDFRightsShare" class="com.hotent.platform.service.share.rights.impl.OffFormDFRightsShare"></bean>
+				  <!--  	<bean id="roleDFRightsShare" class="com.hotent.platform.service.share.rights.impl.RoleDFRightsShare"></bean>-->
+				   	<bean id="dataFormDFRightsShare" class="com.hotent.platform.service.share.rights.impl.DataFormDFRightsShare"></bean>
+				</list>
+			</property>
+	</bean>	
+	
+	
+	<!-- <bean id="ldapSettingModel" class="com.hotent.core.ldap.LdapSettingModel">
+		<property name="url" value="${ldapUrl}" />
+		<property name="ldapBase" value="${ldapBase}" />
+		<property name="userDn" value="${ldapUserDn}" />
+		<property name="password" value="${ldapPassword}" />
+		
+		<property name="orgFields" value="ou,distinguishedName,name" />
+		<property name="userFields" value="sAMAccountName,distinguishedName,name" />
+		<property name="orgNames" value="${orgNames}" />
+	</bean>	
+	
+	<bean id="ldapService" class="com.hotent.core.ldap.LdapService">
+		<property name="ldapSettingModel" ref="ldapSettingModel" />
+	</bean>	 -->
+</beans>

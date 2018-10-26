@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysObjRights">
+	<resultMap id="SysObjRights" type="com.hotent.platform.model.system.SysObjRights">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="objType" column="OBJ_TYPE" jdbcType="VARCHAR"/>
+		<result property="objectId" column="OBJECT_ID" jdbcType="NUMERIC"/>
+		<result property="ownerId" column="OWNER_ID" jdbcType="NUMERIC"/>
+		<result property="owner" column="OWNER" jdbcType="VARCHAR"/>
+		<result property="rightType" column="RIGHT_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+
+	<sql id="columns">
+		ID,OBJ_TYPE,OBJECT_ID,OWNER_ID,OWNER,RIGHT_TYPE
+	</sql>
+	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+			<if test="@Ognl@isNotEmpty(objType)"> AND OBJ_TYPE  LIKE #{objType}  </if>
+			<if test="@Ognl@isNotEmpty(objectId)"> AND OBJECT_ID  =#{objectId} </if>
+			<if test="@Ognl@isNotEmpty(ownerId)"> AND OWNER_ID  =#{ownerId} </if>
+			<if test="@Ognl@isNotEmpty(owner)"> AND OWNER  LIKE #{owner}  </if>
+			<if test="@Ognl@isNotEmpty(rightType)"> AND RIGHT_TYPE  LIKE #{rightType}  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysObjRights">
+		INSERT INTO sys_obj_rights
+		(ID,OBJ_TYPE,OBJECT_ID,OWNER_ID,OWNER,RIGHT_TYPE)
+		VALUES
+		(#{id,jdbcType=NUMERIC}, #{objType,jdbcType=VARCHAR}, #{objectId,jdbcType=NUMERIC}, #{ownerId,jdbcType=NUMERIC}, #{owner,jdbcType=VARCHAR}, #{rightType,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM sys_obj_rights 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<delete id="deleteByObjTypeAndObjectId" parameterType="java.lang.Long">
+		DELETE FROM sys_obj_rights 
+		WHERE
+		OBJ_TYPE=#{objType} and OBJECT_ID=#{objectId}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysObjRights">
+		UPDATE sys_obj_rights SET
+		OBJ_TYPE=#{objType,jdbcType=VARCHAR},
+		OBJECT_ID=#{objectId,jdbcType=NUMERIC},
+		OWNER_ID=#{ownerId,jdbcType=NUMERIC},
+		OWNER=#{owner,jdbcType=VARCHAR},
+		RIGHT_TYPE=#{rightType,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysObjRights">
+		SELECT <include refid="columns"/>
+		FROM sys_obj_rights
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="SysObjRights">
+		SELECT <include refid="columns"/>
+		FROM sys_obj_rights   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+	
+	<select id="getObject" resultMap="SysObjRights">
+		SELECT <include refid="columns"/>
+		FROM sys_obj_rights
+		WHERE 1=1
+		<if test="@Ognl@isNotEmpty(id)"> AND ID  =#{id} </if>
+		<if test="@Ognl@isNotEmpty(objType)"> AND OBJ_TYPE  = #{objType}  </if>
+		<if test="@Ognl@isNotEmpty(objectId)"> AND OBJECT_ID  =#{objectId} </if>
+		<if test="@Ognl@isNotEmpty(ownerId)"> AND OWNER_ID  =#{ownerId} </if>
+		<if test="@Ognl@isNotEmpty(owner)"> AND OWNER  = #{owner}  </if>
+		<if test="@Ognl@isNotEmpty(rightType)"> AND RIGHT_TYPE  LIKE #{rightType}  </if>
+	</select>
+	
+	
+</mapper>

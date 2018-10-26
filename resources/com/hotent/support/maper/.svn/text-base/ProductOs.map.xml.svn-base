@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.support.model.catelog.ProductOs">
+	<resultMap id="ProductOs" type="com.hotent.support.model.catelog.ProductOs">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="PRODUCTID" column="F_PRODUCTID" jdbcType="NUMERIC"/>
+		<result property="OS" column="F_OS" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_PRODUCTID,F_OS
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(PRODUCTID)"> AND F_PRODUCTID  =#{PRODUCTID} </if>
+			<if test="@Ognl@isNotEmpty(OS)"> AND F_OS  LIKE '%${OS}%'  </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.support.model.catelog.ProductOs">
+		INSERT INTO W_PRODUCT_OS
+		(ID,
+		F_PRODUCTID,F_OS)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{PRODUCTID,jdbcType=NUMERIC}, #{OS,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_PRODUCT_OS 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.support.model.catelog.ProductOs">
+		UPDATE W_PRODUCT_OS SET
+		F_PRODUCTID=#{PRODUCTID,jdbcType=NUMERIC},
+		F_OS=#{OS,jdbcType=VARCHAR}
+		WHERE
+		ID=#{id}
+	</update>
+	
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="ProductOs">
+		SELECT <include refid="columns"/>
+		FROM W_PRODUCT_OS
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="ProductOs">
+		SELECT <include refid="columns"/>
+		FROM W_PRODUCT_OS   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

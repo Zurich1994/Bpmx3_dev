@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.banking.model.banking.Account">
+	<resultMap id="Account" type="com.hotent.banking.model.banking.Account">
+		<id property="id" column="ID" jdbcType="NUMERIC"/>
+		<result property="USERID" column="F_USERID" jdbcType="VARCHAR"/>
+		<result property="ACCOUNTNO" column="F_ACCOUNTNO" jdbcType="VARCHAR"/>
+		<result property="TYPE" column="F_TYPE" jdbcType="NUMERIC"/>
+		<result property="BALANCE" column="F_BALANCE" jdbcType="NUMERIC"/>
+		<result property="TOTALDEPOSIT" column="F_TOTALDEPOSIT" jdbcType="NUMERIC"/>
+		<result property="AVGDEPOSIT" column="F_AVGDEPOSIT" jdbcType="NUMERIC"/>
+		<result property="TOTALWITHDRAWL" column="F_TOTALWITHDRAWL" jdbcType="NUMERIC"/>
+		<result property="AVGWITHDRAWAL" column="F_AVGWITHDRAWAL" jdbcType="NUMERIC"/>
+	</resultMap>
+
+	<sql id="columns">
+		ID,F_USERID,F_ACCOUNTNO,F_TYPE,F_BALANCE,F_TOTALDEPOSIT,F_AVGDEPOSIT,F_TOTALWITHDRAWL,F_AVGWITHDRAWAL
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(USERID)"> AND F_USERID  LIKE '%${USERID}%'  </if>
+			<if test="@Ognl@isNotEmpty(ACCOUNTNO)"> AND F_ACCOUNTNO  LIKE '%${ACCOUNTNO}%'  </if>
+			<if test="@Ognl@isNotEmpty(TYPE)"> AND F_TYPE  =#{TYPE} </if>
+			<if test="@Ognl@isNotEmpty(BALANCE)"> AND F_BALANCE  =#{BALANCE} </if>
+			<if test="@Ognl@isNotEmpty(TOTALDEPOSIT)"> AND F_TOTALDEPOSIT  =#{TOTALDEPOSIT} </if>
+			<if test="@Ognl@isNotEmpty(AVGDEPOSIT)"> AND F_AVGDEPOSIT  =#{AVGDEPOSIT} </if>
+			<if test="@Ognl@isNotEmpty(TOTALWITHDRAWL)"> AND F_TOTALWITHDRAWL  =#{TOTALWITHDRAWL} </if>
+			<if test="@Ognl@isNotEmpty(AVGWITHDRAWAL)"> AND F_AVGWITHDRAWAL  =#{AVGWITHDRAWAL} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.banking.model.banking.Account">
+		INSERT INTO W_ACCOUNT
+		(ID,
+		F_USERID,F_ACCOUNTNO,F_TYPE,F_BALANCE,F_TOTALDEPOSIT,F_AVGDEPOSIT,F_TOTALWITHDRAWL,F_AVGWITHDRAWAL)
+		VALUES
+		(#{id,jdbcType=NUMERIC},
+		#{USERID,jdbcType=VARCHAR}, #{ACCOUNTNO,jdbcType=VARCHAR}, #{TYPE,jdbcType=NUMERIC}, #{BALANCE,jdbcType=NUMERIC}, #{TOTALDEPOSIT,jdbcType=NUMERIC}, #{AVGDEPOSIT,jdbcType=NUMERIC}, #{TOTALWITHDRAWL,jdbcType=NUMERIC}, #{AVGWITHDRAWAL,jdbcType=NUMERIC})
+	</insert>
+	
+	<select id="getByAccountno" parameterType="java.lang.Double" resultMap="Account">
+		SELECT <include refid="columns"/>
+		FROM W_ACCOUNT
+		WHERE
+		F_ACCOUNTNO=#{nowaccount}
+	</select>
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM W_ACCOUNT 
+		WHERE
+		ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.banking.model.banking.Account">
+		UPDATE W_ACCOUNT SET
+		F_USERID=#{USERID,jdbcType=VARCHAR},
+		F_ACCOUNTNO=#{ACCOUNTNO,jdbcType=VARCHAR},
+		F_TYPE=#{TYPE,jdbcType=NUMERIC},
+		F_BALANCE=#{BALANCE,jdbcType=NUMERIC},
+		F_TOTALDEPOSIT=#{TOTALDEPOSIT,jdbcType=NUMERIC},
+		F_AVGDEPOSIT=#{AVGDEPOSIT,jdbcType=NUMERIC},
+		F_TOTALWITHDRAWL=#{TOTALWITHDRAWL,jdbcType=NUMERIC},
+		F_AVGWITHDRAWAL=#{AVGWITHDRAWAL,jdbcType=NUMERIC}
+		WHERE
+		ID=#{id}
+	</update>
+	
+	<update id="update2" parameterType="java.util.Map">
+		UPDATE W_ACCOUNT SET
+		F_BALANCE=#{balance,jdbcType=NUMERIC}
+		WHERE
+		F_ACCOUNTNO=#{accountno}
+	</update>
+	
+	<update id="transfer1" parameterType="com.hotent.banking.model.banking.Account">
+		UPDATE W_ACCOUNT SET	
+		F_BALANCE=#{BALANCE,jdbcType=NUMERIC}-amount,<!-- update ACCOUNT set BALANCE=BALANCE-页面值(amount) -->
+		WHERE 
+		F_ACCOUNTNO=#{nowaccount,jdbcType=VARCHAR}
+	</update>
+	<update id="transfer2" parameterType="com.hotent.banking.model.banking.Account">
+		UPDATE W_ACCOUNT SET	
+		F_BALANCE=#{BALANCE,jdbcType=NUMERIC}+amount,<!-- update ACCOUNT set BALANCE=BALANCE+页面值(amount) -->
+		WHERE
+		F_ACCOUNTNO=#{toaccount,jdbcType=VARCHAR}
+	</update>
+		    
+	<select id="getById" parameterType="java.lang.Long" resultMap="Account">
+		SELECT <include refid="columns"/>
+		FROM W_ACCOUNT
+		WHERE
+		ID=#{id}
+	</select>
+	
+	<select id="getAll" resultMap="Account">
+		SELECT <include refid="columns"/>
+		FROM W_ACCOUNT   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by ID  desc
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="生成代码"  default="生成代码">
+	<property name="lib.dir" value="./refLib"/>
+
+	<path id="refLib">
+		<fileset dir="${lib.dir}" includes="*.jar" /> 
+    </path>
+	
+    <taskdef name="gencode" classname="com.hotent.cgm.main.Codegen">
+     	<classpath refid="refLib" />
+    </taskdef>
+	<taskdef name="deletecode" classname="com.hotent.cgm.main.CodeDelete">
+				<classpath refid="refLib"/>
+	</taskdef>
+	<target   name="生成代码" description="生成代码">
+		<gencode rootpath=""/>
+	</target>
+	<target id="deletecode"  name="deletecode" description="删除生成的代码">
+			<deletecode  />
+	</target>
+	
+</project>

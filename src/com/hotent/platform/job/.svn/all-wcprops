@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/BPMX_2015_WYX/!svn/ver/960/bpmx_w/src/com/hotent/platform/job
+END
+SyncUserDataJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/898/bpmx_w/src/com/hotent/platform/job/SyncUserDataJob.java
+END
+ReminderJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BPMX_2015_WYX/!svn/ver/960/bpmx_w/src/com/hotent/platform/job/ReminderJob.java
+END
+Monitor_NetStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_NetStatus.java
+END
+Monitor_SysInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_SysInfo.java
+END
+Monitor_hddSize.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_hddSize.java
+END
+IndexRebuildJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/job/IndexRebuildJob.java
+END
+Monitor_CPUUse.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_CPUUse.java
+END
+Monitor_PhyMemoryAvail.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_PhyMemoryAvail.java
+END
+LdapDbSyncJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/job/LdapDbSyncJob.java
+END
+Monitor_hddUsages.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_hddUsages.java
+END
+MyJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/BPMX_2015_WYX/!svn/ver/54/bpmx_w/src/com/hotent/platform/job/MyJob.java
+END
+Monitor_custom.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_custom.java
+END
+Monitor_hddAvail.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_hddAvail.java
+END
+Monitor_VirMemoryUsage.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_VirMemoryUsage.java
+END
+Monitor_VirMomoryAvail.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_VirMomoryAvail.java
+END
+Monitor_VirMemorySize.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_VirMemorySize.java
+END
+Monitor_PhyMemorySize.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_PhyMemorySize.java
+END
+Monitor_PhyUsage.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BPMX_2015_WYX/!svn/ver/220/bpmx_w/src/com/hotent/platform/job/Monitor_PhyUsage.java
+END

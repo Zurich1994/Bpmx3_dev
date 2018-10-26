@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.hotent.platform.model.system.SysUserOrg">
+	<resultMap id="SysUserOrg" type="com.hotent.platform.model.system.SysUserOrg">
+		<id property="userOrgId" column="userOrgId" jdbcType="NUMERIC"/>
+		<result property="orgId" column="orgId" jdbcType="NUMERIC"/>
+		<result property="userId" column="userId" jdbcType="NUMERIC"/>
+		<result property="isPrimary" column="isPrimary" jdbcType="NUMERIC"/>
+		<result property="isGradeManage" column="isGradeManage" jdbcType="NUMERIC"/>
+		<result property="isCharge" column="isCharge" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		userOrgId,orgId,userId,isPrimary,isCharge,isGradeManage
+	</sql>
+	
+	<sql id="dynamicWhere">
+		<where>
+			<if test="@Ognl@isNotEmpty(userOrgId)"> AND userOrgId  =#{userOrgId} </if>
+			<if test="@Ognl@isNotEmpty(orgId)"> AND orgId  =#{orgId} </if>
+			<if test="@Ognl@isNotEmpty(userId)"> AND userId  =#{userId} </if>
+			<if test="@Ognl@isNotEmpty(isPrimary)"> AND isPrimary  =#{isPrimary} </if>
+			<if test="@Ognl@isNotEmpty(isGradeManage)"> AND isGradeManage  =#{isGradeManage} </if>
+			<if test="@Ognl@isNotEmpty(roleType)"> AND roleType  =#{roleType} </if>
+		</where>
+	</sql>
+
+	<insert id="add" parameterType="com.hotent.platform.model.system.SysUserOrg">
+		INSERT INTO sys_user_org
+		(<include refid="columns"/>)
+		VALUES
+		(#{userOrgId}, #{orgId,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, 
+		#{isPrimary,jdbcType=NUMERIC},#{isCharge,jdbcType=NUMERIC},#{isGradeManage,jdbcType=NUMERIC})
+	</insert>
+	
+	
+	<delete id="delById" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_ORG 
+		WHERE
+		userOrgId=#{userOrgId}
+	</delete>
+	
+	<delete id="delByUserId" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_ORG 
+		WHERE userId=#{userId}
+	</delete>
+	
+	<delete id="delByOrgId" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_ORG 
+		WHERE orgId=#{orgId}
+	</delete>
+	
+	<delete id="delChargeByOrgId" parameterType="java.lang.Long">
+		DELETE FROM SYS_USER_ORG  WHERE orgId=#{orgId} and isCharge=1
+	</delete>
+	
+	<update id="update" parameterType="com.hotent.platform.model.system.SysUserOrg">
+		UPDATE sys_user_org SET
+		orgId=#{orgId,jdbcType=NUMERIC} , 
+		userId=#{userId,jdbcType=NUMERIC} , 
+		isPrimary=#{isPrimary,jdbcType=NUMERIC} , 
+		isCharge=#{isCharge,jdbcType=NUMERIC} ,
+		isGradeManage=#{isGradeManage,jdbcType=NUMERIC}
+		WHERE
+		userOrgId=#{userOrgId}
+	</update>
+	
+	<update id="updNotPrimaryByUserId" parameterType="Long">
+		UPDATE sys_user_org SET isPrimary=0 WHERE userId=#{userId}
+	</update>
+	
+	
+	
+	<select id="getById" parameterType="java.lang.Long" resultMap="SysUserOrg">
+		SELECT <include refid="columns"/>
+		FROM SYS_USER_ORG
+		WHERE
+		userOrgId=#{userOrgId}
+	</select>
+	
+	<select id="getAll" resultMap="SysUserOrg">
+		SELECT <include refid="columns"/>
+		FROM SYS_USER_ORG   
+		<include refid="dynamicWhere" />
+		<if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by userOrgId  desc
+		</if>
+	</select>
+	
+	<select id="getUserOrgModel" parameterType="java.util.Map" resultMap="SysUserOrg">
+	    select <include refid="columns"/>
+	    from SYS_USER_ORG
+	    where  userId=#{userId}  and orgId=#{orgId}
+	</select>
+	
+	<select id="getByOrgId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUserOrg">
+	    select a.userOrgId,a.orgId,a.userId,a.isPrimary,a.isCharge,b.fullname  as userName
+	    from SYS_USER_ORG a join SYS_USER b on a.userId=b.userId
+	    where   a.orgId=#{orgId}
+	</select>
+	
+	<select id="getUserByOrgIds" parameterType="String" resultType="com.hotent.platform.model.system.SysUserOrg">
+	    select distinct a.orgId,a.userId,b.fullname  as userName
+	    from SYS_USER_ORG a join SYS_USER b on a.userId=b.userId
+	    where   a.orgId in (${orgIds})
+	</select>
+	
+	<select id="getChargeByOrgId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUserOrg">
+	    select a.userOrgId,a.orgId,a.userId,a.isPrimary,a.isCharge,b.fullname  as userName
+	    from SYS_USER_ORG a join SYS_USER b on a.userId=b.userId
+	    where  a.orgId=#{orgId} and a.isCharge=1
+	</select>
+	
+	
+	<select id="getOrgByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUserOrg">
+	     select a.userOrgId,a.orgId,a.userId,a.isPrimary,a.isCharge,a.isGradeManage, b.orgName 
+      		from SYS_USER_ORG a join SYS_ORG b on a.orgid=b.orgid where  a.userid=#{userId} order by userOrgId desc
+	</select>
+	
+	<select id="getManageOrgByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUserOrg">
+	     select a.userOrgId,a.orgId,a.userId,a.isPrimary,a.isCharge,a.isGradeManage, b.orgName 
+      		from SYS_USER_ORG a join SYS_ORG b on a.orgid=b.orgid where  a.userid=#{userId} and a.isGradeManage=1 order by userOrgId desc
+	</select>
+	
+	<select id="getChargeByUserId" resultType="java.lang.Long" resultMap="SysUserOrg">
+		select * from SYS_USER_ORG where userId=#{userId} and isCharge=1
+	</select>
+	
+
+	<select id="getUserByOrgId" resultMap="SysUserOrg">
+		SELECT a.userId,a.fullname  userName,a.account,b.userOrgId,c.orgName,b.isPrimary,isCharge,b.isGradeManage
+	    FROM  sys_user a 
+	    join sys_user_org b  on  a.userId=b.userId
+	    join sys_org c on b.orgId=c.orgId
+		<where>
+			<if test="@Ognl@isNotEmpty(path)"> AND c.path  LIKE #{path}  </if>
+			<if test="@Ognl@isNotEmpty(fullname)"> AND a.fullname  LIKE #{fullname}  </if>
+			<if test="@Ognl@isNotEmpty(account)"> AND a.account  LIKE #{account}  </if>
+		</where>
+        <if test="@Ognl@isNotEmpty(orderField)">
+		order by ${orderField} ${orderSeq}
+		</if>
+		<if test="@Ognl@isEmpty(orderField)">
+		order by c.orgType,c.orgId
+		</if>
+	</select>
+	
+	    	 
+	 <select id="getPrimaryByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUserOrg">
+	     select a.userOrgId,a.orgId,a.userId,a.isPrimary,b.orgName 
+      		from SYS_USER_ORG a join SYS_ORG b on a.orgid=b.orgid where  a.userid=#{userId} and a.isPrimary=1 order by userOrgId desc
+	</select>
+	
+	<select id="getChargeOrgByUserId" parameterType="Long" resultType="com.hotent.platform.model.system.SysUserOrg">
+	     select a.* from sys_user u, sys_user_org a,sys_org b where 
+			  u.userid=a.userid and a.orgid=b.orgid  and ischarge=1
+			and a.userid=#{userId}
+	</select>
+
+</mapper>
