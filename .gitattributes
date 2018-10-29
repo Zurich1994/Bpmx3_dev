@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 *.js linguist-language=JavaScript
 *.jsp linguist-language=JavaScript
+*.java linguist-language=JavaScript
