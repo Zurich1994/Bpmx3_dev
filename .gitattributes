@@ -2,3 +2,4 @@
 *.js linguist-language=JavaScript
 *.jsp linguist-language=JavaScript
 *.java linguist-language=JavaScript
+*.properties linguist-language=JavaScript
